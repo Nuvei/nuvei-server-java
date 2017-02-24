@@ -1,0 +1,47 @@
+package com.safecharge.retail.model;
+
+/**
+ * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ *
+ * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @since 2/14/2017
+ */
+//@XmlRootElement
+//@XmlAccessorType(XmlAccessType.FIELD)
+public class Item {
+    //    @NotNull
+    //    @Size(min=1, max=255)
+    private String name;
+
+    //    @NotNull
+    //    @Size(min=1, max=10)
+    private String price;
+
+    //    @NotNull
+    //    @Size(min=1, max=10)
+    private String quantity;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+}
