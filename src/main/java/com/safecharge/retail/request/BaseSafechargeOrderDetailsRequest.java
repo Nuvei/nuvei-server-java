@@ -3,6 +3,10 @@ package com.safecharge.retail.request;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.safecharge.retail.model.Addendums;
 import com.safecharge.retail.model.DeviceDetails;
 import com.safecharge.retail.model.DynamicDescriptor;
@@ -19,29 +23,33 @@ import com.safecharge.retail.model.UserDetails;
  */
 public abstract class BaseSafechargeOrderDetailsRequest extends BaseSafechargeRequest implements SafechargeOrderDetailsRequest {
 
-    private String currency;
+    @NotNull private String currency;
 
-    private String amount;
+    @NotNull private String amount;
 
-    private List<Item> items = new ArrayList<>();
+    @Valid @NotNull @Size(min = 1) private List<Item> items = new ArrayList<>();
 
-    private DeviceDetails deviceDetails;
+    @Valid private DeviceDetails deviceDetails;
 
-    private UserDetails userDetails;
+    @Valid private UserDetails userDetails;
 
-    private UserAddress shippingAddress;
+    @Valid private UserAddress shippingAddress;
 
-    private UserAddress billingAddress;
+    @Valid private UserAddress billingAddress;
 
-    private DynamicDescriptor dynamicDescriptor;
+    @Valid private DynamicDescriptor dynamicDescriptor;
 
-    private MerchantDetails merchantDetails;
+    @Valid private MerchantDetails merchantDetails;
 
     private Addendums addendums;
 
-    private String userTokenId;
+    @Size(max = 45) private String userTokenId;
 
-    private String clientUniqueId;
+    @Size(max = 45) private String clientUniqueId;
+
+    @Override @NotNull(message = "sessionToken parameter is mandatory!") public String getSessionToken() {
+        return super.getSessionToken();
+    }
 
     public String getCurrency() {
         return currency;
@@ -137,5 +145,40 @@ public abstract class BaseSafechargeOrderDetailsRequest extends BaseSafechargeRe
 
     @Override public void setClientUniqueId(String clientUniqueId) {
         this.clientUniqueId = clientUniqueId;
+    }
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("currency='")
+          .append(currency)
+          .append('\'');
+        sb.append(", amount='")
+          .append(amount)
+          .append('\'');
+        sb.append(", items=")
+          .append(items);
+        sb.append(", deviceDetails=")
+          .append(deviceDetails);
+        sb.append(", userDetails=")
+          .append(userDetails);
+        sb.append(", shippingAddress=")
+          .append(shippingAddress);
+        sb.append(", billingAddress=")
+          .append(billingAddress);
+        sb.append(", dynamicDescriptor=")
+          .append(dynamicDescriptor);
+        sb.append(", merchantDetails=")
+          .append(merchantDetails);
+        sb.append(", addendums=")
+          .append(addendums);
+        sb.append(", userTokenId='")
+          .append(userTokenId)
+          .append('\'');
+        sb.append(", clientUniqueId='")
+          .append(clientUniqueId)
+          .append('\'');
+        sb.append(", ");
+        sb.append(super.toString());
+        return sb.toString();
     }
 }

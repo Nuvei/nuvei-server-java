@@ -1,25 +1,24 @@
 package com.safecharge.retail.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
  */
-//@XmlRootElement
-//@XmlAccessorType(XmlAccessType.FIELD)
 public class Item {
-    //    @NotNull
-    //    @Size(min=1, max=255)
-    private String name;
 
-    //    @NotNull
-    //    @Size(min=1, max=10)
-    private String price;
+    @NotNull @Size(min = 1,
+                   max = 255) private String name;
 
-    //    @NotNull
-    //    @Size(min=1, max=10)
-    private String quantity;
+    @NotNull @Size(min = 1,
+                   max = 10) private String price;
+
+    @NotNull @Size(min = 1,
+                   max = 10) private String quantity;
 
     public String getName() {
         return name;

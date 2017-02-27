@@ -1,6 +1,9 @@
 package com.safecharge.retail.request;
 
+import javax.validation.constraints.Size;
+
 import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
+import com.safecharge.retail.util.ValidationUtil;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -11,7 +14,7 @@ import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
 
 public class UpdateOrderRequest extends BaseSafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
-    //    @Size(max=45)
+    @Size(max = 45)
     private String orderId;
 
     public String getOrderId() {
@@ -20,6 +23,17 @@ public class UpdateOrderRequest extends BaseSafechargeOrderDetailsRequest implem
 
     @Override public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("UpdateOrderRequest{");
+        sb.append("orderId='")
+          .append(orderId)
+          .append('\'');
+        sb.append(", ");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
     }
 
     public static class Builder extends SafechargeOrderBuilder<Builder> {
@@ -34,7 +48,7 @@ public class UpdateOrderRequest extends BaseSafechargeOrderDetailsRequest implem
         @Override public SafechargeRequest build() {
             UpdateOrderRequest updateOrderRequest = super.build(new UpdateOrderRequest());
             updateOrderRequest.setOrderId(orderId);
-            return updateOrderRequest;
+            return ValidationUtil.validate(updateOrderRequest);
         }
     }
 }

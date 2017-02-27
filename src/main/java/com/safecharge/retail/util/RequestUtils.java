@@ -12,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.safecharge.retail.request.SafechargeOrderDetailsRequest;
 import com.safecharge.retail.request.SafechargeRequest;
 
@@ -22,14 +25,22 @@ import com.safecharge.retail.request.SafechargeRequest;
  * @since 2/17/2017
  */
 
-//         requestChecksumOrder.put(ApiChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING.name(), Arrays.asList(
-//                "merchantId", "merchantSiteId", "clientRequestId", "amount", "currency", "timeStamp"));
 public class RequestUtils {
 
+    private static final Logger logger = LogManager.getLogger(RequestUtils.class);
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
-    public static String calculateChecksum(SafechargeOrderDetailsRequest request, String amount, String currency, String merchantKey,
-            Constants.HashAlgorithm hashAlgorithm) {
+    /**
+     * Checksum parameters must be in the order: "merchantId", "merchantSiteId", "clientRequestId", "amount", "currency", "timeStamp"
+     *
+     * @param request
+     * @param amount
+     * @param currency
+     * @param merchantKey
+     * @param hashAlgorithm
+     * @return
+     */
+    public static String calculateChecksum(SafechargeOrderDetailsRequest request, String amount, String currency, String merchantKey, Constants.HashAlgorithm hashAlgorithm) {
 
         StringBuilder sb = new StringBuilder();
 
@@ -41,11 +52,21 @@ public class RequestUtils {
         sb.append(request.getTimeStamp());
         sb.append(merchantKey);
 
-        System.out.println("Hash: " + sb.toString());
+        if (logger.isDebugEnabled()) {
+            logger.debug("Hash: " + sb.toString());
+        }
 
         return getHash(sb.toString(), Constants.CHARSET_UTF8, hashAlgorithm);
     }
 
+    /**
+     * Checksum parameters must be in the order: "merchantId", "merchantSiteId", "clientRequestId", "timeStamp"
+     *
+     * @param request
+     * @param merchantKey
+     * @param hashAlgorithm
+     * @return
+     */
     public static String calculateChecksum(SafechargeRequest request, String merchantKey, Constants.HashAlgorithm hashAlgorithm) {
 
         StringBuilder sb = new StringBuilder();
@@ -55,7 +76,9 @@ public class RequestUtils {
         sb.append(request.getTimeStamp());
         sb.append(merchantKey);
 
-        System.out.println("Hash: " + sb.toString());
+        if (logger.isDebugEnabled()) {
+            logger.debug("Hash: " + sb.toString());
+        }
 
         return getHash(sb.toString(), Constants.CHARSET_UTF8, hashAlgorithm);
     }

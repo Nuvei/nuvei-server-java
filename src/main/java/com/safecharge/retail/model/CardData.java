@@ -1,8 +1,8 @@
 package com.safecharge.retail.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.validation.constraints.Size;
+
+import com.safecharge.retail.util.APIConstants;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -10,27 +10,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
  */
-//@XmlRootElement
-//@XmlAccessorType(XmlAccessType.FIELD)
 public class CardData {
 
-    //    @Size(max=ApiConstants.CREDIT_CARD_MAX_LENGTH)
-    private String cardNumber;
+    @Size(max = APIConstants.CREDIT_CARD_MAX_LENGTH) private String cardNumber;
 
-    //    @Size(max=ApiConstants.CARD_HOLDER_MAX_LENGTH)
-    private String cardHolderName;
+    @Size(max = APIConstants.CARD_HOLDER_MAX_LENGTH) private String cardHolderName;
 
-    //    @Size(max=2)
-    private String expirationMonth;
+    @Size(max = 2) private String expirationMonth;
 
-    //    @Size(max=4)
-    private String expirationYear;
+    @Size(max = 4) private String expirationYear;
 
-    //    @Size(max=45)
-    private String cardToken;
+    @Size(max = 45) private String cardToken;
 
-    //    @Size(max=4)
-    private String CVV;
+    @Size(max = 4) private String CVV;
 
     public String getCardNumber() {
         return cardNumber;

@@ -1,9 +1,14 @@
 package com.safecharge.retail.request;
 
-import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.safecharge.retail.model.CardData;
 import com.safecharge.retail.model.UserPaymentOption;
+import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
 import com.safecharge.retail.util.Constants;
+import com.safecharge.retail.util.ValidationUtil;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -12,17 +17,14 @@ import com.safecharge.retail.util.Constants;
  * @since 2/15/2017
  */
 public class PaymentCCRequest extends BaseSafechargeOrderDetailsRequest implements SafechargeOrderRequest {
-    //    @Size(max=45)
-    private String orderId;
 
-    //    @Size(max=45)
-    private Constants.TransactionType transactionType;
+    @NotNull(message = "orderId parameter is mandatory!") @Size(max = 45) private String orderId;
 
-    //    @Valid
-    private CardData cardData;
+    @NotNull(message = "transactionType parameter is mandatory!") private Constants.TransactionType transactionType;
 
-    //    @Valid
-    private UserPaymentOption userPaymentOption;
+    @Valid private CardData cardData;
+
+    @Valid private UserPaymentOption userPaymentOption;
 
     public String getOrderId() {
         return orderId;
@@ -54,6 +56,23 @@ public class PaymentCCRequest extends BaseSafechargeOrderDetailsRequest implemen
 
     public void setUserPaymentOption(UserPaymentOption userPaymentOption) {
         this.userPaymentOption = userPaymentOption;
+    }
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("PaymentCCRequest{");
+        sb.append("orderId='")
+          .append(orderId)
+          .append('\'');
+        sb.append(", transactionType=")
+          .append(transactionType);
+        sb.append(", cardData=")
+          .append(cardData);
+        sb.append(", userPaymentOption=")
+          .append(userPaymentOption);
+        sb.append(", ");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
     }
 
     public static class Builder extends SafechargeOrderBuilder<Builder> {
@@ -112,8 +131,7 @@ public class PaymentCCRequest extends BaseSafechargeOrderDetailsRequest implemen
             request.setTransactionType(transactionType);
             request.setCardData(cardData);
             request.setOrderId(orderId);
-            return request;
+            return ValidationUtil.validate(request);
         }
-
     }
 }

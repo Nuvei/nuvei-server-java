@@ -1,6 +1,10 @@
 package com.safecharge.retail.request;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.safecharge.retail.request.builder.SafechargeBuilder;
+import com.safecharge.retail.util.ValidationUtil;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -9,7 +13,9 @@ import com.safecharge.retail.request.builder.SafechargeBuilder;
  * @since 2/15/2017
  */
 public class GetOrderDetailsRequest extends BaseSafechargeRequest implements SafechargeOrderRequest {
-    // @Size(max=45)
+
+    @Size(max = 45,
+          message = "orderId has to be maximum 45 symbols") @NotNull(message = "orderId parameter is mandatory!")
     private String orderId;
 
     public String getOrderId() {
@@ -18,6 +24,21 @@ public class GetOrderDetailsRequest extends BaseSafechargeRequest implements Saf
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    @Override @NotNull(message = "sessionToken parameter is mandatory!") public String getSessionToken() {
+        return super.getSessionToken();
+    }
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("GetOrderDetailsRequest{");
+        sb.append("orderId='")
+          .append(orderId)
+          .append('\'');
+        sb.append(", ");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
     }
 
     public static class Builder extends SafechargeBuilder<Builder> {
@@ -32,7 +53,7 @@ public class GetOrderDetailsRequest extends BaseSafechargeRequest implements Saf
         @Override public SafechargeRequest build() {
             GetOrderDetailsRequest request = super.build(new GetOrderDetailsRequest());
             request.setOrderId(orderId);
-            return request;
+            return ValidationUtil.validate(request);
         }
     }
 }

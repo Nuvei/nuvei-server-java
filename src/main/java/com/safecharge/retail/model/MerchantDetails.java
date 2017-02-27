@@ -1,5 +1,7 @@
 package com.safecharge.retail.model;
 
+import javax.validation.constraints.Size;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
@@ -7,39 +9,27 @@ package com.safecharge.retail.model;
  * @since 2/14/2017
  */
 
-//@XmlRootElement
-//@XmlAccessorType(XmlAccessType.FIELD)
 public class MerchantDetails {
 
-    //    @Size(max=255)
-    private String customField1;
+    @Size(max = 255) private String customField1;
 
-    //    @Size(max=255)
-    private String customField2;
+    @Size(max = 255) private String customField2;
 
-    //    @Size(max=255)
-    private String customField3;
+    @Size(max = 255) private String customField3;
 
-    //    @Size(max=255)
-    private String customField4;
+    @Size(max = 255) private String customField4;
 
-    //    @Size(max=255)
-    private String customField5;
+    @Size(max = 255) private String customField5;
 
-    //    @Size(max=255)
-    private String customField6;
+    @Size(max = 255) private String customField6;
 
-    //    @Size(max=255)
-    private String customField7;
+    @Size(max = 255) private String customField7;
 
-    //    @Size(max=255)
-    private String customField8;
+    @Size(max = 255) private String customField8;
 
-    //    @Size(max=255)
-    private String customField9;
+    @Size(max = 255) private String customField9;
 
-    //    @Size(max=255)
-    private String customField10;
+    @Size(max = 255) private String customField10;
 
     public String getCustomField1() {
         return customField1;

@@ -1,5 +1,10 @@
 package com.safecharge.retail.model;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.safecharge.retail.util.APIConstants;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
@@ -8,15 +13,16 @@ package com.safecharge.retail.model;
  */
 public class DeviceDetails {
 
-    private String deviceType;
+    @Size(max = 45) private String deviceType;
 
-    private String deviceName;
+    @Size(max = 45) private String deviceName;
 
-    private String deviceOS;
+    @Size(max = 45) private String deviceOS;
 
-    private String browser;
+    @Size(max = 45) private String browser;
 
-    private String ipAddress;
+    @Pattern(regexp = APIConstants.IP_ADDRESS_REGEX,
+             message = APIConstants.ERROR_MESSAGE_INVALID_REGEX) private String ipAddress;
 
     public String getDeviceType() {
         return deviceType;

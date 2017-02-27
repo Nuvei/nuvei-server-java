@@ -23,14 +23,6 @@ public class PaymentCCResponse extends BaseResponse implements PaymentsResponse 
     private String authCode;
     private String userTokenId;
 
-    public PaymentCCResponse() {
-    }
-    //
-    //    public PaymentCCResponse(ApiPaymentCCResponseDTO request) {
-    //        super(request.getSessionToken(), request.getClientUniqueId());
-    //        this.userTokenId=request.getUserTokenId();
-    //    }
-
     public String getOrderId() {
         return orderId;
     }
@@ -125,5 +117,46 @@ public class PaymentCCResponse extends BaseResponse implements PaymentsResponse 
 
     public void setAuthCode(String authCode) {
         this.authCode = authCode;
+    }
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("PaymentCCResponse{");
+        sb.append("orderId='")
+          .append(orderId)
+          .append('\'');
+        sb.append(", transactionStatus='")
+          .append(transactionStatus)
+          .append('\'');
+        sb.append(", paymentMethodErrorCode='")
+          .append(paymentMethodErrorCode)
+          .append('\'');
+        sb.append(", paymentMethodErrorReason='")
+          .append(paymentMethodErrorReason)
+          .append('\'');
+        sb.append(", gwErrorCode=")
+          .append(gwErrorCode);
+        sb.append(", gwErrorReason='")
+          .append(gwErrorReason)
+          .append('\'');
+        sb.append(", gwExtendedErrorCode=")
+          .append(gwExtendedErrorCode);
+        sb.append(", userPaymentOptionId=")
+          .append(userPaymentOptionId);
+        sb.append(", externalTransactionId='")
+          .append(externalTransactionId)
+          .append('\'');
+        sb.append(", transactionId='")
+          .append(transactionId)
+          .append('\'');
+        sb.append(", authCode='")
+          .append(authCode)
+          .append('\'');
+        sb.append(", userTokenId='")
+          .append(userTokenId)
+          .append('\'');
+        sb.append(", ");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
     }
 }

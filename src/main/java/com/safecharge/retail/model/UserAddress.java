@@ -1,5 +1,10 @@
 package com.safecharge.retail.model;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.safecharge.retail.util.APIConstants;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
@@ -8,25 +13,26 @@ package com.safecharge.retail.model;
  */
 public class UserAddress {
 
-    private String firstName;
+    @Size(max = APIConstants.FIRST_NAME_MAX_LENGTH) private String firstName;
 
-    private String lastName;
+    @Size(max = APIConstants.LAST_NAME_MAX_LENGTH) private String lastName;
 
-    private String email;
+    @Pattern(regexp = APIConstants.EMAIL_REGEX,
+             message = APIConstants.ERROR_MESSAGE_INVALID_REGEX) private String email;
 
-    private String phone;
+    @Size(max = APIConstants.PHONE_MAX_LENGTH) private String phone;
 
-    private String address;
+    @Size(max = APIConstants.ADDRESS_MAX_LENGTH) private String address;
 
-    private String city;
+    @Size(max = APIConstants.CITY_MAX_LENGTH) private String city;
 
-    private String country;
+    @Size(max = 2) private String country;
 
-    private String state;
+    @Size(max = 2) private String state;
 
-    private String zip;
+    @Size(max = APIConstants.ZIP_MAX_LENGTH) private String zip;
 
-    private String cell;
+    @Size(max = APIConstants.PHONE_MAX_LENGTH) private String cell;
 
     public String getAddress() {
         return address;

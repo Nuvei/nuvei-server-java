@@ -1,7 +1,8 @@
 package com.safecharge.retail.request.builder;
 
+import javax.validation.ConstraintViolationException;
+
 import com.safecharge.retail.model.MerchantInfo;
-import com.safecharge.retail.request.SafechargeOrderDetailsRequest;
 import com.safecharge.retail.request.SafechargeRequest;
 import com.safecharge.retail.util.Constants;
 import com.safecharge.retail.util.RequestUtils;
@@ -61,5 +62,5 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
     /**
      * @return
      */
-    public abstract SafechargeRequest build();
+    public abstract SafechargeRequest build() throws ConstraintViolationException;
 }

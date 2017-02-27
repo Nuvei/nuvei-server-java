@@ -1,5 +1,7 @@
 package com.safecharge.retail.model;
 
+import javax.validation.constraints.NotNull;
+
 import com.safecharge.retail.util.Constants;
 
 /**
@@ -10,11 +12,11 @@ import com.safecharge.retail.util.Constants;
  */
 public class MerchantInfo {
 
-    private String merchantKey;
+    @NotNull private String merchantKey;
 
-    private String merchantId;
+    @NotNull private String merchantId;
 
-    private String merchantSiteId;
+    @NotNull private String merchantSiteId;
 
     private Constants.HashAlgorithm hashAlgorithm;
 

@@ -20,14 +20,12 @@ public interface SafechargeRequest {
 
     void setTimeStamp(String timestamp);
 
-    void setClientRequestId(String clientRequestId);
-
     String getClientRequestId();
+
+    void setClientRequestId(String clientRequestId);
 
     void setChecksum(String checksum);
 
     void setSessionToken(String sessionToken);
-
-    void setInternalRequestId(Long internalRequestId);
 
 }

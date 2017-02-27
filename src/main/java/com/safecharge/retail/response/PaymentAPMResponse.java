@@ -23,4 +23,14 @@ public class PaymentAPMResponse extends PaymentCCResponse implements PaymentsRes
         this.redirectURL = redirectURL;
     }
 
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("PaymentAPMResponse{");
+        sb.append("redirectURL='")
+          .append(redirectURL)
+          .append('\'');
+        sb.append(", ");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
+    }
 }

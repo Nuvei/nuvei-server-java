@@ -133,57 +133,8 @@ public abstract class BaseResponse implements SafechargeResponse {
         this.apiType = apiType;
     }
 
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        BaseResponse that = (BaseResponse) o;
-
-        if (errCode != that.errCode)
-            return false;
-        if (internalRequestId != null ? !internalRequestId.equals(that.internalRequestId) : that.internalRequestId != null)
-            return false;
-        if (status != that.status)
-            return false;
-        if (reason != null ? !reason.equals(that.reason) : that.reason != null)
-            return false;
-        if (merchantId != null ? !merchantId.equals(that.merchantId) : that.merchantId != null)
-            return false;
-        if (merchantSiteId != null ? !merchantSiteId.equals(that.merchantSiteId) : that.merchantSiteId != null)
-            return false;
-        if (version != null ? !version.equals(that.version) : that.version != null)
-            return false;
-        if (clientRequestId != null ? !clientRequestId.equals(that.clientRequestId) : that.clientRequestId != null)
-            return false;
-        if (sessionToken != null ? !sessionToken.equals(that.sessionToken) : that.sessionToken != null)
-            return false;
-        if (clientUniqueId != null ? !clientUniqueId.equals(that.clientUniqueId) : that.clientUniqueId != null)
-            return false;
-        if (errorType != that.errorType)
-            return false;
-        return apiType == that.apiType;
-    }
-
-    @Override public int hashCode() {
-        int result = internalRequestId != null ? internalRequestId.hashCode() : 0;
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + errCode;
-        result = 31 * result + (reason != null ? reason.hashCode() : 0);
-        result = 31 * result + (merchantId != null ? merchantId.hashCode() : 0);
-        result = 31 * result + (merchantSiteId != null ? merchantSiteId.hashCode() : 0);
-        result = 31 * result + (version != null ? version.hashCode() : 0);
-        result = 31 * result + (clientRequestId != null ? clientRequestId.hashCode() : 0);
-        result = 31 * result + (sessionToken != null ? sessionToken.hashCode() : 0);
-        result = 31 * result + (clientUniqueId != null ? clientUniqueId.hashCode() : 0);
-        result = 31 * result + (errorType != null ? errorType.hashCode() : 0);
-        result = 31 * result + (apiType != null ? apiType.hashCode() : 0);
-        return result;
-    }
-
     @Override public String toString() {
-        final StringBuilder sb = new StringBuilder("BaseResponse{");
+        final StringBuilder sb = new StringBuilder();
         sb.append("internalRequestId=")
           .append(internalRequestId);
         sb.append(", status=")
@@ -215,7 +166,6 @@ public abstract class BaseResponse implements SafechargeResponse {
           .append(errorType);
         sb.append(", apiType=")
           .append(apiType);
-        sb.append('}');
         return sb.toString();
     }
 }

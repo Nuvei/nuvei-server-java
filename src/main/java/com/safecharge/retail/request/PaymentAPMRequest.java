@@ -2,9 +2,14 @@ package com.safecharge.retail.request;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.safecharge.retail.model.URLDetails;
 import com.safecharge.retail.model.UserPaymentOption;
 import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
+import com.safecharge.retail.util.ValidationUtil;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -14,15 +19,15 @@ import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
  */
 public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
-    private String orderId;
+    @NotNull(message = "orderId parameter is mandatory!") @Size(max = 45) private String orderId;
 
-    private String paymentMethod;
+    @NotNull(message = "paymentMethod parameter is mandatory!") private String paymentMethod;
 
     private Map<String, String> userAccountDetails;
 
-    private UserPaymentOption userPaymentOption;
+    @Valid private UserPaymentOption userPaymentOption;
 
-    private URLDetails urlDetails;
+    @Valid private URLDetails urlDetails;
 
     public String getOrderId() {
         return orderId;
@@ -62,6 +67,26 @@ public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest impleme
 
     public void setUrlDetails(URLDetails urlDetails) {
         this.urlDetails = urlDetails;
+    }
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("PaymentAPMRequest{");
+        sb.append("orderId='")
+          .append(orderId)
+          .append('\'');
+        sb.append(", paymentMethod='")
+          .append(paymentMethod)
+          .append('\'');
+        sb.append(", userAccountDetails=")
+          .append(userAccountDetails);
+        sb.append(", userPaymentOption=")
+          .append(userPaymentOption);
+        sb.append(", urlDetails=")
+          .append(urlDetails);
+        sb.append(", ");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
     }
 
     public static class Builder extends SafechargeOrderBuilder<Builder> {
@@ -119,7 +144,7 @@ public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest impleme
             paymentAPMRequest.setUserAccountDetails(userAccountDetails);
             paymentAPMRequest.setUserPaymentOption(userPaymentOption);
             paymentAPMRequest.setUrlDetails(urlDetails);
-            return paymentAPMRequest;
+            return ValidationUtil.validate(paymentAPMRequest);
         }
     }
 }

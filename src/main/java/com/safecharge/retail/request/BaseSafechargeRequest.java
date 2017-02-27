@@ -1,5 +1,7 @@
 package com.safecharge.retail.request;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
@@ -8,19 +10,17 @@ package com.safecharge.retail.request;
  */
 public abstract class BaseSafechargeRequest implements SafechargeRequest {
 
-    private Long internalRequestId;
-
     private String clientRequestId;
 
-    private String merchantId;
+    @NotNull(message = "merchantId parameter is mandatory!") private String merchantId;
 
-    private String merchantSiteId;
+    @NotNull(message = "merchantSiteId parameter is mandatory!") private String merchantSiteId;
 
-    private String timeStamp;
+    @NotNull(message = "timeStamp parameter is mandatory!") private String timeStamp;
 
-    private String checksum;
+    @NotNull(message = "checksum parameter is mandatory!") private String checksum;
 
-    protected String sessionToken;
+    private String sessionToken;
 
     @Override public String getMerchantId() {
         return merchantId;
@@ -44,14 +44,6 @@ public abstract class BaseSafechargeRequest implements SafechargeRequest {
 
     @Override public void setClientRequestId(String clientRequestId) {
         this.clientRequestId = clientRequestId;
-    }
-
-    public Long getInternalRequestId() {
-        return internalRequestId;
-    }
-
-    @Override public void setInternalRequestId(Long internalRequestId) {
-        this.internalRequestId = internalRequestId;
     }
 
     @Override public String getTimeStamp() {
@@ -78,45 +70,9 @@ public abstract class BaseSafechargeRequest implements SafechargeRequest {
         this.sessionToken = sessionToken;
     }
 
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        BaseSafechargeRequest that = (BaseSafechargeRequest) o;
-
-        if (internalRequestId != null ? !internalRequestId.equals(that.internalRequestId) : that.internalRequestId != null)
-            return false;
-        if (clientRequestId != null ? !clientRequestId.equals(that.clientRequestId) : that.clientRequestId != null)
-            return false;
-        if (merchantId != null ? !merchantId.equals(that.merchantId) : that.merchantId != null)
-            return false;
-        if (merchantSiteId != null ? !merchantSiteId.equals(that.merchantSiteId) : that.merchantSiteId != null)
-            return false;
-        if (timeStamp != null ? !timeStamp.equals(that.timeStamp) : that.timeStamp != null)
-            return false;
-        if (checksum != null ? !checksum.equals(that.checksum) : that.checksum != null)
-            return false;
-        return sessionToken != null ? sessionToken.equals(that.sessionToken) : that.sessionToken == null;
-    }
-
-    @Override public int hashCode() {
-        int result = internalRequestId != null ? internalRequestId.hashCode() : 0;
-        result = 31 * result + (clientRequestId != null ? clientRequestId.hashCode() : 0);
-        result = 31 * result + (merchantId != null ? merchantId.hashCode() : 0);
-        result = 31 * result + (merchantSiteId != null ? merchantSiteId.hashCode() : 0);
-        result = 31 * result + (timeStamp != null ? timeStamp.hashCode() : 0);
-        result = 31 * result + (checksum != null ? checksum.hashCode() : 0);
-        result = 31 * result + (sessionToken != null ? sessionToken.hashCode() : 0);
-        return result;
-    }
-
     @Override public String toString() {
-        final StringBuilder sb = new StringBuilder("BaseRequest{");
-        sb.append("internalRequestId=")
-          .append(internalRequestId);
-        sb.append(", clientRequestId='")
+        final StringBuilder sb = new StringBuilder();
+        sb.append("clientRequestId='")
           .append(clientRequestId)
           .append('\'');
         sb.append(", merchantId='")
@@ -134,7 +90,6 @@ public abstract class BaseSafechargeRequest implements SafechargeRequest {
         sb.append(", sessionToken='")
           .append(sessionToken)
           .append('\'');
-        sb.append('}');
         return sb.toString();
     }
 }

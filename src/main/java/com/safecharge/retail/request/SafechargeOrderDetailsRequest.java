@@ -1,7 +1,5 @@
 package com.safecharge.retail.request;
 
-import java.util.List;
-
 import com.safecharge.retail.model.Addendums;
 import com.safecharge.retail.model.DeviceDetails;
 import com.safecharge.retail.model.DynamicDescriptor;

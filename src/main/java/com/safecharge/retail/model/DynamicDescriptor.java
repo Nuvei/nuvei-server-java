@@ -1,5 +1,9 @@
 package com.safecharge.retail.model;
 
+import javax.validation.constraints.Size;
+
+import com.safecharge.retail.util.APIConstants;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
@@ -8,9 +12,9 @@ package com.safecharge.retail.model;
  */
 public class DynamicDescriptor {
 
-    private String merchantName;
+    @Size(max = APIConstants.MERCHANT_DESCRIPTOR_NAME_MAX_LENGTH) private String merchantName;
 
-    private String merchantPhone;
+    @Size(max = APIConstants.MERCHANT_DESCRIPTOR_PHONE_MAX_LENGTH) private String merchantPhone;
 
     public String getMerchantName() {
         return merchantName;

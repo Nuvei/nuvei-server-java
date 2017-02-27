@@ -1,41 +1,35 @@
 package com.safecharge.retail.model;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.safecharge.retail.util.APIConstants;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
  */
-//@XmlRootElement
-//@XmlAccessorType(XmlAccessType.FIELD)
 public class UserDetails {
 
-    //    @Size(max=ApiConstants.FIRST_NAME_MAX_LENGTH)
-    private String firstName;
+    @Size(max = APIConstants.FIRST_NAME_MAX_LENGTH) private String firstName;
 
-    //    @Size(max=ApiConstants.LAST_NAME_MAX_LENGTH)
-    private String lastName;
+    @Size(max = APIConstants.LAST_NAME_MAX_LENGTH) private String lastName;
 
-    //    @Pattern(regexp=ApiConstants.EMAIL_REGEX)
-    private String email;
+    @Pattern(regexp = APIConstants.EMAIL_REGEX) private String email;
 
-    //    @Size(max=ApiConstants.PHONE_MAX_LENGTH)
-    private String phone;
+    @Size(max = APIConstants.PHONE_MAX_LENGTH) private String phone;
 
-    //    @Size(max=ApiConstants.ADDRESS_MAX_LENGTH)
-    private String address;
+    @Size(max = APIConstants.ADDRESS_MAX_LENGTH) private String address;
 
-    //    @Size(max=ApiConstants.CITY_MAX_LENGTH)
-    private String city;
+    @Size(max = APIConstants.CITY_MAX_LENGTH) private String city;
 
-    //    @Size(max=2)
-    private String country;
+    @Size(max = 2) private String country;
 
-    //    @Size(max=2)
-    private String state;
+    @Size(max = 2) private String state;
 
-    //    @Size(max=ApiConstants.ZIP_MAX_LENGTH)
-    private String zip;
+    @Size(max = APIConstants.ZIP_MAX_LENGTH) private String zip;
 
     public String getFirstName() {
         return firstName;

@@ -30,4 +30,18 @@ public class Authorization3DResponse extends PaymentCCResponse {
     public void setAcsUrl(String acsUrl) {
         this.acsUrl = acsUrl;
     }
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("Authorization3DResponse{");
+        sb.append("paRequest='")
+          .append(paRequest)
+          .append('\'');
+        sb.append(", acsUrl='")
+          .append(acsUrl)
+          .append('\'');
+        sb.append(", ");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
+    }
 }

@@ -8,4 +8,10 @@ package com.safecharge.retail.response;
  */
 public class SessionTokenResponse extends BaseResponse {
 
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("SessionTokenResponse{");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
+    }
 }

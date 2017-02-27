@@ -28,4 +28,17 @@ public class OpenOrderResponse extends BaseResponse implements SafechargeOrderRe
         this.userTokenId = userTokenId;
     }
 
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("OpenOrderResponse{");
+        sb.append("orderId='")
+          .append(orderId)
+          .append('\'');
+        sb.append(", userTokenId='")
+          .append(userTokenId)
+          .append('\'');
+        sb.append(", ");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
+    }
 }

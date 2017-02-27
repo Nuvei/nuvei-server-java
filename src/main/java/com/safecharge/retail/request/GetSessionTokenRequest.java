@@ -1,6 +1,7 @@
 package com.safecharge.retail.request;
 
 import com.safecharge.retail.request.builder.SafechargeBuilder;
+import com.safecharge.retail.util.ValidationUtil;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -10,11 +11,18 @@ import com.safecharge.retail.request.builder.SafechargeBuilder;
  */
 public class GetSessionTokenRequest extends BaseSafechargeRequest {
 
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("GetSessionTokenRequest{");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
+    }
+
     public static class Builder extends SafechargeBuilder<Builder> {
 
         @Override public SafechargeRequest build() {
-            return super.build(new GetSessionTokenRequest());
+            SafechargeRequest request = super.build(new GetSessionTokenRequest());
+            return ValidationUtil.validate(request);
         }
     }
-
 }

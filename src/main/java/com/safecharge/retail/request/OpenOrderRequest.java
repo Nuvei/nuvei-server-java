@@ -1,6 +1,7 @@
 package com.safecharge.retail.request;
 
 import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
+import com.safecharge.retail.util.ValidationUtil;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -10,10 +11,18 @@ import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
  */
 public class OpenOrderRequest extends BaseSafechargeOrderDetailsRequest {
 
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("OpenOrderRequest{");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
+    }
+
     public static class Builder extends SafechargeOrderBuilder<Builder> {
 
         @Override public SafechargeRequest build() {
-            return super.build(new OpenOrderRequest());
+            SafechargeRequest openOrderRequest = super.build(new OpenOrderRequest());
+            return ValidationUtil.validate(openOrderRequest);
         }
     }
 }

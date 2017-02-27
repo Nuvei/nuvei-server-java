@@ -8,4 +8,10 @@ package com.safecharge.retail.request;
  */
 public class Authorization3DRequest extends PaymentCCRequest {
 
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("Authorization3DRequest{");
+        sb.append(super.toString());
+        sb.append('}');
+        return sb.toString();
+    }
 }

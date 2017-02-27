@@ -163,4 +163,51 @@ public class OrderDetailsResponse extends BaseResponse implements SafechargeOrde
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("OrderDetailsResponse{");
+        sb.append("orderId='")
+          .append(orderId)
+          .append('\'');
+        sb.append(", currency='")
+          .append(currency)
+          .append('\'');
+        sb.append(", amount=")
+          .append(amount);
+        sb.append(", items=")
+          .append(items);
+        sb.append(", deviceDetails=")
+          .append(deviceDetails);
+        sb.append(", userDetails=")
+          .append(userDetails);
+        sb.append(", shippingAddress=")
+          .append(shippingAddress);
+        sb.append(", billingAddress=")
+          .append(billingAddress);
+        sb.append(", dynamicDescriptor=")
+          .append(dynamicDescriptor);
+        sb.append(", merchantDetails=")
+          .append(merchantDetails);
+        sb.append(", addendums=")
+          .append(addendums);
+        sb.append(", transactionCreationDate='")
+          .append(transactionCreationDate)
+          .append('\'');
+        sb.append(", orderCreationDate='")
+          .append(orderCreationDate)
+          .append('\'');
+        sb.append(", orderStatus='")
+          .append(orderStatus)
+          .append('\'');
+        sb.append(", transactionStatus='")
+          .append(transactionStatus)
+          .append('\'');
+        sb.append(", transactionId='")
+          .append(transactionId)
+          .append('\'');
+        sb.append(", ");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
+    }
 }

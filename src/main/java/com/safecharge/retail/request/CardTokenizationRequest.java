@@ -1,5 +1,8 @@
 package com.safecharge.retail.request;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
+
 import com.safecharge.retail.model.CardData;
 import com.safecharge.retail.model.UserAddress;
 
@@ -11,13 +14,13 @@ import com.safecharge.retail.model.UserAddress;
  */
 public class CardTokenizationRequest extends BaseSafechargeRequest {
 
-    //    @Valid
+    @Valid
     private CardData cardData;
 
-    //    @Valid
+    @Valid
     private UserAddress billingAddress;
 
-    //    @Size(max=255)
+    @Size(max = 255)
     private String userTokenId;
 
     private String ipAddress;
@@ -54,4 +57,21 @@ public class CardTokenizationRequest extends BaseSafechargeRequest {
         this.userTokenId = userTokenId;
     }
 
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder("CardTokenizationRequest{");
+        sb.append("cardData=")
+          .append(cardData);
+        sb.append(", billingAddress=")
+          .append(billingAddress);
+        sb.append(", userTokenId='")
+          .append(userTokenId)
+          .append('\'');
+        sb.append(", ipAddress='")
+          .append(ipAddress)
+          .append('\'');
+        sb.append(", ");
+        sb.append(sb.append(super.toString()));
+        sb.append('}');
+        return sb.toString();
+    }
 }
