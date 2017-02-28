@@ -12,11 +12,11 @@ import com.safecharge.retail.util.Constants;
  */
 public class MerchantInfo {
 
-    @NotNull private String merchantKey;
+    @NotNull(message = "merchantKey may not be null!") private String merchantKey;
 
-    @NotNull private String merchantId;
+    @NotNull(message = "merchantId may not be null!") private String merchantId;
 
-    @NotNull private String merchantSiteId;
+    @NotNull(message = "merchantSiteId may not be null!") private String merchantSiteId;
 
     private Constants.HashAlgorithm hashAlgorithm;
 

@@ -11,14 +11,14 @@ import javax.validation.constraints.Size;
  */
 public class Item {
 
-    @NotNull @Size(min = 1,
-                   max = 255) private String name;
+    @NotNull(message = "name may not be null!") @Size(min = 1,
+                                                      max = 255) private String name;
 
-    @NotNull @Size(min = 1,
-                   max = 10) private String price;
+    @NotNull(message = "name may not be null!") @Size(min = 1,
+                                                      max = 10) private String price;
 
-    @NotNull @Size(min = 1,
-                   max = 10) private String quantity;
+    @NotNull(message = "name may not be null!") @Size(min = 1,
+                                                      max = 10) private String quantity;
 
     public String getName() {
         return name;

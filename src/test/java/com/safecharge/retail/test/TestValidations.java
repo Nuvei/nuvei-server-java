@@ -12,6 +12,7 @@ import com.safecharge.retail.request.GetOrderDetailsRequest;
 import com.safecharge.retail.request.GetSessionTokenRequest;
 import com.safecharge.retail.request.OpenOrderRequest;
 import com.safecharge.retail.request.SafechargeRequest;
+import com.safecharge.retail.request.UpdateOrderRequest;
 import com.safecharge.retail.util.Constants;
 
 /**
@@ -27,6 +28,7 @@ public class TestValidations {
     private static final String dummySessionToken = "dummySessionToken";
     private static final Item dummyValidItem = new Item();
     private static final Item dummyInvalidItem = new Item();
+    private static final String dummyOrderId = "1234";
 
     @Before public void initialization() {
         dummyValidItem.setQuantity("1");
@@ -89,6 +91,32 @@ public class TestValidations {
                                                                                 .addAmount("1")
                                                                                 .addItem(dummyInvalidItem)
                                                                                 .build();
+            Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
+        } catch (ConstraintViolationException e) {
+            Assert.assertEquals(3, e.getConstraintViolations()
+                                    .size());
+        }
+    }
+
+    @Test public void testSuccessfulValidation_UpdateOrder() {
+        SafechargeRequest safechargeRequest = new UpdateOrderRequest.Builder().addMerchantInfo(validMerchantInfo)
+                                                                              .addSessionToken(dummySessionToken)
+                                                                              .addOrderId(dummyOrderId)
+                                                                              .addCurrency("EUR")
+                                                                              .addAmount("1")
+                                                                              .addItem(dummyValidItem)
+                                                                              .build();
+        Assert.assertTrue(safechargeRequest != null);
+    }
+
+    @Test public void testFailedValidation_UpdateOrder() {
+        try {
+            SafechargeRequest safechargeRequest = new UpdateOrderRequest.Builder().addMerchantInfo(validMerchantInfo)
+                                                                                  .addSessionToken(dummySessionToken)
+                                                                                  .addOrderId(dummyOrderId)
+                                                                                  .addAmount("1")
+                                                                                  .addItem(dummyInvalidItem)
+                                                                                  .build();
             Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
         } catch (ConstraintViolationException e) {
             Assert.assertEquals(3, e.getConstraintViolations()

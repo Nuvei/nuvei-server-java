@@ -23,11 +23,12 @@ import com.safecharge.retail.model.UserDetails;
  */
 public abstract class BaseSafechargeOrderDetailsRequest extends BaseSafechargeRequest implements SafechargeOrderDetailsRequest {
 
-    @NotNull private String currency;
+    @NotNull(message = "currency parameter is mandatory!") private String currency;
 
-    @NotNull private String amount;
+    @NotNull(message = "amount parameter is mandatory!") private String amount;
 
-    @Valid @NotNull @Size(min = 1) private List<Item> items = new ArrayList<>();
+    @Valid @NotNull @Size(min = 1,
+                          message = "Request must have at least one item!") private List<Item> items = new ArrayList<>();
 
     @Valid private DeviceDetails deviceDetails;
 

@@ -11,8 +11,8 @@ import javax.validation.constraints.Size;
  */
 public class UserPaymentOption {
 
-    @NotNull @Size(min = 3,
-                   max = 45) private String userPaymentOptionId;
+    @NotNull(message = "userPaymentOptionId may not be null!") @Size(min = 3,
+                                                                     max = 45) private String userPaymentOptionId;
 
     @Size(max = 4) private String CVV;
 
