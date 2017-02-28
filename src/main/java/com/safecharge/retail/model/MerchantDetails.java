@@ -11,25 +11,35 @@ import javax.validation.constraints.Size;
 
 public class MerchantDetails {
 
-    @Size(max = 255) private String customField1;
+    @Size(max = 255,
+          message = "customField1 size must be up to 255 characters long!") private String customField1;
 
-    @Size(max = 255) private String customField2;
+    @Size(max = 255,
+          message = "customField2 size must be up to 255 characters long!") private String customField2;
 
-    @Size(max = 255) private String customField3;
+    @Size(max = 255,
+          message = "customField3 size must be up to 255 characters long!") private String customField3;
 
-    @Size(max = 255) private String customField4;
+    @Size(max = 255,
+          message = "customField4 size must be up to 255 characters long!") private String customField4;
 
-    @Size(max = 255) private String customField5;
+    @Size(max = 255,
+          message = "customField5 size must be up to 255 characters long!") private String customField5;
 
-    @Size(max = 255) private String customField6;
+    @Size(max = 255,
+          message = "customField6 size must be up to 255 characters long!") private String customField6;
 
-    @Size(max = 255) private String customField7;
+    @Size(max = 255,
+          message = "customField7 size must be up to 255 characters long!") private String customField7;
 
-    @Size(max = 255) private String customField8;
+    @Size(max = 255,
+          message = "customField8 size must be up to 255 characters long!") private String customField8;
 
-    @Size(max = 255) private String customField9;
+    @Size(max = 255,
+          message = "customField9 size must be up to 255 characters long!") private String customField9;
 
-    @Size(max = 255) private String customField10;
+    @Size(max = 255,
+          message = "customField10 size must be up to 255 characters long!") private String customField10;
 
     public String getCustomField1() {
         return customField1;

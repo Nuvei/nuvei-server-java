@@ -10,11 +10,14 @@ import javax.validation.constraints.Size;
  */
 public class URLDetails {
 
-    @Size(max = 100) private String successUrl;
+    @Size(max = 100,
+          message = "successUrl size must be up to 100 characters long!") private String successUrl;
 
-    @Size(max = 100) private String failureUrl;
+    @Size(max = 100,
+          message = "failureUrl size must be up to 100 characters long!") private String failureUrl;
 
-    @Size(max = 100) private String pendingUrl;
+    @Size(max = 100,
+          message = "pendingUrl size must be up to 100 characters long!") private String pendingUrl;
 
     public String getSuccessUrl() {
         return successUrl;

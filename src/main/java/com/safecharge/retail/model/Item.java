@@ -12,13 +12,16 @@ import javax.validation.constraints.Size;
 public class Item {
 
     @NotNull(message = "name may not be null!") @Size(min = 1,
-                                                      max = 255) private String name;
+                                                      max = 255,
+                                                      message = "name size must be up to 255 characters long!") private String name;
 
     @NotNull(message = "name may not be null!") @Size(min = 1,
-                                                      max = 10) private String price;
+                                                      max = 10,
+                                                      message = "price size must be up to 10 characters long!") private String price;
 
     @NotNull(message = "name may not be null!") @Size(min = 1,
-                                                      max = 10) private String quantity;
+                                                      max = 10,
+                                                      message = "quantity size must be up to 10 characters long!") private String quantity;
 
     public String getName() {
         return name;

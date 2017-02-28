@@ -12,9 +12,11 @@ import com.safecharge.retail.util.APIConstants;
  */
 public class DynamicDescriptor {
 
-    @Size(max = APIConstants.MERCHANT_DESCRIPTOR_NAME_MAX_LENGTH) private String merchantName;
+    @Size(max = APIConstants.MERCHANT_DESCRIPTOR_NAME_MAX_LENGTH,
+          message = "merchantName size must be up to 25 characters long!") private String merchantName;
 
-    @Size(max = APIConstants.MERCHANT_DESCRIPTOR_PHONE_MAX_LENGTH) private String merchantPhone;
+    @Size(max = APIConstants.MERCHANT_DESCRIPTOR_PHONE_MAX_LENGTH,
+          message = "merchantPhone size must be up to 13 characters long!") private String merchantPhone;
 
     public String getMerchantName() {
         return merchantName;

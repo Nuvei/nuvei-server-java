@@ -44,9 +44,11 @@ public abstract class BaseSafechargeOrderDetailsRequest extends BaseSafechargeRe
 
     private Addendums addendums;
 
-    @Size(max = 45) private String userTokenId;
+    @Size(max = 45,
+          message = "userTokenId size must be up to 45 characters long!") private String userTokenId;
 
-    @Size(max = 45) private String clientUniqueId;
+    @Size(max = 45,
+          message = "clientUniqueId size must be up to 45 characters long!") private String clientUniqueId;
 
     @Override @NotNull(message = "sessionToken parameter is mandatory!") public String getSessionToken() {
         return super.getSessionToken();

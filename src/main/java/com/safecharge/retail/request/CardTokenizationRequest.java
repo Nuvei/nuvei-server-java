@@ -14,14 +14,12 @@ import com.safecharge.retail.model.UserAddress;
  */
 public class CardTokenizationRequest extends BaseSafechargeRequest {
 
-    @Valid
-    private CardData cardData;
+    @Valid private CardData cardData;
 
-    @Valid
-    private UserAddress billingAddress;
+    @Valid private UserAddress billingAddress;
 
-    @Size(max = 255)
-    private String userTokenId;
+    @Size(max = 255,
+          message = "userTokenId size must be up to 255 characters long!") private String userTokenId;
 
     private String ipAddress;
 

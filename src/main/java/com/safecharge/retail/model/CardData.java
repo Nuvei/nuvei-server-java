@@ -12,17 +12,23 @@ import com.safecharge.retail.util.APIConstants;
  */
 public class CardData {
 
-    @Size(max = APIConstants.CREDIT_CARD_MAX_LENGTH) private String cardNumber;
+    @Size(max = APIConstants.CREDIT_CARD_MAX_LENGTH,
+          message = "cardNumber size must be up to 20 characters long!") private String cardNumber;
 
-    @Size(max = APIConstants.CARD_HOLDER_MAX_LENGTH) private String cardHolderName;
+    @Size(max = APIConstants.CARD_HOLDER_MAX_LENGTH,
+          message = "cardHolderName size must be up to 70 characters long!") private String cardHolderName;
 
-    @Size(max = 2) private String expirationMonth;
+    @Size(max = 2,
+          message = "expirationMonth size must be up to 2 characters long!") private String expirationMonth;
 
-    @Size(max = 4) private String expirationYear;
+    @Size(max = 4,
+          message = "expirationYear size must be up to 4 characters long!") private String expirationYear;
 
-    @Size(max = 45) private String cardToken;
+    @Size(max = 45,
+          message = "userTokenId size must be up to 45 characters long!") private String cardToken;
 
-    @Size(max = 4) private String CVV;
+    @Size(max = 4,
+          message = "cvv size must be up to 4 characters long!") private String CVV;
 
     public String getCardNumber() {
         return cardNumber;

@@ -12,9 +12,12 @@ import javax.validation.constraints.Size;
 public class UserPaymentOption {
 
     @NotNull(message = "userPaymentOptionId may not be null!") @Size(min = 3,
-                                                                     max = 45) private String userPaymentOptionId;
+                                                                     max = 45,
+                                                                     message = "userPaymentOptionId size must at least 3 symbols and maximum 45 characters long!")
+    private String userPaymentOptionId;
 
-    @Size(max = 4) private String CVV;
+    @Size(max = 4,
+          message = "cvv size must be up to 4 characters long!") private String CVV;
 
     public String getUserPaymentOptionId() {
         return userPaymentOptionId;

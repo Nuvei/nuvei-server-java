@@ -13,16 +13,20 @@ import com.safecharge.retail.util.APIConstants;
  */
 public class DeviceDetails {
 
-    @Size(max = 45) private String deviceType;
+    @Size(max = 45,
+          message = "deviceType size must be up to 45 characters long!") private String deviceType;
 
-    @Size(max = 45) private String deviceName;
+    @Size(max = 45,
+          message = "deviceName size must be up to 45 characters long!") private String deviceName;
 
-    @Size(max = 45) private String deviceOS;
+    @Size(max = 45,
+          message = "deviceOS size must be up to 45 characters long!") private String deviceOS;
 
-    @Size(max = 45) private String browser;
+    @Size(max = 45,
+          message = "browser size must be up to 45 characters long!") private String browser;
 
     @Pattern(regexp = APIConstants.IP_ADDRESS_REGEX,
-             message = APIConstants.ERROR_MESSAGE_INVALID_REGEX) private String ipAddress;
+             message = "the entered value is not a valid ipAddress") private String ipAddress;
 
     public String getDeviceType() {
         return deviceType;

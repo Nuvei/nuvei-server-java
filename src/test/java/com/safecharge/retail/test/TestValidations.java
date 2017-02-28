@@ -11,6 +11,8 @@ import com.safecharge.retail.model.MerchantInfo;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
 import com.safecharge.retail.request.GetSessionTokenRequest;
 import com.safecharge.retail.request.OpenOrderRequest;
+import com.safecharge.retail.request.PaymentAPMRequest;
+import com.safecharge.retail.request.PaymentCCRequest;
 import com.safecharge.retail.request.SafechargeRequest;
 import com.safecharge.retail.request.UpdateOrderRequest;
 import com.safecharge.retail.util.Constants;
@@ -124,4 +126,97 @@ public class TestValidations {
         }
     }
 
+    @Test public void testSuccessfulValidation_PaymentAPM() {
+        SafechargeRequest safechargeRequest = new PaymentAPMRequest.Builder().addMerchantInfo(validMerchantInfo)
+                                                                             .addCurrency("EUR")
+                                                                             .addAmount("2")
+                                                                             .addSessionToken(dummySessionToken)
+                                                                             .addItem("test_item_1", "1", "1")
+                                                                             .addItem("test_item_2", "1", "1")
+                                                                             .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test",
+                                                                                     "Testov", "0884123456", null, "1000")
+                                                                             .addBillingDetails("Test", "Testov", "test@test.com", "0884123456",
+                                                                                     "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
+                                                                             .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
+                                                                                     "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
+                                                                             .addOrderId(dummyOrderId)
+                                                                             .addURLDetails(
+                                                                                     "https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
+                                                                                     "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
+                                                                                     "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do")
+                                                                             .addPaymentMethod("apmgw_expresscheckout")
+                                                                             .build();
+        Assert.assertTrue(safechargeRequest != null);
+    }
+
+    @Test public void testFailedValidation_PaymentAPM() {
+        try {
+            SafechargeRequest safechargeRequest = new PaymentAPMRequest.Builder().addMerchantInfo(invalidMerchantInfo)
+                                                                                 .addSessionToken(dummySessionToken)
+                                                                                 .addItem(null, "1", "1")
+                                                                                 .addUserDetails("Test street 1 ", "Sofia", "BG", "test@test.com",
+                                                                                         "Test street 1 Test street 1 Test street 1 Test street 1 ",
+                                                                                         "Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 ",
+                                                                                         "0884123456", null, "1000")
+                                                                                 .addBillingDetails("Test", "Testov", "test@test.com", "0884123456",
+                                                                                         "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
+                                                                                 .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
+                                                                                         "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
+                                                                                 .addOrderId(dummyOrderId)
+                                                                                 .addURLDetails(
+                                                                                         "https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
+                                                                                         "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
+                                                                                         "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do")
+                                                                                 .addPaymentMethod("apmgw_expresscheckout")
+                                                                                 .build();
+            Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
+        } catch (ConstraintViolationException e) {
+            Assert.assertEquals(7, e.getConstraintViolations()
+                                    .size());
+        }
+    }
+
+    @Test public void testSuccessfulValidation_PaymentCCRequest() {
+        SafechargeRequest safechargeRequest = new PaymentCCRequest.Builder().addMerchantInfo(validMerchantInfo)
+                                                                            .addCurrency("EUR")
+                                                                            .addAmount("2")
+                                                                            .addSessionToken(dummySessionToken)
+                                                                            .addItem("test_item_1", "1", "1")
+                                                                            .addItem("test_item_2", "1", "1")
+                                                                            .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test",
+                                                                                    "Testov", "0884123456", null, "1000")
+                                                                            .addBillingDetails("Test", "Testov", "test@test.com", "0884123456",
+                                                                                    "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
+                                                                            .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
+                                                                                    "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
+                                                                            .addOrderId(dummyOrderId)
+                                                                            .addTransactionType(Constants.TransactionType.Sale)
+                                                                            .addCardData("4111111111111111", "Test Test", "11", "2011", null, "123")
+                                                                            .build();
+        Assert.assertTrue(safechargeRequest != null);
+    }
+
+    @Test public void testFailedValidation_PaymentCCRequest() {
+        try {
+            SafechargeRequest safechargeRequest = new PaymentCCRequest.Builder().addMerchantInfo(invalidMerchantInfo)
+                                                                                .addSessionToken(dummySessionToken)
+                                                                                .addItem(null, "1", "1")
+                                                                                .addUserDetails("Test street 1 ", "Sofia", "BG", "test@test.com",
+                                                                                        "Test street 1 Test street 1 Test street 1 Test street 1 ",
+                                                                                        "Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 ",
+                                                                                        "0884123456", null, "1000")
+                                                                                .addBillingDetails("Test", "Testov", "test@test.com", "0884123456",
+                                                                                        "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
+                                                                                .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
+                                                                                        "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
+                                                                                .addOrderId(dummyOrderId)
+                                                                                .addCardData(null, null, "11", "2011", null, "123")
+                                                                                .addUserPaymentOption(null, "12")
+                                                                                .build();
+            Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
+        } catch (ConstraintViolationException e) {
+            Assert.assertEquals(9, e.getConstraintViolations()
+                                    .size());
+        }
+    }
 }

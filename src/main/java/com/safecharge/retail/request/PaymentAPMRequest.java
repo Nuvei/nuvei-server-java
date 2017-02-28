@@ -19,7 +19,8 @@ import com.safecharge.retail.util.ValidationUtil;
  */
 public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
-    @NotNull(message = "orderId parameter is mandatory!") @Size(max = 45) private String orderId;
+    @NotNull(message = "orderId parameter is mandatory!") @Size(max = 45,
+                                                                message = "orderId size must be up to 45 characters long!") private String orderId;
 
     @NotNull(message = "paymentMethod parameter is mandatory!") private String paymentMethod;
 

@@ -36,7 +36,6 @@ public interface APIConstants {
     short MERCHANT_DESCRIPTOR_PHONE_MAX_LENGTH = 13;
     short MERCHANT_DESCRIPTOR_NAME_MAX_LENGTH = 25;
 
-    String ERROR_MESSAGE_INVALID_REGEX = "is invalid";
     String IP_ADDRESS_REGEX = "^(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}$";
     String EMAIL_REGEX = "^[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,10}$";
 
