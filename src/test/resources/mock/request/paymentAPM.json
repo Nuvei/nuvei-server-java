@@ -1,0 +1,65 @@
+{
+  "orderId": "9169304",
+  "paymentMethod": "apmgw_expresscheckout",
+  "userAccountDetails": {
+    "account_id": "XX362V4DC76VU",
+    "email": "nikolad_safecharge_2@abv.bg"
+  },
+  "urlDetails": {
+    "successUrl": "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do",
+    "failureUrl": "https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
+    "pendingUrl": "https://apmtest.gate2shop.com/nikolappp/defaultPending.do"
+  },
+  "currency": "EUR",
+  "amount": "2",
+  "items": [
+    {
+      "name": "test_item_1",
+      "price": "1",
+      "quantity": "1"
+    },
+    {
+      "name": "test_item_2",
+      "price": "1",
+      "quantity": "1"
+    }
+  ],
+  "userDetails": {
+    "firstName": "Test",
+    "lastName": "Testov",
+    "email": "test@test.com",
+    "phone": "0884123456",
+    "address": "Test street 1",
+    "city": "Sofia",
+    "country": "BG",
+    "zip": "1000"
+  },
+  "shippingAddress": {
+    "firstName": "Test",
+    "lastName": "Testov",
+    "email": "test@test.com",
+    "phone": "0884123456",
+    "address": "Test street 1",
+    "city": "Sofia",
+    "country": "BG",
+    "zip": "1000",
+    "cell": "0884123456"
+  },
+  "billingAddress": {
+    "firstName": "Test",
+    "lastName": "Testov",
+    "email": "test@test.com",
+    "phone": "0884123456",
+    "address": "Test street 1",
+    "city": "Sofia",
+    "country": "BG",
+    "zip": "1000",
+    "cell": "0884123456"
+  },
+  "clientRequestId": "1488380433000",
+  "merchantId": "2885023999185468261",
+  "merchantSiteId": "5612",
+  "timeStamp": "20170301170033",
+  "checksum": "3b3f139ee103bf00736f40fec33fcb6b968320302bc590f97eed19c31ac251c8",
+  "sessionToken": "1bf2a1a6-34be-41e2-8af9-b0853cf0b3f4"
+}

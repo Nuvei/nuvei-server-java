@@ -1,0 +1,78 @@
+{
+  "merchantSiteId": "19",
+  "merchantId": "2885023999185468261",
+  "sessionToken": "9610a8f6-44cf-4c4f-976a-005da69a2a3b",
+  "clientRequestId": "1484759964059",
+  "timeStamp": "20170118191924",
+  "checksum": "8724ebd5dfe5781ed1e8665d7f5b0c85",
+  "currency": "EUR",
+  "amount": "10",
+  "transactionType": "Auth",
+  "orderId": "39272",
+  "cardData": {
+    "cardNumber": "4111111111111111",
+    "cardHolderName": "test name",
+    "expirationMonth": "01",
+    "expirationYear": "2020",
+    "CVV": "122"
+  },
+  "items": [
+    {
+      "name": "name",
+      "price": "10",
+      "quantity": 1
+    }
+  ],
+  "deviceDetails": {
+    "deviceType": "DESKTOP",
+    "deviceName": "deviceName",
+    "deviceOS": "deviceOS",
+    "browser": "browser",
+    "ipAddress": "127.0.0.1"
+  },
+  "userDetails": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "phone": "",
+    "email": "test@test.com",
+    "address": "",
+    "city": "",
+    "zip": "",
+    "country": "",
+    "state": ""
+  },
+  "shippingAddress": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "cell": "",
+    "phone": "",
+    "email": "test@test.com",
+    "address": "",
+    "city": "",
+    "zip": "",
+    "country": "",
+    "state": ""
+  },
+  "billingAddress": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "phone": "",
+    "email": "test@test.com",
+    "address": "",
+    "city": "",
+    "zip": "",
+    "country": "",
+    "state": ""
+  },
+  "dynamicDescriptor": {
+    "merchantName": "merchantName",
+    "merchantPhone": "merchantPhone"
+  },
+  "merchantDetails": {
+    "customField1": "merchantName",
+    "customField2": "merchantName",
+    "customField3": "merchantName",
+    "customField4": "merchantName",
+    "customField9": "merchantName"
+  }
+}

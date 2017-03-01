@@ -1,0 +1,70 @@
+{
+  "sessionToken": "9610a8f6-44cf-4c4f-976a-005da69a2a3b",
+  "timeStamp": "20170118191751",
+  "checksum": "6b53666fc048a825be63cbb820da467b",
+  "clientRequestId": "1484759871233",
+  "merchantSiteId": "19",
+  "merchantId": "7777777",
+  "orderId": "39272",
+  "userTokenId": "",
+  "currency": "USD",
+  "amount": "10",
+  "items": [
+    {
+      "name": "name",
+      "price": 10,
+      "quantity": 1
+    }
+  ],
+  "deviceDetails": {
+    "deviceName": "",
+    "deviceOS": "",
+    "browser": "",
+    "ipAddress": "127.0.0.1"
+  },
+  "userDetails": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "phone": "",
+    "email": "test@test.com",
+    "address": "",
+    "city": "",
+    "zip": "",
+    "country": "",
+    "state": ""
+  },
+  "shippingAddress": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "cell": "",
+    "phone": "",
+    "email": "test@test.com",
+    "address": "",
+    "city": "",
+    "zip": "",
+    "country": "",
+    "state": ""
+  },
+  "billingAddress": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "phone": "",
+    "email": "test@test.com",
+    "address": "",
+    "city": "",
+    "zip": "",
+    "country": "",
+    "state": ""
+  },
+  "dynamicDescriptor": {
+    "merchantName": "merchantName",
+    "merchantPhone": "merchantPhone"
+  },
+  "merchantDetails": {
+    "customInfoField1": "merchantName",
+    "customInfoField2": "merchantName",
+    "customInfoField3": "merchantName",
+    "customInfoField4": "merchantName",
+    "customInfoField5": "merchantName"
+  }
+}

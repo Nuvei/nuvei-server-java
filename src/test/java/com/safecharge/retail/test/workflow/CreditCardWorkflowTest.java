@@ -1,16 +1,13 @@
-package com.safecharge.retail.test;
+package com.safecharge.retail.test.workflow;
 
 import java.io.IOException;
 
-import org.apache.http.client.HttpClient;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import com.safecharge.retail.biz.SafechargeHttpClient;
-import com.safecharge.retail.biz.SafechargeRequestExecutor;
 import com.safecharge.retail.model.MerchantInfo;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
 import com.safecharge.retail.request.GetSessionTokenRequest;
@@ -20,6 +17,7 @@ import com.safecharge.retail.request.SafechargeRequest;
 import com.safecharge.retail.request.UpdateOrderRequest;
 import com.safecharge.retail.response.SafechargeOrderResponse;
 import com.safecharge.retail.response.SafechargeResponse;
+import com.safecharge.retail.test.BaseTest;
 import com.safecharge.retail.util.Constants;
 
 /**
@@ -28,28 +26,24 @@ import com.safecharge.retail.util.Constants;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/16/2017
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING) public class CreditCardWorkflowTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING) public class CreditCardWorkflowTest extends BaseTest {
 
     // All static field values will be shared between tests
     private static String sessionToken;
     private static String orderId;
     private static MerchantInfo merchantInfo;
-    private static HttpClient httpClient;
-    private static SafechargeRequestExecutor executor;
 
     @Before public void init() {
-        httpClient = SafechargeHttpClient.createDefault();
+        super.init();
         merchantInfo = new MerchantInfo("2QMy87kirFbtdkl6Ubk9xCqhNICYNCewiOCm19DhJp3lqAI6lp7Oh2rZsn61LVw9", "2885023999185468261", "5612",
                 Constants.HashAlgorithm.SHA256);
 
-        executor = SafechargeRequestExecutor.getInstance();
-        executor.init(httpClient, "http://localhost:8080/ppp/");
     }
 
     @Test public void test1_getSessionTokenTest() throws IOException {
         SafechargeRequest safechargeRequest = new GetSessionTokenRequest.Builder().addMerchantInfo(merchantInfo)
                                                                                   .build();
-        SafechargeResponse response = executor.executeRequest(safechargeRequest);
+        SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
 
         Assert.assertTrue(response != null);
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(response.getStatus()));
@@ -70,7 +64,7 @@ import com.safecharge.retail.util.Constants;
                                                                            .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
                                                                                    "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
                                                                            .build();
-        SafechargeOrderResponse openOrderResponse = (SafechargeOrderResponse) executor.executeRequest(openOrderRequest);
+        SafechargeOrderResponse openOrderResponse = (SafechargeOrderResponse) safechargeRequestExecutor.executeRequest(openOrderRequest);
 
         Assert.assertTrue(openOrderResponse != null);
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(openOrderResponse.getStatus()));
@@ -95,7 +89,7 @@ import com.safecharge.retail.util.Constants;
                                                                                .addOrderId(orderId)
                                                                                .build();
 
-        SafechargeOrderResponse updateOrderResponse = (SafechargeOrderResponse) executor.executeRequest(updateOrderRequest);
+        SafechargeOrderResponse updateOrderResponse = (SafechargeOrderResponse) safechargeRequestExecutor.executeRequest(updateOrderRequest);
 
         Assert.assertTrue(updateOrderResponse != null);
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(updateOrderResponse.getStatus()));
@@ -106,7 +100,7 @@ import com.safecharge.retail.util.Constants;
                                                                                   .addMerchantInfo(merchantInfo)
                                                                                   .addSessionToken(sessionToken)
                                                                                   .build();
-        SafechargeResponse response = executor.executeRequest(safechargeRequest);
+        SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
 
         Assert.assertTrue(response != null);
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(response.getStatus()));
@@ -130,7 +124,7 @@ import com.safecharge.retail.util.Constants;
                                                                   .addTransactionType(Constants.TransactionType.Sale)
                                                                   // TODO add test with UserPaymentOption
                                                                   .build();
-        SafechargeResponse response = executor.executeRequest(request);
+        SafechargeResponse response = safechargeRequestExecutor.executeRequest(request);
 
         Assert.assertTrue(response != null);
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(response.getStatus()));

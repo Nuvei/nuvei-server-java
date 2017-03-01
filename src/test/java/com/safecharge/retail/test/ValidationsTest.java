@@ -23,7 +23,7 @@ import com.safecharge.retail.util.Constants;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/24/2017
  */
-public class TestValidations {
+public class ValidationsTest {
 
     private static final MerchantInfo validMerchantInfo = new MerchantInfo("dummy", "1234", "1234", Constants.HashAlgorithm.MD5);
     private static final MerchantInfo invalidMerchantInfo = new MerchantInfo("dummy", null, null, Constants.HashAlgorithm.MD5);

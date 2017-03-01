@@ -40,7 +40,8 @@ public class RequestUtils {
      * @param hashAlgorithm
      * @return
      */
-    public static String calculateChecksum(SafechargeOrderDetailsRequest request, String amount, String currency, String merchantKey, Constants.HashAlgorithm hashAlgorithm) {
+    public static String calculateChecksum(SafechargeOrderDetailsRequest request, String amount, String currency, String merchantKey,
+            Constants.HashAlgorithm hashAlgorithm) {
 
         StringBuilder sb = new StringBuilder();
 
