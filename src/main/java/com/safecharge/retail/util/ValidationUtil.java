@@ -8,8 +8,8 @@ import javax.validation.Validation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.safecharge.retail.request.SafechargeRequest;
 
@@ -21,7 +21,7 @@ import com.safecharge.retail.request.SafechargeRequest;
  */
 public class ValidationUtil {
 
-    private static final Logger logger = LogManager.getLogger(ValidationUtil.class);
+    private static final Log logger = LogFactory.getLog(ValidationUtil.class);
 
     private static final Validator validator = Validation.buildDefaultValidatorFactory()
                                                          .getValidator();

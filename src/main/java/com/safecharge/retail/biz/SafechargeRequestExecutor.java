@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -44,7 +44,7 @@ import com.safecharge.retail.util.APIConstants;
  */
 public class SafechargeRequestExecutor {
 
-    private static final Logger logger = LogManager.getLogger(SafechargeRequestExecutor.class);
+    private static final Log logger = LogFactory.getLog(SafechargeRequestExecutor.class);
     private static final Map<Class<? extends SafechargeRequest>, Class<? extends SafechargeResponse>> RESPONSE_TYPE_BY_REQUEST_TYPE =
             new HashMap<Class<? extends SafechargeRequest>, Class<? extends SafechargeResponse>>() {
                 private static final long serialVersionUID = -5429154998138428047L;

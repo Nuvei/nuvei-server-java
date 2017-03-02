@@ -12,8 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.safecharge.retail.request.SafechargeOrderDetailsRequest;
 import com.safecharge.retail.request.SafechargeRequest;
@@ -27,7 +27,7 @@ import com.safecharge.retail.request.SafechargeRequest;
 
 public class RequestUtils {
 
-    private static final Logger logger = LogManager.getLogger(RequestUtils.class);
+    private static final Log logger = LogFactory.getLog(RequestUtils.class);
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
     /**
