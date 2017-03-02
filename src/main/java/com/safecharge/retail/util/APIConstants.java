@@ -11,8 +11,12 @@ import org.apache.http.message.BasicHeader;
  */
 public interface APIConstants {
 
+    // Pre-configured hosts:
+
     String PRODUCTION_HOST = "https://secure.safecharge.com/ppp/";
     String INTEGRATION_HOST = "https://secure.safecharge.com/ppp/";
+
+    // API enpoints:
 
     String GET_SESSION_TOKEN_URL = "api/v1/getSessionToken.do";
     String OPEN_ORDER_URL = "api/v1/openOrder.do";
@@ -23,7 +27,11 @@ public interface APIConstants {
     String AUTHORIZATION_3D_URL = "api/v1/authorization3D.do";
     String CARD_TOKENIZATION_URL = "api/v1/cardTokenization.do";
 
+    // Request Headers:
+
     Header[] REQUEST_HEADERS = new Header[] { new BasicHeader("Content-Type", "application/json") };
+
+    // Field limitations:
 
     short ADDRESS_MAX_LENGTH = 60;
     short FIRST_NAME_MAX_LENGTH = 30;
@@ -35,6 +43,8 @@ public interface APIConstants {
     short CREDIT_CARD_MAX_LENGTH = 20;
     short MERCHANT_DESCRIPTOR_PHONE_MAX_LENGTH = 13;
     short MERCHANT_DESCRIPTOR_NAME_MAX_LENGTH = 25;
+
+    // field limitations using regular expressions:
 
     String IP_ADDRESS_REGEX = "^(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}$";
     String EMAIL_REGEX = "^[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,10}$";

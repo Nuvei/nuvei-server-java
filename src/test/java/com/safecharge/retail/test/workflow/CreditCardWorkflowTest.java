@@ -122,7 +122,6 @@ import com.safecharge.retail.util.Constants;
                                                                   .addOrderId(orderId)
                                                                   .addCardData("4111111111111111", "Test Testov", "10", "2022", null, "123")
                                                                   .addTransactionType(Constants.TransactionType.Sale)
-                                                                  // TODO add test with UserPaymentOption
                                                                   .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(request);
 

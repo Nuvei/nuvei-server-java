@@ -5,6 +5,9 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.retail.model.CardData;
 import com.safecharge.retail.model.UserAddress;
+import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
+
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -20,8 +23,11 @@ public class CardTokenizationRequest extends BaseSafechargeRequest {
 
     @Size(max = 255,
           message = "userTokenId size must be up to 255 characters long!") private String userTokenId;
-
     private String ipAddress;
+
+    public CardTokenizationRequest() {
+        throw new NotImplementedException();
+    }
 
     public CardData getCardData() {
         return cardData;
@@ -71,5 +77,12 @@ public class CardTokenizationRequest extends BaseSafechargeRequest {
         sb.append(sb.append(super.toString()));
         sb.append('}');
         return sb.toString();
+    }
+
+    public static class Builder extends SafechargeOrderBuilder<Authorization3DRequest.Builder> {
+
+        @Override public SafechargeRequest build() {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -12,6 +12,11 @@ import com.safecharge.retail.model.Proxy;
  */
 public class SafechargeHttpClient {
 
+    /**
+     * Creates a pre-configured {@link HttpClient} instance.
+     *
+     * @return
+     */
     public static HttpClient createDefault() {
         return new SafechargeClientBuilder().setDefaultConnectionManager()
                                             .setDefaultConnectionTTL()
@@ -20,6 +25,12 @@ public class SafechargeHttpClient {
                                             .build();
     }
 
+    /**
+     * Creates a pre-configured {@link HttpClient} instance which connects to SafeCharge's API via {@link Proxy}.
+     *
+     * @param proxy
+     * @return
+     */
     public static HttpClient createDefault(Proxy proxy) {
         return new SafechargeClientBuilder().setProxy(proxy)
                                             .setDefaultConnectionManager()
@@ -29,6 +40,11 @@ public class SafechargeHttpClient {
                                             .build();
     }
 
+    /**
+     * Provides custom {@link HttpClient} configuration.
+     *
+     * @return
+     */
     public static SafechargeClientBuilder custom() {
         return new SafechargeClientBuilder();
     }

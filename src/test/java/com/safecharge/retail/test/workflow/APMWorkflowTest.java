@@ -129,7 +129,6 @@ import com.safecharge.retail.util.Constants;
                                                                            "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do")
                                                                    .addPaymentMethod("apmgw_expresscheckout")
                                                                    .addUserAccountDetails(userAccountDetails)
-                                                                   // TODO add test with UserPaymentOption
                                                                    .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(request);
 

@@ -15,14 +15,27 @@ public class UpdateOrderResponse extends BaseResponse implements SafechargeOrder
         return orderId;
     }
 
+    /**
+     * Sets the Merchant Order ID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
+     *
+     * @param orderId
+     */
     public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
+    /**
+     * @return ID of the user in merchant system.
+     */
     public String getUserTokenId() {
         return userTokenId;
     }
 
+    /**
+     * Sets the ID of the user in merchant system.
+     *
+     * @param userTokenId
+     */
     public void setUserTokenId(String userTokenId) {
         this.userTokenId = userTokenId;
     }

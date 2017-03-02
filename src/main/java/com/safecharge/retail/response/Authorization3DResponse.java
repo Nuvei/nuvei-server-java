@@ -1,5 +1,7 @@
 package com.safecharge.retail.response;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
@@ -9,24 +11,41 @@ package com.safecharge.retail.response;
 public class Authorization3DResponse extends PaymentCCResponse {
 
     private String paRequest;
+
     private String acsUrl;
 
     public Authorization3DResponse() {
-        super();
+        throw new NotImplementedException();
     }
 
+    /**
+     * @return the 3D secure request data for the card issuer/bank.
+     */
     public String getPaRequest() {
         return paRequest;
     }
 
+    /**
+     * Sets the 3D secure request data for the card issuer/bank.
+     *
+     * @param paRequest
+     */
     public void setPaRequest(String paRequest) {
         this.paRequest = paRequest;
     }
 
+    /**
+     * @return URL/endpoint used to redirect the customer to the card issuer/bank 3D secure verification page.
+     */
     public String getAcsUrl() {
         return acsUrl;
     }
 
+    /**
+     * Sets the URL/endpoint used to redirect the customer to the card issuer/bank 3D secure verification page.
+     *
+     * @param acsUrl
+     */
     public void setAcsUrl(String acsUrl) {
         this.acsUrl = acsUrl;
     }

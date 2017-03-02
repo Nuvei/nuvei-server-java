@@ -18,12 +18,41 @@ import com.safecharge.retail.util.ValidationUtil;
  */
 public class PaymentCCRequest extends BaseSafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
+    /**
+     * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
+     */
     @NotNull(message = "orderId parameter is mandatory!") @Size(max = 45) private String orderId;
 
+    /**
+     * Transaction Type of the request. Possible values: Auth / Sale.
+     */
     @NotNull(message = "transactionType parameter is mandatory!") private Constants.TransactionType transactionType;
 
+    /**
+     * Card data must be passed as parameter in the payment methods and not before that in the payment flow (openOrder, updateOrder) since it's not allowed to be saved in the cashier/checkout DB.
+     * <p>
+     * cardNumber <br />
+     * cardHolderName <br />
+     * expirationMonth <br />
+     * expirationYear <br />
+     * cvv <br />
+     * <p>
+     * OR
+     * <p>
+     * cardToken <br />
+     * cvv
+     *
+     * @return cardData
+     */
     @Valid private CardData cardData;
 
+    /**
+     * User payment option can to be provided as an alternative for providing card data/card token/Apple Pay token. Only one of them can be in use for a certain transaction. If both not provided or both provided it will cause an error.
+     * <p>
+     * SafeCharge decide per client in gateway and per site in cashier, weather CVV is mandatory to be provided with a UPO. Sending CVV will gain a getter interchange. if neded it will be sent by the merchant in cardData class, cvv parameter.
+     *
+     * @return
+     */
     @Valid private UserPaymentOption userPaymentOption;
 
     public String getOrderId() {

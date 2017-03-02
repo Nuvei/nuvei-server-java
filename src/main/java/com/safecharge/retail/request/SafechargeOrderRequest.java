@@ -9,6 +9,8 @@ package com.safecharge.retail.request;
 public interface SafechargeOrderRequest {
 
     /**
+     * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
+     *
      * @param orderId
      */
     void setOrderId(String orderId);

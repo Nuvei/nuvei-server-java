@@ -19,15 +19,30 @@ import com.safecharge.retail.util.ValidationUtil;
  */
 public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
+    /**
+     * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
+     */
     @NotNull(message = "orderId parameter is mandatory!") @Size(max = 45,
                                                                 message = "orderId size must be up to 45 characters long!") private String orderId;
 
+    /**
+     * Identification of the payment method. For example: PayPal, Skrill, PaysafeCard etc.
+     */
     @NotNull(message = "paymentMethod parameter is mandatory!") private String paymentMethod;
 
+    /**
+     * Account details of the APM. Specific data for each APM.
+     */
     private Map<String, String> userAccountDetails;
 
+    /**
+     * User payment option can to be provided as an alternative for providing card data/card token/Apple Pay token. Only one of them can be in use for a certain transaction. If both not provided or both provided it will cause an error.
+     */
     @Valid private UserPaymentOption userPaymentOption;
 
+    /**
+     * Although DMN response can be configured per merchant site, it will allow to dynamically return the DMN to the provided address per request.
+     */
     @Valid private URLDetails urlDetails;
 
     public String getOrderId() {

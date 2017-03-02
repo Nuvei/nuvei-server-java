@@ -84,6 +84,32 @@ public class RequestUtils {
         return getHash(sb.toString(), Constants.CHARSET_UTF8, hashAlgorithm);
     }
 
+    /**
+     * This method is used to calculate the timestamp of a request.
+     *
+     * @return
+     */
+    public static String calculateTimestamp() {
+        Calendar cal = new GregorianCalendar();
+        sdf.setTimeZone(cal.getTimeZone());
+        return sdf.format(cal.getTime());
+    }
+
+    /**
+     * This method is used to calculate the clientRequestId parameter of a request.
+     *
+     * @param timestamp
+     * @return
+     */
+    public static String calculateClientRequestId(String timestamp) {
+        try {
+            return String.valueOf(sdf.parse(timestamp)
+                                     .getTime());
+        } catch (ParseException e) {
+            return "-1";
+        }
+    }
+
     private static String getHash(String text, String charset, Constants.HashAlgorithm algorithm) {
         MessageDigest md;
         try {
@@ -123,20 +149,5 @@ public class RequestUtils {
         }
 
         return sb.toString();
-    }
-
-    public static String calculateTimestamp() {
-        Calendar cal = new GregorianCalendar();
-        sdf.setTimeZone(cal.getTimeZone());
-        return sdf.format(cal.getTime());
-    }
-
-    public static String calculateClientRequestId(String timestamp) {
-        try {
-            return String.valueOf(sdf.parse(timestamp)
-                                     .getTime());
-        } catch (ParseException e) {
-            return "-1";
-        }
     }
 }

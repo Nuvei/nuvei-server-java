@@ -12,13 +12,20 @@ public class PaymentAPMResponse extends PaymentCCResponse implements PaymentsRes
 
     public PaymentAPMResponse() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
+    /**
+     * @return URL that will be used by merchant to redirect end user to the payment method for authentication and authorization of the payment. Will be returned only if the APM payment is done using redirect APM flow.
+     */
     public String getRedirectURL() {
         return redirectURL;
     }
 
+    /**
+     * URL that will be used by merchant to redirect end user to the payment method for authentication and authorization of the payment. Will be returned only if the APM payment is done using redirect APM flow.
+     *
+     * @param redirectURL
+     */
     public void setRedirectURL(String redirectURL) {
         this.redirectURL = redirectURL;
     }

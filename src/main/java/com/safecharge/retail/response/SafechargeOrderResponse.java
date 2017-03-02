@@ -8,6 +8,9 @@ package com.safecharge.retail.response;
  */
 public interface SafechargeOrderResponse extends SafechargeResponse {
 
+    /**
+     * @return Merchant Order ID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
+     */
     String getOrderId();
 
 }
