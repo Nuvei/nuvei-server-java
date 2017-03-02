@@ -1,6 +1,6 @@
-# Safecharge retail SDK for Java
+# Safecharge REST API SDK for Java
 
-SafeCharge’s Retail SDK for Java provides developer tools for accessing Safecharge's API. Safecharge API is a simple, easy to use, secured and stateless API. 
+SafeCharge’s REST API SDK for Java provides developer tools for accessing Safecharge's API. Safecharge API is a simple, easy to use, secured and stateless API. 
                                                                                                      It is an online solution which enables merchants selling products and services over the web to process online customer payments etc. though SafeCahrge’s payments gateway.
                                                                                                      It supports both PCI and non-PCI certified merchants, both online and mobile merchants applications and offer a large verity of payment options: cards, alternative payment methods etc.  
 
@@ -74,3 +74,4 @@ public class Sample {
     }
 }
 ```
+More samples tests can be found [here](https://github.com/SafechargeBulgaria/safecharge-retail-java/tree/master/src/test/java/com/safecharge/retail/test/workflow/).
