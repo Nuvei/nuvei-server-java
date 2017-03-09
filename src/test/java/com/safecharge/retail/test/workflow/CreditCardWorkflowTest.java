@@ -41,8 +41,7 @@ import com.safecharge.retail.util.Constants;
     }
 
     @Test public void test1_getSessionTokenTest() throws IOException {
-        SafechargeRequest safechargeRequest = new GetSessionTokenRequest.Builder().addMerchantInfo(merchantInfo)
-                                                                                  .build();
+        SafechargeRequest safechargeRequest = new GetSessionTokenRequest.Builder().build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
 
         Assert.assertTrue(response != null);
@@ -51,8 +50,7 @@ import com.safecharge.retail.util.Constants;
     }
 
     @Test public void test2_openOrder() {
-        SafechargeRequest openOrderRequest = new OpenOrderRequest.Builder().addMerchantInfo(merchantInfo)
-                                                                           .addCurrency("EUR")
+        SafechargeRequest openOrderRequest = new OpenOrderRequest.Builder().addCurrency("EUR")
                                                                            .addAmount("2")
                                                                            .addSessionToken(sessionToken)
                                                                            .addItem("test_item_1", "1", "1")
@@ -74,8 +72,7 @@ import com.safecharge.retail.util.Constants;
     }
 
     @Test public void test3_updateOrder() {
-        SafechargeRequest updateOrderRequest = new UpdateOrderRequest.Builder().addMerchantInfo(merchantInfo)
-                                                                               .addCurrency("EUR")
+        SafechargeRequest updateOrderRequest = new UpdateOrderRequest.Builder().addCurrency("EUR")
                                                                                .addAmount("2")
                                                                                .addSessionToken(sessionToken)
                                                                                .addItem("test_item_1", "1", "1")
@@ -97,7 +94,6 @@ import com.safecharge.retail.util.Constants;
 
     @Test public void test4_getOrderDetails() {
         SafechargeRequest safechargeRequest = new GetOrderDetailsRequest.Builder().setOrderId(orderId)
-                                                                                  .addMerchantInfo(merchantInfo)
                                                                                   .addSessionToken(sessionToken)
                                                                                   .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
@@ -107,8 +103,7 @@ import com.safecharge.retail.util.Constants;
     }
 
     @Test public void test5_paymentCC() {
-        SafechargeRequest request = new PaymentCCRequest.Builder().addMerchantInfo(merchantInfo)
-                                                                  .addCurrency("EUR")
+        SafechargeRequest request = new PaymentCCRequest.Builder().addCurrency("EUR")
                                                                   .addAmount("2")
                                                                   .addSessionToken(sessionToken)
                                                                   .addItem("test_item_1", "1", "1")

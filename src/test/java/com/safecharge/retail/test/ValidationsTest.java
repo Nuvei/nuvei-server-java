@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.safecharge.retail.biz.SafechargeConfiguration;
+import com.safecharge.retail.biz.SafechargeHttpClient;
 import com.safecharge.retail.model.Item;
 import com.safecharge.retail.model.MerchantInfo;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
@@ -40,16 +42,18 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_GetSessionToken() {
-        SafechargeRequest safechargeRequest = new GetSessionTokenRequest.Builder().addMerchantInfo(validMerchantInfo)
-                                                                                  .build();
+        SafechargeConfiguration.init(validMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+
+        SafechargeRequest safechargeRequest = new GetSessionTokenRequest.Builder().build();
         Assert.assertTrue(safechargeRequest != null);
     }
 
     @Test public void testFailedValidation_GetSessionToken() {
 
+        SafechargeConfiguration.init(invalidMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+
         try {
-            new GetSessionTokenRequest.Builder().addMerchantInfo(invalidMerchantInfo)
-                                                .build();
+            new GetSessionTokenRequest.Builder().build();
             Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
         } catch (ConstraintViolationException e) {
             Assert.assertEquals(2, e.getConstraintViolations()
@@ -58,17 +62,19 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_GetOrderDetails() {
+        SafechargeConfiguration.init(validMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
         SafechargeRequest safechargeRequest = new GetOrderDetailsRequest.Builder().setOrderId("1234")
-                                                                                  .addMerchantInfo(validMerchantInfo)
                                                                                   .addSessionToken(dummySessionToken)
                                                                                   .build();
         Assert.assertTrue(safechargeRequest != null);
     }
 
     @Test public void testFailedValidation_GetOrderDetails() {
+
+        SafechargeConfiguration.init(validMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+
         try {
-            new GetOrderDetailsRequest.Builder().addMerchantInfo(validMerchantInfo)
-                                                .build();
+            new GetOrderDetailsRequest.Builder().build();
             Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
         } catch (ConstraintViolationException e) {
             Assert.assertEquals(2, e.getConstraintViolations()
@@ -77,8 +83,8 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_OpenOrder() {
-        SafechargeRequest safechargeRequest = new OpenOrderRequest.Builder().addMerchantInfo(validMerchantInfo)
-                                                                            .addSessionToken(dummySessionToken)
+        SafechargeConfiguration.init(validMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+        SafechargeRequest safechargeRequest = new OpenOrderRequest.Builder().addSessionToken(dummySessionToken)
                                                                             .addCurrency("EUR")
                                                                             .addAmount("1")
                                                                             .addItem(dummyValidItem)
@@ -87,9 +93,11 @@ public class ValidationsTest {
     }
 
     @Test public void testFailedValidation_OpenOrder() {
+
+        SafechargeConfiguration.init(validMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+
         try {
-            SafechargeRequest safechargeRequest = new OpenOrderRequest.Builder().addMerchantInfo(validMerchantInfo)
-                                                                                .addSessionToken(dummySessionToken)
+            SafechargeRequest safechargeRequest = new OpenOrderRequest.Builder().addSessionToken(dummySessionToken)
                                                                                 .addAmount("1")
                                                                                 .addItem(dummyInvalidItem)
                                                                                 .build();
@@ -101,8 +109,8 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_UpdateOrder() {
-        SafechargeRequest safechargeRequest = new UpdateOrderRequest.Builder().addMerchantInfo(validMerchantInfo)
-                                                                              .addSessionToken(dummySessionToken)
+        SafechargeConfiguration.init(validMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+        SafechargeRequest safechargeRequest = new UpdateOrderRequest.Builder().addSessionToken(dummySessionToken)
                                                                               .addOrderId(dummyOrderId)
                                                                               .addCurrency("EUR")
                                                                               .addAmount("1")
@@ -112,9 +120,11 @@ public class ValidationsTest {
     }
 
     @Test public void testFailedValidation_UpdateOrder() {
+
+        SafechargeConfiguration.init(validMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+
         try {
-            SafechargeRequest safechargeRequest = new UpdateOrderRequest.Builder().addMerchantInfo(validMerchantInfo)
-                                                                                  .addSessionToken(dummySessionToken)
+            SafechargeRequest safechargeRequest = new UpdateOrderRequest.Builder().addSessionToken(dummySessionToken)
                                                                                   .addOrderId(dummyOrderId)
                                                                                   .addAmount("1")
                                                                                   .addItem(dummyInvalidItem)
@@ -127,8 +137,8 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_PaymentAPM() {
-        SafechargeRequest safechargeRequest = new PaymentAPMRequest.Builder().addMerchantInfo(validMerchantInfo)
-                                                                             .addCurrency("EUR")
+        SafechargeConfiguration.init(validMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+        SafechargeRequest safechargeRequest = new PaymentAPMRequest.Builder().addCurrency("EUR")
                                                                              .addAmount("2")
                                                                              .addSessionToken(dummySessionToken)
                                                                              .addItem("test_item_1", "1", "1")
@@ -150,9 +160,11 @@ public class ValidationsTest {
     }
 
     @Test public void testFailedValidation_PaymentAPM() {
+
+        SafechargeConfiguration.init(invalidMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+
         try {
-            SafechargeRequest safechargeRequest = new PaymentAPMRequest.Builder().addMerchantInfo(invalidMerchantInfo)
-                                                                                 .addSessionToken(dummySessionToken)
+            SafechargeRequest safechargeRequest = new PaymentAPMRequest.Builder().addSessionToken(dummySessionToken)
                                                                                  .addItem(null, "1", "1")
                                                                                  .addUserDetails("Test street 1 ", "Sofia", "BG", "test@test.com",
                                                                                          "Test street 1 Test street 1 Test street 1 Test street 1 ",
@@ -177,8 +189,8 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_PaymentCCRequest() {
-        SafechargeRequest safechargeRequest = new PaymentCCRequest.Builder().addMerchantInfo(validMerchantInfo)
-                                                                            .addCurrency("EUR")
+        SafechargeConfiguration.init(validMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+        SafechargeRequest safechargeRequest = new PaymentCCRequest.Builder().addCurrency("EUR")
                                                                             .addAmount("2")
                                                                             .addSessionToken(dummySessionToken)
                                                                             .addItem("test_item_1", "1", "1")
@@ -197,9 +209,11 @@ public class ValidationsTest {
     }
 
     @Test public void testFailedValidation_PaymentCCRequest() {
+
+        SafechargeConfiguration.init(invalidMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+
         try {
-            SafechargeRequest safechargeRequest = new PaymentCCRequest.Builder().addMerchantInfo(invalidMerchantInfo)
-                                                                                .addSessionToken(dummySessionToken)
+            SafechargeRequest safechargeRequest = new PaymentCCRequest.Builder().addSessionToken(dummySessionToken)
                                                                                 .addItem(null, "1", "1")
                                                                                 .addUserDetails("Test street 1 ", "Sofia", "BG", "test@test.com",
                                                                                         "Test street 1 Test street 1 Test street 1 Test street 1 ",

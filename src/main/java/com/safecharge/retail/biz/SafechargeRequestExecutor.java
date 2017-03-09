@@ -92,22 +92,16 @@ public class SafechargeRequestExecutor {
 
     /**
      * This method initiates the {@link SafechargeRequestExecutor} with a configured {@link HttpClient} and server information.
-     *
-     * @param httpClient           - the HttpClient used to connect to the SafeCharge API. <br />
-     *                             &emsp;Example client: {@link SafechargeHttpClient#createDefault()}
-     * @param safechargeServerHost - the SafeCharge API host. <br/>
-     *                             &emsp;Integration value: {@link APIConstants#INTEGRATION_HOST} <br />
-     *                             &emsp;Production value: {@link APIConstants#PRODUCTION_HOST} <br />
      */
-    public void init(HttpClient httpClient, String safechargeServerHost) {
+    public void init() {
 
         if (isInitialized) {
             // already initialized
             return;
         }
 
-        SafechargeRequestExecutor.httpClient = httpClient;
-        SafechargeRequestExecutor.serverHost = safechargeServerHost;
+        SafechargeRequestExecutor.httpClient = SafechargeConfiguration.getHttpClient();
+        SafechargeRequestExecutor.serverHost = SafechargeConfiguration.getServerHost();
 
         isInitialized = true;
     }
@@ -119,6 +113,10 @@ public class SafechargeRequestExecutor {
      * @return
      */
     public SafechargeResponse executeRequest(SafechargeRequest request) {
+
+        if (!isInitialized) {
+            init();
+        }
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();

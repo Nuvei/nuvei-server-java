@@ -3,6 +3,7 @@ package com.safecharge.retail.request.builder;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.safecharge.retail.biz.SafechargeConfiguration;
 import com.safecharge.retail.model.Addendums;
 import com.safecharge.retail.model.DeviceDetails;
 import com.safecharge.retail.model.DynamicDescriptor;
@@ -386,9 +387,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         safechargeOrderDetailsRequest.setUserTokenId(userTokenId);
         safechargeOrderDetailsRequest.setClientUniqueId(clientUniqueId);
 
-        safechargeOrderDetailsRequest.setChecksum(
-                RequestUtils.calculateChecksum(safechargeOrderDetailsRequest, amount, currency, merchantInfo.getMerchantKey(),
-                        merchantInfo.getHashAlgorithm()));
+        safechargeOrderDetailsRequest.setChecksum(RequestUtils.calculateChecksum(safechargeOrderDetailsRequest, amount, currency,
+                SafechargeConfiguration.getMerchantInfo()
+                                       .getMerchantKey(), SafechargeConfiguration.getMerchantInfo()
+                                                                                 .getHashAlgorithm()));
         return safechargeOrderDetailsRequest;
     }
 }

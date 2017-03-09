@@ -10,6 +10,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import com.safecharge.retail.biz.SafechargeConfiguration;
+import com.safecharge.retail.biz.SafechargeHttpClient;
 import com.safecharge.retail.model.MerchantInfo;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
 import com.safecharge.retail.request.GetSessionTokenRequest;
@@ -33,17 +35,18 @@ import com.safecharge.retail.util.Constants;
     // All static field values will be shared between tests
     private static String sessionToken;
     private static String orderId;
-    private static MerchantInfo merchantInfo;
 
     @Before public void init() {
         super.init();
-        merchantInfo = new MerchantInfo("2QMy87kirFbtdkl6Ubk9xCqhNICYNCewiOCm19DhJp3lqAI6lp7Oh2rZsn61LVw9", "2885023999185468261", "5612",
-                Constants.HashAlgorithm.SHA256);
+        MerchantInfo merchantInfo =
+                new MerchantInfo("2QMy87kirFbtdkl6Ubk9xCqhNICYNCewiOCm19DhJp3lqAI6lp7Oh2rZsn61LVw9", "2885023999185468261", "5612",
+                        Constants.HashAlgorithm.SHA256);
+
+        SafechargeConfiguration.init(merchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
     }
 
     @Test public void test1_getSessionTokenTest() throws IOException {
-        SafechargeRequest safechargeRequest = new GetSessionTokenRequest.Builder().addMerchantInfo(merchantInfo)
-                                                                                  .build();
+        SafechargeRequest safechargeRequest = new GetSessionTokenRequest.Builder().build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
 
         Assert.assertTrue(response != null);
@@ -52,8 +55,7 @@ import com.safecharge.retail.util.Constants;
     }
 
     @Test public void test2_openOrder() {
-        SafechargeRequest openOrderRequest = new OpenOrderRequest.Builder().addMerchantInfo(merchantInfo)
-                                                                           .addCurrency("EUR")
+        SafechargeRequest openOrderRequest = new OpenOrderRequest.Builder().addCurrency("EUR")
                                                                            .addAmount("2")
                                                                            .addSessionToken(sessionToken)
                                                                            .addItem("test_item_1", "1", "1")
@@ -75,8 +77,7 @@ import com.safecharge.retail.util.Constants;
     }
 
     @Test public void test3_updateOrder() {
-        SafechargeRequest updateOrderRequest = new UpdateOrderRequest.Builder().addMerchantInfo(merchantInfo)
-                                                                               .addCurrency("EUR")
+        SafechargeRequest updateOrderRequest = new UpdateOrderRequest.Builder().addCurrency("EUR")
                                                                                .addAmount("2")
                                                                                .addSessionToken(sessionToken)
                                                                                .addItem("test_item_1", "1", "1")
@@ -98,7 +99,6 @@ import com.safecharge.retail.util.Constants;
 
     @Test public void test4_getOrderDetails() {
         SafechargeRequest safechargeRequest = new GetOrderDetailsRequest.Builder().setOrderId(orderId)
-                                                                                  .addMerchantInfo(merchantInfo)
                                                                                   .addSessionToken(sessionToken)
                                                                                   .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
@@ -111,8 +111,7 @@ import com.safecharge.retail.util.Constants;
         Map<String, String> userAccountDetails = new HashMap<>();
         userAccountDetails.put("email", "nikolad_safecharge_2@abv.bg");
         userAccountDetails.put("account_id", "XX362V4DC76VU");
-        SafechargeRequest request = new PaymentAPMRequest.Builder().addMerchantInfo(merchantInfo)
-                                                                   .addCurrency("EUR")
+        SafechargeRequest request = new PaymentAPMRequest.Builder().addCurrency("EUR")
                                                                    .addAmount("2")
                                                                    .addSessionToken(sessionToken)
                                                                    .addItem("test_item_1", "1", "1")
