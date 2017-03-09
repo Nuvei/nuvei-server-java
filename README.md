@@ -44,8 +44,7 @@ You only need to setup a HTTP Client and to provide the SafeCharge API host to t
 Check how simple it is trough this sample:
 
 ```java
-import org.apache.http.client.HttpClient;
-
+import com.safecharge.retail.biz.SafechargeConfiguration;
 import com.safecharge.retail.biz.SafechargeHttpClient;
 import com.safecharge.retail.biz.SafechargeRequestExecutor;
 import com.safecharge.retail.model.MerchantInfo;
@@ -58,16 +57,14 @@ import com.safecharge.retail.util.Constants;
 public class Sample {
 
     public static void main(String[] args) {
-        HttpClient httpClient = SafechargeHttpClient.createDefault();
         SafechargeRequestExecutor requestExecutor = SafechargeRequestExecutor.getInstance();
-        requestExecutor.init(httpClient, APIConstants.INTEGRATION_HOST);
 
-        MerchantInfo merchantInfo =
-                new MerchantInfo("MERCHANT_KEY_PROVIDED_BY_SAFECHARGE", "MERCHANT_ID_PROVIDED_BY_SAFECHARGE", "MERCHANT_SITE_ID_PROVIDED_BY_SAFECHARGE",
-                        Constants.HashAlgorithm.SHA256);
+        MerchantInfo merchantInfo = new MerchantInfo("MERCHANT_KEY_PROVIDED_BY_SAFECHARGE", "MERCHANT_ID_PROVIDED_BY_SAFECHARGE",
+                "MERCHANT_SITE_ID_PROVIDED_BY_SAFECHARGE", Constants.HashAlgorithm.SHA256);
 
-        SafechargeRequest safechargeRequest = new GetSessionTokenRequest.Builder().addMerchantInfo(merchantInfo)
-                                                                                  .build();
+        SafechargeConfiguration.init(merchantInfo, APIConstants.INTEGRATION_HOST, SafechargeHttpClient.createDefault());
+
+        SafechargeRequest safechargeRequest = new GetSessionTokenRequest.Builder().build();
 
         SafechargeResponse response = requestExecutor.executeRequest(safechargeRequest);
         System.out.println("Received sessionToken = " + response.getSessionToken());
