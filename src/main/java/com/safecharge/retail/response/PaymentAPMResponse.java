@@ -6,7 +6,7 @@ package com.safecharge.retail.response;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-public class PaymentAPMResponse extends PaymentCCResponse implements PaymentsResponse {
+public class PaymentAPMResponse extends BasePaymentsResponse implements PaymentsResponse {
 
     private String redirectURL;
 
@@ -35,8 +35,8 @@ public class PaymentAPMResponse extends PaymentCCResponse implements PaymentsRes
         sb.append("redirectURL='")
           .append(redirectURL)
           .append('\'');
-        sb.append(", ");
-        sb.append(sb.append(super.toString()));
+        sb.append(", ")
+          .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

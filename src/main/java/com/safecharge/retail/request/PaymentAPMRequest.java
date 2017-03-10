@@ -45,6 +45,13 @@ public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest impleme
      */
     @Valid private URLDetails urlDetails;
 
+    /**
+     * The country the transaction is to be completed in.
+     */
+    @NotNull(message = "country parameter is mandatory!") @Size(max = 2,
+                                                                min = 2,
+                                                                message = "country must be exactly 2 characters long") private String country;
+
     public String getOrderId() {
         return orderId;
     }
@@ -85,10 +92,21 @@ public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest impleme
         this.urlDetails = urlDetails;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentAPMRequest{");
         sb.append("orderId='")
           .append(orderId)
+          .append('\'');
+        sb.append(", country='")
+          .append(country)
           .append('\'');
         sb.append(", paymentMethod='")
           .append(paymentMethod)
@@ -99,8 +117,8 @@ public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest impleme
           .append(userPaymentOption);
         sb.append(", urlDetails=")
           .append(urlDetails);
-        sb.append(", ");
-        sb.append(sb.append(super.toString()));
+        sb.append(", ")
+          .append(super.toString());
         sb.append('}');
         return sb.toString();
     }
@@ -112,6 +130,7 @@ public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest impleme
         private Map<String, String> userAccountDetails;
         private UserPaymentOption userPaymentOption;
         private URLDetails urlDetails;
+        private String country;
 
         public Builder addOrderId(String orderId) {
             this.orderId = orderId;
@@ -153,6 +172,11 @@ public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest impleme
             return this;
         }
 
+        public Builder addCountry(String country) {
+            this.country = country;
+            return this;
+        }
+
         @Override public SafechargeRequest build() {
             PaymentAPMRequest paymentAPMRequest = super.build(new PaymentAPMRequest());
             paymentAPMRequest.setOrderId(orderId);
@@ -160,6 +184,7 @@ public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest impleme
             paymentAPMRequest.setUserAccountDetails(userAccountDetails);
             paymentAPMRequest.setUserPaymentOption(userPaymentOption);
             paymentAPMRequest.setUrlDetails(urlDetails);
+            paymentAPMRequest.setCountry(country);
             return ValidationUtil.validate(paymentAPMRequest);
         }
     }

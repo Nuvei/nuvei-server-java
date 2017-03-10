@@ -13,7 +13,7 @@ public class OpenOrderRequest extends BaseSafechargeOrderDetailsRequest {
 
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("OpenOrderRequest{");
-        sb.append(sb.append(super.toString()));
+        sb.append(super.toString());
         sb.append('}');
         return sb.toString();
     }

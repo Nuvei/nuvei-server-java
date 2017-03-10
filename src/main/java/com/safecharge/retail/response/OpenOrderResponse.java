@@ -37,6 +37,7 @@ public class OpenOrderResponse extends BaseResponse implements SafechargeOrderRe
 
     /**
      * Sets the ID of the user in merchant system.
+     *
      * @param userTokenId
      */
     public void setUserTokenId(String userTokenId) {
@@ -51,8 +52,8 @@ public class OpenOrderResponse extends BaseResponse implements SafechargeOrderRe
         sb.append(", userTokenId='")
           .append(userTokenId)
           .append('\'');
-        sb.append(", ");
-        sb.append(sb.append(super.toString()));
+        sb.append(", ")
+          .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

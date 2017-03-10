@@ -1,21 +1,19 @@
 package com.safecharge.retail.response;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-public class Authorization3DResponse extends PaymentCCResponse {
+public class Authorization3DResponse extends BasePaymentsResponse implements PaymentsResponse {
 
     private String paRequest;
 
     private String acsUrl;
 
     public Authorization3DResponse() {
-        throw new NotImplementedException();
+        super();
     }
 
     /**
@@ -58,8 +56,8 @@ public class Authorization3DResponse extends PaymentCCResponse {
         sb.append(", acsUrl='")
           .append(acsUrl)
           .append('\'');
-        sb.append(", ");
-        sb.append(sb.append(super.toString()));
+        sb.append(", ")
+          .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

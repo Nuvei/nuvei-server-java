@@ -14,19 +14,23 @@ import org.apache.http.util.EntityUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.safecharge.retail.request.AddUPOCreditCardByTempTokenRequest;
 import com.safecharge.retail.request.Authorization3DRequest;
 import com.safecharge.retail.request.CardTokenizationRequest;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
 import com.safecharge.retail.request.GetSessionTokenRequest;
 import com.safecharge.retail.request.OpenOrderRequest;
+import com.safecharge.retail.request.Payment3DRequest;
 import com.safecharge.retail.request.PaymentAPMRequest;
 import com.safecharge.retail.request.PaymentCCRequest;
 import com.safecharge.retail.request.SafechargeRequest;
 import com.safecharge.retail.request.UpdateOrderRequest;
+import com.safecharge.retail.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.retail.response.Authorization3DResponse;
 import com.safecharge.retail.response.CardTokenizationResponse;
 import com.safecharge.retail.response.OpenOrderResponse;
 import com.safecharge.retail.response.OrderDetailsResponse;
+import com.safecharge.retail.response.Payment3DResponse;
 import com.safecharge.retail.response.PaymentAPMResponse;
 import com.safecharge.retail.response.PaymentCCResponse;
 import com.safecharge.retail.response.SafechargeResponse;
@@ -58,6 +62,8 @@ public class SafechargeRequestExecutor {
                     put(PaymentAPMRequest.class, PaymentAPMResponse.class);
                     put(Authorization3DRequest.class, Authorization3DResponse.class);
                     put(CardTokenizationRequest.class, CardTokenizationResponse.class);
+                    put(Payment3DRequest.class, Payment3DResponse.class);
+                    put(AddUPOCreditCardByTempTokenRequest.class, AddUPOCreditCardByTempTokenResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -73,6 +79,8 @@ public class SafechargeRequestExecutor {
                     put(PaymentAPMRequest.class, APIConstants.PAYMENT_APM_URL);
                     put(Authorization3DRequest.class, APIConstants.AUTHORIZATION_3D_URL);
                     put(CardTokenizationRequest.class, APIConstants.CARD_TOKENIZATION_URL);
+                    put(Payment3DRequest.class, APIConstants.PAYMENT_3D_URL);
+                    put(AddUPOCreditCardByTempTokenRequest.class, APIConstants.ADD_UPO_CREDIT_CARD_BY_TEMP_TOKEN_URL);
                 }
             };
     private static SafechargeRequestExecutor instance = null;

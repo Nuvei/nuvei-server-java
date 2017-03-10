@@ -98,18 +98,18 @@ public class PaymentCCRequest extends BaseSafechargeOrderDetailsRequest implemen
           .append(cardData);
         sb.append(", userPaymentOption=")
           .append(userPaymentOption);
-        sb.append(", ");
-        sb.append(sb.append(super.toString()));
+        sb.append(", ")
+          .append(super.toString());
         sb.append('}');
         return sb.toString();
     }
 
     public static class Builder extends SafechargeOrderBuilder<Builder> {
 
-        private CardData cardData;
-        private Constants.TransactionType transactionType;
-        private UserPaymentOption userPaymentOption;
-        private String orderId;
+        protected CardData cardData;
+        protected Constants.TransactionType transactionType;
+        protected UserPaymentOption userPaymentOption;
+        protected String orderId;
 
         public Builder() {
             super();

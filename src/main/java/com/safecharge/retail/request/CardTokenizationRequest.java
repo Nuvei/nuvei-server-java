@@ -73,13 +73,13 @@ public class CardTokenizationRequest extends BaseSafechargeRequest {
         sb.append(", ipAddress='")
           .append(ipAddress)
           .append('\'');
-        sb.append(", ");
-        sb.append(sb.append(super.toString()));
+        sb.append(", ")
+          .append(super.toString());
         sb.append('}');
         return sb.toString();
     }
 
-    public static class Builder extends SafechargeOrderBuilder<Authorization3DRequest.Builder> {
+    public static class Builder extends SafechargeOrderBuilder<Builder> {
 
         @Override public SafechargeRequest build() {
             throw new NotImplementedException();

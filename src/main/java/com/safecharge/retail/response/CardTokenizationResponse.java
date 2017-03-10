@@ -37,8 +37,8 @@ public class CardTokenizationResponse extends PaymentCCResponse {
         sb.append("cardToken='")
           .append(cardToken)
           .append('\'');
-        sb.append(", ");
-        sb.append(sb.append(super.toString()));
+        sb.append(", ")
+          .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

@@ -205,8 +205,8 @@ public class OrderDetailsResponse extends BaseResponse implements SafechargeOrde
         sb.append(", transactionId='")
           .append(transactionId)
           .append('\'');
-        sb.append(", ");
-        sb.append(sb.append(super.toString()));
+        sb.append(", ")
+          .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

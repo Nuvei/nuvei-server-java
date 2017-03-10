@@ -123,6 +123,7 @@ import com.safecharge.retail.util.Constants;
                                                                    .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
                                                                            "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
                                                                    .addOrderId(orderId)
+                                                                   .addCountry("US")
                                                                    .addURLDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
                                                                            "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
                                                                            "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do")

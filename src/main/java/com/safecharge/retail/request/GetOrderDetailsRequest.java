@@ -37,8 +37,8 @@ public class GetOrderDetailsRequest extends BaseSafechargeRequest implements Saf
         sb.append("orderId='")
           .append(orderId)
           .append('\'');
-        sb.append(", ");
-        sb.append(sb.append(super.toString()));
+        sb.append(", ")
+          .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

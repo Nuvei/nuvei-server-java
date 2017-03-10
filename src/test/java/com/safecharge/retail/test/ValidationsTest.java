@@ -150,6 +150,7 @@ public class ValidationsTest {
                                                                              .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
                                                                                      "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
                                                                              .addOrderId(dummyOrderId)
+                                                                             .addCountry("US")
                                                                              .addURLDetails(
                                                                                      "https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
                                                                                      "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
@@ -180,6 +181,7 @@ public class ValidationsTest {
                                                                                          "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
                                                                                          "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do")
                                                                                  .addPaymentMethod("apmgw_expresscheckout")
+                                                                                 .addCountry("US")
                                                                                  .build();
             Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
         } catch (ConstraintViolationException e) {

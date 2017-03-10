@@ -26,6 +26,8 @@ public interface APIConstants {
     String PAYMENT_APM_URL = "api/v1/paymentAPM.do";
     String AUTHORIZATION_3D_URL = "api/v1/authorization3D.do";
     String CARD_TOKENIZATION_URL = "api/v1/cardTokenization.do";
+    String ADD_UPO_CREDIT_CARD_BY_TEMP_TOKEN_URL = "api/v1/addUPOCreditCardByTempToken.do";
+    String PAYMENT_3D_URL = "api/v1/payment3D.do";
 
     // Request Headers:
 

@@ -13,8 +13,8 @@ public class GetSessionTokenRequest extends BaseSafechargeRequest {
 
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("GetSessionTokenRequest{");
-        sb.append(sb.append(super.toString()));
-        sb.append('}');
+        sb.append(super.toString())
+          .append('}');
         return sb.toString();
     }
 
