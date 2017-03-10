@@ -13,14 +13,20 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.safecharge.retail.model.Item;
+import com.safecharge.retail.request.AddUPOCreditCardByTempTokenRequest;
+import com.safecharge.retail.request.Authorization3DRequest;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
 import com.safecharge.retail.request.GetSessionTokenRequest;
 import com.safecharge.retail.request.OpenOrderRequest;
+import com.safecharge.retail.request.Payment3DRequest;
 import com.safecharge.retail.request.PaymentAPMRequest;
 import com.safecharge.retail.request.PaymentCCRequest;
 import com.safecharge.retail.request.UpdateOrderRequest;
+import com.safecharge.retail.response.AddUPOCreditCardByTempTokenResponse;
+import com.safecharge.retail.response.Authorization3DResponse;
 import com.safecharge.retail.response.OpenOrderResponse;
 import com.safecharge.retail.response.OrderDetailsResponse;
+import com.safecharge.retail.response.Payment3DResponse;
 import com.safecharge.retail.response.PaymentAPMResponse;
 import com.safecharge.retail.response.PaymentCCResponse;
 import com.safecharge.retail.response.SessionTokenResponse;
@@ -85,4 +91,24 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
     }
 
+    @Test public void testPayment3DRequest() {
+        Payment3DResponse response = baseMockTest("./mock/request/payment3D.json", Payment3DRequest.class);
+
+        Assert.assertTrue(defined(response.getOrderId()));
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test public void testAuthorization3DRequest() {
+        Authorization3DResponse response = baseMockTest("./mock/request/authorization3D.json", Authorization3DRequest.class);
+
+        Assert.assertTrue(defined(response.getOrderId()));
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test public void testAddUPOCreditCardByTempTokenRequest() {
+        AddUPOCreditCardByTempTokenResponse response =
+                baseMockTest("./mock/request/addUPOCreditCardByTempToken.json", AddUPOCreditCardByTempTokenRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
 }

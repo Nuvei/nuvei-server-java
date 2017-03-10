@@ -18,15 +18,21 @@ import org.mockito.Mockito;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.safecharge.retail.biz.SafechargeRequestExecutor;
+import com.safecharge.retail.request.AddUPOCreditCardByTempTokenRequest;
+import com.safecharge.retail.request.Authorization3DRequest;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
 import com.safecharge.retail.request.GetSessionTokenRequest;
 import com.safecharge.retail.request.OpenOrderRequest;
+import com.safecharge.retail.request.Payment3DRequest;
 import com.safecharge.retail.request.PaymentAPMRequest;
 import com.safecharge.retail.request.PaymentCCRequest;
 import com.safecharge.retail.request.SafechargeRequest;
 import com.safecharge.retail.request.UpdateOrderRequest;
+import com.safecharge.retail.response.AddUPOCreditCardByTempTokenResponse;
+import com.safecharge.retail.response.Authorization3DResponse;
 import com.safecharge.retail.response.OpenOrderResponse;
 import com.safecharge.retail.response.OrderDetailsResponse;
+import com.safecharge.retail.response.Payment3DResponse;
 import com.safecharge.retail.response.PaymentAPMResponse;
 import com.safecharge.retail.response.PaymentCCResponse;
 import com.safecharge.retail.response.SafechargeResponse;
@@ -72,6 +78,15 @@ public abstract class BaseTest {
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(PaymentCCRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("./mock/response/paymentCC.json"), PaymentCCResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(Payment3DRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("./mock/response/payment3D.json"), Payment3DResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(Authorization3DRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("./mock/response/authorization3D.json"), Authorization3DResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(AddUPOCreditCardByTempTokenRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("./mock/response/addUPOCreditCardByTempToken.json"), AddUPOCreditCardByTempTokenResponse.class));
     }
 
     protected String loadResourceFile(String path) {

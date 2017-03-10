@@ -1,0 +1,78 @@
+{
+  "orderId": "42246",
+  "merchantSiteId": "19",
+  "merchantId": "7777777",
+  "sessionToken": "e57074c4-9e35-48f2-9d4c-10e79e5ff0ec",
+  "clientRequestId": "1488984483585",
+  "clientUniqueId": "Bojo",
+  "userTokenId": "joro-testa-2",
+  "paResponse": " ",
+  "currency": "EUR",
+  "amount": "20.2",
+  "transactionType": "Sale3D",
+  "userPaymentOption": {
+    "userPaymentOptionId": "162027",
+    "CVV": "122"
+  },
+  "items": [
+    {
+      "name": "name",
+      "price": "10.1",
+      "quantity": 2
+    }
+  ],
+  "deviceDetails": {
+    "deviceType": "DESKTOP",
+    "deviceName": "deviceName",
+    "deviceOS": "deviceOS",
+    "browser": "browser",
+    "ipAddress": "1.2.3.4"
+  },
+  "userDetails": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "email": "user@abv.bg",
+    "phone": "1221",
+    "address": "userDet_address",
+    "city": "userDet_city",
+    "country": "GB",
+    "state": "AL",
+    "zip": "2800"
+  },
+  "shippingAddress": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "address": "address1",
+    "city": "city",
+    "country": "DE",
+    "state": "AK",
+    "zip": "1340",
+    "cell": "00000",
+    "phone": "11111",
+    "email": "bojo_x@abv.bg"
+  },
+  "billingAddress": {
+    "firstName": "billing_first_name",
+    "lastName": "billing_last_name",
+    "address": "billing_address1",
+    "city": "billing_city",
+    "country": "BG",
+    "state": "CT",
+    "zip": "9999",
+    "phone": "8888",
+    "email": "bojo_xxx@abv.bg"
+  },
+  "dynamicDescriptor": {
+    "merchantName": "merchantName",
+    "merchantPhone": "merchantPhone"
+  },
+  "merchantDetails": {
+    "customField1": "merchantName",
+    "customField2": "merchantName",
+    "customField3": "merchantName",
+    "customField4": "merchantName",
+    "customField9": "merchantName"
+  },
+  "timeStamp": "20170301170033",
+  "checksum": "3b3f139ee103bf00736f40fec33fcb6b968320302bc590f97eed19c31ac251c8"
+}

@@ -1,0 +1,21 @@
+{
+  "eci": "0",
+  "orderId": "42246",
+  "transactionStatus": "APPROVED",
+  "gwErrorCode": 0,
+  "gwExtendedErrorCode": 0,
+  "userPaymentOptionId": 162027,
+  "transactionId": "1000042862",
+  "authCode": "090589",
+  "userTokenId": "joro-testa-2",
+  "sessionToken": "e57074c4-9e35-48f2-9d4c-10e79e5ff0ec",
+  "clientUniqueId": "Bojo",
+  "internalRequestId": 3419,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "reason": "",
+  "merchantId": "7777777",
+  "merchantSiteId": "19",
+  "version": "1.0",
+  "clientRequestId": "1488984483585"
+}
