@@ -98,7 +98,7 @@ import com.safecharge.retail.util.Constants;
     }
 
     @Test public void test4_getOrderDetails() {
-        SafechargeRequest safechargeRequest = new GetOrderDetailsRequest.Builder().setOrderId(orderId)
+        SafechargeRequest safechargeRequest = new GetOrderDetailsRequest.Builder().addOrderId(orderId)
                                                                                   .addSessionToken(sessionToken)
                                                                                   .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);

@@ -47,7 +47,7 @@ public class GetOrderDetailsRequest extends BaseSafechargeRequest implements Saf
 
         String orderId;
 
-        public Builder setOrderId(String orderId) {
+        public Builder addOrderId(String orderId) {
             this.orderId = orderId;
             return this;
         }

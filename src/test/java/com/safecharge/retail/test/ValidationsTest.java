@@ -63,7 +63,7 @@ public class ValidationsTest {
 
     @Test public void testSuccessfulValidation_GetOrderDetails() {
         SafechargeConfiguration.init(validMerchantInfo, "http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
-        SafechargeRequest safechargeRequest = new GetOrderDetailsRequest.Builder().setOrderId("1234")
+        SafechargeRequest safechargeRequest = new GetOrderDetailsRequest.Builder().addOrderId("1234")
                                                                                   .addSessionToken(dummySessionToken)
                                                                                   .build();
         Assert.assertTrue(safechargeRequest != null);
