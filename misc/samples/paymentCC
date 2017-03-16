@@ -1,0 +1,25 @@
+String sessionToken = "dummy-session-token-identifier"; // received from getSessionToken.do response
+String orderId = "dummy-order-identifier"; // taken from openOrder.do response
+
+SafechargeRequest paymentCCRequest = new PaymentCCRequest.Builder().addSessionToken(sessionToken)
+                                                                   .addOrderId(orderId)
+                                                                   .addClientUniqueId("12345")
+                                                                   .addClientRequestId("1484759782197")
+                                                                   .addCurrency("USD")
+                                                                   .addAmount("10")
+                                                                   .addItem("name", "10", "1")
+                                                                   .addDeviceDetails("DESKTOP", "deviceName", "deviceOS", "browser", "127.0.0.1")
+                                                                   .addUserDetails("address", "city", "GB", "dummy@email.com", "firstName", "lastName", "+44123456789", null, "12345")
+                                                                   .addShippingDetails("firstName", "lastName", "dummy@email.com", "+44123456789", "address", "city", "GB", null, "12345", "+44123456789")
+                                                                   .addBillingDetails("firstName", "lastName", "dummy@email.com", "+44123456789", "address", "city", "GB", null, "12345", "+44123456789")
+                                                                   .addDynamicDescriptor("merchantName", "merchantPhone")
+                                                                   .addMerchantDetails("customField1", "customField2", "customField3", "customField4", "customField5", "customField6", "customField7", "customField8", "customField9", "customField10")
+                                                                   .addCardData("4111111111111111", "Card Holder Name", "12", "2022", null, "123")
+                                                                   .addTransactionType(Constants.TransactionType.Sale)
+                                                                   .build();
+PaymentCCResponse paymentCCResponse = (PaymentCCResponse) requestExecutor.executeRequest(paymentCCRequest);
+
+System.out.println("Order ID: " + paymentCCResponse.getOrderId());
+System.out.println("API Response Status: " + paymentCCResponse.getStatus());
+System.out.println("Transaction Status: " + paymentCCResponse.getTransactionStatus());
+System.out.println("Transaction ID: " + paymentCCResponse.getTransactionId());
