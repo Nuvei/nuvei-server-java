@@ -32,7 +32,10 @@ public interface APIConstants {
 
     // Request Headers:
 
-    Header[] REQUEST_HEADERS = new Header[] { new BasicHeader("Content-Type", "application/json") };
+    Header[] REQUEST_HEADERS = new Header[] { new BasicHeader("Content-Type", "application/json"), new BasicHeader("Client-Name",
+            APIConstants.class.getPackage()
+                              .getImplementationTitle()), new BasicHeader("Client-Version", APIConstants.class.getPackage()
+                                                                                                              .getImplementationVersion()) };
 
     // Field limitations:
 
