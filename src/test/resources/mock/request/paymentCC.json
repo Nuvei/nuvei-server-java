@@ -1,14 +1,15 @@
 {
-  "merchantSiteId": "19",
-  "merchantId": "2885023999185468261",
-  "sessionToken": "9610a8f6-44cf-4c4f-976a-005da69a2a3b",
-  "clientRequestId": "1484759964059",
-  "timeStamp": "20170118191924",
-  "checksum": "8724ebd5dfe5781ed1e8665d7f5b0c85",
+  "merchantSiteId": "{{merchantSiteId}}",
+  "merchantId": "{{merchantId}}",
+  "sessionToken": "{{sessionToken}}",
+  "clientRequestId": "{{clientRequestId}}",
+  "timeStamp": "{{timestamp}}",
+  "checksum": "{{checksum}}",
+  "clientUniqueId": "uniqueIdCC",
   "currency": "EUR",
-  "amount": "10",
-  "transactionType": "Auth",
-  "orderId": "39272",
+  "amount": "1",
+  "transactionType": "Sale",
+  "orderId": "{{apiMerchantOrder}}",
   "cardData": {
     "cardNumber": "4111111111111111",
     "cardHolderName": "test name",
@@ -19,7 +20,7 @@
   "items": [
     {
       "name": "name",
-      "price": "10",
+      "price": "1",
       "quantity": 1
     }
   ],
@@ -33,36 +34,24 @@
   "userDetails": {
     "firstName": "first_name",
     "lastName": "last_name",
-    "phone": "",
-    "email": "test@test.com",
-    "address": "",
-    "city": "",
-    "zip": "",
-    "country": "",
-    "state": ""
+    "email": "email@email.com",
+    "phone1": "phone1",
+    "phone2": "phone2",
+    "phone3": "phone3"
   },
   "shippingAddress": {
-    "firstName": "first_name",
-    "lastName": "last_name",
-    "cell": "",
-    "phone": "",
-    "email": "test@test.com",
-    "address": "",
-    "city": "",
-    "zip": "",
-    "country": "",
-    "state": ""
+    "address": "address1",
+    "city": "city",
+    "country": "DE",
+    "state": "",
+    "zip": "1340"
   },
   "billingAddress": {
-    "firstName": "first_name",
-    "lastName": "last_name",
-    "phone": "",
-    "email": "test@test.com",
-    "address": "",
-    "city": "",
-    "zip": "",
-    "country": "",
-    "state": ""
+    "address": "address1",
+    "city": "city",
+    "country": "DE",
+    "state": "",
+    "zip": "1335"
   },
   "dynamicDescriptor": {
     "merchantName": "merchantName",
