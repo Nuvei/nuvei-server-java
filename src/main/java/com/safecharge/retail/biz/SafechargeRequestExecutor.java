@@ -28,8 +28,8 @@ import com.safecharge.retail.request.UpdateOrderRequest;
 import com.safecharge.retail.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.retail.response.Authorization3DResponse;
 import com.safecharge.retail.response.CardTokenizationResponse;
+import com.safecharge.retail.response.GetOrderDetailsResponse;
 import com.safecharge.retail.response.OpenOrderResponse;
-import com.safecharge.retail.response.OrderDetailsResponse;
 import com.safecharge.retail.response.Payment3DResponse;
 import com.safecharge.retail.response.PaymentAPMResponse;
 import com.safecharge.retail.response.PaymentCCResponse;
@@ -57,7 +57,7 @@ public class SafechargeRequestExecutor {
                     put(GetSessionTokenRequest.class, SessionTokenResponse.class);
                     put(OpenOrderRequest.class, OpenOrderResponse.class);
                     put(UpdateOrderRequest.class, UpdateOrderResponse.class);
-                    put(GetOrderDetailsRequest.class, OrderDetailsResponse.class);
+                    put(GetOrderDetailsRequest.class, GetOrderDetailsResponse.class);
                     put(PaymentCCRequest.class, PaymentCCResponse.class);
                     put(PaymentAPMRequest.class, PaymentAPMResponse.class);
                     put(Authorization3DRequest.class, Authorization3DResponse.class);

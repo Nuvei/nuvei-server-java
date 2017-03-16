@@ -24,8 +24,8 @@ import com.safecharge.retail.request.PaymentCCRequest;
 import com.safecharge.retail.request.UpdateOrderRequest;
 import com.safecharge.retail.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.retail.response.Authorization3DResponse;
+import com.safecharge.retail.response.GetOrderDetailsResponse;
 import com.safecharge.retail.response.OpenOrderResponse;
-import com.safecharge.retail.response.OrderDetailsResponse;
 import com.safecharge.retail.response.Payment3DResponse;
 import com.safecharge.retail.response.PaymentAPMResponse;
 import com.safecharge.retail.response.PaymentCCResponse;
@@ -46,7 +46,7 @@ public class CompleteFunctionalTest extends BaseTest {
     }
 
     @Test public void testGetOrderDetailsRequest() {
-        OrderDetailsResponse response = baseMockTest("./mock/request/getOrderDetails.json", GetOrderDetailsRequest.class);
+        GetOrderDetailsResponse response = baseMockTest("./mock/request/getOrderDetails.json", GetOrderDetailsRequest.class);
 
         Assert.assertTrue(defined(response.getOrderId()));
         Assert.assertTrue(defined(response.getCurrency()));

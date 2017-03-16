@@ -2,8 +2,6 @@ package com.safecharge.retail.request;
 
 import com.safecharge.retail.util.ValidationUtil;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
@@ -11,10 +9,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * @since 2/17/2017
  */
 public class Authorization3DRequest extends PaymentCCRequest {
-
-    public Authorization3DRequest() {
-        throw new NotImplementedException();
-    }
 
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("Authorization3DRequest{");

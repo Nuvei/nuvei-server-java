@@ -231,7 +231,7 @@ public class ValidationsTest {
                                                                                 .build();
             Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
         } catch (ConstraintViolationException e) {
-            Assert.assertEquals(9, e.getConstraintViolations()
+            Assert.assertEquals(8, e.getConstraintViolations()
                                     .size());
         }
     }
