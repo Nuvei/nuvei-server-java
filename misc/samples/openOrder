@@ -1,0 +1,19 @@
+String sessionToken = "dummy-session-token-identifier"; // received from getSessionToken.do response
+
+SafechargeRequest openOrderRequest = new OpenOrderRequest.Builder().addSessionToken(sessionToken)
+                                                                   .addClientUniqueId("12345")
+                                                                   .addClientRequestId("1484759782197")
+                                                                   .addCurrency("USD")
+                                                                   .addAmount("10")
+                                                                   .addItem("name", "10", "1")
+                                                                   .addDeviceDetails("DESKTOP", "deviceName", "deviceOS", "browser", "127.0.0.1")
+                                                                   .addUserDetails("address", "city", "GB", "dummy@email.com", "firstName", "lastName", "+44123456789", null, "12345")
+                                                                   .addShippingDetails("firstName", "lastName", "dummy@email.com", "+44123456789", "address", "city", "GB", null, "12345", "+44123456789")
+                                                                   .addBillingDetails("firstName", "lastName", "dummy@email.com", "+44123456789", "address", "city", "GB", null, "12345", "+44123456789")
+                                                                   .addDynamicDescriptor("merchantName", "merchantPhone")
+                                                                   .addMerchantDetails("customField1", "customField2", "customField3", "customField4", "customField5", "customField6", "customField7", "customField8", "customField9", "customField10")
+                                                                   .build();
+OpenOrderResponse openOrderResponse = (OpenOrderResponse) requestExecutor.executeRequest(openOrderRequest);
+
+System.out.println("Order ID: " + openOrderResponse.getOrderId());
+System.out.println("API Response Status: " + openOrderResponse.getStatus());

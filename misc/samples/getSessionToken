@@ -1,17 +1,15 @@
-public class GetSessionToken {
+/* Next few lines are part of the client's configuration:
 
-    private static final SafechargeRequestExecutor requestExecutor;
+static {
+    requestExecutor = SafechargeRequestExecutor.getInstance();
+    SafechargeConfiguration.init(
+            new MerchantInfo("flDFdC54zeqFqviAA6hcVa7SWuY68LqutIYpozSI5UvCQ0x2ZyLKQMxSh03WCmoY", "7228839313016442768", "117711",
+                    Constants.HashAlgorithm.SHA256), APIConstants.DEVELOPER_HOST, SafechargeHttpClient.createDefault());
+}
 
-    static {
-        requestExecutor = SafechargeRequestExecutor.getInstance();
-        SafechargeConfiguration.init(
-                new MerchantInfo("flDFdC54zeqFqviAA6hcVa7SWuY68LqutIYpozSI5UvCQ0x2ZyLKQMxSh03WCmoY", "7228839313016442768", "117711",
-                        Constants.HashAlgorithm.SHA256), APIConstants.DEVELOPER_HOST, SafechargeHttpClient.createDefault());
-    }
+*/
 
-    public static String getSessionToken() {
-        SafechargeRequest getSessionTokenRequest = new GetSessionTokenRequest.Builder().build();
-        SafechargeResponse response = requestExecutor.executeRequest(getSessionTokenRequest);
-        System.out.println("Received sessionToken = " + response.getSessionToken());
-        return response.getSessionToken();
-    }
+SafechargeRequest getSessionTokenRequest = new GetSessionTokenRequest.Builder().build();
+SafechargeResponse getSessionTokenResponse = requestExecutor.executeRequest(getSessionTokenRequest);
+
+String sessionToken = getSessionTokenResponse.getSessionToken();
