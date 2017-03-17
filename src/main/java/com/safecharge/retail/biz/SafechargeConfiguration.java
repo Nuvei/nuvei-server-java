@@ -3,7 +3,6 @@ package com.safecharge.retail.biz;
 import org.apache.http.client.HttpClient;
 
 import com.safecharge.retail.exception.SafechargeConfigurationException;
-import com.safecharge.retail.model.MerchantInfo;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -13,7 +12,6 @@ import com.safecharge.retail.model.MerchantInfo;
  */
 public class SafechargeConfiguration {
 
-    private static MerchantInfo merchantInfo;
     private static String serverHost;
     private static HttpClient httpClient;
 
@@ -23,25 +21,12 @@ public class SafechargeConfiguration {
     /**
      * This method initializes the configuration needed to access SafeCharge's services.
      *
-     * @param merchantInfo
      * @param serverHost
      * @param httpClient
      */
-    public static void init(MerchantInfo merchantInfo, String serverHost, HttpClient httpClient) {
-        SafechargeConfiguration.merchantInfo = merchantInfo;
+    public static void init(String serverHost, HttpClient httpClient) {
         SafechargeConfiguration.serverHost = serverHost;
         SafechargeConfiguration.httpClient = httpClient;
-    }
-
-    /**
-     * @return the {@link MerchantInfo} instance in the configuration
-     * @throws SafechargeConfigurationException if {@link MerchantInfo} property is null
-     */
-    public static MerchantInfo getMerchantInfo() {
-        if (!isConfigured()) {
-            throw new SafechargeConfigurationException("MerchantInfo is not configured. SafechargeConfiguration may not be initialized.");
-        }
-        return merchantInfo;
     }
 
     /**
@@ -68,6 +53,6 @@ public class SafechargeConfiguration {
     }
 
     private static boolean isConfigured() {
-        return !(merchantInfo == null || serverHost == null || httpClient == null);
+        return !(serverHost == null || httpClient == null);
     }
 }

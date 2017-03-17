@@ -110,7 +110,7 @@ public interface Constants {
      * This is the hash algorithm which is used to calculate the checksum. It's configured in the server per merchant site.
      */
     enum HashAlgorithm {
-        MD5("MD5"), SHA256("SHA-256"), SHA1("SHA-1");
+        MD5("MD5"), SHA256("SHA-256");
 
         private final String algorithm;
 

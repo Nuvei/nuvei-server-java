@@ -6,7 +6,7 @@ package com.safecharge.retail.response;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/17/2017
  */
-public interface SafechargeOrderResponse extends SafechargeResponse {
+public interface SafechargeOrderResponse {
 
     /**
      * @return Merchant Order ID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.

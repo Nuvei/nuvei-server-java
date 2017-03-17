@@ -62,9 +62,11 @@ public class Sample {
         MerchantInfo merchantInfo = new MerchantInfo("MERCHANT_KEY_PROVIDED_BY_SAFECHARGE", "MERCHANT_ID_PROVIDED_BY_SAFECHARGE",
                 "MERCHANT_SITE_ID_PROVIDED_BY_SAFECHARGE", Constants.HashAlgorithm.SHA256);
 
-        SafechargeConfiguration.init(merchantInfo, APIConstants.INTEGRATION_HOST, SafechargeHttpClient.createDefault());
+        SafechargeConfiguration.init(APIConstants.INTEGRATION_HOST, SafechargeHttpClient.createDefault());
 
-        SafechargeRequest safechargeRequest = new GetSessionTokenRequest.Builder().build();
+        SafechargeRequest safechargeRequest = GetSessionTokenRequest.builder()
+                                                                    .addMerchantInfo(merchantInfo)
+                                                                    .build();
 
         SafechargeResponse response = requestExecutor.executeRequest(safechargeRequest);
         System.out.println("Received sessionToken = " + response.getSessionToken());

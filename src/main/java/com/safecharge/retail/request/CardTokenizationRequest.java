@@ -15,7 +15,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-public class CardTokenizationRequest extends BaseSafechargeRequest {
+public class CardTokenizationRequest extends SafechargeRequest {
 
     @Valid private CardData cardData;
 
@@ -27,6 +27,10 @@ public class CardTokenizationRequest extends BaseSafechargeRequest {
 
     public CardTokenizationRequest() {
         throw new NotImplementedException();
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public CardData getCardData() {

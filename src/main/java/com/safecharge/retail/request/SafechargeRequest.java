@@ -1,76 +1,114 @@
 package com.safecharge.retail.request;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
- * @since 2/17/2017
+ * @since 2/14/2017
  */
-public interface SafechargeRequest {
-
-    /**
-     * Merchant ID provided by SafeCharge.
-     *
-     * @return merchantId
-     */
-    String getMerchantId();
-
-    /**
-     * Merchant ID provided by SafeCharge.
-     *
-     * @param merchantId
-     */
-    void setMerchantId(String merchantId);
-
-    /**
-     * @return Merchant Site ID provided by SafeCharge.
-     */
-    String getMerchantSiteId();
-
-    /**
-     * Sets Merchant Site ID provided by SafeCharge.
-     *
-     * @param merchantSiteId
-     */
-    void setMerchantSiteId(String merchantSiteId);
-
-    /**
-     * @return The local time when the method call is performed in the format: YYYYMMDDHHmmss.
-     */
-    String getTimeStamp();
-
-    /**
-     * The local time when the method call is performed in the format: YYYYMMDDHHmmss.
-     *
-     * @param timestamp
-     */
-    void setTimeStamp(String timestamp);
-
-    /**
-     * @return ID of the API request in merchant system.
-     */
-    String getClientRequestId();
+public abstract class SafechargeRequest {
 
     /**
      * ID of the API request in merchant system.
-     *
-     * @param clientRequestId
      */
-    void setClientRequestId(String clientRequestId);
+    private String clientRequestId;
 
     /**
-     * "Hash of the values of the request parameters UTF-8 encoded and concatenated in this order HASH(merchantId + merchantSiteId + clientRequestId + amount + currency + timestamp + merchantSecretKey)
-     * Where HASH is the type of used hash algorithm, MD5 or SHA256, depends on merchantSite setting."
-     *
-     * @param checksum
+     * Merchant ID provided by SafeCharge.
      */
-    void setChecksum(String checksum);
+    @NotNull(message = "merchantId parameter is mandatory!") private String merchantId;
+
+    /**
+     * Merchant Site ID provided by SafeCharge.
+     */
+    @NotNull(message = "merchantSiteId parameter is mandatory!") private String merchantSiteId;
+
+    /**
+     * The local time when the method call is performed in the format: YYYYMMDDHHmmss.
+     */
+    @NotNull(message = "timeStamp parameter is mandatory!") private String timeStamp;
+
+    /**
+     * Hash of the values of the request parameters UTF-8 encoded and concatenated in this order HASH(merchantId + merchantSiteId + clientRequestId + amount + currency + timestamp + merchantSecretKey)
+     * Where HASH is the type of used hash algorithm, MD5 or SHA256, depends on merchantSite setting.
+     */
+    @NotNull(message = "checksum parameter is mandatory!") private String checksum;
 
     /**
      * The session identifier returned, to be used as input parameter in all methods. UUID = Universal unique ID.
-     *
-     * @param sessionToken
      */
-    void setSessionToken(String sessionToken);
+    private String sessionToken;
 
+    public String getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public String getMerchantSiteId() {
+        return merchantSiteId;
+    }
+
+    public void setMerchantSiteId(String merchantSiteId) {
+        this.merchantSiteId = merchantSiteId;
+    }
+
+    public String getClientRequestId() {
+        return clientRequestId;
+    }
+
+    public void setClientRequestId(String clientRequestId) {
+        this.clientRequestId = clientRequestId;
+    }
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public String getChecksum() {
+        return checksum;
+    }
+
+    public void setChecksum(String checksum) {
+        this.checksum = checksum;
+    }
+
+    public String getSessionToken() {
+        return sessionToken;
+    }
+
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
+    }
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("clientRequestId='")
+          .append(clientRequestId)
+          .append('\'');
+        sb.append(", merchantId='")
+          .append(merchantId)
+          .append('\'');
+        sb.append(", merchantSiteId='")
+          .append(merchantSiteId)
+          .append('\'');
+        sb.append(", timeStamp='")
+          .append(timeStamp)
+          .append('\'');
+        sb.append(", checksum='")
+          .append(checksum)
+          .append('\'');
+        sb.append(", sessionToken='")
+          .append(sessionToken)
+          .append('\'');
+        return sb.toString();
+    }
 }

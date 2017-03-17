@@ -16,7 +16,7 @@ import com.safecharge.retail.model.UserDetails;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-public class GetOrderDetailsResponse extends BaseResponse implements SafechargeOrderResponse {
+public class GetOrderDetailsResponse extends SafechargeResponse implements SafechargeOrderResponse {
 
     private String orderId;
     private String currency;

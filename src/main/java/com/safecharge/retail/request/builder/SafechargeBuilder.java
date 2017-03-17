@@ -2,8 +2,9 @@ package com.safecharge.retail.request.builder;
 
 import javax.validation.ConstraintViolationException;
 
-import com.safecharge.retail.biz.SafechargeConfiguration;
+import com.safecharge.retail.model.MerchantInfo;
 import com.safecharge.retail.request.SafechargeRequest;
+import com.safecharge.retail.util.Constants;
 import com.safecharge.retail.util.RequestUtils;
 
 /**
@@ -14,6 +15,7 @@ import com.safecharge.retail.util.RequestUtils;
  */
 public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
 
+    protected MerchantInfo merchantInfo;
     private String clientRequestId;
     private String sessionToken;
 
@@ -35,19 +37,26 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
         return (T) this;
     }
 
+    public T addMerchantInfo(MerchantInfo merchantInfo) {
+        this.merchantInfo = merchantInfo;
+        return (T) this;
+    }
+
+    public T addMerchantInfo(String merchantKey, String merchantId, String merchantSiteId, Constants.HashAlgorithm hashAlgorithm) {
+        this.merchantInfo = new MerchantInfo(merchantKey, merchantId, merchantSiteId, hashAlgorithm);
+        return (T) this;
+    }
+
     protected <T extends SafechargeRequest> T build(T safechargeRequest) {
         String timestamp = RequestUtils.calculateTimestamp();
-        safechargeRequest.setMerchantId(SafechargeConfiguration.getMerchantInfo()
-                                                               .getMerchantId());
-        safechargeRequest.setMerchantSiteId(SafechargeConfiguration.getMerchantInfo()
-                                                                   .getMerchantSiteId());
+        safechargeRequest.setMerchantId(merchantInfo != null ? merchantInfo.getMerchantId() : null);
+        safechargeRequest.setMerchantSiteId(merchantInfo != null ? merchantInfo.getMerchantSiteId() : null);
         safechargeRequest.setSessionToken(sessionToken);
         safechargeRequest.setTimeStamp(timestamp);
-        safechargeRequest.setClientRequestId(RequestUtils.calculateClientRequestId(timestamp));
-        safechargeRequest.setChecksum(RequestUtils.calculateChecksum(safechargeRequest, SafechargeConfiguration.getMerchantInfo()
-                                                                                                               .getMerchantKey(),
-                SafechargeConfiguration.getMerchantInfo()
-                                       .getHashAlgorithm()));
+        safechargeRequest.setClientRequestId(clientRequestId != null ? clientRequestId : RequestUtils.calculateClientRequestId(timestamp));
+        safechargeRequest.setChecksum(
+                RequestUtils.calculateChecksum(safechargeRequest, null, null, merchantInfo != null ? merchantInfo.getMerchantKey() : "",
+                        merchantInfo != null ? merchantInfo.getHashAlgorithm() : null));
         return safechargeRequest;
     }
 

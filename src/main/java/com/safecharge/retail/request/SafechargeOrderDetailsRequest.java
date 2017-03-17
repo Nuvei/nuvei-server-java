@@ -1,5 +1,12 @@
 package com.safecharge.retail.request;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.safecharge.retail.model.Addendums;
 import com.safecharge.retail.model.DeviceDetails;
 import com.safecharge.retail.model.DynamicDescriptor;
@@ -12,89 +19,210 @@ import com.safecharge.retail.model.UserDetails;
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
- * @since 2/20/2017
+ * @since 2/15/2017
  */
-public interface SafechargeOrderDetailsRequest extends SafechargeRequest {
+public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
 
     /**
      * The three character ISO currency code.
-     *
-     * @param currency
      */
-    void setCurrency(String currency);
+    @NotNull(message = "currency parameter is mandatory!") private String currency;
 
     /**
      * The transaction amount.
-     *
-     * @param amount
      */
-    void setAmount(String amount);
+    @NotNull(message = "amount parameter is mandatory!") private String amount;
 
     /**
-     * An item that will be purchased.
-     *
-     * @param item
+     * List of items that will be purchased.
      */
-    void addItem(Item item);
+    @Valid @NotNull @Size(min = 1,
+                          message = "Request must have at least one item!") private List<Item> items = new ArrayList<>();
 
     /**
      * The details for the device from which the transaction will be made.
-     *
-     * @param deviceDetails
      */
-    void setDeviceDetails(DeviceDetails deviceDetails);
+    @Valid private DeviceDetails deviceDetails;
 
     /**
      * Details about the user which include the user's name, email, address, etc.
-     *
-     * @param userDetails
      */
-    void setUserDetails(UserDetails userDetails);
+    @Valid private UserDetails userDetails;
 
     /**
      * Shipping address related to a user order.
-     *
-     * @param shippingAddress
      */
-    void setShippingAddress(UserAddress shippingAddress);
+    @Valid private UserAddress shippingAddress;
 
     /**
      * Billing address related to a user payment option. Since order can contain only one payment option billing address is part of the order parameters.
-     *
-     * @param billingAddress
      */
-    void setBillingAddress(UserAddress billingAddress);
+    @Valid private UserAddress billingAddress;
 
     /**
-     * @param dynamicDescriptor
+     * Merchant descriptor - this is the message that the user will see in his payment bank report.
      */
-    void setDynamicDescriptor(DynamicDescriptor dynamicDescriptor);
+    @Valid private DynamicDescriptor dynamicDescriptor;
 
     /**
-     * Additional custom parameters.
-     *
-     * @param merchantDetails
+     * Optional custom fields
      */
-    void setMerchantDetails(MerchantDetails merchantDetails);
+    @Valid private MerchantDetails merchantDetails;
 
     /**
      * This block contain industry specific addendums such as: Local payment, Hotel, Airline etc.
-     *
-     * @param addendums
      */
-    void setAddendums(Addendums addendums);
+    private Addendums addendums;
 
     /**
      * ID of the user in merchant system.
-     *
-     * @param userTokenId
      */
-    void setUserTokenId(String userTokenId);
+    @Size(max = 45,
+          message = "userTokenId size must be up to 45 characters long!") private String userTokenId;
 
     /**
      * ID of the transaction in merchant system.
-     *
-     * @param clientUniqueId
      */
-    void setClientUniqueId(String clientUniqueId);
+    @Size(max = 45,
+          message = "clientUniqueId size must be up to 45 characters long!") private String clientUniqueId;
+
+    @NotNull(message = "sessionToken parameter is mandatory!") public String getSessionToken() {
+        return super.getSessionToken();
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    /**
+     * Adds an item that will be purchased.
+     *
+     * @param item
+     */
+    public void addItem(Item item) {
+        this.items.add(item);
+    }
+
+    public DeviceDetails getDeviceDetails() {
+        return deviceDetails;
+    }
+
+    public void setDeviceDetails(DeviceDetails deviceDetails) {
+        this.deviceDetails = deviceDetails;
+    }
+
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
+
+    public UserAddress getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(UserAddress shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public UserAddress getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(UserAddress billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public DynamicDescriptor getDynamicDescriptor() {
+        return dynamicDescriptor;
+    }
+
+    public void setDynamicDescriptor(DynamicDescriptor dynamicDescriptor) {
+        this.dynamicDescriptor = dynamicDescriptor;
+    }
+
+    public MerchantDetails getMerchantDetails() {
+        return merchantDetails;
+    }
+
+    public void setMerchantDetails(MerchantDetails merchantDetails) {
+        this.merchantDetails = merchantDetails;
+    }
+
+    public Addendums getAddendums() {
+        return addendums;
+    }
+
+    public void setAddendums(Addendums addendums) {
+        this.addendums = addendums;
+    }
+
+    public String getUserTokenId() {
+        return userTokenId;
+    }
+
+    public void setUserTokenId(String userTokenId) {
+        this.userTokenId = userTokenId;
+    }
+
+    public String getClientUniqueId() {
+        return clientUniqueId;
+    }
+
+    public void setClientUniqueId(String clientUniqueId) {
+        this.clientUniqueId = clientUniqueId;
+    }
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("currency='")
+          .append(currency)
+          .append('\'');
+        sb.append(", amount='")
+          .append(amount)
+          .append('\'');
+        sb.append(", items=")
+          .append(items);
+        sb.append(", deviceDetails=")
+          .append(deviceDetails);
+        sb.append(", userDetails=")
+          .append(userDetails);
+        sb.append(", shippingAddress=")
+          .append(shippingAddress);
+        sb.append(", billingAddress=")
+          .append(billingAddress);
+        sb.append(", dynamicDescriptor=")
+          .append(dynamicDescriptor);
+        sb.append(", merchantDetails=")
+          .append(merchantDetails);
+        sb.append(", addendums=")
+          .append(addendums);
+        sb.append(", userTokenId='")
+          .append(userTokenId)
+          .append('\'');
+        sb.append(", clientUniqueId='")
+          .append(clientUniqueId)
+          .append('\'');
+        sb.append(", ");
+        sb.append(super.toString());
+        return sb.toString();
+    }
 }

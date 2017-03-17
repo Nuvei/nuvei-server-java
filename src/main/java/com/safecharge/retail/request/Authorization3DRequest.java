@@ -10,6 +10,10 @@ import com.safecharge.retail.util.ValidationUtil;
  */
 public class Authorization3DRequest extends PaymentCCRequest {
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("Authorization3DRequest{");
         sb.append(super.toString());

@@ -12,10 +12,14 @@ import com.safecharge.retail.util.ValidationUtil;
  * @since 2/17/2017
  */
 
-public class UpdateOrderRequest extends BaseSafechargeOrderDetailsRequest implements SafechargeOrderRequest {
+public class UpdateOrderRequest extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
     @Size(max = 45,
           message = "orderId size must be up to 45 characters long!") private String orderId;
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getOrderId() {
         return orderId;

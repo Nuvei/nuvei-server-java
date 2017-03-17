@@ -6,7 +6,7 @@ package com.safecharge.retail.response;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-public class SessionTokenResponse extends BaseResponse {
+public class SessionTokenResponse extends SafechargeResponse {
 
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("SessionTokenResponse{");

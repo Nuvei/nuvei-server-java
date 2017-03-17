@@ -17,7 +17,7 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest implements SafechargeOrderRequest {
+public class PaymentAPMRequest extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
     /**
      * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
@@ -51,6 +51,10 @@ public class PaymentAPMRequest extends BaseSafechargeOrderDetailsRequest impleme
     @NotNull(message = "country parameter is mandatory!") @Size(max = 2,
                                                                 min = 2,
                                                                 message = "country must be exactly 2 characters long") private String country;
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getOrderId() {
         return orderId;

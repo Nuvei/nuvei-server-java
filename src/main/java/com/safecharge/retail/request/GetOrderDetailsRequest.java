@@ -12,13 +12,17 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-public class GetOrderDetailsRequest extends BaseSafechargeRequest implements SafechargeOrderRequest {
+public class GetOrderDetailsRequest extends SafechargeRequest implements SafechargeOrderRequest {
 
     /**
      * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
      */
     @Size(max = 45,
           message = "orderId has to be maximum 45 symbols") @NotNull(message = "orderId parameter is mandatory!") private String orderId;
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getOrderId() {
         return orderId;

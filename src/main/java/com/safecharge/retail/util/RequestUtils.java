@@ -15,7 +15,6 @@ import java.util.GregorianCalendar;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.safecharge.retail.request.SafechargeOrderDetailsRequest;
 import com.safecharge.retail.request.SafechargeRequest;
 
 /**
@@ -40,7 +39,7 @@ public class RequestUtils {
      * @param hashAlgorithm
      * @return
      */
-    public static String calculateChecksum(SafechargeOrderDetailsRequest request, String amount, String currency, String merchantKey,
+    public static String calculateChecksum(SafechargeRequest request, String amount, String currency, String merchantKey,
             Constants.HashAlgorithm hashAlgorithm) {
 
         StringBuilder sb = new StringBuilder();
@@ -48,32 +47,10 @@ public class RequestUtils {
         sb.append(request.getMerchantId() != null ? request.getMerchantId() : "");
         sb.append(request.getMerchantSiteId() != null ? request.getMerchantSiteId() : "");
         sb.append(request.getClientRequestId() != null ? request.getClientRequestId() : "");
-        sb.append(amount);
-        sb.append(currency);
-        sb.append(request.getTimeStamp());
-        sb.append(merchantKey);
-
-        if (logger.isDebugEnabled()) {
-            logger.debug("Hash: " + sb.toString());
+        if (amount != null && currency != null) {
+            sb.append(amount);
+            sb.append(currency);
         }
-
-        return getHash(sb.toString(), Constants.CHARSET_UTF8, hashAlgorithm);
-    }
-
-    /**
-     * Checksum parameters must be in the order: "merchantId", "merchantSiteId", "clientRequestId", "timeStamp"
-     *
-     * @param request
-     * @param merchantKey
-     * @param hashAlgorithm
-     * @return
-     */
-    public static String calculateChecksum(SafechargeRequest request, String merchantKey, Constants.HashAlgorithm hashAlgorithm) {
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(request.getMerchantId() != null ? request.getMerchantId() : "");
-        sb.append(request.getMerchantSiteId() != null ? request.getMerchantSiteId() : "");
-        sb.append(request.getClientRequestId() != null ? request.getClientRequestId() : "");
         sb.append(request.getTimeStamp());
         sb.append(merchantKey);
 

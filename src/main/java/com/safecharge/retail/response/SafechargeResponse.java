@@ -6,65 +6,204 @@ import com.safecharge.retail.util.Constants;
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
- * @since 2/17/2017
+ * @since 2/14/2017
  */
-public interface SafechargeResponse {
+public abstract class SafechargeResponse {
+
+    private static final long serialVersionUID = 4104056768008786142L;
 
     /**
-     * @return SafeCharge Internal unique request id (used for reconciliation purpose etc.).
+     * SafeCharge Internal unique request id (used for reconciliation purpose etc.).
      */
-    Long getInternalRequestId();
+    private Long internalRequestId;
 
     /**
-     * @return the cashier status of merchant request.
+     * The cashier status of merchant request.
      */
-    Constants.APIResponseStatus getStatus();
-
-    int getErrCode();
+    private Constants.APIResponseStatus status;
 
     /**
-     * @return error reason if error occurred at the cashier side.
+     * The error code of the error occurred at the cashier site.
      */
-    String getReason();
+    private int errCode = Constants.ERR_CODE_NO_ERROR;
 
     /**
-     * @return the Merchant ID provided by SafeCharge.
+     * The error reason if error occurred at the cashier side.
      */
-    String getMerchantId();
+    private String reason = "";
 
     /**
-     * @return the Merchant Site ID provided by SafeCharge.
+     * The Merchant ID provided by SafeCharge.
      */
-    String getMerchantSiteId();
+    private String merchantId;
 
     /**
-     * @return the current version of the API method
+     * The Merchant Site ID provided by SafeCharge.
      */
-    String getVersion();
+    private String merchantSiteId;
 
     /**
-     * @return ID of the API request in merchant system.
+     * The current version of the API method
      */
-    String getClientRequestId();
+    private String version;
 
     /**
-     * @return the session identifier returned, to be used as input parameter in all methods. UUID = Universal unique ID.
+     * ID of the API request in merchant system.
      */
-    String getSessionToken();
+    private String clientRequestId;
 
     /**
-     * @return ID of the transaction in merchant system.
+     * The session identifier returned, to be used as input parameter in all methods. UUID = Universal unique ID.
      */
-    String getClientUniqueId();
+    private String sessionToken;
 
     /**
-     * @return
+     * ID of the transaction in merchant system.
      */
-    Constants.ErrorType getErrorType();
+    private String clientUniqueId;
 
     /**
-     * @return
+     *
      */
-    Constants.APIType getApiType();
+    private Constants.ErrorType errorType = null;
 
+    /**
+     *
+     */
+    private Constants.APIType apiType;
+
+    public SafechargeResponse() {
+    }
+
+    public Long getInternalRequestId() {
+        return internalRequestId;
+    }
+
+    public void setInternalRequestId(Long internalRequestId) {
+        this.internalRequestId = internalRequestId;
+    }
+
+    public Constants.APIResponseStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(Constants.APIResponseStatus status) {
+        this.status = status;
+    }
+
+    public int getErrCode() {
+        return errCode;
+    }
+
+    public void setErrCode(int errCode) {
+        this.errCode = errCode;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public String getMerchantSiteId() {
+        return merchantSiteId;
+    }
+
+    public void setMerchantSiteId(String merchantSiteId) {
+        this.merchantSiteId = merchantSiteId;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getClientRequestId() {
+        return clientRequestId;
+    }
+
+    public void setClientRequestId(String clientRequestId) {
+        this.clientRequestId = clientRequestId;
+    }
+
+    public String getSessionToken() {
+        return sessionToken;
+    }
+
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
+    }
+
+    public String getClientUniqueId() {
+        return clientUniqueId;
+    }
+
+    public void setClientUniqueId(String clientUniqueId) {
+        this.clientUniqueId = clientUniqueId;
+    }
+
+    public Constants.ErrorType getErrorType() {
+        return errorType;
+    }
+
+    public void setErrorType(Constants.ErrorType errorType) {
+        this.errorType = errorType;
+    }
+
+    public Constants.APIType getApiType() {
+        return apiType;
+    }
+
+    public void setApiType(Constants.APIType apiType) {
+        this.apiType = apiType;
+    }
+
+    @Override public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("internalRequestId=")
+          .append(internalRequestId);
+        sb.append(", status=")
+          .append(status);
+        sb.append(", errCode=")
+          .append(errCode);
+        sb.append(", reason='")
+          .append(reason)
+          .append('\'');
+        sb.append(", merchantId='")
+          .append(merchantId)
+          .append('\'');
+        sb.append(", merchantSiteId='")
+          .append(merchantSiteId)
+          .append('\'');
+        sb.append(", version='")
+          .append(version)
+          .append('\'');
+        sb.append(", clientRequestId='")
+          .append(clientRequestId)
+          .append('\'');
+        sb.append(", sessionToken='")
+          .append(sessionToken)
+          .append('\'');
+        sb.append(", clientUniqueId='")
+          .append(clientUniqueId)
+          .append('\'');
+        sb.append(", errorType=")
+          .append(errorType);
+        sb.append(", apiType=")
+          .append(apiType);
+        return sb.toString();
+    }
 }

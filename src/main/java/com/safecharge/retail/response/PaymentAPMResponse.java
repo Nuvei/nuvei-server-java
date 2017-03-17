@@ -6,7 +6,7 @@ package com.safecharge.retail.response;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-public class PaymentAPMResponse extends BasePaymentsResponse implements PaymentsResponse {
+public class PaymentAPMResponse extends PaymentsResponse {
 
     private String redirectURL;
 

@@ -9,7 +9,11 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-public class OpenOrderRequest extends BaseSafechargeOrderDetailsRequest {
+public class OpenOrderRequest extends SafechargeOrderDetailsRequest {
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("OpenOrderRequest{");

@@ -15,8 +15,9 @@ import com.safecharge.retail.request.OpenOrderRequest;
 import com.safecharge.retail.request.PaymentCCRequest;
 import com.safecharge.retail.request.SafechargeRequest;
 import com.safecharge.retail.request.UpdateOrderRequest;
-import com.safecharge.retail.response.SafechargeOrderResponse;
+import com.safecharge.retail.response.OpenOrderResponse;
 import com.safecharge.retail.response.SafechargeResponse;
+import com.safecharge.retail.response.UpdateOrderResponse;
 import com.safecharge.retail.test.BaseTest;
 import com.safecharge.retail.util.Constants;
 
@@ -41,7 +42,9 @@ import com.safecharge.retail.util.Constants;
     }
 
     @Test public void test1_getSessionTokenTest() throws IOException {
-        SafechargeRequest safechargeRequest = new GetSessionTokenRequest.Builder().build();
+        SafechargeRequest safechargeRequest = GetSessionTokenRequest.builder()
+                                                                    .addMerchantInfo(merchantInfo)
+                                                                    .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
 
         Assert.assertTrue(response != null);
@@ -50,7 +53,8 @@ import com.safecharge.retail.util.Constants;
     }
 
     @Test public void test2_openOrder() {
-        SafechargeRequest openOrderRequest = new OpenOrderRequest.Builder().addCurrency("EUR")
+        SafechargeRequest openOrderRequest = new OpenOrderRequest.Builder().addMerchantInfo(merchantInfo)
+                                                                           .addCurrency("EUR")
                                                                            .addAmount("2")
                                                                            .addSessionToken(sessionToken)
                                                                            .addItem("test_item_1", "1", "1")
@@ -62,7 +66,7 @@ import com.safecharge.retail.util.Constants;
                                                                            .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
                                                                                    "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
                                                                            .build();
-        SafechargeOrderResponse openOrderResponse = (SafechargeOrderResponse) safechargeRequestExecutor.executeRequest(openOrderRequest);
+        OpenOrderResponse openOrderResponse = (OpenOrderResponse) safechargeRequestExecutor.executeRequest(openOrderRequest);
 
         Assert.assertTrue(openOrderResponse != null);
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(openOrderResponse.getStatus()));
@@ -72,30 +76,34 @@ import com.safecharge.retail.util.Constants;
     }
 
     @Test public void test3_updateOrder() {
-        SafechargeRequest updateOrderRequest = new UpdateOrderRequest.Builder().addCurrency("EUR")
-                                                                               .addAmount("2")
-                                                                               .addSessionToken(sessionToken)
-                                                                               .addItem("test_item_1", "1", "1")
-                                                                               .addItem("test_item_2", "1", "1")
-                                                                               .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com",
-                                                                                       "Test", "Testov", "0884123456", null, "1000")
-                                                                               .addBillingDetails("Test", "Testov", "test@test.com", "0884123456",
-                                                                                       "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
-                                                                               .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
-                                                                                       "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
-                                                                               .addOrderId(orderId)
-                                                                               .build();
+        SafechargeRequest updateOrderRequest = UpdateOrderRequest.builder()
+                                                                 .addMerchantInfo(merchantInfo)
+                                                                 .addCurrency("EUR")
+                                                                 .addAmount("2")
+                                                                 .addSessionToken(sessionToken)
+                                                                 .addItem("test_item_1", "1", "1")
+                                                                 .addItem("test_item_2", "1", "1")
+                                                                 .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov",
+                                                                         "0884123456", null, "1000")
+                                                                 .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
+                                                                         "Sofia", "BG", null, "1000", "0884123456")
+                                                                 .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
+                                                                         "Sofia", "BG", null, "1000", "0884123456")
+                                                                 .addOrderId(orderId)
+                                                                 .build();
 
-        SafechargeOrderResponse updateOrderResponse = (SafechargeOrderResponse) safechargeRequestExecutor.executeRequest(updateOrderRequest);
+        UpdateOrderResponse updateOrderResponse = (UpdateOrderResponse) safechargeRequestExecutor.executeRequest(updateOrderRequest);
 
         Assert.assertTrue(updateOrderResponse != null);
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(updateOrderResponse.getStatus()));
     }
 
     @Test public void test4_getOrderDetails() {
-        SafechargeRequest safechargeRequest = new GetOrderDetailsRequest.Builder().addOrderId(orderId)
-                                                                                  .addSessionToken(sessionToken)
-                                                                                  .build();
+        SafechargeRequest safechargeRequest = GetOrderDetailsRequest.builder()
+                                                                    .addMerchantInfo(merchantInfo)
+                                                                    .addOrderId(orderId)
+                                                                    .addSessionToken(sessionToken)
+                                                                    .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
 
         Assert.assertTrue(response != null);
@@ -103,21 +111,23 @@ import com.safecharge.retail.util.Constants;
     }
 
     @Test public void test5_paymentCC() {
-        SafechargeRequest request = new PaymentCCRequest.Builder().addCurrency("EUR")
-                                                                  .addAmount("2")
-                                                                  .addSessionToken(sessionToken)
-                                                                  .addItem("test_item_1", "1", "1")
-                                                                  .addItem("test_item_2", "1", "1")
-                                                                  .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov",
-                                                                          "0884123456", null, "1000")
-                                                                  .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                                                                          "Sofia", "BG", null, "1000", "0884123456")
-                                                                  .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
-                                                                          "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
-                                                                  .addOrderId(orderId)
-                                                                  .addCardData("4111111111111111", "Test Testov", "10", "2022", null, "123")
-                                                                  .addTransactionType(Constants.TransactionType.Sale)
-                                                                  .build();
+        SafechargeRequest request = PaymentCCRequest.builder()
+                                                    .addMerchantInfo(merchantInfo)
+                                                    .addCurrency("EUR")
+                                                    .addAmount("2")
+                                                    .addSessionToken(sessionToken)
+                                                    .addItem("test_item_1", "1", "1")
+                                                    .addItem("test_item_2", "1", "1")
+                                                    .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov", "0884123456",
+                                                            null, "1000")
+                                                    .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",
+                                                            "BG", null, "1000", "0884123456")
+                                                    .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",
+                                                            "BG", null, "1000", "0884123456")
+                                                    .addOrderId(orderId)
+                                                    .addCardData("4111111111111111", "Test Testov", "10", "2022", null, "123")
+                                                    .addTransactionType(Constants.TransactionType.Sale)
+                                                    .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(request);
 
         Assert.assertTrue(response != null);

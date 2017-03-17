@@ -6,7 +6,7 @@ package com.safecharge.retail.response;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/10/2017
  */
-public class AddUPOCreditCardByTempTokenResponse extends BaseResponse implements SafechargeResponse {
+public class AddUPOCreditCardByTempTokenResponse extends SafechargeResponse {
 
     private String userPaymentOptionId;
 

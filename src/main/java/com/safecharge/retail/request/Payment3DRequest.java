@@ -10,6 +10,11 @@ import com.safecharge.retail.util.ValidationUtil;
  */
 public class Payment3DRequest extends PaymentCCRequest {
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
+
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("Payment3DRequest{");
         sb.append("orderId='")

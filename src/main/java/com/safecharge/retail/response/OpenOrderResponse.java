@@ -6,7 +6,7 @@ package com.safecharge.retail.response;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-public class OpenOrderResponse extends BaseResponse implements SafechargeOrderResponse {
+public class OpenOrderResponse extends SafechargeResponse implements SafechargeOrderResponse {
 
     private String orderId;
 

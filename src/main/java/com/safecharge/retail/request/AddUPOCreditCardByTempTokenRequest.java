@@ -15,7 +15,7 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/9/2017
  */
-public class AddUPOCreditCardByTempTokenRequest extends BaseSafechargeRequest implements SafechargeRequest {
+public class AddUPOCreditCardByTempTokenRequest extends SafechargeRequest {
 
     /**
      * The unique identifier generated for each customer.
@@ -33,6 +33,10 @@ public class AddUPOCreditCardByTempTokenRequest extends BaseSafechargeRequest im
      *
      */
     @Valid private UserAddress billingAddress;
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getUserTokenId() {
         return userTokenId;

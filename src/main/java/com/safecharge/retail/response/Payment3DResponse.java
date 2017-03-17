@@ -8,7 +8,7 @@ import com.safecharge.retail.model.ExternalToken;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/10/2017
  */
-public class Payment3DResponse extends BasePaymentsResponse implements PaymentsResponse {
+public class Payment3DResponse extends PaymentsResponse {
 
     /**
      * Returned from banks and indicate if the transaction passed as full 3D, attempted to do so and failed etc.

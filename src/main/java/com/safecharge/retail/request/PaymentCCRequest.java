@@ -15,7 +15,7 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-public class PaymentCCRequest extends BaseSafechargeOrderDetailsRequest implements SafechargeOrderRequest {
+public class PaymentCCRequest extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
     /**
      * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
@@ -53,6 +53,10 @@ public class PaymentCCRequest extends BaseSafechargeOrderDetailsRequest implemen
      * @return
      */
     @Valid private UserPaymentOption userPaymentOption;
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getOrderId() {
         return orderId;

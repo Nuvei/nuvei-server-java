@@ -9,7 +9,11 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/17/2017
  */
-public class GetSessionTokenRequest extends BaseSafechargeRequest {
+public class GetSessionTokenRequest extends SafechargeRequest {
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("GetSessionTokenRequest{");
