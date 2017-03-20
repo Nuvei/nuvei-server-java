@@ -64,6 +64,7 @@ public class SafechargeRequestExecutor {
                     put(CardTokenizationRequest.class, CardTokenizationResponse.class);
                     put(Payment3DRequest.class, Payment3DResponse.class);
                     put(AddUPOCreditCardByTempTokenRequest.class, AddUPOCreditCardByTempTokenResponse.class);
+                    put(CardTokenizationRequest.class, CardTokenizationResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =

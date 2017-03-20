@@ -15,6 +15,7 @@ import org.junit.Test;
 import com.safecharge.retail.model.Item;
 import com.safecharge.retail.request.AddUPOCreditCardByTempTokenRequest;
 import com.safecharge.retail.request.Authorization3DRequest;
+import com.safecharge.retail.request.CardTokenizationRequest;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
 import com.safecharge.retail.request.GetSessionTokenRequest;
 import com.safecharge.retail.request.OpenOrderRequest;
@@ -24,6 +25,7 @@ import com.safecharge.retail.request.PaymentCCRequest;
 import com.safecharge.retail.request.UpdateOrderRequest;
 import com.safecharge.retail.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.retail.response.Authorization3DResponse;
+import com.safecharge.retail.response.CardTokenizationResponse;
 import com.safecharge.retail.response.GetOrderDetailsResponse;
 import com.safecharge.retail.response.OpenOrderResponse;
 import com.safecharge.retail.response.Payment3DResponse;
@@ -108,6 +110,12 @@ public class CompleteFunctionalTest extends BaseTest {
     @Test public void testAddUPOCreditCardByTempTokenRequest() {
         AddUPOCreditCardByTempTokenResponse response =
                 baseMockTest("./mock/request/addUPOCreditCardByTempToken.json", AddUPOCreditCardByTempTokenRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test public void testCardTokenizationRequest() {
+        CardTokenizationResponse response = baseMockTest("./mock/request/cardTokenization.json", CardTokenizationRequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
     }

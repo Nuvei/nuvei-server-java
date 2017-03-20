@@ -1,5 +1,7 @@
 package com.safecharge.retail.request;
 
+import javax.validation.constraints.Size;
+
 import com.safecharge.retail.util.ValidationUtil;
 
 /**
@@ -10,10 +12,19 @@ import com.safecharge.retail.util.ValidationUtil;
  */
 public class Payment3DRequest extends PaymentCCRequest {
 
+    @Size(max = 2048) private String paResponse;
+
     public static Builder builder() {
         return new Builder();
     }
 
+    public String getPaResponse() {
+        return paResponse;
+    }
+
+    public void setPaResponse(String paResponse) {
+        this.paResponse = paResponse;
+    }
 
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("Payment3DRequest{");
@@ -24,6 +35,8 @@ public class Payment3DRequest extends PaymentCCRequest {
           .append(getTransactionType());
         sb.append(", cardData=")
           .append(getCardData());
+        sb.append(", paResponse=")
+          .append(getPaResponse());
         sb.append(", userPaymentOption=")
           .append(getUserPaymentOption());
         sb.append(", ")
@@ -34,12 +47,20 @@ public class Payment3DRequest extends PaymentCCRequest {
 
     public static class Builder extends PaymentCCRequest.Builder {
 
+        private String paResponse;
+
+        public Builder addPaResponse(String paResponse) {
+            this.paResponse = paResponse;
+            return this;
+        }
+
         @Override public SafechargeRequest build() {
-            PaymentCCRequest request = super.build(new Payment3DRequest());
+            Payment3DRequest request = super.build(new Payment3DRequest());
             request.setUserPaymentOption(userPaymentOption);
             request.setTransactionType(transactionType);
             request.setCardData(cardData);
             request.setOrderId(orderId);
+            request.setPaResponse(paResponse);
             return ValidationUtil.validate(request);
         }
 

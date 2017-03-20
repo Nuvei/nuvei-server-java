@@ -94,7 +94,7 @@ public class AddUPOCreditCardByTempTokenRequest extends SafechargeRequest {
             return this;
         }
 
-        public Builder addShippingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
+        public Builder addBillingAddress(String firstName, String lastName, String email, String phone, String address, String city, String country,
                 String state, String zip, String cell) {
 
             UserAddress billingAddress = new UserAddress();

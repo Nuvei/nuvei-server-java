@@ -1,7 +1,5 @@
 package com.safecharge.retail.response;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
@@ -11,10 +9,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class CardTokenizationResponse extends PaymentCCResponse {
 
     private String cardToken;
-
-    public CardTokenizationResponse() {
-        throw new NotImplementedException();
-    }
 
     /**
      * @return the credit/debit card token.
