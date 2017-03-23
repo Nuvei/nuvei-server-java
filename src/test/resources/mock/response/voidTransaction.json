@@ -1,0 +1,17 @@
+{
+  "sessionToken": "297f9f04-9bc5-4ecd-a3f9-51a0fe4aebca",
+  "transactionId": "1000047955",
+  "gwErrorCode": 0,
+  "gwExtendedErrorCode": 0,
+  "transactionStatus": "APPROVED",
+  "authCode": "0910F8",
+  "eci": "0",
+  "internalRequestId": 1158,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "reason": "",
+  "merchantId": "7228839313016442768",
+  "merchantSiteId": "117711",
+  "version": "1.0",
+  "clientRequestId": "1490270436000"
+}

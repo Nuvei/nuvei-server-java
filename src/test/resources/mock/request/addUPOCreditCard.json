@@ -1,0 +1,25 @@
+{
+  "ccCardNumber": "5443085464333439",
+  "ccExpMonth": "12",
+  "ccExpYear": "2020",
+  "ccNameOnCard": "Test Card",
+  "userTokenId": "test_rest_api",
+  "billingAddress": {
+    "firstName": "First",
+    "lastName": "Last",
+    "address": "Address",
+    "phone": "012345687890",
+    "zip": "12345",
+    "city": "City",
+    "countryCode": "DE",
+    "email": "test@test.com",
+    "locale": "de_DE",
+    "birthdate": "20/01/1990"
+  },
+  "clientRequestId": "1490268886000",
+  "merchantId": "7228839313016442768",
+  "merchantSiteId": "117711",
+  "timeStamp": "20170323133446",
+  "checksum": "45a2e00d14f22ce4e827e3da77e8c46966d77c6c6274d8f07eacba29ee630e94",
+  "sessionToken": "46c9787d-ef66-4d2a-87d1-bd96d372b40d"
+}

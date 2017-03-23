@@ -1,0 +1,14 @@
+{
+  "amount": "1",
+  "currency": "EUR",
+  "authCode": "0910F8",
+  "comment": "Something something something .... dark side",
+  "clientUniqueId": "",
+  "relatedTransactionId": "1000047954",
+  "clientRequestId": "1490270436000",
+  "merchantId": "7228839313016442768",
+  "merchantSiteId": "117711",
+  "timeStamp": "20170323140036",
+  "checksum": "7aa6115747a96c96b64f7c9433d4c8afe2a0d1d9842242ef09bfe042968ed314",
+  "sessionToken": "b69e5c34-9ef8-4d72-b49f-476a044301d2"
+}

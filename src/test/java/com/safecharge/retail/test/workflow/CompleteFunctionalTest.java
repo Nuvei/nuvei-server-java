@@ -13,7 +13,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.safecharge.retail.model.Item;
+import com.safecharge.retail.request.AddUPOAPMRequest;
 import com.safecharge.retail.request.AddUPOCreditCardByTempTokenRequest;
+import com.safecharge.retail.request.AddUPOCreditCardRequest;
 import com.safecharge.retail.request.Authorization3DRequest;
 import com.safecharge.retail.request.CardTokenizationRequest;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
@@ -22,8 +24,13 @@ import com.safecharge.retail.request.OpenOrderRequest;
 import com.safecharge.retail.request.Payment3DRequest;
 import com.safecharge.retail.request.PaymentAPMRequest;
 import com.safecharge.retail.request.PaymentCCRequest;
+import com.safecharge.retail.request.RefundTransactionRequest;
+import com.safecharge.retail.request.SettleTransactionRequest;
 import com.safecharge.retail.request.UpdateOrderRequest;
+import com.safecharge.retail.request.VoidTransactionRequest;
+import com.safecharge.retail.response.AddUPOAPMResponse;
 import com.safecharge.retail.response.AddUPOCreditCardByTempTokenResponse;
+import com.safecharge.retail.response.AddUPOCreditCardResponse;
 import com.safecharge.retail.response.Authorization3DResponse;
 import com.safecharge.retail.response.CardTokenizationResponse;
 import com.safecharge.retail.response.GetOrderDetailsResponse;
@@ -31,6 +38,7 @@ import com.safecharge.retail.response.OpenOrderResponse;
 import com.safecharge.retail.response.Payment3DResponse;
 import com.safecharge.retail.response.PaymentAPMResponse;
 import com.safecharge.retail.response.PaymentCCResponse;
+import com.safecharge.retail.response.SafechargeTransactionResponse;
 import com.safecharge.retail.response.SessionTokenResponse;
 import com.safecharge.retail.response.UpdateOrderResponse;
 import com.safecharge.retail.test.BaseTest;
@@ -116,6 +124,36 @@ public class CompleteFunctionalTest extends BaseTest {
 
     @Test public void testCardTokenizationRequest() {
         CardTokenizationResponse response = baseMockTest("./mock/request/cardTokenization.json", CardTokenizationRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test public void testAddUpoCreditCardRequest() {
+        AddUPOCreditCardResponse response = baseMockTest("./mock/request/addUPOCreditCard.json", AddUPOCreditCardRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test public void testAddUPOAPMRequest() {
+        AddUPOAPMResponse response = baseMockTest("./mock/request/addUPOAPM.json", AddUPOAPMRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test public void testSettleTransactionRequest() {
+        SafechargeTransactionResponse response = baseMockTest("./mock/request/settleTransaction.json", SettleTransactionRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test public void testVoidTransactionRequest() {
+        SafechargeTransactionResponse response = baseMockTest("./mock/request/voidTransaction.json", VoidTransactionRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test public void testRefundTransactionRequest() {
+        SafechargeTransactionResponse response = baseMockTest("./mock/request/refundTransaction.json", RefundTransactionRequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
     }

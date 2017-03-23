@@ -28,7 +28,7 @@ public class OpenOrderRequest extends SafechargeOrderDetailsRequest {
     public static class Builder extends SafechargeOrderBuilder<Builder> {
 
         @Override public SafechargeRequest build() {
-            SafechargeRequest openOrderRequest = new OpenOrderRequest();
+            SafechargeOrderDetailsRequest openOrderRequest = new OpenOrderRequest();
             return ValidationUtil.validate(super.build(openOrderRequest));
         }
     }
