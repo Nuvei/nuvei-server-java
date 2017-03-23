@@ -1,5 +1,7 @@
 package com.safecharge.retail.response;
 
+import com.safecharge.retail.model.ExternalToken;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
@@ -67,6 +69,30 @@ public abstract class PaymentsResponse extends SafechargeResponse {
      * The ID of the user in merchant system.
      */
     protected String userTokenId;
+
+    /**
+     * This block contain external token parameters arriving from a 3rd party payment provider which is not SafeCharge (such as CreditGuard ect.)
+     * <p>
+     * token_tokenValue
+     * token_cardBin
+     * token_cardMask
+     * token_cardLength
+     * token_cardName
+     * token_cardExpiration
+     * token_cardTypeId
+     * token_cardTypeName
+     * token_creditCompanyId
+     * token_creditCompanyName
+     * token_cardBrandId
+     * token_cardBrandName
+     * token_cardAcquirerId
+     * token_cardAcquirerName
+     * token_blockedCard
+     * token_extendedCardType
+     * token_clubName
+     * token_lifeStyle"
+     */
+    protected ExternalToken externalToken;
 
     /**
      * @return the Merchant Order ID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
@@ -260,6 +286,14 @@ public abstract class PaymentsResponse extends SafechargeResponse {
         this.authCode = authCode;
     }
 
+    public ExternalToken getExternalToken() {
+        return externalToken;
+    }
+
+    public void setExternalToken(ExternalToken externalToken) {
+        this.externalToken = externalToken;
+    }
+
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("orderId='")
@@ -295,6 +329,8 @@ public abstract class PaymentsResponse extends SafechargeResponse {
         sb.append(", userTokenId='")
           .append(userTokenId)
           .append('\'');
+        sb.append(", ")
+          .append(externalToken);
         sb.append(", ")
           .append(super.toString());
         return sb.toString();

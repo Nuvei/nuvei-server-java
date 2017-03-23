@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.safecharge.retail.model.Addendums;
+import com.safecharge.retail.model.CashierUserDetails;
 import com.safecharge.retail.model.DeviceDetails;
 import com.safecharge.retail.model.DynamicDescriptor;
 import com.safecharge.retail.model.Item;
 import com.safecharge.retail.model.MerchantDetails;
 import com.safecharge.retail.model.UserAddress;
-import com.safecharge.retail.model.UserDetails;
 import com.safecharge.retail.request.SafechargeOrderDetailsRequest;
-import com.safecharge.retail.util.RequestUtils;
+import com.safecharge.retail.util.ChecksumUtils;
+import com.safecharge.retail.util.Constants;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -25,7 +26,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     private String amount;
     private List<Item> items = new ArrayList<>();
     private DeviceDetails deviceDetails;
-    private UserDetails userDetails;
+    private CashierUserDetails userDetails;
     private UserAddress shippingAddress;
     private UserAddress billingAddress;
     private DynamicDescriptor dynamicDescriptor;
@@ -118,7 +119,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      * @param userDetails
      * @return
      */
-    public T addUserDetails(UserDetails userDetails) {
+    public T addUserDetails(CashierUserDetails userDetails) {
 
         this.userDetails = userDetails;
         return (T) this;
@@ -139,7 +140,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     public T addUserDetails(String address, String city, String country, String email, String firstName, String lastName, String phone, String state,
             String zip) {
 
-        UserDetails userDetails = new UserDetails();
+        CashierUserDetails userDetails = new CashierUserDetails();
         userDetails.setAddress(address);
         userDetails.setCity(city);
         userDetails.setCountry(country);
@@ -386,8 +387,9 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         safechargeOrderDetailsRequest.setUserTokenId(userTokenId);
         safechargeOrderDetailsRequest.setClientUniqueId(clientUniqueId);
 
-        safechargeOrderDetailsRequest.setChecksum(RequestUtils.calculateChecksum(safechargeOrderDetailsRequest, amount, currency,
-                merchantInfo != null ? merchantInfo.getMerchantKey() : "", merchantInfo != null ? merchantInfo.getHashAlgorithm() : null));
+        safechargeOrderDetailsRequest.setChecksum(
+                ChecksumUtils.calculateChecksum(safechargeOrderDetailsRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",
+                        Constants.CHARSET_UTF8, merchantInfo != null ? merchantInfo.getHashAlgorithm() : null));
         return safechargeOrderDetailsRequest;
     }
 }

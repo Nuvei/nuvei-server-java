@@ -8,12 +8,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.safecharge.retail.model.Addendums;
+import com.safecharge.retail.model.CashierUserDetails;
 import com.safecharge.retail.model.DeviceDetails;
 import com.safecharge.retail.model.DynamicDescriptor;
 import com.safecharge.retail.model.Item;
 import com.safecharge.retail.model.MerchantDetails;
 import com.safecharge.retail.model.UserAddress;
-import com.safecharge.retail.model.UserDetails;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -47,7 +47,7 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
     /**
      * Details about the user which include the user's name, email, address, etc.
      */
-    @Valid private UserDetails userDetails;
+    @Valid private CashierUserDetails userDetails;
 
     /**
      * Shipping address related to a user order.
@@ -127,11 +127,11 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
         this.deviceDetails = deviceDetails;
     }
 
-    public UserDetails getUserDetails() {
+    public CashierUserDetails getUserDetails() {
         return userDetails;
     }
 
-    public void setUserDetails(UserDetails userDetails) {
+    public void setUserDetails(CashierUserDetails userDetails) {
         this.userDetails = userDetails;
     }
 

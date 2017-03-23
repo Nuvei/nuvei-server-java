@@ -2,6 +2,8 @@ package com.safecharge.retail.request;
 
 import javax.validation.constraints.Size;
 
+import com.safecharge.retail.util.Constants;
+import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
 
 /**
@@ -10,6 +12,7 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
 public class Payment3DRequest extends PaymentCCRequest {
 
     @Size(max = 2048) private String paResponse;
@@ -55,13 +58,13 @@ public class Payment3DRequest extends PaymentCCRequest {
         }
 
         @Override public SafechargeRequest build() {
-            Payment3DRequest request = super.build(new Payment3DRequest());
+            Payment3DRequest request = new Payment3DRequest();
             request.setUserPaymentOption(userPaymentOption);
             request.setTransactionType(transactionType);
             request.setCardData(cardData);
             request.setOrderId(orderId);
             request.setPaResponse(paResponse);
-            return ValidationUtil.validate(request);
+            return ValidationUtil.validate(super.build(request));
         }
 
     }

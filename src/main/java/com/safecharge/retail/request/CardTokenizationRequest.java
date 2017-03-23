@@ -8,6 +8,8 @@ import com.safecharge.retail.model.CardData;
 import com.safecharge.retail.model.UserAddress;
 import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
 import com.safecharge.retail.util.APIConstants;
+import com.safecharge.retail.util.Constants;
+import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
 
 /**
@@ -16,6 +18,7 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
 public class CardTokenizationRequest extends SafechargeRequest {
 
     @Valid private CardData cardData;
@@ -140,12 +143,12 @@ public class CardTokenizationRequest extends SafechargeRequest {
         }
 
         @Override public SafechargeRequest build() {
-            CardTokenizationRequest cardTokenizationRequest = super.build(new CardTokenizationRequest());
+            CardTokenizationRequest cardTokenizationRequest = new CardTokenizationRequest();
             cardTokenizationRequest.setUserTokenId(userTokenId);
             cardTokenizationRequest.setIpAddress(ipAddress);
             cardTokenizationRequest.setCardData(cardData);
             cardTokenizationRequest.setBillingAddress(billingAddress);
-            return ValidationUtil.validate(cardTokenizationRequest);
+            return ValidationUtil.validate(super.build(cardTokenizationRequest));
 
         }
     }

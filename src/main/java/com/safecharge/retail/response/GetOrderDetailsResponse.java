@@ -3,12 +3,12 @@ package com.safecharge.retail.response;
 import java.util.List;
 
 import com.safecharge.retail.model.Addendums;
+import com.safecharge.retail.model.CashierUserDetails;
 import com.safecharge.retail.model.DeviceDetails;
 import com.safecharge.retail.model.DynamicDescriptor;
 import com.safecharge.retail.model.Item;
 import com.safecharge.retail.model.MerchantDetails;
 import com.safecharge.retail.model.UserAddress;
-import com.safecharge.retail.model.UserDetails;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -23,7 +23,7 @@ public class GetOrderDetailsResponse extends SafechargeResponse implements Safec
     private Double amount;
     private List<Item> items;
     private DeviceDetails deviceDetails;
-    private UserDetails userDetails;
+    private CashierUserDetails userDetails;
     private UserAddress shippingAddress;
     private UserAddress billingAddress;
     private DynamicDescriptor dynamicDescriptor;
@@ -76,11 +76,11 @@ public class GetOrderDetailsResponse extends SafechargeResponse implements Safec
         this.deviceDetails = deviceDetails;
     }
 
-    public UserDetails getUserDetails() {
+    public CashierUserDetails getUserDetails() {
         return userDetails;
     }
 
-    public void setUserDetails(UserDetails userDetails) {
+    public void setUserDetails(CashierUserDetails userDetails) {
         this.userDetails = userDetails;
     }
 

@@ -9,6 +9,8 @@ import javax.validation.constraints.Size;
 import com.safecharge.retail.model.URLDetails;
 import com.safecharge.retail.model.UserPaymentOption;
 import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
+import com.safecharge.retail.util.Constants;
+import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
 
 /**
@@ -17,6 +19,7 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
 public class PaymentAPMRequest extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
     /**
@@ -163,11 +166,12 @@ public class PaymentAPMRequest extends SafechargeOrderDetailsRequest implements 
             return this;
         }
 
-        public Builder addURLDetails(String failureURL, String pendingURL, String successURL) {
+        public Builder addURLDetails(String failureURL, String pendingURL, String successURL, String notificationUrl) {
             URLDetails urlDetails = new URLDetails();
             urlDetails.setFailureUrl(failureURL);
             urlDetails.setPendingUrl(pendingURL);
             urlDetails.setSuccessUrl(successURL);
+            urlDetails.setNotificationUrl(notificationUrl);
             return addURLDetails(urlDetails);
         }
 
@@ -182,14 +186,14 @@ public class PaymentAPMRequest extends SafechargeOrderDetailsRequest implements 
         }
 
         @Override public SafechargeRequest build() {
-            PaymentAPMRequest paymentAPMRequest = super.build(new PaymentAPMRequest());
+            PaymentAPMRequest paymentAPMRequest = new PaymentAPMRequest();
             paymentAPMRequest.setOrderId(orderId);
             paymentAPMRequest.setPaymentMethod(paymentMethod);
             paymentAPMRequest.setUserAccountDetails(userAccountDetails);
             paymentAPMRequest.setUserPaymentOption(userPaymentOption);
             paymentAPMRequest.setUrlDetails(urlDetails);
             paymentAPMRequest.setCountry(country);
-            return ValidationUtil.validate(paymentAPMRequest);
+            return ValidationUtil.validate(super.build(paymentAPMRequest));
         }
     }
 }

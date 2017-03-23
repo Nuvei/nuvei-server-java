@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.safecharge.retail.request.builder.SafechargeBuilder;
+import com.safecharge.retail.util.Constants;
+import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
 
 /**
@@ -12,6 +14,7 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
 public class GetOrderDetailsRequest extends SafechargeRequest implements SafechargeOrderRequest {
 
     /**
@@ -57,9 +60,9 @@ public class GetOrderDetailsRequest extends SafechargeRequest implements Safecha
         }
 
         @Override public SafechargeRequest build() {
-            GetOrderDetailsRequest request = super.build(new GetOrderDetailsRequest());
+            GetOrderDetailsRequest request = new GetOrderDetailsRequest();
             request.setOrderId(orderId);
-            return ValidationUtil.validate(request);
+            return ValidationUtil.validate(super.build(request));
         }
     }
 }

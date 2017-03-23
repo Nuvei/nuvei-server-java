@@ -137,7 +137,7 @@ import com.safecharge.retail.util.Constants;
                                                      .addCountry("US")
                                                      .addURLDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
                                                              "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
-                                                             "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do")
+                                                             "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do", null)
                                                      .addPaymentMethod("apmgw_expresscheckout")
                                                      .addUserAccountDetails(userAccountDetails)
                                                      .build();

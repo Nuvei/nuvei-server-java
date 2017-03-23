@@ -171,7 +171,7 @@ public class ValidationsTest {
                                                                .addCountry("US")
                                                                .addURLDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
                                                                        "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
-                                                                       "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do")
+                                                                       "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do", null)
                                                                .addPaymentMethod("apmgw_expresscheckout")
                                                                .build();
         Assert.assertTrue(safechargeRequest != null);
@@ -197,7 +197,7 @@ public class ValidationsTest {
                                                                    .addOrderId(dummyOrderId)
                                                                    .addURLDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
                                                                            "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
-                                                                           "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do")
+                                                                           "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do", null)
                                                                    .addPaymentMethod("apmgw_expresscheckout")
                                                                    .addCountry("US")
                                                                    .build();

@@ -1,6 +1,8 @@
 package com.safecharge.retail.request;
 
 import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
+import com.safecharge.retail.util.Constants;
+import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
 
 /**
@@ -9,6 +11,7 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
 public class OpenOrderRequest extends SafechargeOrderDetailsRequest {
 
     public static Builder builder() {
@@ -25,8 +28,8 @@ public class OpenOrderRequest extends SafechargeOrderDetailsRequest {
     public static class Builder extends SafechargeOrderBuilder<Builder> {
 
         @Override public SafechargeRequest build() {
-            SafechargeRequest openOrderRequest = super.build(new OpenOrderRequest());
-            return ValidationUtil.validate(openOrderRequest);
+            SafechargeRequest openOrderRequest = new OpenOrderRequest();
+            return ValidationUtil.validate(super.build(openOrderRequest));
         }
     }
 }

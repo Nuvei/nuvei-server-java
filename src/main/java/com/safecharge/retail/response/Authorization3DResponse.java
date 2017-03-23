@@ -12,10 +12,6 @@ public class Authorization3DResponse extends PaymentsResponse {
 
     private String acsUrl;
 
-    public Authorization3DResponse() {
-        super();
-    }
-
     /**
      * @return the 3D secure request data for the card issuer/bank.
      */

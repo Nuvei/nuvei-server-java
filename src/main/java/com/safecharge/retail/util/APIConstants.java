@@ -29,6 +29,11 @@ public interface APIConstants {
     String CARD_TOKENIZATION_URL = "api/v1/cardTokenization.do";
     String ADD_UPO_CREDIT_CARD_BY_TEMP_TOKEN_URL = "api/v1/addUPOCreditCardByTempToken.do";
     String PAYMENT_3D_URL = "api/v1/payment3D.do";
+    String SETTLE_TRANSACTION_URL = "api/v1/settleTransaction.do";
+    String VOID_TRANSACTION_URL = "api/v1/voidTransaction.do";
+    String REFUND_TRANSACTION_URL = "api/v1/refundTransaction.do";
+    String ADD_UPO_CREDIT_CARD_URL = "api/v1/addUPOCreditCard.do";
+    String ADD_UPO_APM_URL = "api/v1/addUPOAPM.do";
 
     // Request Headers:
 
@@ -54,5 +59,7 @@ public interface APIConstants {
 
     String IP_ADDRESS_REGEX = "^(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}$";
     String EMAIL_REGEX = "^[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,10}$";
+    String EXP_YEAR_REGEX = "^(?:(20)\\d{2}|\\d{2})$"; // two or four digits
+    String EXP_MONTH_REGEX = "^(0?[1-9]|1[012])$";
 
 }

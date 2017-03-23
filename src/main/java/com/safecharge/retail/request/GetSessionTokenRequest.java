@@ -1,6 +1,8 @@
 package com.safecharge.retail.request;
 
 import com.safecharge.retail.request.builder.SafechargeBuilder;
+import com.safecharge.retail.util.Constants;
+import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
 
 /**
@@ -9,6 +11,7 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/17/2017
  */
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
 public class GetSessionTokenRequest extends SafechargeRequest {
 
     public static Builder builder() {
@@ -25,8 +28,8 @@ public class GetSessionTokenRequest extends SafechargeRequest {
     public static class Builder extends SafechargeBuilder<Builder> {
 
         @Override public SafechargeRequest build() {
-            SafechargeRequest request = super.build(new GetSessionTokenRequest());
-            return ValidationUtil.validate(request);
+            SafechargeRequest request = new GetSessionTokenRequest();
+            return ValidationUtil.validate(super.build(request));
         }
     }
 }

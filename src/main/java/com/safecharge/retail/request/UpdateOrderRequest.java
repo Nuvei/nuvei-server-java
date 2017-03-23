@@ -3,6 +3,8 @@ package com.safecharge.retail.request;
 import javax.validation.constraints.Size;
 
 import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
+import com.safecharge.retail.util.Constants;
+import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
 
 /**
@@ -11,7 +13,7 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/17/2017
  */
-
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
 public class UpdateOrderRequest extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
     @Size(max = 45,
@@ -50,9 +52,9 @@ public class UpdateOrderRequest extends SafechargeOrderDetailsRequest implements
         }
 
         @Override public SafechargeRequest build() {
-            UpdateOrderRequest updateOrderRequest = super.build(new UpdateOrderRequest());
+            UpdateOrderRequest updateOrderRequest = new UpdateOrderRequest();
             updateOrderRequest.setOrderId(orderId);
-            return ValidationUtil.validate(updateOrderRequest);
+            return ValidationUtil.validate(super.build(updateOrderRequest));
         }
     }
 }

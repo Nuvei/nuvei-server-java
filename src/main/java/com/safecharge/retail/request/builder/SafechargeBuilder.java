@@ -4,6 +4,7 @@ import javax.validation.ConstraintViolationException;
 
 import com.safecharge.retail.model.MerchantInfo;
 import com.safecharge.retail.request.SafechargeRequest;
+import com.safecharge.retail.util.ChecksumUtils;
 import com.safecharge.retail.util.Constants;
 import com.safecharge.retail.util.RequestUtils;
 
@@ -55,7 +56,7 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
         safechargeRequest.setTimeStamp(timestamp);
         safechargeRequest.setClientRequestId(clientRequestId != null ? clientRequestId : RequestUtils.calculateClientRequestId(timestamp));
         safechargeRequest.setChecksum(
-                RequestUtils.calculateChecksum(safechargeRequest, null, null, merchantInfo != null ? merchantInfo.getMerchantKey() : "",
+                ChecksumUtils.calculateChecksum(safechargeRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "", Constants.CHARSET_UTF8,
                         merchantInfo != null ? merchantInfo.getHashAlgorithm() : null));
         return safechargeRequest;
     }

@@ -1,7 +1,5 @@
 package com.safecharge.retail.response;
 
-import com.safecharge.retail.model.ExternalToken;
-
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
@@ -20,30 +18,6 @@ public class Payment3DResponse extends PaymentsResponse {
      */
     private String threeDReason;
 
-    /**
-     * This block contain external token parameters arriving from a 3rd party payment provider which is not SafeCharge (such as CreditGuard ect.)
-     * <p>
-     * token_tokenValue
-     * token_cardBin
-     * token_cardMask
-     * token_cardLength
-     * token_cardName
-     * token_cardExpiration
-     * token_cardTypeId
-     * token_cardTypeName
-     * token_creditCompanyId
-     * token_creditCompanyName
-     * token_cardBrandId
-     * token_cardBrandName
-     * token_cardAcquirerId
-     * token_cardAcquirerName
-     * token_blockedCard
-     * token_extendedCardType
-     * token_clubName
-     * token_lifeStyle"
-     */
-    private ExternalToken externalToken;
-
     public String getEci() {
         return eci;
     }
@@ -60,14 +34,6 @@ public class Payment3DResponse extends PaymentsResponse {
         this.threeDReason = threeDReason;
     }
 
-    public ExternalToken getExternalToken() {
-        return externalToken;
-    }
-
-    public void setExternalToken(ExternalToken externalToken) {
-        this.externalToken = externalToken;
-    }
-
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("Payment3DResponse{");
         sb.append("eci='")
@@ -77,8 +43,6 @@ public class Payment3DResponse extends PaymentsResponse {
           .append(threeDReason)
           .append('\'');
         sb.append(", externalToken=")
-          .append(externalToken);
-        sb.append(", ")
           .append(super.toString());
         sb.append('}');
         return sb.toString();

@@ -19,6 +19,9 @@ public class URLDetails {
     @Size(max = 100,
           message = "pendingUrl size must be up to 100 characters long!") private String pendingUrl;
 
+    @Size(max = 2048,
+          message = "notificationUrl size must be up to 100 characters long!") private String notificationUrl;
+
     public String getSuccessUrl() {
         return successUrl;
     }
@@ -41,5 +44,13 @@ public class URLDetails {
 
     public void setPendingUrl(String pendingUrl) {
         this.pendingUrl = pendingUrl;
+    }
+
+    public String getNotificationUrl() {
+        return notificationUrl;
+    }
+
+    public void setNotificationUrl(String notificationUrl) {
+        this.notificationUrl = notificationUrl;
     }
 }

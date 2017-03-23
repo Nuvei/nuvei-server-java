@@ -7,6 +7,8 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.retail.model.UserAddress;
 import com.safecharge.retail.request.builder.SafechargeBuilder;
+import com.safecharge.retail.util.Constants;
+import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
 
 /**
@@ -15,7 +17,8 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/9/2017
  */
-public class AddUPOCreditCardByTempTokenRequest extends SafechargeRequest {
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING) public class AddUPOCreditCardByTempTokenRequest
+        extends SafechargeRequest {
 
     /**
      * The unique identifier generated for each customer.
@@ -118,11 +121,11 @@ public class AddUPOCreditCardByTempTokenRequest extends SafechargeRequest {
         }
 
         @Override public SafechargeRequest build() throws ConstraintViolationException {
-            AddUPOCreditCardByTempTokenRequest addUPOCreditCardByTempTokenRequest = super.build(new AddUPOCreditCardByTempTokenRequest());
+            AddUPOCreditCardByTempTokenRequest addUPOCreditCardByTempTokenRequest = new AddUPOCreditCardByTempTokenRequest();
             addUPOCreditCardByTempTokenRequest.setUserTokenId(userTokenId);
             addUPOCreditCardByTempTokenRequest.setCcTempToken(ccTempToken);
             addUPOCreditCardByTempTokenRequest.setBillingAddress(billingAddress);
-            return ValidationUtil.validate(addUPOCreditCardByTempTokenRequest);
+            return ValidationUtil.validate(super.build(addUPOCreditCardByTempTokenRequest));
         }
     }
 }
