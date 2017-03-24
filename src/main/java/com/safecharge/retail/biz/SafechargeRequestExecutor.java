@@ -149,8 +149,6 @@ public class SafechargeRequestExecutor {
 
         try {
             String requestJSON = gson.toJson(request);
-            System.out.println(request.getClass()
-                                      .getSimpleName() + ": " + requestJSON);
             HttpPost httpPost = new HttpPost(serverHost + REQUEST_URL_BY_REQUEST_TYPE.get(request.getClass()));
             httpPost.setHeaders(APIConstants.REQUEST_HEADERS);
             httpPost.setEntity(new StringEntity(requestJSON));
@@ -163,8 +161,6 @@ public class SafechargeRequestExecutor {
             HttpResponse response = httpClient.execute(httpPost);
 
             String responseJSON = EntityUtils.toString(response.getEntity());
-            System.out.println(request.getClass()
-                                      .getSimpleName() + ": " + responseJSON);
             if (logger.isDebugEnabled()) {
                 logger.debug("Received " + request.getClass()
                                                   .getSimpleName() + ": " + responseJSON);

@@ -15,7 +15,6 @@ public interface APIConstants {
 
     String PRODUCTION_HOST = "https://secure.safecharge.com/ppp/";
     String INTEGRATION_HOST = "https://ppp-test.safecharge.com/ppp/";
-    String DEVELOPER_HOST = "http://192.168.102.155:8080/ppp/";
 
     // API enpoints:
 
