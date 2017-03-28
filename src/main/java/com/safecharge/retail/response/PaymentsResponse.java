@@ -48,7 +48,7 @@ public abstract class PaymentsResponse extends SafechargeResponse {
     /**
      * The Id of newly generated userPaymentOption, in case of new userPaymentOption is generated, or userPaymentOptionId that has been used for transaction processing and it had been sent into the request.
      */
-    protected Long userPaymentOptionId;
+    protected String userPaymentOptionId;
 
     /**
      * Тhe Bank transaction ID.
@@ -177,7 +177,7 @@ public abstract class PaymentsResponse extends SafechargeResponse {
     /**
      * @return the Id of newly generated userPaymentOption, in case of new userPaymentOption is generated, or userPaymentOptionId that has been used for transaction processing and it had been sent into the request.
      */
-    public Long getUserPaymentOptionId() {
+    public String getUserPaymentOptionId() {
         return userPaymentOptionId;
     }
 
@@ -186,7 +186,7 @@ public abstract class PaymentsResponse extends SafechargeResponse {
      *
      * @param userPaymentOptionId
      */
-    public void setUserPaymentOptionId(Long userPaymentOptionId) {
+    public void setUserPaymentOptionId(String userPaymentOptionId) {
         this.userPaymentOptionId = userPaymentOptionId;
     }
 

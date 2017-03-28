@@ -30,6 +30,18 @@ public class CardData {
     @Size(max = 4,
           message = "cvv size must be up to 4 characters long!") private String CVV;
 
+    public CardData() {
+    }
+
+    public CardData(String cardNumber, String cardHolderName, String expirationMonth, String expirationYear, String cardToken, String CVV) {
+        this.cardNumber = cardNumber;
+        this.cardHolderName = cardHolderName;
+        this.expirationMonth = expirationMonth;
+        this.expirationYear = expirationYear;
+        this.cardToken = cardToken;
+        this.CVV = CVV;
+    }
+
     public String getCardNumber() {
         return cardNumber;
     }

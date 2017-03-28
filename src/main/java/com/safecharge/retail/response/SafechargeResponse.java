@@ -25,7 +25,7 @@ public abstract class SafechargeResponse {
     /**
      * The error code of the error occurred at the cashier site.
      */
-    private int errCode = Constants.ERR_CODE_NO_ERROR;
+    private Integer errCode = Constants.ERR_CODE_NO_ERROR;
 
     /**
      * The error reason if error occurred at the cashier side.

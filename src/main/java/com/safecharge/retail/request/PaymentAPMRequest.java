@@ -19,14 +19,14 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
-public class PaymentAPMRequest extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING) public class PaymentAPMRequest
+        extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
     /**
      * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
      */
-    @NotNull(message = "orderId parameter is mandatory!") @Size(max = 45,
-                                                                message = "orderId size must be up to 45 characters long!") private String orderId;
+    @Size(max = 45,
+          message = "orderId size must be up to 45 characters long!") private String orderId;
 
     /**
      * Identification of the payment method. For example: PayPal, Skrill, PaysafeCard etc.
