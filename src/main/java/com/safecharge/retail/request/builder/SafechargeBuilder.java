@@ -18,6 +18,7 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
 
     protected MerchantInfo merchantInfo;
     private String clientRequestId;
+    private String internalRequestId;
     private String sessionToken;
 
     /**
@@ -38,6 +39,11 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
         return (T) this;
     }
 
+    public T addInternalRequestId(String internalRequestId) {
+        this.internalRequestId = internalRequestId;
+        return (T) this;
+    }
+
     public T addMerchantInfo(MerchantInfo merchantInfo) {
         this.merchantInfo = merchantInfo;
         return (T) this;
@@ -54,7 +60,8 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
         safechargeRequest.setMerchantSiteId(merchantInfo != null ? merchantInfo.getMerchantSiteId() : null);
         safechargeRequest.setSessionToken(sessionToken);
         safechargeRequest.setTimeStamp(timestamp);
-        safechargeRequest.setClientRequestId(clientRequestId != null ? clientRequestId : RequestUtils.calculateClientRequestId(timestamp));
+        safechargeRequest.setClientRequestId(clientRequestId);
+        safechargeRequest.setInternalRequestId(internalRequestId);
         safechargeRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "", Constants.CHARSET_UTF8,
                         merchantInfo != null ? merchantInfo.getHashAlgorithm() : null));

@@ -12,6 +12,11 @@ import javax.validation.constraints.NotNull;
 public abstract class SafechargeRequest {
 
     /**
+     * Merchant's unique request ID
+     */
+    private String internalRequestId;
+
+    /**
      * ID of the API request in merchant system.
      */
     private String clientRequestId;
@@ -41,6 +46,14 @@ public abstract class SafechargeRequest {
      * The session identifier returned, to be used as input parameter in all methods. UUID = Universal unique ID.
      */
     private String sessionToken;
+
+    public String getInternalRequestId() {
+        return internalRequestId;
+    }
+
+    public void setInternalRequestId(String internalRequestId) {
+        this.internalRequestId = internalRequestId;
+    }
 
     public String getMerchantId() {
         return merchantId;
@@ -92,7 +105,10 @@ public abstract class SafechargeRequest {
 
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("clientRequestId='")
+        sb.append("internalRequestId='")
+          .append(internalRequestId)
+          .append('\'');
+        sb.append(", clientRequestId='")
           .append(clientRequestId)
           .append('\'');
         sb.append(", merchantId='")

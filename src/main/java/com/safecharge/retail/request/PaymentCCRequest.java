@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.retail.model.CardData;
 import com.safecharge.retail.model.UserPaymentOption;
-import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
+import com.safecharge.retail.request.builder.SafechargeCCBuilder;
 import com.safecharge.retail.util.Constants;
 import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
@@ -16,8 +16,8 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
-public class PaymentCCRequest extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING) public class PaymentCCRequest
+        extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
     /**
      * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
@@ -109,62 +109,10 @@ public class PaymentCCRequest extends SafechargeOrderDetailsRequest implements S
         return sb.toString();
     }
 
-    public static class Builder extends SafechargeOrderBuilder<Builder> {
-
-        protected CardData cardData;
-        protected Constants.TransactionType transactionType;
-        protected UserPaymentOption userPaymentOption;
-        protected String orderId;
-
-        public Builder() {
-            super();
-        }
-
-        public Builder addOrderId(String orderId) {
-            this.orderId = orderId;
-            return this;
-        }
-
-        public Builder addTransactionType(Constants.TransactionType transactionType) {
-            this.transactionType = transactionType;
-            return this;
-        }
-
-        public Builder addUserPaymentOption(String cvv, String userPaymentOptionId) {
-            UserPaymentOption userPaymentOption = new UserPaymentOption();
-            userPaymentOption.setCVV(cvv);
-            userPaymentOption.setUserPaymentOptionId(userPaymentOptionId);
-            return addUserPaymentOption(userPaymentOption);
-        }
-
-        public Builder addUserPaymentOption(UserPaymentOption userPaymentOption) {
-            this.userPaymentOption = userPaymentOption;
-            return this;
-        }
-
-        public Builder addCardData(CardData cardData) {
-            this.cardData = cardData;
-            return this;
-        }
-
-        public Builder addCardData(String cardNumber, String cardHolderName, String expirationMonth, String expirationYear, String cardToken,
-                String cvv) {
-            CardData cardData = new CardData();
-            cardData.setCardNumber(cardNumber);
-            cardData.setCardHolderName(cardHolderName);
-            cardData.setExpirationMonth(expirationMonth);
-            cardData.setExpirationYear(expirationYear);
-            cardData.setCardToken(cardToken);
-            cardData.setCVV(cvv);
-            return addCardData(cardData);
-        }
+    public static class Builder extends SafechargeCCBuilder<Builder> {
 
         @Override public SafechargeRequest build() {
             PaymentCCRequest request = new PaymentCCRequest();
-            request.setUserPaymentOption(userPaymentOption);
-            request.setTransactionType(transactionType);
-            request.setCardData(cardData);
-            request.setOrderId(orderId);
             return ValidationUtil.validate(super.build(request));
         }
     }

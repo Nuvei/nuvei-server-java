@@ -1,5 +1,7 @@
 package com.safecharge.retail.test;
 
+import java.util.UUID;
+
 import javax.validation.ConstraintViolationException;
 
 import org.junit.Assert;
@@ -68,10 +70,14 @@ public class ValidationsTest {
     @Test public void testSuccessfulValidation_GetOrderDetails() {
         SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
         SafechargeRequest safechargeRequest = GetOrderDetailsRequest.builder()
+                                                                    .addInternalRequestId(UUID.randomUUID()
+                                                                                              .toString())
+                                                                    .addClientRequestId("Test-" + Math.random() * Math.random() * 100000000)
                                                                     .addMerchantInfo(validMerchantInfo)
                                                                     .addOrderId("1234")
                                                                     .addSessionToken(dummySessionToken)
                                                                     .build();
+        System.out.println(safechargeRequest);
         Assert.assertTrue(safechargeRequest != null);
     }
 

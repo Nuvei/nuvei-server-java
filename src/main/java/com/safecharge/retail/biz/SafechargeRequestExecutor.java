@@ -149,22 +149,8 @@ public class SafechargeRequestExecutor {
 
         try {
             String requestJSON = gson.toJson(request);
-            HttpPost httpPost = new HttpPost(serverHost + REQUEST_URL_BY_REQUEST_TYPE.get(request.getClass()));
-            httpPost.setHeaders(APIConstants.REQUEST_HEADERS);
-            httpPost.setEntity(new StringEntity(requestJSON));
-
-            if (logger.isDebugEnabled()) {
-                logger.debug("Sent " + request.getClass()
-                                              .getSimpleName() + ": " + requestJSON);
-            }
-
-            HttpResponse response = httpClient.execute(httpPost);
-
-            String responseJSON = EntityUtils.toString(response.getEntity());
-            if (logger.isDebugEnabled()) {
-                logger.debug("Received " + request.getClass()
-                                                  .getSimpleName() + ": " + responseJSON);
-            }
+            String serviceUrl = serverHost + REQUEST_URL_BY_REQUEST_TYPE.get(request.getClass());
+            String responseJSON = executeJsonRequest(request, requestJSON, serviceUrl);
 
             return gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(request.getClass()));
 
@@ -176,5 +162,25 @@ public class SafechargeRequestExecutor {
         }
 
         return null;
+    }
+
+    public String executeJsonRequest(SafechargeRequest request, String requestJSON, String serviceUrl) throws IOException {
+        HttpPost httpPost = new HttpPost(serviceUrl);
+        httpPost.setHeaders(APIConstants.REQUEST_HEADERS);
+        httpPost.setEntity(new StringEntity(requestJSON));
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("Sent " + request.getClass()
+                                          .getSimpleName() + ": " + requestJSON);
+        }
+
+        HttpResponse response = httpClient.execute(httpPost);
+
+        String responseJSON = EntityUtils.toString(response.getEntity());
+        if (logger.isDebugEnabled()) {
+            logger.debug("Received " + request.getClass()
+                                              .getSimpleName() + ": " + responseJSON);
+        }
+        return responseJSON;
     }
 }
