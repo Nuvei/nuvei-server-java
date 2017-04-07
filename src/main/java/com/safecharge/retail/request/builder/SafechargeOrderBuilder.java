@@ -370,7 +370,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      */
     protected <T extends SafechargeOrderDetailsRequest> T build(T safechargeOrderDetailsRequest) {
 
-        safechargeOrderDetailsRequest = super.build(safechargeOrderDetailsRequest);
+        super.build(safechargeOrderDetailsRequest);
 
         safechargeOrderDetailsRequest.setCurrency(currency);
         safechargeOrderDetailsRequest.setAmount(amount);

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -19,6 +20,7 @@ import com.safecharge.retail.request.AddUPOCreditCardByTempTokenRequest;
 import com.safecharge.retail.request.AddUPOCreditCardRequest;
 import com.safecharge.retail.request.Authorization3DRequest;
 import com.safecharge.retail.request.CardTokenizationRequest;
+import com.safecharge.retail.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
 import com.safecharge.retail.request.GetSessionTokenRequest;
 import com.safecharge.retail.request.OpenOrderRequest;
@@ -35,15 +37,18 @@ import com.safecharge.retail.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.retail.response.AddUPOCreditCardResponse;
 import com.safecharge.retail.response.Authorization3DResponse;
 import com.safecharge.retail.response.CardTokenizationResponse;
+import com.safecharge.retail.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.retail.response.GetOrderDetailsResponse;
 import com.safecharge.retail.response.OpenOrderResponse;
 import com.safecharge.retail.response.Payment3DResponse;
 import com.safecharge.retail.response.PaymentAPMResponse;
 import com.safecharge.retail.response.PaymentCCResponse;
+import com.safecharge.retail.response.RefundTransactionResponse;
 import com.safecharge.retail.response.SafechargeResponse;
-import com.safecharge.retail.response.SafechargeTransactionResponse;
 import com.safecharge.retail.response.SessionTokenResponse;
+import com.safecharge.retail.response.SettleTransactionResponse;
 import com.safecharge.retail.response.UpdateOrderResponse;
+import com.safecharge.retail.response.VoidTransactionResponse;
 import com.safecharge.retail.util.APIConstants;
 
 /**
@@ -72,11 +77,12 @@ public class SafechargeRequestExecutor {
                     put(CardTokenizationRequest.class, CardTokenizationResponse.class);
                     put(Payment3DRequest.class, Payment3DResponse.class);
                     put(AddUPOCreditCardByTempTokenRequest.class, AddUPOCreditCardByTempTokenResponse.class);
-                    put(SettleTransactionRequest.class, SafechargeTransactionResponse.class);
-                    put(VoidTransactionRequest.class, SafechargeTransactionResponse.class);
-                    put(RefundTransactionRequest.class, SafechargeTransactionResponse.class);
+                    put(SettleTransactionRequest.class, SettleTransactionResponse.class);
+                    put(VoidTransactionRequest.class, VoidTransactionResponse.class);
+                    put(RefundTransactionRequest.class, RefundTransactionResponse.class);
                     put(AddUPOCreditCardRequest.class, AddUPOCreditCardResponse.class);
                     put(AddUPOAPMRequest.class, AddUPOAPMResponse.class);
+                    put(GetMerchantPaymentMethodsRequest.class, GetMerchantPaymentMethodsResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -99,12 +105,12 @@ public class SafechargeRequestExecutor {
                     put(RefundTransactionRequest.class, APIConstants.REFUND_TRANSACTION_URL);
                     put(AddUPOCreditCardRequest.class, APIConstants.ADD_UPO_CREDIT_CARD_URL);
                     put(AddUPOAPMRequest.class, APIConstants.ADD_UPO_APM_URL);
+                    put(GetMerchantPaymentMethodsRequest.class, APIConstants.GET_MERCHANT_PAYMENT_METHODS_REQUEST_URL);
                 }
             };
     private static SafechargeRequestExecutor instance = null;
     private static HttpClient httpClient;
     private static boolean isInitialized = false;
-    private static String serverHost = "";
 
     private SafechargeRequestExecutor() {
     }
@@ -116,18 +122,21 @@ public class SafechargeRequestExecutor {
         return instance;
     }
 
+    public void init() {
+        init(SafechargeHttpClient.createDefault());
+    }
+
     /**
      * This method initiates the {@link SafechargeRequestExecutor} with a configured {@link HttpClient} and server information.
      */
-    public void init() {
+    public void init(HttpClient httpClient) {
 
         if (isInitialized) {
             // already initialized
             return;
         }
 
-        SafechargeRequestExecutor.httpClient = SafechargeConfiguration.getHttpClient();
-        SafechargeRequestExecutor.serverHost = SafechargeConfiguration.getServerHost();
+        SafechargeRequestExecutor.httpClient = httpClient;
 
         isInitialized = true;
     }
@@ -149,7 +158,7 @@ public class SafechargeRequestExecutor {
 
         try {
             String requestJSON = gson.toJson(request);
-            String serviceUrl = serverHost + REQUEST_URL_BY_REQUEST_TYPE.get(request.getClass());
+            String serviceUrl = request.getHostName() + REQUEST_URL_BY_REQUEST_TYPE.get(request.getClass());
             String responseJSON = executeJsonRequest(request, requestJSON, serviceUrl);
 
             return gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(request.getClass()));
@@ -180,6 +189,24 @@ public class SafechargeRequestExecutor {
         if (logger.isDebugEnabled()) {
             logger.debug("Received " + request.getClass()
                                               .getSimpleName() + ": " + responseJSON);
+        }
+        return responseJSON;
+    }
+
+    public String executeRequest(String request, String serviceUrl, Header[] headers) throws IOException {
+        HttpPost httpPost = new HttpPost(serviceUrl);
+        httpPost.setHeaders(headers);
+        httpPost.setEntity(new StringEntity(request));
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("Sent " + request);
+        }
+
+        HttpResponse response = httpClient.execute(httpPost);
+
+        String responseJSON = EntityUtils.toString(response.getEntity());
+        if (logger.isDebugEnabled()) {
+            logger.debug("Received " + response);
         }
         return responseJSON;
     }

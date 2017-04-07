@@ -1,0 +1,138 @@
+{
+  "paymentMethods": [
+    {
+      "paymentMethod": "cc_card",
+      "paymentMethodDisplayName": [
+        {
+          "language": "en",
+          "message": "Credit Card"
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "currencies": [
+        "EUR"
+      ],
+      "fields": [
+        {
+          "name": "cc_card_number",
+          "type": "text",
+          "caption": [
+            {
+              "language": "en",
+              "message": "rest.api.cc_card_number"
+            }
+          ]
+        },
+        {
+          "name": "expMonth",
+          "type": "text",
+          "caption": [
+            {
+              "language": "en",
+              "message": "rest.api.expMonth"
+            }
+          ]
+        },
+        {
+          "name": "expYear",
+          "type": "text",
+          "caption": [
+            {
+              "language": "en",
+              "message": "rest.api.expYear"
+            }
+          ]
+        },
+        {
+          "name": "nameOnCard",
+          "type": "text",
+          "caption": [
+            {
+              "language": "en",
+              "message": "rest.api.nameOnCard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "paymentMethod": "apmgw_Neteller",
+      "paymentMethodDisplayName": [
+        {
+          "language": "en",
+          "message": "Neteller"
+        }
+      ],
+      "isDirect": "true",
+      "countries": [
+        "DE"
+      ],
+      "currencies": [
+        "EUR"
+      ],
+      "fields": [
+        {
+          "name": "nettelerAccount",
+          "regex": "^[A-Za-z0-9-_.+%]+@[A-Za-z0-9-.]+.[A-Za-z]{2,4}$|^\\d*$",
+          "type": "password",
+          "validationmessage": [
+            {
+              "language": "en",
+              "message": "Your Account ID must be 12 digits or a valid email address"
+            }
+          ],
+          "caption": [
+            {
+              "language": "en",
+              "message": "Account ID or E-mail"
+            }
+          ]
+        },
+        {
+          "name": "nettelerSecureId",
+          "regex": "^\\d*$",
+          "type": "password",
+          "validationmessage": [
+            {
+              "language": "en",
+              "message": "Your Secure ID must be 6 digits"
+            }
+          ],
+          "caption": [
+            {
+              "language": "en",
+              "message": "Secure ID or Authentication Code"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "paymentMethod": "apmgw_expresscheckout",
+      "paymentMethodDisplayName": [
+        {
+          "language": "en",
+          "message": "PayPal"
+        }
+      ],
+      "isDirect": "false",
+      "countries": [
+        "DE"
+      ],
+      "currencies": [
+        "EUR"
+      ],
+      "fields": []
+    }
+  ],
+  "sessionToken": "",
+  "internalRequestId": 1250,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "reason": "",
+  "merchantId": "7228839313016442768",
+  "merchantSiteId": "117711",
+  "version": "1.0"
+}

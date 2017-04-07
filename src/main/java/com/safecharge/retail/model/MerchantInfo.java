@@ -18,9 +18,11 @@ public class MerchantInfo {
 
     @NotNull(message = "merchantSiteId may not be null!") private String merchantSiteId;
 
+    @NotNull(message = "serverHost may not be null") private String serverHost;
+
     private Constants.HashAlgorithm hashAlgorithm;
 
-    public MerchantInfo(String merchantKey, String merchantId, String merchantSiteId, Constants.HashAlgorithm hashAlgorithm) {
+    public MerchantInfo(String merchantKey, String merchantId, String merchantSiteId, String serverHost, Constants.HashAlgorithm hashAlgorithm) {
         this.merchantKey = merchantKey;
         this.merchantId = merchantId;
         this.merchantSiteId = merchantSiteId;
@@ -37,6 +39,10 @@ public class MerchantInfo {
 
     public String getMerchantSiteId() {
         return merchantSiteId;
+    }
+
+    public String getServerHost() {
+        return serverHost;
     }
 
     public Constants.HashAlgorithm getHashAlgorithm() {

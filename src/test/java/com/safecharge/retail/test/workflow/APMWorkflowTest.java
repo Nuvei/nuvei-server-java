@@ -10,8 +10,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import com.safecharge.retail.biz.SafechargeConfiguration;
-import com.safecharge.retail.biz.SafechargeHttpClient;
 import com.safecharge.retail.model.MerchantInfo;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
 import com.safecharge.retail.request.GetSessionTokenRequest;
@@ -40,10 +38,9 @@ import com.safecharge.retail.util.Constants;
 
     @Before public void init() {
         super.init();
-        merchantInfo = new MerchantInfo("2QMy87kirFbtdkl6Ubk9xCqhNICYNCewiOCm19DhJp3lqAI6lp7Oh2rZsn61LVw9", "2885023999185468261", "5612",
-                Constants.HashAlgorithm.SHA256);
-
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
+        merchantInfo =
+                new MerchantInfo("2QMy87kirFbtdkl6Ubk9xCqhNICYNCewiOCm19DhJp3lqAI6lp7Oh2rZsn61LVw9", "2885023999185468261", "http://dummy:1234/ppp/",
+                        "5612", Constants.HashAlgorithm.SHA256);
     }
 
     @Test public void test1_getSessionTokenTest() throws IOException {

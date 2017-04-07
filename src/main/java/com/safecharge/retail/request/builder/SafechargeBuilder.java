@@ -49,8 +49,8 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
         return (T) this;
     }
 
-    public T addMerchantInfo(String merchantKey, String merchantId, String merchantSiteId, Constants.HashAlgorithm hashAlgorithm) {
-        this.merchantInfo = new MerchantInfo(merchantKey, merchantId, merchantSiteId, hashAlgorithm);
+    public T addMerchantInfo(String merchantKey, String merchantId, String merchantSiteId, String serverHost, Constants.HashAlgorithm hashAlgorithm) {
+        this.merchantInfo = new MerchantInfo(merchantKey, merchantId, merchantSiteId, serverHost, hashAlgorithm);
         return (T) this;
     }
 

@@ -36,8 +36,8 @@ import com.safecharge.retail.util.Constants;
 
     @Before public void init() {
         super.init();
-        merchantInfo = new MerchantInfo("2QMy87kirFbtdkl6Ubk9xCqhNICYNCewiOCm19DhJp3lqAI6lp7Oh2rZsn61LVw9", "2885023999185468261", "5612",
-                Constants.HashAlgorithm.SHA256);
+        merchantInfo = new MerchantInfo("2QMy87kirFbtdkl6Ubk9xCqhNICYNCewiOCm19DhJp3lqAI6lp7Oh2rZsn61LVw9", "2885023999185468261",
+                "http://192.168.102.155:8080/ppp/", "5612", Constants.HashAlgorithm.SHA256);
 
     }
 

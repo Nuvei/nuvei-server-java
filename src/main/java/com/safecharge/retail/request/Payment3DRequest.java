@@ -59,7 +59,7 @@ public class Payment3DRequest extends PaymentCCRequest {
 
         @Override public SafechargeRequest build() {
             Payment3DRequest request = new Payment3DRequest();
-            request = super.build(request);
+            super.build(request);
             request.setPaResponse(paResponse);
             return ValidationUtil.validate(super.build(request));
         }

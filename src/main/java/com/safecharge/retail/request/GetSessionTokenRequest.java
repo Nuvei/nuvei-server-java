@@ -28,8 +28,7 @@ public class GetSessionTokenRequest extends SafechargeRequest {
     public static class Builder extends SafechargeBuilder<Builder> {
 
         @Override public SafechargeRequest build() {
-            SafechargeRequest request = new GetSessionTokenRequest();
-            return ValidationUtil.validate(super.build(request));
+            return ValidationUtil.validate(super.build(new GetSessionTokenRequest()));
         }
     }
 }

@@ -21,7 +21,7 @@ import com.safecharge.retail.util.Constants;
  */
 public class InvalidPaymentCCRequestTest extends BasePaymentCCTest {
 
-    private static final MerchantInfo validMerchantInfo = new MerchantInfo("", "", "", Constants.HashAlgorithm.MD5);
+    private static final MerchantInfo validMerchantInfo = new MerchantInfo("", "", "", "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
 
     @Test public void testExpiredSession() {
         SessionTokenResponse sessionTokenResponse = executeGetSessionTokenRequest(validMerchantInfo);

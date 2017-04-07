@@ -8,10 +8,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.safecharge.retail.biz.SafechargeConfiguration;
-import com.safecharge.retail.biz.SafechargeHttpClient;
 import com.safecharge.retail.model.Item;
 import com.safecharge.retail.model.MerchantInfo;
+import com.safecharge.retail.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.retail.request.GetOrderDetailsRequest;
 import com.safecharge.retail.request.GetSessionTokenRequest;
 import com.safecharge.retail.request.OpenOrderRequest;
@@ -29,8 +28,10 @@ import com.safecharge.retail.util.Constants;
  */
 public class ValidationsTest {
 
-    private static final MerchantInfo validMerchantInfo = new MerchantInfo("dummy", "1234", "1234", Constants.HashAlgorithm.MD5);
-    private static final MerchantInfo invalidMerchantInfo = new MerchantInfo("dummy", null, null, Constants.HashAlgorithm.MD5);
+    private static final MerchantInfo validMerchantInfo =
+            new MerchantInfo("dummy", "1234", "1234", "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
+    private static final MerchantInfo invalidMerchantInfo =
+            new MerchantInfo("dummy", null, null, "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
     private static final String dummySessionToken = "dummySessionToken";
     private static final Item dummyValidItem = new Item();
     private static final Item dummyInvalidItem = new Item();
@@ -44,8 +45,6 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_GetSessionToken() {
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
-
         SafechargeRequest safechargeRequest = GetSessionTokenRequest.builder()
                                                                     .addMerchantInfo(validMerchantInfo)
                                                                     .build();
@@ -53,8 +52,6 @@ public class ValidationsTest {
     }
 
     @Test public void testFailedValidation_GetSessionToken() {
-
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
 
         try {
             GetSessionTokenRequest.builder()
@@ -68,7 +65,6 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_GetOrderDetails() {
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
         SafechargeRequest safechargeRequest = GetOrderDetailsRequest.builder()
                                                                     .addInternalRequestId(UUID.randomUUID()
                                                                                               .toString())
@@ -77,13 +73,10 @@ public class ValidationsTest {
                                                                     .addOrderId("1234")
                                                                     .addSessionToken(dummySessionToken)
                                                                     .build();
-        System.out.println(safechargeRequest);
         Assert.assertTrue(safechargeRequest != null);
     }
 
     @Test public void testFailedValidation_GetOrderDetails() {
-
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
 
         try {
             GetOrderDetailsRequest.builder()
@@ -97,7 +90,6 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_OpenOrder() {
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
         SafechargeRequest safechargeRequest = OpenOrderRequest.builder()
                                                               .addMerchantInfo(validMerchantInfo)
                                                               .addSessionToken(dummySessionToken)
@@ -109,8 +101,6 @@ public class ValidationsTest {
     }
 
     @Test public void testFailedValidation_OpenOrder() {
-
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
 
         try {
             SafechargeRequest safechargeRequest = OpenOrderRequest.builder()
@@ -127,7 +117,6 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_UpdateOrder() {
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
         SafechargeRequest safechargeRequest = UpdateOrderRequest.builder()
                                                                 .addMerchantInfo(validMerchantInfo)
                                                                 .addSessionToken(dummySessionToken)
@@ -140,8 +129,6 @@ public class ValidationsTest {
     }
 
     @Test public void testFailedValidation_UpdateOrder() {
-
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
 
         try {
             SafechargeRequest safechargeRequest = UpdateOrderRequest.builder()
@@ -159,7 +146,6 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_PaymentAPM() {
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
         SafechargeRequest safechargeRequest = PaymentAPMRequest.builder()
                                                                .addMerchantInfo(validMerchantInfo)
                                                                .addCurrency("EUR")
@@ -184,8 +170,6 @@ public class ValidationsTest {
     }
 
     @Test public void testFailedValidation_PaymentAPM() {
-
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
 
         try {
             SafechargeRequest safechargeRequest = PaymentAPMRequest.builder()
@@ -215,7 +199,6 @@ public class ValidationsTest {
     }
 
     @Test public void testSuccessfulValidation_PaymentCCRequest() {
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
         SafechargeRequest safechargeRequest = PaymentCCRequest.builder()
                                                               .addMerchantInfo(validMerchantInfo)
                                                               .addCurrency("EUR")
@@ -238,8 +221,6 @@ public class ValidationsTest {
 
     @Test public void testFailedValidation_PaymentCCRequest() {
 
-        SafechargeConfiguration.init("http://dummy:1234/ppp/", SafechargeHttpClient.createDefault());
-
         try {
             SafechargeRequest safechargeRequest = PaymentCCRequest.builder()
                                                                   .addMerchantInfo(invalidMerchantInfo)
@@ -260,6 +241,23 @@ public class ValidationsTest {
             Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
         } catch (ConstraintViolationException e) {
             Assert.assertEquals(8, e.getConstraintViolations()
+                                    .size());
+        }
+    }
+
+    @Test public void testFailedValidation_GetPaymentMethodsListRequest() {
+
+        try {
+            GetMerchantPaymentMethodsRequest.builder()
+                                            .addMerchantInfo(validMerchantInfo)
+                                            .addSessionToken(dummySessionToken)
+                                            .addCountryCode("Ukraine")
+                                            .addLanguageCode("Russian")
+                                            .addCurrencyCode("Euro")
+                                            .build();
+            Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
+        } catch (ConstraintViolationException e) {
+            Assert.assertEquals(3, e.getConstraintViolations()
                                     .size());
         }
     }

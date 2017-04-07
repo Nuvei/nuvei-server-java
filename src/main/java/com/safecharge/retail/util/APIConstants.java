@@ -33,6 +33,7 @@ public interface APIConstants {
     String REFUND_TRANSACTION_URL = "api/v1/refundTransaction.do";
     String ADD_UPO_CREDIT_CARD_URL = "api/v1/addUPOCreditCard.do";
     String ADD_UPO_APM_URL = "api/v1/addUPOAPM.do";
+    String GET_MERCHANT_PAYMENT_METHODS_REQUEST_URL = "api/v1/getMerchantPaymentMethods.do";
 
     // Request Headers:
 

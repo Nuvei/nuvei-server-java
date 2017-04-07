@@ -57,7 +57,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     }
 
     public <T extends PaymentCCRequest> T build(T request) {
-        request = super.build(request);
+        super.build(request);
         request.setUserPaymentOption(userPaymentOption);
         request.setTransactionType(transactionType);
         request.setCardData(cardData);

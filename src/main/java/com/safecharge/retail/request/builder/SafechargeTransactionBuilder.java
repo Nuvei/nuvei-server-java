@@ -66,7 +66,9 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     }
 
     protected <T extends SafechargeTransactionRequest> T build(T safechargeTransactionRequest) {
-        safechargeTransactionRequest = super.build(safechargeTransactionRequest);
+
+        super.build(safechargeTransactionRequest);
+
         safechargeTransactionRequest.setAmount(amount);
         safechargeTransactionRequest.setCurrency(currency);
         safechargeTransactionRequest.setAuthCode(authCode);

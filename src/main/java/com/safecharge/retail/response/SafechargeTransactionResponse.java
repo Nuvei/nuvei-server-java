@@ -143,7 +143,7 @@ public class SafechargeTransactionResponse extends SafechargeResponse {
     }
 
     @Override public String toString() {
-        final StringBuilder sb = new StringBuilder("SafechargeTransactionResponse{");
+        final StringBuilder sb = new StringBuilder();
         sb.append("transactionId='")
           .append(transactionId)
           .append('\'');
@@ -184,7 +184,6 @@ public class SafechargeTransactionResponse extends SafechargeResponse {
           .append('\'');
         sb.append(", ")
           .append(super.toString());
-        sb.append('}');
         return sb.toString();
     }
 }
