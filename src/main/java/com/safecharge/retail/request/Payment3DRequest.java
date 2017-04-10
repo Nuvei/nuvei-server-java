@@ -1,7 +1,6 @@
 package com.safecharge.retail.request;
 
-import javax.validation.constraints.Size;
-
+import com.safecharge.retail.request.builder.SafechargeCCBuilder;
 import com.safecharge.retail.util.Constants;
 import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
@@ -12,10 +11,10 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
-public class Payment3DRequest extends PaymentCCRequest {
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING) public class Payment3DRequest
+        extends SafechargeCCRequest {
 
-    @Size(max = 2048) private String paResponse;
+    private String paResponse;
 
     public static Builder builder() {
         return new Builder();
@@ -31,24 +30,14 @@ public class Payment3DRequest extends PaymentCCRequest {
 
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("Payment3DRequest{");
-        sb.append("orderId='")
-          .append(getOrderId())
-          .append('\'');
-        sb.append(", transactionType=")
-          .append(getTransactionType());
-        sb.append(", cardData=")
-          .append(getCardData());
-        sb.append(", paResponse=")
+        sb.append("paResponse=")
           .append(getPaResponse());
-        sb.append(", userPaymentOption=")
-          .append(getUserPaymentOption());
-        sb.append(", ")
-          .append(super.toString());
+        sb.append(super.toString());
         sb.append('}');
         return sb.toString();
     }
 
-    public static class Builder extends PaymentCCRequest.Builder {
+    public static class Builder extends SafechargeCCBuilder<Builder> {
 
         private String paResponse;
 
@@ -59,7 +48,6 @@ public class Payment3DRequest extends PaymentCCRequest {
 
         @Override public SafechargeRequest build() {
             Payment3DRequest request = new Payment3DRequest();
-            super.build(request);
             request.setPaResponse(paResponse);
             return ValidationUtil.validate(super.build(request));
         }

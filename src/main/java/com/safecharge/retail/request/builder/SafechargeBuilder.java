@@ -58,6 +58,7 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
         String timestamp = RequestUtils.calculateTimestamp();
         safechargeRequest.setMerchantId(merchantInfo != null ? merchantInfo.getMerchantId() : null);
         safechargeRequest.setMerchantSiteId(merchantInfo != null ? merchantInfo.getMerchantSiteId() : null);
+        safechargeRequest.setServerHost(merchantInfo != null ? merchantInfo.getServerHost() : null);
         safechargeRequest.setSessionToken(sessionToken);
         safechargeRequest.setTimeStamp(timestamp);
         safechargeRequest.setClientRequestId(clientRequestId);

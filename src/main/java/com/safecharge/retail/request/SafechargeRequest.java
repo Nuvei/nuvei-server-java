@@ -46,7 +46,8 @@ public abstract class SafechargeRequest {
      * The session identifier returned, to be used as input parameter in all methods. UUID = Universal unique ID.
      */
     private String sessionToken;
-    private String hostName;
+
+    private String serverHost;
 
     public String getInternalRequestId() {
         return internalRequestId;
@@ -104,8 +105,19 @@ public abstract class SafechargeRequest {
         this.sessionToken = sessionToken;
     }
 
+    public String getServerHost() {
+        return serverHost;
+    }
+
+    public void setServerHost(String serverHost) {
+        this.serverHost = serverHost;
+    }
+
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder();
+        sb.append("serverHost='")
+          .append(serverHost)
+          .append('\'');
         sb.append("internalRequestId='")
           .append(internalRequestId)
           .append('\'');
@@ -128,13 +140,5 @@ public abstract class SafechargeRequest {
           .append(sessionToken)
           .append('\'');
         return sb.toString();
-    }
-
-    public String getHostName() {
-        return hostName;
-    }
-
-    public void setHostName(String hostName) {
-        this.hostName = hostName;
     }
 }

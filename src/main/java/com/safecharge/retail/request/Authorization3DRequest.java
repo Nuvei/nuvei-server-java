@@ -1,5 +1,6 @@
 package com.safecharge.retail.request;
 
+import com.safecharge.retail.request.builder.SafechargeCCBuilder;
 import com.safecharge.retail.util.Constants;
 import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
@@ -10,8 +11,8 @@ import com.safecharge.retail.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/17/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
-public class Authorization3DRequest extends PaymentCCRequest {
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING) public class Authorization3DRequest
+        extends SafechargeCCRequest {
 
     public static Builder builder() {
         return new Builder();
@@ -24,10 +25,10 @@ public class Authorization3DRequest extends PaymentCCRequest {
         return sb.toString();
     }
 
-    public static class Builder extends PaymentCCRequest.Builder {
+    public static class Builder extends SafechargeCCBuilder<Builder> {
 
         @Override public SafechargeRequest build() {
-            PaymentCCRequest request = new Authorization3DRequest();
+            Authorization3DRequest request = new Authorization3DRequest();
             return ValidationUtil.validate(super.build(request));
         }
     }

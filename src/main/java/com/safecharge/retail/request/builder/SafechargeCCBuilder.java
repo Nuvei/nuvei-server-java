@@ -2,7 +2,7 @@ package com.safecharge.retail.request.builder;
 
 import com.safecharge.retail.model.CardData;
 import com.safecharge.retail.model.UserPaymentOption;
-import com.safecharge.retail.request.PaymentCCRequest;
+import com.safecharge.retail.request.SafechargeCCRequest;
 import com.safecharge.retail.util.Constants;
 
 /**
@@ -13,10 +13,10 @@ import com.safecharge.retail.util.Constants;
  */
 public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> extends SafechargeOrderBuilder<T> {
 
-    protected CardData cardData;
-    protected Constants.TransactionType transactionType;
-    protected UserPaymentOption userPaymentOption;
-    protected String orderId;
+    private CardData cardData;
+    private Constants.TransactionType transactionType;
+    private UserPaymentOption userPaymentOption;
+    private String orderId;
 
     public T addOrderId(String orderId) {
         this.orderId = orderId;
@@ -56,7 +56,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         return addCardData(cardData);
     }
 
-    public <T extends PaymentCCRequest> T build(T request) {
+    public <T extends SafechargeCCRequest> T build(T request) {
         super.build(request);
         request.setUserPaymentOption(userPaymentOption);
         request.setTransactionType(transactionType);

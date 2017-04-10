@@ -127,12 +127,13 @@
       "fields": []
     }
   ],
-  "sessionToken": "",
+  "sessionToken": "test",
   "internalRequestId": 1250,
   "status": "SUCCESS",
   "errCode": 0,
   "reason": "",
   "merchantId": "7228839313016442768",
   "merchantSiteId": "117711",
+  "clientRequestId": "98876555",
   "version": "1.0"
 }

@@ -26,6 +26,7 @@ public class MerchantInfo {
         this.merchantKey = merchantKey;
         this.merchantId = merchantId;
         this.merchantSiteId = merchantSiteId;
+        this.serverHost = serverHost;
         this.hashAlgorithm = hashAlgorithm;
     }
 

@@ -158,7 +158,7 @@ public class SafechargeRequestExecutor {
 
         try {
             String requestJSON = gson.toJson(request);
-            String serviceUrl = request.getHostName() + REQUEST_URL_BY_REQUEST_TYPE.get(request.getClass());
+            String serviceUrl = request.getServerHost() + REQUEST_URL_BY_REQUEST_TYPE.get(request.getClass());
             String responseJSON = executeJsonRequest(request, requestJSON, serviceUrl);
 
             return gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(request.getClass()));
