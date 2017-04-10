@@ -60,9 +60,7 @@ public class Sample {
         SafechargeRequestExecutor requestExecutor = SafechargeRequestExecutor.getInstance();
 
         MerchantInfo merchantInfo = new MerchantInfo("MERCHANT_KEY_PROVIDED_BY_SAFECHARGE", "MERCHANT_ID_PROVIDED_BY_SAFECHARGE",
-                "MERCHANT_SITE_ID_PROVIDED_BY_SAFECHARGE", Constants.HashAlgorithm.SHA256);
-
-        SafechargeConfiguration.init(APIConstants.INTEGRATION_HOST, SafechargeHttpClient.createDefault());
+                "MERCHANT_SITE_ID_PROVIDED_BY_SAFECHARGE", APIConstants.INTEGRATION_HOST, Constants.HashAlgorithm.SHA256);
 
         SafechargeRequest safechargeRequest = GetSessionTokenRequest.builder()
                                                                     .addMerchantInfo(merchantInfo)
