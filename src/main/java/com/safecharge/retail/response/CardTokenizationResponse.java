@@ -8,28 +8,28 @@ package com.safecharge.retail.response;
  */
 public class CardTokenizationResponse extends PaymentCCResponse {
 
-    private String cardToken;
+    private String ccTempToken;
 
     /**
      * @return the credit/debit card token.
      */
-    public String getCardToken() {
-        return cardToken;
+    public String getCcTempToken() {
+        return ccTempToken;
     }
 
     /**
      * Sets the credit/debit card token.
      *
-     * @param cardToken
+     * @param ccTempToken
      */
-    public void setCardToken(String cardToken) {
-        this.cardToken = cardToken;
+    public void setCcTempToken(String ccTempToken) {
+        this.ccTempToken = ccTempToken;
     }
 
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("CardTokenizationResponse{");
-        sb.append("cardToken='")
-          .append(cardToken)
+        sb.append("ccTempToken='")
+          .append(ccTempToken)
           .append('\'');
         sb.append(", ")
           .append(super.toString());

@@ -99,7 +99,7 @@ public class CardTokenizationRequest extends SafechargeRequest {
             cardData.setCardHolderName(cardHolderName);
             cardData.setExpirationMonth(expirationMonth);
             cardData.setExpirationYear(expirationYear);
-            cardData.setCardToken(cardToken);
+            cardData.setCcTempToken(cardToken);
             cardData.setCVV(cvv);
             return addCardData(cardData);
         }

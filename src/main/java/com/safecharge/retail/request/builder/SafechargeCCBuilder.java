@@ -51,7 +51,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         cardData.setCardHolderName(cardHolderName);
         cardData.setExpirationMonth(expirationMonth);
         cardData.setExpirationYear(expirationYear);
-        cardData.setCardToken(cardToken);
+        cardData.setCcTempToken(cardToken);
         cardData.setCVV(cvv);
         return addCardData(cardData);
     }

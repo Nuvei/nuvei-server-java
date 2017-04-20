@@ -21,24 +21,26 @@ public class CardData {
     @Size(max = 2,
           message = "expirationMonth size must be up to 2 characters long!") private String expirationMonth;
 
-    @Size(max = 4,
-          message = "expirationYear size must be up to 4 characters long!") private String expirationYear;
+    @Size(min = 2,
+          max = 4,
+          message = "expirationYear size must be from 2 to 4 characters long!") private String expirationYear;
 
     @Size(max = 45,
-          message = "userTokenId size must be up to 45 characters long!") private String cardToken;
+          message = "userTokenId size must be up to 45 characters long!") private String ccTempToken;
 
-    @Size(max = 4,
-          message = "cvv size must be up to 4 characters long!") private String CVV;
+    @Size(min = 3,
+          max = 4,
+          message = "cvv size must be 3 or 4 characters long!") private String CVV;
 
     public CardData() {
     }
 
-    public CardData(String cardNumber, String cardHolderName, String expirationMonth, String expirationYear, String cardToken, String CVV) {
+    public CardData(String cardNumber, String cardHolderName, String expirationMonth, String expirationYear, String ccTempToken, String CVV) {
         this.cardNumber = cardNumber;
         this.cardHolderName = cardHolderName;
         this.expirationMonth = expirationMonth;
         this.expirationYear = expirationYear;
-        this.cardToken = cardToken;
+        this.ccTempToken = ccTempToken;
         this.CVV = CVV;
     }
 
@@ -82,11 +84,11 @@ public class CardData {
         CVV = cVV;
     }
 
-    public String getCardToken() {
-        return cardToken;
+    public String getCcTempToken() {
+        return ccTempToken;
     }
 
-    public void setCardToken(String cardToken) {
-        this.cardToken = cardToken;
+    public void setCcTempToken(String ccTempToken) {
+        this.ccTempToken = ccTempToken;
     }
 }
