@@ -4,6 +4,7 @@ import com.safecharge.retail.request.builder.SafechargeOrderBuilder;
 import com.safecharge.retail.util.Constants;
 import com.safecharge.retail.util.ValidChecksum;
 import com.safecharge.retail.util.ValidationUtil;
+import org.apache.logging.log4j.core.util.Assert;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
