@@ -15,13 +15,13 @@ public class Item {
                                                       max = 255,
                                                       message = "name size must be up to 255 characters long!") private String name;
 
-    @NotNull(message = "name may not be null!") @Size(min = 1,
-                                                      max = 10,
-                                                      message = "price size must be up to 10 characters long!") private String price;
+    @NotNull(message = "price may not be null!") @Size(min = 1,
+                                                       max = 10,
+                                                       message = "price size must be up to 10 characters long!") private String price;
 
-    @NotNull(message = "name may not be null!") @Size(min = 1,
-                                                      max = 10,
-                                                      message = "quantity size must be up to 10 characters long!") private String quantity;
+    @NotNull(message = "quantity may not be null!") @Size(min = 1,
+                                                          max = 10,
+                                                          message = "quantity size must be up to 10 characters long!") private String quantity;
 
     public String getName() {
         return name;
