@@ -16,7 +16,13 @@ public class Authorization3DResponse extends PaymentsResponse {
      * @return the 3D secure request data for the card issuer/bank.
      */
     public String getPaRequest() {
-        return paRequest;
+        if (paRequest != null) {
+            return paRequest;
+        } else {
+            System.out.println((char)27 + "[31m***Missing acsUrl and paReqest! Check if the GW client " +
+                    "is bg3dmandatory! Check if the used cardNumber is 3D enrolled***" + (char)27 + "[0m");
+            return null;
+        }
     }
 
     /**
