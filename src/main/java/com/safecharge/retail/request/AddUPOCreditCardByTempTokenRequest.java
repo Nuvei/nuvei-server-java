@@ -23,13 +23,13 @@ import com.safecharge.retail.util.ValidationUtil;
     /**
      * The unique identifier generated for each customer.
      */
-    @NotNull(message = "merchantId parameter is mandatory!") @Size(min = 1,
+    @NotNull(message = "userTokenId parameter is mandatory!") @Size(min = 1,
                                                                    max = 45) private String userTokenId;
 
     /**
      * The temporary hash of the credit card.
      */
-    @NotNull(message = "merchantId parameter is mandatory!") @Size(min = 1,
+    @NotNull(message = "ccTempToken parameter is mandatory!") @Size(min = 1,
                                                                    max = 45) private String ccTempToken;
 
     /**
