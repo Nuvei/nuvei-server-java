@@ -20,8 +20,8 @@ import com.safecharge.retail.util.ValidationUtil;
     @Size(max = 3,
           message = "currencyCode size must be up to 3 characters long!") private String currencyCode;
 
-    @Size(max = 3,
-          message = "countryCode size must be up to 3 characters long!") private String countryCode;
+    @Size(max = 2,
+          message = "countryCode size must be up to 2 characters long!") private String countryCode;
 
     @Size(max = 3,
           message = "languageCode size must be up to 3 characters long!") private String languageCode;
