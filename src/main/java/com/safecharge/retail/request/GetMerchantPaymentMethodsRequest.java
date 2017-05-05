@@ -17,14 +17,14 @@ import com.safecharge.retail.util.ValidationUtil;
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING) public class GetMerchantPaymentMethodsRequest
         extends SafechargeRequest {
 
-    @Size(max = 3,
-          message = "currencyCode size must be up to 3 characters long!") private String currencyCode;
+    @Size(min=3,max = 3,
+          message = "currencyCode size must be 3 characters long!") private String currencyCode;
 
-    @Size(max = 2,
-          message = "countryCode size must be up to 2 characters long!") private String countryCode;
+    @Size(min=2,max = 2,
+          message = "countryCode size must be 2 characters long!") private String countryCode;
 
-    @Size(max = 3,
-          message = "languageCode size must be up to 3 characters long!") private String languageCode;
+    @Size(min=2,max = 3,
+          message = "languageCode size must be 2 or 3 characters long!") private String languageCode;
 
     public static Builder builder() {
         return new Builder();
