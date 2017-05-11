@@ -32,16 +32,16 @@ public class ChecksumUtils {
                 Arrays.asList(new String[] { "firstName", "lastName", "address", "phone", "zip", "city", "countryCode", "state", "email" }));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.SETTLE_GW_TRANSACTION.name(),
-                Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "amount", "currency", "relatedTransactionId", "authCode",
-                        "descriptorMerchantName", "descriptorMerchantPhone", "comment", "timeStamp"));
+                Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "clientUniqueId", "amount", "currency", "relatedTransactionId", "authCode",
+                        "descriptorMerchantName", "descriptorMerchantPhone", "comment", "urlDetails", "timeStamp"));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.REFUND_GW_TRANSACTION.name(),
-                Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "amount", "currency", "relatedTransactionId", "authCode", "comment",
-                        "timeStamp"));
+                Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "clientUniqueId", "amount", "currency", "relatedTransactionId", "authCode",
+                        "comment", "urlDetails", "timeStamp"));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.VOID_GW_TRANSACTION.name(),
-                Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "amount", "currency", "relatedTransactionId", "authCode", "comment",
-                        "timeStamp"));
+                Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "clientUniqueId", "amount", "currency", "relatedTransactionId", "authCode",
+                        "comment", "urlDetails", "timeStamp"));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING.name(),
                 Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "amount", "currency", "timeStamp"));
