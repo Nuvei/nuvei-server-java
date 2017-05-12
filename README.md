@@ -1,8 +1,6 @@
-# Safecharge REST API SDK for Java
+# SafeCharge REST API SDK for Java.
 
-SafeCharge’s REST API SDK for Java provides developer tools for accessing Safecharge's API. Safecharge API is a simple, easy to use, secured and stateless API. 
-                                                                                                     It is an online solution which enables merchants selling products and services over the web to process online customer payments etc. though SafeCahrge’s payments gateway.
-                                                                                                     It supports both PCI and non-PCI certified merchants, both online and mobile merchants applications and offer a large verity of payment options: cards, alternative payment methods etc.  
+SafeCharge’s REST API SDK for Java provides developer tools for accessing Safecharge's REST API. SafeCharge’s REST API is a simple, easy to use, secure and stateless API, which enables online merchants and service providers to process consumer payments through SafeCharge’s payment gateway. The API supports merchants of all levels of PCI certification, from their online and mobile merchant applications, and is compatible with a large variety of payment options, i.e. payment cards, alternative payment methods, etc. For SafeCharge REST API documentation, please see: https://www.safecharge.com/docs/api/
 
 ## Requirements
 
