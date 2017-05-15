@@ -87,7 +87,7 @@ import com.safecharge.util.ValidationUtil;
         private String ccTempToken;
         private UserAddress billingAddress;
 
-        public Builder addUserPaymentOption(String userTokenId) {
+        public Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
             return this;
         }
