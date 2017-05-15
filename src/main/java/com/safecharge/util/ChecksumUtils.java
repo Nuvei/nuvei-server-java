@@ -29,7 +29,7 @@ public class ChecksumUtils {
 
     static {
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.USER_DETAILS.name(),
-                Arrays.asList(new String[] { "firstName", "lastName", "address", "phone", "zip", "city", "countryCode", "state", "email" }));
+                Arrays.asList("firstName", "lastName", "address", "phone", "zip", "city", "countryCode", "state", "email"));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.SETTLE_GW_TRANSACTION.name(),
                 Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "clientUniqueId", "amount", "currency", "relatedTransactionId", "authCode",
@@ -47,12 +47,15 @@ public class ChecksumUtils {
                 Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "amount", "currency", "timeStamp"));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.ADD_CASHIER_APM.name(), Arrays.asList(
-                new String[] { "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "paymentMethodName", "apmData", "billingAddress",
-                        "timeStamp" }));
+                "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "paymentMethodName", "apmData", "billingAddress",
+                "timeStamp"));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.ADD_CASHIER_CC_CARD.name(), Arrays.asList(
-                new String[] { "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "ccCardNumber", "ccExpMonth", "ccExpYear",
-                        "ccNameOnCard", "billingAddress", "timeStamp" }));
+                "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "ccCardNumber", "ccExpMonth", "ccExpYear",
+                "ccNameOnCard", "billingAddress", "timeStamp"));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.URL_DETAILS_CHECKSUM_MAPPING.name(), Arrays.asList(
+                "successUrl", "failureUrl", "pendingUrl", "notificationUrl"));
     }
 
     public static String calculateChecksum(Object apiRequest, String key, String encoding, Constants.HashAlgorithm hashAlgorithm) {
