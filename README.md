@@ -42,15 +42,15 @@ You only need to setup a HTTP Client and to provide the SafeCharge API host to t
 Check how simple it is trough this sample:
 
 ```java
-import com.safecharge.retail.biz.SafechargeConfiguration;
-import com.safecharge.retail.biz.SafechargeHttpClient;
-import com.safecharge.retail.biz.SafechargeRequestExecutor;
-import com.safecharge.retail.model.MerchantInfo;
-import com.safecharge.retail.request.GetSessionTokenRequest;
-import com.safecharge.retail.request.SafechargeRequest;
-import com.safecharge.retail.response.SafechargeResponse;
-import com.safecharge.retail.util.APIConstants;
-import com.safecharge.retail.util.Constants;
+import com.safecharge.biz.SafechargeConfiguration;
+import com.safecharge.biz.SafechargeHttpClient;
+import com.safecharge.biz.SafechargeRequestExecutor;
+import com.safecharge.model.MerchantInfo;
+import com.safecharge.request.GetSessionTokenRequest;
+import com.safecharge.request.SafechargeRequest;
+import com.safecharge.response.SafechargeResponse;
+import com.safecharge.util.APIConstants;
+import com.safecharge.util.Constants;
 
 public class Sample {
 
@@ -69,4 +69,4 @@ public class Sample {
     }
 }
 ```
-More samples tests can be found [here](https://github.com/SafechargeBulgaria/safecharge-retail-java/tree/master/src/test/java/com/safecharge/retail/test/workflow/).
+More samples tests can be found [here](https://github.com/SafeChargeInternational/safecharge-java/tree/master/src/test/java/com/safecharge/test/workflow/).
