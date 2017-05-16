@@ -2,12 +2,16 @@ package com.safecharge.model;
 
 import javax.validation.constraints.Size;
 
+import com.safecharge.util.Constants;
+import com.safecharge.util.ValidChecksum;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
  */
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.URL_DETAILS_CHECKSUM_MAPPING)
 public class URLDetails {
 
     @Size(max = 100,
