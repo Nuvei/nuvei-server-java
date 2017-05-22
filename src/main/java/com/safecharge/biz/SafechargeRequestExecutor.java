@@ -1,13 +1,10 @@
 package com.safecharge.biz;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.safecharge.request.AddUPOCreditCardRequest;
-import com.safecharge.request.Authorization3DRequest;
-import com.safecharge.request.GetOrderDetailsRequest;
-import com.safecharge.request.GetSessionTokenRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
@@ -21,8 +18,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.safecharge.request.AddUPOAPMRequest;
 import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
+import com.safecharge.request.AddUPOCreditCardRequest;
+import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
+import com.safecharge.request.GetOrderDetailsRequest;
+import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
@@ -108,6 +109,8 @@ public class SafechargeRequestExecutor {
                     put(GetMerchantPaymentMethodsRequest.class, APIConstants.GET_MERCHANT_PAYMENT_METHODS_REQUEST_URL);
                 }
             };
+
+    private static final Charset UTF8_CHARSET = Charset.forName("UTF-8");
     private static SafechargeRequestExecutor instance = null;
     private static HttpClient httpClient;
     private static boolean isInitialized = false;
@@ -176,7 +179,7 @@ public class SafechargeRequestExecutor {
     public String executeJsonRequest(SafechargeRequest request, String requestJSON, String serviceUrl) throws IOException {
         HttpPost httpPost = new HttpPost(serviceUrl);
         httpPost.setHeaders(APIConstants.REQUEST_HEADERS);
-        httpPost.setEntity(new StringEntity(requestJSON));
+        httpPost.setEntity(new StringEntity(requestJSON, Charset.forName("UTF-8")));
 
         if (logger.isDebugEnabled()) {
             logger.debug("Sent " + request.getClass()
@@ -185,7 +188,7 @@ public class SafechargeRequestExecutor {
 
         HttpResponse response = httpClient.execute(httpPost);
 
-        String responseJSON = EntityUtils.toString(response.getEntity());
+        String responseJSON = EntityUtils.toString(response.getEntity(), UTF8_CHARSET);
         if (logger.isDebugEnabled()) {
             logger.debug("Received " + request.getClass()
                                               .getSimpleName() + ": " + responseJSON);
@@ -196,7 +199,7 @@ public class SafechargeRequestExecutor {
     public String executeRequest(String request, String serviceUrl, Header[] headers) throws IOException {
         HttpPost httpPost = new HttpPost(serviceUrl);
         httpPost.setHeaders(headers);
-        httpPost.setEntity(new StringEntity(request));
+        httpPost.setEntity(new StringEntity(request, Charset.forName("UTF-8")));
 
         if (logger.isDebugEnabled()) {
             logger.debug("Sent " + request);
