@@ -3,13 +3,14 @@ package com.safecharge.request.builder;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.safecharge.model.Addendums;
 import com.safecharge.model.CashierUserDetails;
 import com.safecharge.model.DeviceDetails;
-import com.safecharge.model.MerchantDetails;
-import com.safecharge.model.UserAddress;
-import com.safecharge.model.Addendums;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
+import com.safecharge.model.MerchantDetails;
+import com.safecharge.model.URLDetails;
+import com.safecharge.model.UserAddress;
 import com.safecharge.request.SafechargeOrderDetailsRequest;
 import com.safecharge.util.ChecksumUtils;
 import com.safecharge.util.Constants;
@@ -31,6 +32,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     private UserAddress billingAddress;
     private DynamicDescriptor dynamicDescriptor;
     private MerchantDetails merchantDetails;
+    private URLDetails urlDetails;
     private Addendums addendums;
     private String userTokenId;
     private String clientUniqueId;
@@ -317,6 +319,22 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         return addMerchantDetails(merchantDetails);
     }
 
+    public T addURLDetails(URLDetails urlDetails) {
+        this.urlDetails = urlDetails;
+        return (T) this;
+    }
+
+    public T addURLDetails(String failureUrl, String pendingUrl, String successUrl, String notificationUrl) {
+
+        URLDetails urlDetails = new URLDetails();
+        urlDetails.setFailureUrl(failureUrl);
+        urlDetails.setPendingUrl(pendingUrl);
+        urlDetails.setSuccessUrl(successUrl);
+        urlDetails.setNotificationUrl(notificationUrl);
+
+        return addURLDetails(urlDetails);
+    }
+
     /**
      * TODO
      *
@@ -383,6 +401,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         safechargeOrderDetailsRequest.setBillingAddress(billingAddress);
         safechargeOrderDetailsRequest.setDynamicDescriptor(dynamicDescriptor);
         safechargeOrderDetailsRequest.setMerchantDetails(merchantDetails);
+        safechargeOrderDetailsRequest.setUrlDetails(urlDetails);
         safechargeOrderDetailsRequest.setAddendums(addendums);
         safechargeOrderDetailsRequest.setUserTokenId(userTokenId);
         safechargeOrderDetailsRequest.setClientUniqueId(clientUniqueId);

@@ -8,7 +8,6 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.builder.SafechargeOrderBuilder;
-import com.safecharge.model.URLDetails;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtil;
@@ -43,10 +42,6 @@ import com.safecharge.util.ValidationUtil;
      */
     @Valid private UserPaymentOption userPaymentOption;
 
-    /**
-     * Although DMN response can be configured per merchant site, it will allow to dynamically return the DMN to the provided address per request.
-     */
-    @Valid private URLDetails urlDetails;
 
     /**
      * The country the transaction is to be completed in.
@@ -91,14 +86,6 @@ import com.safecharge.util.ValidationUtil;
         this.userPaymentOption = userPaymentOption;
     }
 
-    public URLDetails getUrlDetails() {
-        return urlDetails;
-    }
-
-    public void setUrlDetails(URLDetails urlDetails) {
-        this.urlDetails = urlDetails;
-    }
-
     public String getCountry() {
         return country;
     }
@@ -122,8 +109,6 @@ import com.safecharge.util.ValidationUtil;
           .append(userAccountDetails);
         sb.append(", userPaymentOption=")
           .append(userPaymentOption);
-        sb.append(", urlDetails=")
-          .append(urlDetails);
         sb.append(", ")
           .append(super.toString());
         sb.append('}');
@@ -136,7 +121,6 @@ import com.safecharge.util.ValidationUtil;
         private String paymentMethod;
         private Map<String, String> userAccountDetails;
         private UserPaymentOption userPaymentOption;
-        private URLDetails urlDetails;
         private String country;
 
         public Builder addOrderId(String orderId) {
@@ -166,20 +150,6 @@ import com.safecharge.util.ValidationUtil;
             return this;
         }
 
-        public Builder addURLDetails(String failureURL, String pendingURL, String successURL, String notificationUrl) {
-            URLDetails urlDetails = new URLDetails();
-            urlDetails.setFailureUrl(failureURL);
-            urlDetails.setPendingUrl(pendingURL);
-            urlDetails.setSuccessUrl(successURL);
-            urlDetails.setNotificationUrl(notificationUrl);
-            return addURLDetails(urlDetails);
-        }
-
-        public Builder addURLDetails(URLDetails urlDetails) {
-            this.urlDetails = urlDetails;
-            return this;
-        }
-
         public Builder addCountry(String country) {
             this.country = country;
             return this;
@@ -191,7 +161,6 @@ import com.safecharge.util.ValidationUtil;
             paymentAPMRequest.setPaymentMethod(paymentMethod);
             paymentAPMRequest.setUserAccountDetails(userAccountDetails);
             paymentAPMRequest.setUserPaymentOption(userPaymentOption);
-            paymentAPMRequest.setUrlDetails(urlDetails);
             paymentAPMRequest.setCountry(country);
             return ValidationUtil.validate(super.build(paymentAPMRequest));
         }

@@ -160,8 +160,10 @@ public class SafechargeRequestExecutor {
         Gson gson = gsonBuilder.create();
 
         try {
-            String requestJSON = gson.toJson(request);
             String serviceUrl = request.getServerHost() + REQUEST_URL_BY_REQUEST_TYPE.get(request.getClass());
+            request.setServerHost(null); // remove API url from request
+
+            String requestJSON = gson.toJson(request);
             String responseJSON = executeJsonRequest(request, requestJSON, serviceUrl);
 
             return gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(request.getClass()));

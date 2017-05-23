@@ -13,6 +13,7 @@ import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
 import com.safecharge.model.MerchantDetails;
+import com.safecharge.model.URLDetails;
 import com.safecharge.model.UserAddress;
 
 /**
@@ -68,6 +69,11 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
      * Optional custom fields
      */
     @Valid private MerchantDetails merchantDetails;
+
+    /**
+     * Although DMN response can be configured per merchant site, it will allow to dynamically return the DMN to the provided address per request.
+     */
+    private URLDetails urlDetails;
 
     /**
      * This block contain industry specific addendums such as: Local payment, Hotel, Airline etc.
@@ -167,6 +173,14 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
         this.merchantDetails = merchantDetails;
     }
 
+    public URLDetails getUrlDetails() {
+        return urlDetails;
+    }
+
+    public void setUrlDetails(URLDetails urlDetails) {
+        this.urlDetails = urlDetails;
+    }
+
     public Addendums getAddendums() {
         return addendums;
     }
@@ -213,6 +227,8 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
           .append(dynamicDescriptor);
         sb.append(", merchantDetails=")
           .append(merchantDetails);
+        sb.append(", urlDetails=")
+          .append(urlDetails);
         sb.append(", addendums=")
           .append(addendums);
         sb.append(", userTokenId='")
