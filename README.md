@@ -13,8 +13,8 @@ If your application is going to be deployed on a Java EE server add the followin
 ```xml
 <dependency>    
     <groupId>com.safecharge</groupId>
-    <artifactId>safecharge-retail-sdk-java</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>safecharge-sdk-java</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -25,8 +25,8 @@ For example:
  ```xml
 <dependency>    
     <groupId>com.safecharge</groupId>
-    <artifactId>safecharge-retail-sdk-java</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>safecharge-sdk-java</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
 </dependency>
 <dependency>
     <groupId>org.apache.bval</groupId>
@@ -42,8 +42,6 @@ You only need to setup a HTTP Client and to provide the SafeCharge API host to t
 Check how simple it is trough this sample:
 
 ```java
-import com.safecharge.biz.SafechargeConfiguration;
-import com.safecharge.biz.SafechargeHttpClient;
 import com.safecharge.biz.SafechargeRequestExecutor;
 import com.safecharge.model.MerchantInfo;
 import com.safecharge.request.GetSessionTokenRequest;
