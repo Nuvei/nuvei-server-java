@@ -20,10 +20,14 @@ import com.safecharge.request.AddUPOAPMRequest;
 import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
 import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
+import com.safecharge.request.CancelSubscriptionRequest;
 import com.safecharge.request.CardTokenizationRequest;
+import com.safecharge.request.CreateSubscriptionRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
+import com.safecharge.request.GetSubscriptionListRequest;
+import com.safecharge.request.GetSubscriptionPlansRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
@@ -37,9 +41,13 @@ import com.safecharge.response.AddUPOAPMResponse;
 import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
+import com.safecharge.response.CancelSubscriptionResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.CreateSubscriptionResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
+import com.safecharge.response.GetSubscriptionListResponse;
+import com.safecharge.response.GetSubscriptionPlansResponse;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.Payment3DResponse;
 import com.safecharge.response.PaymentAPMResponse;
@@ -84,6 +92,10 @@ public class SafechargeRequestExecutor {
                     put(AddUPOCreditCardRequest.class, AddUPOCreditCardResponse.class);
                     put(AddUPOAPMRequest.class, AddUPOAPMResponse.class);
                     put(GetMerchantPaymentMethodsRequest.class, GetMerchantPaymentMethodsResponse.class);
+                    put(CancelSubscriptionRequest.class, CancelSubscriptionResponse.class);
+                    put(CreateSubscriptionRequest.class, CreateSubscriptionResponse.class);
+                    put(GetSubscriptionListRequest.class, GetSubscriptionListResponse.class);
+                    put(GetSubscriptionPlansRequest.class, GetSubscriptionPlansResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -107,6 +119,10 @@ public class SafechargeRequestExecutor {
                     put(AddUPOCreditCardRequest.class, APIConstants.ADD_UPO_CREDIT_CARD_URL);
                     put(AddUPOAPMRequest.class, APIConstants.ADD_UPO_APM_URL);
                     put(GetMerchantPaymentMethodsRequest.class, APIConstants.GET_MERCHANT_PAYMENT_METHODS_REQUEST_URL);
+                    put(CancelSubscriptionRequest.class, APIConstants.CANCEL_SUBSCRIPTION_REQUEST_URL);
+                    put(CreateSubscriptionRequest.class, APIConstants.CREATE_SUBSCRIPTION_REQUEST_URL);
+                    put(GetSubscriptionListRequest.class, APIConstants.GET_SUBSCRIPTION_LIST_REQUEST_URL);
+                    put(GetSubscriptionPlansRequest.class, APIConstants.GET_SUBSCRIPTION_PLANS_REQUEST_URL);
                 }
             };
 

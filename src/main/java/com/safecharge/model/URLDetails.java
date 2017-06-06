@@ -14,13 +14,13 @@ import com.safecharge.util.ValidChecksum;
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.URL_DETAILS_CHECKSUM_MAPPING)
 public class URLDetails {
 
-    @Size(max = 100,
+    @Size(max = 2048,
           message = "successUrl size must be up to 100 characters long!") private String successUrl;
 
-    @Size(max = 100,
+    @Size(max = 2048,
           message = "failureUrl size must be up to 100 characters long!") private String failureUrl;
 
-    @Size(max = 100,
+    @Size(max = 2048,
           message = "pendingUrl size must be up to 100 characters long!") private String pendingUrl;
 
     @Size(max = 2048,

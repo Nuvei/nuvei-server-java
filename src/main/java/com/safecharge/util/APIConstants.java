@@ -34,6 +34,10 @@ public interface APIConstants {
     String ADD_UPO_CREDIT_CARD_URL = "api/v1/addUPOCreditCard.do";
     String ADD_UPO_APM_URL = "api/v1/addUPOAPM.do";
     String GET_MERCHANT_PAYMENT_METHODS_REQUEST_URL = "api/v1/getMerchantPaymentMethods.do";
+    String CANCEL_SUBSCRIPTION_REQUEST_URL = "api/v1/cancelSubscription.do";
+    String CREATE_SUBSCRIPTION_REQUEST_URL = "api/v1/createSubscription.do";
+    String GET_SUBSCRIPTION_LIST_REQUEST_URL = "api/v1/getSubscriptionsList.do";
+    String GET_SUBSCRIPTION_PLANS_REQUEST_URL = "api/v1/getSubscriptionPlans.do";
 
     // Request Headers:
 

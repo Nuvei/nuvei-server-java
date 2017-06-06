@@ -56,6 +56,15 @@ public class ChecksumUtils {
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.URL_DETAILS_CHECKSUM_MAPPING.name(), Arrays.asList(
                 "successUrl", "failureUrl", "pendingUrl", "notificationUrl"));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.CANCEL_CASHIER_SUBSCRIPTION.name(),
+                Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "subscriptionId", "userTokenId", "timeStamp"));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.GET_CASHIER_SUBSCRIPTIONS.name(),
+                Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "userTokenId", "timeStamp"));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.GET_CASHIER_SUBSCRIPTION_PLANS.name(),
+                Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "timeStamp"));
     }
 
     public static String calculateChecksum(Object apiRequest, String key, String encoding, Constants.HashAlgorithm hashAlgorithm) {

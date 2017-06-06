@@ -32,7 +32,8 @@ import com.safecharge.util.ValidationUtil;
         final StringBuilder sb = new StringBuilder("Payment3DRequest{");
         sb.append("paResponse=")
           .append(getPaResponse());
-        sb.append(super.toString());
+        sb.append(", ")
+          .append(super.toString());
         sb.append('}');
         return sb.toString();
     }
