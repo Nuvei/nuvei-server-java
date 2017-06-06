@@ -1,6 +1,8 @@
 package com.safecharge.request;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import com.safecharge.model.CardData;
@@ -52,6 +54,8 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
      */
     @Valid private UserPaymentOption userPaymentOption;
 
+    @Max(value = 2) @Min(value = 0) private int isRebilling;
+
     public String getOrderId() {
         return orderId;
     }
@@ -84,6 +88,14 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
         this.userPaymentOption = userPaymentOption;
     }
 
+    public int getIsRebilling() {
+        return isRebilling;
+    }
+
+    public void setIsRebilling(int isRebilling) {
+        this.isRebilling = isRebilling;
+    }
+
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("orderId='")
@@ -95,6 +107,8 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
           .append(cardData);
         sb.append(", userPaymentOption=")
           .append(userPaymentOption);
+        sb.append(", isRebilling=")
+          .append(isRebilling);
         sb.append(", ");
         sb.append(super.toString());
         return sb.toString();
