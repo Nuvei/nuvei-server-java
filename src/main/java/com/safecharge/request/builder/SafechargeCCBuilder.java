@@ -17,6 +17,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     private Constants.TransactionType transactionType;
     private UserPaymentOption userPaymentOption;
     private String orderId;
+    private int isRebilling;
 
     public T addOrderId(String orderId) {
         this.orderId = orderId;
@@ -56,12 +57,18 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         return addCardData(cardData);
     }
 
+    public T addIsRebilling(int isRebilling) {
+        this.isRebilling = isRebilling;
+        return (T) this;
+    }
+
     public <T extends SafechargeCCRequest> T build(T request) {
         super.build(request);
         request.setUserPaymentOption(userPaymentOption);
         request.setTransactionType(transactionType);
         request.setCardData(cardData);
         request.setOrderId(orderId);
+        request.setIsRebilling(isRebilling);
         return request;
     }
 }
