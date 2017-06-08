@@ -43,6 +43,8 @@ public class Payment3DResponse extends PaymentsResponse {
           .append(threeDReason)
           .append('\'');
         sb.append(", externalToken=")
+          .append(externalToken);
+        sb.append(", ")
           .append(super.toString());
         sb.append('}');
         return sb.toString();
