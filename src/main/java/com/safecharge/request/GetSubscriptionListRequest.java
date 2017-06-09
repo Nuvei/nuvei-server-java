@@ -21,7 +21,9 @@ import com.safecharge.util.ValidationUtil;
     private int firstResult = 0;
     private int maxResults = 0;
     private String subscriptionStatus;
-    @NotNull @Size(max = 255) private String userTokenId;
+    @NotNull(message = "userTokenId mustn't be null") @Size(max = 255,
+                                                            message = "userTokenId value size must be up to 255 characters") private String
+            userTokenId;
 
     public static Builder builder() {
         return new Builder();

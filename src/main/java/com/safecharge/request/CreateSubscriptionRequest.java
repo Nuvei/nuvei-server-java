@@ -26,9 +26,11 @@ import com.safecharge.util.ValidationUtil;
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.GET_CASHIER_SUBSCRIPTIONS) public class CreateSubscriptionRequest
         extends SafechargeRequest {
 
-    @NotNull @Size(max = 20) private String subscriptionPlanId;
+    @NotNull(message = "subscriptionPlanId mustn't be null") @Size(max = 20) private String subscriptionPlanId;
 
-    @NotNull @Size(max = 255) private String userTokenId;
+    @NotNull(message = "userTokenId mustn't be null") @Size(max = 255,
+                                                            message = "userTokenId value size must be up to 255 characters") private String
+            userTokenId;
 
     @Valid private DynamicDescriptor dynamicDescriptor;
 
