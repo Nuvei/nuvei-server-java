@@ -18,8 +18,8 @@ import com.safecharge.util.ValidationUtil;
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.CANCEL_CASHIER_SUBSCRIPTION) public class CancelSubscriptionRequest
         extends SafechargeRequest {
 
-    @NotNull(message = "subscriptionPlanId mustn't be null") @Size(max = 20,
-                                                                   message = "subscriptionId value size must be up to 20 characters") private String
+    @NotNull(message = "subscriptionId mustn't be null") @Size(max = 20,
+                                                               message = "subscriptionId value size must be up to 20 characters") private String
             subscriptionId;
 
     @NotNull(message = "userTokenId mustn't be null") @Size(max = 255,
