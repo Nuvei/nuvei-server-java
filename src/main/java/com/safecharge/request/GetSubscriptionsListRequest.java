@@ -1,7 +1,6 @@
 package com.safecharge.request;
 
 import javax.validation.ConstraintViolationException;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.safecharge.request.builder.SafechargeBuilder;
@@ -21,9 +20,8 @@ import com.safecharge.util.ValidationUtil;
     private int firstResult = 0;
     private int maxResults = 0;
     private String subscriptionStatus;
-    @NotNull(message = "userTokenId mustn't be null") @Size(max = 255,
-                                                            message = "userTokenId value size must be up to 255 characters") private String
-            userTokenId;
+    @Size(max = 255,
+          message = "userTokenId value size must be up to 255 characters") private String userTokenId;
 
     public static Builder builder() {
         return new Builder();
