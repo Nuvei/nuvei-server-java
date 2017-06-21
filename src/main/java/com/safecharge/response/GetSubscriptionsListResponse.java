@@ -10,7 +10,7 @@ import com.safecharge.model.SubscriptionsList;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 6/6/2017
  */
-public class GetSubscriptionListResponse extends SafechargeResponse {
+public class GetSubscriptionsListResponse extends SafechargeResponse {
 
     private List<SubscriptionsList> subscriptionsList;
     private Long totalCount;

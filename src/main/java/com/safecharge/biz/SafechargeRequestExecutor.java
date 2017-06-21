@@ -26,8 +26,8 @@ import com.safecharge.request.CreateSubscriptionRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
-import com.safecharge.request.GetSubscriptionListRequest;
 import com.safecharge.request.GetSubscriptionPlansRequest;
+import com.safecharge.request.GetSubscriptionsListRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
@@ -46,8 +46,8 @@ import com.safecharge.response.CardTokenizationResponse;
 import com.safecharge.response.CreateSubscriptionResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
-import com.safecharge.response.GetSubscriptionListResponse;
 import com.safecharge.response.GetSubscriptionPlansResponse;
+import com.safecharge.response.GetSubscriptionsListResponse;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.Payment3DResponse;
 import com.safecharge.response.PaymentAPMResponse;
@@ -94,7 +94,7 @@ public class SafechargeRequestExecutor {
                     put(GetMerchantPaymentMethodsRequest.class, GetMerchantPaymentMethodsResponse.class);
                     put(CancelSubscriptionRequest.class, CancelSubscriptionResponse.class);
                     put(CreateSubscriptionRequest.class, CreateSubscriptionResponse.class);
-                    put(GetSubscriptionListRequest.class, GetSubscriptionListResponse.class);
+                    put(GetSubscriptionsListRequest.class, GetSubscriptionsListResponse.class);
                     put(GetSubscriptionPlansRequest.class, GetSubscriptionPlansResponse.class);
                 }
             };
@@ -121,7 +121,7 @@ public class SafechargeRequestExecutor {
                     put(GetMerchantPaymentMethodsRequest.class, APIConstants.GET_MERCHANT_PAYMENT_METHODS_REQUEST_URL);
                     put(CancelSubscriptionRequest.class, APIConstants.CANCEL_SUBSCRIPTION_REQUEST_URL);
                     put(CreateSubscriptionRequest.class, APIConstants.CREATE_SUBSCRIPTION_REQUEST_URL);
-                    put(GetSubscriptionListRequest.class, APIConstants.GET_SUBSCRIPTION_LIST_REQUEST_URL);
+                    put(GetSubscriptionsListRequest.class, APIConstants.GET_SUBSCRIPTION_LIST_REQUEST_URL);
                     put(GetSubscriptionPlansRequest.class, APIConstants.GET_SUBSCRIPTION_PLANS_REQUEST_URL);
                 }
             };

@@ -15,7 +15,7 @@ import com.safecharge.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 6/5/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.GET_CASHIER_SUBSCRIPTIONS) public class GetSubscriptionListRequest
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.GET_CASHIER_SUBSCRIPTIONS) public class GetSubscriptionsListRequest
         extends SafechargeRequest {
 
     private int firstResult = 0;
@@ -61,29 +61,29 @@ import com.safecharge.util.ValidationUtil;
         this.userTokenId = userTokenId;
     }
 
-    public static class Builder extends SafechargeBuilder<GetSubscriptionListRequest.Builder> {
+    public static class Builder extends SafechargeBuilder<GetSubscriptionsListRequest.Builder> {
 
         private int firstResult = 0;
         private int maxResults = 0;
         private String subscriptionStatus;
         private String userTokenId;
 
-        public GetSubscriptionListRequest.Builder addFirstResult(int firstResult) {
+        public GetSubscriptionsListRequest.Builder addFirstResult(int firstResult) {
             this.firstResult = firstResult;
             return this;
         }
 
-        public GetSubscriptionListRequest.Builder addMaxResults(int maxResults) {
+        public GetSubscriptionsListRequest.Builder addMaxResults(int maxResults) {
             this.maxResults = maxResults;
             return this;
         }
 
-        public GetSubscriptionListRequest.Builder addSubscriptionStatus(String subscriptionStatus) {
+        public GetSubscriptionsListRequest.Builder addSubscriptionStatus(String subscriptionStatus) {
             this.subscriptionStatus = subscriptionStatus;
             return this;
         }
 
-        public GetSubscriptionListRequest.Builder addUserTokenId(String userTokenId) {
+        public GetSubscriptionsListRequest.Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
             return this;
         }
@@ -107,7 +107,7 @@ import com.safecharge.util.ValidationUtil;
         }
 
         @Override public SafechargeRequest build() throws ConstraintViolationException {
-            GetSubscriptionListRequest getSubscriptionListRequest = new GetSubscriptionListRequest();
+            GetSubscriptionsListRequest getSubscriptionListRequest = new GetSubscriptionsListRequest();
             getSubscriptionListRequest.setFirstResult(firstResult);
             getSubscriptionListRequest.setMaxResults(maxResults);
             getSubscriptionListRequest.setSubscriptionStatus(subscriptionStatus);
