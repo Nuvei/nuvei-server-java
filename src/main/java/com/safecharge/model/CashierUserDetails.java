@@ -40,6 +40,10 @@ public class CashierUserDetails {
     @Size(max = APIConstants.ZIP_MAX_LENGTH,
           message = "zip size must be up to 10 characters long!") private String zip;
 
+    @Pattern(regexp = APIConstants.DATE_OF_BIRTH_REGEX,
+             message = "dateOfBirth must be in format yyyy-MM-dd!") private String dateOfBirth;
+
+
     public String getFirstName() {
         return firstName;
     }
@@ -112,6 +116,14 @@ public class CashierUserDetails {
         this.email = email;
     }
 
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     @Override public String toString() {
         final StringBuilder sb = new StringBuilder("CashierUserDetails{");
         sb.append("firstName='")
@@ -140,6 +152,9 @@ public class CashierUserDetails {
           .append('\'');
         sb.append(", zip='")
           .append(zip)
+          .append('\'');
+        sb.append(", dateOfBirth='")
+          .append(dateOfBirth)
           .append('\'');
         sb.append('}');
         return sb.toString();

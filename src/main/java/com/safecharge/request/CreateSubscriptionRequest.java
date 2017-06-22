@@ -235,7 +235,7 @@ import com.safecharge.util.ValidationUtil;
         }
 
         public CreateSubscriptionRequest.Builder addUserDetails(String address, String city, String country, String email, String firstName,
-                String lastName, String phone, String state, String zip) {
+                String lastName, String phone, String state, String zip, String dateOfBirth) {
 
             CashierUserDetails userDetails = new CashierUserDetails();
             userDetails.setAddress(address);
@@ -247,6 +247,7 @@ import com.safecharge.util.ValidationUtil;
             userDetails.setPhone(phone);
             userDetails.setState(state);
             userDetails.setZip(zip);
+            userDetails.setDateOfBirth(dateOfBirth);
 
             return addUserDetails(userDetails);
         }

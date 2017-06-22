@@ -137,10 +137,11 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      * @param phone
      * @param state
      * @param zip
+     * @param dateOfBirth
      * @return
      */
     public T addUserDetails(String address, String city, String country, String email, String firstName, String lastName, String phone, String state,
-            String zip) {
+            String zip, String dateOfBirth) {
 
         CashierUserDetails userDetails = new CashierUserDetails();
         userDetails.setAddress(address);
@@ -152,6 +153,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         userDetails.setPhone(phone);
         userDetails.setState(state);
         userDetails.setZip(zip);
+        userDetails.setDateOfBirth(dateOfBirth);
 
         return addUserDetails(userDetails);
     }
