@@ -1,16 +1,16 @@
 package com.safecharge.test.workflow.paymentCC;
 
-import com.safecharge.model.MerchantDetails;
-import com.safecharge.model.MerchantInfo;
-import com.safecharge.request.PaymentCCRequest;
-import com.safecharge.request.SafechargeRequest;
-import com.safecharge.response.SessionTokenResponse;
-import com.safecharge.test.workflow.TestVariables;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.safecharge.model.MerchantDetails;
+import com.safecharge.model.MerchantInfo;
+import com.safecharge.request.PaymentCCRequest;
+import com.safecharge.request.SafechargeRequest;
 import com.safecharge.response.PaymentCCResponse;
+import com.safecharge.response.SessionTokenResponse;
+import com.safecharge.test.workflow.TestVariables;
 import com.safecharge.util.Constants;
 
 /**
@@ -46,7 +46,7 @@ public class InvalidPaymentCCRequestTest extends BasePaymentCCTest {
                                                             TestVariables.state, TestVariables.zip, TestVariables.cell)
                                                     .addUserDetails(TestVariables.address, TestVariables.city, TestVariables.country,
                                                             TestVariables.email, TestVariables.firstName, TestVariables.lastName, TestVariables.phone,
-                                                            TestVariables.state, TestVariables.zip)
+                                                            TestVariables.state, TestVariables.zip, TestVariables.dateOfBirth)
                                                     .addDeviceDetails(TestVariables.deviceType, TestVariables.deviceName, TestVariables.deviceOS,
                                                             TestVariables.browser, TestVariables.ipAddress)
                                                     .addDynamicDescriptor(TestVariables.merchantName, TestVariables.merchantPhone)

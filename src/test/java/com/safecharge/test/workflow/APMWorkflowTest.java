@@ -63,7 +63,7 @@ import com.safecharge.util.Constants;
                                                              .addItem("test_item_1", "1", "1")
                                                              .addItem("test_item_2", "1", "1")
                                                              .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov",
-                                                                     "0884123456", null, "1000")
+                                                                     "0884123456", null, "1000", "1990-01-01")
                                                              .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
                                                                      "Sofia", "BG", null, "1000", "0884123456")
                                                              .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
@@ -87,7 +87,7 @@ import com.safecharge.util.Constants;
                                                                  .addItem("test_item_1", "1", "1")
                                                                  .addItem("test_item_2", "1", "1")
                                                                  .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov",
-                                                                         "0884123456", null, "1000")
+                                                                         "0884123456", null, "1000", "1990-01-01")
                                                                  .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
                                                                          "Sofia", "BG", null, "1000", "0884123456")
                                                                  .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
@@ -125,7 +125,7 @@ import com.safecharge.util.Constants;
                                                      .addItem("test_item_1", "1", "1")
                                                      .addItem("test_item_2", "1", "1")
                                                      .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov", "0884123456",
-                                                             null, "1000")
+                                                             null, "1000", "1990-01-01")
                                                      .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",
                                                              "BG", null, "1000", "0884123456")
                                                      .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",

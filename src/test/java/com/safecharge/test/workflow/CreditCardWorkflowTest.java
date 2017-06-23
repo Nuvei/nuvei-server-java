@@ -2,9 +2,6 @@ package com.safecharge.test.workflow;
 
 import java.io.IOException;
 
-import com.safecharge.request.GetOrderDetailsRequest;
-import com.safecharge.request.GetSessionTokenRequest;
-import com.safecharge.test.BaseTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -12,6 +9,8 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import com.safecharge.model.MerchantInfo;
+import com.safecharge.request.GetOrderDetailsRequest;
+import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.PaymentCCRequest;
 import com.safecharge.request.SafechargeRequest;
@@ -19,6 +18,7 @@ import com.safecharge.request.UpdateOrderRequest;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.SafechargeResponse;
 import com.safecharge.response.UpdateOrderResponse;
+import com.safecharge.test.BaseTest;
 import com.safecharge.util.Constants;
 
 /**
@@ -60,7 +60,7 @@ import com.safecharge.util.Constants;
                                                                            .addItem("test_item_1", "1", "1")
                                                                            .addItem("test_item_2", "1", "1")
                                                                            .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test",
-                                                                                   "Testov", "0884123456", null, "1000")
+                                                                                   "Testov", "0884123456", null, "1000", "1990-01-01")
                                                                            .addBillingDetails("Test", "Testov", "test@test.com", "0884123456",
                                                                                    "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
                                                                            .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
@@ -84,7 +84,7 @@ import com.safecharge.util.Constants;
                                                                  .addItem("test_item_1", "1", "1")
                                                                  .addItem("test_item_2", "1", "1")
                                                                  .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov",
-                                                                         "0884123456", null, "1000")
+                                                                         "0884123456", null, "1000", "1990-01-01")
                                                                  .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
                                                                          "Sofia", "BG", null, "1000", "0884123456")
                                                                  .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
@@ -119,7 +119,7 @@ import com.safecharge.util.Constants;
                                                     .addItem("test_item_1", "1", "1")
                                                     .addItem("test_item_2", "1", "1")
                                                     .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov", "0884123456",
-                                                            null, "1000")
+                                                            null, "1000", "1990-01-01")
                                                     .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",
                                                             "BG", null, "1000", "0884123456")
                                                     .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",

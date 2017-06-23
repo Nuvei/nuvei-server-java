@@ -98,4 +98,5 @@ public class TestVariables {
     public static final String userPaymentOptionIdNotBelongingAPM = "6218806";
     public static final String userPaymentOptionIdNeteller = "6225006";
     public static final String PaRes = "";
+    public static final String dateOfBirth = "1990-01-01";
 }

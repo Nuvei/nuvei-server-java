@@ -44,8 +44,9 @@ import com.safecharge.util.ValidationUtil;
 
         private String isDynamic3D;
 
-        public void addIsDynamic3D(String isDynamic3D) {
+        public Builder addIsDynamic3D(String isDynamic3D) {
             this.isDynamic3D = isDynamic3D;
+            return this;
         }
 
         @Override public SafechargeRequest build() {

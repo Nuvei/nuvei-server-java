@@ -4,12 +4,12 @@ import java.util.UUID;
 
 import javax.validation.ConstraintViolationException;
 
-import com.safecharge.model.MerchantInfo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.safecharge.model.Item;
+import com.safecharge.model.MerchantInfo;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
@@ -154,7 +154,7 @@ public class ValidationsTest {
                                                                .addItem("test_item_1", "1", "1")
                                                                .addItem("test_item_2", "1", "1")
                                                                .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov",
-                                                                       "0884123456", null, "1000")
+                                                                       "0884123456", null, "1000", "1990-01-01")
                                                                .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
                                                                        "Sofia", "BG", null, "1000", "0884123456")
                                                                .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
@@ -179,7 +179,7 @@ public class ValidationsTest {
                                                                    .addUserDetails("Test street 1 ", "Sofia", "BG", "test@test.com",
                                                                            "Test street 1 Test street 1 Test street 1 Test street 1 ",
                                                                            "Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 ",
-                                                                           "0884123456", null, "1000")
+                                                                           "0884123456", null, "1000", "1990-01-01")
                                                                    .addBillingDetails("Test", "Testov", "test@test.com", "0884123456",
                                                                            "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
                                                                    .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
@@ -207,7 +207,7 @@ public class ValidationsTest {
                                                               .addItem("test_item_1", "1", "1")
                                                               .addItem("test_item_2", "1", "1")
                                                               .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov",
-                                                                      "0884123456", null, "1000")
+                                                                      "0884123456", null, "1000", "1990-01-01")
                                                               .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
                                                                       "Sofia", "BG", null, "1000", "0884123456")
                                                               .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
@@ -229,7 +229,7 @@ public class ValidationsTest {
                                                                   .addUserDetails("Test street 1 ", "Sofia", "BG", "test@test.com",
                                                                           "Test street 1 Test street 1 Test street 1 Test street 1 ",
                                                                           "Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 ",
-                                                                          "0884123456", null, "1000")
+                                                                          "0884123456", null, "1000", "1990-01-01")
                                                                   .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
                                                                           "Sofia", "BG", null, "1000", "0884123456")
                                                                   .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
