@@ -18,6 +18,9 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Utility class used for calculating the Safecharge's request's checksum. Merchant key can be obtained by contacting
+ * <a mailto:integration@safecharge.com>SafeCharge’s Integration Team</a>
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/21/2017
@@ -67,10 +70,21 @@ public class ChecksumUtils {
                 Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "timeStamp"));
     }
 
+    /**
+     * Calculates the checksum for the provided {@code apiRequest} object.
+     * <p>
+     * Note that the {@code apiRequest} object needs to be properly annotated with {@link ValidChecksum} annotation.
+     *
+     * @param apiRequest    The object containing the request to generate the checksum for
+     * @param key           The merchant key obtained by Safecharge
+     * @param encoding      The character encoding to use when calculating the checksum
+     * @param hashAlgorithm The hash algorithm to use when calculating the checksum. Check {@link Constants.HashAlgorithm}
+     * @return The calculated checksum as {@code String} or null if the checksum can not be calculated
+     */
     public static String calculateChecksum(Object apiRequest, String key, String encoding, Constants.HashAlgorithm hashAlgorithm) {
 
         ValidChecksum annotation = apiRequest.getClass()
-                                             .getAnnotation(ValidChecksum.class);
+                .getAnnotation(ValidChecksum.class);
         if (annotation == null) {
             return null;
         }
@@ -84,7 +98,7 @@ public class ChecksumUtils {
             Object fieldValue = getObject(apiRequest, parameterName);
             if (fieldValue != null) {
                 ValidChecksum innerObjectAnnotation = fieldValue.getClass()
-                                                                .getAnnotation(ValidChecksum.class);
+                        .getAnnotation(ValidChecksum.class);
 
                 if (innerObjectAnnotation != null) {
                     sb.append(appendInnerObjectParams(fieldValue, innerObjectAnnotation));
@@ -113,10 +127,10 @@ public class ChecksumUtils {
             List<String> paramsOrder = null;
 
             ValidChecksum annotation = object.getClass()
-                                             .getAnnotation(ValidChecksum.class);
+                    .getAnnotation(ValidChecksum.class);
             if (annotation != null) {
                 paramsOrder = requestChecksumOrder.get(annotation.orderMappingName()
-                                                                 .name());
+                        .name());
             }
 
             if (paramsOrder != null && !paramsOrder.isEmpty()) {
@@ -202,7 +216,7 @@ public class ChecksumUtils {
         }
 
         CharsetEncoder encoder = Charset.forName(charset)
-                                        .newEncoder();
+                .newEncoder();
 
         ByteBuffer encoded;
         try {

@@ -8,12 +8,15 @@ import javax.validation.Validation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
 
-import com.safecharge.request.SafechargeRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.safecharge.request.SafechargeRequest;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Utility class for validating the request to Safecharge
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/24/2017
@@ -23,8 +26,17 @@ public class ValidationUtil {
     private static final Log logger = LogFactory.getLog(ValidationUtil.class);
 
     private static final Validator validator = Validation.buildDefaultValidatorFactory()
-                                                         .getValidator();
+            .getValidator();
 
+    /**
+     * Validates the {@code request} based on its type and returns it or throws a {@code ValidationException}
+     * if any {@link ConstraintViolation} is found.
+     *
+     * @param request the request object to validate
+     * @param <T>     request type param
+     * @return The validated request(the same object passed as {@code request})
+     * @throws ValidationException if any {@link ConstraintViolation} is found
+     */
     public static <T extends SafechargeRequest> T validate(T request) throws ValidationException {
 
         Set<ConstraintViolation<T>> constraintViolations = validator.validate(request);
@@ -33,7 +45,7 @@ public class ValidationUtil {
             StringBuilder sb = new StringBuilder();
             for (ConstraintViolation<T> constraintViolation : constraintViolations) {
                 sb.append(constraintViolation.getMessage())
-                  .append(" ");
+                        .append(" ");
             }
 
             String errorMessage = sb.toString();
