@@ -30,6 +30,9 @@ public class ChecksumUtils {
     private static final Log logger = LogFactory.getLog(RequestUtils.class);
     private static final Map<String, List<String>> requestChecksumOrder = new HashMap<String, List<String>>();
 
+    private ChecksumUtils() {
+    }
+
     static {
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.USER_DETAILS.name(),
                 Arrays.asList("firstName", "lastName", "address", "phone", "zip", "city", "countryCode", "state", "email"));

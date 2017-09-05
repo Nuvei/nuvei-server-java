@@ -18,6 +18,9 @@ public class RequestUtils {
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 
+    private RequestUtils() {
+    }
+
     /**
      * This method is used to calculate the current timestamp of a request.
      * <p>

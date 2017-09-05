@@ -67,7 +67,7 @@ public interface Constants {
     /**
      * Array of possible hexadecimal values.
      */
-    char[] HEXADECIMAL = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+    char[] HEXADECIMAL = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * Response statuses Approved, Declined and Error are used by PhoneBet API and should not be changed, because they are in production use.
@@ -101,7 +101,8 @@ public interface Constants {
             }
         }
 
-        @Override public String toString() {
+        @Override
+        public String toString() {
             return name;
         }
     }

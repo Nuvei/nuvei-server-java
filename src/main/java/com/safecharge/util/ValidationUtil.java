@@ -28,6 +28,9 @@ public class ValidationUtil {
     private static final Validator validator = Validation.buildDefaultValidatorFactory()
             .getValidator();
 
+    private ValidationUtil() {
+    }
+
     /**
      * Validates the {@code request} based on its type and returns it or throws a {@code ValidationException}
      * if any {@link ConstraintViolation} is found.
