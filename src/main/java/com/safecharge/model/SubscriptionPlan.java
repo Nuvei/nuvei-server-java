@@ -2,6 +2,9 @@ package com.safecharge.model;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for the data needed to create subscription(a recurring payment). Based on the data provided
+ * the Cashier's Merchant's client is billed automatically by the Cashier system.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 6/6/2017
@@ -108,40 +111,41 @@ public class SubscriptionPlan {
         this.endUnitValue = endUnitValue;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("SubscriptionPlan{");
         sb.append("subscriptionPlanId=")
-          .append(subscriptionPlanId);
+                .append(subscriptionPlanId);
         sb.append(", productName='")
-          .append(productName)
-          .append('\'');
+                .append(productName)
+                .append('\'');
         sb.append(", currency='")
-          .append(currency)
-          .append('\'');
+                .append(currency)
+                .append('\'');
         sb.append(", initialAmount='")
-          .append(initialAmount)
-          .append('\'');
+                .append(initialAmount)
+                .append('\'');
         sb.append(", rebillAmount='")
-          .append(rebillAmount)
-          .append('\'');
+                .append(rebillAmount)
+                .append('\'');
         sb.append(", startUnit='")
-          .append(startUnit)
-          .append('\'');
+                .append(startUnit)
+                .append('\'');
         sb.append(", startUnitValue='")
-          .append(startUnitValue)
-          .append('\'');
+                .append(startUnitValue)
+                .append('\'');
         sb.append(", recurrungUnit='")
-          .append(recurrungUnit)
-          .append('\'');
+                .append(recurrungUnit)
+                .append('\'');
         sb.append(", recurringUnitValue='")
-          .append(recurringUnitValue)
-          .append('\'');
+                .append(recurringUnitValue)
+                .append('\'');
         sb.append(", endUnit='")
-          .append(endUnit)
-          .append('\'');
+                .append(endUnit)
+                .append('\'');
         sb.append(", endUnitValue='")
-          .append(endUnitValue)
-          .append('\'');
+                .append(endUnitValue)
+                .append('\'');
         sb.append('}');
         return sb.toString();
     }

@@ -4,6 +4,9 @@ import java.util.List;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for Cashier's Merchant's specific info. For example: order id, account name, etc. in the Merchant's ERP system.
+ * The data in the field can be validated by regular expression.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 4/7/2017
@@ -60,21 +63,22 @@ public class Field {
         this.caption = caption;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("Field{");
         sb.append("name='")
-          .append(name)
-          .append('\'');
+                .append(name)
+                .append('\'');
         sb.append(", regex='")
-          .append(regex)
-          .append('\'');
+                .append(regex)
+                .append('\'');
         sb.append(", type='")
-          .append(type)
-          .append('\'');
+                .append(type)
+                .append('\'');
         sb.append(", validationMessage=")
-          .append(validationMessage);
+                .append(validationMessage);
         sb.append(", caption=")
-          .append(caption);
+                .append(caption);
         sb.append('}');
         return sb.toString();
     }

@@ -2,6 +2,8 @@ package com.safecharge.model;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for Cashier's Payment Gateway external token data.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/10/2017
@@ -180,65 +182,66 @@ public class ExternalToken {
         this.externalToken_tokenProvider = externalToken_tokenProvider;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("ExternalToken{");
         sb.append("externalToken_tokenValue='")
-          .append(externalToken_tokenValue)
-          .append('\'');
+                .append(externalToken_tokenValue)
+                .append('\'');
         sb.append(", externalToken_cardBin='")
-          .append(externalToken_cardBin)
-          .append('\'');
+                .append(externalToken_cardBin)
+                .append('\'');
         sb.append(", externalToken_cardMask='")
-          .append(externalToken_cardMask)
-          .append('\'');
+                .append(externalToken_cardMask)
+                .append('\'');
         sb.append(", externalToken_cardLength='")
-          .append(externalToken_cardLength)
-          .append('\'');
+                .append(externalToken_cardLength)
+                .append('\'');
         sb.append(", externalToken_cardName='")
-          .append(externalToken_cardName)
-          .append('\'');
+                .append(externalToken_cardName)
+                .append('\'');
         sb.append(", externalToken_cardExpiration='")
-          .append(externalToken_cardExpiration)
-          .append('\'');
+                .append(externalToken_cardExpiration)
+                .append('\'');
         sb.append(", externalToken_cardTypeId='")
-          .append(externalToken_cardTypeId)
-          .append('\'');
+                .append(externalToken_cardTypeId)
+                .append('\'');
         sb.append(", externalToken_cardTypeName='")
-          .append(externalToken_cardTypeName)
-          .append('\'');
+                .append(externalToken_cardTypeName)
+                .append('\'');
         sb.append(", externalToken_creditCompanyId='")
-          .append(externalToken_creditCompanyId)
-          .append('\'');
+                .append(externalToken_creditCompanyId)
+                .append('\'');
         sb.append(", externalToken_creditCompanyName='")
-          .append(externalToken_creditCompanyName)
-          .append('\'');
+                .append(externalToken_creditCompanyName)
+                .append('\'');
         sb.append(", externalToken_cardBrandId='")
-          .append(externalToken_cardBrandId)
-          .append('\'');
+                .append(externalToken_cardBrandId)
+                .append('\'');
         sb.append(", externalToken_cardBrandName='")
-          .append(externalToken_cardBrandName)
-          .append('\'');
+                .append(externalToken_cardBrandName)
+                .append('\'');
         sb.append(", externalToken_cardAcquirerId='")
-          .append(externalToken_cardAcquirerId)
-          .append('\'');
+                .append(externalToken_cardAcquirerId)
+                .append('\'');
         sb.append(", externalToken_cardAcquirerName='")
-          .append(externalToken_cardAcquirerName)
-          .append('\'');
+                .append(externalToken_cardAcquirerName)
+                .append('\'');
         sb.append(", externalToken_blockedCard='")
-          .append(externalToken_blockedCard)
-          .append('\'');
+                .append(externalToken_blockedCard)
+                .append('\'');
         sb.append(", externalToken_extendedCardType='")
-          .append(externalToken_extendedCardType)
-          .append('\'');
+                .append(externalToken_extendedCardType)
+                .append('\'');
         sb.append(", externalToken_clubName='")
-          .append(externalToken_clubName)
-          .append('\'');
+                .append(externalToken_clubName)
+                .append('\'');
         sb.append(", externalToken_Indication='")
-          .append(externalToken_Indication)
-          .append('\'');
+                .append(externalToken_Indication)
+                .append('\'');
         sb.append(", externalToken_tokenProvider='")
-          .append(externalToken_tokenProvider)
-          .append('\'');
+                .append(externalToken_tokenProvider)
+                .append('\'');
         sb.append('}');
         return sb.toString();
     }

@@ -5,6 +5,9 @@ import com.safecharge.util.ValidChecksum;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for User's personal details and a "generic" address. Note that a User can have different billing/shipping
+ * address per order stored in {@link UserAddress} object.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/21/2017
@@ -112,41 +115,42 @@ public class UserDetails {
         this.birthdate = birthdate;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("UserDetails{");
         sb.append("firstName='")
-          .append(firstName)
-          .append('\'');
+                .append(firstName)
+                .append('\'');
         sb.append(", lastName='")
-          .append(lastName)
-          .append('\'');
+                .append(lastName)
+                .append('\'');
         sb.append(", address='")
-          .append(address)
-          .append('\'');
+                .append(address)
+                .append('\'');
         sb.append(", phone='")
-          .append(phone)
-          .append('\'');
+                .append(phone)
+                .append('\'');
         sb.append(", zip='")
-          .append(zip)
-          .append('\'');
+                .append(zip)
+                .append('\'');
         sb.append(", city='")
-          .append(city)
-          .append('\'');
+                .append(city)
+                .append('\'');
         sb.append(", countryCode='")
-          .append(countryCode)
-          .append('\'');
+                .append(countryCode)
+                .append('\'');
         sb.append(", state='")
-          .append(state)
-          .append('\'');
+                .append(state)
+                .append('\'');
         sb.append(", email='")
-          .append(email)
-          .append('\'');
+                .append(email)
+                .append('\'');
         sb.append(", locale='")
-          .append(locale)
-          .append('\'');
+                .append(locale)
+                .append('\'');
         sb.append(", birthdate='")
-          .append(birthdate)
-          .append('\'');
+                .append(birthdate)
+                .append('\'');
         sb.append('}');
         return sb.toString();
     }

@@ -7,41 +7,43 @@ import com.safecharge.util.APIConstants;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for an User's billing or shipping address.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
  */
 public class UserAddress {
 
-    @Size(max = APIConstants.FIRST_NAME_MAX_LENGTH,
-          message = "firstName size must be up to 30 characters long!") private String firstName;
+    @Size(max = APIConstants.FIRST_NAME_MAX_LENGTH, message = "firstName size must be up to 30 characters long!")
+    private String firstName;
 
-    @Size(max = APIConstants.LAST_NAME_MAX_LENGTH,
-          message = "lastName size must be up to 40 characters long!") private String lastName;
+    @Size(max = APIConstants.LAST_NAME_MAX_LENGTH, message = "lastName size must be up to 40 characters long!")
+    private String lastName;
 
-    @Pattern(regexp = APIConstants.EMAIL_REGEX,
-             message = "the entered value is not a valid email") private String email;
+    @Pattern(regexp = APIConstants.EMAIL_REGEX, message = "the entered value is not a valid email")
+    private String email;
 
-    @Size(max = APIConstants.PHONE_MAX_LENGTH,
-          message = "phone size must be up to 18 characters long!") private String phone;
+    @Size(max = APIConstants.PHONE_MAX_LENGTH, message = "phone size must be up to 18 characters long!")
+    private String phone;
 
-    @Size(max = APIConstants.ADDRESS_MAX_LENGTH,
-          message = "address size must be up to 60 characters long!") private String address;
+    @Size(max = APIConstants.ADDRESS_MAX_LENGTH, message = "address size must be up to 60 characters long!")
+    private String address;
 
-    @Size(max = APIConstants.CITY_MAX_LENGTH,
-          message = "city size must be up to 30 characters long!") private String city;
+    @Size(max = APIConstants.CITY_MAX_LENGTH, message = "city size must be up to 30 characters long!")
+    private String city;
 
-    @Size(max = 2,
-          message = "country size must be up to 2 characters long!") private String country;
+    @Size(max = 2, message = "country size must be up to 2 characters long!")
+    private String country;
 
-    @Size(max = 2,
-          message = "state size must be up to 2 characters long!") private String state;
+    @Size(max = 2, message = "state size must be up to 2 characters long!")
+    private String state;
 
-    @Size(max = APIConstants.ZIP_MAX_LENGTH,
-          message = "zip size must be up to 10 characters long!") private String zip;
+    @Size(max = APIConstants.ZIP_MAX_LENGTH, message = "zip size must be up to 10 characters long!")
+    private String zip;
 
-    @Size(max = APIConstants.PHONE_MAX_LENGTH,
-          message = "cell size must be up to 18 characters long!") private String cell;
+    @Size(max = APIConstants.PHONE_MAX_LENGTH, message = "cell size must be up to 18 characters long!")
+    private String cell;
 
     public String getAddress() {
         return address;

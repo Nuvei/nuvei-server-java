@@ -7,11 +7,14 @@ import com.safecharge.util.ValidChecksum;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for an already saved Cashier's User Payment Option(UPO) data. It can hold credit/debit card or APM data.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 6/6/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.USER_DETAILS) public class CashierPaymentMethodDetails {
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.USER_DETAILS)
+public class CashierPaymentMethodDetails {
 
     private Long userPaymentOptionId;
     private String upoName;
@@ -77,26 +80,27 @@ import com.safecharge.util.ValidChecksum;
         this.expiryDate = expiryDate;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("CashierPaymentMethodDetails{");
         sb.append("userPaymentOptionId=")
-          .append(userPaymentOptionId);
+                .append(userPaymentOptionId);
         sb.append(", upoName='")
-          .append(upoName)
-          .append('\'');
+                .append(upoName)
+                .append('\'');
         sb.append(", paymentMethodName='")
-          .append(paymentMethodName)
-          .append('\'');
+                .append(paymentMethodName)
+                .append('\'');
         sb.append(", upoStatus='")
-          .append(upoStatus)
-          .append('\'');
+                .append(upoStatus)
+                .append('\'');
         sb.append(", billingAddress=")
-          .append(billingAddress);
+                .append(billingAddress);
         sb.append(", upoData=")
-          .append(upoData);
+                .append(upoData);
         sb.append(", expiryDate='")
-          .append(expiryDate)
-          .append('\'');
+                .append(expiryDate)
+                .append('\'');
         sb.append('}');
         return sb.toString();
     }
