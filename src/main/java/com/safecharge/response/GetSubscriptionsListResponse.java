@@ -2,7 +2,7 @@ package com.safecharge.response;
 
 import java.util.List;
 
-import com.safecharge.model.SubscriptionsList;
+import com.safecharge.model.SubscriptionsListElement;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -12,14 +12,14 @@ import com.safecharge.model.SubscriptionsList;
  */
 public class GetSubscriptionsListResponse extends SafechargeResponse {
 
-    private List<SubscriptionsList> subscriptionsList;
+    private List<SubscriptionsListElement> subscriptionsList;
     private Long totalCount;
 
-    public List<SubscriptionsList> getSubscriptionsList() {
+    public List<SubscriptionsListElement> getSubscriptionsList() {
         return subscriptionsList;
     }
 
-    public void setSubscriptionsList(List<SubscriptionsList> subscriptionsList) {
+    public void setSubscriptionsList(List<SubscriptionsListElement> subscriptionsList) {
         this.subscriptionsList = subscriptionsList;
     }
 
@@ -31,14 +31,15 @@ public class GetSubscriptionsListResponse extends SafechargeResponse {
         this.totalCount = totalCount;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("GetSubscriptionListResponse{");
         sb.append("subscriptionsList=")
-          .append(subscriptionsList);
+                .append(subscriptionsList);
         sb.append(", totalCount=")
-          .append(totalCount);
+                .append(totalCount);
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

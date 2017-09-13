@@ -2,11 +2,14 @@ package com.safecharge.model;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for subscription data, such as the id of the {@link SubscriptionPlan},
+ * the status and creation date of the subscription, which user and UPO it is associated with, etc.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 6/6/2017
  */
-public class SubscriptionsList {
+public class SubscriptionsListElement {
 
     private Long subscriptionId;
     private String subscriptionStatus;
@@ -63,23 +66,24 @@ public class SubscriptionsList {
         this.userPaymentOption = userPaymentOption;
     }
 
-    @Override public String toString() {
-        final StringBuilder sb = new StringBuilder("SubscriptionsList{");
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("SubscriptionsListElement{");
         sb.append("subscriptionId=")
-          .append(subscriptionId);
+                .append(subscriptionId);
         sb.append(", subscriptionStatus='")
-          .append(subscriptionStatus)
-          .append('\'');
+                .append(subscriptionStatus)
+                .append('\'');
         sb.append(", subscriptionCreateDate='")
-          .append(subscriptionCreateDate)
-          .append('\'');
+                .append(subscriptionCreateDate)
+                .append('\'');
         sb.append(", subscriptionPlanId=")
-          .append(subscriptionPlanId);
+                .append(subscriptionPlanId);
         sb.append(", userTokenId='")
-          .append(userTokenId)
-          .append('\'');
+                .append(userTokenId)
+                .append('\'');
         sb.append(", userPaymentOption=")
-          .append(userPaymentOption);
+                .append(userPaymentOption);
         sb.append('}');
         return sb.toString();
     }
