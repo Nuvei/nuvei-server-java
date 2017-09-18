@@ -17,6 +17,8 @@ import com.safecharge.util.Constants;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * A base builder for an order related requests.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/20/2017
@@ -38,8 +40,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     private String clientUniqueId;
 
     /**
-     * @param amount
-     * @return
+     * Adds amount to the request.
+     *
+     * @param amount amount value as {@link String} E.g. "10", "10.11", "10.1101"
+     * @return this object
      */
     public T addAmount(String amount) {
         this.amount = amount;
@@ -47,8 +51,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * @param currency
-     * @return
+     * Adds currency to the request.
+     *
+     * @param currency the three character ISO currency code
+     * @return this object
      */
     public T addCurrency(String currency) {
         this.currency = currency;
@@ -56,10 +62,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds item to the request. The item is added to a {@link List} of items and is not replaced.
      *
-     * @param item
-     * @return
+     * @param item the {@link Item} to add to the request
+     * @return this object
      */
     public T addItem(Item item) {
 
@@ -68,12 +74,12 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds item to the request. The item is added to a {@link List} of items and is not replaced.
      *
-     * @param name
-     * @param price
-     * @param quantity
-     * @return
+     * @param name     the name of the item to add
+     * @param price    the price of the item to add
+     * @param quantity the quantity of the item to add
+     * @return this object
      */
     public T addItem(String name, String price, String quantity) {
 
@@ -86,10 +92,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds device details to the request.
      *
-     * @param deviceDetails
-     * @return
+     * @param deviceDetails the {@link DeviceDetails} to add to the request
+     * @return this object
      */
     public T addDeviceDetails(DeviceDetails deviceDetails) {
 
@@ -98,12 +104,14 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * @param deviceType
-     * @param deviceName
-     * @param deviceOS
-     * @param browser
-     * @param ipAddress
-     * @return
+     * Adds device details to the request.
+     *
+     * @param deviceType the type of the device making the request
+     * @param deviceName the type of the device making the request
+     * @param deviceOS   the device operating system
+     * @param browser    the browser that the device used making the request
+     * @param ipAddress  the IP address of the device making the request
+     * @return this object
      */
     public T addDeviceDetails(String deviceType, String deviceName, String deviceOS, String browser, String ipAddress) {
 
@@ -118,8 +126,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * @param userDetails
-     * @return
+     * Adds user details to the request.
+     *
+     * @param userDetails the {@link CashierUserDetails} to add to the request
+     * @return this object
      */
     public T addUserDetails(CashierUserDetails userDetails) {
 
@@ -128,20 +138,22 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * @param address
-     * @param city
-     * @param country
-     * @param email
-     * @param firstName
-     * @param lastName
-     * @param phone
-     * @param state
-     * @param zip
-     * @param dateOfBirth
-     * @return
+     * Adds user details to the request.
+     *
+     * @param address     The address of the user
+     * @param city        The city of the user
+     * @param country     The city of the user(two-letter ISO country code)
+     * @param email       The email of the user
+     * @param firstName   The first name of the user
+     * @param lastName    The last name of the user
+     * @param phone       The phone number of the user
+     * @param state       The state of the user(two-letter ISO state code)
+     * @param zip         The postal code of the user
+     * @param dateOfBirth The date of birth of the user
+     * @return this object
      */
     public T addUserDetails(String address, String city, String country, String email, String firstName, String lastName, String phone, String state,
-            String zip, String dateOfBirth) {
+                            String zip, String dateOfBirth) {
 
         CashierUserDetails userDetails = new CashierUserDetails();
         userDetails.setAddress(address);
@@ -159,10 +171,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds shipping info to the request.
      *
-     * @param userAddress
-     * @return
+     * @param userAddress {@link UserAddress} object to add to the request as shipping details
+     * @return this object
      */
     public T addShippingDetails(UserAddress userAddress) {
 
@@ -171,22 +183,22 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds shipping info to the request.
      *
-     * @param firstName
-     * @param lastName
-     * @param email
-     * @param phone
-     * @param address
-     * @param city
-     * @param country
-     * @param state
-     * @param zip
-     * @param cell
-     * @return
+     * @param firstName The first name of the recipient
+     * @param lastName  The last name of the recipient
+     * @param email     The email of the recipient
+     * @param phone     The phone number of the recipient
+     * @param address   The address of the recipient
+     * @param city      The city of the recipient
+     * @param country   The country of the recipient(two-letter ISO country code)
+     * @param state     The state of the recipient(two-letter ISO state code)
+     * @param zip       The postal code of the recipient
+     * @param cell      The cell number of the recipient
+     * @return this object
      */
     public T addShippingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
-            String state, String zip, String cell) {
+                                String state, String zip, String cell) {
 
         UserAddress userAddress = new UserAddress();
         userAddress.setFirstName(firstName);
@@ -204,10 +216,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds billing info to the request.
      *
-     * @param userAddress
-     * @return
+     * @param userAddress {@link UserAddress} object to add to the request as billing details
+     * @return this object
      */
     public T addBillingDetails(UserAddress userAddress) {
 
@@ -216,22 +228,22 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds billing info to the request.
      *
-     * @param firstName
-     * @param lastName
-     * @param email
-     * @param phone
-     * @param address
-     * @param city
-     * @param country
-     * @param state
-     * @param zip
-     * @param cell
-     * @return
+     * @param firstName The first name of the recipient
+     * @param lastName  The last name of the recipient
+     * @param email     The email of the recipient
+     * @param phone     The phone number of the recipient
+     * @param address   The address of the recipient
+     * @param city      The city of the recipient
+     * @param country   The country of the recipient(two-letter ISO country code)
+     * @param state     The state of the recipient(two-letter ISO state code)
+     * @param zip       The postal code of the recipient
+     * @param cell      The cell number of the recipient
+     * @return this object
      */
     public T addBillingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
-            String state, String zip, String cell) {
+                               String state, String zip, String cell) {
 
         UserAddress userAddress = new UserAddress();
         userAddress.setFirstName(firstName);
@@ -249,10 +261,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds Merchant's dynamic data to the request.
      *
-     * @param dynamicDescriptor
-     * @return
+     * @param dynamicDescriptor {@code DynamicDescriptor} object to add to the request as billing details
+     * @return this object
      */
     public T addDynamicDescriptor(DynamicDescriptor dynamicDescriptor) {
 
@@ -261,11 +273,11 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds Merchant's dynamic data to the request.
      *
-     * @param merchantName
-     * @param merchantPhone
-     * @return
+     * @param merchantName  Merchant's name
+     * @param merchantPhone Merchant's phone number
+     * @return this object
      */
     public T addDynamicDescriptor(String merchantName, String merchantPhone) {
 
@@ -277,10 +289,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds Merchant's specific custom data to the request.
      *
-     * @param merchantDetails
-     * @return
+     * @param merchantDetails {@code MerchantDetails} object to add to the request
+     * @return this object
      */
     public T addMerchantDetails(MerchantDetails merchantDetails) {
 
@@ -289,22 +301,22 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds Merchant's specific custom data to the request.
      *
-     * @param customField1
-     * @param customField2
-     * @param customField3
-     * @param customField4
-     * @param customField5
-     * @param customField6
-     * @param customField7
-     * @param customField8
-     * @param customField9
-     * @param customField10
-     * @return
+     * @param customField1  {@link String} to store in {@code customField1}
+     * @param customField2  {@link String} to store in {@code customField2}
+     * @param customField3  {@link String} to store in {@code customField3}
+     * @param customField4  {@link String} to store in {@code customField4}
+     * @param customField5  {@link String} to store in {@code customField5}
+     * @param customField6  {@link String} to store in {@code customField6}
+     * @param customField7  {@link String} to store in {@code customField7}
+     * @param customField8  {@link String} to store in {@code customField8}
+     * @param customField9  {@link String} to store in {@code customField9}
+     * @param customField10 {@link String} to store in {@code customField10}
+     * @return this object
      */
     public T addMerchantDetails(String customField1, String customField2, String customField3, String customField4, String customField5,
-            String customField6, String customField7, String customField8, String customField9, String customField10) {
+                                String customField6, String customField7, String customField8, String customField9, String customField10) {
 
         MerchantDetails merchantDetails = new MerchantDetails();
         merchantDetails.setCustomField1(customField1);
@@ -321,11 +333,26 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         return addMerchantDetails(merchantDetails);
     }
 
+    /**
+     * Adds URLs to redirect to in case of success/failure and URL to send notification(DMN) to.
+     *
+     * @param urlDetails {@code urlDetails} object to add to the request
+     * @return this object
+     */
     public T addURLDetails(URLDetails urlDetails) {
         this.urlDetails = urlDetails;
         return (T) this;
     }
 
+    /**
+     * Adds URLs to redirect to in case of success/failure and URL to send notification(DMN) to.
+     *
+     * @param failureUrl      URL to redirect to in case of failed transaction
+     * @param pendingUrl      URL to redirect to in case of pending transaction
+     * @param successUrl      URL to redirect to in case of successful transaction
+     * @param notificationUrl URL to send notification(DMN) to
+     * @return this object
+     */
     public T addURLDetails(String failureUrl, String pendingUrl, String successUrl, String notificationUrl) {
 
         URLDetails urlDetails = new URLDetails();
@@ -338,10 +365,11 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds additional domain specific payment info(addendum) to the request.
      *
-     * @param addendums
-     * @return
+     * @param addendums {@code Addendums} object to add to the request
+     * @return this object
+     * @see Addendums
      */
     public T addAddendums(Addendums addendums) {
 
@@ -350,9 +378,9 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds empty additional domain specific payment info(addendum) to the request.
      *
-     * @return
+     * @return this object
      */
     public T addAddendums() {
 
@@ -362,10 +390,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds user's token id to the request.
      *
-     * @param userTokenId
-     * @return
+     * @param userTokenId the user's token id to add to the request
+     * @return this object
      */
     public T addUserTokenId(String userTokenId) {
 
@@ -374,10 +402,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * TODO
+     * Adds client's unique id to the request.
      *
-     * @param clientUniqueId
-     * @return
+     * @param clientUniqueId the client's unique id to add to the request
+     * @return this object
      */
     public T addClientUniqueId(String clientUniqueId) {
 
@@ -386,9 +414,13 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
-     * @return
+     * Adds the order details data, collected by this builder.
+     *
+     * @param safechargeOrderDetailsRequest an already created request of type T
+     * @param <S>                           type parameter
+     * @return this object
      */
-    protected <T extends SafechargeOrderDetailsRequest> T build(T safechargeOrderDetailsRequest) {
+    protected <S extends SafechargeOrderDetailsRequest> S build(S safechargeOrderDetailsRequest) {
 
         super.build(safechargeOrderDetailsRequest);
 

@@ -1,12 +1,14 @@
 package com.safecharge.request.builder;
 
-import com.safecharge.request.SafechargeTransactionRequest;
 import com.safecharge.model.URLDetails;
+import com.safecharge.request.SafechargeTransactionRequest;
 import com.safecharge.util.ChecksumUtils;
 import com.safecharge.util.Constants;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * A base builder for a transaction related requests.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/22/2017
@@ -21,51 +23,109 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     private String relatedTransactionId;
     private URLDetails urlDetails;
 
+    /**
+     * Adds amount to the request.
+     *
+     * @param amount amount value as {@link String} E.g. "10", "10.11", "10.1101"
+     * @return this object
+     */
     public T addAmount(String amount) {
         this.amount = amount;
         return (T) this;
     }
 
+    /**
+     * Adds currency to the request.
+     *
+     * @param currency the three character ISO currency code
+     * @return this object
+     */
     public T addCurrency(String currency) {
         this.currency = currency;
         return (T) this;
     }
 
+    /**
+     * Adds authentication code to the request.
+     *
+     * @param authCode authentication code to add to the request
+     * @return this object
+     */
     public T addAuthCode(String authCode) {
         this.authCode = authCode;
         return (T) this;
     }
 
+    /**
+     * Adds comment to the request.
+     *
+     * @param comment comment to add to the request
+     * @return this object
+     */
     public T addComment(String comment) {
         this.comment = comment;
         return (T) this;
     }
 
+    /**
+     * Adds client's unique id to the request.
+     *
+     * @param clientUniqueId the client's unique id to add to the request
+     * @return this object
+     */
     public T addClientUniqueId(String clientUniqueId) {
         this.clientUniqueId = clientUniqueId;
         return (T) this;
     }
 
+    /**
+     * Adds related transaction id to the request.
+     *
+     * @param relatedTransactionId the related transaction id to add to the request
+     * @return this object
+     */
     public T addRelatedTransactionId(String relatedTransactionId) {
         this.relatedTransactionId = relatedTransactionId;
         return (T) this;
     }
 
-    public T addURLDetails(String failureURL, String pendingURL, String successURL, String notificationUrl) {
-        URLDetails urlDetails = new URLDetails();
-        urlDetails.setFailureUrl(failureURL);
-        urlDetails.setPendingUrl(pendingURL);
-        urlDetails.setSuccessUrl(successURL);
-        urlDetails.setNotificationUrl(notificationUrl);
-        return addURLDetails(urlDetails);
-    }
-
+    /**
+     * Adds URLs to redirect to in case of success/failure and URL to send notification(DMN) to.
+     *
+     * @param urlDetails {@code urlDetails} object to add to the request
+     * @return this object
+     */
     public T addURLDetails(URLDetails urlDetails) {
         this.urlDetails = urlDetails;
         return (T) this;
     }
 
-    protected <T extends SafechargeTransactionRequest> T build(T safechargeTransactionRequest) {
+    /**
+     * Adds URLs to redirect to in case of success/failure and URL to send notification(DMN) to.
+     *
+     * @param failureUrl      URL to redirect to in case of failed transaction
+     * @param pendingUrl      URL to redirect to in case of pending transaction
+     * @param successUrl      URL to redirect to in case of successful transaction
+     * @param notificationUrl URL to send notification(DMN) to
+     * @return this object
+     */
+    public T addURLDetails(String failureUrl, String pendingUrl, String successUrl, String notificationUrl) {
+        URLDetails urlDetails = new URLDetails();
+        urlDetails.setFailureUrl(failureUrl);
+        urlDetails.setPendingUrl(pendingUrl);
+        urlDetails.setSuccessUrl(successUrl);
+        urlDetails.setNotificationUrl(notificationUrl);
+        return addURLDetails(urlDetails);
+    }
+
+    /**
+     * Adds the order details data, collected by this builder.
+     *
+     * @param safechargeTransactionRequest an already created request of type T
+     * @param <S>                          type parameter
+     * @return this object
+     */
+    protected <S extends SafechargeTransactionRequest> S build(S safechargeTransactionRequest) {
 
         super.build(safechargeTransactionRequest);
 
