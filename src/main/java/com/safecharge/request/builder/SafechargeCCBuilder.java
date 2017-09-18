@@ -35,7 +35,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     /**
      * Adds transaction type to the request.
      *
-     * @param transactionType the type of the transaction. Possible types: {@link Constants.TransactionType}
+     * @param transactionType the type of the transaction. Possible types: {@link com.safecharge.util.Constants.TransactionType}
      * @return this object
      */
     public T addTransactionType(Constants.TransactionType transactionType) {
