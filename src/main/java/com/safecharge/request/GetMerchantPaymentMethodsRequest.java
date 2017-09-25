@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
-import com.safecharge.util.ValidationUtil;
+import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -14,17 +14,21 @@ import com.safecharge.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 4/6/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING) public class GetMerchantPaymentMethodsRequest
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
+public class GetMerchantPaymentMethodsRequest
         extends SafechargeRequest {
 
-    @Size(min=3,max = 3,
-          message = "currencyCode size must be 3 characters long!") private String currencyCode;
+    @Size(min = 3, max = 3,
+            message = "currencyCode size must be 3 characters long!")
+    private String currencyCode;
 
-    @Size(min=2,max = 2,
-          message = "countryCode size must be 2 characters long!") private String countryCode;
+    @Size(min = 2, max = 2,
+            message = "countryCode size must be 2 characters long!")
+    private String countryCode;
 
-    @Size(min=2,max = 3,
-          message = "languageCode size must be 2 or 3 characters long!") private String languageCode;
+    @Size(min = 2, max = 3,
+            message = "languageCode size must be 2 or 3 characters long!")
+    private String languageCode;
 
     public static Builder builder() {
         return new Builder();
@@ -54,19 +58,20 @@ import com.safecharge.util.ValidationUtil;
         this.languageCode = languageCode;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("GetMerchantPaymentMethodsRequest{");
         sb.append("currencyCode='")
-          .append(currencyCode)
-          .append('\'');
+                .append(currencyCode)
+                .append('\'');
         sb.append(", countryCode='")
-          .append(countryCode)
-          .append('\'');
+                .append(countryCode)
+                .append('\'');
         sb.append(", languageCode='")
-          .append(languageCode)
-          .append('\'');
+                .append(languageCode)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }
@@ -92,13 +97,14 @@ import com.safecharge.util.ValidationUtil;
             return this;
         }
 
-        @Override public SafechargeRequest build() throws ConstraintViolationException {
+        @Override
+        public SafechargeRequest build() throws ConstraintViolationException {
             GetMerchantPaymentMethodsRequest getMerchantPaymentMethodsRequest = new GetMerchantPaymentMethodsRequest();
             super.build(getMerchantPaymentMethodsRequest);
             getMerchantPaymentMethodsRequest.setCountryCode(countryCode);
             getMerchantPaymentMethodsRequest.setCurrencyCode(currencyCode);
             getMerchantPaymentMethodsRequest.setLanguageCode(languageCode);
-            return ValidationUtil.validate(getMerchantPaymentMethodsRequest);
+            return ValidationUtils.validate(getMerchantPaymentMethodsRequest);
         }
     }
 

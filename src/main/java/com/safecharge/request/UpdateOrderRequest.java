@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 import com.safecharge.request.builder.SafechargeOrderBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
-import com.safecharge.util.ValidationUtil;
+import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -17,7 +17,8 @@ import com.safecharge.util.ValidationUtil;
 public class UpdateOrderRequest extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
     @Size(max = 45,
-          message = "orderId size must be up to 45 characters long!") private String orderId;
+            message = "orderId size must be up to 45 characters long!")
+    private String orderId;
 
     public static Builder builder() {
         return new Builder();
@@ -27,17 +28,19 @@ public class UpdateOrderRequest extends SafechargeOrderDetailsRequest implements
         return orderId;
     }
 
-    @Override public void setOrderId(String orderId) {
+    @Override
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("UpdateOrderRequest{");
         sb.append("orderId='")
-          .append(orderId)
-          .append('\'');
+                .append(orderId)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }
@@ -51,10 +54,11 @@ public class UpdateOrderRequest extends SafechargeOrderDetailsRequest implements
             return this;
         }
 
-        @Override public SafechargeRequest build() {
+        @Override
+        public SafechargeRequest build() {
             UpdateOrderRequest updateOrderRequest = new UpdateOrderRequest();
             updateOrderRequest.setOrderId(orderId);
-            return ValidationUtil.validate(super.build(updateOrderRequest));
+            return ValidationUtils.validate(super.build(updateOrderRequest));
         }
     }
 }

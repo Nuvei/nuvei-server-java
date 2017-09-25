@@ -8,7 +8,8 @@ package com.safecharge.response;
  */
 public class VoidTransactionResponse extends SafechargeTransactionResponse {
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("VoidTransactionResponse{");
         sb.append(super.toString());
         sb.append('}');

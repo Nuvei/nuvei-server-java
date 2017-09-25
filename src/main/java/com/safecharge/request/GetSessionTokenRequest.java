@@ -3,7 +3,7 @@ package com.safecharge.request;
 import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
-import com.safecharge.util.ValidationUtil;
+import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -18,17 +18,19 @@ public class GetSessionTokenRequest extends SafechargeRequest {
         return new Builder();
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("GetSessionTokenRequest{");
         sb.append(super.toString())
-          .append('}');
+                .append('}');
         return sb.toString();
     }
 
     public static class Builder extends SafechargeBuilder<Builder> {
 
-        @Override public SafechargeRequest build() {
-            return ValidationUtil.validate(super.build(new GetSessionTokenRequest()));
+        @Override
+        public SafechargeRequest build() {
+            return ValidationUtils.validate(super.build(new GetSessionTokenRequest()));
         }
     }
 }

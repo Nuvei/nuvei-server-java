@@ -26,13 +26,14 @@ public class CardTokenizationResponse extends PaymentCCResponse {
         this.ccTempToken = ccTempToken;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("CardTokenizationResponse{");
         sb.append("ccTempToken='")
-          .append(ccTempToken)
-          .append('\'');
+                .append(ccTempToken)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

@@ -34,18 +34,19 @@ public class Payment3DResponse extends PaymentsResponse {
         this.threeDReason = threeDReason;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("Payment3DResponse{");
         sb.append("eci='")
-          .append(eci)
-          .append('\'');
+                .append(eci)
+                .append('\'');
         sb.append(", threeDReason='")
-          .append(threeDReason)
-          .append('\'');
+                .append(threeDReason)
+                .append('\'');
         sb.append(", externalToken=")
-          .append(externalToken);
+                .append(externalToken);
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

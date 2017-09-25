@@ -4,6 +4,7 @@ import com.safecharge.model.URLDetails;
 import com.safecharge.request.SafechargeTransactionRequest;
 import com.safecharge.util.ChecksumUtils;
 import com.safecharge.util.Constants;
+import com.safecharge.util.UrlUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -110,11 +111,8 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
      * @return this object
      */
     public T addURLDetails(String failureUrl, String pendingUrl, String successUrl, String notificationUrl) {
-        URLDetails urlDetails = new URLDetails();
-        urlDetails.setFailureUrl(failureUrl);
-        urlDetails.setPendingUrl(pendingUrl);
-        urlDetails.setSuccessUrl(successUrl);
-        urlDetails.setNotificationUrl(notificationUrl);
+
+        URLDetails urlDetails = UrlUtils.createUrlDetails(failureUrl, pendingUrl, successUrl, notificationUrl);
         return addURLDetails(urlDetails);
     }
 

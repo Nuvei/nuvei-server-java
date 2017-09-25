@@ -19,8 +19,8 @@ public class Authorization3DResponse extends PaymentsResponse {
         if (paRequest != null) {
             return paRequest;
         } else {
-            System.out.println((char)27 + "[31m***Missing acsUrl and paReqest! Check if the GW client " +
-                    "is bg3dmandatory! Check if the used cardNumber is 3D enrolled***" + (char)27 + "[0m");
+            System.out.println((char) 27 + "[31m***Missing acsUrl and paReqest! Check if the GW client " +
+                    "is bg3dmandatory! Check if the used cardNumber is 3D enrolled***" + (char) 27 + "[0m");
             return null;
         }
     }
@@ -50,16 +50,17 @@ public class Authorization3DResponse extends PaymentsResponse {
         this.acsUrl = acsUrl;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("Authorization3DResponse{");
         sb.append("paRequest='")
-          .append(paRequest)
-          .append('\'');
+                .append(paRequest)
+                .append('\'');
         sb.append(", acsUrl='")
-          .append(acsUrl)
-          .append('\'');
+                .append(acsUrl)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

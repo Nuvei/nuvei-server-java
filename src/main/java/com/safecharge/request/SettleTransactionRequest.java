@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 import com.safecharge.request.builder.SafechargeTransactionBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
-import com.safecharge.util.ValidationUtil;
+import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -14,14 +14,17 @@ import com.safecharge.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/20/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.SETTLE_GW_TRANSACTION) public class SettleTransactionRequest
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.SETTLE_GW_TRANSACTION)
+public class SettleTransactionRequest
         extends SafechargeTransactionRequest {
 
     @Size(max = 25,
-          message = "descriptorMerchantName size must be up to 25 characters long!") private String descriptorMerchantName;
+            message = "descriptorMerchantName size must be up to 25 characters long!")
+    private String descriptorMerchantName;
 
     @Size(max = 13,
-          message = "descriptorMerchantPhone size must be up to 13 characters long!") private String descriptorMerchantPhone;
+            message = "descriptorMerchantPhone size must be up to 13 characters long!")
+    private String descriptorMerchantPhone;
 
     public static Builder builder() {
         return new Builder();
@@ -43,15 +46,16 @@ import com.safecharge.util.ValidationUtil;
         this.descriptorMerchantPhone = descriptorMerchantPhone;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("SettleTransactionRequest{");
         sb.append("descriptorMerchantName='")
-          .append(descriptorMerchantName)
-          .append('\'');
+                .append(descriptorMerchantName)
+                .append('\'');
         sb.append(", descriptorMerchantPhone='")
-          .append(descriptorMerchantPhone);
+                .append(descriptorMerchantPhone);
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }
@@ -71,11 +75,12 @@ import com.safecharge.util.ValidationUtil;
             return this;
         }
 
-        @Override public SafechargeRequest build() throws ConstraintViolationException {
+        @Override
+        public SafechargeRequest build() throws ConstraintViolationException {
             SettleTransactionRequest settleTransactionRequest = new SettleTransactionRequest();
             settleTransactionRequest.setDescriptorMerchantName(descriptorMerchantName);
             settleTransactionRequest.setDescriptorMerchantPhone(descriptorMerchantPhone);
-            return ValidationUtil.validate(super.build(settleTransactionRequest));
+            return ValidationUtils.validate(super.build(settleTransactionRequest));
         }
     }
 }

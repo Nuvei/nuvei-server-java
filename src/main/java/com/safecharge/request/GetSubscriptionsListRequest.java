@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
-import com.safecharge.util.ValidationUtil;
+import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -14,14 +14,16 @@ import com.safecharge.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 6/5/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.GET_CASHIER_SUBSCRIPTIONS) public class GetSubscriptionsListRequest
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.GET_CASHIER_SUBSCRIPTIONS)
+public class GetSubscriptionsListRequest
         extends SafechargeRequest {
 
     private int firstResult = 0;
     private int maxResults = 0;
     private String subscriptionStatus;
     @Size(max = 255,
-          message = "userTokenId value size must be up to 255 characters") private String userTokenId;
+            message = "userTokenId value size must be up to 255 characters")
+    private String userTokenId;
 
     public static Builder builder() {
         return new Builder();
@@ -86,31 +88,33 @@ import com.safecharge.util.ValidationUtil;
             return this;
         }
 
-        @Override public String toString() {
+        @Override
+        public String toString() {
             final StringBuilder sb = new StringBuilder("Builder{");
             sb.append("firstResult=")
-              .append(firstResult);
+                    .append(firstResult);
             sb.append(", maxResults=")
-              .append(maxResults);
+                    .append(maxResults);
             sb.append(", subscriptionStatus='")
-              .append(subscriptionStatus)
-              .append('\'');
+                    .append(subscriptionStatus)
+                    .append('\'');
             sb.append(", userTokenId='")
-              .append(userTokenId)
-              .append('\'');
+                    .append(userTokenId)
+                    .append('\'');
             sb.append(", ")
-              .append(super.toString());
+                    .append(super.toString());
             sb.append('}');
             return sb.toString();
         }
 
-        @Override public SafechargeRequest build() throws ConstraintViolationException {
+        @Override
+        public SafechargeRequest build() throws ConstraintViolationException {
             GetSubscriptionsListRequest getSubscriptionListRequest = new GetSubscriptionsListRequest();
             getSubscriptionListRequest.setFirstResult(firstResult);
             getSubscriptionListRequest.setMaxResults(maxResults);
             getSubscriptionListRequest.setSubscriptionStatus(subscriptionStatus);
             getSubscriptionListRequest.setUserTokenId(userTokenId);
-            return ValidationUtil.validate(super.build(getSubscriptionListRequest));
+            return ValidationUtils.validate(super.build(getSubscriptionListRequest));
         }
     }
 }

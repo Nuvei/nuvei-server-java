@@ -22,12 +22,13 @@ public class GetSubscriptionPlansResponse extends SafechargeResponse {
         this.subscriptionPlans = subscriptionPlans;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("GetSubscriptionPlansResponse{");
         sb.append("subscriptionPlans=")
-          .append(subscriptionPlans);
+                .append(subscriptionPlans);
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

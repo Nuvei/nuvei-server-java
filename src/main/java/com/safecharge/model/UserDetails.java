@@ -25,7 +25,7 @@ public class UserDetails {
     private String state;
     private String email;
     private String locale;
-    private String birthdate;
+    private String dateOfBirth;
 
     public String getFirstName() {
         return firstName;
@@ -107,12 +107,12 @@ public class UserDetails {
         this.locale = locale;
     }
 
-    public String getBirthdate() {
-        return birthdate;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     @Override
@@ -148,8 +148,8 @@ public class UserDetails {
         sb.append(", locale='")
                 .append(locale)
                 .append('\'');
-        sb.append(", birthdate='")
-                .append(birthdate)
+        sb.append(", dateOfBirth='")
+                .append(dateOfBirth)
                 .append('\'');
         sb.append('}');
         return sb.toString();

@@ -22,12 +22,13 @@ public class GetMerchantPaymentMethodsResponse extends SafechargeResponse {
         this.paymentMethods = paymentMethods;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("GetMerchantPaymentMethodsResponse{");
         sb.append("paymentMethods=")
-          .append(paymentMethods);
+                .append(paymentMethods);
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

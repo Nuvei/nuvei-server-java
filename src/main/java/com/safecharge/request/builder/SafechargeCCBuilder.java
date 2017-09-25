@@ -3,6 +3,7 @@ package com.safecharge.request.builder;
 import com.safecharge.model.CardData;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.SafechargeCCRequest;
+import com.safecharge.util.CardUtils;
 import com.safecharge.util.Constants;
 
 /**
@@ -59,7 +60,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
 
     /**
      * Adds user payment option (UPO) to the request. It is the payment option that will be used for the transaction.
-     * If CVV is requested it should be set in the passed {@code userPaymentOption}.
+     * If CVV is required it should be set in the passed {@code userPaymentOption}.
      *
      * @param userPaymentOption the UPO to add to the request
      * @return this object
@@ -81,13 +82,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
      * @return this object
      */
     public T addCardData(String cardNumber, String cardHolderName, String expirationMonth, String expirationYear, String cardToken, String cvv) {
-        CardData cardData = new CardData();
-        cardData.setCardNumber(cardNumber);
-        cardData.setCardHolderName(cardHolderName);
-        cardData.setExpirationMonth(expirationMonth);
-        cardData.setExpirationYear(expirationYear);
-        cardData.setCcTempToken(cardToken);
-        cardData.setCVV(cvv);
+        CardData cardData = CardUtils.createCardDataFromParams(cardNumber, cardHolderName, expirationMonth, expirationYear, cardToken, cvv);
         return addCardData(cardData);
     }
 
@@ -122,12 +117,15 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
      * @return the passed {@code request} filled with the data from this builder
      */
     public <S extends SafechargeCCRequest> S build(S request) {
+
         super.build(request);
+
         request.setUserPaymentOption(userPaymentOption);
         request.setTransactionType(transactionType);
         request.setCardData(cardData);
         request.setOrderId(orderId);
         request.setIsRebilling(isRebilling);
+
         return request;
     }
 }

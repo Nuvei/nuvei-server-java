@@ -12,8 +12,12 @@ import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.URLDetails;
 import com.safecharge.model.UserAddress;
 import com.safecharge.request.SafechargeOrderDetailsRequest;
+import com.safecharge.util.AddressUtils;
 import com.safecharge.util.ChecksumUtils;
 import com.safecharge.util.Constants;
+import com.safecharge.util.DeviceUtils;
+import com.safecharge.util.MerchantUtils;
+import com.safecharge.util.UrlUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -115,13 +119,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      */
     public T addDeviceDetails(String deviceType, String deviceName, String deviceOS, String browser, String ipAddress) {
 
-        DeviceDetails deviceDetails = new DeviceDetails();
-        deviceDetails.setDeviceType(deviceType);
-        deviceDetails.setDeviceName(deviceName);
-        deviceDetails.setDeviceOS(deviceOS);
-        deviceDetails.setBrowser(browser);
-        deviceDetails.setIpAddress(ipAddress);
-
+        DeviceUtils.createDeviceDetailsFromParams(deviceType, deviceName, deviceOS, browser, ipAddress);
         return addDeviceDetails(deviceDetails);
     }
 
@@ -155,18 +153,8 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     public T addUserDetails(String address, String city, String country, String email, String firstName, String lastName, String phone, String state,
                             String zip, String dateOfBirth) {
 
-        CashierUserDetails userDetails = new CashierUserDetails();
-        userDetails.setAddress(address);
-        userDetails.setCity(city);
-        userDetails.setCountry(country);
-        userDetails.setEmail(email);
-        userDetails.setFirstName(firstName);
-        userDetails.setLastName(lastName);
-        userDetails.setPhone(phone);
-        userDetails.setState(state);
-        userDetails.setZip(zip);
-        userDetails.setDateOfBirth(dateOfBirth);
-
+        CashierUserDetails userDetails = AddressUtils.createCashierUserDetailsFromParams(address, city, country, email,
+                firstName, lastName, phone, state, zip, dateOfBirth);
         return addUserDetails(userDetails);
     }
 
@@ -200,17 +188,8 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     public T addShippingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
                                 String state, String zip, String cell) {
 
-        UserAddress userAddress = new UserAddress();
-        userAddress.setFirstName(firstName);
-        userAddress.setLastName(lastName);
-        userAddress.setEmail(email);
-        userAddress.setPhone(phone);
-        userAddress.setAddress(address);
-        userAddress.setCity(city);
-        userAddress.setCountry(country);
-        userAddress.setState(state);
-        userAddress.setZip(zip);
-        userAddress.setCell(cell);
+        UserAddress userAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address,
+                city, country, state, zip, cell);
 
         return addShippingDetails(userAddress);
     }
@@ -245,17 +224,8 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     public T addBillingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
                                String state, String zip, String cell) {
 
-        UserAddress userAddress = new UserAddress();
-        userAddress.setFirstName(firstName);
-        userAddress.setLastName(lastName);
-        userAddress.setEmail(email);
-        userAddress.setPhone(phone);
-        userAddress.setAddress(address);
-        userAddress.setCity(city);
-        userAddress.setCountry(country);
-        userAddress.setState(state);
-        userAddress.setZip(zip);
-        userAddress.setCell(cell);
+        UserAddress userAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address,
+                city, country, state, zip, cell);
 
         return addBillingDetails(userAddress);
     }
@@ -318,17 +288,8 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     public T addMerchantDetails(String customField1, String customField2, String customField3, String customField4, String customField5,
                                 String customField6, String customField7, String customField8, String customField9, String customField10) {
 
-        MerchantDetails merchantDetails = new MerchantDetails();
-        merchantDetails.setCustomField1(customField1);
-        merchantDetails.setCustomField2(customField2);
-        merchantDetails.setCustomField3(customField3);
-        merchantDetails.setCustomField4(customField4);
-        merchantDetails.setCustomField5(customField5);
-        merchantDetails.setCustomField6(customField6);
-        merchantDetails.setCustomField7(customField7);
-        merchantDetails.setCustomField8(customField8);
-        merchantDetails.setCustomField9(customField9);
-        merchantDetails.setCustomField10(customField10);
+        MerchantDetails merchantDetails = MerchantUtils.createMerchantDetailsFromParams(customField1, customField2, customField3,
+                customField4, customField5, customField6, customField7, customField8, customField9, customField10);
 
         return addMerchantDetails(merchantDetails);
     }
@@ -340,6 +301,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      * @return this object
      */
     public T addURLDetails(URLDetails urlDetails) {
+
         this.urlDetails = urlDetails;
         return (T) this;
     }
@@ -355,12 +317,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      */
     public T addURLDetails(String failureUrl, String pendingUrl, String successUrl, String notificationUrl) {
 
-        URLDetails urlDetails = new URLDetails();
-        urlDetails.setFailureUrl(failureUrl);
-        urlDetails.setPendingUrl(pendingUrl);
-        urlDetails.setSuccessUrl(successUrl);
-        urlDetails.setNotificationUrl(notificationUrl);
-
+        URLDetails urlDetails = UrlUtils.createUrlDetails(failureUrl, pendingUrl, successUrl, notificationUrl);
         return addURLDetails(urlDetails);
     }
 
@@ -385,7 +342,6 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     public T addAddendums() {
 
         Addendums addendums = new Addendums();
-
         return addAddendums(addendums);
     }
 
@@ -443,6 +399,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         safechargeOrderDetailsRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeOrderDetailsRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",
                         Constants.CHARSET_UTF8, merchantInfo != null ? merchantInfo.getHashAlgorithm() : null));
+
         return safechargeOrderDetailsRequest;
     }
 }

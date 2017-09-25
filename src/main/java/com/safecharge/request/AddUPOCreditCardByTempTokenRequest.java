@@ -9,7 +9,7 @@ import com.safecharge.model.UserAddress;
 import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
-import com.safecharge.util.ValidationUtil;
+import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -17,25 +17,31 @@ import com.safecharge.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/9/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING) public class AddUPOCreditCardByTempTokenRequest
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
+public class AddUPOCreditCardByTempTokenRequest
         extends SafechargeRequest {
 
     /**
      * The unique identifier generated for each customer.
      */
-    @NotNull(message = "userTokenId parameter is mandatory!") @Size(min = 1,
-                                                                   max = 45) private String userTokenId;
+    @NotNull(message = "userTokenId parameter is mandatory!")
+    @Size(min = 1,
+            max = 45)
+    private String userTokenId;
 
     /**
      * The temporary hash of the credit card.
      */
-    @NotNull(message = "ccTempToken parameter is mandatory!") @Size(min = 1,
-                                                                   max = 45) private String ccTempToken;
+    @NotNull(message = "ccTempToken parameter is mandatory!")
+    @Size(min = 1,
+            max = 45)
+    private String ccTempToken;
 
     /**
      *
      */
-    @Valid private UserAddress billingAddress;
+    @Valid
+    private UserAddress billingAddress;
 
     public static Builder builder() {
         return new Builder();
@@ -65,18 +71,19 @@ import com.safecharge.util.ValidationUtil;
         this.billingAddress = billingAddress;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("AddUPOCreditCardByTempTokenRequest{");
         sb.append("userTokenId='")
-          .append(userTokenId)
-          .append('\'');
+                .append(userTokenId)
+                .append('\'');
         sb.append(", ccTempToken='")
-          .append(ccTempToken)
-          .append('\'');
+                .append(ccTempToken)
+                .append('\'');
         sb.append(", billingAddress=")
-          .append(billingAddress);
+                .append(billingAddress);
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }
@@ -98,7 +105,7 @@ import com.safecharge.util.ValidationUtil;
         }
 
         public Builder addBillingAddress(String firstName, String lastName, String email, String phone, String address, String city, String country,
-                String state, String zip, String cell) {
+                                         String state, String zip, String cell) {
 
             UserAddress billingAddress = new UserAddress();
             billingAddress.setFirstName(firstName);
@@ -120,12 +127,13 @@ import com.safecharge.util.ValidationUtil;
             return this;
         }
 
-        @Override public SafechargeRequest build() throws ConstraintViolationException {
+        @Override
+        public SafechargeRequest build() throws ConstraintViolationException {
             AddUPOCreditCardByTempTokenRequest addUPOCreditCardByTempTokenRequest = new AddUPOCreditCardByTempTokenRequest();
             addUPOCreditCardByTempTokenRequest.setUserTokenId(userTokenId);
             addUPOCreditCardByTempTokenRequest.setCcTempToken(ccTempToken);
             addUPOCreditCardByTempTokenRequest.setBillingAddress(billingAddress);
-            return ValidationUtil.validate(super.build(addUPOCreditCardByTempTokenRequest));
+            return ValidationUtils.validate(super.build(addUPOCreditCardByTempTokenRequest));
         }
     }
 }

@@ -72,30 +72,31 @@ public class AddUPOCreditCardResponse extends SafechargeResponse {
         this.cardType = cardType;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("AddUPOCreditCardResponse{");
         sb.append("userPaymentOptionId=")
-          .append(userPaymentOptionId);
+                .append(userPaymentOptionId);
         sb.append(", ccToken='")
-          .append(ccToken)
-          .append('\'');
+                .append(ccToken)
+                .append('\'');
         sb.append(", brand='")
-          .append(brand)
-          .append('\'');
+                .append(brand)
+                .append('\'');
         sb.append(", uniqueCC='")
-          .append(uniqueCC)
-          .append('\'');
+                .append(uniqueCC)
+                .append('\'');
         sb.append(", bin='")
-          .append(bin)
-          .append('\'');
+                .append(bin)
+                .append('\'');
         sb.append(", last4Digits='")
-          .append(last4Digits)
-          .append('\'');
+                .append(last4Digits)
+                .append('\'');
         sb.append(", cardType='")
-          .append(cardType)
-          .append('\'');
+                .append(cardType)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

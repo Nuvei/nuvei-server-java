@@ -294,45 +294,46 @@ public abstract class PaymentsResponse extends SafechargeResponse {
         this.externalToken = externalToken;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("orderId='")
-          .append(orderId)
-          .append('\'');
+                .append(orderId)
+                .append('\'');
         sb.append(", transactionStatus='")
-          .append(transactionStatus)
-          .append('\'');
+                .append(transactionStatus)
+                .append('\'');
         sb.append(", paymentMethodErrorCode='")
-          .append(paymentMethodErrorCode)
-          .append('\'');
+                .append(paymentMethodErrorCode)
+                .append('\'');
         sb.append(", paymentMethodErrorReason='")
-          .append(paymentMethodErrorReason)
-          .append('\'');
+                .append(paymentMethodErrorReason)
+                .append('\'');
         sb.append(", gwErrorCode=")
-          .append(gwErrorCode);
+                .append(gwErrorCode);
         sb.append(", gwErrorReason='")
-          .append(gwErrorReason)
-          .append('\'');
+                .append(gwErrorReason)
+                .append('\'');
         sb.append(", gwExtendedErrorCode=")
-          .append(gwExtendedErrorCode);
+                .append(gwExtendedErrorCode);
         sb.append(", userPaymentOptionId=")
-          .append(userPaymentOptionId);
+                .append(userPaymentOptionId);
         sb.append(", externalTransactionId='")
-          .append(externalTransactionId)
-          .append('\'');
+                .append(externalTransactionId)
+                .append('\'');
         sb.append(", transactionId='")
-          .append(transactionId)
-          .append('\'');
+                .append(transactionId)
+                .append('\'');
         sb.append(", authCode='")
-          .append(authCode)
-          .append('\'');
+                .append(authCode)
+                .append('\'');
         sb.append(", userTokenId='")
-          .append(userTokenId)
-          .append('\'');
+                .append(userTokenId)
+                .append('\'');
         sb.append(", ")
-          .append(externalToken);
+                .append(externalToken);
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         return sb.toString();
     }
 }

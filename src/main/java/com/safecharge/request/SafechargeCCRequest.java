@@ -20,7 +20,8 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
     /**
      * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
      */
-    @Size(max = 45) private String orderId;
+    @Size(max = 45)
+    private String orderId;
 
     /**
      * Transaction Type of the request. Possible values: Auth / Sale.
@@ -43,7 +44,8 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
      *
      * @return cardData
      */
-    @Valid private CardData cardData;
+    @Valid
+    private CardData cardData;
 
     /**
      * User payment option can to be provided as an alternative for providing card data/card token/Apple Pay token. Only one of them can be in use for a certain transaction. If both not provided or both provided it will cause an error.
@@ -52,9 +54,12 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
      *
      * @return
      */
-    @Valid private UserPaymentOption userPaymentOption;
+    @Valid
+    private UserPaymentOption userPaymentOption;
 
-    @Max(value = 2) @Min(value = 0) private int isRebilling;
+    @Max(value = 2)
+    @Min(value = 0)
+    private int isRebilling;
 
     public String getOrderId() {
         return orderId;
@@ -96,19 +101,20 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
         this.isRebilling = isRebilling;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("orderId='")
-          .append(orderId)
-          .append('\'');
+                .append(orderId)
+                .append('\'');
         sb.append(", transactionType=")
-          .append(transactionType);
+                .append(transactionType);
         sb.append(", cardData=")
-          .append(cardData);
+                .append(cardData);
         sb.append(", userPaymentOption=")
-          .append(userPaymentOption);
+                .append(userPaymentOption);
         sb.append(", isRebilling=")
-          .append(isRebilling);
+                .append(isRebilling);
         sb.append(", ");
         sb.append(super.toString());
         return sb.toString();

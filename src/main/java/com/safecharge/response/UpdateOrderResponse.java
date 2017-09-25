@@ -11,7 +11,8 @@ public class UpdateOrderResponse extends SafechargeResponse implements Safecharg
     private String orderId;
     private String userTokenId;
 
-    @Override public String getOrderId() {
+    @Override
+    public String getOrderId() {
         return orderId;
     }
 
@@ -40,16 +41,17 @@ public class UpdateOrderResponse extends SafechargeResponse implements Safecharg
         this.userTokenId = userTokenId;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("UpdateOrderResponse{");
         sb.append("orderId='")
-          .append(orderId)
-          .append('\'');
+                .append(orderId)
+                .append('\'');
         sb.append(", userTokenId='")
-          .append(userTokenId)
-          .append('\'');
+                .append(userTokenId)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

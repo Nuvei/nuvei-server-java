@@ -36,7 +36,8 @@ public class GetOrderDetailsResponse extends SafechargeResponse implements Safec
     private String transactionStatus;
     private String transactionId;
 
-    @Override public String getOrderId() {
+    @Override
+    public String getOrderId() {
         return orderId;
     }
 
@@ -164,49 +165,50 @@ public class GetOrderDetailsResponse extends SafechargeResponse implements Safec
         this.transactionId = transactionId;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("OrderDetailsResponse{");
         sb.append("orderId='")
-          .append(orderId)
-          .append('\'');
+                .append(orderId)
+                .append('\'');
         sb.append(", currency='")
-          .append(currency)
-          .append('\'');
+                .append(currency)
+                .append('\'');
         sb.append(", amount=")
-          .append(amount);
+                .append(amount);
         sb.append(", items=")
-          .append(items);
+                .append(items);
         sb.append(", deviceDetails=")
-          .append(deviceDetails);
+                .append(deviceDetails);
         sb.append(", userDetails=")
-          .append(userDetails);
+                .append(userDetails);
         sb.append(", shippingAddress=")
-          .append(shippingAddress);
+                .append(shippingAddress);
         sb.append(", billingAddress=")
-          .append(billingAddress);
+                .append(billingAddress);
         sb.append(", dynamicDescriptor=")
-          .append(dynamicDescriptor);
+                .append(dynamicDescriptor);
         sb.append(", merchantDetails=")
-          .append(merchantDetails);
+                .append(merchantDetails);
         sb.append(", addendums=")
-          .append(addendums);
+                .append(addendums);
         sb.append(", transactionCreationDate='")
-          .append(transactionCreationDate)
-          .append('\'');
+                .append(transactionCreationDate)
+                .append('\'');
         sb.append(", orderCreationDate='")
-          .append(orderCreationDate)
-          .append('\'');
+                .append(orderCreationDate)
+                .append('\'');
         sb.append(", orderStatus='")
-          .append(orderStatus)
-          .append('\'');
+                .append(orderStatus)
+                .append('\'');
         sb.append(", transactionStatus='")
-          .append(transactionStatus)
-          .append('\'');
+                .append(transactionStatus)
+                .append('\'');
         sb.append(", transactionId='")
-          .append(transactionId)
-          .append('\'');
+                .append(transactionId)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

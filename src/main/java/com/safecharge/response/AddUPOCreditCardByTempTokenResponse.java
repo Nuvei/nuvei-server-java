@@ -18,13 +18,14 @@ public class AddUPOCreditCardByTempTokenResponse extends SafechargeResponse {
         this.userPaymentOptionId = userPaymentOptionId;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("AddUPOCreditCardByTempTokenResponse{");
         sb.append("userPaymentOptionId='")
-          .append(userPaymentOptionId)
-          .append('\'');
+                .append(userPaymentOptionId)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

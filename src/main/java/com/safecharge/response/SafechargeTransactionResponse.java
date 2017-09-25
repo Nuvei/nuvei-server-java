@@ -142,48 +142,49 @@ public class SafechargeTransactionResponse extends SafechargeResponse {
         this.threeDReason = threeDReason;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("transactionId='")
-          .append(transactionId)
-          .append('\'');
+                .append(transactionId)
+                .append('\'');
         sb.append(", externalTransactionId='")
-          .append(externalTransactionId)
-          .append('\'');
+                .append(externalTransactionId)
+                .append('\'');
         sb.append(", userPaymentOptionId=")
-          .append(userPaymentOptionId);
+                .append(userPaymentOptionId);
         sb.append(", paymentMethodErrorCode=")
-          .append(paymentMethodErrorCode);
+                .append(paymentMethodErrorCode);
         sb.append(", paymentMethodErrorReason='")
-          .append(paymentMethodErrorReason)
-          .append('\'');
+                .append(paymentMethodErrorReason)
+                .append('\'');
         sb.append(", gwErrorCode=")
-          .append(gwErrorCode);
+                .append(gwErrorCode);
         sb.append(", gwErrorReason='")
-          .append(gwErrorReason)
-          .append('\'');
+                .append(gwErrorReason)
+                .append('\'');
         sb.append(", gwExtendedErrorCode=")
-          .append(gwExtendedErrorCode);
+                .append(gwExtendedErrorCode);
         sb.append(", transactionStatus='")
-          .append(transactionStatus)
-          .append('\'');
+                .append(transactionStatus)
+                .append('\'');
         sb.append(", authCode='")
-          .append(authCode)
-          .append('\'');
+                .append(authCode)
+                .append('\'');
         sb.append(", paRequest='")
-          .append(paRequest)
-          .append('\'');
+                .append(paRequest)
+                .append('\'');
         sb.append(", redirectUrl='")
-          .append(redirectUrl)
-          .append('\'');
+                .append(redirectUrl)
+                .append('\'');
         sb.append(", eci='")
-          .append(eci)
-          .append('\'');
+                .append(eci)
+                .append('\'');
         sb.append(", threeDReason='")
-          .append(threeDReason)
-          .append('\'');
+                .append(threeDReason)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         return sb.toString();
     }
 }

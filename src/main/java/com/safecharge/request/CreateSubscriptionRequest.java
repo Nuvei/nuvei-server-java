@@ -14,9 +14,10 @@ import com.safecharge.model.URLDetails;
 import com.safecharge.model.UserAddress;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.builder.SafechargeBuilder;
+import com.safecharge.util.AddressUtils;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
-import com.safecharge.util.ValidationUtil;
+import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -24,32 +25,45 @@ import com.safecharge.util.ValidationUtil;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 6/5/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.GET_CASHIER_SUBSCRIPTIONS) public class CreateSubscriptionRequest
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.GET_CASHIER_SUBSCRIPTIONS)
+public class CreateSubscriptionRequest
         extends SafechargeRequest {
 
-    @NotNull(message = "subscriptionPlanId mustn't be null") @Size(max = 20,
-                                                                   message = "subscriptionId value size must be up to 20 characters") private String
+    @NotNull(message = "subscriptionPlanId mustn't be null")
+    @Size(max = 20,
+            message = "subscriptionId value size must be up to 20 characters")
+    private String
             subscriptionPlanId;
 
-    @NotNull(message = "userTokenId mustn't be null") @Size(max = 255,
-                                                            message = "userTokenId value size must be up to 255 characters") private String
+    @NotNull(message = "userTokenId mustn't be null")
+    @Size(max = 255,
+            message = "userTokenId value size must be up to 255 characters")
+    private String
             userTokenId;
 
-    @Valid private DynamicDescriptor dynamicDescriptor;
+    @Valid
+    private DynamicDescriptor dynamicDescriptor;
 
-    @Valid private CashierUserDetails userDetails;
+    @Valid
+    private CashierUserDetails userDetails;
 
-    @Valid private DeviceDetails deviceDetails;
+    @Valid
+    private DeviceDetails deviceDetails;
 
-    @Valid private MerchantDetails merchantDetails;
+    @Valid
+    private MerchantDetails merchantDetails;
 
-    @Valid private URLDetails urlDetails;
+    @Valid
+    private URLDetails urlDetails;
 
-    @Valid private CardData cardData;
+    @Valid
+    private CardData cardData;
 
-    @Valid private UserPaymentOption userPaymentOption;
+    @Valid
+    private UserPaymentOption userPaymentOption;
 
-    @Valid private UserAddress billingAddress;
+    @Valid
+    private UserAddress billingAddress;
 
     public static Builder builder() {
         return new Builder();
@@ -135,30 +149,31 @@ import com.safecharge.util.ValidationUtil;
         this.billingAddress = billingAddress;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("CreateSubscriptionRequest{");
         sb.append("subscriptionPlanId='")
-          .append(subscriptionPlanId)
-          .append('\'');
+                .append(subscriptionPlanId)
+                .append('\'');
         sb.append(", userTokenId='")
-          .append(userTokenId)
-          .append('\'');
+                .append(userTokenId)
+                .append('\'');
         sb.append(", dynamicDescriptor=")
-          .append(dynamicDescriptor);
+                .append(dynamicDescriptor);
         sb.append(", userDetails=")
-          .append(userDetails);
+                .append(userDetails);
         sb.append(", deviceDetails=")
-          .append(deviceDetails);
+                .append(deviceDetails);
         sb.append(", merchantDetails=")
-          .append(merchantDetails);
+                .append(merchantDetails);
         sb.append(", urlDetails=")
-          .append(urlDetails);
+                .append(urlDetails);
         sb.append(", cardData=")
-          .append(cardData);
+                .append(cardData);
         sb.append(", userPaymentOption=")
-          .append(userPaymentOption);
+                .append(userPaymentOption);
         sb.append(", billingAddress=")
-          .append(billingAddress);
+                .append(billingAddress);
         sb.append('}');
         return sb.toString();
     }
@@ -235,25 +250,16 @@ import com.safecharge.util.ValidationUtil;
         }
 
         public CreateSubscriptionRequest.Builder addUserDetails(String address, String city, String country, String email, String firstName,
-                String lastName, String phone, String state, String zip, String dateOfBirth) {
+                                                                String lastName, String phone, String state, String zip, String dateOfBirth) {
 
-            CashierUserDetails userDetails = new CashierUserDetails();
-            userDetails.setAddress(address);
-            userDetails.setCity(city);
-            userDetails.setCountry(country);
-            userDetails.setEmail(email);
-            userDetails.setFirstName(firstName);
-            userDetails.setLastName(lastName);
-            userDetails.setPhone(phone);
-            userDetails.setState(state);
-            userDetails.setZip(zip);
-            userDetails.setDateOfBirth(dateOfBirth);
+            CashierUserDetails userDetails = AddressUtils.createCashierUserDetailsFromParams(address, city, country, email,
+                    firstName, lastName, phone, state, zip, dateOfBirth);
 
             return addUserDetails(userDetails);
         }
 
         public CreateSubscriptionRequest.Builder addDeviceDetails(String deviceType, String deviceName, String deviceOS, String browser,
-                String ipAddress) {
+                                                                  String ipAddress) {
 
             DeviceDetails deviceDetails = new DeviceDetails();
             deviceDetails.setDeviceType(deviceType);
@@ -266,8 +272,9 @@ import com.safecharge.util.ValidationUtil;
         }
 
         public CreateSubscriptionRequest.Builder addMerchantDetails(String customField1, String customField2, String customField3,
-                String customField4, String customField5, String customField6, String customField7, String customField8, String customField9,
-                String customField10) {
+                                                                    String customField4, String customField5, String customField6,
+                                                                    String customField7, String customField8, String customField9,
+                                                                    String customField10) {
 
             MerchantDetails merchantDetails = new MerchantDetails();
             merchantDetails.setCustomField1(customField1);
@@ -295,8 +302,8 @@ import com.safecharge.util.ValidationUtil;
             return addURLDetails(urlDetails);
         }
 
-        public CreateSubscriptionRequest.Builder addCardData(String cardNumber, String cardHolderName, String expirationMonth, String expirationYear,
-                String cardToken, String cvv) {
+        public CreateSubscriptionRequest.Builder addCardData(String cardNumber, String cardHolderName, String expirationMonth,
+                                                             String expirationYear, String cardToken, String cvv) {
             CardData cardData = new CardData();
             cardData.setCardNumber(cardNumber);
             cardData.setCardHolderName(cardHolderName);
@@ -315,7 +322,7 @@ import com.safecharge.util.ValidationUtil;
         }
 
         public Builder addBillingAddress(String firstName, String lastName, String email, String phone, String address, String city, String country,
-                String state, String zip, String cell) {
+                                         String state, String zip, String cell) {
 
             UserAddress billingAddress = new UserAddress();
             billingAddress.setFirstName(firstName);
@@ -337,7 +344,8 @@ import com.safecharge.util.ValidationUtil;
             return this;
         }
 
-        @Override public SafechargeRequest build() throws ConstraintViolationException {
+        @Override
+        public SafechargeRequest build() throws ConstraintViolationException {
             CreateSubscriptionRequest createSubscriptionRequest = new CreateSubscriptionRequest();
             createSubscriptionRequest.setSubscriptionPlanId(subscriptionPlanId);
             createSubscriptionRequest.setUserTokenId(userTokenId);
@@ -349,7 +357,7 @@ import com.safecharge.util.ValidationUtil;
             createSubscriptionRequest.setCardData(cardData);
             createSubscriptionRequest.setUserPaymentOption(userPaymentOption);
             createSubscriptionRequest.setBillingAddress(billingAddress);
-            return ValidationUtil.validate(super.build(createSubscriptionRequest));
+            return ValidationUtils.validate(super.build(createSubscriptionRequest));
         }
     }
 }

@@ -29,6 +29,15 @@ public class MerchantInfo {
 
     private Constants.HashAlgorithm hashAlgorithm;
 
+    /**
+     * Constructs a {@link MerchantInfo} object with data from the params.
+     *
+     * @param merchantKey    The secret merchant key obtained by the Merchant during integration process with Safecharge
+     * @param merchantId     Merchant id in the Safecharge's system
+     * @param merchantSiteId Merchant site id in the Safecharge's system
+     * @param serverHost     The Safecharge's server address to send the request to
+     * @param hashAlgorithm  The hashing algorithm used to generate the checksum
+     */
     public MerchantInfo(String merchantKey, String merchantId, String merchantSiteId, String serverHost, Constants.HashAlgorithm hashAlgorithm) {
         this.merchantKey = merchantKey;
         this.merchantId = merchantId;

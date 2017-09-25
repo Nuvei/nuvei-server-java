@@ -95,6 +95,7 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
      * @return the passed {@code safechargeRequest} filled with the data from this builder
      */
     protected <S extends SafechargeRequest> S build(S safechargeRequest) {
+
         String timestamp = RequestUtils.calculateTimestamp();
         safechargeRequest.setMerchantId(merchantInfo != null ? merchantInfo.getMerchantId() : null);
         safechargeRequest.setMerchantSiteId(merchantInfo != null ? merchantInfo.getMerchantSiteId() : null);
@@ -106,6 +107,7 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
         safechargeRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "", Constants.CHARSET_UTF8,
                         merchantInfo != null ? merchantInfo.getHashAlgorithm() : null));
+
         return safechargeRequest;
     }
 

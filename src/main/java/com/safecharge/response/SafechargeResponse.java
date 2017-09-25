@@ -171,39 +171,40 @@ public abstract class SafechargeResponse {
         this.apiType = apiType;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("internalRequestId=")
-          .append(internalRequestId);
+                .append(internalRequestId);
         sb.append(", status=")
-          .append(status);
+                .append(status);
         sb.append(", errCode=")
-          .append(errCode);
+                .append(errCode);
         sb.append(", reason='")
-          .append(reason)
-          .append('\'');
+                .append(reason)
+                .append('\'');
         sb.append(", merchantId='")
-          .append(merchantId)
-          .append('\'');
+                .append(merchantId)
+                .append('\'');
         sb.append(", merchantSiteId='")
-          .append(merchantSiteId)
-          .append('\'');
+                .append(merchantSiteId)
+                .append('\'');
         sb.append(", version='")
-          .append(version)
-          .append('\'');
+                .append(version)
+                .append('\'');
         sb.append(", clientRequestId='")
-          .append(clientRequestId)
-          .append('\'');
+                .append(clientRequestId)
+                .append('\'');
         sb.append(", sessionToken='")
-          .append(sessionToken)
-          .append('\'');
+                .append(sessionToken)
+                .append('\'');
         sb.append(", clientUniqueId='")
-          .append(clientUniqueId)
-          .append('\'');
+                .append(clientUniqueId)
+                .append('\'');
         sb.append(", errorType=")
-          .append(errorType);
+                .append(errorType);
         sb.append(", apiType=")
-          .append(apiType);
+                .append(apiType);
         return sb.toString();
     }
 }

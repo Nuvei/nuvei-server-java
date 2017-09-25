@@ -14,21 +14,28 @@ import com.safecharge.model.URLDetails;
  */
 public abstract class SafechargeTransactionRequest extends SafechargeRequest {
 
-    @NotNull(message = "amount parameter is mandatory!") protected String amount;
+    @NotNull(message = "amount parameter is mandatory!")
+    protected String amount;
 
-    @NotNull(message = "currency parameter is mandatory!") protected String currency;
+    @NotNull(message = "currency parameter is mandatory!")
+    protected String currency;
 
-    @NotNull(message = "authCode parameter is mandatory!") protected String authCode;
+    @NotNull(message = "authCode parameter is mandatory!")
+    protected String authCode;
 
     @Size(max = 255,
-          message = "comment size must be up to 255 characters long!") protected String comment;
+            message = "comment size must be up to 255 characters long!")
+    protected String comment;
 
     @Size(max = 45,
-          message = "clientUniqueId size must be up to 45 characters long!") protected String clientUniqueId;
+            message = "clientUniqueId size must be up to 45 characters long!")
+    protected String clientUniqueId;
 
-    @NotNull(message = "relatedTransactionId parameter is mandatory!") protected String relatedTransactionId;
+    @NotNull(message = "relatedTransactionId parameter is mandatory!")
+    protected String relatedTransactionId;
 
-    @Valid protected URLDetails urlDetails;
+    @Valid
+    protected URLDetails urlDetails;
 
     public String getAmount() {
         return amount;
@@ -86,30 +93,31 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
         this.urlDetails = urlDetails;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("amount='")
-          .append(amount)
-          .append('\'');
+                .append(amount)
+                .append('\'');
         sb.append(", currency='")
-          .append(currency)
-          .append('\'');
+                .append(currency)
+                .append('\'');
         sb.append(", authCode='")
-          .append(authCode)
-          .append('\'');
+                .append(authCode)
+                .append('\'');
         sb.append(", comment='")
-          .append(comment)
-          .append('\'');
+                .append(comment)
+                .append('\'');
         sb.append(", clientUniqueId='")
-          .append(clientUniqueId)
-          .append('\'');
+                .append(clientUniqueId)
+                .append('\'');
         sb.append(", relatedTransactionId='")
-          .append(relatedTransactionId)
-          .append('\'');
+                .append(relatedTransactionId)
+                .append('\'');
         sb.append(", urlDetails=")
-          .append(urlDetails);
+                .append(urlDetails);
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         return sb.toString();
     }
 }

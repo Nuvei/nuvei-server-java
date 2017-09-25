@@ -8,7 +8,8 @@ package com.safecharge.response;
  */
 public class PaymentCCResponse extends PaymentsResponse {
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentCCResponse{");
         sb.append(super.toString());
         sb.append('}');

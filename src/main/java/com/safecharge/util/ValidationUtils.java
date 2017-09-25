@@ -21,14 +21,14 @@ import com.safecharge.request.SafechargeRequest;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/24/2017
  */
-public class ValidationUtil {
+public class ValidationUtils {
 
-    private static final Log logger = LogFactory.getLog(ValidationUtil.class);
+    private static final Log logger = LogFactory.getLog(ValidationUtils.class);
 
     private static final Validator validator = Validation.buildDefaultValidatorFactory()
             .getValidator();
 
-    private ValidationUtil() {
+    private ValidationUtils() {
     }
 
     /**

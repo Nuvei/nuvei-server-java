@@ -15,7 +15,8 @@ public class OpenOrderResponse extends SafechargeResponse implements SafechargeO
     /**
      * @return the Merchant Order ID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
      */
-    @Override public String getOrderId() {
+    @Override
+    public String getOrderId() {
         return orderId;
     }
 
@@ -44,16 +45,17 @@ public class OpenOrderResponse extends SafechargeResponse implements SafechargeO
         this.userTokenId = userTokenId;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("OpenOrderResponse{");
         sb.append("orderId='")
-          .append(orderId)
-          .append('\'');
+                .append(orderId)
+                .append('\'');
         sb.append(", userTokenId='")
-          .append(userTokenId)
-          .append('\'');
+                .append(userTokenId)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

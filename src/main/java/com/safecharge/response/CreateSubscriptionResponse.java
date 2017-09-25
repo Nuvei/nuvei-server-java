@@ -18,13 +18,14 @@ public class CreateSubscriptionResponse extends SafechargeResponse {
         this.subscriptionId = subscriptionId;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("CreateSubscriptionResponse{");
         sb.append("subscriptionId='")
-          .append(subscriptionId)
-          .append('\'');
+                .append(subscriptionId)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }
