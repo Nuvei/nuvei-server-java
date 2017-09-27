@@ -15,12 +15,24 @@ import com.safecharge.model.UserAddress;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.AddressUtils;
+import com.safecharge.util.CardUtils;
 import com.safecharge.util.Constants;
+import com.safecharge.util.DeviceUtils;
+import com.safecharge.util.MerchantUtils;
+import com.safecharge.util.UrlUtils;
 import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Request to create a recurring payment.
+ * <p>
+ * This request is used for creating a subscription for consumers that wish to conduct future recurring transactions,
+ * based on previous successful transactions.
+ * <p>
+ * The details of the subscription are stored in a previously created subscription plan. So no parameters related to the subscription
+ * (e.g. initial amount, recurring amount, subscription duration, etc) are passed except the ID of the subscription plan.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 6/5/2017
@@ -29,17 +41,19 @@ import com.safecharge.util.ValidationUtils;
 public class CreateSubscriptionRequest
         extends SafechargeRequest {
 
+    /**
+     * The ID of previously created subscription plan  to add to the request.
+     */
     @NotNull(message = "subscriptionPlanId mustn't be null")
-    @Size(max = 20,
-            message = "subscriptionId value size must be up to 20 characters")
-    private String
-            subscriptionPlanId;
+    @Size(max = 20, message = "subscriptionId value size must be up to 20 characters")
+    private String subscriptionPlanId;
 
+    /**
+     * The ID of the user token to add to the request.
+     */
     @NotNull(message = "userTokenId mustn't be null")
-    @Size(max = 255,
-            message = "userTokenId value size must be up to 255 characters")
-    private String
-            userTokenId;
+    @Size(max = 255, message = "userTokenId value size must be up to 255 characters")
+    private String userTokenId;
 
     @Valid
     private DynamicDescriptor dynamicDescriptor;
@@ -191,57 +205,122 @@ public class CreateSubscriptionRequest
         private UserPaymentOption userPaymentOption;
         private UserAddress billingAddress;
 
+        /**
+         * Adds subscription plan ID to the request.
+         * <p>
+         * The details of the subscription can be found in it(e.g. initial amount, recurring amount, subscription duration, etc).
+         *
+         * @param subscriptionPlanId the id of the subscription plan to use in the request
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addSubscriptionPlanId(String subscriptionPlanId) {
             this.subscriptionPlanId = subscriptionPlanId;
             return this;
         }
 
+        /**
+         * Adds user token id to the request.
+         *
+         * @param userTokenId The user token as {@link String}
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
             return this;
         }
 
+        /**
+         * Adds Merchant's dynamic data to the request.
+         *
+         * @param dynamicDescriptor {@link DynamicDescriptor} object to add to the request as billing details
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addDynamicDescriptor(DynamicDescriptor dynamicDescriptor) {
 
             this.dynamicDescriptor = dynamicDescriptor;
             return this;
         }
 
+        /**
+         * Adds user details to the request.
+         *
+         * @param userDetails the {@link CashierUserDetails} to add to the request
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addUserDetails(CashierUserDetails userDetails) {
 
             this.userDetails = userDetails;
             return this;
         }
 
+        /**
+         * Adds device details to the request.
+         *
+         * @param deviceDetails the {@link DeviceDetails} to add to the request
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addDeviceDetails(DeviceDetails deviceDetails) {
 
             this.deviceDetails = deviceDetails;
             return this;
         }
 
+        /**
+         * Adds Merchant's specific custom data to the request.
+         *
+         * @param merchantDetails {@link MerchantDetails} object to add to the request
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addMerchantDetails(MerchantDetails merchantDetails) {
 
             this.merchantDetails = merchantDetails;
             return this;
         }
 
+        /**
+         * Adds URLs to redirect to in case of success/failure and URL to send notification(DMN) to.
+         *
+         * @param urlDetails {@link URLDetails} object to add to the request
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addURLDetails(URLDetails urlDetails) {
             this.urlDetails = urlDetails;
             return this;
         }
 
+        /**
+         * Adds card data to the request.
+         *
+         * @param cardData {@link CardData} object to set to the request
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addCardData(CardData cardData) {
             this.cardData = cardData;
             return this;
         }
 
+        /**
+         * Adds user payment option (UPO) to the request. It is the payment option that will be used for the transaction.
+         * If CVV is required it should be set in the passed {@code userPaymentOption}.
+         *
+         * @param userPaymentOption the UPO to add to the request
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addUserPaymentOption(UserPaymentOption userPaymentOption) {
             this.userPaymentOption = userPaymentOption;
             return this;
         }
 
+        /**
+         * Adds Merchant's dynamic data to the request.
+         *
+         * @param merchantName  Merchant's name
+         * @param merchantPhone Merchant's phone number
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addDynamicDescriptor(String merchantName, String merchantPhone) {
 
+            //TODO: decide how to remove this duplicate code - constructor vs static factory
             DynamicDescriptor dynamicDescriptor = new DynamicDescriptor();
             dynamicDescriptor.setMerchantName(merchantName);
             dynamicDescriptor.setMerchantPhone(merchantPhone);
@@ -249,6 +328,21 @@ public class CreateSubscriptionRequest
             return addDynamicDescriptor(dynamicDescriptor);
         }
 
+        /**
+         * Adds user details to the request.
+         *
+         * @param address     The address of the user
+         * @param city        The city of the user
+         * @param country     The city of the user(two-letter ISO country code)
+         * @param email       The email of the user
+         * @param firstName   The first name of the user
+         * @param lastName    The last name of the user
+         * @param phone       The phone number of the user
+         * @param state       The state of the user(two-letter ISO state code)
+         * @param zip         The postal code of the user
+         * @param dateOfBirth The date of birth of the user
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addUserDetails(String address, String city, String country, String email, String firstName,
                                                                 String lastName, String phone, String state, String zip, String dateOfBirth) {
 
@@ -258,92 +352,145 @@ public class CreateSubscriptionRequest
             return addUserDetails(userDetails);
         }
 
+        /**
+         * Adds device details to the request.
+         *
+         * @param deviceType the type of the device making the request
+         * @param deviceName the type of the device making the request
+         * @param deviceOS   the device operating system
+         * @param browser    the browser that the device used making the request
+         * @param ipAddress  the IP address of the device making the request
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addDeviceDetails(String deviceType, String deviceName, String deviceOS, String browser,
                                                                   String ipAddress) {
 
-            DeviceDetails deviceDetails = new DeviceDetails();
-            deviceDetails.setDeviceType(deviceType);
-            deviceDetails.setDeviceName(deviceName);
-            deviceDetails.setDeviceOS(deviceOS);
-            deviceDetails.setBrowser(browser);
-            deviceDetails.setIpAddress(ipAddress);
+            DeviceDetails deviceDetails = DeviceUtils.createDeviceDetailsFromParams(deviceType, deviceName, deviceOS, browser, ipAddress);
 
             return addDeviceDetails(deviceDetails);
         }
 
+        /**
+         * Adds Merchant's specific custom data to the request.
+         *
+         * @param customField1  {@link String} to store in {@code customField1}
+         * @param customField2  {@link String} to store in {@code customField2}
+         * @param customField3  {@link String} to store in {@code customField3}
+         * @param customField4  {@link String} to store in {@code customField4}
+         * @param customField5  {@link String} to store in {@code customField5}
+         * @param customField6  {@link String} to store in {@code customField6}
+         * @param customField7  {@link String} to store in {@code customField7}
+         * @param customField8  {@link String} to store in {@code customField8}
+         * @param customField9  {@link String} to store in {@code customField9}
+         * @param customField10 {@link String} to store in {@code customField10}
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addMerchantDetails(String customField1, String customField2, String customField3,
                                                                     String customField4, String customField5, String customField6,
                                                                     String customField7, String customField8, String customField9,
                                                                     String customField10) {
 
-            MerchantDetails merchantDetails = new MerchantDetails();
-            merchantDetails.setCustomField1(customField1);
-            merchantDetails.setCustomField2(customField2);
-            merchantDetails.setCustomField3(customField3);
-            merchantDetails.setCustomField4(customField4);
-            merchantDetails.setCustomField5(customField5);
-            merchantDetails.setCustomField6(customField6);
-            merchantDetails.setCustomField7(customField7);
-            merchantDetails.setCustomField8(customField8);
-            merchantDetails.setCustomField9(customField9);
-            merchantDetails.setCustomField10(customField10);
+            MerchantDetails merchantDetails = MerchantUtils.createMerchantDetailsFromParams(customField1, customField2, customField3,
+                    customField4, customField5, customField6, customField7, customField8, customField9, customField10);
 
             return addMerchantDetails(merchantDetails);
         }
 
+
+        /**
+         * Adds URLs to redirect to in case of success/failure and URL to send notification(DMN) to.
+         *
+         * @param failureUrl      URL to redirect to in case of failed transaction
+         * @param pendingUrl      URL to redirect to in case of pending transaction
+         * @param successUrl      URL to redirect to in case of successful transaction
+         * @param notificationUrl URL to send notification(DMN) to
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addURLDetails(String failureUrl, String pendingUrl, String successUrl, String notificationUrl) {
 
-            URLDetails urlDetails = new URLDetails();
-            urlDetails.setFailureUrl(failureUrl);
-            urlDetails.setPendingUrl(pendingUrl);
-            urlDetails.setSuccessUrl(successUrl);
-            urlDetails.setNotificationUrl(notificationUrl);
+            URLDetails urlDetails = UrlUtils.createUrlDetails(failureUrl, pendingUrl, successUrl, notificationUrl);
 
             return addURLDetails(urlDetails);
         }
 
+        /**
+         * Adds card data to the request.
+         *
+         * @param cardNumber      the number printed on the card
+         * @param cardHolderName  the name of the card's holder as printed on the card
+         * @param expirationMonth the card's expiration month as printed on the card
+         * @param expirationYear  the card's expiration year as printed on the card
+         * @param cardToken       this token can be provided instead of the above parameters
+         * @param cvv             the CVV code printed on the back of the card
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addCardData(String cardNumber, String cardHolderName, String expirationMonth,
                                                              String expirationYear, String cardToken, String cvv) {
-            CardData cardData = new CardData();
-            cardData.setCardNumber(cardNumber);
-            cardData.setCardHolderName(cardHolderName);
-            cardData.setExpirationMonth(expirationMonth);
-            cardData.setExpirationYear(expirationYear);
-            cardData.setCcTempToken(cardToken);
-            cardData.setCVV(cvv);
+
+            CardData cardData = CardUtils.createCardDataFromParams(cardNumber, cardHolderName, expirationMonth, expirationYear,
+                    cardToken, cvv);
+
             return addCardData(cardData);
         }
 
+        /**
+         * Adds user payment option (UPO) to the request. It is the payment option that will be used for the transaction.
+         *
+         * @param cvv                 the CVV code of the related credit/debit card. Note that CVV is not stored by Safecharge
+         * @param userPaymentOptionId the id of the UPO to add to the request
+         * @return this object
+         */
         public CreateSubscriptionRequest.Builder addUserPaymentOption(String cvv, String userPaymentOptionId) {
+
+            //TODO: decide how to remove this duplicate code - constructor vs static factory
             UserPaymentOption userPaymentOption = new UserPaymentOption();
             userPaymentOption.setCVV(cvv);
             userPaymentOption.setUserPaymentOptionId(userPaymentOptionId);
+
             return addUserPaymentOption(userPaymentOption);
         }
 
+        /**
+         * Adds billing info to the request.
+         *
+         * @param firstName The first name of the recipient
+         * @param lastName  The last name of the recipient
+         * @param email     The email of the recipient
+         * @param phone     The phone number of the recipient
+         * @param address   The address of the recipient
+         * @param city      The city of the recipient
+         * @param country   The country of the recipient(two-letter ISO country code)
+         * @param state     The state of the recipient(two-letter ISO state code)
+         * @param zip       The postal code of the recipient
+         * @param cell      The cell number of the recipient
+         * @return this object
+         */
         public Builder addBillingAddress(String firstName, String lastName, String email, String phone, String address, String city, String country,
                                          String state, String zip, String cell) {
 
-            UserAddress billingAddress = new UserAddress();
-            billingAddress.setFirstName(firstName);
-            billingAddress.setLastName(lastName);
-            billingAddress.setEmail(email);
-            billingAddress.setPhone(phone);
-            billingAddress.setAddress(address);
-            billingAddress.setCity(city);
-            billingAddress.setCountry(country);
-            billingAddress.setState(state);
-            billingAddress.setZip(zip);
-            billingAddress.setCell(cell);
+            UserAddress billingAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address, city, country,
+                    state, zip, cell);
 
             return addBillingAddress(billingAddress);
         }
 
+        /**
+         * Adds billing info to the request.
+         *
+         * @param billingAddress {@link UserAddress} object to add to the request as billing details
+         * @return this object
+         */
         public Builder addBillingAddress(UserAddress billingAddress) {
             this.billingAddress = billingAddress;
             return this;
         }
 
+        /**
+         * Builds the request.
+         *
+         * @return object build from the params set by this builder
+         * @throws ConstraintViolationException if the validation of the params fails
+         */
         @Override
         public SafechargeRequest build() throws ConstraintViolationException {
             CreateSubscriptionRequest createSubscriptionRequest = new CreateSubscriptionRequest();

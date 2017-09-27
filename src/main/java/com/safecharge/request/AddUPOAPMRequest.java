@@ -17,7 +17,10 @@ import com.safecharge.util.ValidationUtils;
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
- * Request to add APM User Payment Option to a User
+ * Request to add APM User Payment Option to a User.
+ * <p>
+ * The goal of this request is to add an APM UPO account for specific users according to their User Token ID.
+ * Once an APM UPO is added to a consumer’s UPO list, the APM is displayed in the user’s available payment options on the payment page.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/21/2017

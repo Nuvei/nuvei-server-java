@@ -10,6 +10,12 @@ import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Request to retrieve the available payment option for a specific merchant.
+ * <p>
+ * Allows the merchant view the names, IDs and other information regarding the enabled payment methods and APMs,
+ * which may be filtered based on country, currency and language.
+ * It may be used by the merchant mostly in order to display the available payment methods in its payment page.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 4/6/2017
@@ -18,16 +24,21 @@ import com.safecharge.util.ValidationUtils;
 public class GetMerchantPaymentMethodsRequest
         extends SafechargeRequest {
 
-    @Size(min = 3, max = 3,
-            message = "currencyCode size must be 3 characters long!")
+    /**
+     * The three letter ISO currency code that the transaction is to be completed in.
+     */
+    @Size(min = 3, max = 3, message = "currencyCode size must be 3 characters long!")
     private String currencyCode;
-
-    @Size(min = 2, max = 2,
-            message = "countryCode size must be 2 characters long!")
+    /**
+     * The two-letter ISO country code the transaction is to be completed in.
+     */
+    @Size(min = 2, max = 2, message = "countryCode size must be 2 characters long!")
     private String countryCode;
 
-    @Size(min = 2, max = 3,
-            message = "languageCode size must be 2 or 3 characters long!")
+    /**
+     * The language the transaction is to be completed in.
+     */
+    @Size(min = 2, max = 3, message = "languageCode size must be 2 or 3 characters long!")
     private String languageCode;
 
     public static Builder builder() {
@@ -82,21 +93,45 @@ public class GetMerchantPaymentMethodsRequest
         private String countryCode;
         private String languageCode;
 
+        /**
+         * Adds currency code to the request.
+         *
+         * @param currencyCode The two-letter ISO country code the transaction is to be completed in
+         * @return this object
+         */
         public Builder addCurrencyCode(String currencyCode) {
             this.currencyCode = currencyCode;
             return this;
         }
 
+        /**
+         * Adds country code to the request.
+         *
+         * @param countryCode The two-letter ISO country code the transaction is to be completed in.
+         * @return this object
+         */
         public Builder addCountryCode(String countryCode) {
             this.countryCode = countryCode;
             return this;
         }
 
+        /**
+         * Adds language code to the request.
+         *
+         * @param languageCode The language the transaction is to be completed in.
+         * @return this object
+         */
         public Builder addLanguageCode(String languageCode) {
             this.languageCode = languageCode;
             return this;
         }
 
+        /**
+         * Builds the request.
+         *
+         * @return object build from the params set by this builder
+         * @throws ConstraintViolationException if the validation of the params fails
+         */
         @Override
         public SafechargeRequest build() throws ConstraintViolationException {
             GetMerchantPaymentMethodsRequest getMerchantPaymentMethodsRequest = new GetMerchantPaymentMethodsRequest();

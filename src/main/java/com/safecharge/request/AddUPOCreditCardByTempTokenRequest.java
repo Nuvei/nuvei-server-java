@@ -7,12 +7,20 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.model.UserAddress;
 import com.safecharge.request.builder.SafechargeBuilder;
+import com.safecharge.util.AddressUtils;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Request to add Credit/Debit card(via temporary token) User Payment Option to a User.
+ * <p>
+ * When submitting consumer’s full credit card number, SafeCharge provides a temporary token in the response that
+ * represents the consumer’s credit card.
+ * The next time the consumer completes a transaction, the merchant sends SafeCharge the temporary token instead
+ * of the consumer’s credit card information. The temporary token value represents the consumer’s credit card number.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/9/2017
@@ -25,20 +33,18 @@ public class AddUPOCreditCardByTempTokenRequest
      * The unique identifier generated for each customer.
      */
     @NotNull(message = "userTokenId parameter is mandatory!")
-    @Size(min = 1,
-            max = 45)
+    @Size(min = 1, max = 45)
     private String userTokenId;
 
     /**
      * The temporary hash of the credit card.
      */
     @NotNull(message = "ccTempToken parameter is mandatory!")
-    @Size(min = 1,
-            max = 45)
+    @Size(min = 1, max = 45)
     private String ccTempToken;
 
     /**
-     *
+     * Billing address related to a user payment option. Since order can contain only one payment option billing address is part of the order parameters.
      */
     @Valid
     private UserAddress billingAddress;
@@ -94,39 +100,69 @@ public class AddUPOCreditCardByTempTokenRequest
         private String ccTempToken;
         private UserAddress billingAddress;
 
+        /**
+         * Adds user token id to the request.
+         *
+         * @param userTokenId The user token as {@link String}
+         * @return this object
+         */
         public Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
             return this;
         }
 
+        /**
+         * Adds temp token to the request. The temp token is a hash representation of the the {@link com.safecharge.model.CardData}
+         *
+         * @param ccTempToken hash of the credit card
+         * @return this object
+         */
         public Builder addCCTempToken(String ccTempToken) {
             this.ccTempToken = ccTempToken;
             return this;
         }
 
+        /**
+         * Adds billing info to the request.
+         *
+         * @param firstName The first name of the recipient
+         * @param lastName  The last name of the recipient
+         * @param email     The email of the recipient
+         * @param phone     The phone number of the recipient
+         * @param address   The address of the recipient
+         * @param city      The city of the recipient
+         * @param country   The country of the recipient(two-letter ISO country code)
+         * @param state     The state of the recipient(two-letter ISO state code)
+         * @param zip       The postal code of the recipient
+         * @param cell      The cell number of the recipient
+         * @return this object
+         */
         public Builder addBillingAddress(String firstName, String lastName, String email, String phone, String address, String city, String country,
                                          String state, String zip, String cell) {
 
-            UserAddress billingAddress = new UserAddress();
-            billingAddress.setFirstName(firstName);
-            billingAddress.setLastName(lastName);
-            billingAddress.setEmail(email);
-            billingAddress.setPhone(phone);
-            billingAddress.setAddress(address);
-            billingAddress.setCity(city);
-            billingAddress.setCountry(country);
-            billingAddress.setState(state);
-            billingAddress.setZip(zip);
-            billingAddress.setCell(cell);
+            UserAddress billingAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address,
+                    city, country, state, zip, cell);
 
             return addBillingAddress(billingAddress);
         }
 
+        /**
+         * Adds billing address data to the request.
+         *
+         * @param billingAddress {@link UserAddress} object to get the billing details from
+         * @return this object
+         */
         public Builder addBillingAddress(UserAddress billingAddress) {
             this.billingAddress = billingAddress;
             return this;
         }
 
+        /**
+         * Builds the request.
+         *
+         * @return object build from the params set by this builder
+         * @throws ConstraintViolationException if the validation of the params fails
+         */
         @Override
         public SafechargeRequest build() throws ConstraintViolationException {
             AddUPOCreditCardByTempTokenRequest addUPOCreditCardByTempTokenRequest = new AddUPOCreditCardByTempTokenRequest();

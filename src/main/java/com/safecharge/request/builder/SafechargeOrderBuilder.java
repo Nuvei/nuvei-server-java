@@ -233,7 +233,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     /**
      * Adds Merchant's dynamic data to the request.
      *
-     * @param dynamicDescriptor {@code DynamicDescriptor} object to add to the request as billing details
+     * @param dynamicDescriptor {@link DynamicDescriptor} object to add to the request as billing details
      * @return this object
      */
     public T addDynamicDescriptor(DynamicDescriptor dynamicDescriptor) {
@@ -261,7 +261,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     /**
      * Adds Merchant's specific custom data to the request.
      *
-     * @param merchantDetails {@code MerchantDetails} object to add to the request
+     * @param merchantDetails {@link MerchantDetails} object to add to the request
      * @return this object
      */
     public T addMerchantDetails(MerchantDetails merchantDetails) {
@@ -297,7 +297,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     /**
      * Adds URLs to redirect to in case of success/failure and URL to send notification(DMN) to.
      *
-     * @param urlDetails {@code urlDetails} object to add to the request
+     * @param urlDetails {@link URLDetails} object to add to the request
      * @return this object
      */
     public T addURLDetails(URLDetails urlDetails) {

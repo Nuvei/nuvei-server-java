@@ -15,6 +15,21 @@ public class AddressUtils {
     private AddressUtils() {
     }
 
+    /**
+     * Static factory method to create new {@link UserAddress} object based on the passed params.
+     *
+     * @param firstName The first name of the recipient
+     * @param lastName  The last name of the recipient
+     * @param email     The email of the recipient
+     * @param phone     The phone number of the recipient
+     * @param address   The address of the recipient
+     * @param city      The city of the recipient
+     * @param country   The country of the recipient(two-letter ISO country code)
+     * @param state     The state of the recipient(two-letter ISO state code)
+     * @param zip       The postal code of the recipient
+     * @param cell      The cell number of the recipient
+     * @return new {@link UserAddress} object created from the passed params
+     */
     public static UserAddress createUserAddressFromParams(String firstName, String lastName, String email, String phone, String address, String city,
                                                           String country, String state, String zip, String cell) {
 
@@ -33,6 +48,22 @@ public class AddressUtils {
         return userAddress;
     }
 
+    /**
+     * Static factory method to create new {@link UserDetails} object based on the passed params.
+     *
+     * @param firstName   The first name of the recipient
+     * @param lastName    The last name of the recipient
+     * @param address     The address of the recipient
+     * @param phone       The phone number of the recipient
+     * @param zip         The postal code of the recipient
+     * @param city        The city of the recipient
+     * @param countryCode The country of the recipient(two-letter ISO country code)
+     * @param state       The state of the recipient(two-letter ISO state code)
+     * @param email       The email of the recipient
+     * @param locale      The recipient’s locale and default language, for example en_UK.
+     * @param dateOfBirth The date of birth of the recipient
+     * @return new {@link UserDetails} object created from the passed params
+     */
     public static UserDetails createUserDetailsFromParams(String firstName, String lastName, String address, String phone, String zip, String city,
                                                           String countryCode, String state, String email, String locale, String dateOfBirth) {
 
@@ -52,6 +83,21 @@ public class AddressUtils {
         return billingAddress;
     }
 
+    /**
+     * Static factory method to create new {@link CashierUserDetails} object based on the passed params.
+     *
+     * @param address     The address of the user
+     * @param city        The city of the user
+     * @param country     The city of the user(two-letter ISO country code)
+     * @param email       The email of the user
+     * @param firstName   The first name of the user
+     * @param lastName    The last name of the user
+     * @param phone       The phone number of the user
+     * @param state       The state of the user(two-letter ISO state code)
+     * @param zip         The postal code of the user
+     * @param dateOfBirth The date of birth of the user
+     * @return new {@link CashierUserDetails} object created from the passed params
+     */
     public static CashierUserDetails createCashierUserDetailsFromParams(String address, String city, String country, String email, String firstName,
                                                                         String lastName, String phone, String state, String zip, String dateOfBirth) {
 
