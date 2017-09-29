@@ -10,7 +10,7 @@ import com.safecharge.util.ValidationUtils;
  * <p>
  * Request to obtain a session token.
  * <p>
- * This request returns a unique session token.
+ * This request returns a unique session token. Almost all Safecharge's requests require a valid session token.
  * The unique token is created upon the initial successful authorization and represents the client session.
  * It also contains an expiration date, as well as information about user granted privileges.
  * For subsequent calls to the session, the token must be provided for validation to ensure that it is still active and valid.
@@ -40,7 +40,7 @@ public class GetSessionTokenRequest extends SafechargeRequest {
         /**
          * Builds the request.
          *
-         * @return object build from the params set by this builder
+         * @return {@link SafechargeRequest} object build from the params set by this builder
          */
         @Override
         public SafechargeRequest build() {

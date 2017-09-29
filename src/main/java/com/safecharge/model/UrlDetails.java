@@ -15,7 +15,7 @@ import com.safecharge.util.ValidChecksum;
  * @since 2/14/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.URL_DETAILS_CHECKSUM_MAPPING)
-public class URLDetails {
+public class UrlDetails {
 
     @Size(max = 2048, message = "successUrl size must be up to 100 characters long!")
     private String successUrl;

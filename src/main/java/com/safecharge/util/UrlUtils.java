@@ -1,6 +1,6 @@
 package com.safecharge.util;
 
-import com.safecharge.model.URLDetails;
+import com.safecharge.model.UrlDetails;
 
 /**
  * Copyright (C) 2007-2020 SafeCharge International Group Limited.
@@ -13,9 +13,9 @@ public class UrlUtils {
     private UrlUtils() {
     }
 
-    public static URLDetails createUrlDetails(String failureUrl, String pendingUrl, String successUrl, String notificationUrl) {
+    public static UrlDetails createUrlDetails(String failureUrl, String pendingUrl, String successUrl, String notificationUrl) {
 
-        URLDetails urlDetails = new URLDetails();
+        UrlDetails urlDetails = new UrlDetails();
         urlDetails.setFailureUrl(failureUrl);
         urlDetails.setPendingUrl(pendingUrl);
         urlDetails.setSuccessUrl(successUrl);

@@ -17,6 +17,8 @@ import com.safecharge.util.ValidationUtils;
  * Note that order details can be viewed at any point in time.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see OpenOrderRequest
+ * @see UpdateOrderRequest
  * @since 2/15/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
@@ -77,7 +79,7 @@ public class GetOrderDetailsRequest extends SafechargeRequest implements Safecha
         /**
          * Builds the request.
          *
-         * @return object build from the params set by this builder
+         * @return {@link SafechargeRequest} object build from the params set by this builder
          */
         @Override
         public SafechargeRequest build() {

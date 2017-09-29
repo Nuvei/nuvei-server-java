@@ -23,6 +23,8 @@ import com.safecharge.util.ValidationUtils;
  * Once an APM UPO is added to a consumer’s UPO list, the APM is displayed in the user’s available payment options on the payment page.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see AddUPOCreditCardByTempTokenRequest
+ * @see AddUPOCreditCardRequest
  * @since 3/21/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.ADD_CASHIER_APM)

@@ -129,7 +129,7 @@ public class GetMerchantPaymentMethodsRequest
         /**
          * Builds the request.
          *
-         * @return object build from the params set by this builder
+         * @return {@link SafechargeRequest} object build from the params set by this builder
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override

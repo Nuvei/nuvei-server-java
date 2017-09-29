@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Abstract class to be used as a base for all of the requests to SafeCharge's servers.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017

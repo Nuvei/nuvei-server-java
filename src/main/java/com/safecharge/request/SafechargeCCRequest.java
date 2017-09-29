@@ -11,6 +11,8 @@ import com.safecharge.util.Constants;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Abstract class to be used as a base for credit card payment requests.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 4/10/2017
@@ -29,7 +31,8 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
     private Constants.TransactionType transactionType;
 
     /**
-     * Card data must be passed as parameter in the payment methods and not before that in the payment flow (openOrder, updateOrder) since it's not allowed to be saved in the cashier/checkout DB.
+     * Card data must be passed as parameter in the payment methods and not before that in the payment flow (openOrder, updateOrder)
+     * since it's not allowed to be saved in the cashier/checkout DB.
      * <p>
      * cardNumber <br />
      * cardHolderName <br />
@@ -41,23 +44,28 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
      * <p>
      * cardToken <br />
      * cvv
-     *
-     * @return cardData
      */
     @Valid
     private CardData cardData;
 
     /**
-     * User payment option can to be provided as an alternative for providing card data/card token/Apple Pay token. Only one of them can be in use for a certain transaction. If both not provided or both provided it will cause an error.
+     * User payment option can to be provided as an alternative for providing card data/card token/Apple Pay token.
+     * Only one of them can be in use for a certain transaction. If both not provided or both provided it will cause an error.
      * <p>
-     * SafeCharge decide per client in gateway and per site in cashier, weather CVV is mandatory to be provided with a UPO. Sending CVV will gain a getter interchange. if neded it will be sent by the merchant in cardData class, cvv parameter.
-     *
-     * @return
+     * SafeCharge decide per client in gateway and per site in cashier, weather CVV is mandatory to be provided with a UPO.
+     * Sending CVV will gain a getter interchange. if neded it will be sent by the merchant in cardData class, cvv parameter.
      */
     @Valid
     private UserPaymentOption userPaymentOption;
 
-    @Max(value = 2)
+    /**
+     * Param indicating whether this is a regular transaction (0) or a recurring/re-billing transaction (1).
+     * <p>
+     * Re-bill can only be performed using a user payment option (UPO) ID, and not with card data or card token.
+     * The re-bill transaction is based on a previous successful transaction performed using the same UPO ID.
+     * This allows the merchant to manage the subscription on its side and send only re-bill transactions.
+     */
+    @Max(value = 1)
     @Min(value = 0)
     private int isRebilling;
 

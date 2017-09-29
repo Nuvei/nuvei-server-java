@@ -9,7 +9,7 @@ import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
 import com.safecharge.model.MerchantDetails;
-import com.safecharge.model.URLDetails;
+import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 import com.safecharge.request.SafechargeOrderDetailsRequest;
 import com.safecharge.util.AddressUtils;
@@ -25,6 +25,9 @@ import com.safecharge.util.UrlUtils;
  * A base builder for an order related requests.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see SafechargeBuilder
+ * @see SafechargeCCBuilder
+ * @see SafechargeTransactionBuilder
  * @since 2/20/2017
  */
 public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>> extends SafechargeBuilder<T> {
@@ -38,7 +41,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     private UserAddress billingAddress;
     private DynamicDescriptor dynamicDescriptor;
     private MerchantDetails merchantDetails;
-    private URLDetails urlDetails;
+    private UrlDetails urlDetails;
     private Addendums addendums;
     private String userTokenId;
     private String clientUniqueId;
@@ -297,10 +300,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     /**
      * Adds URLs to redirect to in case of success/failure and URL to send notification(DMN) to.
      *
-     * @param urlDetails {@link URLDetails} object to add to the request
+     * @param urlDetails {@link UrlDetails} object to add to the request
      * @return this object
      */
-    public T addURLDetails(URLDetails urlDetails) {
+    public T addURLDetails(UrlDetails urlDetails) {
 
         this.urlDetails = urlDetails;
         return (T) this;
@@ -317,7 +320,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      */
     public T addURLDetails(String failureUrl, String pendingUrl, String successUrl, String notificationUrl) {
 
-        URLDetails urlDetails = UrlUtils.createUrlDetails(failureUrl, pendingUrl, successUrl, notificationUrl);
+        UrlDetails urlDetails = UrlUtils.createUrlDetails(failureUrl, pendingUrl, successUrl, notificationUrl);
         return addURLDetails(urlDetails);
     }
 

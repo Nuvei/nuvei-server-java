@@ -9,8 +9,16 @@ import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Request to refund a transaction.
+ * <p>
+ * This request can be used to refund a previously settled transaction. Full or partial refunds are supported.
+ * When partial refunds are issued, multiple refund requests can be performed for up to the entire amount
+ * of the original settled transaction.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see SettleTransactionRequest
+ * @see VoidTransactionRequest
  * @since 3/20/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.REFUND_GW_TRANSACTION)
@@ -31,6 +39,12 @@ public class RefundTransactionRequest
 
     public static class Builder extends SafechargeTransactionBuilder<Builder> {
 
+        /**
+         * Builds the request.
+         *
+         * @return {@link SafechargeRequest} object build from the params set by this builder
+         * @throws ConstraintViolationException if the validation of the params fails
+         */
         @Override
         public SafechargeRequest build() throws ConstraintViolationException {
             RefundTransactionRequest voidTransactionRequest = new RefundTransactionRequest();

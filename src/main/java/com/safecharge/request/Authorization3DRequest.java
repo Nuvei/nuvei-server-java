@@ -18,6 +18,7 @@ import com.safecharge.util.ValidationUtils;
  * and provides the card issuer/bank with the verification page URL.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see Payment3DRequest
  * @since 2/17/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)

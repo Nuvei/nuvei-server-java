@@ -32,6 +32,7 @@ import com.safecharge.util.ValidationUtils;
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @see <a href="https://www.safecharge.com/docs/api/?java#cardTokenization">Credit Card tokenization</a>
+ * @see AddUPOCreditCardByTempTokenRequest
  * @since 2/15/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)

@@ -15,9 +15,14 @@ import com.safecharge.util.ValidationUtils;
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
- * Request to add Credit/Debit card User Payment Option to a User.
+ * Request to add Credit/Debit card User Payment Option(UPO) to a User.
+ * <p>
+ * This goal of this request is to add a credit card UPO for a specific user according to their User Token ID.
+ * Once a credit card UPO is added to the user’s list of UPOs, the credit card is displayed in the payment page.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see AddUPOAPMRequest
+ * @see AddUPOCreditCardByTempTokenRequest
  * @since 3/21/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.ADD_CASHIER_CC_CARD)
@@ -199,7 +204,7 @@ public class AddUPOCreditCardRequest extends SafechargeRequest {
         /**
          * Adds user token id to the request.
          *
-         * @param userTokenId The user token as {@link String}
+         * @param userTokenId the user token as {@link String}
          * @return this object
          */
         public Builder addUserTokenId(String userTokenId) {
@@ -246,7 +251,7 @@ public class AddUPOCreditCardRequest extends SafechargeRequest {
         /**
          * Builds the request.
          *
-         * @return object build from the params set by this builder
+         * @return {@link SafechargeRequest} object build from the params set by this builder
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override

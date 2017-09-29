@@ -4,38 +4,60 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.safecharge.model.URLDetails;
+import com.safecharge.model.UrlDetails;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Abstract class to be used as a base for transaction related requests.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/22/2017
  */
 public abstract class SafechargeTransactionRequest extends SafechargeRequest {
 
+    /**
+     * The transaction amount. (E.g. 1, 101.10 - decimal representation of the amount as {@link String})
+     */
     @NotNull(message = "amount parameter is mandatory!")
     protected String amount;
 
+    /**
+     * The three character ISO currency code of the transaction.
+     */
     @NotNull(message = "currency parameter is mandatory!")
     protected String currency;
 
+    /**
+     * The authorization code of the related auth transaction, to be compared to the original one.
+     */
     @NotNull(message = "authCode parameter is mandatory!")
     protected String authCode;
 
-    @Size(max = 255,
-            message = "comment size must be up to 255 characters long!")
+    /**
+     * Enables the addition of a free text comment to the request.
+     */
+    @Size(max = 255, message = "comment size must be up to 255 characters long!")
     protected String comment;
 
-    @Size(max = 45,
-            message = "clientUniqueId size must be up to 45 characters long!")
+    /**
+     * ID of the transaction in the merchant’s system. This must be sent in order to perform future actions, such as:
+     * reconciliation, identifying the transaction in the event of any issues, etc.
+     */
+    @Size(max = 45, message = "clientUniqueId size must be up to 45 characters long!")
     protected String clientUniqueId;
 
+    /**
+     * The ID of the original auth transaction.
+     */
     @NotNull(message = "relatedTransactionId parameter is mandatory!")
     protected String relatedTransactionId;
 
+    /**
+     * URLs to redirect to in case of success, failure, etc. Also URL to send the direct merchant notification(DMN) message to.
+     */
     @Valid
-    protected URLDetails urlDetails;
+    protected UrlDetails urlDetails;
 
     public String getAmount() {
         return amount;
@@ -85,11 +107,11 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
         this.relatedTransactionId = relatedTransactionId;
     }
 
-    public URLDetails getUrlDetails() {
+    public UrlDetails getUrlDetails() {
         return urlDetails;
     }
 
-    public void setUrlDetails(URLDetails urlDetails) {
+    public void setUrlDetails(UrlDetails urlDetails) {
         this.urlDetails = urlDetails;
     }
 

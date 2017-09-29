@@ -10,7 +10,7 @@ import com.safecharge.model.CashierUserDetails;
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.MerchantDetails;
-import com.safecharge.model.URLDetails;
+import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.builder.SafechargeBuilder;
@@ -35,6 +35,9 @@ import com.safecharge.util.ValidationUtils;
  * (e.g. initial amount, recurring amount, subscription duration, etc) are passed except the ID of the subscription plan.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see GetSubscriptionsListRequest
+ * @see GetSubscriptionPlansRequest
+ * @see CancelSubscriptionRequest
  * @since 6/5/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.GET_CASHIER_SUBSCRIPTIONS)
@@ -68,7 +71,7 @@ public class CreateSubscriptionRequest
     private MerchantDetails merchantDetails;
 
     @Valid
-    private URLDetails urlDetails;
+    private UrlDetails urlDetails;
 
     @Valid
     private CardData cardData;
@@ -131,11 +134,11 @@ public class CreateSubscriptionRequest
         this.merchantDetails = merchantDetails;
     }
 
-    public URLDetails getUrlDetails() {
+    public UrlDetails getUrlDetails() {
         return urlDetails;
     }
 
-    public void setUrlDetails(URLDetails urlDetails) {
+    public void setUrlDetails(UrlDetails urlDetails) {
         this.urlDetails = urlDetails;
     }
 
@@ -200,7 +203,7 @@ public class CreateSubscriptionRequest
         private CashierUserDetails userDetails;
         private DeviceDetails deviceDetails;
         private MerchantDetails merchantDetails;
-        private URLDetails urlDetails;
+        private UrlDetails urlDetails;
         private CardData cardData;
         private UserPaymentOption userPaymentOption;
         private UserAddress billingAddress;
@@ -232,7 +235,7 @@ public class CreateSubscriptionRequest
         /**
          * Adds Merchant's dynamic data to the request.
          *
-         * @param dynamicDescriptor {@link DynamicDescriptor} object to add to the request as billing details
+         * @param dynamicDescriptor {@link DynamicDescriptor} object to add to the request
          * @return this object
          */
         public CreateSubscriptionRequest.Builder addDynamicDescriptor(DynamicDescriptor dynamicDescriptor) {
@@ -280,10 +283,10 @@ public class CreateSubscriptionRequest
         /**
          * Adds URLs to redirect to in case of success/failure and URL to send notification(DMN) to.
          *
-         * @param urlDetails {@link URLDetails} object to add to the request
+         * @param urlDetails {@link UrlDetails} object to add to the request
          * @return this object
          */
-        public CreateSubscriptionRequest.Builder addURLDetails(URLDetails urlDetails) {
+        public CreateSubscriptionRequest.Builder addURLDetails(UrlDetails urlDetails) {
             this.urlDetails = urlDetails;
             return this;
         }
@@ -408,7 +411,7 @@ public class CreateSubscriptionRequest
          */
         public CreateSubscriptionRequest.Builder addURLDetails(String failureUrl, String pendingUrl, String successUrl, String notificationUrl) {
 
-            URLDetails urlDetails = UrlUtils.createUrlDetails(failureUrl, pendingUrl, successUrl, notificationUrl);
+            UrlDetails urlDetails = UrlUtils.createUrlDetails(failureUrl, pendingUrl, successUrl, notificationUrl);
 
             return addURLDetails(urlDetails);
         }
@@ -488,7 +491,7 @@ public class CreateSubscriptionRequest
         /**
          * Builds the request.
          *
-         * @return object build from the params set by this builder
+         * @return {@link SafechargeRequest} object build from the params set by this builder
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override

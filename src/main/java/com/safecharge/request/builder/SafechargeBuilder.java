@@ -14,6 +14,9 @@ import com.safecharge.util.RequestUtils;
  * A base builder class for a request to Safecharge.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see SafechargeCCBuilder
+ * @see SafechargeOrderBuilder
+ * @see SafechargeTransactionBuilder
  * @since 2/23/2017
  */
 public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {

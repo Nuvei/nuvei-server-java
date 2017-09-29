@@ -11,13 +11,14 @@ import com.safecharge.util.ValidationUtils;
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see GetOrderDetailsRequest
+ * @see OpenOrderRequest
  * @since 2/17/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
 public class UpdateOrderRequest extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
-    @Size(max = 45,
-            message = "orderId size must be up to 45 characters long!")
+    @Size(max = 45, message = "orderId size must be up to 45 characters long!")
     private String orderId;
 
     public static Builder builder() {
@@ -54,6 +55,11 @@ public class UpdateOrderRequest extends SafechargeOrderDetailsRequest implements
             return this;
         }
 
+        /**
+         * Builds the request.
+         *
+         * @return {@link SafechargeRequest} object build from the params set by this builder
+         */
         @Override
         public SafechargeRequest build() {
             UpdateOrderRequest updateOrderRequest = new UpdateOrderRequest();

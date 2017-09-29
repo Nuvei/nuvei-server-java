@@ -23,6 +23,9 @@ import com.safecharge.util.ValidationUtils;
  * of the consumer’s credit card information. The temporary token value represents the consumer’s credit card number.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see AddUPOAPMRequest
+ * @see AddUPOCreditCardRequest
+ * @see CardTokenizationRequest
  * @since 3/9/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
@@ -160,7 +163,7 @@ public class AddUPOCreditCardByTempTokenRequest
         /**
          * Builds the request.
          *
-         * @return object build from the params set by this builder
+         * @return {@link SafechargeRequest} object build from the params set by this builder
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override

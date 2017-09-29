@@ -9,8 +9,15 @@ import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Request to void a transaction.
+ * <p>
+ * This request is used for voiding a previously performed authorization, within a two-phase auth-settle process.
+ * Please note that a void action is not always supported by the payment method or the card issuer.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see RefundTransactionRequest
+ * @see SettleTransactionRequest
  * @since 3/20/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.VOID_GW_TRANSACTION)
@@ -31,6 +38,12 @@ public class VoidTransactionRequest
 
     public static class Builder extends SafechargeTransactionBuilder<Builder> {
 
+        /**
+         * Builds the request.
+         *
+         * @return {@link SafechargeRequest} object build from the params set by this builder
+         * @throws ConstraintViolationException if the validation of the params fails
+         */
         @Override
         public SafechargeRequest build() throws ConstraintViolationException {
             VoidTransactionRequest voidTransactionRequest = new VoidTransactionRequest();

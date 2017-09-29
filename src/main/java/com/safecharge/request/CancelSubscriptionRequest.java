@@ -15,6 +15,7 @@ import com.safecharge.util.ValidationUtils;
  * Request to cancel existing subscription.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see CreateSubscriptionRequest
  * @since 6/5/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.CANCEL_CASHIER_SUBSCRIPTION)
@@ -100,7 +101,7 @@ public class CancelSubscriptionRequest
         /**
          * Builds the request.
          *
-         * @return object build from the params set by this builder
+         * @return {@link SafechargeRequest} object build from the params set by this builder
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override

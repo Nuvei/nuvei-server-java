@@ -13,11 +13,13 @@ import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
 import com.safecharge.model.MerchantDetails;
-import com.safecharge.model.URLDetails;
+import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Abstract class to be used as a base for order related and payment requests.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
@@ -41,8 +43,7 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
      */
     @Valid
     @NotNull
-    @Size(min = 1,
-            message = "Request must have at least one item!")
+    @Size(min = 1, message = "Request must have at least one item!")
     private List<Item> items = new ArrayList<>();
 
     /**
@@ -58,7 +59,7 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
     private CashierUserDetails userDetails;
 
     /**
-     * Shipping address related to a user order.
+     * Shipping address related to a user's order.
      */
     @Valid
     private UserAddress shippingAddress;
@@ -70,13 +71,13 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
     private UserAddress billingAddress;
 
     /**
-     * Merchant descriptor - this is the message that the user will see in his payment bank report.
+     * Merchant descriptor - this is the message(Merchant's name and phone) that the user will see in his payment bank report.
      */
     @Valid
     private DynamicDescriptor dynamicDescriptor;
 
     /**
-     * Optional custom fields
+     * Optional custom fields.
      */
     @Valid
     private MerchantDetails merchantDetails;
@@ -84,7 +85,7 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
     /**
      * Although DMN response can be configured per merchant site, it will allow to dynamically return the DMN to the provided address per request.
      */
-    private URLDetails urlDetails;
+    private UrlDetails urlDetails;
 
     /**
      * This block contain industry specific addendums such as: Local payment, Hotel, Airline etc.
@@ -94,15 +95,13 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
     /**
      * ID of the user in merchant system.
      */
-    @Size(max = 45,
-            message = "userTokenId size must be up to 45 characters long!")
+    @Size(max = 45, message = "userTokenId size must be up to 45 characters long!")
     private String userTokenId;
 
     /**
      * ID of the transaction in merchant system.
      */
-    @Size(max = 45,
-            message = "clientUniqueId size must be up to 45 characters long!")
+    @Size(max = 45, message = "clientUniqueId size must be up to 45 characters long!")
     private String clientUniqueId;
 
     @NotNull(message = "sessionToken parameter is mandatory!")
@@ -132,8 +131,10 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
 
     /**
      * Adds an item that will be purchased.
+     * <p>
+     * At least one item must be added for a successful order.
      *
-     * @param item
+     * @param item the {@link Item} object to add to the list of items that the order contains.
      */
     public void addItem(Item item) {
         this.items.add(item);
@@ -187,11 +188,11 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
         this.merchantDetails = merchantDetails;
     }
 
-    public URLDetails getUrlDetails() {
+    public UrlDetails getUrlDetails() {
         return urlDetails;
     }
 
-    public void setUrlDetails(URLDetails urlDetails) {
+    public void setUrlDetails(UrlDetails urlDetails) {
         this.urlDetails = urlDetails;
     }
 

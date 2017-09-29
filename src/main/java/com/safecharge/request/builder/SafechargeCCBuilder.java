@@ -12,6 +12,9 @@ import com.safecharge.util.Constants;
  * A base builder for a credit/debit card specific requests.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see SafechargeBuilder
+ * @see SafechargeOrderBuilder
+ * @see SafechargeTransactionBuilder
  * @since 4/4/2017
  */
 public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> extends SafechargeOrderBuilder<T> {

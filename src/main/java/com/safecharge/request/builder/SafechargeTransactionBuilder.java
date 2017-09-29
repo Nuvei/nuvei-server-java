@@ -1,6 +1,6 @@
 package com.safecharge.request.builder;
 
-import com.safecharge.model.URLDetails;
+import com.safecharge.model.UrlDetails;
 import com.safecharge.request.SafechargeTransactionRequest;
 import com.safecharge.util.ChecksumUtils;
 import com.safecharge.util.Constants;
@@ -12,6 +12,9 @@ import com.safecharge.util.UrlUtils;
  * A base builder for a transaction related requests.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see SafechargeBuilder
+ * @see SafechargeCCBuilder
+ * @see SafechargeOrderBuilder
  * @since 3/22/2017
  */
 public abstract class SafechargeTransactionBuilder<T extends SafechargeTransactionBuilder<T>> extends SafechargeBuilder<T> {
@@ -22,7 +25,7 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     private String comment;
     private String clientUniqueId;
     private String relatedTransactionId;
-    private URLDetails urlDetails;
+    private UrlDetails urlDetails;
 
     /**
      * Adds amount to the request.
@@ -96,7 +99,7 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
      * @param urlDetails {@code urlDetails} object to add to the request
      * @return this object
      */
-    public T addURLDetails(URLDetails urlDetails) {
+    public T addURLDetails(UrlDetails urlDetails) {
         this.urlDetails = urlDetails;
         return (T) this;
     }
@@ -112,7 +115,7 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
      */
     public T addURLDetails(String failureUrl, String pendingUrl, String successUrl, String notificationUrl) {
 
-        URLDetails urlDetails = UrlUtils.createUrlDetails(failureUrl, pendingUrl, successUrl, notificationUrl);
+        UrlDetails urlDetails = UrlUtils.createUrlDetails(failureUrl, pendingUrl, successUrl, notificationUrl);
         return addURLDetails(urlDetails);
     }
 
