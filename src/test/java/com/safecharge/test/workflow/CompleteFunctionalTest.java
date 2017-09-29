@@ -36,12 +36,12 @@ import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
+import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.Payment3DResponse;
 import com.safecharge.response.PaymentAPMResponse;
 import com.safecharge.response.PaymentCCResponse;
 import com.safecharge.response.RefundTransactionResponse;
-import com.safecharge.response.SessionTokenResponse;
 import com.safecharge.response.SettleTransactionResponse;
 import com.safecharge.response.UpdateOrderResponse;
 import com.safecharge.response.VoidTransactionResponse;
@@ -52,9 +52,9 @@ public class CompleteFunctionalTest extends BaseTest {
 
     @Test
     public void testSessionTokenRequest() throws IOException {
-        SessionTokenResponse sessionTokenResponse = baseMockTest("./mock/request/getSessionToken.json", GetSessionTokenRequest.class);
+        GetSessionTokenResponse getSessionTokenResponse = baseMockTest("./mock/request/getSessionToken.json", GetSessionTokenRequest.class);
 
-        Assert.assertTrue(defined(sessionTokenResponse.getVersion()));
+        Assert.assertTrue(defined(getSessionTokenResponse.getVersion()));
 
         //        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
 

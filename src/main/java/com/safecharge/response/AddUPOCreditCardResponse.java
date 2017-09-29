@@ -2,18 +2,43 @@ package com.safecharge.response;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Response received from the SafeCharge's servers to the {@link com.safecharge.request.AddUPOCreditCardRequest}.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see com.safecharge.request.AddUPOCreditCardRequest
  * @since 3/22/2017
  */
 public class AddUPOCreditCardResponse extends SafechargeResponse {
 
+    /**
+     * The id of the created User Payment Option(UPO), if the request is successful.
+     */
     private Long userPaymentOptionId;
+
+    /**
+     * Credit card token(hashed value of the credit card number)
+     */
     private String ccToken;
+    /**
+     * The brand of the credit card, i.e. Visa, MasterCard, etc.
+     */
     private String brand;
+    /**
+     * A unique identifying code for the credit card.
+     */
     private String uniqueCC;
+    /**
+     * The credit card’s bin number.
+     */
     private String bin;
+    /**
+     * The last four digits of the credit card number.
+     */
     private String last4Digits;
+    /**
+     * Value describing if the card used is a credit card or debit card.
+     */
     private String cardType;
 
     public Long getUserPaymentOptionId() {

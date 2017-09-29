@@ -42,13 +42,13 @@ import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
+import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.Payment3DResponse;
 import com.safecharge.response.PaymentAPMResponse;
 import com.safecharge.response.PaymentCCResponse;
 import com.safecharge.response.RefundTransactionResponse;
 import com.safecharge.response.SafechargeResponse;
-import com.safecharge.response.SessionTokenResponse;
 import com.safecharge.response.SettleTransactionResponse;
 import com.safecharge.response.UpdateOrderResponse;
 import com.safecharge.response.VoidTransactionResponse;
@@ -78,7 +78,7 @@ public abstract class BaseTest {
         safechargeRequestExecutor = mock(SafechargeRequestExecutor.class);
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(GetSessionTokenRequest.class))).thenReturn(
-                gson.fromJson(loadResourceFile("./mock/response/getSessionToken.json"), SessionTokenResponse.class));
+                gson.fromJson(loadResourceFile("./mock/response/getSessionToken.json"), GetSessionTokenResponse.class));
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(GetOrderDetailsRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("./mock/response/getOrderDetails.json"), GetOrderDetailsResponse.class));

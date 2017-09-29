@@ -8,8 +8,8 @@ import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.MerchantInfo;
 import com.safecharge.request.PaymentCCRequest;
 import com.safecharge.request.SafechargeRequest;
+import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.response.PaymentCCResponse;
-import com.safecharge.response.SessionTokenResponse;
 import com.safecharge.test.workflow.TestVariables;
 import com.safecharge.util.Constants;
 
@@ -25,7 +25,7 @@ public class InvalidPaymentCCRequestTest extends BasePaymentCCTest {
 
     @Test
     public void testExpiredSession() {
-        SessionTokenResponse sessionTokenResponse = executeGetSessionTokenRequest(validMerchantInfo);
+        GetSessionTokenResponse getSessionTokenResponse = executeGetSessionTokenRequest(validMerchantInfo);
 
         Mockito.when(safechargeRequestExecutor.executeRequest(Mockito.any(PaymentCCRequest.class)))
                 .thenReturn(gson.fromJson(
@@ -33,7 +33,7 @@ public class InvalidPaymentCCRequestTest extends BasePaymentCCTest {
                         PaymentCCResponse.class));
 
         SafechargeRequest request = PaymentCCRequest.builder()
-                .addSessionToken(sessionTokenResponse.getSessionToken())
+                .addSessionToken(getSessionTokenResponse.getSessionToken())
                 .addMerchantInfo(validMerchantInfo)
                 .addUserTokenId(TestVariables.userTokenId)
                 .addCurrency(TestVariables.currency)

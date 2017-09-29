@@ -10,24 +10,84 @@ package com.safecharge.response;
  */
 public class SafechargeTransactionResponse extends SafechargeResponse {
 
+    /**
+     * The transaction ID of the transaction for future actions.
+     */
     private String transactionId;
+
+    /**
+     * The transaction ID of the transaction in the event that an external service is used.
+     */
     private String externalTransactionId;
+
+    /**
+     * The UPO ID used for the transaction.
+     */
     private Long userPaymentOptionId;
 
-    // updated error parameters
+    /**
+     * If an error occurred on the APM side, an error code is returned in this parameter.
+     */
     private Integer paymentMethodErrorCode;
+
+    /**
+     * If an error occurred on the APM side, an error reason is returned in this parameter.
+     */
     private String paymentMethodErrorReason;
+
+    /**
+     * If an error occurred in the Gateway, then an error code is returned in this parameter.
+     */
     private Integer gwErrorCode;
+
+    /**
+     * If an error occurred in the gateway, then an error reason is returned in this parameter.
+     * (E.g. failure in checksum validation, timeout from processing engine, etc.)
+     */
     private String gwErrorReason;
+
+    /**
+     * Error code if error occurred on the bank’s side.
+     * When a transaction is successful, this field is 0.
+     * When a transaction is not successful, the parameter is the code of the generic error.
+     */
     private Integer gwExtendedErrorCode;
 
+    /**
+     * The gateway transaction status. Possible values:
+     * <ul>
+     * <li>APPROVED
+     * <li>DECLINED
+     * <li>ERROR
+     * </ul>
+     */
     private String transactionStatus;
 
+    /**
+     * The authorization code of the related auth transaction, to be compared to the original one.
+     */
     private String authCode;
 
+    /**
+     * The 3D secure request data for the card issuer/bank.
+     */
     private String paRequest;
+
+    /**
+     * The URL used by the merchant to redirect consumers to the payment method for authentication and authorization of the transaction.
+     */
     private String redirectUrl;
+
+    /**
+     * The Electronic Commerce Indicator (ECI) is returned from banks and indicates whether the attempted transaction
+     * passed as full 3D or failed.
+     */
     private String eci;
+
+    /**
+     * If the attempt for 3D transaction failed - this parameter is returned by the banks to indicate the reason why
+     * the transaction was not passed as full 3D.
+     */
     private String threeDReason;
 
     public String getTransactionId() {

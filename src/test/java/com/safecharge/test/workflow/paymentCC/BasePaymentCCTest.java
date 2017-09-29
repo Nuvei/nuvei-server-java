@@ -17,7 +17,7 @@ import com.safecharge.biz.SafechargeRequestExecutor;
 import com.safecharge.model.MerchantInfo;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.SafechargeRequest;
-import com.safecharge.response.SessionTokenResponse;
+import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.util.Constants;
 
 /**
@@ -46,14 +46,14 @@ public class BasePaymentCCTest {
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(GetSessionTokenRequest.class))).thenReturn(gson.fromJson(
                 "{\"sessionToken\":\"997ecfc7-f3e3-44bb-9cbe-12a2bd724a31\",\"internalRequestId\":13150606,\"status\":\"SUCCESS\",\"errCode\":0,\"reason\":\"\",\"merchantId\":\"5137702336228767168\",\"merchantSiteId\":\"23\",\"version\":\"1.0\",\"clientRequestId\":\"111899\"}",
-                SessionTokenResponse.class));
+                GetSessionTokenResponse.class));
     }
 
-    public SessionTokenResponse executeGetSessionTokenRequest(MerchantInfo merchantInfo) {
+    public GetSessionTokenResponse executeGetSessionTokenRequest(MerchantInfo merchantInfo) {
         SafechargeRequest request = GetSessionTokenRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .build();
-        SessionTokenResponse response = (SessionTokenResponse) safechargeRequestExecutor.executeRequest(request);
+        GetSessionTokenResponse response = (GetSessionTokenResponse) safechargeRequestExecutor.executeRequest(request);
 
         Assert.assertTrue(0 == response.getErrCode());
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(response.getStatus()));

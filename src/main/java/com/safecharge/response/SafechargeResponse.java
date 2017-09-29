@@ -4,6 +4,8 @@ import com.safecharge.util.Constants;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Abstract class to be used as a base for all of the responses from SafeCharge's servers.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
@@ -63,12 +65,12 @@ public abstract class SafechargeResponse {
     private String clientUniqueId;
 
     /**
-     *
+     * The type of the server's error
      */
     private Constants.ErrorType errorType = null;
 
     /**
-     *
+     * The API workflow type
      */
     private Constants.APIType apiType;
 

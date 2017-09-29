@@ -25,6 +25,7 @@ import com.safecharge.util.ValidationUtils;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @see AddUPOCreditCardByTempTokenRequest
  * @see AddUPOCreditCardRequest
+ * @see com.safecharge.response.AddUPOAPMResponse
  * @since 3/21/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.ADD_CASHIER_APM)

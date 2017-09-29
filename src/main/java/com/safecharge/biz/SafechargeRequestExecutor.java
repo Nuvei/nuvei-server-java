@@ -46,6 +46,7 @@ import com.safecharge.response.CardTokenizationResponse;
 import com.safecharge.response.CreateSubscriptionResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
+import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.response.GetSubscriptionPlansResponse;
 import com.safecharge.response.GetSubscriptionsListResponse;
 import com.safecharge.response.OpenOrderResponse;
@@ -54,7 +55,6 @@ import com.safecharge.response.PaymentAPMResponse;
 import com.safecharge.response.PaymentCCResponse;
 import com.safecharge.response.RefundTransactionResponse;
 import com.safecharge.response.SafechargeResponse;
-import com.safecharge.response.SessionTokenResponse;
 import com.safecharge.response.SettleTransactionResponse;
 import com.safecharge.response.UpdateOrderResponse;
 import com.safecharge.response.VoidTransactionResponse;
@@ -76,7 +76,7 @@ public class SafechargeRequestExecutor {
                 private static final long serialVersionUID = -5429154998138428047L;
 
                 {
-                    put(GetSessionTokenRequest.class, SessionTokenResponse.class);
+                    put(GetSessionTokenRequest.class, GetSessionTokenResponse.class);
                     put(OpenOrderRequest.class, OpenOrderResponse.class);
                     put(UpdateOrderRequest.class, UpdateOrderResponse.class);
                     put(GetOrderDetailsRequest.class, GetOrderDetailsResponse.class);
