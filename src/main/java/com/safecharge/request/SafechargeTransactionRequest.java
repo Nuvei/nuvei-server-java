@@ -4,31 +4,60 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.safecharge.model.URLDetails;
+import com.safecharge.model.UrlDetails;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Abstract class to be used as a base for transaction related requests.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/22/2017
  */
 public abstract class SafechargeTransactionRequest extends SafechargeRequest {
 
-    @NotNull(message = "amount parameter is mandatory!") protected String amount;
+    /**
+     * The transaction amount. (E.g. 1, 101.10 - decimal representation of the amount as {@link String})
+     */
+    @NotNull(message = "amount parameter is mandatory!")
+    protected String amount;
 
-    @NotNull(message = "currency parameter is mandatory!") protected String currency;
+    /**
+     * The three character ISO currency code of the transaction.
+     */
+    @NotNull(message = "currency parameter is mandatory!")
+    protected String currency;
 
-    @NotNull(message = "authCode parameter is mandatory!") protected String authCode;
+    /**
+     * The authorization code of the related auth transaction, to be compared to the original one.
+     */
+    @NotNull(message = "authCode parameter is mandatory!")
+    protected String authCode;
 
-    @Size(max = 255,
-          message = "comment size must be up to 255 characters long!") protected String comment;
+    /**
+     * Enables the addition of a free text comment to the request.
+     */
+    @Size(max = 255, message = "comment size must be up to 255 characters long!")
+    protected String comment;
 
-    @Size(max = 45,
-          message = "clientUniqueId size must be up to 45 characters long!") protected String clientUniqueId;
+    /**
+     * ID of the transaction in the merchant’s system. This must be sent in order to perform future actions, such as:
+     * reconciliation, identifying the transaction in the event of any issues, etc.
+     */
+    @Size(max = 45, message = "clientUniqueId size must be up to 45 characters long!")
+    protected String clientUniqueId;
 
-    @NotNull(message = "relatedTransactionId parameter is mandatory!") protected String relatedTransactionId;
+    /**
+     * The ID of the original auth transaction.
+     */
+    @NotNull(message = "relatedTransactionId parameter is mandatory!")
+    protected String relatedTransactionId;
 
-    @Valid protected URLDetails urlDetails;
+    /**
+     * URLs to redirect to in case of success, failure, etc. Also URL to send the direct merchant notification(DMN) message to.
+     */
+    @Valid
+    protected UrlDetails urlDetails;
 
     public String getAmount() {
         return amount;
@@ -78,38 +107,39 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
         this.relatedTransactionId = relatedTransactionId;
     }
 
-    public URLDetails getUrlDetails() {
+    public UrlDetails getUrlDetails() {
         return urlDetails;
     }
 
-    public void setUrlDetails(URLDetails urlDetails) {
+    public void setUrlDetails(UrlDetails urlDetails) {
         this.urlDetails = urlDetails;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("amount='")
-          .append(amount)
-          .append('\'');
+                .append(amount)
+                .append('\'');
         sb.append(", currency='")
-          .append(currency)
-          .append('\'');
+                .append(currency)
+                .append('\'');
         sb.append(", authCode='")
-          .append(authCode)
-          .append('\'');
+                .append(authCode)
+                .append('\'');
         sb.append(", comment='")
-          .append(comment)
-          .append('\'');
+                .append(comment)
+                .append('\'');
         sb.append(", clientUniqueId='")
-          .append(clientUniqueId)
-          .append('\'');
+                .append(clientUniqueId)
+                .append('\'');
         sb.append(", relatedTransactionId='")
-          .append(relatedTransactionId)
-          .append('\'');
+                .append(relatedTransactionId)
+                .append('\'');
         sb.append(", urlDetails=")
-          .append(urlDetails);
+                .append(urlDetails);
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         return sb.toString();
     }
 }

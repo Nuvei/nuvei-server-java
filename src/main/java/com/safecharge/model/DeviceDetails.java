@@ -7,26 +7,28 @@ import com.safecharge.util.APIConstants;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for a device data.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
  */
 public class DeviceDetails {
 
-    @Size(max = 45,
-          message = "deviceType size must be up to 45 characters long!") private String deviceType;
+    @Size(max = 45, message = "deviceType size must be up to 45 characters long!")
+    private String deviceType;
 
-    @Size(max = 45,
-          message = "deviceName size must be up to 45 characters long!") private String deviceName;
+    @Size(max = 45, message = "deviceName size must be up to 45 characters long!")
+    private String deviceName;
 
-    @Size(max = 45,
-          message = "deviceOS size must be up to 45 characters long!") private String deviceOS;
+    @Size(max = 45, message = "deviceOS size must be up to 45 characters long!")
+    private String deviceOS;
 
-    @Size(max = 45,
-          message = "browser size must be up to 45 characters long!") private String browser;
+    @Size(max = 45, message = "browser size must be up to 45 characters long!")
+    private String browser;
 
-    @Pattern(regexp = APIConstants.IP_ADDRESS_REGEX,
-             message = "the entered value is not a valid ipAddress") private String ipAddress;
+    @Pattern(regexp = APIConstants.IP_ADDRESS_REGEX, message = "the entered value is not a valid ipAddress")
+    private String ipAddress;
 
     public String getDeviceType() {
         return deviceType;

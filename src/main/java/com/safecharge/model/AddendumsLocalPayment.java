@@ -4,21 +4,29 @@ import javax.validation.constraints.Size;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Local payment info specific for some clients. Part of {@link Addendums}.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see Addendums
  * @since 3/29/2017
  */
 public class AddendumsLocalPayment {
 
-    @Size(max = 255) private String nationalId;
+    @Size(max = 255)
+    private String nationalId;
 
-    @Size(max = 255) private String debitType;
+    @Size(max = 255)
+    private String debitType;
 
-    @Size(max = 255) private String firstInstallment;
+    @Size(max = 255)
+    private String firstInstallment;
 
-    @Size(max = 255) private String periodicalInstallment;
+    @Size(max = 255)
+    private String periodicalInstallment;
 
-    @Size(max = 255) private String numberOfInstallments;
+    @Size(max = 255)
+    private String numberOfInstallments;
 
     public String getNationalId() {
         return nationalId;

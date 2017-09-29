@@ -12,31 +12,108 @@ import com.safecharge.model.UserAddress;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Response received from the SafeCharge's servers to the {@link com.safecharge.request.GetOrderDetailsRequest}.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see com.safecharge.request.GetOrderDetailsRequest
  * @since 2/15/2017
  */
 public class GetOrderDetailsResponse extends SafechargeResponse implements SafechargeOrderResponse {
 
+    /**
+     * The order ID provided by SafeCharge.
+     */
     private String orderId;
+
+    /**
+     * The three character ISO currency code.
+     */
     private String currency;
+
+    /**
+     * The transaction amount.
+     */
     private Double amount;
+
+    /**
+     * List of the items assigned to the order.
+     */
     private List<Item> items;
+
+    /**
+     * The device details assigned to the order.
+     */
     private DeviceDetails deviceDetails;
+
+    /**
+     * The user details assigned to the order.
+     */
     private CashierUserDetails userDetails;
+
+    /**
+     * The shipping address assigned to the order.
+     */
     private UserAddress shippingAddress;
+
+    /**
+     * The billing address assigned to the order.
+     */
     private UserAddress billingAddress;
+
+    /**
+     * The dynamic descriptor assigned to the order.
+     */
     private DynamicDescriptor dynamicDescriptor;
+
+    /**
+     * The custom fields assigned to the order.
+     */
     private MerchantDetails merchantDetails;
+
+    /**
+     * The addendums assigned to the order.
+     */
     private Addendums addendums;
 
+    /**
+     * The date that the transaction related to the order was created.
+     */
     private String transactionCreationDate;
+
+    /**
+     * The date that the order was created.
+     */
     private String orderCreationDate;
+
+    /**
+     * The status of the order. Possible values:
+     * <ul>
+     * <li> OPENED – Order is open and can be modified.
+     * <li> CLOSED – Order was paid, and can no longer be modified.
+     * <li> IN_PROGRESS – Order is being paid, and can no longer be modified.
+     * <li> FAILED – The order failed and can no longer be modified.
+     * </ul>
+     */
     private String orderStatus;
+
+    /**
+     * The status of the transaction. Possible values:
+     * <ul>
+     * <li> APPROVED
+     * <li> DECLINED
+     * <li> ERROR
+     * </ul>
+     */
     private String transactionStatus;
+
+    /**
+     * The id of the related transaction.
+     */
     private String transactionId;
 
-    @Override public String getOrderId() {
+    @Override
+    public String getOrderId() {
         return orderId;
     }
 
@@ -164,49 +241,50 @@ public class GetOrderDetailsResponse extends SafechargeResponse implements Safec
         this.transactionId = transactionId;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("OrderDetailsResponse{");
         sb.append("orderId='")
-          .append(orderId)
-          .append('\'');
+                .append(orderId)
+                .append('\'');
         sb.append(", currency='")
-          .append(currency)
-          .append('\'');
+                .append(currency)
+                .append('\'');
         sb.append(", amount=")
-          .append(amount);
+                .append(amount);
         sb.append(", items=")
-          .append(items);
+                .append(items);
         sb.append(", deviceDetails=")
-          .append(deviceDetails);
+                .append(deviceDetails);
         sb.append(", userDetails=")
-          .append(userDetails);
+                .append(userDetails);
         sb.append(", shippingAddress=")
-          .append(shippingAddress);
+                .append(shippingAddress);
         sb.append(", billingAddress=")
-          .append(billingAddress);
+                .append(billingAddress);
         sb.append(", dynamicDescriptor=")
-          .append(dynamicDescriptor);
+                .append(dynamicDescriptor);
         sb.append(", merchantDetails=")
-          .append(merchantDetails);
+                .append(merchantDetails);
         sb.append(", addendums=")
-          .append(addendums);
+                .append(addendums);
         sb.append(", transactionCreationDate='")
-          .append(transactionCreationDate)
-          .append('\'');
+                .append(transactionCreationDate)
+                .append('\'');
         sb.append(", orderCreationDate='")
-          .append(orderCreationDate)
-          .append('\'');
+                .append(orderCreationDate)
+                .append('\'');
         sb.append(", orderStatus='")
-          .append(orderStatus)
-          .append('\'');
+                .append(orderStatus)
+                .append('\'');
         sb.append(", transactionStatus='")
-          .append(transactionStatus)
-          .append('\'');
+                .append(transactionStatus)
+                .append('\'');
         sb.append(", transactionId='")
-          .append(transactionId)
-          .append('\'');
+                .append(transactionId)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

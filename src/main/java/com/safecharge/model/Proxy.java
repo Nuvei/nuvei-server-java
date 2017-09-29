@@ -2,6 +2,8 @@ package com.safecharge.model;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for the data needed to connect to the Safecharge's servers via Proxy.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017

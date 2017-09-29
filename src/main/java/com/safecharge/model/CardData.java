@@ -6,31 +6,31 @@ import com.safecharge.util.APIConstants;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for credit/debit/prepaid card data.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
  */
 public class CardData {
 
-    @Size(max = APIConstants.CREDIT_CARD_MAX_LENGTH,
-          message = "cardNumber size must be up to 20 characters long!") private String cardNumber;
+    @Size(max = APIConstants.CREDIT_CARD_MAX_LENGTH, message = "cardNumber size must be up to 20 characters long!")
+    private String cardNumber;
 
-    @Size(max = APIConstants.CARD_HOLDER_MAX_LENGTH,
-          message = "cardHolderName size must be up to 70 characters long!") private String cardHolderName;
+    @Size(max = APIConstants.CARD_HOLDER_MAX_LENGTH, message = "cardHolderName size must be up to 70 characters long!")
+    private String cardHolderName;
 
-    @Size(max = 2,
-          message = "expirationMonth size must be up to 2 characters long!") private String expirationMonth;
+    @Size(max = 2, message = "expirationMonth size must be up to 2 characters long!")
+    private String expirationMonth;
 
-    @Size(min = 2,
-          max = 4,
-          message = "expirationYear size must be from 2 to 4 characters long!") private String expirationYear;
+    @Size(min = 2, max = 4, message = "expirationYear size must be from 2 to 4 characters long!")
+    private String expirationYear;
 
-    @Size(max = 45,
-          message = "userTokenId size must be up to 45 characters long!") private String ccTempToken;
+    @Size(max = 45, message = "userTokenId size must be up to 45 characters long!")
+    private String ccTempToken;
 
-    @Size(min = 3,
-          max = 4,
-          message = "cvv size must be 3 or 4 characters long!") private String CVV;
+    @Size(min = 3, max = 4, message = "cvv size must be 3 or 4 characters long!")
+    private String CVV;
 
     public CardData() {
     }

@@ -18,21 +18,24 @@ If your application is going to be deployed on a Java EE server add the followin
 </dependency>
 ```
 
-If you are going to use the SDK in Java SE or a non Java EE server please add a Bean Validation API Implementation dependency. Certified implementations of Bean Validation API can be found here: http://beanvalidation.org/1.1/certified/. 
+If you are going to use the SDK in Java SE or a non Java EE server please add a Bean Validation API Implementation dependency. Certified implementations of Bean Validation API can be found here: http://beanvalidation.org/certified/ (v.1.1 implementation required). 
 
 For example:
 
  ```xml
-<dependency>    
-    <groupId>com.safecharge</groupId>
-    <artifactId>safecharge-sdk-java</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.bval</groupId>
-    <artifactId>bval-jsr</artifactId>
-    <version>1.1.2</version>
-</dependency>
+<dependencies>
+    ...
+    <dependency>    
+        <groupId>com.safecharge</groupId>
+        <artifactId>safecharge-sdk-java</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.bval</groupId>
+        <artifactId>bval-jsr</artifactId>
+        <version>1.1.2</version>
+    </dependency>
+</dependencies>
  ```
 
 ## Running your first request

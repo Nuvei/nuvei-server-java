@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Abstract class to be used as a base for all of the requests to SafeCharge's servers.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
@@ -24,23 +26,27 @@ public abstract class SafechargeRequest {
     /**
      * Merchant ID provided by SafeCharge.
      */
-    @NotNull(message = "merchantId parameter is mandatory!") private String merchantId;
+    @NotNull(message = "merchantId parameter is mandatory!")
+    private String merchantId;
 
     /**
      * Merchant Site ID provided by SafeCharge.
      */
-    @NotNull(message = "merchantSiteId parameter is mandatory!") private String merchantSiteId;
+    @NotNull(message = "merchantSiteId parameter is mandatory!")
+    private String merchantSiteId;
 
     /**
      * The local time when the method call is performed in the format: YYYYMMDDHHmmss.
      */
-    @NotNull(message = "timeStamp parameter is mandatory!") private String timeStamp;
+    @NotNull(message = "timeStamp parameter is mandatory!")
+    private String timeStamp;
 
     /**
      * Hash of the values of the request parameters UTF-8 encoded and concatenated in this order HASH(merchantId + merchantSiteId + clientRequestId + amount + currency + timestamp + merchantSecretKey)
      * Where HASH is the type of used hash algorithm, MD5 or SHA256, depends on merchantSite setting.
      */
-    @NotNull(message = "checksum parameter is mandatory!") private String checksum;
+    @NotNull(message = "checksum parameter is mandatory!")
+    private String checksum;
 
     /**
      * The session identifier returned, to be used as input parameter in all methods. UUID = Universal unique ID.
@@ -113,32 +119,33 @@ public abstract class SafechargeRequest {
         this.serverHost = serverHost;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("serverHost='")
-          .append(serverHost)
-          .append('\'');
+                .append(serverHost)
+                .append('\'');
         sb.append("internalRequestId='")
-          .append(internalRequestId)
-          .append('\'');
+                .append(internalRequestId)
+                .append('\'');
         sb.append(", clientRequestId='")
-          .append(clientRequestId)
-          .append('\'');
+                .append(clientRequestId)
+                .append('\'');
         sb.append(", merchantId='")
-          .append(merchantId)
-          .append('\'');
+                .append(merchantId)
+                .append('\'');
         sb.append(", merchantSiteId='")
-          .append(merchantSiteId)
-          .append('\'');
+                .append(merchantSiteId)
+                .append('\'');
         sb.append(", timeStamp='")
-          .append(timeStamp)
-          .append('\'');
+                .append(timeStamp)
+                .append('\'');
         sb.append(", checksum='")
-          .append(checksum)
-          .append('\'');
+                .append(checksum)
+                .append('\'');
         sb.append(", sessionToken='")
-          .append(sessionToken)
-          .append('\'');
+                .append(sessionToken)
+                .append('\'');
         return sb.toString();
     }
 }

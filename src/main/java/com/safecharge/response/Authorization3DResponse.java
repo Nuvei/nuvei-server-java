@@ -2,64 +2,53 @@ package com.safecharge.response;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Response received from the SafeCharge's servers to the {@link com.safecharge.request.Authorization3DRequest}.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see <a href="https://www.safecharge.com/docs/api/?java#3DSecure">3D Secure documentation</a>
+ * @see com.safecharge.request.Authorization3DRequest
  * @since 2/15/2017
  */
 public class Authorization3DResponse extends PaymentsResponse {
 
+    /**
+     * The 3D secure request data for the card issuer/bank.
+     */
     private String paRequest;
 
+    /**
+     * URL/endpoint used to redirect the consumer to the card issuer/bank’s 3D secure verification page.
+     */
     private String acsUrl;
 
-    /**
-     * @return the 3D secure request data for the card issuer/bank.
-     */
     public String getPaRequest() {
-        if (paRequest != null) {
-            return paRequest;
-        } else {
-            System.out.println((char)27 + "[31m***Missing acsUrl and paReqest! Check if the GW client " +
-                    "is bg3dmandatory! Check if the used cardNumber is 3D enrolled***" + (char)27 + "[0m");
-            return null;
-        }
+        return paRequest;
     }
 
-    /**
-     * Sets the 3D secure request data for the card issuer/bank.
-     *
-     * @param paRequest
-     */
     public void setPaRequest(String paRequest) {
         this.paRequest = paRequest;
     }
 
-    /**
-     * @return URL/endpoint used to redirect the customer to the card issuer/bank 3D secure verification page.
-     */
     public String getAcsUrl() {
         return acsUrl;
     }
 
-    /**
-     * Sets the URL/endpoint used to redirect the customer to the card issuer/bank 3D secure verification page.
-     *
-     * @param acsUrl
-     */
     public void setAcsUrl(String acsUrl) {
         this.acsUrl = acsUrl;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("Authorization3DResponse{");
         sb.append("paRequest='")
-          .append(paRequest)
-          .append('\'');
+                .append(paRequest)
+                .append('\'');
         sb.append(", acsUrl='")
-          .append(acsUrl)
-          .append('\'');
+                .append(acsUrl)
+                .append('\'');
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }

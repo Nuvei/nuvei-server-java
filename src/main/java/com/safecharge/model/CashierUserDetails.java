@@ -7,6 +7,8 @@ import com.safecharge.util.APIConstants;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for Cashier's User data.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
@@ -14,34 +16,44 @@ import com.safecharge.util.APIConstants;
 public class CashierUserDetails {
 
     @Size(max = APIConstants.FIRST_NAME_MAX_LENGTH,
-          message = "firstName size must be up to 30 characters long!") private String firstName;
+            message = "firstName size must be up to 30 characters long!")
+    private String firstName;
 
     @Size(max = APIConstants.LAST_NAME_MAX_LENGTH,
-          message = "lastName size must be up to 40 characters long!") private String lastName;
+            message = "lastName size must be up to 40 characters long!")
+    private String lastName;
 
     @Pattern(regexp = APIConstants.EMAIL_REGEX,
-             message = "the entered value is not a valid email") private String email;
+            message = "the entered value is not a valid email")
+    private String email;
 
     @Size(max = APIConstants.PHONE_MAX_LENGTH,
-          message = "phone size must be up to 18 characters long!") private String phone;
+            message = "phone size must be up to 18 characters long!")
+    private String phone;
 
     @Size(max = APIConstants.ADDRESS_MAX_LENGTH,
-          message = "address size must be up to 60 characters long!") private String address;
+            message = "address size must be up to 60 characters long!")
+    private String address;
 
     @Size(max = APIConstants.CITY_MAX_LENGTH,
-          message = "city size must be up to 30 characters long!") private String city;
+            message = "city size must be up to 30 characters long!")
+    private String city;
 
     @Size(max = 2,
-          message = "country size must be up to 2 characters long!") private String country;
+            message = "country size must be up to 2 characters long!")
+    private String country;
 
     @Size(max = 2,
-          message = "state size must be up to 2 characters long!") private String state;
+            message = "state size must be up to 2 characters long!")
+    private String state;
 
     @Size(max = APIConstants.ZIP_MAX_LENGTH,
-          message = "zip size must be up to 10 characters long!") private String zip;
+            message = "zip size must be up to 10 characters long!")
+    private String zip;
 
     @Pattern(regexp = APIConstants.DATE_OF_BIRTH_REGEX,
-             message = "dateOfBirth must be in format yyyy-MM-dd!") private String dateOfBirth;
+            message = "dateOfBirth must be in format yyyy-MM-dd!")
+    private String dateOfBirth;
 
 
     public String getFirstName() {
@@ -124,38 +136,39 @@ public class CashierUserDetails {
         this.dateOfBirth = dateOfBirth;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("CashierUserDetails{");
         sb.append("firstName='")
-          .append(firstName)
-          .append('\'');
+                .append(firstName)
+                .append('\'');
         sb.append(", lastName='")
-          .append(lastName)
-          .append('\'');
+                .append(lastName)
+                .append('\'');
         sb.append(", email='")
-          .append(email)
-          .append('\'');
+                .append(email)
+                .append('\'');
         sb.append(", phone='")
-          .append(phone)
-          .append('\'');
+                .append(phone)
+                .append('\'');
         sb.append(", address='")
-          .append(address)
-          .append('\'');
+                .append(address)
+                .append('\'');
         sb.append(", city='")
-          .append(city)
-          .append('\'');
+                .append(city)
+                .append('\'');
         sb.append(", country='")
-          .append(country)
-          .append('\'');
+                .append(country)
+                .append('\'');
         sb.append(", state='")
-          .append(state)
-          .append('\'');
+                .append(state)
+                .append('\'');
         sb.append(", zip='")
-          .append(zip)
-          .append('\'');
+                .append(zip)
+                .append('\'');
         sb.append(", dateOfBirth='")
-          .append(dateOfBirth)
-          .append('\'');
+                .append(dateOfBirth)
+                .append('\'');
         sb.append('}');
         return sb.toString();
     }

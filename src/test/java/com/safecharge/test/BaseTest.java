@@ -10,11 +10,6 @@ import javax.validation.Validation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
 
-import com.safecharge.request.Authorization3DRequest;
-import com.safecharge.request.GetOrderDetailsRequest;
-import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
-import com.safecharge.response.GetMerchantPaymentMethodsResponse;
-import com.safecharge.response.SettleTransactionResponse;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -26,8 +21,10 @@ import com.safecharge.biz.SafechargeRequestExecutor;
 import com.safecharge.request.AddUPOAPMRequest;
 import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
 import com.safecharge.request.AddUPOCreditCardRequest;
+import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
+import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
@@ -39,20 +36,23 @@ import com.safecharge.request.SettleTransactionRequest;
 import com.safecharge.request.UpdateOrderRequest;
 import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.response.AddUPOAPMResponse;
+import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
+import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.Payment3DResponse;
 import com.safecharge.response.PaymentAPMResponse;
 import com.safecharge.response.PaymentCCResponse;
 import com.safecharge.response.RefundTransactionResponse;
 import com.safecharge.response.SafechargeResponse;
-import com.safecharge.response.SessionTokenResponse;
+import com.safecharge.response.SettleTransactionResponse;
 import com.safecharge.response.UpdateOrderResponse;
 import com.safecharge.response.VoidTransactionResponse;
-import com.safecharge.util.ValidationUtil;
+import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -66,17 +66,19 @@ public abstract class BaseTest {
     protected static Gson gson;
     protected SafechargeRequestExecutor safechargeRequestExecutor;
 
-    @BeforeClass public static void setup() {
+    @BeforeClass
+    public static void setup() {
         gson = new GsonBuilder().create();
         validator = Validation.buildDefaultValidatorFactory()
-                              .getValidator();
+                .getValidator();
     }
 
-    @Before public void init() {
+    @Before
+    public void init() {
         safechargeRequestExecutor = mock(SafechargeRequestExecutor.class);
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(GetSessionTokenRequest.class))).thenReturn(
-                gson.fromJson(loadResourceFile("./mock/response/getSessionToken.json"), SessionTokenResponse.class));
+                gson.fromJson(loadResourceFile("./mock/response/getSessionToken.json"), GetSessionTokenResponse.class));
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(GetOrderDetailsRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("./mock/response/getOrderDetails.json"), GetOrderDetailsResponse.class));
@@ -128,7 +130,7 @@ public abstract class BaseTest {
 
         String result = null;
         try (InputStream fileInputStream = getClass().getClassLoader()
-                                                     .getResourceAsStream(path); ByteArrayOutputStream os = new ByteArrayOutputStream(1024)) {
+                .getResourceAsStream(path); ByteArrayOutputStream os = new ByteArrayOutputStream(1024)) {
             byte[] buf = new byte[1024];
 
             for (int i = fileInputStream.read(buf); i > 0; i = fileInputStream.read(buf)) {
@@ -142,7 +144,7 @@ public abstract class BaseTest {
 
     protected void validateRequest(SafechargeRequest request) {
         try {
-            ValidationUtil.validate(request);
+            ValidationUtils.validate(request);
         } catch (ValidationException e) {
             Assert.fail();
         }

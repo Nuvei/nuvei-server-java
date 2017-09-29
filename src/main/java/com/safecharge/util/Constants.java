@@ -67,7 +67,7 @@ public interface Constants {
     /**
      * Array of possible hexadecimal values.
      */
-    char[] HEXADECIMAL = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+    char[] HEXADECIMAL = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * Response statuses Approved, Declined and Error are used by PhoneBet API and should not be changed, because they are in production use.
@@ -101,7 +101,8 @@ public interface Constants {
             }
         }
 
-        @Override public String toString() {
+        @Override
+        public String toString() {
             return name;
         }
     }
@@ -151,6 +152,9 @@ public interface Constants {
         NO_ERROR, GENERIC_ERROR, INVALID_CHECKSUM, GENERAL_VALIDATION, COMMUNICATION_ERROR, ERR_CODE_INVALID_MERCHANT_SITE_ID, ERR_CODE_INVALID_ORDER_ID, ERR_CODE_INVALID_ORDER_STATE, ERR_CODE_INVALID_AMOUNT, ERR_CODE_INVALID_CURRENCY, ERR_CODE_INVALID_TRX_TYPE, ERR_CODE_USED_SESSION_TOKEN, SESSION_EXPIRED, INVALID_TOKEN, INVALID_REQUEST, ERR_CODE_INVALID_USER_TOKEN, ERR_CODE_INVALID_CARD_DATA, ERR_CODE_MISSING_PAYMENT_DATA, ERR_CODE_AMBIGUOUS_PAYMENT_DATA, ERR_CODE_INVALID_UPO_DATA, ERR_CODE_USER_MANAGEMENT_OFF, ERR_CODE_INVALID_CARD_ISSUER, ERR_CODE_INVALID_CARD_TOKEN
     }
 
+    /**
+     * Order mappings names used in the checksum calculations. For more info check {@link ChecksumUtils}
+     */
     enum ChecksumOrderMapping {
         API_GENERIC_CHECKSUM_MAPPING, USER_DETAILS, SETTLE_GW_TRANSACTION, REFUND_GW_TRANSACTION, VOID_GW_TRANSACTION, ADD_CASHIER_APM, ADD_CASHIER_CC_CARD, URL_DETAILS_CHECKSUM_MAPPING, CANCEL_CASHIER_SUBSCRIPTION, GET_CASHIER_SUBSCRIPTIONS, GET_CASHIER_SUBSCRIPTION_PLANS
     }

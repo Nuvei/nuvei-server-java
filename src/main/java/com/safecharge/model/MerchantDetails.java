@@ -4,6 +4,8 @@ import javax.validation.constraints.Size;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for Cashier's Merchant's specific uncategorized data.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
@@ -11,35 +13,35 @@ import javax.validation.constraints.Size;
 
 public class MerchantDetails {
 
-    @Size(max = 255,
-          message = "customField1 size must be up to 255 characters long!") private String customField1;
+    @Size(max = 255, message = "customField1 size must be up to 255 characters long!")
+    private String customField1;
 
-    @Size(max = 255,
-          message = "customField2 size must be up to 255 characters long!") private String customField2;
+    @Size(max = 255, message = "customField2 size must be up to 255 characters long!")
+    private String customField2;
 
-    @Size(max = 255,
-          message = "customField3 size must be up to 255 characters long!") private String customField3;
+    @Size(max = 255, message = "customField3 size must be up to 255 characters long!")
+    private String customField3;
 
-    @Size(max = 255,
-          message = "customField4 size must be up to 255 characters long!") private String customField4;
+    @Size(max = 255, message = "customField4 size must be up to 255 characters long!")
+    private String customField4;
 
-    @Size(max = 255,
-          message = "customField5 size must be up to 255 characters long!") private String customField5;
+    @Size(max = 255, message = "customField5 size must be up to 255 characters long!")
+    private String customField5;
 
-    @Size(max = 255,
-          message = "customField6 size must be up to 255 characters long!") private String customField6;
+    @Size(max = 255, message = "customField6 size must be up to 255 characters long!")
+    private String customField6;
 
-    @Size(max = 255,
-          message = "customField7 size must be up to 255 characters long!") private String customField7;
+    @Size(max = 255, message = "customField7 size must be up to 255 characters long!")
+    private String customField7;
 
-    @Size(max = 255,
-          message = "customField8 size must be up to 255 characters long!") private String customField8;
+    @Size(max = 255, message = "customField8 size must be up to 255 characters long!")
+    private String customField8;
 
-    @Size(max = 255,
-          message = "customField9 size must be up to 255 characters long!") private String customField9;
+    @Size(max = 255, message = "customField9 size must be up to 255 characters long!")
+    private String customField9;
 
-    @Size(max = 255,
-          message = "customField10 size must be up to 255 characters long!") private String customField10;
+    @Size(max = 255, message = "customField10 size must be up to 255 characters long!")
+    private String customField10;
 
     public String getCustomField1() {
         return customField1;
@@ -123,62 +125,62 @@ public class MerchantDetails {
 
     public String getCustomFieldByNumber(int customFieldNumber) {
         switch (customFieldNumber) {
-        case 1:
-            return customField1;
-        case 2:
-            return customField2;
-        case 3:
-            return customField3;
-        case 4:
-            return customField4;
-        case 5:
-            return customField5;
-        case 6:
-            return customField6;
-        case 7:
-            return customField7;
-        case 8:
-            return customField8;
-        case 9:
-            return customField9;
-        case 10:
-            return customField10;
+            case 1:
+                return customField1;
+            case 2:
+                return customField2;
+            case 3:
+                return customField3;
+            case 4:
+                return customField4;
+            case 5:
+                return customField5;
+            case 6:
+                return customField6;
+            case 7:
+                return customField7;
+            case 8:
+                return customField8;
+            case 9:
+                return customField9;
+            case 10:
+                return customField10;
         }
         return null;
     }
 
     public void setCustomFieldByNumber(String fieldValue, int customFieldNumber) {
         switch (customFieldNumber) {
-        case 1:
-            this.customField1 = fieldValue;
-            break;
-        case 2:
-            this.customField2 = fieldValue;
-            break;
-        case 3:
-            this.customField3 = fieldValue;
-            break;
-        case 4:
-            this.customField4 = fieldValue;
-            break;
-        case 5:
-            this.customField5 = fieldValue;
-            break;
-        case 6:
-            this.customField6 = fieldValue;
-            break;
-        case 7:
-            this.customField7 = fieldValue;
-            break;
-        case 8:
-            this.customField8 = fieldValue;
-            break;
-        case 9:
-            this.customField9 = fieldValue;
-            break;
-        case 10:
-            this.customField10 = fieldValue;
-            break;
+            case 1:
+                this.customField1 = fieldValue;
+                break;
+            case 2:
+                this.customField2 = fieldValue;
+                break;
+            case 3:
+                this.customField3 = fieldValue;
+                break;
+            case 4:
+                this.customField4 = fieldValue;
+                break;
+            case 5:
+                this.customField5 = fieldValue;
+                break;
+            case 6:
+                this.customField6 = fieldValue;
+                break;
+            case 7:
+                this.customField7 = fieldValue;
+                break;
+            case 8:
+                this.customField8 = fieldValue;
+                break;
+            case 9:
+                this.customField9 = fieldValue;
+                break;
+            case 10:
+                this.customField10 = fieldValue;
+                break;
         }
     }
 }

@@ -13,11 +13,13 @@ import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
 import com.safecharge.model.MerchantDetails;
-import com.safecharge.model.URLDetails;
+import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Abstract class to be used as a base for order related and payment requests.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017
@@ -27,53 +29,63 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
     /**
      * The three character ISO currency code.
      */
-    @NotNull(message = "currency parameter is mandatory!") private String currency;
+    @NotNull(message = "currency parameter is mandatory!")
+    private String currency;
 
     /**
      * The transaction amount.
      */
-    @NotNull(message = "amount parameter is mandatory!") private String amount;
+    @NotNull(message = "amount parameter is mandatory!")
+    private String amount;
 
     /**
      * List of items that will be purchased.
      */
-    @Valid @NotNull @Size(min = 1,
-                          message = "Request must have at least one item!") private List<Item> items = new ArrayList<>();
+    @Valid
+    @NotNull
+    @Size(min = 1, message = "Request must have at least one item!")
+    private List<Item> items = new ArrayList<>();
 
     /**
      * The details for the device from which the transaction will be made.
      */
-    @Valid private DeviceDetails deviceDetails;
+    @Valid
+    private DeviceDetails deviceDetails;
 
     /**
      * Details about the user which include the user's name, email, address, etc.
      */
-    @Valid private CashierUserDetails userDetails;
+    @Valid
+    private CashierUserDetails userDetails;
 
     /**
-     * Shipping address related to a user order.
+     * Shipping address related to a user's order.
      */
-    @Valid private UserAddress shippingAddress;
+    @Valid
+    private UserAddress shippingAddress;
 
     /**
      * Billing address related to a user payment option. Since order can contain only one payment option billing address is part of the order parameters.
      */
-    @Valid private UserAddress billingAddress;
+    @Valid
+    private UserAddress billingAddress;
 
     /**
-     * Merchant descriptor - this is the message that the user will see in his payment bank report.
+     * Merchant descriptor - this is the message(Merchant's name and phone) that the user will see in his payment bank report.
      */
-    @Valid private DynamicDescriptor dynamicDescriptor;
+    @Valid
+    private DynamicDescriptor dynamicDescriptor;
 
     /**
-     * Optional custom fields
+     * Optional custom fields.
      */
-    @Valid private MerchantDetails merchantDetails;
+    @Valid
+    private MerchantDetails merchantDetails;
 
     /**
      * Although DMN response can be configured per merchant site, it will allow to dynamically return the DMN to the provided address per request.
      */
-    private URLDetails urlDetails;
+    private UrlDetails urlDetails;
 
     /**
      * This block contain industry specific addendums such as: Local payment, Hotel, Airline etc.
@@ -83,16 +95,17 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
     /**
      * ID of the user in merchant system.
      */
-    @Size(max = 45,
-          message = "userTokenId size must be up to 45 characters long!") private String userTokenId;
+    @Size(max = 45, message = "userTokenId size must be up to 45 characters long!")
+    private String userTokenId;
 
     /**
      * ID of the transaction in merchant system.
      */
-    @Size(max = 45,
-          message = "clientUniqueId size must be up to 45 characters long!") private String clientUniqueId;
+    @Size(max = 45, message = "clientUniqueId size must be up to 45 characters long!")
+    private String clientUniqueId;
 
-    @NotNull(message = "sessionToken parameter is mandatory!") public String getSessionToken() {
+    @NotNull(message = "sessionToken parameter is mandatory!")
+    public String getSessionToken() {
         return super.getSessionToken();
     }
 
@@ -118,8 +131,10 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
 
     /**
      * Adds an item that will be purchased.
+     * <p>
+     * At least one item must be added for a successful order.
      *
-     * @param item
+     * @param item the {@link Item} object to add to the list of items that the order contains.
      */
     public void addItem(Item item) {
         this.items.add(item);
@@ -173,11 +188,11 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
         this.merchantDetails = merchantDetails;
     }
 
-    public URLDetails getUrlDetails() {
+    public UrlDetails getUrlDetails() {
         return urlDetails;
     }
 
-    public void setUrlDetails(URLDetails urlDetails) {
+    public void setUrlDetails(UrlDetails urlDetails) {
         this.urlDetails = urlDetails;
     }
 
@@ -205,38 +220,39 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
         this.clientUniqueId = clientUniqueId;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("currency='")
-          .append(currency)
-          .append('\'');
+                .append(currency)
+                .append('\'');
         sb.append(", amount='")
-          .append(amount)
-          .append('\'');
+                .append(amount)
+                .append('\'');
         sb.append(", items=")
-          .append(items);
+                .append(items);
         sb.append(", deviceDetails=")
-          .append(deviceDetails);
+                .append(deviceDetails);
         sb.append(", userDetails=")
-          .append(userDetails);
+                .append(userDetails);
         sb.append(", shippingAddress=")
-          .append(shippingAddress);
+                .append(shippingAddress);
         sb.append(", billingAddress=")
-          .append(billingAddress);
+                .append(billingAddress);
         sb.append(", dynamicDescriptor=")
-          .append(dynamicDescriptor);
+                .append(dynamicDescriptor);
         sb.append(", merchantDetails=")
-          .append(merchantDetails);
+                .append(merchantDetails);
         sb.append(", urlDetails=")
-          .append(urlDetails);
+                .append(urlDetails);
         sb.append(", addendums=")
-          .append(addendums);
+                .append(addendums);
         sb.append(", userTokenId='")
-          .append(userTokenId)
-          .append('\'');
+                .append(userTokenId)
+                .append('\'');
         sb.append(", clientUniqueId='")
-          .append(clientUniqueId)
-          .append('\'');
+                .append(clientUniqueId)
+                .append('\'');
         sb.append(", ");
         sb.append(super.toString());
         return sb.toString();

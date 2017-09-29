@@ -5,19 +5,20 @@ import javax.validation.constraints.Size;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Holder for User Payment Option(UPO) data.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
  */
 public class UserPaymentOption {
 
-    @NotNull(message = "userPaymentOptionId may not be null!") @Size(min = 3,
-                                                                     max = 45,
-                                                                     message = "userPaymentOptionId size must at least 3 symbols and maximum 45 characters long!")
+    @NotNull(message = "userPaymentOptionId may not be null!")
+    @Size(min = 3, max = 45, message = "userPaymentOptionId size must at least 3 symbols and maximum 45 characters long!")
     private String userPaymentOptionId;
 
-    @Size(max = 4,
-          message = "cvv size must be up to 4 characters long!") private String CVV;
+    @Size(max = 4, message = "cvv size must be up to 4 characters long!")
+    private String CVV;
 
     public String getUserPaymentOptionId() {
         return userPaymentOptionId;

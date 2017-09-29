@@ -46,6 +46,7 @@ import com.safecharge.response.CardTokenizationResponse;
 import com.safecharge.response.CreateSubscriptionResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
+import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.response.GetSubscriptionPlansResponse;
 import com.safecharge.response.GetSubscriptionsListResponse;
 import com.safecharge.response.OpenOrderResponse;
@@ -54,7 +55,6 @@ import com.safecharge.response.PaymentAPMResponse;
 import com.safecharge.response.PaymentCCResponse;
 import com.safecharge.response.RefundTransactionResponse;
 import com.safecharge.response.SafechargeResponse;
-import com.safecharge.response.SessionTokenResponse;
 import com.safecharge.response.SettleTransactionResponse;
 import com.safecharge.response.UpdateOrderResponse;
 import com.safecharge.response.VoidTransactionResponse;
@@ -76,7 +76,7 @@ public class SafechargeRequestExecutor {
                 private static final long serialVersionUID = -5429154998138428047L;
 
                 {
-                    put(GetSessionTokenRequest.class, SessionTokenResponse.class);
+                    put(GetSessionTokenRequest.class, GetSessionTokenResponse.class);
                     put(OpenOrderRequest.class, OpenOrderResponse.class);
                     put(UpdateOrderRequest.class, UpdateOrderResponse.class);
                     put(GetOrderDetailsRequest.class, GetOrderDetailsResponse.class);
@@ -134,6 +134,11 @@ public class SafechargeRequestExecutor {
     private SafechargeRequestExecutor() {
     }
 
+    /**
+     * Obtains the single instance of {@link SafechargeRequestExecutor}
+     *
+     * @return the single instance of {@link SafechargeRequestExecutor}
+     */
     public static SafechargeRequestExecutor getInstance() {
         if (instance == null) {
             instance = new SafechargeRequestExecutor();
@@ -141,17 +146,25 @@ public class SafechargeRequestExecutor {
         return instance;
     }
 
+    /**
+     * This method initiates the {@link SafechargeRequestExecutor} with a default Safecharge's {@link HttpClient} and server information.
+     */
     public void init() {
         init(SafechargeHttpClient.createDefault());
     }
 
     /**
      * This method initiates the {@link SafechargeRequestExecutor} with a configured {@link HttpClient} and server information.
+     *
+     * @param httpClient to get the client's properties from
      */
     public void init(HttpClient httpClient) {
 
         if (isInitialized) {
             // already initialized
+            if (logger.isDebugEnabled()) {
+                logger.debug(SafechargeRequestExecutor.class.getSimpleName() + " is already initialized!");
+            }
             return;
         }
 
@@ -163,8 +176,8 @@ public class SafechargeRequestExecutor {
     /**
      * Sends a {@link SafechargeRequest} to SafeCharge's API via HTTP POST method.
      *
-     * @param request
-     * @return
+     * @param request {@link SafechargeRequest} API request object
+     * @return {@link SafechargeResponse} API response object or null if the response can't be parsed
      */
     public SafechargeResponse executeRequest(SafechargeRequest request) {
 
@@ -180,7 +193,7 @@ public class SafechargeRequestExecutor {
             request.setServerHost(null); // remove API url from request
 
             String requestJSON = gson.toJson(request);
-            String responseJSON = executeJsonRequest(request, requestJSON, serviceUrl);
+            String responseJSON = executeJsonRequest(requestJSON, serviceUrl);
 
             return gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(request.getClass()));
 
@@ -194,26 +207,28 @@ public class SafechargeRequestExecutor {
         return null;
     }
 
-    public String executeJsonRequest(SafechargeRequest request, String requestJSON, String serviceUrl) throws IOException {
-        HttpPost httpPost = new HttpPost(serviceUrl);
-        httpPost.setHeaders(APIConstants.REQUEST_HEADERS);
-        httpPost.setEntity(new StringEntity(requestJSON, Charset.forName("UTF-8")));
-
-        if (logger.isDebugEnabled()) {
-            logger.debug("Sent " + request.getClass()
-                                          .getSimpleName() + ": " + requestJSON);
-        }
-
-        HttpResponse response = httpClient.execute(httpPost);
-
-        String responseJSON = EntityUtils.toString(response.getEntity(), UTF8_CHARSET);
-        if (logger.isDebugEnabled()) {
-            logger.debug("Received " + request.getClass()
-                                              .getSimpleName() + ": " + responseJSON);
-        }
-        return responseJSON;
+    /**
+     * Sends a POST request to the service at {@code serviceUrl} with a payload of {@code requestJSON}.
+     *
+     * @param requestJSON A {@link String} representation of a JSON object
+     * @param serviceUrl  The service URL to sent the request to
+     * @return {@link String} response from the service (representing JSON object)
+     * @throws IOException if the connection is interrupted or the response is unparsable
+     */
+    public String executeJsonRequest(String requestJSON, String serviceUrl) throws IOException {
+        return executeRequest(requestJSON, serviceUrl, APIConstants.REQUEST_HEADERS);
     }
 
+    /**
+     * Sends a POST request to the service at {@code serviceUrl} with a payload of {@code request}.
+     * The request type is determined by the {@code headers} param.
+     *
+     * @param request    A {@link String} representation of a request object. Can be JSON object, form data, etc...
+     * @param serviceUrl The service URL to sent the request to
+     * @param headers    An array of {@link Header} objects, used to determine the request type
+     * @return {@link String} response from the service (representing JSON object)
+     * @throws IOException if the connection is interrupted or the response is unparsable
+     */
     public String executeRequest(String request, String serviceUrl, Header[] headers) throws IOException {
         HttpPost httpPost = new HttpPost(serviceUrl);
         httpPost.setHeaders(headers);
@@ -225,7 +240,7 @@ public class SafechargeRequestExecutor {
 
         HttpResponse response = httpClient.execute(httpPost);
 
-        String responseJSON = EntityUtils.toString(response.getEntity());
+        String responseJSON = EntityUtils.toString(response.getEntity(), UTF8_CHARSET);
         if (logger.isDebugEnabled()) {
             logger.debug("Received " + response);
         }

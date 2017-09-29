@@ -10,27 +10,45 @@ import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.builder.SafechargeOrderBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
-import com.safecharge.util.ValidationUtil;
+import com.safecharge.util.ValidationUtils;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * <p>
+ * Request to perform a payment using an alternative payment method(APM).
+ * <p>
+ * PaymentAPM transaction is implemented in four main stages:
+ * <ol>
+ * <li>Ensuring that SafeCharge is integrated to the desired APM.
+ * <li>The {@code paymentAPM} request.
+ * <li>The required merchant actions (for APM’s who use redirect).
+ * Following a positive response from the paymentAPM request, per output parameter {@code transactionStatus} returned value,
+ * the merchant is redirected to the APM’s payment page (using {@code redirectUrl}) to login and confirm the billing information.
+ * <li>The APM required actions (for APM’s who use redirect). Once the credentials are typed and the payment is confirmed,
+ * the APM redirects (with some additional information) back to SafeCharge’s gateway using a {@code returnUrl} from previous APM-SafeCharge
+ * communications at 1st stage. Afterwards, the SafeCharge gateway redirects to a {@code successURL} or to a {@code failureURL}.
+ * </ol>
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @see Payment3DRequest
+ * @see PaymentCCRequest
  * @since 2/15/2017
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING) public class PaymentAPMRequest
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
+public class PaymentAPMRequest
         extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
 
     /**
      * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
      */
-    @Size(max = 45,
-          message = "orderId size must be up to 45 characters long!") private String orderId;
+    @Size(max = 45, message = "orderId size must be up to 45 characters long!")
+    private String orderId;
 
     /**
      * Identification of the payment method. For example: PayPal, Skrill, PaysafeCard etc.
      */
-    @NotNull(message = "paymentMethod parameter is mandatory!") private String paymentMethod;
+    @NotNull(message = "paymentMethod parameter is mandatory!")
+    private String paymentMethod;
 
     /**
      * Account details of the APM. Specific data for each APM.
@@ -38,17 +56,19 @@ import com.safecharge.util.ValidationUtil;
     private Map<String, String> userAccountDetails;
 
     /**
-     * User payment option can to be provided as an alternative for providing card data/card token/Apple Pay token. Only one of them can be in use for a certain transaction. If both not provided or both provided it will cause an error.
+     * User payment option can to be provided as an alternative for providing card data/card token/Apple Pay token.
+     * Only one of them can be in use for a certain transaction. If both are not provided or both are provided it will cause an error.
      */
-    @Valid private UserPaymentOption userPaymentOption;
+    @Valid
+    private UserPaymentOption userPaymentOption;
 
 
     /**
      * The country the transaction is to be completed in.
      */
-    @NotNull(message = "country parameter is mandatory!") @Size(max = 2,
-                                                                min = 2,
-                                                                message = "country must be exactly 2 characters long") private String country;
+    @NotNull(message = "country parameter is mandatory!")
+    @Size(max = 2, min = 2, message = "country must be exactly 2 characters long")
+    private String country;
 
     public static Builder builder() {
         return new Builder();
@@ -58,7 +78,8 @@ import com.safecharge.util.ValidationUtil;
         return orderId;
     }
 
-    @Override public void setOrderId(String orderId) {
+    @Override
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
@@ -94,23 +115,24 @@ import com.safecharge.util.ValidationUtil;
         this.country = country;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentAPMRequest{");
         sb.append("orderId='")
-          .append(orderId)
-          .append('\'');
+                .append(orderId)
+                .append('\'');
         sb.append(", country='")
-          .append(country)
-          .append('\'');
+                .append(country)
+                .append('\'');
         sb.append(", paymentMethod='")
-          .append(paymentMethod)
-          .append('\'');
+                .append(paymentMethod)
+                .append('\'');
         sb.append(", userAccountDetails=")
-          .append(userAccountDetails);
+                .append(userAccountDetails);
         sb.append(", userPaymentOption=")
-          .append(userPaymentOption);
+                .append(userPaymentOption);
         sb.append(", ")
-          .append(super.toString());
+                .append(super.toString());
         sb.append('}');
         return sb.toString();
     }
@@ -123,21 +145,50 @@ import com.safecharge.util.ValidationUtil;
         private UserPaymentOption userPaymentOption;
         private String country;
 
+        /**
+         * Adds order ID to the request.
+         *
+         * @param orderId the ID of the order to add to the request, it is used as indication that the payment is done for this order
+         * @return this object
+         */
         public Builder addOrderId(String orderId) {
             this.orderId = orderId;
             return this;
         }
 
+        /**
+         * Adds the payment method name to the request.
+         *
+         * @param paymentMethod SafeCharge’s unique name of the payment method. For a list of possible payment methods check
+         *                      <a href="https://www.safecharge.com/docs/api/?java#apm-unique-safecharge-names">APM Unique SafeCharge Names.</a>
+         * @return this object
+         */
         public Builder addPaymentMethod(String paymentMethod) {
             this.paymentMethod = paymentMethod;
             return this;
         }
 
+        /**
+         * Adds user account details to the request. Those details are related to the user's APM account and not the SafeCharge's account.
+         *
+         * @param userAccountDetails SafeCharge’s account identifiers of the payment method's details. For more information, see
+         *                           <a href="https://www.safecharge.com/docs/api/?java#apm-account-identifiers">APM Account Identifiers.</a>
+         * @return this object
+         */
         public Builder addUserAccountDetails(Map<String, String> userAccountDetails) {
             this.userAccountDetails = userAccountDetails;
             return this;
         }
 
+        /**
+         * Adds User Payment Option (UPO) ID to the request.
+         * <p>
+         * This is the ID of previously used payment option (PO) stored in the SafeCharge's system.
+         *
+         * @param userPaymentOptionId The id of a previously used PO(that the user has agreed to store in SafeCharge's system)
+         * @param cvv                 Card Verification Value number. If the UPO requires CVV for every transaction, it must be provided
+         * @return this object
+         */
         public Builder addUserPaymentOption(String userPaymentOptionId, String cvv) {
             UserPaymentOption userPaymentOption = new UserPaymentOption();
             userPaymentOption.setUserPaymentOptionId(userPaymentOptionId);
@@ -145,24 +196,45 @@ import com.safecharge.util.ValidationUtil;
             return addUserPaymentOption(userPaymentOption);
         }
 
+        /**
+         * Adds {@link UserPaymentOption} to the request.
+         *
+         * @param userPaymentOption object holding the User Payment Option information
+         * @return this object
+         */
         public Builder addUserPaymentOption(UserPaymentOption userPaymentOption) {
             this.userPaymentOption = userPaymentOption;
             return this;
         }
 
+        /**
+         * Adds country to the request.
+         * <p>
+         * The country parameter is mandatory and must contain the ISO code of a country that is supported by the APM,
+         * according to the configuration by SafeCharge.
+         *
+         * @param country two-letter ISO country code
+         * @return this object
+         */
         public Builder addCountry(String country) {
             this.country = country;
             return this;
         }
 
-        @Override public SafechargeRequest build() {
+        /**
+         * Builds the request.
+         *
+         * @return {@link SafechargeRequest} object build from the params set by this builder
+         */
+        @Override
+        public SafechargeRequest build() {
             PaymentAPMRequest paymentAPMRequest = new PaymentAPMRequest();
             paymentAPMRequest.setOrderId(orderId);
             paymentAPMRequest.setPaymentMethod(paymentMethod);
             paymentAPMRequest.setUserAccountDetails(userAccountDetails);
             paymentAPMRequest.setUserPaymentOption(userPaymentOption);
             paymentAPMRequest.setCountry(country);
-            return ValidationUtil.validate(super.build(paymentAPMRequest));
+            return ValidationUtils.validate(super.build(paymentAPMRequest));
         }
     }
 }
