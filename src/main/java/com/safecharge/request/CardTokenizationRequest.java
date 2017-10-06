@@ -1,6 +1,7 @@
 package com.safecharge.request;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -42,6 +43,7 @@ public class CardTokenizationRequest extends SafechargeRequest {
      * Valid card details to generate the token for.
      */
     @Valid
+    @NotNull
     private CardData cardData;
 
     /**
