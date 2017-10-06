@@ -1,15 +1,25 @@
 package com.safecharge.test;
 
+import static org.junit.Assert.*;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.validation.ConstraintViolationException;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.safecharge.model.CardData;
 import com.safecharge.model.Item;
 import com.safecharge.model.MerchantInfo;
+import com.safecharge.request.AddUPOAPMRequest;
+import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
+import com.safecharge.request.AddUPOCreditCardRequest;
+import com.safecharge.request.Authorization3DRequest;
+import com.safecharge.request.CancelSubscriptionRequest;
+import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
@@ -36,6 +46,13 @@ public class ValidationsTest {
     private static final Item dummyValidItem = new Item();
     private static final Item dummyInvalidItem = new Item();
     private static final String dummyOrderId = "1234";
+    private static final String dummyUserId = "dummyUserId";
+    private static final Map<String, String> dummyValidApmData = new HashMap<>();
+    private static final String dummyPaymentMethodName = "dummyPaymentMethodName";
+    private static final String dummyCcToken = "dummyCcToken";
+    private static final String dummyValidAmount = "1.00";
+    private static final String dummyValidCurrency = "EUR";
+    private static final CardData dummyCardData = new CardData();
 
     @Before
     public void initialization() {
@@ -43,6 +60,178 @@ public class ValidationsTest {
         dummyValidItem.setName("dummyValidItem");
         dummyValidItem.setPrice("1");
         dummyInvalidItem.setName("dummyInvalidItem");
+        dummyValidApmData.put("dummyUserName", "dummyExample");
+    }
+
+    @Test
+    public void testSuccessfulValidation_AddUPOAPMRequest() {
+
+        SafechargeRequest safechargeRequest = AddUPOAPMRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addApmData(dummyValidApmData)
+                .addUserTokenId(dummyUserId)
+                .addPaymentMethodName(dummyPaymentMethodName)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_AddUPOAPMRequest() {
+
+        try {
+            AddUPOAPMRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+            fail("ConstraintViolationException expected, but object creation passed successfully");
+        } catch (ConstraintViolationException e) {
+            assertEquals(5, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_AddUPOCreditCardByTempTokenRequest() {
+
+        SafechargeRequest safechargeRequest = AddUPOCreditCardByTempTokenRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addCCTempToken(dummyCcToken)
+                .addUserTokenId(dummyUserId)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_AddUPOCreditCardByTempTokenRequest() {
+
+        try {
+            SafechargeRequest safechargeRequest = AddUPOCreditCardByTempTokenRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+        } catch (ConstraintViolationException e) {
+            assertEquals(4, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_AddUPOCreditCardRequest() {
+
+        SafechargeRequest safechargeRequest = AddUPOCreditCardRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addUserTokenId(dummyUserId)
+                .addCcCardNumber("4111 1111 1111 1111")
+                .addCcExpMonth("12")
+                .addCCExpYear("22")
+                .addCcNameOnCard("Ivan Ivanov")
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_AddUPOCreditCardRequest() {
+
+        try {
+            AddUPOCreditCardRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+            fail("ConstraintViolationException expected, but object creation passed successfully");
+        } catch (ConstraintViolationException e) {
+            assertEquals(7, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_Authorization3DRequest() {
+
+        SafechargeRequest safechargeRequest = Authorization3DRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addSessionToken(dummySessionToken)
+                .addIsDynamic3D("0")
+                .addAmount(dummyValidAmount)
+                .addCurrency(dummyValidCurrency)
+                .addItem(dummyValidItem)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_Authorization3DRequest() {
+
+        try {
+            Authorization3DRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+            fail("ConstraintViolationException expected, but object creation passed successfully");
+        } catch (ConstraintViolationException e) {
+            assertEquals(6, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_CancelSubscriptionRequest() {
+
+        SafechargeRequest safechargeRequest = CancelSubscriptionRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addUserTokenId(dummyUserId)
+                .addSubscriptionId("1234")
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_CancelSubscriptionRequest() {
+
+        try {
+            CancelSubscriptionRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+            fail("ConstraintViolationException expected, but object creation passed successfully");
+        } catch (ConstraintViolationException e) {
+            assertEquals(4, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_CardTokenizationRequest() {
+
+        SafechargeRequest safechargeRequest = CardTokenizationRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_CardTokenizationRequest() {
+
+        try {
+            CardTokenizationRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+
+            fail("ConstraintViolationException expected, but object creation passed successfully");
+        } catch (ConstraintViolationException e) {
+            assertEquals(2, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_() {
+
+        SafechargeRequest safechargeRequest = AddUPOCreditCardRequest.builder()
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_() {
+
+        try {
+            AddUPOCreditCardRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+
+            fail("ConstraintViolationException expected, but object creation passed successfully");
+        } catch (ConstraintViolationException e) {
+            assertEquals(5, e.getConstraintViolations().size());
+        }
     }
 
     @Test
@@ -50,7 +239,7 @@ public class ValidationsTest {
         SafechargeRequest safechargeRequest = GetSessionTokenRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .build();
-        Assert.assertTrue(safechargeRequest != null);
+        assertTrue(safechargeRequest != null);
     }
 
     @Test
@@ -60,10 +249,9 @@ public class ValidationsTest {
             GetSessionTokenRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
                     .build();
-            Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
+            fail("ConstraintViolationException expected, but object creation passed successfully");
         } catch (ConstraintViolationException e) {
-            Assert.assertEquals(2, e.getConstraintViolations()
-                    .size());
+            assertEquals(2, e.getConstraintViolations().size());
         }
     }
 
@@ -77,7 +265,7 @@ public class ValidationsTest {
                 .addOrderId("1234")
                 .addSessionToken(dummySessionToken)
                 .build();
-        Assert.assertTrue(safechargeRequest != null);
+        assertTrue(safechargeRequest != null);
     }
 
     @Test
@@ -87,9 +275,9 @@ public class ValidationsTest {
             GetOrderDetailsRequest.builder()
                     .addMerchantInfo(validMerchantInfo)
                     .build();
-            Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
+            fail("ConstraintViolationException expected, but object creation passed successfully");
         } catch (ConstraintViolationException e) {
-            Assert.assertEquals(2, e.getConstraintViolations()
+            assertEquals(2, e.getConstraintViolations()
                     .size());
         }
     }
@@ -103,7 +291,7 @@ public class ValidationsTest {
                 .addAmount("1")
                 .addItem(dummyValidItem)
                 .build();
-        Assert.assertTrue(safechargeRequest != null);
+        assertTrue(safechargeRequest != null);
     }
 
     @Test
@@ -116,9 +304,9 @@ public class ValidationsTest {
                     .addAmount("1")
                     .addItem(dummyInvalidItem)
                     .build();
-            Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
+            fail("ConstraintViolationException expected, but object creation passed successfully");
         } catch (ConstraintViolationException e) {
-            Assert.assertEquals(3, e.getConstraintViolations()
+            assertEquals(3, e.getConstraintViolations()
                     .size());
         }
     }
@@ -133,7 +321,7 @@ public class ValidationsTest {
                 .addAmount("1")
                 .addItem(dummyValidItem)
                 .build();
-        Assert.assertTrue(safechargeRequest != null);
+        assertTrue(safechargeRequest != null);
     }
 
     @Test
@@ -147,9 +335,9 @@ public class ValidationsTest {
                     .addAmount("1")
                     .addItem(dummyInvalidItem)
                     .build();
-            Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
+            fail("ConstraintViolationException expected, but object creation passed successfully");
         } catch (ConstraintViolationException e) {
-            Assert.assertEquals(3, e.getConstraintViolations()
+            assertEquals(3, e.getConstraintViolations()
                     .size());
         }
     }
@@ -176,7 +364,7 @@ public class ValidationsTest {
                         "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do", null)
                 .addPaymentMethod("apmgw_expresscheckout")
                 .build();
-        Assert.assertTrue(safechargeRequest != null);
+        assertTrue(safechargeRequest != null);
     }
 
     @Test
@@ -202,9 +390,9 @@ public class ValidationsTest {
                     .addPaymentMethod("apmgw_expresscheckout")
                     .addCountry("US")
                     .build();
-            Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
+            fail("ConstraintViolationException expected, but object creation passed successfully");
         } catch (ConstraintViolationException e) {
-            Assert.assertEquals(7, e.getConstraintViolations()
+            assertEquals(7, e.getConstraintViolations()
                     .size());
         }
     }
@@ -228,7 +416,7 @@ public class ValidationsTest {
                 .addTransactionType(Constants.TransactionType.Sale)
                 .addCardData("4111111111111111", "Test Test", "11", "2011", null, "123")
                 .build();
-        Assert.assertTrue(safechargeRequest != null);
+        assertTrue(safechargeRequest != null);
     }
 
     @Test
@@ -251,15 +439,28 @@ public class ValidationsTest {
                     .addCardData(null, null, "11", "2011", null, "123")
                     .addUserPaymentOption(null, "12")
                     .build();
-            Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
+            fail("ConstraintViolationException expected, but object creation passed successfully");
         } catch (ConstraintViolationException e) {
-            Assert.assertEquals(8, e.getConstraintViolations()
+            assertEquals(8, e.getConstraintViolations()
                     .size());
         }
     }
 
     @Test
-    public void testFailedValidation_GetPaymentMethodsListRequest() {
+    public void testSuccessfulValidation_GetMerchantPaymentMethodsRequest() {
+
+        SafechargeRequest safechargeRequest = GetMerchantPaymentMethodsRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addSessionToken(dummySessionToken)
+                .addCountryCode("GB")
+                .addLanguageCode("en")
+                .addCurrencyCode("GBP")
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_GetMerchantPaymentMethodsRequest() {
 
         try {
             GetMerchantPaymentMethodsRequest.builder()
@@ -269,9 +470,9 @@ public class ValidationsTest {
                     .addLanguageCode("Russian")
                     .addCurrencyCode("Euro")
                     .build();
-            Assert.fail("ConstraintViolationException expected, object creation passed successfully.");
+            fail("ConstraintViolationException expected, but object creation passed successfully");
         } catch (ConstraintViolationException e) {
-            Assert.assertEquals(3, e.getConstraintViolations()
+            assertEquals(3, e.getConstraintViolations()
                     .size());
         }
     }
