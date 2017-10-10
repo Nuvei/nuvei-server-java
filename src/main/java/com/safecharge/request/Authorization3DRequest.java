@@ -29,9 +29,11 @@ public class Authorization3DRequest
      * or the 3DSecure rule engine not managed by SafeCharge and method will always try to
      * send a 3DSecure transaction (0).
      */
+    @NotNull(message = "isDynamic3D parameter is mandatory!")
     @Pattern(regexp = APIConstants.IS_DYNAMIC_3D_REGEX, message = "isDynamic3D value is invalid")
     private String isDynamic3D;
 
+    @NotNull(message = "dynamic3DMode parameter is mandatory!")
     @Size(max=5)
     private String dynamic3DMode;
 
@@ -88,7 +90,7 @@ public class Authorization3DRequest
          * @return this object
          */
         @Override
-        public SafechargeBaseRequest build() {
+        public SafechargeRequest build() {
             Authorization3DRequest request = new Authorization3DRequest();
             request.setIsDynamic3D(isDynamic3D);
             request.setDynamic3DMode(dynamic3DMode);
