@@ -26,6 +26,7 @@ public class UserDetails {
     private String email;
     private String locale;
     private String dateOfBirth;
+    private String county;
 
     public String getFirstName() {
         return firstName;
@@ -115,6 +116,14 @@ public class UserDetails {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("UserDetails{");
@@ -150,6 +159,9 @@ public class UserDetails {
                 .append('\'');
         sb.append(", dateOfBirth='")
                 .append(dateOfBirth)
+                .append('\'');
+        sb.append(", county='")
+                .append(county)
                 .append('\'');
         sb.append('}');
         return sb.toString();

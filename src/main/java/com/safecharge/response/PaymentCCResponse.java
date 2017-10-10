@@ -9,7 +9,7 @@ package com.safecharge.response;
  * @see com.safecharge.request.PaymentCCRequest
  * @since 2/15/2017
  */
-public class PaymentCCResponse extends PaymentsResponse {
+public class PaymentCCResponse extends PaymentsCCResponse {
 
     @Override
     public String toString() {
