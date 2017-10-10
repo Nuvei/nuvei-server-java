@@ -24,7 +24,7 @@ public interface APIConstants {
     String GET_ORDER_DETAILS_URL = "api/v1/getOrderDetails.do";
     String PAYMENT_CC_URL = "api/v1/paymentCC.do";
     String PAYMENT_APM_URL = "api/v1/paymentAPM.do";
-    String AUTHORIZATION_3D_URL = "api/v1/authorization3D.do"; // the same method as "api/v1/dynamic3D.do". The provided two entry points are one method.
+    String AUTHORIZATION_3D_URL = "api/v1/authorization3D.do";
     String CARD_TOKENIZATION_URL = "api/v1/cardTokenization.do";
     String ADD_UPO_CREDIT_CARD_BY_TEMP_TOKEN_URL = "api/v1/addUPOCreditCardByTempToken.do";
     String PAYMENT_3D_URL = "api/v1/payment3D.do";
@@ -58,7 +58,6 @@ public interface APIConstants {
     short CREDIT_CARD_MAX_LENGTH = 20;
     short MERCHANT_DESCRIPTOR_PHONE_MAX_LENGTH = 13;
     short MERCHANT_DESCRIPTOR_NAME_MAX_LENGTH = 25;
-    short COUNTY_MAX_LENGTH = 255;
 
     // field limitations using regular expressions:
 

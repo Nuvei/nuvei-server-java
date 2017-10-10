@@ -141,10 +141,10 @@ public class AddUPOCreditCardByTempTokenRequest
          * @return this object
          */
         public Builder addBillingAddress(String firstName, String lastName, String email, String phone, String address, String city, String country,
-                                         String state, String zip, String cell, String county) {
+                                         String state, String zip, String cell) {
 
             UserAddress billingAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address,
-                    city, country, state, zip, cell, county);
+                    city, country, state, zip, cell);
 
             return addBillingAddress(billingAddress);
         }

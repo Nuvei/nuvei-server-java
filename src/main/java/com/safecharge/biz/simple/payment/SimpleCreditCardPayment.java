@@ -43,8 +43,8 @@ public class SimpleCreditCardPayment {
      * @param currency The three character ISO currency code
      * @return PaymentsResponse object(containing the transaction result) or null if the obtaining of a session is unsuccessful
      */
-    public PaymentsResponse executeAuthPayment(CardData cardData, String amount, String currency, String isPartialApproval) {
-        return executePayment(cardData, amount, currency, Constants.TransactionType.Auth, isPartialApproval);
+    public PaymentsResponse executeAuthPayment(CardData cardData, String amount, String currency) {
+        return executePayment(cardData, amount, currency, Constants.TransactionType.Auth);
     }
 
     /**
@@ -57,17 +57,16 @@ public class SimpleCreditCardPayment {
      * @param currency The three character ISO currency code
      * @return PaymentsResponse object(containing the transaction result) or null if the obtaining of a session is unsuccessful
      */
-    public PaymentsResponse executeSalePayment(CardData cardData, String amount, String currency, String isPartialApproval) {
-        return executePayment(cardData, amount, currency, Constants.TransactionType.Sale, isPartialApproval);
+    public PaymentsResponse executeSalePayment(CardData cardData, String amount, String currency) {
+        return executePayment(cardData, amount, currency, Constants.TransactionType.Sale);
     }
 
-    private PaymentsResponse executePayment(CardData cardData, String amount, String currency,
-            Constants.TransactionType transactionType, String isPartialApproval) {
-        SafechargeResponse getSessionTokenResponse = requestExecutor
-                .executeRequest(GetSessionTokenRequest.builder().addMerchantInfo(merchantInfo).build());
+    private PaymentsResponse executePayment(CardData cardData, String amount, String currency, Constants.TransactionType transactionType) {
+        SafechargeResponse getSessionTokenResponse = requestExecutor.executeRequest(GetSessionTokenRequest.builder()
+                .addMerchantInfo(merchantInfo)
+                .build());
 
-        if (getSessionTokenResponse != null
-                && Constants.APIResponseStatus.SUCCESS.equals(getSessionTokenResponse.getStatus())) {
+        if (getSessionTokenResponse != null && Constants.APIResponseStatus.SUCCESS.equals(getSessionTokenResponse.getStatus())) {
             SafechargeRequest paymentCCRequest = PaymentCCRequest.builder()
                     .addSessionToken(getSessionTokenResponse.getSessionToken())
                     .addMerchantInfo(merchantInfo)
@@ -76,7 +75,6 @@ public class SimpleCreditCardPayment {
                     .addCardData(cardData)
                     .addTransactionType(transactionType)
                     .addItem("fast-payment-cc", amount, "1")
-                    .addIsPartialApproval(isPartialApproval)
                     .build();
             return (PaymentsResponse) requestExecutor.executeRequest(paymentCCRequest);
         } else {

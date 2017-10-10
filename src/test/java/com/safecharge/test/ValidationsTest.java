@@ -164,11 +164,11 @@ public class ValidationsTest {
                 .addItem("test_item_1", "1", "1")
                 .addItem("test_item_2", "1", "1")
                 .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov",
-                        "0884123456", null, "1000", "1990-01-01", "county usr")
+                        "0884123456", null, "1000", "1990-01-01")
                 .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                        "Sofia", "BG", null, "1000", "0884123456", "county billing")
+                        "Sofia", "BG", null, "1000", "0884123456")
                 .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                        "Sofia", "BG", null, "1000", "0884123456", "county shipping")
+                        "Sofia", "BG", null, "1000", "0884123456")
                 .addOrderId(dummyOrderId)
                 .addCountry("US")
                 .addURLDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
@@ -190,11 +190,11 @@ public class ValidationsTest {
                     .addUserDetails("Test street 1 ", "Sofia", "BG", "test@test.com",
                             "Test street 1 Test street 1 Test street 1 Test street 1 ",
                             "Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 ",
-                            "0884123456", null, "1000", "1990-01-01", "county usr")
+                            "0884123456", null, "1000", "1990-01-01")
                     .addBillingDetails("Test", "Testov", "test@test.com", "0884123456",
-                            "Test street 1", "Sofia", "BG", null, "1000", "0884123456", "county billing")
+                            "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
                     .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
-                            "Test street 1", "Sofia", "BG", null, "1000", "0884123456", "county shipping")
+                            "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
                     .addOrderId(dummyOrderId)
                     .addURLDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
                             "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
@@ -219,11 +219,11 @@ public class ValidationsTest {
                 .addItem("test_item_1", "1", "1")
                 .addItem("test_item_2", "1", "1")
                 .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov",
-                        "0884123456", null, "1000", "1990-01-01", "county usr")
+                        "0884123456", null, "1000", "1990-01-01")
                 .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                        "Sofia", "BG", null, "1000", "0884123456", "county billing")
+                        "Sofia", "BG", null, "1000", "0884123456")
                 .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                        "Sofia", "BG", null, "1000", "0884123456", "county shipping")
+                        "Sofia", "BG", null, "1000", "0884123456")
                 .addOrderId(dummyOrderId)
                 .addTransactionType(Constants.TransactionType.Sale)
                 .addCardData("4111111111111111", "Test Test", "11", "2011", null, "123")
@@ -242,11 +242,11 @@ public class ValidationsTest {
                     .addUserDetails("Test street 1 ", "Sofia", "BG", "test@test.com",
                             "Test street 1 Test street 1 Test street 1 Test street 1 ",
                             "Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 Test street 1 ",
-                            "0884123456", null, "1000", "1990-01-01", "county usr")
+                            "0884123456", null, "1000", "1990-01-01")
                     .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                            "Sofia", "BG", null, "1000", "0884123456", "county billing")
+                            "Sofia", "BG", null, "1000", "0884123456")
                     .addShippingDetails("Test", "Testov", "test@test.com", "0884123456",
-                            "Test street 1", "Sofia", "BG", null, "1000", "0884123456", "county shipping")
+                            "Test street 1", "Sofia", "BG", null, "1000", "0884123456")
                     .addOrderId(dummyOrderId)
                     .addCardData(null, null, "11", "2011", null, "123")
                     .addUserPaymentOption(null, "12")

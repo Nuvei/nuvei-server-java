@@ -55,9 +55,6 @@ public class CashierUserDetails {
             message = "dateOfBirth must be in format yyyy-MM-dd!")
     private String dateOfBirth;
 
-    @Size(max = APIConstants.COUNTY_MAX_LENGTH,
-            message = "county size must be up to 255 characters long!")
-    private String county;
 
     public String getFirstName() {
         return firstName;
@@ -139,14 +136,6 @@ public class CashierUserDetails {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getCounty() {
-        return county;
-    }
-
-    public void setCounty(String county) {
-        this.county = county;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CashierUserDetails{");
@@ -179,9 +168,6 @@ public class CashierUserDetails {
                 .append('\'');
         sb.append(", dateOfBirth='")
                 .append(dateOfBirth)
-                .append('\'');
-        sb.append(", county='")
-                .append(county)
                 .append('\'');
         sb.append('}');
         return sb.toString();

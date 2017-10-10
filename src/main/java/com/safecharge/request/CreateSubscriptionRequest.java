@@ -347,11 +347,10 @@ public class CreateSubscriptionRequest
          * @return this object
          */
         public CreateSubscriptionRequest.Builder addUserDetails(String address, String city, String country, String email, String firstName,
-                                                                String lastName, String phone, String state, String zip, String dateOfBirth,
-                                                                String county) {
+                                                                String lastName, String phone, String state, String zip, String dateOfBirth) {
 
             CashierUserDetails userDetails = AddressUtils.createCashierUserDetailsFromParams(address, city, country, email,
-                    firstName, lastName, phone, state, zip, dateOfBirth, county);
+                    firstName, lastName, phone, state, zip, dateOfBirth);
 
             return addUserDetails(userDetails);
         }
@@ -387,22 +386,15 @@ public class CreateSubscriptionRequest
          * @param customField8  {@link String} to store in {@code customField8}
          * @param customField9  {@link String} to store in {@code customField9}
          * @param customField10 {@link String} to store in {@code customField10}
-         * @param customField11 {@link String} to store in {@code customField11}
-         * @param customField12 {@link String} to store in {@code customField12}
-         * @param customField13 {@link String} to store in {@code customField13}
-         * @param customField14 {@link String} to store in {@code customField14}
-         * @param customField15 {@link String} to store in {@code customField15}
          * @return this object
          */
         public CreateSubscriptionRequest.Builder addMerchantDetails(String customField1, String customField2, String customField3,
                                                                     String customField4, String customField5, String customField6,
                                                                     String customField7, String customField8, String customField9,
-                                                                    String customField10, String customField11, String customField12,
-                                                                    String customField13, String customField14, String customField15) {
+                                                                    String customField10) {
 
             MerchantDetails merchantDetails = MerchantUtils.createMerchantDetailsFromParams(customField1, customField2, customField3,
-                    customField4, customField5, customField6, customField7, customField8, customField9, customField10, customField11, 
-                    customField12, customField13, customField14, customField15);
+                    customField4, customField5, customField6, customField7, customField8, customField9, customField10);
 
             return addMerchantDetails(merchantDetails);
         }
@@ -477,10 +469,10 @@ public class CreateSubscriptionRequest
          * @return this object
          */
         public Builder addBillingAddress(String firstName, String lastName, String email, String phone, String address, String city, String country,
-                                         String state, String zip, String cell, String county) {
+                                         String state, String zip, String cell) {
 
             UserAddress billingAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address, city, country,
-                    state, zip, cell, county);
+                    state, zip, cell);
 
             return addBillingAddress(billingAddress);
         }

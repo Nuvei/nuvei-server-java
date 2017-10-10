@@ -78,7 +78,7 @@ public abstract class PaymentsResponse extends SafechargeResponse {
      * This block contain external token parameters arriving from a 3rd party payment provider which is not SafeCharge (such as CreditGuard ect.)
      */
     protected ExternalToken externalToken;
-    
+
     public String getOrderId() {
         return orderId;
     }

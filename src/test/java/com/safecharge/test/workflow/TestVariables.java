@@ -24,7 +24,6 @@ public class TestVariables {
     public static final String state = "CA";
     public static final String city = "Darnassus";
     public static final String zip = "CA1234";
-    public static final String county = "DRACULANDIA";
     public static final String countryCode = "US";
     public static final String phone = "889214935";
     public static final String locale = "en_US";
