@@ -159,4 +159,17 @@ public interface Constants {
         API_GENERIC_CHECKSUM_MAPPING, USER_DETAILS, SETTLE_GW_TRANSACTION, REFUND_GW_TRANSACTION, VOID_GW_TRANSACTION, ADD_CASHIER_APM, ADD_CASHIER_CC_CARD, URL_DETAILS_CHECKSUM_MAPPING, CANCEL_CASHIER_SUBSCRIPTION, GET_CASHIER_SUBSCRIPTIONS, GET_CASHIER_SUBSCRIPTION_PLANS
     }
 
+    enum VerifiedPaymentMethod {
+        VERIFIED("VERIFIED"), NOT_VERIFIED("NOT VERIFIED");
+
+        private final String isVerified;
+
+        VerifiedPaymentMethod(String isVerified) {
+            this.isVerified = isVerified;
+        }
+
+        public String isVerified() {
+            return this.isVerified;
+        }
+    }
 }
