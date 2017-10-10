@@ -10,7 +10,7 @@ package com.safecharge.response;
  * @see com.safecharge.request.CardTokenizationRequest
  * @since 2/15/2017
  */
-public class CardTokenizationResponse extends SafechargeResponse {
+public class CardTokenizationResponse extends PaymentCCResponse {
 
     /**
      * The generated card's temporary token, if the request is successful.
