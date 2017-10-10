@@ -16,8 +16,7 @@ public class MerchantUtils {
     public static MerchantDetails createMerchantDetailsFromParams(String customField1, String customField2, String customField3,
                                                                   String customField4, String customField5, String customField6,
                                                                   String customField7, String customField8, String customField9,
-                                                                  String customField10, String customField11, String customField12,
-                                                                  String customField13, String customField14, String customField15) {
+                                                                  String customField10) {
 
         MerchantDetails merchantDetails = new MerchantDetails();
         merchantDetails.setCustomField1(customField1);
@@ -30,11 +29,6 @@ public class MerchantUtils {
         merchantDetails.setCustomField8(customField8);
         merchantDetails.setCustomField9(customField9);
         merchantDetails.setCustomField10(customField10);
-        merchantDetails.setCustomField11(customField11);
-        merchantDetails.setCustomField12(customField12);
-        merchantDetails.setCustomField13(customField13);
-        merchantDetails.setCustomField14(customField14);
-        merchantDetails.setCustomField15(customField15);
 
         return merchantDetails;
     }
