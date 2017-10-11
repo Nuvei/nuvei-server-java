@@ -62,14 +62,6 @@ public class PaymentAPMRequest
     @Valid
     private UserPaymentOption userPaymentOption;
 
-
-    /**
-     * The country the transaction is to be completed in.
-     */
-    @NotNull(message = "country parameter is mandatory!")
-    @Size(max = 2, min = 2, message = "country must be exactly 2 characters long")
-    private String country;
-
     public static Builder builder() {
         return new Builder();
     }
@@ -107,22 +99,12 @@ public class PaymentAPMRequest
         this.userPaymentOption = userPaymentOption;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentAPMRequest{");
         sb.append("orderId='")
                 .append(orderId)
-                .append('\'');
-        sb.append(", country='")
-                .append(country)
                 .append('\'');
         sb.append(", paymentMethod='")
                 .append(paymentMethod)
@@ -233,7 +215,6 @@ public class PaymentAPMRequest
             paymentAPMRequest.setPaymentMethod(paymentMethod);
             paymentAPMRequest.setUserAccountDetails(userAccountDetails);
             paymentAPMRequest.setUserPaymentOption(userPaymentOption);
-            paymentAPMRequest.setCountry(country);
             return ValidationUtils.validate(super.build(paymentAPMRequest));
         }
     }

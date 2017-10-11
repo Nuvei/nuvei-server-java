@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.safecharge.model.Addendums;
+import com.safecharge.model.AmountDetails;
 import com.safecharge.model.CashierUserDetails;
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
@@ -45,6 +46,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     private Addendums addendums;
     private String userTokenId;
     private String clientUniqueId;
+    private AmountDetails amountDetails;
 
     /**
      * Adds amount to the request.
@@ -154,10 +156,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      * @return this object
      */
     public T addUserDetails(String address, String city, String country, String email, String firstName, String lastName, String phone, String state,
-                            String zip, String dateOfBirth) {
+                            String zip, String dateOfBirth, String county) {
 
         CashierUserDetails userDetails = AddressUtils.createCashierUserDetailsFromParams(address, city, country, email,
-                firstName, lastName, phone, state, zip, dateOfBirth);
+                firstName, lastName, phone, state, zip, dateOfBirth, county);
         return addUserDetails(userDetails);
     }
 
@@ -189,10 +191,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      * @return this object
      */
     public T addShippingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
-                                String state, String zip, String cell) {
+                                String state, String zip, String cell, String county) {
 
         UserAddress userAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address,
-                city, country, state, zip, cell);
+                city, country, state, zip, cell, county);
 
         return addShippingDetails(userAddress);
     }
@@ -225,10 +227,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      * @return this object
      */
     public T addBillingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
-                               String state, String zip, String cell) {
+                               String state, String zip, String cell, String county) {
 
         UserAddress userAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address,
-                city, country, state, zip, cell);
+                city, country, state, zip, cell, county);
 
         return addBillingDetails(userAddress);
     }
@@ -286,13 +288,20 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      * @param customField8  {@link String} to store in {@code customField8}
      * @param customField9  {@link String} to store in {@code customField9}
      * @param customField10 {@link String} to store in {@code customField10}
+     * @param customField11 {@link String} to store in {@code customField11}
+     * @param customField12 {@link String} to store in {@code customField12}
+     * @param customField13 {@link String} to store in {@code customField13}
+     * @param customField14 {@link String} to store in {@code customField14}
+     * @param customField15 {@link String} to store in {@code customField15}
      * @return this object
      */
     public T addMerchantDetails(String customField1, String customField2, String customField3, String customField4, String customField5,
-                                String customField6, String customField7, String customField8, String customField9, String customField10) {
+                                String customField6, String customField7, String customField8, String customField9, String customField10,
+                                String customField11, String customField12, String customField13, String customField14, String customField15) {
 
         MerchantDetails merchantDetails = MerchantUtils.createMerchantDetailsFromParams(customField1, customField2, customField3,
-                customField4, customField5, customField6, customField7, customField8, customField9, customField10);
+                customField4, customField5, customField6, customField7, customField8, customField9, customField10, customField11, 
+                customField12, customField13, customField14, customField15);
 
         return addMerchantDetails(merchantDetails);
     }
@@ -373,6 +382,27 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     /**
+     * Adds Amount details to the request.
+     *
+     * @return this object
+     */
+    public T addAmountDetails(AmountDetails amountDetails) {
+
+        this.amountDetails = amountDetails;
+        return (T) this;
+    }
+    
+    public T addAmountDetails(String totalHandling, String totalShipping, String totalTax, String totalDiscount) {
+
+        AmountDetails amountDetails = new AmountDetails();
+        amountDetails.setTotalDiscount(totalDiscount);
+        amountDetails.setTotalHandling(totalHandling);
+        amountDetails.setTotalShipping(totalShipping);
+        amountDetails.setTotalTax(totalTax);
+        return addAmountDetails(amountDetails);
+    }
+    
+    /**
      * Adds the order details data, collected by this builder.
      *
      * @param safechargeOrderDetailsRequest an already created request of type T
@@ -398,6 +428,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         safechargeOrderDetailsRequest.setAddendums(addendums);
         safechargeOrderDetailsRequest.setUserTokenId(userTokenId);
         safechargeOrderDetailsRequest.setClientUniqueId(clientUniqueId);
+        safechargeOrderDetailsRequest.setAmountDetails(amountDetails);
 
         safechargeOrderDetailsRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeOrderDetailsRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",

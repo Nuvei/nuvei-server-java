@@ -17,16 +17,16 @@ import com.safecharge.util.ValidChecksum;
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.URL_DETAILS_CHECKSUM_MAPPING)
 public class UrlDetails {
 
-    @Size(max = 2048, message = "successUrl size must be up to 100 characters long!")
+    @Size(max = 1000, message = "successUrl size must be up to 1000 characters long!")
     private String successUrl;
 
-    @Size(max = 2048, message = "failureUrl size must be up to 100 characters long!")
+    @Size(max = 1000, message = "failureUrl size must be up to 1000 characters long!")
     private String failureUrl;
 
-    @Size(max = 2048, message = "pendingUrl size must be up to 100 characters long!")
+    @Size(max = 1000, message = "pendingUrl size must be up to 1000 characters long!")
     private String pendingUrl;
 
-    @Size(max = 2048, message = "notificationUrl size must be up to 100 characters long!")
+    @Size(max = 1000, message = "notificationUrl size must be up to 1000 characters long!")
     private String notificationUrl;
 
     public String getSuccessUrl() {

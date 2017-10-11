@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.safecharge.model.Addendums;
+import com.safecharge.model.AmountDetails;
 import com.safecharge.model.CashierUserDetails;
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
@@ -104,6 +105,8 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
     @Size(max = 45, message = "clientUniqueId size must be up to 45 characters long!")
     private String clientUniqueId;
 
+    private AmountDetails amountDetails;
+    
     @NotNull(message = "sessionToken parameter is mandatory!")
     public String getSessionToken() {
         return super.getSessionToken();
@@ -220,6 +223,14 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
         this.clientUniqueId = clientUniqueId;
     }
 
+    public AmountDetails getAmountDetails() {
+        return amountDetails;
+    }
+
+    public void setAmountDetails(AmountDetails amountDetails) {
+        this.amountDetails = amountDetails;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -251,8 +262,9 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
                 .append(userTokenId)
                 .append('\'');
         sb.append(", clientUniqueId='")
-                .append(clientUniqueId)
-                .append('\'');
+                .append(clientUniqueId);
+        sb.append(", amountDetails='")
+                .append(amountDetails);
         sb.append(", ");
         sb.append(super.toString());
         return sb.toString();
