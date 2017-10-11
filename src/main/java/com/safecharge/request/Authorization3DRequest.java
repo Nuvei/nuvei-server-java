@@ -1,7 +1,6 @@
 package com.safecharge.request;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 import com.safecharge.request.builder.SafechargeCCBuilder;
 import com.safecharge.util.APIConstants;
@@ -34,6 +33,10 @@ public class Authorization3DRequest
     @Pattern(regexp = APIConstants.IS_DYNAMIC_3D_REGEX, message = "isDynamic3D value is invalid")
     private String isDynamic3D;
 
+    @NotNull(message = "dynamic3DMode parameter is mandatory!")
+    @Size(max=5)
+    private String dynamic3DMode;
+
     public static Builder builder() {
         return new Builder();
     }
@@ -44,6 +47,14 @@ public class Authorization3DRequest
 
     public void setIsDynamic3D(String isDynamic3D) {
         this.isDynamic3D = isDynamic3D;
+    }
+
+    public String getDynamic3DMode() {
+        return dynamic3DMode;
+    }
+
+    public void setDynamic3DMode(String dynamic3DMode) {
+        this.dynamic3DMode = dynamic3DMode;
     }
 
     @Override
@@ -57,6 +68,7 @@ public class Authorization3DRequest
     public static class Builder extends SafechargeCCBuilder<Builder> {
 
         private String isDynamic3D;
+        private String dynamic3DMode;
 
         /**
          * Adds the Dynamic3D parameter.
@@ -66,8 +78,9 @@ public class Authorization3DRequest
          *                    send a 3DSecure transaction (0).
          * @return this object
          */
-        public Builder addIsDynamic3D(String isDynamic3D) {
+        public Builder addIsDynamic3D(String isDynamic3D, String dynamic3DMode) {
             this.isDynamic3D = isDynamic3D;
+            this.dynamic3DMode = dynamic3DMode;
             return this;
         }
 
@@ -80,6 +93,7 @@ public class Authorization3DRequest
         public SafechargeRequest build() {
             Authorization3DRequest request = new Authorization3DRequest();
             request.setIsDynamic3D(isDynamic3D);
+            request.setDynamic3DMode(dynamic3DMode);
             return ValidationUtils.validate(super.build(request));
         }
     }

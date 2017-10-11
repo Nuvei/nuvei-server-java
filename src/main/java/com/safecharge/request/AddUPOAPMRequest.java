@@ -197,10 +197,10 @@ public class AddUPOAPMRequest extends SafechargeRequest {
          * @return this object
          */
         public Builder addBillingAddress(String firstName, String lastName, String address, String phone, String zip, String city, String countryCode,
-                                         String state, String email, String locale, String dateOfBirth) {
+                                         String state, String email, String locale, String dateOfBirth, String county) {
 
             UserDetails billingAddress = AddressUtils.createUserDetailsFromParams(firstName, lastName, address, phone,
-                    zip, city, countryCode, state, email, locale, dateOfBirth);
+                    zip, city, countryCode, state, email, locale, dateOfBirth, county);
             return addBillingAddress(billingAddress);
         }
 

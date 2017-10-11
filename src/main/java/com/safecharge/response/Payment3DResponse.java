@@ -9,7 +9,7 @@ package com.safecharge.response;
  * @see com.safecharge.request.Payment3DRequest
  * @since 3/10/2017
  */
-public class Payment3DResponse extends PaymentsResponse {
+public class Payment3DResponse extends PaymentsCCResponse {
 
     /**
      * Returned from banks to indicate if the transaction passed as full 3D, attempted to do so and failed, etc.

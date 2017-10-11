@@ -64,6 +64,9 @@ public class CardTokenizationRequest extends SafechargeBaseRequest {
     @Pattern(regexp = APIConstants.IP_ADDRESS_REGEX, message = "the entered value is not a valid ipAddress")
     private String ipAddress;
 
+    @Valid
+    private Constants.VerifiedPaymentMethod isVerified;
+
     public static Builder builder() {
         return new Builder();
     }
@@ -100,6 +103,14 @@ public class CardTokenizationRequest extends SafechargeBaseRequest {
         this.userTokenId = userTokenId;
     }
 
+    public Constants.VerifiedPaymentMethod getIsVerified() {
+        return isVerified;
+    }
+
+    public void setIsVerified(Constants.VerifiedPaymentMethod isVerified) {
+        this.isVerified = isVerified;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CardTokenizationRequest{");
@@ -113,6 +124,10 @@ public class CardTokenizationRequest extends SafechargeBaseRequest {
         sb.append(", ipAddress='")
                 .append(ipAddress)
                 .append('\'');
+        sb.append(", ");
+        sb.append(", isVerified='")
+                .append(isVerified)
+                .append('\'');
         sb.append(", ")
                 .append(super.toString());
         sb.append('}');
@@ -125,6 +140,7 @@ public class CardTokenizationRequest extends SafechargeBaseRequest {
         private UserAddress billingAddress;
         private String userTokenId;
         private String ipAddress;
+        private Constants.VerifiedPaymentMethod isVerified;
 
         /**
          * Adds card data to the request.
@@ -171,10 +187,10 @@ public class CardTokenizationRequest extends SafechargeBaseRequest {
          * @return this object
          */
         public Builder addBillingAddress(String firstName, String lastName, String email, String phone, String address, String city, String country,
-                                         String state, String zip, String cell) {
+                                         String state, String zip, String cell, String county) {
 
             UserAddress billingAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address,
-                    city, country, state, zip, cell);
+                    city, country, state, zip, cell, county);
 
             return addBillingAddress(billingAddress);
         }
@@ -212,6 +228,11 @@ public class CardTokenizationRequest extends SafechargeBaseRequest {
             return this;
         }
 
+        public Builder addIsVerified(Constants.VerifiedPaymentMethod isVerified) {
+            this.isVerified = isVerified;
+            return this;
+        }
+
         /**
          * Builds the request.
          *
@@ -224,6 +245,7 @@ public class CardTokenizationRequest extends SafechargeBaseRequest {
             cardTokenizationRequest.setIpAddress(ipAddress);
             cardTokenizationRequest.setCardData(cardData);
             cardTokenizationRequest.setBillingAddress(billingAddress);
+            cardTokenizationRequest.setIsVerified(isVerified);
             return ValidationUtils.validate(super.build(cardTokenizationRequest));
 
         }
