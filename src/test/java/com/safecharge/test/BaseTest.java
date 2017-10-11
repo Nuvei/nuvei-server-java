@@ -4,6 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import javax.validation.Validation;
@@ -137,8 +138,9 @@ public abstract class BaseTest {
                 os.write(buf, 0, i);
             }
             result = os.toString("utf8");
-        } finally {
             return result;
+        } catch (IOException ex) {
+            return null;
         }
     }
 
