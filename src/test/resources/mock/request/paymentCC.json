@@ -10,6 +10,7 @@
   "amount": "1",
   "transactionType": "Sale",
   "orderId": "{{apiMerchantOrder}}",
+  "isPartialApproval": "0",
   "cardData": {
     "cardNumber": "4111111111111111",
     "cardHolderName": "test name",

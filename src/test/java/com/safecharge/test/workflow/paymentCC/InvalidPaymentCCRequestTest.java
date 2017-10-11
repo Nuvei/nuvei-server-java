@@ -41,13 +41,13 @@ public class InvalidPaymentCCRequestTest extends BasePaymentCCTest {
                 .addItem(TestVariables.name, TestVariables.price, TestVariables.quantity)
                 .addShippingDetails(TestVariables.firstName, TestVariables.lastName, TestVariables.email,
                         TestVariables.phone, TestVariables.address, TestVariables.city, TestVariables.country,
-                        TestVariables.state, TestVariables.zip, TestVariables.cell)
+                        TestVariables.state, TestVariables.zip, TestVariables.cell, TestVariables.county)
                 .addBillingDetails(TestVariables.firstName, TestVariables.lastName, TestVariables.email,
                         TestVariables.phone, TestVariables.address, TestVariables.city, TestVariables.country,
-                        TestVariables.state, TestVariables.zip, TestVariables.cell)
+                        TestVariables.state, TestVariables.zip, TestVariables.cell, TestVariables.county)
                 .addUserDetails(TestVariables.address, TestVariables.city, TestVariables.country,
                         TestVariables.email, TestVariables.firstName, TestVariables.lastName, TestVariables.phone,
-                        TestVariables.state, TestVariables.zip, TestVariables.dateOfBirth)
+                        TestVariables.state, TestVariables.zip, TestVariables.dateOfBirth, TestVariables.county)
                 .addDeviceDetails(TestVariables.deviceType, TestVariables.deviceName, TestVariables.deviceOS,
                         TestVariables.browser, TestVariables.ipAddress)
                 .addDynamicDescriptor(TestVariables.merchantName, TestVariables.merchantPhone)

@@ -31,7 +31,7 @@ public class AddressUtils {
      * @return new {@link UserAddress} object created from the passed params
      */
     public static UserAddress createUserAddressFromParams(String firstName, String lastName, String email, String phone, String address, String city,
-                                                          String country, String state, String zip, String cell) {
+                                                          String country, String state, String zip, String cell, String county) {
 
         UserAddress userAddress = new UserAddress();
         userAddress.setFirstName(firstName);
@@ -44,6 +44,7 @@ public class AddressUtils {
         userAddress.setState(state);
         userAddress.setZip(zip);
         userAddress.setCell(cell);
+        userAddress.setCounty(county);
 
         return userAddress;
     }
@@ -65,7 +66,7 @@ public class AddressUtils {
      * @return new {@link UserDetails} object created from the passed params
      */
     public static UserDetails createUserDetailsFromParams(String firstName, String lastName, String address, String phone, String zip, String city,
-                                                          String countryCode, String state, String email, String locale, String dateOfBirth) {
+                                                          String countryCode, String state, String email, String locale, String dateOfBirth, String county) {
 
         UserDetails billingAddress = new UserDetails();
         billingAddress.setFirstName(firstName);
@@ -79,6 +80,7 @@ public class AddressUtils {
         billingAddress.setEmail(email);
         billingAddress.setLocale(locale);
         billingAddress.setDateOfBirth(dateOfBirth);
+        billingAddress.setCounty(county);
 
         return billingAddress;
     }
@@ -99,7 +101,8 @@ public class AddressUtils {
      * @return new {@link CashierUserDetails} object created from the passed params
      */
     public static CashierUserDetails createCashierUserDetailsFromParams(String address, String city, String country, String email, String firstName,
-                                                                        String lastName, String phone, String state, String zip, String dateOfBirth) {
+                                                                        String lastName, String phone, String state, String zip, String dateOfBirth,
+                                                                        String county) {
 
         CashierUserDetails userDetails = new CashierUserDetails();
         userDetails.setAddress(address);
@@ -112,6 +115,7 @@ public class AddressUtils {
         userDetails.setState(state);
         userDetails.setZip(zip);
         userDetails.setDateOfBirth(dateOfBirth);
+        userDetails.setCounty(county);
 
         return userDetails;
     }

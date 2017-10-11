@@ -67,11 +67,12 @@ public class APMWorkflowTest extends BaseTest {
                 .addItem("test_item_1", "1", "1")
                 .addItem("test_item_2", "1", "1")
                 .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov",
-                        "0884123456", null, "1000", "1990-01-01")
+                        "0884123456", null, "1000", "1990-01-01", "county usr")
                 .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                        "Sofia", "BG", null, "1000", "0884123456")
+                        "Sofia", "BG", null, "1000", "0884123456","county billing")
                 .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                        "Sofia", "BG", null, "1000", "0884123456")
+                        "Sofia", "BG", null, "1000", "0884123456","county shipping")
+                .addAmountDetails("1.5", "1.0", "1.0", "0.5")
                 .build();
         OpenOrderResponse openOrderResponse = (OpenOrderResponse) safechargeRequestExecutor.executeRequest(openOrderRequest);
 
@@ -92,11 +93,12 @@ public class APMWorkflowTest extends BaseTest {
                 .addItem("test_item_1", "1", "1")
                 .addItem("test_item_2", "1", "1")
                 .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov",
-                        "0884123456", null, "1000", "1990-01-01")
+                        "0884123456", null, "1000", "1990-01-01", "county usr")
                 .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                        "Sofia", "BG", null, "1000", "0884123456")
+                        "Sofia", "BG", null, "1000", "0884123456","county billing")
                 .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                        "Sofia", "BG", null, "1000", "0884123456")
+                        "Sofia", "BG", null, "1000", "0884123456", "county shipping")
+                .addAmountDetails("1.5", "1.0", "1.0", "0.5")
                 .addOrderId(orderId)
                 .build();
 
@@ -132,11 +134,12 @@ public class APMWorkflowTest extends BaseTest {
                 .addItem("test_item_1", "1", "1")
                 .addItem("test_item_2", "1", "1")
                 .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov", "0884123456",
-                        null, "1000", "1990-01-01")
+                        null, "1000", "1990-01-01","county usr")
                 .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",
-                        "BG", null, "1000", "0884123456")
+                        "BG", null, "1000", "0884123456","county billing")
                 .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",
-                        "BG", null, "1000", "0884123456")
+                        "BG", null, "1000", "0884123456","county shipping")
+                .addAmountDetails("1.5", "1.0", "1.0", "0.5")
                 .addOrderId(orderId)
                 .addURLDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
                         "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
