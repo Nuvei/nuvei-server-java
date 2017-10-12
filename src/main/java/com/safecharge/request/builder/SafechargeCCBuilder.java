@@ -24,6 +24,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     private UserPaymentOption userPaymentOption;
     private String orderId;
     private int isRebilling;
+    private String isPartialApproval;
 
     /**
      * Adds an order to the request.
@@ -113,6 +114,18 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     }
 
     /**
+     * Flag indicating if it is partial approval or not.
+     * 0 - is not partial approval
+     * 1 - is partial approval
+     *
+     * @return this object
+     */
+    public T addIsPartialApproval(String isPartialApproval) {
+        this.isPartialApproval = isPartialApproval;
+        return (T) this;
+    }
+
+    /**
      * Adds the common credit/debit data, collected by this builder.
      *
      * @param request an already created request of type T
@@ -128,6 +141,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         request.setCardData(cardData);
         request.setOrderId(orderId);
         request.setIsRebilling(isRebilling);
+        request.setIsPartialApproval(isPartialApproval);
 
         return request;
     }

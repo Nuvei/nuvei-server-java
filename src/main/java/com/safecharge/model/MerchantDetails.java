@@ -43,6 +43,21 @@ public class MerchantDetails {
     @Size(max = 255, message = "customField10 size must be up to 255 characters long!")
     private String customField10;
 
+    @Size(max = 255, message = "customField11 size must be up to 255 characters long!")
+    private String customField11;
+    
+    @Size(max = 255, message = "customField12 size must be up to 255 characters long!")
+    private String customField12;
+    
+    @Size(max = 255, message = "customField13 size must be up to 255 characters long!")
+    private String customField13;
+    
+    @Size(max = 255, message = "customField14 size must be up to 255 characters long!")
+    private String customField14;
+    
+    @Size(max = 255, message = "customField15 size must be up to 255 characters long!")
+    private String customField15;
+    
     public String getCustomField1() {
         return customField1;
     }
@@ -122,6 +137,46 @@ public class MerchantDetails {
     public void setCustomField10(String customField10) {
         this.customField10 = customField10;
     }
+    
+    public String getCustomField11() {
+        return customField11;
+    }
+
+    public void setCustomField11(String customField11) {
+        this.customField11 = customField11;
+    }
+
+    public String getCustomField12() {
+        return customField12;
+    }
+
+    public void setCustomField12(String customField12) {
+        this.customField12 = customField12;
+    }
+
+    public String getCustomField13() {
+        return customField13;
+    }
+
+    public void setCustomField13(String customField13) {
+        this.customField13 = customField13;
+    }
+
+    public String getCustomField14() {
+        return customField14;
+    }
+
+    public void setCustomField14(String customField14) {
+        this.customField14 = customField14;
+    }
+
+    public String getCustomField15() {
+        return customField15;
+    }
+
+    public void setCustomField15(String customField15) {
+        this.customField15 = customField15;
+    }
 
     public String getCustomFieldByNumber(int customFieldNumber) {
         switch (customFieldNumber) {
@@ -145,6 +200,16 @@ public class MerchantDetails {
                 return customField9;
             case 10:
                 return customField10;
+            case 11:
+                return customField11;
+            case 12:
+                return customField12;
+            case 13:
+                return customField13;
+            case 14:
+                return customField14;
+            case 15:
+                return customField15;
         }
         return null;
     }
@@ -180,6 +245,21 @@ public class MerchantDetails {
                 break;
             case 10:
                 this.customField10 = fieldValue;
+                break;
+            case 11:
+                this.customField11 = fieldValue;
+                break;
+            case 12:
+                this.customField12 = fieldValue;
+                break;
+            case 13:
+                this.customField13 = fieldValue;
+                break;
+            case 14:
+                this.customField14 = fieldValue;
+                break;
+            case 15:
+                this.customField15 = fieldValue;
                 break;
         }
     }

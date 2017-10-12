@@ -10,7 +10,7 @@ package com.safecharge.response;
  * @see com.safecharge.request.Authorization3DRequest
  * @since 2/15/2017
  */
-public class Authorization3DResponse extends PaymentsResponse {
+public class Authorization3DResponse extends PaymentsCCResponse {
 
     /**
      * The 3D secure request data for the card issuer/bank.
@@ -21,6 +21,8 @@ public class Authorization3DResponse extends PaymentsResponse {
      * URL/endpoint used to redirect the consumer to the card issuer/bank’s 3D secure verification page.
      */
     private String acsUrl;
+
+    private String threeDFlow;
 
     public String getPaRequest() {
         return paRequest;
@@ -38,6 +40,14 @@ public class Authorization3DResponse extends PaymentsResponse {
         this.acsUrl = acsUrl;
     }
 
+    public String getThreeDFlow() {
+        return threeDFlow;
+    }
+
+    public void setThreeDFlow(String threeDFlow) {
+        this.threeDFlow = threeDFlow;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Authorization3DResponse{");
@@ -46,6 +56,10 @@ public class Authorization3DResponse extends PaymentsResponse {
                 .append('\'');
         sb.append(", acsUrl='")
                 .append(acsUrl)
+                .append('\'');
+        sb.append(", ");
+        sb.append(", threeDFlow='")
+                .append(threeDFlow)
                 .append('\'');
         sb.append(", ")
                 .append(super.toString());

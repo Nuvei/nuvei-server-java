@@ -69,6 +69,9 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
     @Min(value = 0)
     private int isRebilling;
 
+    @Max(value = 1)
+    private String isPartialApproval;
+    
     public String getOrderId() {
         return orderId;
     }
@@ -107,6 +110,14 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
 
     public void setIsRebilling(int isRebilling) {
         this.isRebilling = isRebilling;
+    }
+
+    public String getIsPartialApproval() {
+        return isPartialApproval;
+    }
+
+    public void setIsPartialApproval(String isPartialApproval) {
+        this.isPartialApproval = isPartialApproval;
     }
 
     @Override
