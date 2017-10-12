@@ -45,6 +45,9 @@ public class UserAddress {
     @Size(max = APIConstants.PHONE_MAX_LENGTH, message = "cell size must be up to 18 characters long!")
     private String cell;
 
+    @Size(max = APIConstants.COUNTY_MAX_LENGTH, message = "county size must be up to 255 characters long!")
+    private String county;
+
     public String getAddress() {
         return address;
     }
@@ -123,5 +126,13 @@ public class UserAddress {
 
     public void setCell(String cell) {
         this.cell = cell;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
     }
 }

@@ -36,7 +36,8 @@
     "email": "email@email.com",
     "phone1": "phone1",
     "phone2": "phone2",
-    "phone3": "phone3"
+    "phone3": "phone3",
+    "county":"user county"
   },
   "shippingAddress": {
     "address1": "address1",
@@ -44,7 +45,8 @@
     "city": "city",
     "country": "DE",
     "state": "",
-    "zip": "1340"
+    "zip": "1340",
+    "county":"shipping county"
   },
   "billingAddress": {
     "address1": "address1",
@@ -52,7 +54,8 @@
     "city": "city",
     "country": "DE",
     "state": "",
-    "zip": "1335"
+    "zip": "1335",
+    "county":"billing county"
   },
   "dynamicDescriptor": {
     "merchantName": "merchantName",
@@ -65,5 +68,6 @@
     "customField4": "merchantName",
     "customField9": "merchantName"
   },
-  "isDynamic3D": "1"
+  "isDynamic3D": "1",
+  "dynamic3DMode": "off"
 }
