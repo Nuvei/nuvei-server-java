@@ -89,22 +89,22 @@ public class ValidationsTest {
 
     private static final CashierUserDetails dummyValidCashierUserDetails =
             AddressUtils.createCashierUserDetailsFromParams("Test street 1", "Sofia", "BG", "test@test.com",
-                    "Test", "Testov", "0884123456", null, "1000", "1990-01-01");
+                    "Test", "Testov", "0884123456", null, "1000", "1990-01-01", "county usr");
     private static final CashierUserDetails dummyInvalidCashierUserDetails = AddressUtils.createCashierUserDetailsFromParams("Test street 1 ", "Sofia", "BG", "invalid_email",
             "Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
             "Test Long Name that should fail the validation! Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
-            "0884123456", null, "1000", "1990-01-01");
+            "0884123456", null, "1000", "1990-01-01", "county usr");
 
     private static final UserAddress dummyValidBillingDetails =
             AddressUtils.createUserAddressFromParams("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                    "Sofia", "BG", null, "1000", "0884123456");
+                    "Sofia", "BG", null, "1000", "0884123456", "county billing");
     private static final UserAddress dummyValidShippingDetails = dummyValidBillingDetails; //shipping address same as billing address
 
     private static final UserAddress dummyInvalidBillingDetails =
             AddressUtils.createUserAddressFromParams("Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
                     "Test Long Name that should fail the validation! Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
                     "invalid_email", "0884123456", "Test street 1",
-                    "Sofia", "BG", null, "1000", "0884123456");
+                    "Sofia", "BG", null, "1000", "0884123456", "county bil 1");
     private static final UserAddress dummyInvalidShippingDetails = dummyInvalidBillingDetails; //shipping address same as billing address
 
     private static final UrlDetails dummyValidUrlDetails = UrlUtils.createUrlDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
@@ -230,7 +230,7 @@ public class ValidationsTest {
         SafechargeRequest safechargeRequest = Authorization3DRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addSessionToken(dummySessionToken)
-                .addIsDynamic3D("0")
+                .addIsDynamic3D("0", "off")
                 .addAmount(validAmount)
                 .addCurrency(validCurrencyCode)
                 .addItem(dummyValidItem)
