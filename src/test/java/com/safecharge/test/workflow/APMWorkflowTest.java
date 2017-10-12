@@ -141,7 +141,6 @@ public class APMWorkflowTest extends BaseTest {
                         "BG", null, "1000", "0884123456","county shipping")
                 .addAmountDetails("1.5", "1.0", "1.0", "0.5")
                 .addOrderId(orderId)
-                .addCountry("US")
                 .addURLDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
                         "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
                         "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do", null)

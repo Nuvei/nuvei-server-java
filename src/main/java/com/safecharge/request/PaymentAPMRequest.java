@@ -125,7 +125,6 @@ public class PaymentAPMRequest
         private String paymentMethod;
         private Map<String, String> userAccountDetails;
         private UserPaymentOption userPaymentOption;
-        private String country;
 
         /**
          * Adds order ID to the request.
@@ -186,20 +185,6 @@ public class PaymentAPMRequest
          */
         public Builder addUserPaymentOption(UserPaymentOption userPaymentOption) {
             this.userPaymentOption = userPaymentOption;
-            return this;
-        }
-
-        /**
-         * Adds country to the request.
-         * <p>
-         * The country parameter is mandatory and must contain the ISO code of a country that is supported by the APM,
-         * according to the configuration by SafeCharge.
-         *
-         * @param country two-letter ISO country code
-         * @return this object
-         */
-        public Builder addCountry(String country) {
-            this.country = country;
             return this;
         }
 

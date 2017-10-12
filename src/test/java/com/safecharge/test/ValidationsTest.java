@@ -244,6 +244,7 @@ public class ValidationsTest {
         try {
             Authorization3DRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
+                    .addIsDynamic3D("2", null)
                     .build();
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
@@ -514,7 +515,6 @@ public class ValidationsTest {
                 .addBillingDetails(dummyValidBillingDetails)
                 .addShippingDetails(dummyValidShippingDetails)
                 .addOrderId(dummyOrderId)
-                .addCountry(validCountryCode)
                 .addURLDetails(dummyValidUrlDetails)
                 .addPaymentMethod(validPaymentMethodName)
                 .build();
@@ -532,11 +532,10 @@ public class ValidationsTest {
                     .addBillingDetails(dummyInvalidShippingDetails)
                     .addShippingDetails(dummyInvalidShippingDetails)
                     .addURLDetails(dummyInvalidUrlDetails)
-                    .addCountry(invalidCountryCode)
                     .build();
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
-            assertEquals(18, e.getConstraintViolations()
+            assertEquals(17, e.getConstraintViolations()
                     .size());
         }
     }

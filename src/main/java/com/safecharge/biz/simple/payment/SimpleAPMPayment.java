@@ -55,7 +55,6 @@ public class SimpleAPMPayment {
             SafechargeRequest paymentAPMRequest = PaymentAPMRequest.builder()
                     .addSessionToken(getSessionTokenResponse.getSessionToken())
                     .addMerchantInfo(merchantInfo)
-                    .addCountry(countryCode)
                     .addCurrency(currency)
                     .addAmount(amount)
                     .addPaymentMethod(paymentMethod)
