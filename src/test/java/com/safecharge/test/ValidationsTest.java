@@ -170,7 +170,6 @@ public class ValidationsTest {
                     .build();
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
-            //broken test to fail the Testing building phase:
             assertEquals(5, e.getConstraintViolations().size());
         }
     }
