@@ -32,6 +32,7 @@ import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
 import com.safecharge.request.PaymentCCRequest;
 import com.safecharge.request.RefundTransactionRequest;
+import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.SafechargeRequest;
 import com.safecharge.request.SettleTransactionRequest;
 import com.safecharge.request.UpdateOrderRequest;
@@ -144,7 +145,7 @@ public abstract class BaseTest {
         }
     }
 
-    protected void validateRequest(SafechargeRequest request) {
+    protected void validateRequest(SafechargeBaseRequest request) {
         try {
             ValidationUtils.validate(request);
         } catch (ValidationException e) {
@@ -152,8 +153,8 @@ public abstract class BaseTest {
         }
     }
 
-    protected <T extends SafechargeResponse> T baseMockTest(String jsonPath, Class<? extends SafechargeRequest> requestClass) {
-        SafechargeRequest request = gson.fromJson(loadResourceFile(jsonPath), requestClass);
+    protected <T extends SafechargeResponse> T baseMockTest(String jsonPath, Class<? extends SafechargeBaseRequest> requestClass) {
+        SafechargeBaseRequest request = gson.fromJson(loadResourceFile(jsonPath), requestClass);
 
         validateRequest(request);
 

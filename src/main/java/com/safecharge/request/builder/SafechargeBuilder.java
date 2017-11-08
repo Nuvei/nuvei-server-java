@@ -3,6 +3,7 @@ package com.safecharge.request.builder;
 import javax.validation.ConstraintViolationException;
 
 import com.safecharge.model.MerchantInfo;
+import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.SafechargeRequest;
 import com.safecharge.util.ChecksumUtils;
 import com.safecharge.util.Constants;
@@ -115,10 +116,32 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
     }
 
     /**
+     * Adds the common data, collected by this builder. The intent of this method is to be used from the derived classes.
+     *
+     * @param safechargeBaseRequest an already created request of type <{@code T} extends {@link SafechargeRequest}>
+     * @param <S>               type parameter
+     * @return the passed {@code safechargeRequest} filled with the data from this builder
+     */
+    protected <S extends SafechargeBaseRequest> S build(S safechargeBaseRequest) {
+
+        String timestamp = RequestUtils.calculateTimestamp();
+        safechargeBaseRequest.setServerHost(merchantInfo != null ? merchantInfo.getServerHost() : null);
+        safechargeBaseRequest.setSessionToken(sessionToken);
+        safechargeBaseRequest.setTimeStamp(timestamp);
+        safechargeBaseRequest.setClientRequestId(clientRequestId);
+        safechargeBaseRequest.setInternalRequestId(internalRequestId);
+        safechargeBaseRequest.setChecksum(
+                ChecksumUtils.calculateChecksum(safechargeBaseRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "", Constants.CHARSET_UTF8,
+                        merchantInfo != null ? merchantInfo.getHashAlgorithm() : null));
+
+        return safechargeBaseRequest;
+    }
+
+    /**
      * Builds the request.
      *
      * @return the created SafechargeRequest
      * @throws ConstraintViolationException if any part of the request is invalid
      */
-    public abstract SafechargeRequest build() throws ConstraintViolationException;
+    public abstract SafechargeBaseRequest build() throws ConstraintViolationException;
 }

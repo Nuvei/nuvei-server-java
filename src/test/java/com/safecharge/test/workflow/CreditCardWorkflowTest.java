@@ -13,7 +13,7 @@ import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.PaymentCCRequest;
-import com.safecharge.request.SafechargeRequest;
+import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.UpdateOrderRequest;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.SafechargeResponse;
@@ -45,7 +45,7 @@ public class CreditCardWorkflowTest extends BaseTest {
 
     @Test
     public void test1_getSessionTokenTest() throws IOException {
-        SafechargeRequest safechargeRequest = GetSessionTokenRequest.builder()
+        SafechargeBaseRequest safechargeRequest = GetSessionTokenRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
@@ -57,7 +57,7 @@ public class CreditCardWorkflowTest extends BaseTest {
 
     @Test
     public void test2_openOrder() {
-        SafechargeRequest openOrderRequest = new OpenOrderRequest.Builder().addMerchantInfo(merchantInfo)
+        SafechargeBaseRequest openOrderRequest = new OpenOrderRequest.Builder().addMerchantInfo(merchantInfo)
                 .addCurrency("EUR")
                 .addAmount("2")
                 .addSessionToken(sessionToken)
@@ -82,7 +82,7 @@ public class CreditCardWorkflowTest extends BaseTest {
 
     @Test
     public void test3_updateOrder() {
-        SafechargeRequest updateOrderRequest = UpdateOrderRequest.builder()
+        SafechargeBaseRequest updateOrderRequest = UpdateOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addCurrency("EUR")
                 .addAmount("2")
@@ -107,7 +107,7 @@ public class CreditCardWorkflowTest extends BaseTest {
 
     @Test
     public void test4_getOrderDetails() {
-        SafechargeRequest safechargeRequest = GetOrderDetailsRequest.builder()
+        SafechargeBaseRequest safechargeRequest = GetOrderDetailsRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addOrderId(orderId)
                 .addSessionToken(sessionToken)
@@ -120,7 +120,7 @@ public class CreditCardWorkflowTest extends BaseTest {
 
     @Test
     public void test5_paymentCC() {
-        SafechargeRequest request = PaymentCCRequest.builder()
+        SafechargeBaseRequest request = PaymentCCRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addCurrency("EUR")
                 .addAmount("2")

@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.MerchantInfo;
 import com.safecharge.request.PaymentCCRequest;
-import com.safecharge.request.SafechargeRequest;
+import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.response.PaymentCCResponse;
 import com.safecharge.test.workflow.TestVariables;
@@ -32,7 +32,7 @@ public class InvalidPaymentCCRequestTest extends BasePaymentCCTest {
                         "{\"userPaymentOptionId\":\"\",\"userTokenId\":\"Тest_0065\",\"sessionToken\":\"7d051160-4337-45f4-b11d-a31aa6df98c9\",\"clientUniqueId\":\"UniqueId\",\"internalRequestId\":13150706,\"status\":\"ERROR\",\"errCode\":1042,\"reason\":\"Invalid token\",\"merchantId\":\"5137702336228767168\",\"merchantSiteId\":\"23\",\"version\":\"1.0\",\"clientRequestId\":\"111899\"}",
                         PaymentCCResponse.class));
 
-        SafechargeRequest request = PaymentCCRequest.builder()
+        SafechargeBaseRequest request = PaymentCCRequest.builder()
                 .addSessionToken(getSessionTokenResponse.getSessionToken())
                 .addMerchantInfo(validMerchantInfo)
                 .addUserTokenId(TestVariables.userTokenId)

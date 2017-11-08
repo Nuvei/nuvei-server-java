@@ -15,7 +15,7 @@ import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.PaymentAPMRequest;
-import com.safecharge.request.SafechargeRequest;
+import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.UpdateOrderRequest;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.SafechargeResponse;
@@ -47,7 +47,7 @@ public class APMWorkflowTest extends BaseTest {
 
     @Test
     public void test1_getSessionTokenTest() throws IOException {
-        SafechargeRequest safechargeRequest = GetSessionTokenRequest.builder()
+        SafechargeBaseRequest safechargeRequest = GetSessionTokenRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
@@ -59,7 +59,7 @@ public class APMWorkflowTest extends BaseTest {
 
     @Test
     public void test2_openOrder() {
-        SafechargeRequest openOrderRequest = OpenOrderRequest.builder()
+        SafechargeBaseRequest openOrderRequest = OpenOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addCurrency("EUR")
                 .addAmount("2")
@@ -85,7 +85,7 @@ public class APMWorkflowTest extends BaseTest {
 
     @Test
     public void test3_updateOrder() {
-        SafechargeRequest updateOrderRequest = UpdateOrderRequest.builder()
+        SafechargeBaseRequest updateOrderRequest = UpdateOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addCurrency("EUR")
                 .addAmount("2")
@@ -110,7 +110,7 @@ public class APMWorkflowTest extends BaseTest {
 
     @Test
     public void test4_getOrderDetails() {
-        SafechargeRequest safechargeRequest = GetOrderDetailsRequest.builder()
+        SafechargeBaseRequest safechargeRequest = GetOrderDetailsRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addOrderId(orderId)
                 .addSessionToken(sessionToken)
@@ -126,7 +126,7 @@ public class APMWorkflowTest extends BaseTest {
         Map<String, String> userAccountDetails = new HashMap<>();
         userAccountDetails.put("email", "nikolad_safecharge_2@abv.bg");
         userAccountDetails.put("account_id", "XX362V4DC76VU");
-        SafechargeRequest request = PaymentAPMRequest.builder()
+        SafechargeBaseRequest request = PaymentAPMRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addCurrency("EUR")
                 .addAmount("2")

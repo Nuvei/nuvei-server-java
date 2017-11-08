@@ -211,7 +211,7 @@ public class AddUPOAPMRequest extends SafechargeRequest {
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override
-        public SafechargeRequest build() throws ConstraintViolationException {
+        public SafechargeBaseRequest build() throws ConstraintViolationException {
 
             AddUPOAPMRequest addUPOAPM = new AddUPOAPMRequest();
             addUPOAPM.setPaymentMethodName(paymentMethodName);

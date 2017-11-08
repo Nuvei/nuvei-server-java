@@ -61,7 +61,7 @@ public class UpdateOrderRequest extends SafechargeOrderDetailsRequest implements
          * @return {@link SafechargeRequest} object build from the params set by this builder
          */
         @Override
-        public SafechargeRequest build() {
+        public SafechargeBaseRequest build() {
             UpdateOrderRequest updateOrderRequest = new UpdateOrderRequest();
             updateOrderRequest.setOrderId(orderId);
             return ValidationUtils.validate(super.build(updateOrderRequest));

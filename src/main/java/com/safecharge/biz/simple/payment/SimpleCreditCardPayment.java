@@ -5,7 +5,7 @@ import com.safecharge.model.CardData;
 import com.safecharge.model.MerchantInfo;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.PaymentCCRequest;
-import com.safecharge.request.SafechargeRequest;
+import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.response.PaymentsResponse;
 import com.safecharge.response.SafechargeResponse;
 import com.safecharge.util.Constants;
@@ -68,7 +68,7 @@ public class SimpleCreditCardPayment {
 
         if (getSessionTokenResponse != null
                 && Constants.APIResponseStatus.SUCCESS.equals(getSessionTokenResponse.getStatus())) {
-            SafechargeRequest paymentCCRequest = PaymentCCRequest.builder()
+            SafechargeBaseRequest paymentCCRequest = PaymentCCRequest.builder()
                     .addSessionToken(getSessionTokenResponse.getSessionToken())
                     .addMerchantInfo(merchantInfo)
                     .addCurrency(currency)

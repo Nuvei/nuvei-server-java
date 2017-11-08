@@ -33,6 +33,7 @@ import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
 import com.safecharge.request.PaymentCCRequest;
 import com.safecharge.request.RefundTransactionRequest;
+import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.SafechargeRequest;
 import com.safecharge.request.SettleTransactionRequest;
 import com.safecharge.request.UpdateOrderRequest;
@@ -71,8 +72,8 @@ import com.safecharge.util.APIConstants;
 public class SafechargeRequestExecutor {
 
     private static final Log logger = LogFactory.getLog(SafechargeRequestExecutor.class);
-    private static final Map<Class<? extends SafechargeRequest>, Class<? extends SafechargeResponse>> RESPONSE_TYPE_BY_REQUEST_TYPE =
-            new HashMap<Class<? extends SafechargeRequest>, Class<? extends SafechargeResponse>>() {
+    private static final Map<Class<? extends SafechargeBaseRequest>, Class<? extends SafechargeResponse>> RESPONSE_TYPE_BY_REQUEST_TYPE =
+            new HashMap<Class<? extends SafechargeBaseRequest>, Class<? extends SafechargeResponse>>() {
                 private static final long serialVersionUID = -5429154998138428047L;
 
                 {
@@ -98,8 +99,8 @@ public class SafechargeRequestExecutor {
                     put(GetSubscriptionPlansRequest.class, GetSubscriptionPlansResponse.class);
                 }
             };
-    private static final Map<Class<? extends SafechargeRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
-            new HashMap<Class<? extends SafechargeRequest>, String>() {
+    private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
+            new HashMap<Class<? extends SafechargeBaseRequest>, String>() {
                 private static final long serialVersionUID = -6533247180543051173L;
 
                 {
@@ -179,7 +180,7 @@ public class SafechargeRequestExecutor {
      * @param request {@link SafechargeRequest} API request object
      * @return {@link SafechargeResponse} API response object or null if the response can't be parsed
      */
-    public SafechargeResponse executeRequest(SafechargeRequest request) {
+    public SafechargeResponse executeRequest(SafechargeBaseRequest request) {
 
         if (!isInitialized) {
             init();
