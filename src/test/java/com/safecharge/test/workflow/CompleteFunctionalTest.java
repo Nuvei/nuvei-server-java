@@ -25,6 +25,7 @@ import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
 import com.safecharge.request.PaymentCCRequest;
+import com.safecharge.request.PayoutRequest;
 import com.safecharge.request.RefundTransactionRequest;
 import com.safecharge.request.SettleTransactionRequest;
 import com.safecharge.request.UpdateOrderRequest;
@@ -41,6 +42,7 @@ import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.Payment3DResponse;
 import com.safecharge.response.PaymentAPMResponse;
 import com.safecharge.response.PaymentCCResponse;
+import com.safecharge.response.PayoutResponse;
 import com.safecharge.response.RefundTransactionResponse;
 import com.safecharge.response.SettleTransactionResponse;
 import com.safecharge.response.UpdateOrderResponse;
@@ -183,5 +185,15 @@ public class CompleteFunctionalTest extends BaseTest {
                 baseMockTest("./mock/request/getMerchantPaymentMethods.json", GetMerchantPaymentMethodsRequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test
+    public void testPayoutMethodsRequest() {
+        PayoutResponse response =
+                baseMockTestMethodWithoutSessionToken("./mock/request/payout.json", PayoutRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+        Assert.assertTrue(!response.getUserPaymentOptionId().trim().isEmpty());
+        Assert.assertTrue(!response.getUserTokenId().trim().isEmpty());
     }
 }

@@ -32,6 +32,7 @@ import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
 import com.safecharge.request.PaymentCCRequest;
+import com.safecharge.request.PayoutRequest;
 import com.safecharge.request.RefundTransactionRequest;
 import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.SafechargeRequest;
@@ -54,6 +55,7 @@ import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.Payment3DResponse;
 import com.safecharge.response.PaymentAPMResponse;
 import com.safecharge.response.PaymentCCResponse;
+import com.safecharge.response.PayoutResponse;
 import com.safecharge.response.RefundTransactionResponse;
 import com.safecharge.response.SafechargeResponse;
 import com.safecharge.response.SettleTransactionResponse;
@@ -97,6 +99,7 @@ public class SafechargeRequestExecutor {
                     put(CreateSubscriptionRequest.class, CreateSubscriptionResponse.class);
                     put(GetSubscriptionsListRequest.class, GetSubscriptionsListResponse.class);
                     put(GetSubscriptionPlansRequest.class, GetSubscriptionPlansResponse.class);
+                    put(PayoutRequest.class, PayoutResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -124,6 +127,7 @@ public class SafechargeRequestExecutor {
                     put(CreateSubscriptionRequest.class, APIConstants.CREATE_SUBSCRIPTION_REQUEST_URL);
                     put(GetSubscriptionsListRequest.class, APIConstants.GET_SUBSCRIPTION_LIST_REQUEST_URL);
                     put(GetSubscriptionPlansRequest.class, APIConstants.GET_SUBSCRIPTION_PLANS_REQUEST_URL);
+                    put(PayoutRequest.class, APIConstants.PAYOUT_URL);
                 }
             };
 

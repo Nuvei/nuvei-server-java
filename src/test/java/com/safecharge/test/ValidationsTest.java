@@ -12,7 +12,9 @@ import org.junit.Test;
 
 import com.safecharge.model.CardData;
 import com.safecharge.model.CashierUserDetails;
+import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
+import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.MerchantInfo;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
@@ -32,6 +34,7 @@ import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
 import com.safecharge.request.PaymentCCRequest;
+import com.safecharge.request.PayoutRequest;
 import com.safecharge.request.RefundTransactionRequest;
 import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.SettleTransactionRequest;
@@ -55,6 +58,13 @@ public class ValidationsTest {
             new MerchantInfo("dummy", "1234", "1234", "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
     private static final MerchantInfo invalidMerchantInfo =
             new MerchantInfo("dummy", null, null, "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
+
+    private static final DynamicDescriptor someDynamicDescriptor = new DynamicDescriptor("merchantName", "merchantPhone");
+
+    private static final MerchantDetails merchantDetails = new MerchantDetails("customField1", "customField2", "customField3", "customField4",
+            "customField5", "customField6", "customField7", "customField8", "customField9", "customField10",
+            "customField11", "customField12", "customField13", "customField14", "customField15");
+
     private static final String dummySessionToken = "dummySessionToken";
 
     private static final Item dummyValidItem = new Item();
@@ -66,6 +76,8 @@ public class ValidationsTest {
     private static final Map<String, String> dummyValidApmData = new HashMap<>();
     private static final String dummyPaymentMethodName = "dummyPaymentMethodName";
     private static final String dummyCcToken = "dummyCcToken";
+
+    private static final String dummyComment = "comment";
 
     private static final String validAmount = "1.00";
     private static final String invalidAmount = "-1.00";
@@ -296,7 +308,7 @@ public class ValidationsTest {
 
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
-            assertEquals(3, e.getConstraintViolations().size());
+            assertEquals(1, e.getConstraintViolations().size());
         }
     }
 
@@ -687,6 +699,34 @@ public class ValidationsTest {
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
             assertEquals(6, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_PayoutRequest() {
+
+        PayoutRequest safechargeRequest = PayoutRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addAmountAndCurrency(validAmount, validCurrencyCode)
+                .addComment(dummyComment)
+                .addDynamicDescriptor(someDynamicDescriptor)
+                .addMerchantDetails(merchantDetails)
+                .addUrlDetails(dummyValidUrlDetails)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_PayoutRequest() {
+
+        try {
+            PayoutRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(2, e.getConstraintViolations().size());
         }
     }
 }

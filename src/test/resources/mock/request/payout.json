@@ -1,0 +1,30 @@
+{
+  "merchantSiteId": 19,
+  "merchantId": 7777777,
+  "clientRequestId": "1484759925666",
+  "timeStamp": "20170118191845",
+  "userTokenId": "bozhidar-001-001-001",
+  "userPaymentOption": {
+    "userPaymentOptionId": "162210",
+    "CVV": "123"
+  },
+  "clientUniqueId": "uniqueIdPayout6746874",
+  "amount": "6.66",
+  "currency": "USD",
+  "dynamicDescriptor": {
+    "merchantName": "merchantName",
+    "merchantPhone": "merchantPhone"
+  },
+  "merchantDetails": {
+    "customField1": "merchantName",
+    "customField2": "merchantName",
+    "customField3": "merchantName",
+    "customField4": "merchantName",
+    "customField9": "merchantName"
+  },
+  "comment": "This is a test comment!",
+  "urlDetails": {
+    "notificationUrl": "http://notificationUrl.com"
+  },
+  "checksum": "dd11a0f0e745b285edbc77a6c6940d50eb36aa96a4bb7b12bea52172960103d4"
+}

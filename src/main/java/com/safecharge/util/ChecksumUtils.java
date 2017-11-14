@@ -35,7 +35,7 @@ public class ChecksumUtils {
 
     static {
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.USER_DETAILS.name(),
-                Arrays.asList("firstName", "lastName", "address", "phone", "zip", "city", "countryCode", "state", "email"));
+                Arrays.asList("firstName", "lastName", "address", "phone", "zip", "city", "countryCode", "state", "email", "county"));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.SETTLE_GW_TRANSACTION.name(),
                 Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "clientUniqueId", "amount", "currency", "relatedTransactionId", "authCode",

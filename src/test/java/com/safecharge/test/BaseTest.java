@@ -31,9 +31,9 @@ import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
 import com.safecharge.request.PaymentCCRequest;
+import com.safecharge.request.PayoutRequest;
 import com.safecharge.request.RefundTransactionRequest;
 import com.safecharge.request.SafechargeBaseRequest;
-import com.safecharge.request.SafechargeRequest;
 import com.safecharge.request.SettleTransactionRequest;
 import com.safecharge.request.UpdateOrderRequest;
 import com.safecharge.request.VoidTransactionRequest;
@@ -49,6 +49,7 @@ import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.Payment3DResponse;
 import com.safecharge.response.PaymentAPMResponse;
 import com.safecharge.response.PaymentCCResponse;
+import com.safecharge.response.PayoutResponse;
 import com.safecharge.response.RefundTransactionResponse;
 import com.safecharge.response.SafechargeResponse;
 import com.safecharge.response.SettleTransactionResponse;
@@ -126,6 +127,9 @@ public abstract class BaseTest {
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(GetMerchantPaymentMethodsRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("./mock/response/getMerchantPaymentMethods.json"), GetMerchantPaymentMethodsResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(PayoutRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("./mock/response/payout.json"), PayoutResponse.class));
     }
 
     protected String loadResourceFile(String path) {
@@ -154,6 +158,14 @@ public abstract class BaseTest {
     }
 
     protected <T extends SafechargeResponse> T baseMockTest(String jsonPath, Class<? extends SafechargeBaseRequest> requestClass) {
+
+        T response = (T) baseMockTestMethodWithoutSessionToken(jsonPath, requestClass);
+        Assert.assertTrue(defined(response.getSessionToken()));
+
+        return response;
+    }
+
+    protected <T extends SafechargeResponse> T baseMockTestMethodWithoutSessionToken(String jsonPath, Class<? extends SafechargeBaseRequest> requestClass) {
         SafechargeBaseRequest request = gson.fromJson(loadResourceFile(jsonPath), requestClass);
 
         validateRequest(request);
@@ -161,7 +173,6 @@ public abstract class BaseTest {
         T response = (T) safechargeRequestExecutor.executeRequest(request);
 
         Assert.assertTrue(response != null);
-        Assert.assertTrue(defined(response.getSessionToken()));
         Assert.assertTrue(defined(response.getMerchantId()));
         Assert.assertTrue(defined(response.getMerchantSiteId()));
         Assert.assertTrue(defined(response.getClientRequestId()));
