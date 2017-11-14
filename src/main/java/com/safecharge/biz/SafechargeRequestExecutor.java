@@ -74,7 +74,7 @@ public class SafechargeRequestExecutor {
     private static final Log logger = LogFactory.getLog(SafechargeRequestExecutor.class);
     private static final Map<Class<? extends SafechargeBaseRequest>, Class<? extends SafechargeResponse>> RESPONSE_TYPE_BY_REQUEST_TYPE =
             new HashMap<Class<? extends SafechargeBaseRequest>, Class<? extends SafechargeResponse>>() {
-                private static final long serialVersionUID = -5429154998138428047L;
+                private static final long serialVersionUID = -5429154998138428048L;
 
                 {
                     put(GetSessionTokenRequest.class, GetSessionTokenResponse.class);
