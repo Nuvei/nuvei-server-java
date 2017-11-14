@@ -42,6 +42,8 @@ import com.safecharge.request.UpdateOrderRequest;
 import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.util.AddressUtils;
 import com.safecharge.util.Constants;
+import com.safecharge.util.DynamicDescriptorUtils;
+import com.safecharge.util.MerchantUtils;
 import com.safecharge.util.UrlUtils;
 
 /**
@@ -59,9 +61,9 @@ public class ValidationsTest {
     private static final MerchantInfo invalidMerchantInfo =
             new MerchantInfo("dummy", null, null, "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
 
-    private static final DynamicDescriptor someDynamicDescriptor = new DynamicDescriptor("merchantName", "merchantPhone");
+    private static final DynamicDescriptor someDynamicDescriptor = DynamicDescriptorUtils.createDynamicDescriptor("merchantName", "merchantPhone");
 
-    private static final MerchantDetails merchantDetails = new MerchantDetails("customField1", "customField2", "customField3", "customField4",
+    private static final MerchantDetails merchantDetails = MerchantUtils.createMerchantDetailsFromParams("customField1", "customField2", "customField3", "customField4",
             "customField5", "customField6", "customField7", "customField8", "customField9", "customField10",
             "customField11", "customField12", "customField13", "customField14", "customField15");
 

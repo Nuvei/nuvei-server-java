@@ -58,30 +58,6 @@ public class MerchantDetails {
     @Size(max = 255, message = "customField15 size must be up to 255 characters long!")
     private String customField15;
 
-    public MerchantDetails() {
-    }
-
-    public MerchantDetails(String customField1, String customField2, String customField3, String customField4, String customField5,
-                           String customField6, String customField7, String customField8, String customField9, String customField10,
-                           String customField11, String customField12, String customField13, String customField14, String customField15) {
-
-        this.customField1 = customField1;
-        this.customField2 = customField2;
-        this.customField3 = customField3;
-        this.customField4 = customField4;
-        this.customField5 = customField5;
-        this.customField6 = customField6;
-        this.customField7 = customField7;
-        this.customField8 = customField8;
-        this.customField9 = customField9;
-        this.customField10 = customField10;
-        this.customField11 = customField11;
-        this.customField12 = customField12;
-        this.customField13 = customField13;
-        this.customField14 = customField14;
-        this.customField15 = customField15;
-    }
-
     public String getCustomField1() {
         return customField1;
     }
