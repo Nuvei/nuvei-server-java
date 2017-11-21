@@ -16,7 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.safecharge.biz.SafechargeRequestExecutor;
 import com.safecharge.model.MerchantInfo;
 import com.safecharge.request.GetSessionTokenRequest;
-import com.safecharge.request.SafechargeRequest;
+import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.util.Constants;
 
@@ -50,7 +50,7 @@ public class BasePaymentCCTest {
     }
 
     public GetSessionTokenResponse executeGetSessionTokenRequest(MerchantInfo merchantInfo) {
-        SafechargeRequest request = GetSessionTokenRequest.builder()
+        SafechargeBaseRequest request = GetSessionTokenRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .build();
         GetSessionTokenResponse response = (GetSessionTokenResponse) safechargeRequestExecutor.executeRequest(request);

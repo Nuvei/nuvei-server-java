@@ -37,7 +37,7 @@ import com.safecharge.util.ValidationUtils;
  * @since 2/15/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
-public class CardTokenizationRequest extends SafechargeRequest {
+public class CardTokenizationRequest extends SafechargeBaseRequest {
 
     /**
      * Valid card details to generate the token for.
@@ -239,7 +239,7 @@ public class CardTokenizationRequest extends SafechargeRequest {
          * @return this object
          */
         @Override
-        public SafechargeRequest build() {
+        public SafechargeBaseRequest build() {
             CardTokenizationRequest cardTokenizationRequest = new CardTokenizationRequest();
             cardTokenizationRequest.setUserTokenId(userTokenId);
             cardTokenizationRequest.setIpAddress(ipAddress);

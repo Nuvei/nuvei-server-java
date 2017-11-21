@@ -163,7 +163,7 @@ public class GetSubscriptionsListRequest
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override
-        public SafechargeRequest build() throws ConstraintViolationException {
+        public SafechargeBaseRequest build() throws ConstraintViolationException {
             GetSubscriptionsListRequest getSubscriptionListRequest = new GetSubscriptionsListRequest();
             getSubscriptionListRequest.setFirstResult(firstResult);
             getSubscriptionListRequest.setMaxResults(maxResults);

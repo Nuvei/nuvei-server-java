@@ -133,7 +133,7 @@ public class GetMerchantPaymentMethodsRequest
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override
-        public SafechargeRequest build() throws ConstraintViolationException {
+        public SafechargeBaseRequest build() throws ConstraintViolationException {
             GetMerchantPaymentMethodsRequest getMerchantPaymentMethodsRequest = new GetMerchantPaymentMethodsRequest();
             super.build(getMerchantPaymentMethodsRequest);
             getMerchantPaymentMethodsRequest.setCountryCode(countryCode);

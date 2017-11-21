@@ -76,7 +76,7 @@ public class Payment3DRequest
          * @return {@link SafechargeRequest} object build from the params set by this builder
          */
         @Override
-        public SafechargeRequest build() {
+        public SafechargeBaseRequest build() {
             Payment3DRequest request = new Payment3DRequest();
             request.setPaResponse(paResponse);
             return ValidationUtils.validate(super.build(request));

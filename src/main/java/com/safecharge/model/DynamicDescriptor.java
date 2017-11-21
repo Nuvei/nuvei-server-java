@@ -20,6 +20,14 @@ public class DynamicDescriptor {
     @Size(max = APIConstants.MERCHANT_DESCRIPTOR_PHONE_MAX_LENGTH, message = "merchantPhone size must be up to 13 characters long!")
     private String merchantPhone;
 
+    public DynamicDescriptor() {
+    }
+
+    public DynamicDescriptor(String merchantName, String merchantPhone) {
+        this.merchantName = merchantName;
+        this.merchantPhone = merchantPhone;
+    }
+
     public String getMerchantName() {
         return merchantName;
     }

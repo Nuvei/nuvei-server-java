@@ -38,6 +38,7 @@ public interface APIConstants {
     String CREATE_SUBSCRIPTION_REQUEST_URL = "api/v1/createSubscription.do";
     String GET_SUBSCRIPTION_LIST_REQUEST_URL = "api/v1/getSubscriptionsList.do";
     String GET_SUBSCRIPTION_PLANS_REQUEST_URL = "api/v1/getSubscriptionPlans.do";
+    String PAYOUT_URL = "api/v1/payout.do";
 
     // Request Headers:
 

@@ -11,6 +11,8 @@ import javax.validation.Validator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.safecharge.request.CardTokenizationRequest;
+import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.SafechargeRequest;
 
 /**
@@ -40,7 +42,7 @@ public class ValidationUtils {
      * @return The validated request(the same object passed as {@code request})
      * @throws ValidationException if any {@link ConstraintViolation} is found
      */
-    public static <T extends SafechargeRequest> T validate(T request) throws ValidationException {
+    public static <T extends SafechargeBaseRequest> T validate(T request) throws ValidationException {
 
         Set<ConstraintViolation<T>> constraintViolations = validator.validate(request);
 

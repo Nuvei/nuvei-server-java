@@ -82,7 +82,7 @@ public class GetOrderDetailsRequest extends SafechargeRequest implements Safecha
          * @return {@link SafechargeRequest} object build from the params set by this builder
          */
         @Override
-        public SafechargeRequest build() {
+        public SafechargeBaseRequest build() {
             GetOrderDetailsRequest request = new GetOrderDetailsRequest();
             request.setOrderId(orderId);
             return ValidationUtils.validate(super.build(request));

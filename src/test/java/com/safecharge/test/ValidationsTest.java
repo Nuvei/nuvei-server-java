@@ -12,7 +12,9 @@ import org.junit.Test;
 
 import com.safecharge.model.CardData;
 import com.safecharge.model.CashierUserDetails;
+import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
+import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.MerchantInfo;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
@@ -32,13 +34,16 @@ import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
 import com.safecharge.request.PaymentCCRequest;
+import com.safecharge.request.PayoutRequest;
 import com.safecharge.request.RefundTransactionRequest;
-import com.safecharge.request.SafechargeRequest;
+import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.SettleTransactionRequest;
 import com.safecharge.request.UpdateOrderRequest;
 import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.util.AddressUtils;
 import com.safecharge.util.Constants;
+import com.safecharge.util.DynamicDescriptorUtils;
+import com.safecharge.util.MerchantUtils;
 import com.safecharge.util.UrlUtils;
 
 /**
@@ -55,6 +60,13 @@ public class ValidationsTest {
             new MerchantInfo("dummy", "1234", "1234", "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
     private static final MerchantInfo invalidMerchantInfo =
             new MerchantInfo("dummy", null, null, "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
+
+    private static final DynamicDescriptor someDynamicDescriptor = DynamicDescriptorUtils.createDynamicDescriptor("merchantName", "merchantPhone");
+
+    private static final MerchantDetails merchantDetails = MerchantUtils.createMerchantDetailsFromParams("customField1", "customField2", "customField3", "customField4",
+            "customField5", "customField6", "customField7", "customField8", "customField9", "customField10",
+            "customField11", "customField12", "customField13", "customField14", "customField15");
+
     private static final String dummySessionToken = "dummySessionToken";
 
     private static final Item dummyValidItem = new Item();
@@ -66,6 +78,8 @@ public class ValidationsTest {
     private static final Map<String, String> dummyValidApmData = new HashMap<>();
     private static final String dummyPaymentMethodName = "dummyPaymentMethodName";
     private static final String dummyCcToken = "dummyCcToken";
+
+    private static final String dummyComment = "comment";
 
     private static final String validAmount = "1.00";
     private static final String invalidAmount = "-1.00";
@@ -152,7 +166,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_AddUPOAPMRequest() {
 
-        SafechargeRequest safechargeRequest = AddUPOAPMRequest.builder()
+        SafechargeBaseRequest safechargeRequest = AddUPOAPMRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addApmData(dummyValidApmData)
                 .addUserTokenId(dummyUserId)
@@ -177,7 +191,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_AddUPOCreditCardByTempTokenRequest() {
 
-        SafechargeRequest safechargeRequest = AddUPOCreditCardByTempTokenRequest.builder()
+        SafechargeBaseRequest safechargeRequest = AddUPOCreditCardByTempTokenRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addCCTempToken(dummyCcToken)
                 .addUserTokenId(dummyUserId)
@@ -189,7 +203,7 @@ public class ValidationsTest {
     public void testFailedValidation_AddUPOCreditCardByTempTokenRequest() {
 
         try {
-            SafechargeRequest safechargeRequest = AddUPOCreditCardByTempTokenRequest.builder()
+            SafechargeBaseRequest safechargeRequest = AddUPOCreditCardByTempTokenRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
                     .build();
         } catch (ConstraintViolationException e) {
@@ -200,7 +214,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_AddUPOCreditCardRequest() {
 
-        SafechargeRequest safechargeRequest = AddUPOCreditCardRequest.builder()
+        SafechargeBaseRequest safechargeRequest = AddUPOCreditCardRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addUserTokenId(dummyUserId)
                 .addCcCardNumber(dummyCcCardNumber)
@@ -227,7 +241,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_Authorization3DRequest() {
 
-        SafechargeRequest safechargeRequest = Authorization3DRequest.builder()
+        SafechargeBaseRequest safechargeRequest = Authorization3DRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addSessionToken(dummySessionToken)
                 .addIsDynamic3D("0", "off")
@@ -255,7 +269,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_CancelSubscriptionRequest() {
 
-        SafechargeRequest safechargeRequest = CancelSubscriptionRequest.builder()
+        SafechargeBaseRequest safechargeRequest = CancelSubscriptionRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addUserTokenId(dummyUserId)
                 .addSubscriptionId("1234")
@@ -279,7 +293,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_CardTokenizationRequest() {
 
-        SafechargeRequest safechargeRequest = CardTokenizationRequest.builder()
+        SafechargeBaseRequest safechargeRequest = CardTokenizationRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addCardData(dummyCardData)
                 .build();
@@ -296,14 +310,14 @@ public class ValidationsTest {
 
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
-            assertEquals(3, e.getConstraintViolations().size());
+            assertEquals(1, e.getConstraintViolations().size());
         }
     }
 
     @Test
     public void testSuccessfulValidation_CreateSubscriptionRequest() {
 
-        SafechargeRequest safechargeRequest = CreateSubscriptionRequest.builder()
+        SafechargeBaseRequest safechargeRequest = CreateSubscriptionRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addUserTokenId(dummyUserId)
                 .addSubscriptionPlanId(dummySubscriptionPlanId)
@@ -328,7 +342,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_GetMerchantPaymentMethodsRequest() {
 
-        SafechargeRequest safechargeRequest = GetMerchantPaymentMethodsRequest.builder()
+        SafechargeBaseRequest safechargeRequest = GetMerchantPaymentMethodsRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addSessionToken(dummySessionToken)
                 .addCountryCode(validCountryCode)
@@ -357,7 +371,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_GetOrderDetailsRequest() {
 
-        SafechargeRequest safechargeRequest = GetOrderDetailsRequest.builder()
+        SafechargeBaseRequest safechargeRequest = GetOrderDetailsRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addSessionToken(dummySessionToken)
                 .addOrderId(dummyOrderId)
@@ -381,7 +395,7 @@ public class ValidationsTest {
 
     @Test
     public void testSuccessfulValidation_GetSessionToken() {
-        SafechargeRequest safechargeRequest = GetSessionTokenRequest.builder()
+        SafechargeBaseRequest safechargeRequest = GetSessionTokenRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .build();
         assertTrue(safechargeRequest != null);
@@ -403,7 +417,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_GetSubscriptionPlansRequest() {
 
-        SafechargeRequest safechargeRequest = GetSubscriptionPlansRequest.builder()
+        SafechargeBaseRequest safechargeRequest = GetSubscriptionPlansRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .build();
         assertTrue(safechargeRequest != null);
@@ -426,7 +440,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_GetSubscriptionsListRequest() {
 
-        SafechargeRequest safechargeRequest = GetSubscriptionsListRequest.builder()
+        SafechargeBaseRequest safechargeRequest = GetSubscriptionsListRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .build();
         assertTrue(safechargeRequest != null);
@@ -448,7 +462,7 @@ public class ValidationsTest {
 
     @Test
     public void testSuccessfulValidation_OpenOrderRequest() {
-        SafechargeRequest safechargeRequest = OpenOrderRequest.builder()
+        SafechargeBaseRequest safechargeRequest = OpenOrderRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addSessionToken(dummySessionToken)
                 .addCurrency(validCurrencyCode)
@@ -462,7 +476,7 @@ public class ValidationsTest {
     public void testFailedValidation_OpenOrderRequest() {
 
         try {
-            SafechargeRequest safechargeRequest = OpenOrderRequest.builder()
+            SafechargeBaseRequest safechargeRequest = OpenOrderRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
                     .addAmount(invalidAmount)
                     .addCurrency(invalidCurrencyCode)
@@ -478,7 +492,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_Payment3DRequest() {
 
-        SafechargeRequest safechargeRequest = Payment3DRequest.builder()
+        SafechargeBaseRequest safechargeRequest = Payment3DRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addSessionToken(dummySessionToken)
                 .addAmount(validAmount)
@@ -504,7 +518,7 @@ public class ValidationsTest {
 
     @Test
     public void testSuccessfulValidation_PaymentAPMRequest() {
-        SafechargeRequest safechargeRequest = PaymentAPMRequest.builder()
+        SafechargeBaseRequest safechargeRequest = PaymentAPMRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addCurrency(validCurrencyCode)
                 .addAmount(validAmountTwoItems)
@@ -525,7 +539,7 @@ public class ValidationsTest {
     public void testFailedValidation_PaymentAPMRequest() {
 
         try {
-            SafechargeRequest safechargeRequest = PaymentAPMRequest.builder()
+            SafechargeBaseRequest safechargeRequest = PaymentAPMRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
                     .addItem(dummyInvalidItem)
                     .addUserDetails(dummyInvalidCashierUserDetails)
@@ -542,7 +556,7 @@ public class ValidationsTest {
 
     @Test
     public void testSuccessfulValidation_PaymentCCRequest() {
-        SafechargeRequest safechargeRequest = PaymentCCRequest.builder()
+        SafechargeBaseRequest safechargeRequest = PaymentCCRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addCurrency(validCurrencyCode)
                 .addAmount(validAmountTwoItems)
@@ -564,7 +578,7 @@ public class ValidationsTest {
     public void testFailedValidation_PaymentCCRequest() {
 
         try {
-            SafechargeRequest safechargeRequest = PaymentCCRequest.builder()
+            SafechargeBaseRequest safechargeRequest = PaymentCCRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
                     .addItem(dummyInvalidItem)
                     .addUserDetails(dummyInvalidCashierUserDetails)
@@ -584,7 +598,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_RefundTransactionRequest() {
 
-        SafechargeRequest safechargeRequest = RefundTransactionRequest.builder()
+        SafechargeBaseRequest safechargeRequest = RefundTransactionRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addCurrency(validCurrencyCode)
                 .addAmount(validAmount)
@@ -611,7 +625,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_SettleTransactionRequest() {
 
-        SafechargeRequest safechargeRequest = SettleTransactionRequest.builder()
+        SafechargeBaseRequest safechargeRequest = SettleTransactionRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addAuthCode(dummyAuthCode)
                 .addAmount(validAmount)
@@ -637,7 +651,7 @@ public class ValidationsTest {
 
     @Test
     public void testSuccessfulValidation_UpdateOrderRequest() {
-        SafechargeRequest safechargeRequest = UpdateOrderRequest.builder()
+        SafechargeBaseRequest safechargeRequest = UpdateOrderRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addSessionToken(dummySessionToken)
                 .addOrderId(dummyOrderId)
@@ -652,7 +666,7 @@ public class ValidationsTest {
     public void testFailedValidation_UpdateOrderRequest() {
 
         try {
-            SafechargeRequest safechargeRequest = UpdateOrderRequest.builder()
+            SafechargeBaseRequest safechargeRequest = UpdateOrderRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
                     .addItem(dummyInvalidItem)
                     .build();
@@ -666,7 +680,7 @@ public class ValidationsTest {
     @Test
     public void testSuccessfulValidation_VoidTransactionRequest() {
 
-        SafechargeRequest safechargeRequest = VoidTransactionRequest.builder()
+        SafechargeBaseRequest safechargeRequest = VoidTransactionRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addAuthCode(dummyAuthCode)
                 .addAmount(validAmount)
@@ -687,6 +701,34 @@ public class ValidationsTest {
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
             assertEquals(6, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_PayoutRequest() {
+
+        PayoutRequest safechargeRequest = PayoutRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addAmountAndCurrency(validAmount, validCurrencyCode)
+                .addComment(dummyComment)
+                .addDynamicDescriptor(someDynamicDescriptor)
+                .addMerchantDetails(merchantDetails)
+                .addUrlDetails(dummyValidUrlDetails)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_PayoutRequest() {
+
+        try {
+            PayoutRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(2, e.getConstraintViolations().size());
         }
     }
 }

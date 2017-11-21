@@ -6,7 +6,7 @@ import com.safecharge.biz.SafechargeRequestExecutor;
 import com.safecharge.model.MerchantInfo;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.PaymentAPMRequest;
-import com.safecharge.request.SafechargeRequest;
+import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.response.PaymentsResponse;
 import com.safecharge.response.SafechargeResponse;
 import com.safecharge.util.Constants;
@@ -52,7 +52,7 @@ public class SimpleAPMPayment {
                 .build());
 
         if (getSessionTokenResponse != null && Constants.APIResponseStatus.SUCCESS.equals(getSessionTokenResponse.getStatus())) {
-            SafechargeRequest paymentAPMRequest = PaymentAPMRequest.builder()
+            SafechargeBaseRequest paymentAPMRequest = PaymentAPMRequest.builder()
                     .addSessionToken(getSessionTokenResponse.getSessionToken())
                     .addMerchantInfo(merchantInfo)
                     .addCurrency(currency)

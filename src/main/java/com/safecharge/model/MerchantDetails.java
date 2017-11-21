@@ -45,19 +45,19 @@ public class MerchantDetails {
 
     @Size(max = 255, message = "customField11 size must be up to 255 characters long!")
     private String customField11;
-    
+
     @Size(max = 255, message = "customField12 size must be up to 255 characters long!")
     private String customField12;
-    
+
     @Size(max = 255, message = "customField13 size must be up to 255 characters long!")
     private String customField13;
-    
+
     @Size(max = 255, message = "customField14 size must be up to 255 characters long!")
     private String customField14;
-    
+
     @Size(max = 255, message = "customField15 size must be up to 255 characters long!")
     private String customField15;
-    
+
     public String getCustomField1() {
         return customField1;
     }
@@ -137,7 +137,7 @@ public class MerchantDetails {
     public void setCustomField10(String customField10) {
         this.customField10 = customField10;
     }
-    
+
     public String getCustomField11() {
         return customField11;
     }
