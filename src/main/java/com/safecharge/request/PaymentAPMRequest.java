@@ -194,7 +194,7 @@ public class PaymentAPMRequest
          * @return {@link SafechargeRequest} object build from the params set by this builder
          */
         @Override
-        public SafechargeRequest build() {
+        public SafechargeBaseRequest build() {
             PaymentAPMRequest paymentAPMRequest = new PaymentAPMRequest();
             paymentAPMRequest.setOrderId(orderId);
             paymentAPMRequest.setPaymentMethod(paymentMethod);

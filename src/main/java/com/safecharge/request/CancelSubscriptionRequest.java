@@ -105,7 +105,7 @@ public class CancelSubscriptionRequest
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override
-        public SafechargeRequest build() throws ConstraintViolationException {
+        public SafechargeBaseRequest build() throws ConstraintViolationException {
             CancelSubscriptionRequest cancelSubscriptionRequest = new CancelSubscriptionRequest();
             cancelSubscriptionRequest.setSubscriptionId(subscriptionId);
             cancelSubscriptionRequest.setUserTokenId(userTokenId);

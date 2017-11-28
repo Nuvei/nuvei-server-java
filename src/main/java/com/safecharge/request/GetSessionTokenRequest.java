@@ -43,7 +43,7 @@ public class GetSessionTokenRequest extends SafechargeRequest {
          * @return {@link SafechargeRequest} object build from the params set by this builder
          */
         @Override
-        public SafechargeRequest build() {
+        public SafechargeBaseRequest build() {
             return ValidationUtils.validate(super.build(new GetSessionTokenRequest()));
         }
     }

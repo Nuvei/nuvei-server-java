@@ -503,7 +503,7 @@ public class CreateSubscriptionRequest
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override
-        public SafechargeRequest build() throws ConstraintViolationException {
+        public SafechargeBaseRequest build() throws ConstraintViolationException {
             CreateSubscriptionRequest createSubscriptionRequest = new CreateSubscriptionRequest();
             createSubscriptionRequest.setSubscriptionPlanId(subscriptionPlanId);
             createSubscriptionRequest.setUserTokenId(userTokenId);

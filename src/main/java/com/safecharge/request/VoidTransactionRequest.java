@@ -45,7 +45,7 @@ public class VoidTransactionRequest
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override
-        public SafechargeRequest build() throws ConstraintViolationException {
+        public SafechargeBaseRequest build() throws ConstraintViolationException {
             VoidTransactionRequest voidTransactionRequest = new VoidTransactionRequest();
             return ValidationUtils.validate(super.build(voidTransactionRequest));
         }

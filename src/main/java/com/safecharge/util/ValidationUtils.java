@@ -14,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.SafechargeBaseRequest;
-import com.safecharge.request.builder.StringConstraintViolation;
+import com.safecharge.request.SafechargeRequest;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
