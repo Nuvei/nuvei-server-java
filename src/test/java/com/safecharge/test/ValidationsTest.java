@@ -294,7 +294,6 @@ public class ValidationsTest {
     public void testSuccessfulValidation_CardTokenizationRequest() {
 
         SafechargeBaseRequest safechargeRequest = CardTokenizationRequest.builder()
-                .addMerchantInfo(validMerchantInfo)
                 .addCardData(dummyCardData)
                 .build();
         assertTrue(safechargeRequest != null);
@@ -305,7 +304,7 @@ public class ValidationsTest {
 
         try {
             CardTokenizationRequest.builder()
-                    .addMerchantInfo(invalidMerchantInfo)
+                    .addCardData(null)
                     .build();
 
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);

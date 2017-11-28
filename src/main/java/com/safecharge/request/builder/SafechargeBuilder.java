@@ -20,46 +20,9 @@ import com.safecharge.util.RequestUtils;
  * @see SafechargeTransactionBuilder
  * @since 2/23/2017
  */
-public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
+public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> extends SafechargeBaseBuilder<T> {
 
     protected MerchantInfo merchantInfo;
-    private String clientRequestId;
-    private String internalRequestId;
-    private String sessionToken;
-
-    /**
-     * Adds previously obtained {@code sessionToken} to the request. All requests(except the one to obtain session token)
-     * to Safecharge's API require a valid session token. Some requests (such as Payment*) consume it.
-     *
-     * @param sessionToken Previously obtained session token as {@link String}
-     * @return this object
-     */
-    public T addSessionToken(String sessionToken) {
-        this.sessionToken = sessionToken;
-        return (T) this;
-    }
-
-    /**
-     * Adds a client request id to the request. It is used to track the different client requests.
-     *
-     * @param clientRequestId id used to track the request
-     * @return this object
-     */
-    public T addClientRequestId(String clientRequestId) {
-        this.clientRequestId = clientRequestId;
-        return (T) this;
-    }
-
-    /**
-     * Adds an internal id to the request. It is used to track the different client requests internally.
-     *
-     * @param internalRequestId id used to track the request
-     * @return this object
-     */
-    public T addInternalRequestId(String internalRequestId) {
-        this.internalRequestId = internalRequestId;
-        return (T) this;
-    }
 
     /**
      * Adds required merchant info to the request.
@@ -100,14 +63,12 @@ public abstract class SafechargeBuilder<T extends SafechargeBuilder<T>> {
      */
     protected <S extends SafechargeRequest> S build(S safechargeRequest) {
 
+        super.build(safechargeRequest);
         String timestamp = RequestUtils.calculateTimestamp();
         safechargeRequest.setMerchantId(merchantInfo != null ? merchantInfo.getMerchantId() : null);
         safechargeRequest.setMerchantSiteId(merchantInfo != null ? merchantInfo.getMerchantSiteId() : null);
         safechargeRequest.setServerHost(merchantInfo != null ? merchantInfo.getServerHost() : null);
-        safechargeRequest.setSessionToken(sessionToken);
         safechargeRequest.setTimeStamp(timestamp);
-        safechargeRequest.setClientRequestId(clientRequestId);
-        safechargeRequest.setInternalRequestId(internalRequestId);
         safechargeRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "", Constants.CHARSET_UTF8,
                         merchantInfo != null ? merchantInfo.getHashAlgorithm() : null));

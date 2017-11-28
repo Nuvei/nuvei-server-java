@@ -88,7 +88,7 @@ public class Authorization3DRequest
          * @return this object
          */
         @Override
-        public SafechargeRequest build() {
+        public SafechargeBaseRequest build() {
             Authorization3DRequest request = new Authorization3DRequest();
             request.setIsDynamic3D(isDynamic3D);
             request.setDynamic3DMode(dynamic3DMode);
