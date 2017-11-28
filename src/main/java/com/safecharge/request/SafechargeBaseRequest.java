@@ -33,7 +33,6 @@ public abstract class SafechargeBaseRequest {
      * Hash of the values of the request parameters UTF-8 encoded and concatenated in this order HASH(merchantId + merchantSiteId + clientRequestId + amount + currency + timestamp + merchantSecretKey)
      * Where HASH is the type of used hash algorithm, MD5 or SHA256, depends on merchantSite setting.
      */
-    @NotNull(message = "checksum parameter is mandatory!")
     private String checksum;
 
     /**

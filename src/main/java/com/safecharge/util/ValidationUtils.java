@@ -1,5 +1,6 @@
 package com.safecharge.util;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -13,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.SafechargeBaseRequest;
-import com.safecharge.request.SafechargeRequest;
+import com.safecharge.request.builder.StringConstraintViolation;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -46,7 +47,13 @@ public class ValidationUtils {
 
         Set<ConstraintViolation<T>> constraintViolations = validator.validate(request);
 
+        if (!(request instanceof CardTokenizationRequest) && (constraintViolations == null || constraintViolations.size() == 0) && request.getChecksum() == null) {
+            constraintViolations = new HashSet<>();
+            constraintViolations.add(new StringConstraintViolation("checksum parameter is mandatory!"));
+        }
+
         if (constraintViolations != null && !constraintViolations.isEmpty()) {
+
             StringBuilder sb = new StringBuilder();
             for (ConstraintViolation<T> constraintViolation : constraintViolations) {
                 sb.append(constraintViolation.getMessage())

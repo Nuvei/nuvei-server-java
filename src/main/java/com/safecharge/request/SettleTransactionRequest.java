@@ -116,7 +116,7 @@ public class SettleTransactionRequest
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override
-        public SafechargeBaseRequest build() throws ConstraintViolationException {
+        public SafechargeRequest build() throws ConstraintViolationException {
             SettleTransactionRequest settleTransactionRequest = new SettleTransactionRequest();
             settleTransactionRequest.setDescriptorMerchantName(descriptorMerchantName);
             settleTransactionRequest.setDescriptorMerchantPhone(descriptorMerchantPhone);

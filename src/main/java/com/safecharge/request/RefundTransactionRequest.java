@@ -46,7 +46,7 @@ public class RefundTransactionRequest
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override
-        public SafechargeBaseRequest build() throws ConstraintViolationException {
+        public SafechargeRequest build() throws ConstraintViolationException {
             RefundTransactionRequest voidTransactionRequest = new RefundTransactionRequest();
             return ValidationUtils.validate(super.build(voidTransactionRequest));
         }

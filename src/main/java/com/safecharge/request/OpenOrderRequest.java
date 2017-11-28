@@ -41,7 +41,7 @@ public class OpenOrderRequest extends SafechargeOrderDetailsRequest {
          * @return {@link SafechargeRequest} object build from the params set by this builder
          */
         @Override
-        public SafechargeBaseRequest build() {
+        public SafechargeRequest build() {
             SafechargeOrderDetailsRequest openOrderRequest = new OpenOrderRequest();
             return ValidationUtils.validate(super.build(openOrderRequest));
         }

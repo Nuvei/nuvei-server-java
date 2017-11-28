@@ -46,7 +46,7 @@ public class PaymentCCRequest
          * @return {@link SafechargeRequest} object build from the params set by this builder
          */
         @Override
-        public SafechargeBaseRequest build() {
+        public SafechargeRequest build() {
             PaymentCCRequest request = new PaymentCCRequest();
             return ValidationUtils.validate(super.build(request));
         }

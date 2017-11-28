@@ -167,7 +167,7 @@ public class AddUPOCreditCardByTempTokenRequest
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override
-        public SafechargeBaseRequest build() throws ConstraintViolationException {
+        public SafechargeRequest build() throws ConstraintViolationException {
             AddUPOCreditCardByTempTokenRequest addUPOCreditCardByTempTokenRequest = new AddUPOCreditCardByTempTokenRequest();
             addUPOCreditCardByTempTokenRequest.setUserTokenId(userTokenId);
             addUPOCreditCardByTempTokenRequest.setCcTempToken(ccTempToken);
