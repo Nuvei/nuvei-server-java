@@ -14,6 +14,7 @@ import com.safecharge.model.CardData;
 import com.safecharge.model.CashierUserDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
+import com.safecharge.model.MerchantBaseInfo;
 import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.MerchantInfo;
 import com.safecharge.model.UrlDetails;
@@ -60,6 +61,11 @@ public class ValidationsTest {
             new MerchantInfo("dummy", "1234", "1234", "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
     private static final MerchantInfo invalidMerchantInfo =
             new MerchantInfo("dummy", null, null, "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
+
+    private static final MerchantBaseInfo validBaseMerchantInfo =
+            new MerchantBaseInfo("dummy", "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
+    private static final MerchantBaseInfo invalidBaseMerchantInfo =
+            new MerchantBaseInfo(null, "http://dummy:1234/ppp/", Constants.HashAlgorithm.MD5);
 
     private static final DynamicDescriptor someDynamicDescriptor = DynamicDescriptorUtils.createDynamicDescriptor("merchantName", "merchantPhone");
 
@@ -294,7 +300,7 @@ public class ValidationsTest {
     public void testSuccessfulValidation_CardTokenizationRequest() {
 
         SafechargeBaseRequest safechargeRequest = CardTokenizationRequest.builder()
-                .addMerchantInfo(validMerchantInfo)
+                .addMerchantInfo(validBaseMerchantInfo)
                 .addCardData(dummyCardData)
                 .build();
         assertTrue(safechargeRequest != null);
@@ -305,7 +311,7 @@ public class ValidationsTest {
 
         try {
             CardTokenizationRequest.builder()
-                    .addMerchantInfo(invalidMerchantInfo)
+                    .addMerchantInfo(invalidBaseMerchantInfo)
                     .build();
 
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);

@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.model.CardData;
 import com.safecharge.model.UserAddress;
-import com.safecharge.request.builder.SafechargeOrderBuilder;
+import com.safecharge.request.builder.SafechargeBaseOrderBuilder;
 import com.safecharge.util.APIConstants;
 import com.safecharge.util.AddressUtils;
 import com.safecharge.util.CardUtils;
@@ -134,7 +134,7 @@ public class CardTokenizationRequest extends SafechargeBaseRequest {
         return sb.toString();
     }
 
-    public static class Builder extends SafechargeOrderBuilder<Builder> {
+    public static class Builder extends SafechargeBaseOrderBuilder<Builder> {
 
         private CardData cardData;
         private UserAddress billingAddress;
