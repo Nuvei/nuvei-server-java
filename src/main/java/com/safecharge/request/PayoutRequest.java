@@ -204,10 +204,10 @@ public class PayoutRequest extends SafechargeRequest {
 
         /**
          * @param amount
-         * @param Currency
+         * @param currency
          * @return
          */
-        public Builder addAmountAndCurrency(String amount, String Currency) {
+        public Builder addAmountAndCurrency(String amount, String currency) {
             this.amount = amount;
             this.currency = currency;
             return this;
