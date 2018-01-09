@@ -22,6 +22,7 @@ import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CancelSubscriptionRequest;
 import com.safecharge.request.CardTokenizationRequest;
+import com.safecharge.request.CreateUserRequest;
 import com.safecharge.request.CreateSubscriptionRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
@@ -45,6 +46,7 @@ import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CancelSubscriptionResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.UserResponse;
 import com.safecharge.response.CreateSubscriptionResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
@@ -100,6 +102,7 @@ public class SafechargeRequestExecutor {
                     put(GetSubscriptionsListRequest.class, GetSubscriptionsListResponse.class);
                     put(GetSubscriptionPlansRequest.class, GetSubscriptionPlansResponse.class);
                     put(PayoutRequest.class, PayoutResponse.class);
+                    put(CreateUserRequest.class, UserResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -128,6 +131,7 @@ public class SafechargeRequestExecutor {
                     put(GetSubscriptionsListRequest.class, APIConstants.GET_SUBSCRIPTION_LIST_REQUEST_URL);
                     put(GetSubscriptionPlansRequest.class, APIConstants.GET_SUBSCRIPTION_PLANS_REQUEST_URL);
                     put(PayoutRequest.class, APIConstants.PAYOUT_URL);
+                    put(CreateUserRequest.class, APIConstants.CREATE_CASHIER_USER_URL);
                 }
             };
 
@@ -200,7 +204,7 @@ public class SafechargeRequestExecutor {
             String requestJSON = gson.toJson(request);
             String responseJSON = executeJsonRequest(requestJSON, serviceUrl);
 
-            return gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(request.getClass()));
+            return (SafechargeResponse)gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(request.getClass()));
 
         } catch (IOException e) {
 

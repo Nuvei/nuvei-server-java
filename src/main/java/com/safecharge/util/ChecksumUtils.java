@@ -71,6 +71,18 @@ public class ChecksumUtils {
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.GET_CASHIER_SUBSCRIPTION_PLANS.name(),
                 Arrays.asList("merchantId", "merchantSiteId", "clientRequestId", "timeStamp"));
+
+        //GET_CASHIER_USER_INFO
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.GET_CASHIER_USER_INFO.name(),
+                Arrays.asList(new String[] { "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "timeStamp" }));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.MODIFY_CASHIER_USER.name(),
+                Arrays.asList(new String[] { "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "firstName", "lastName", "address", "state",
+                        "city", "zip", "countryCode", "phone", "locale", "email", "county", "timeStamp" }));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.ADD_CASHIER_USER.name(),
+                Arrays.asList(new String[] { "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "firstName", "lastName",
+                        "address", "state", "city", "zip", "countryCode", "phone", "locale", "email", "county", "timeStamp" }));
     }
 
     /**

@@ -24,9 +24,11 @@ import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
 import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CardTokenizationRequest;
+import com.safecharge.request.CreateUserRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
+import com.safecharge.request.GetUserDetailsRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
@@ -36,12 +38,15 @@ import com.safecharge.request.RefundTransactionRequest;
 import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.SettleTransactionRequest;
 import com.safecharge.request.UpdateOrderRequest;
+import com.safecharge.request.UpdateUserRequest;
 import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.response.AddUPOAPMResponse;
 import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.GetUserDetailsResponse;
+import com.safecharge.response.UserResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
 import com.safecharge.response.GetSessionTokenResponse;
@@ -130,6 +135,15 @@ public abstract class BaseTest {
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(PayoutRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("./mock/response/payout.json"), PayoutResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(CreateUserRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("mock/response/userActionResponse.json"), UserResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(UpdateUserRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("mock/response/userActionResponse.json"), UserResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(GetUserDetailsRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("mock/response/getUserDetails.json"), GetUserDetailsResponse.class));
     }
 
     protected String loadResourceFile(String path) {

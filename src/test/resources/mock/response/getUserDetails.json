@@ -1,0 +1,27 @@
+{
+  "internalRequestId": 822,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "reason": "",
+  "merchantId": "2885023999185468261",
+  "merchantSiteId": "5612",
+  "version": "1.0",
+  "clientRequestId": "20170316103410",
+
+  "userDetails": {
+    "userTokenId": "test_rest_api",
+    "userId": 167095,
+    "firstName": "John",
+    "lastName": "Smith",
+    "address": "some street",
+    "phone": "658789789456",
+    "zip": "464645",
+    "city": "London",
+    "countryCode": "GB",
+    "state": "",
+    "email": "john.smith@test.com",
+    "locale": "en_EN",
+    "birthdate": "",
+    "county": "county"
+  }
+}

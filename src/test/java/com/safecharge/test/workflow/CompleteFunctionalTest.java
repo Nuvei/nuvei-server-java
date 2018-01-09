@@ -18,9 +18,11 @@ import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
 import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CardTokenizationRequest;
+import com.safecharge.request.CreateUserRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
+import com.safecharge.request.GetUserDetailsRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
@@ -29,12 +31,15 @@ import com.safecharge.request.PayoutRequest;
 import com.safecharge.request.RefundTransactionRequest;
 import com.safecharge.request.SettleTransactionRequest;
 import com.safecharge.request.UpdateOrderRequest;
+import com.safecharge.request.UpdateUserRequest;
 import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.response.AddUPOAPMResponse;
 import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.GetUserDetailsResponse;
+import com.safecharge.response.UserResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
 import com.safecharge.response.GetSessionTokenResponse;
@@ -188,12 +193,45 @@ public class CompleteFunctionalTest extends BaseTest {
     }
 
     @Test
-    public void testPayoutMethodsRequest() {
+    public void testPayoutRequest() {
         PayoutResponse response =
                 baseMockTestMethodWithoutSessionToken("./mock/request/payout.json", PayoutRequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
         Assert.assertTrue(!response.getUserPaymentOptionId().trim().isEmpty());
         Assert.assertTrue(!response.getUserTokenId().trim().isEmpty());
+    }
+
+    @Test
+    public void testCreateCashierUserRequest() {
+        UserResponse response =
+                baseMockTestMethodWithoutSessionToken("mock/request/createUser.json", CreateUserRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+        Assert.assertTrue(response.getUserId() != 0);
+        Assert.assertTrue(response.getInternalRequestId() != 0);
+    }
+
+    @Test
+    public void testUpdateCashierUserRequest() {
+        UserResponse response =
+                baseMockTestMethodWithoutSessionToken("mock/request/updateUser.json", UpdateUserRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+        Assert.assertTrue(response.getUserId() != 0);
+        Assert.assertTrue(response.getInternalRequestId() != 0);
+    }
+
+    @Test
+    public void testGetUserDetailsMethodRequest() {
+        GetUserDetailsResponse response =
+                baseMockTestMethodWithoutSessionToken("mock/request/getUserDetails.json", GetUserDetailsRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+        Assert.assertTrue(response.getInternalRequestId() != 0);
+        Assert.assertTrue(response.getUserDetails() != null);
+        Assert.assertTrue(response.getUserDetails().getUserTokenId() != null);
+        Assert.assertTrue(!response.getUserDetails().getUserTokenId().isEmpty());
+        Assert.assertTrue(response.getUserDetails().getUserId() != null);
     }
 }
