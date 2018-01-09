@@ -24,6 +24,8 @@ public class Authorization3DResponse extends PaymentsCCResponse {
 
     private String threeDFlow;
 
+    private String eci;
+
     public String getPaRequest() {
         return paRequest;
     }
@@ -48,6 +50,14 @@ public class Authorization3DResponse extends PaymentsCCResponse {
         this.threeDFlow = threeDFlow;
     }
 
+    public String getEci() {
+        return eci;
+    }
+
+    public void setEci(String eci) {
+        this.eci = eci;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Authorization3DResponse{");
@@ -60,6 +70,10 @@ public class Authorization3DResponse extends PaymentsCCResponse {
         sb.append(", ");
         sb.append(", threeDFlow='")
                 .append(threeDFlow)
+                .append('\'');
+        sb.append(", ");
+        sb.append(", eci='")
+                .append(eci)
                 .append('\'');
         sb.append(", ")
                 .append(super.toString());

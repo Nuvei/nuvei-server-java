@@ -1,7 +1,5 @@
 package com.safecharge.response;
 
-import com.safecharge.response.basic.BaseApiResponseDTO;
-
 public class CreateCashierUserResponseDto extends SafechargeResponse {
 
     private Long userId;
