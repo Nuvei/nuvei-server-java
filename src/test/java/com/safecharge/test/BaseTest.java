@@ -24,6 +24,7 @@ import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
 import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CardTokenizationRequest;
+import com.safecharge.request.CreateCashierUserRequestDto;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
@@ -42,6 +43,7 @@ import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.CreateCashierUserResponseDto;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
 import com.safecharge.response.GetSessionTokenResponse;
@@ -130,6 +132,9 @@ public abstract class BaseTest {
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(PayoutRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("./mock/response/payout.json"), PayoutResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(CreateCashierUserRequestDto.class))).thenReturn(
+                gson.fromJson(loadResourceFile("./mock/response/createCashierUser.json"), CreateCashierUserResponseDto.class));
     }
 
     protected String loadResourceFile(String path) {

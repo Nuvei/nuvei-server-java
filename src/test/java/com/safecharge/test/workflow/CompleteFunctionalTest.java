@@ -18,6 +18,7 @@ import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
 import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CardTokenizationRequest;
+import com.safecharge.request.CreateCashierUserRequestDto;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
@@ -35,6 +36,7 @@ import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.CreateCashierUserResponseDto;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
 import com.safecharge.response.GetSessionTokenResponse;
@@ -195,5 +197,15 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
         Assert.assertTrue(!response.getUserPaymentOptionId().trim().isEmpty());
         Assert.assertTrue(!response.getUserTokenId().trim().isEmpty());
+    }
+
+    @Test
+    public void testCreateCashierUserMethodsRequest() {
+        CreateCashierUserResponseDto response =
+                baseMockTestMethodWithoutSessionToken("./mock/request/createCashierUser.json", CreateCashierUserRequestDto.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+        Assert.assertTrue(response.getUserId() != 0);
+        Assert.assertTrue(response.getInternalRequestId() != 0);
     }
 }

@@ -48,7 +48,7 @@ public class CreditCardWorkflowTest extends BaseTest {
         SafechargeBaseRequest safechargeRequest = GetSessionTokenRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .build();
-        SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
+        SafechargeResponse response = (SafechargeResponse)safechargeRequestExecutor.executeRequest(safechargeRequest);
 
         Assert.assertTrue(response != null);
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(response.getStatus()));
@@ -112,7 +112,7 @@ public class CreditCardWorkflowTest extends BaseTest {
                 .addOrderId(orderId)
                 .addSessionToken(sessionToken)
                 .build();
-        SafechargeResponse response = safechargeRequestExecutor.executeRequest(safechargeRequest);
+        SafechargeResponse response = (SafechargeResponse)safechargeRequestExecutor.executeRequest(safechargeRequest);
 
         Assert.assertTrue(response != null);
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(response.getStatus()));
