@@ -28,6 +28,7 @@ import com.safecharge.request.CreateUserRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
+import com.safecharge.request.GetUserDetailsRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
@@ -44,6 +45,7 @@ import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.GetUserDetailsResponse;
 import com.safecharge.response.UserResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
@@ -139,6 +141,9 @@ public abstract class BaseTest {
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(UpdateUserRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("mock/response/userActionResponse.json"), UserResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(GetUserDetailsRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("mock/response/getUserDetails.json"), GetUserDetailsResponse.class));
     }
 
     protected String loadResourceFile(String path) {

@@ -3,10 +3,6 @@ package com.safecharge.request.basic;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.safecharge.util.Constants;
-import com.safecharge.util.ValidChecksum;
-
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.GET_CASHIER_USER_INFO)
 public class BaseCashierUserRequest extends BaseApiRequest {
 
     private static final long serialVersionUID = 7797583313378121191L;

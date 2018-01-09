@@ -22,6 +22,7 @@ import com.safecharge.request.CreateUserRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
+import com.safecharge.request.GetUserDetailsRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
@@ -37,6 +38,7 @@ import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.GetUserDetailsResponse;
 import com.safecharge.response.UserResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
@@ -191,7 +193,7 @@ public class CompleteFunctionalTest extends BaseTest {
     }
 
     @Test
-    public void testPayoutMethodsRequest() {
+    public void testPayoutRequest() {
         PayoutResponse response =
                 baseMockTestMethodWithoutSessionToken("./mock/request/payout.json", PayoutRequest.class);
 
@@ -201,7 +203,7 @@ public class CompleteFunctionalTest extends BaseTest {
     }
 
     @Test
-    public void testCreateCashierUserMethodsRequest() {
+    public void testCreateCashierUserRequest() {
         UserResponse response =
                 baseMockTestMethodWithoutSessionToken("mock/request/createUser.json", CreateUserRequest.class);
 
@@ -211,12 +213,25 @@ public class CompleteFunctionalTest extends BaseTest {
     }
 
     @Test
-    public void testUpdateCashierUserMethodsRequest() {
+    public void testUpdateCashierUserRequest() {
         UserResponse response =
                 baseMockTestMethodWithoutSessionToken("mock/request/updateUser.json", UpdateUserRequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
         Assert.assertTrue(response.getUserId() != 0);
         Assert.assertTrue(response.getInternalRequestId() != 0);
+    }
+
+    @Test
+    public void testGetUserDetailsMethodRequest() {
+        GetUserDetailsResponse response =
+                baseMockTestMethodWithoutSessionToken("mock/request/getUserDetails.json", GetUserDetailsRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+        Assert.assertTrue(response.getInternalRequestId() != 0);
+        Assert.assertTrue(response.getUserDetails() != null);
+        Assert.assertTrue(response.getUserDetails().getUserTokenId() != null);
+        Assert.assertTrue(!response.getUserDetails().getUserTokenId().isEmpty());
+        Assert.assertTrue(response.getUserDetails().getUserId() != null);
     }
 }
