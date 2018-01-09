@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 import com.safecharge.request.SafechargeBaseRequest;
 
-public class BaseApiRequestDTO extends SafechargeBaseRequest implements Serializable {
+public class BaseApiRequest extends SafechargeBaseRequest implements Serializable {
 
     private static final long serialVersionUID = 153059344311719085L;
 
@@ -16,10 +16,10 @@ public class BaseApiRequestDTO extends SafechargeBaseRequest implements Serializ
     @NotNull
     private String merchantSiteId;
 
-    public BaseApiRequestDTO() {
+    public BaseApiRequest() {
     }
 
-    protected BaseApiRequestDTO(Builder b) {
+    protected BaseApiRequest(Builder b) {
         this.setClientRequestId(b.clientRequestId);
         this.setTimeStamp(b.timeStamp);
         this.setChecksum(b.checksum);
@@ -84,8 +84,8 @@ public class BaseApiRequestDTO extends SafechargeBaseRequest implements Serializ
             return this;
         }
 
-        public BaseApiRequestDTO build() {
-            return new BaseApiRequestDTO(this);
+        public BaseApiRequest build() {
+            return new BaseApiRequest(this);
         }
     }
 }

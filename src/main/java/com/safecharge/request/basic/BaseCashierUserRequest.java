@@ -7,7 +7,7 @@ import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.GET_CASHIER_USER_INFO)
-public class BaseCashierUserRequestDto extends BaseApiRequestDTO {
+public class BaseCashierUserRequest extends BaseApiRequest {
 
     private static final long serialVersionUID = 7797583313378121191L;
 
@@ -15,11 +15,11 @@ public class BaseCashierUserRequestDto extends BaseApiRequestDTO {
     @Size(max = 255)
     private String userTokenId;
 
-    public BaseCashierUserRequestDto() {
+    public BaseCashierUserRequest() {
         super();
     }
 
-    public BaseCashierUserRequestDto(Builder b) {
+    public BaseCashierUserRequest(Builder b) {
         super(b);
         this.userTokenId = b.userTokenId;
     }
@@ -32,7 +32,7 @@ public class BaseCashierUserRequestDto extends BaseApiRequestDTO {
         this.userTokenId = userTokenId;
     }
 
-    public static class Builder extends BaseApiRequestDTO.Builder {
+    public static class Builder extends BaseApiRequest.Builder {
 
         private String userTokenId;
 
@@ -41,8 +41,8 @@ public class BaseCashierUserRequestDto extends BaseApiRequestDTO {
             return this;
         }
 
-        public BaseCashierUserRequestDto build() {
-            return new BaseCashierUserRequestDto(this);
+        public BaseCashierUserRequest build() {
+            return new BaseCashierUserRequest(this);
         }
     }
 }

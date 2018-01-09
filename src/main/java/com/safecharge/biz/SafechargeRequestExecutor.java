@@ -46,7 +46,7 @@ import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CancelSubscriptionResponse;
 import com.safecharge.response.CardTokenizationResponse;
-import com.safecharge.response.CreateUserResponse;
+import com.safecharge.response.UserResponse;
 import com.safecharge.response.CreateSubscriptionResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
@@ -102,7 +102,7 @@ public class SafechargeRequestExecutor {
                     put(GetSubscriptionsListRequest.class, GetSubscriptionsListResponse.class);
                     put(GetSubscriptionPlansRequest.class, GetSubscriptionPlansResponse.class);
                     put(PayoutRequest.class, PayoutResponse.class);
-                    put(CreateUserRequest.class, CreateUserResponse.class);
+                    put(CreateUserRequest.class, UserResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =

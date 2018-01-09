@@ -1,0 +1,21 @@
+{
+  "merchantId": "7228839313016442768",
+  "merchantSiteId": "117711",
+  "userTokenId": "test_rest_api",
+  "clientRequestId": "1490268819000",
+  "timeStamp": "20170323133339",
+  "userTokenId": "test_rest_api",
+  "firstName": "John updated",
+  "lastName": "Smith updated",
+  "address": "some street updated",
+  "email": "john.smith@test.com updated",
+  "countryCode": "GB updated",
+  "phone": "658789789456 updated",
+  "city": "London updated",
+  "zip": "464645 updated",
+  "state": "",
+  "locale": "en_EN",
+  "dateOfBirth": " updated",
+  "county": "county updated",
+  "checksum": "901e5382400687668af391a849e2d99ce5bdc122d6698c333d36b6c79b79024a"
+}

@@ -1,10 +1,6 @@
 package com.safecharge.request.basic;
 
-import com.safecharge.util.Constants;
-import com.safecharge.util.ValidChecksum;
-
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.MODIFY_CASHIER_USER)
-public class CashierUserRequestDto extends BaseCashierUserRequestDto {
+public class CashierUserRequest extends BaseCashierUserRequest {
 
     private static final long serialVersionUID = 1593370115052563526L;
     private String firstName;
@@ -20,11 +16,11 @@ public class CashierUserRequestDto extends BaseCashierUserRequestDto {
     private String dateOfBirth;
     private String county;
 
-    public CashierUserRequestDto() {
+    public CashierUserRequest() {
         super();
     }
 
-    public CashierUserRequestDto(Builder b) {
+    public CashierUserRequest(Builder b) {
         super(b);
         this.firstName = b.firstName;
         this.lastName = b.lastName;
@@ -158,7 +154,7 @@ public class CashierUserRequestDto extends BaseCashierUserRequestDto {
             return false;
         }
 
-        CashierUserRequestDto other = (CashierUserRequestDto) obj;
+        CashierUserRequest other = (CashierUserRequest) obj;
         if (county == null) {
             if (other.county != null) {
                 return false;
@@ -256,7 +252,7 @@ public class CashierUserRequestDto extends BaseCashierUserRequestDto {
         this.county = county;
     }
 
-    public static class Builder extends BaseCashierUserRequestDto.Builder {
+    public static class Builder extends BaseCashierUserRequest.Builder {
 
         private String firstName;
         private String lastName;
@@ -331,8 +327,8 @@ public class CashierUserRequestDto extends BaseCashierUserRequestDto {
             return this;
         }
 
-        public CashierUserRequestDto build() {
-            return new CashierUserRequestDto(this);
+        public CashierUserRequest build() {
+            return new CashierUserRequest(this);
         }
     }
 }

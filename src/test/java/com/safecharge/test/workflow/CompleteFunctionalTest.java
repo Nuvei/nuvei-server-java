@@ -30,13 +30,14 @@ import com.safecharge.request.PayoutRequest;
 import com.safecharge.request.RefundTransactionRequest;
 import com.safecharge.request.SettleTransactionRequest;
 import com.safecharge.request.UpdateOrderRequest;
+import com.safecharge.request.UpdateUserRequest;
 import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.response.AddUPOAPMResponse;
 import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
-import com.safecharge.response.CreateUserResponse;
+import com.safecharge.response.UserResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
 import com.safecharge.response.GetSessionTokenResponse;
@@ -201,8 +202,18 @@ public class CompleteFunctionalTest extends BaseTest {
 
     @Test
     public void testCreateCashierUserMethodsRequest() {
-        CreateUserResponse response =
+        UserResponse response =
                 baseMockTestMethodWithoutSessionToken("mock/request/createUser.json", CreateUserRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+        Assert.assertTrue(response.getUserId() != 0);
+        Assert.assertTrue(response.getInternalRequestId() != 0);
+    }
+
+    @Test
+    public void testUpdateCashierUserMethodsRequest() {
+        UserResponse response =
+                baseMockTestMethodWithoutSessionToken("mock/request/updateUser.json", UpdateUserRequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
         Assert.assertTrue(response.getUserId() != 0);
