@@ -1,6 +1,6 @@
 package com.safecharge.response;
 
-public class CreateCashierUserResponseDto extends SafechargeResponse {
+public class CreateUserResponse extends SafechargeResponse {
 
     private Long userId;
 
