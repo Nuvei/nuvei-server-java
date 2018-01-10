@@ -137,7 +137,7 @@ public class SafechargeRequestExecutor {
                     put(GetSubscriptionPlansRequest.class, APIConstants.GET_SUBSCRIPTION_PLANS_REQUEST_URL);
                     put(PayoutRequest.class, APIConstants.PAYOUT_URL);
                     put(CreateUserRequest.class, APIConstants.CREATE_USER_URL);
-                    put(UpdateUserRequest.class, APIConstants.CREATE_USER_URL);
+                    put(UpdateUserRequest.class, APIConstants.UPDATE_USER_URL);
                     put(GetUserDetailsRequest.class, APIConstants.GET_USER_DETAILS_URL);
                 }
             };
