@@ -16,6 +16,10 @@ public class BaseApiRequest extends SafechargeBaseRequest implements Serializabl
     @NotNull
     private String merchantSiteId;
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public BaseApiRequest() {
     }
 

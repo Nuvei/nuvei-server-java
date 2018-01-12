@@ -11,6 +11,10 @@ public class BaseCashierUserRequest extends BaseApiRequest {
     @Size(max = 255)
     private String userTokenId;
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public BaseCashierUserRequest() {
         super();
     }

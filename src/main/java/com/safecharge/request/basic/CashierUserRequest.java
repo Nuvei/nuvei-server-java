@@ -16,6 +16,10 @@ public class CashierUserRequest extends BaseCashierUserRequest {
     private String dateOfBirth;
     private String county;
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public CashierUserRequest() {
         super();
     }
