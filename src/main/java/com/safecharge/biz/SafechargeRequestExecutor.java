@@ -258,7 +258,7 @@ public class SafechargeRequestExecutor {
 
         String responseJSON = EntityUtils.toString(response.getEntity(), UTF8_CHARSET);
         if (logger.isDebugEnabled()) {
-            logger.debug("Received " + response);
+            logger.debug("Received " + responseJSON);
         }
         return responseJSON;
     }
