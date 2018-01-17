@@ -1,23 +1,45 @@
 package com.safecharge.request;
 
-import com.safecharge.request.basic.BaseCashierUserRequest;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
+import com.safecharge.util.ValidationUtils;
 
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.GET_CASHIER_USER_INFO)
-public class GetUserDetailsRequest extends BaseCashierUserRequest {
+public class GetUserDetailsRequest extends SafechargeRequest {
+
+    @NotNull
+    @Size(max = 255)
+    protected String userTokenId;
 
     public static Builder builder() {
         return new Builder();
     }
 
-    public GetUserDetailsRequest(Builder b) {
-        super(b);
+    public String getUserTokenId() {
+        return userTokenId;
     }
 
-    public static class Builder extends BaseCashierUserRequest.Builder {
+    public void setUserTokenId(String userTokenId) {
+        this.userTokenId = userTokenId;
+    }
+
+    public static class Builder<T extends SafechargeBuilder<T>> extends SafechargeBuilder<T> {
+
+        protected String userTokenId;
+
+        public T userTokenId(String userTokenId) {
+            this.userTokenId = userTokenId;
+            return (T) this;
+        }
+
         public GetUserDetailsRequest build() {
-            return new GetUserDetailsRequest(this);
+            GetUserDetailsRequest request = new GetUserDetailsRequest();
+            request.setUserTokenId(userTokenId);
+            return ValidationUtils.validate(super.build(request));
         }
     }
 }

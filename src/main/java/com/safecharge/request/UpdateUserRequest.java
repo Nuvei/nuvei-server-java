@@ -1,23 +1,23 @@
 package com.safecharge.request;
 
 import com.safecharge.request.basic.CashierUserRequest;
+import com.safecharge.request.builder.SafechargeCashierUserBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
+import com.safecharge.util.ValidationUtils;
 
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.MODIFY_CASHIER_USER)
 public class UpdateUserRequest extends CashierUserRequest {
 
-    public static Builder builder() {
-        return new Builder();
+    public static UpdateUserRequest.Builder builder() {
+        return new UpdateUserRequest.Builder();
     }
 
-    public UpdateUserRequest(Builder b) {
-        super(b);
-    }
+    public static class Builder extends SafechargeCashierUserBuilder {
 
-    public static class Builder extends CashierUserRequest.Builder {
         public UpdateUserRequest build() {
-            return new UpdateUserRequest(this);
+            UpdateUserRequest request = new UpdateUserRequest();
+            return (UpdateUserRequest) ValidationUtils.validate(super.build(request));
         }
     }
 }
