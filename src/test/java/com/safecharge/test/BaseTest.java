@@ -25,6 +25,7 @@ import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.CreateUserRequest;
+import com.safecharge.request.Dynamic3DRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
@@ -45,6 +46,7 @@ import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.Dynamic3DResponse;
 import com.safecharge.response.GetUserDetailsResponse;
 import com.safecharge.response.UserResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
@@ -108,6 +110,9 @@ public abstract class BaseTest {
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(Authorization3DRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("./mock/response/authorization3D.json"), Authorization3DResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(Dynamic3DRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("./mock/response/authorization3D.json"), Dynamic3DResponse.class));
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(AddUPOCreditCardByTempTokenRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("./mock/response/addUPOCreditCardByTempToken.json"), AddUPOCreditCardByTempTokenResponse.class));
