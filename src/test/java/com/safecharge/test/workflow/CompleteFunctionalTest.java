@@ -19,6 +19,7 @@ import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.CreateUserRequest;
+import com.safecharge.request.Dynamic3DRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
@@ -38,6 +39,7 @@ import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.Dynamic3DResponse;
 import com.safecharge.response.GetUserDetailsResponse;
 import com.safecharge.response.UserResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
@@ -129,6 +131,14 @@ public class CompleteFunctionalTest extends BaseTest {
     @Test
     public void testAuthorization3DRequest() {
         Authorization3DResponse response = baseMockTest("./mock/request/authorization3D.json", Authorization3DRequest.class);
+
+        Assert.assertTrue(defined(response.getOrderId()));
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test
+    public void testAuthorization3DRequestAsDynamic3DRequest() {
+        Dynamic3DResponse response = baseMockTest("./mock/request/authorization3D.json", Dynamic3DRequest.class);
 
         Assert.assertTrue(defined(response.getOrderId()));
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());

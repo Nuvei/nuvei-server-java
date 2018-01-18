@@ -25,6 +25,7 @@ public interface APIConstants {
     String PAYMENT_CC_URL = "api/v1/paymentCC.do";
     String PAYMENT_APM_URL = "api/v1/paymentAPM.do";
     String AUTHORIZATION_3D_URL = "api/v1/authorization3D.do"; // the same method as "api/v1/dynamic3D.do". The provided two entry points are one method.
+    String DYNAMIC_3D_URL = "api/v1/dynamic3D.do"; // the same method as "api/v1/authorization3D.do". The provided two entry points are one method.
     String CARD_TOKENIZATION_URL = "api/v1/cardTokenization.do";
     String ADD_UPO_CREDIT_CARD_BY_TEMP_TOKEN_URL = "api/v1/addUPOCreditCardByTempToken.do";
     String PAYMENT_3D_URL = "api/v1/payment3D.do";
