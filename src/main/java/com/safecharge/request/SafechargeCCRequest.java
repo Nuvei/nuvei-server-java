@@ -6,6 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import com.safecharge.model.CardData;
+import com.safecharge.model.ExternalMpi;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.util.Constants;
 
@@ -71,7 +72,10 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
 
     @Max(value = 1)
     private String isPartialApproval;
-    
+
+    @Valid
+    ExternalMpi externalMpi;
+
     public String getOrderId() {
         return orderId;
     }
@@ -118,6 +122,14 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
 
     public void setIsPartialApproval(String isPartialApproval) {
         this.isPartialApproval = isPartialApproval;
+    }
+
+    public ExternalMpi getExternalMpi() {
+        return externalMpi;
+    }
+
+    public void setExternalMpi(ExternalMpi externalMpi) {
+        this.externalMpi = externalMpi;
     }
 
     @Override

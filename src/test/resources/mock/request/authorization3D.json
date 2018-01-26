@@ -68,6 +68,12 @@
     "customField4": "merchantName",
     "customField9": "merchantName"
   },
+  "externalMpi": {
+    "isExternalMpi": "0",
+    "eci": "1",
+    "cavv": "654744564564684",
+    "xid": ""
+  },
   "isDynamic3D": "1",
   "dynamic3DMode": "off"
 }

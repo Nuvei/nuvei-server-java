@@ -1,5 +1,9 @@
 package com.safecharge.model;
 
+import com.safecharge.util.Constants;
+import com.safecharge.util.ValidChecksum;
+
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.USER_DETAILS)
 public class UserDetailsCashier {
 
     private String firstName;

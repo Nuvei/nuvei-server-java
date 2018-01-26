@@ -74,15 +74,20 @@ public class ChecksumUtils {
 
         //GET_CASHIER_USER_INFO
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.GET_CASHIER_USER_INFO.name(),
-                Arrays.asList(new String[] { "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "timeStamp" }));
+                Arrays.asList("merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "timeStamp"));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.MODIFY_CASHIER_USER.name(),
-                Arrays.asList(new String[] { "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "firstName", "lastName", "address", "state",
-                        "city", "zip", "countryCode", "phone", "locale", "email", "county", "timeStamp" }));
+                Arrays.asList("merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "firstName", "lastName", "address", "state",
+                        "city", "zip", "countryCode", "phone", "locale", "email", "county", "timeStamp"));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.ADD_CASHIER_USER.name(),
-                Arrays.asList(new String[] { "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "firstName", "lastName",
-                        "address", "state", "city", "zip", "countryCode", "phone", "locale", "email", "county", "timeStamp" }));
+                Arrays.asList("merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "firstName", "lastName",
+                        "address", "state", "city", "zip", "countryCode", "phone", "locale", "email", "county", "timeStamp"));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.ADD_CASHIER_CC_CARD_DATA.name(), Arrays.asList(
+                "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "ccExpMonth", "ccExpYear", "ccNameOnCard",
+                "ccToken", "brand", "uniqueCC", "bin", "last4Digits", "billingAddress", "lastDepositUse", "lastDepositSuccess",
+                "lastWithdrawalUse", "lastWithdrawalSuccess", "registrationDate", "expiryDate", "timeStamp"));
     }
 
     /**

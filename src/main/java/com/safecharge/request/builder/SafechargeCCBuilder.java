@@ -1,6 +1,7 @@
 package com.safecharge.request.builder;
 
 import com.safecharge.model.CardData;
+import com.safecharge.model.ExternalMpi;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.SafechargeCCRequest;
 import com.safecharge.util.CardUtils;
@@ -25,6 +26,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     private String orderId;
     private int isRebilling;
     private String isPartialApproval;
+    private ExternalMpi externalMpi;
 
     /**
      * Adds an order to the request.
@@ -125,6 +127,11 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         return (T) this;
     }
 
+    public T addExternalMpi(ExternalMpi externalMpi) {
+        this.externalMpi = externalMpi;
+        return (T) this;
+    }
+
     /**
      * Adds the common credit/debit data, collected by this builder.
      *
@@ -141,6 +148,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         request.setCardData(cardData);
         request.setOrderId(orderId);
         request.setIsRebilling(isRebilling);
+        request.setExternalMpi(externalMpi);
         request.setIsPartialApproval(isPartialApproval);
 
         return request;

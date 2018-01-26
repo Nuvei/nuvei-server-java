@@ -15,6 +15,7 @@ import org.junit.Test;
 import com.safecharge.model.Item;
 import com.safecharge.request.AddUPOAPMRequest;
 import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
+import com.safecharge.request.AddUPOCreditCardByTokenRequest;
 import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CardTokenizationRequest;
@@ -36,15 +37,15 @@ import com.safecharge.request.UpdateUserRequest;
 import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.response.AddUPOAPMResponse;
 import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
+import com.safecharge.response.AddUPOCreditCardByTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
 import com.safecharge.response.Dynamic3DResponse;
-import com.safecharge.response.GetUserDetailsResponse;
-import com.safecharge.response.UserResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
 import com.safecharge.response.GetSessionTokenResponse;
+import com.safecharge.response.GetUserDetailsResponse;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.Payment3DResponse;
 import com.safecharge.response.PaymentAPMResponse;
@@ -53,6 +54,7 @@ import com.safecharge.response.PayoutResponse;
 import com.safecharge.response.RefundTransactionResponse;
 import com.safecharge.response.SettleTransactionResponse;
 import com.safecharge.response.UpdateOrderResponse;
+import com.safecharge.response.UserResponse;
 import com.safecharge.response.VoidTransactionResponse;
 import com.safecharge.test.BaseTest;
 import com.safecharge.util.Constants;
@@ -243,5 +245,13 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertTrue(response.getUserDetails().getUserTokenId() != null);
         Assert.assertTrue(!response.getUserDetails().getUserTokenId().isEmpty());
         Assert.assertTrue(response.getUserDetails().getUserId() != null);
+    }
+
+    @Test
+    public void testAddUPOCreditCardByTokenRequest() {
+        AddUPOCreditCardByTokenResponse response =
+                baseMockTest("./mock/request/addUPOCreditCardByToken.json", AddUPOCreditCardByTokenRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
     }
 }
