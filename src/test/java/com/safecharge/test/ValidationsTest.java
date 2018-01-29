@@ -21,6 +21,7 @@ import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 import com.safecharge.request.AddUPOAPMRequest;
 import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
+import com.safecharge.request.AddUPOCreditCardByTokenRequest;
 import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CancelSubscriptionRequest;
@@ -106,6 +107,17 @@ public class ValidationsTest {
     private static final String dummySubscriptionPlanId = "123456";
     private static final String dummyRelatedTransactionId = "1234567";
     private static final String dummyAuthCode = "auth_code";
+
+    private static final String dummyBrand = "Visa";
+    private static final String dummyUniqueCC = "visa45563";
+    private static final String dummyBin = "41111";
+    private static final String dummyLast4Digits = "1111";
+    private static final String dummyCCExpMonth = "03";
+    private static final String dummyCCExpYear = "2020";
+    private static final String dummyCCNameOnCard = "Nikola Dichev";
+
+    private static final String validBrand = "Visa";
+
 
     private static final CashierUserDetails dummyValidCashierUserDetails =
             AddressUtils.createCashierUserDetailsFromParams("Test street 1", "Sofia", "BG", "test@test.com",
@@ -735,6 +747,36 @@ public class ValidationsTest {
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
             assertEquals(2, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_AddUPOCreditCardByTokenRequest() {
+
+        SafechargeBaseRequest safechargeRequest = AddUPOCreditCardByTokenRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addUserTokenId(dummyUserId)
+                .addCcToken(dummyCcToken)
+                .addBrand(dummyBrand)
+                .addUniqueCC(dummyUniqueCC)
+                .addBin(dummyBin)
+                .addLast4Digits(dummyLast4Digits)
+                .addCcExpMonth(dummyCCExpMonth)
+                .addCCExpYear(dummyCCExpYear)
+                .addCcNameOnCard(dummyCCNameOnCard)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_AddUPOCreditCardByTokenRequest() {
+
+        try {
+            SafechargeBaseRequest safechargeRequest = AddUPOCreditCardByTokenRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+        } catch (ConstraintViolationException e) {
+            assertEquals(11, e.getConstraintViolations().size());
         }
     }
 }

@@ -3,6 +3,7 @@ package com.safecharge.util;
 import com.safecharge.model.CashierUserDetails;
 import com.safecharge.model.UserAddress;
 import com.safecharge.model.UserDetails;
+import com.safecharge.model.UserDetailsCashier;
 
 /**
  * Copyright (C) 2007-2020 SafeCharge International Group Limited.
@@ -115,6 +116,41 @@ public class AddressUtils {
         userDetails.setState(state);
         userDetails.setZip(zip);
         userDetails.setDateOfBirth(dateOfBirth);
+        userDetails.setCounty(county);
+
+        return userDetails;
+    }
+
+    /**
+     * Static factory method to create new {@link UserDetailsCashier} object based on the passed params.
+     *
+     * @param address     The address of the user
+     * @param city        The city of the user
+     * @param countryCode     The city of the user(two-letter ISO country code)
+     * @param email       The email of the user
+     * @param firstName   The first name of the user
+     * @param lastName    The last name of the user
+     * @param phone       The phone number of the user
+     * @param state       The state of the user(two-letter ISO state code)
+     * @param zip         The postal code of the user
+     * @param birthdate The date of birth of the user
+     * @return new {@link UserDetailsCashier} object created from the passed params
+     */
+    public static UserDetailsCashier createUserDetailsCashierFromParams(String address, String city, String countryCode, String email, String firstName,
+                                                                        String lastName, String phone, String state, String zip, String birthdate,
+                                                                        String county) {
+
+        UserDetailsCashier userDetails = new UserDetailsCashier();
+        userDetails.setAddress(address);
+        userDetails.setCity(city);
+        userDetails.setCountryCode(countryCode);
+        userDetails.setEmail(email);
+        userDetails.setFirstName(firstName);
+        userDetails.setLastName(lastName);
+        userDetails.setPhone(phone);
+        userDetails.setState(state);
+        userDetails.setZip(zip);
+        userDetails.setBirthdate(birthdate);
         userDetails.setCounty(county);
 
         return userDetails;

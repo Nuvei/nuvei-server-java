@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.safecharge.request.AddUPOAPMRequest;
 import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
+import com.safecharge.request.AddUPOCreditCardByTokenRequest;
 import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CancelSubscriptionRequest;
@@ -45,6 +46,7 @@ import com.safecharge.request.UpdateUserRequest;
 import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.response.AddUPOAPMResponse;
 import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
+import com.safecharge.response.AddUPOCreditCardByTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CancelSubscriptionResponse;
@@ -111,6 +113,7 @@ public class SafechargeRequestExecutor {
                     put(CreateUserRequest.class, UserResponse.class);
                     put(UpdateUserRequest.class, UserResponse.class);
                     put(GetUserDetailsRequest.class, GetUserDetailsResponse.class);
+                    put(AddUPOCreditCardByTokenRequest.class, AddUPOCreditCardByTokenResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -143,6 +146,7 @@ public class SafechargeRequestExecutor {
                     put(CreateUserRequest.class, APIConstants.CREATE_USER_URL);
                     put(UpdateUserRequest.class, APIConstants.UPDATE_USER_URL);
                     put(GetUserDetailsRequest.class, APIConstants.GET_USER_DETAILS_URL);
+                    put(AddUPOCreditCardByTokenRequest.class, APIConstants.ADD_UPO_CREDIT_CARD_BY_TOKEN_URL);
                 }
             };
 
@@ -255,7 +259,7 @@ public class SafechargeRequestExecutor {
         httpPost.setEntity(new StringEntity(request, Charset.forName("UTF-8")));
 
         if (logger.isDebugEnabled()) {
-            logger.debug("Sent " + request);
+            logger.debug("Sent {}" + request);
         }
 
         HttpResponse response = httpClient.execute(httpPost);
