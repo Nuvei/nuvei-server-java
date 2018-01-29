@@ -138,7 +138,7 @@ public class AddressUtils {
      */
     public static UserDetailsCashier createUserDetailsCashierFromParams(String address, String city, String countryCode, String email, String firstName,
                                                                         String lastName, String phone, String state, String zip, String birthdate,
-                                                                        String county) {
+                                                                        String county, String locale) {
 
         UserDetailsCashier userDetails = new UserDetailsCashier();
         userDetails.setAddress(address);
@@ -152,6 +152,7 @@ public class AddressUtils {
         userDetails.setZip(zip);
         userDetails.setBirthdate(birthdate);
         userDetails.setCounty(county);
+        userDetails.setLocale(locale);
 
         return userDetails;
     }

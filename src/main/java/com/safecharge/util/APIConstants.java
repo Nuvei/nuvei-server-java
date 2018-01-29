@@ -44,6 +44,9 @@ public interface APIConstants {
     String UPDATE_USER_URL = "api/v1/updateUser.do";
     String GET_USER_DETAILS_URL = "api/v1/getUserDetails.do";
     String ADD_UPO_CREDIT_CARD_BY_TOKEN_URL = "api/v1/addUPOCreditCardByToken.do";
+    String GET_USER_UPOS_REQUEST = "api/v1/getUserUPOs.do";
+    String EDIT_UPO_CREDIT_CARD_URL = "api/v1/editUPOCC.do";
+    String EDIT_UPO_APM_URL = "api/v1/editUPOAPM.do";
 
 
     // Request Headers:

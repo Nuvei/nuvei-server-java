@@ -425,11 +425,11 @@ public class AddUPOCreditCardByTokenRequest extends SafechargeRequest {
          */
         public Builder addBillingAddress(String address, String city, String countryCode, String email, String firstName,
                                          String lastName, String phone, String state, String zip, String birthdate,
-                                         String county) {
+                                         String county, String locale) {
 
             UserDetailsCashier billingAddress = AddressUtils.createUserDetailsCashierFromParams(address, city, countryCode, email, firstName,
                     lastName, phone, state, zip, birthdate,
-                    county);
+                    county, locale);
 
             return addBillingAddress(billingAddress);
         }

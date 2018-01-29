@@ -26,12 +26,15 @@ import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.CreateUserRequest;
 import com.safecharge.request.CreateSubscriptionRequest;
 import com.safecharge.request.Dynamic3DRequest;
+import com.safecharge.request.EditUPOAPMRequest;
+import com.safecharge.request.EditUPOCreditCardRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.GetSubscriptionPlansRequest;
 import com.safecharge.request.GetSubscriptionsListRequest;
 import com.safecharge.request.GetUserDetailsRequest;
+import com.safecharge.request.GetUserUPOsRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
@@ -52,7 +55,10 @@ import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CancelSubscriptionResponse;
 import com.safecharge.response.CardTokenizationResponse;
 import com.safecharge.response.Dynamic3DResponse;
+import com.safecharge.response.EditUPOAPMResponse;
+import com.safecharge.response.EditUPOCreditCardResponse;
 import com.safecharge.response.GetUserDetailsResponse;
+import com.safecharge.response.GetUserUPOsResponse;
 import com.safecharge.response.UserResponse;
 import com.safecharge.response.CreateSubscriptionResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
@@ -114,6 +120,9 @@ public class SafechargeRequestExecutor {
                     put(UpdateUserRequest.class, UserResponse.class);
                     put(GetUserDetailsRequest.class, GetUserDetailsResponse.class);
                     put(AddUPOCreditCardByTokenRequest.class, AddUPOCreditCardByTokenResponse.class);
+                    put(GetUserUPOsRequest.class, GetUserUPOsResponse.class);
+                    put(EditUPOCreditCardRequest.class, EditUPOCreditCardResponse.class);
+                    put(EditUPOAPMRequest.class, EditUPOAPMResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -147,6 +156,9 @@ public class SafechargeRequestExecutor {
                     put(UpdateUserRequest.class, APIConstants.UPDATE_USER_URL);
                     put(GetUserDetailsRequest.class, APIConstants.GET_USER_DETAILS_URL);
                     put(AddUPOCreditCardByTokenRequest.class, APIConstants.ADD_UPO_CREDIT_CARD_BY_TOKEN_URL);
+                    put(GetUserUPOsRequest.class, APIConstants.GET_USER_UPOS_REQUEST);
+                    put(EditUPOCreditCardRequest.class, APIConstants.EDIT_UPO_CREDIT_CARD_URL);
+                    put(EditUPOAPMRequest.class, APIConstants.EDIT_UPO_APM_URL);
                 }
             };
 

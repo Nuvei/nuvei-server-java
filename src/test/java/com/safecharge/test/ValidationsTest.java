@@ -27,11 +27,14 @@ import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CancelSubscriptionRequest;
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.CreateSubscriptionRequest;
+import com.safecharge.request.EditUPOAPMRequest;
+import com.safecharge.request.EditUPOCreditCardRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.GetSubscriptionPlansRequest;
 import com.safecharge.request.GetSubscriptionsListRequest;
+import com.safecharge.request.GetUserUPOsRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
@@ -115,6 +118,7 @@ public class ValidationsTest {
     private static final String dummyCCExpMonth = "03";
     private static final String dummyCCExpYear = "2020";
     private static final String dummyCCNameOnCard = "Nikola Dichev";
+    private static final String dummyUserPaymentOptionId = "Nikola Dichev";
 
     private static final String validBrand = "Visa";
 
@@ -777,6 +781,80 @@ public class ValidationsTest {
                     .build();
         } catch (ConstraintViolationException e) {
             assertEquals(11, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_GetUserUPOsRequest() {
+
+        SafechargeBaseRequest getUserUPOsRequest = GetUserUPOsRequest.builder()
+                .addUserTokenId(dummyUserId)
+                .addMerchantInfo(validMerchantInfo)
+                .build();
+        assertTrue(getUserUPOsRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_GetUserUPOsRequest() {
+
+        try {
+            SafechargeBaseRequest getUserUPOsRequest = GetUserUPOsRequest.builder()
+                    .addMerchantInfo(validMerchantInfo)
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(1, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_EditUPOCreditCardRequest() {
+
+        SafechargeBaseRequest safechargeRequest = EditUPOCreditCardRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addUserTokenId(dummyUserId)
+                .addCcExpMonth(dummyCcExpMonth)
+                .addCCExpYear(dummyCcExpYear)
+                .addCcNameOnCard(dummyCcNameOnCard)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_EditUPOCreditCardRequest() {
+
+        try {
+            EditUPOCreditCardRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(6, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_EditUPOAPMRequest() {
+
+        SafechargeBaseRequest safechargeRequest = EditUPOAPMRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addApmData(dummyValidApmData)
+                .addUserTokenId(dummyUserId)
+                .addUserPaymentOptionId(dummyUserPaymentOptionId)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_EditUPOAPMRequest() {
+
+        try {
+            EditUPOAPMRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(5, e.getConstraintViolations().size());
         }
     }
 }

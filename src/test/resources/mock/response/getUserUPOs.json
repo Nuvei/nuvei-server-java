@@ -1,0 +1,67 @@
+{
+  "paymentMethods": [
+    {
+      "userPaymentOptionId": 162294,
+      "upoName": "(5380)",
+      "paymentMethodName": "cc_card",
+      "upoStatus": "enabled",
+      "upoRegistrationDate": "20180125",
+      "expiryDate": "20190301",
+      "depositSuccess": "false",
+      "withdrawSuccess": "false",
+      "billingAddress": {
+        "address": "address1",
+        "zip": "1335",
+        "city": "city",
+        "email": "billing@email.com",
+        "county": "CountyBounty"
+      },
+      "upoData": {
+        "ccExpYear": "23",
+        "brand": "visa",
+        "bin": "448530",
+        "ccNameOnCard": "Petka",
+        "cardType": "",
+        "ccExpMonth": "12",
+        "uniqueCC": "FvwRzNttgcsaAO0L362sN8yK23M=",
+        "ccCardNumber": "4****5380"
+      }
+    },
+    {
+      "userPaymentOptionId": 162295,
+      "upoName": "(2721)",
+      "paymentMethodName": "cc_card",
+      "upoStatus": "enabled",
+      "upoRegistrationDate": "20180125",
+      "expiryDate": "20190305",
+      "depositSuccess": "true",
+      "withdrawSuccess": "false",
+      "billingAddress": {
+        "address": "address1",
+        "zip": "1335",
+        "city": "city",
+        "email": "billing@email.com",
+        "county": "CountyBounty"
+      },
+      "upoData": {
+        "ccExpYear": "23",
+        "brand": "master_card",
+        "bin": "558414",
+        "ccNameOnCard": "Petka",
+        "cardType": "",
+        "ccExpMonth": "12",
+        "uniqueCC": "kfbZo0FEf+irWtVAwSb49O38ur8=",
+        "ccCardNumber": "5****2721"
+      }
+    }
+  ],
+  "internalRequestId": 14122,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "reason": "",
+  "version": "1.0",
+  "sessionToken": "9610a8f6-44cf-4c4f-976a-005da69a2a3b",
+  "merchantId": "7228839313016442768",
+  "merchantSiteId": "117711",
+  "clientRequestId": "1490268819000"
+}
