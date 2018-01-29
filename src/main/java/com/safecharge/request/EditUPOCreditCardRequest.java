@@ -26,6 +26,8 @@ import com.safecharge.util.ValidationUtils;
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.EDIT_CASHIER_CC_CARD)
 public class EditUPOCreditCardRequest extends SafechargeRequest {
 
+    @NotNull(message = "userPaymentOptionId parameter is mandatory!")
+    private String userPaymentOptionId;
     /**
      * One or two digit value that is the expiration month.
      */
@@ -103,9 +105,17 @@ public class EditUPOCreditCardRequest extends SafechargeRequest {
         this.billingAddress = billingAddress;
     }
 
+    public String getUserPaymentOptionId() {
+        return userPaymentOptionId;
+    }
+
+    public void setUserPaymentOptionId(String userPaymentOptionId) {
+        this.userPaymentOptionId = userPaymentOptionId;
+    }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("AddUPOCreditCard{");
+        final StringBuilder sb = new StringBuilder("EditUPOCreditCard{");
         sb.append(", ccExpMonth='")
                 .append(ccExpMonth)
                 .append('\'');
@@ -120,6 +130,9 @@ public class EditUPOCreditCardRequest extends SafechargeRequest {
         sb.append(", userTokenId='")
                 .append(userTokenId)
                 .append('\'');
+        sb.append(", userPaymentOptionId='")
+                .append(userPaymentOptionId)
+                .append('\'');
         sb.append(", ")
                 .append(super.toString());
         sb.append('}');
@@ -133,6 +146,7 @@ public class EditUPOCreditCardRequest extends SafechargeRequest {
         private String ccNameOnCard;
         private String userTokenId;
         private UserDetails billingAddress;
+        private String userPaymentOptionId;
 
         /**
          * Adds the credit card expiration month to the request.
@@ -182,6 +196,17 @@ public class EditUPOCreditCardRequest extends SafechargeRequest {
         }
 
         /**
+         * Adds userPaymentOptionId to the request.
+         *
+         * @param userPaymentOptionId the user token as {@link String}
+         * @return this object
+         */
+        public Builder addUserPaymentOptionId(String userPaymentOptionId) {
+            this.userPaymentOptionId = userPaymentOptionId;
+            return this;
+        }
+
+        /**
          * Adds billing address data to the request.
          *
          * @param billingAddress {@link UserDetails} object to get the billing details from
@@ -225,13 +250,14 @@ public class EditUPOCreditCardRequest extends SafechargeRequest {
          */
         @Override
         public SafechargeBaseRequest build() throws ConstraintViolationException {
-            EditUPOCreditCardRequest addUPOCreditCard = new EditUPOCreditCardRequest();
-            addUPOCreditCard.setCcExpMonth(ccExpMonth);
-            addUPOCreditCard.setCcExpYear(ccExpYear);
-            addUPOCreditCard.setCcNameOnCard(ccNameOnCard);
-            addUPOCreditCard.setUserTokenId(userTokenId);
-            addUPOCreditCard.setBillingAddress(billingAddress);
-            return ValidationUtils.validate(super.build(addUPOCreditCard));
+            EditUPOCreditCardRequest editUPOCreditCard = new EditUPOCreditCardRequest();
+            editUPOCreditCard.setCcExpMonth(ccExpMonth);
+            editUPOCreditCard.setCcExpYear(ccExpYear);
+            editUPOCreditCard.setCcNameOnCard(ccNameOnCard);
+            editUPOCreditCard.setUserTokenId(userTokenId);
+            editUPOCreditCard.setBillingAddress(billingAddress);
+            editUPOCreditCard.setUserPaymentOptionId(userPaymentOptionId);
+            return ValidationUtils.validate(super.build(editUPOCreditCard));
         }
     }
 }

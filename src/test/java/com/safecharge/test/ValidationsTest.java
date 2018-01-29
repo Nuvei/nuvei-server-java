@@ -118,7 +118,7 @@ public class ValidationsTest {
     private static final String dummyCCExpMonth = "03";
     private static final String dummyCCExpYear = "2020";
     private static final String dummyCCNameOnCard = "Nikola Dichev";
-    private static final String dummyUserPaymentOptionId = "Nikola Dichev";
+    private static final String dummyUserPaymentOptionId = "42342";
 
     private static final String validBrand = "Visa";
 
@@ -815,6 +815,7 @@ public class ValidationsTest {
                 .addUserTokenId(dummyUserId)
                 .addCcExpMonth(dummyCcExpMonth)
                 .addCCExpYear(dummyCcExpYear)
+                .addUserPaymentOptionId(dummyUserPaymentOptionId)
                 .addCcNameOnCard(dummyCcNameOnCard)
                 .build();
         assertTrue(safechargeRequest != null);
@@ -829,7 +830,7 @@ public class ValidationsTest {
                     .build();
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
-            assertEquals(6, e.getConstraintViolations().size());
+            assertEquals(7, e.getConstraintViolations().size());
         }
     }
 
