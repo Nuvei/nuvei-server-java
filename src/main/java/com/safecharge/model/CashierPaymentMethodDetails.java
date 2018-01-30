@@ -20,9 +20,12 @@ public class CashierPaymentMethodDetails {
     private String upoName;
     private String paymentMethodName;
     private String upoStatus;
-    private UserDetails billingAddress;
-    private Map<String, String> upoData;
+    private String upoRegistrationDate;
     private String expiryDate;
+    private String depositSuccess;
+    private String withdrawSuccess;
+    private UserDetailsCashier billingAddress;
+    private Map<String, String> upoData;
 
     public Long getUserPaymentOptionId() {
         return userPaymentOptionId;
@@ -56,11 +59,11 @@ public class CashierPaymentMethodDetails {
         this.upoStatus = upoStatus;
     }
 
-    public UserDetails getBillingAddress() {
+    public UserDetailsCashier getBillingAddress() {
         return billingAddress;
     }
 
-    public void setBillingAddress(UserDetails billingAddress) {
+    public void setBillingAddress(UserDetailsCashier billingAddress) {
         this.billingAddress = billingAddress;
     }
 
@@ -78,6 +81,30 @@ public class CashierPaymentMethodDetails {
 
     public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
+    }
+
+    public String getUpoRegistrationDate() {
+        return upoRegistrationDate;
+    }
+
+    public void setUpoRegistrationDate(String upoRegistrationDate) {
+        this.upoRegistrationDate = upoRegistrationDate;
+    }
+
+    public String getDepositSuccess() {
+        return depositSuccess;
+    }
+
+    public void setDepositSuccess(String depositSuccess) {
+        this.depositSuccess = depositSuccess;
+    }
+
+    public String getWithdrawSuccess() {
+        return withdrawSuccess;
+    }
+
+    public void setWithdrawSuccess(String withdrawSuccess) {
+        this.withdrawSuccess = withdrawSuccess;
     }
 
     @Override
@@ -100,6 +127,15 @@ public class CashierPaymentMethodDetails {
                 .append(upoData);
         sb.append(", expiryDate='")
                 .append(expiryDate)
+                .append('\'');
+        sb.append(", upoRegistrationDate='")
+                .append(upoRegistrationDate)
+                .append('\'');
+        sb.append(", depositSuccess='")
+                .append(depositSuccess)
+                .append('\'');
+        sb.append(", withdrawSuccess='")
+                .append(withdrawSuccess)
                 .append('\'');
         sb.append('}');
         return sb.toString();

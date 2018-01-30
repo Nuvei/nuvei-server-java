@@ -16,27 +16,27 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2018 SafeCharge International Group Limited.
  * <p>
  * Request to add APM User Payment Option to a User.
  * <p>
  * The goal of this request is to add an APM UPO account for specific users according to their User Token ID.
  * Once an APM UPO is added to a consumer’s UPO list, the APM is displayed in the user’s available payment options on the payment page.
  *
- * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * @author <a mailto:bozhidarsh@safecharge.com>Bozhidar Shumanov</a>
  * @see AddUPOCreditCardByTempTokenRequest
  * @see AddUPOCreditCardRequest
  * @see com.safecharge.response.AddUPOAPMResponse
- * @since 3/21/2017
+ * @since 1/29/2018
  */
-@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.ADD_CASHIER_APM)
-public class AddUPOAPMRequest extends SafechargeRequest {
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.EDIT_CASHIER_APM)
+public class EditUPOAPMRequest extends SafechargeRequest {
 
     /**
      * The unique name of the payment method in Cashier system (for example apmgw_Neteller).  For a list of possible values, see APM Unique SafeCharge Cashier Names.
      */
-    @NotNull(message = "paymentMethodName parameter is mandatory!")
-    private String paymentMethodName;
+    @NotNull(message = "userPaymentOptionId parameter is mandatory!")
+    private String userPaymentOptionId;
 
     /**
      * A list of name-value pairs that contain the parameters of the user payment option.
@@ -60,12 +60,12 @@ public class AddUPOAPMRequest extends SafechargeRequest {
         return new Builder();
     }
 
-    public String getPaymentMethodName() {
-        return paymentMethodName;
+    public String getUserPaymentOptionId() {
+        return userPaymentOptionId;
     }
 
-    public void setPaymentMethodName(String paymentMethodName) {
-        this.paymentMethodName = paymentMethodName;
+    public void setUserPaymentOptionId(String userPaymentOptionId) {
+        this.userPaymentOptionId = userPaymentOptionId;
     }
 
     public Map<String, String> getApmData() {
@@ -97,8 +97,8 @@ public class AddUPOAPMRequest extends SafechargeRequest {
         final StringBuilder sb = new StringBuilder("AddUPOAPM{");
         sb.append("billingAddress=")
                 .append(billingAddress);
-        sb.append(", paymentMethodName='")
-                .append(paymentMethodName)
+        sb.append(", userPaymentOptionId='")
+                .append(userPaymentOptionId)
                 .append('\'');
         sb.append(", apmData=")
                 .append(apmData);
@@ -114,7 +114,7 @@ public class AddUPOAPMRequest extends SafechargeRequest {
     public static class Builder extends SafechargeBuilder<Builder> {
 
         UserDetailsCashier billingAddress;
-        private String paymentMethodName;
+        private String userPaymentOptionId;
         private Map<String, String> apmData;
 
         @NotNull
@@ -123,12 +123,12 @@ public class AddUPOAPMRequest extends SafechargeRequest {
         /**
          * Adds the payment method name to the request.
          *
-         * @param paymentMethodName The unique name of the payment method in Cashier system.
+         * @param userPaymentOptionId The unique name of the payment method in Cashier system.
          * @return this object
          * @see <a href="https://www.safecharge.com/docs/api/#apm-account-identifiers}">APM account identifiers</a>
          */
-        public Builder addPaymentMethodName(String paymentMethodName) {
-            this.paymentMethodName = paymentMethodName;
+        public Builder addUserPaymentOptionId(String userPaymentOptionId) {
+            this.userPaymentOptionId = userPaymentOptionId;
             return this;
         }
 
@@ -198,8 +198,8 @@ public class AddUPOAPMRequest extends SafechargeRequest {
          * @return this object
          */
         public Builder addBillingAddress(String address, String city, String countryCode, String email, String firstName,
-                                                           String lastName, String phone, String state, String zip, String birthdate,
-                                                           String county, String locale) {
+                                         String lastName, String phone, String state, String zip, String birthdate,
+                                         String county, String locale) {
 
             UserDetailsCashier billingAddress = AddressUtils.createUserDetailsCashierFromParams(address, city, countryCode, email, firstName,
                     lastName, phone, state, zip, birthdate, county, locale);
@@ -215,8 +215,8 @@ public class AddUPOAPMRequest extends SafechargeRequest {
         @Override
         public SafechargeBaseRequest build() throws ConstraintViolationException {
 
-            AddUPOAPMRequest addUPOAPM = new AddUPOAPMRequest();
-            addUPOAPM.setPaymentMethodName(paymentMethodName);
+            EditUPOAPMRequest addUPOAPM = new EditUPOAPMRequest();
+            addUPOAPM.setUserPaymentOptionId(userPaymentOptionId);
             addUPOAPM.setUserTokenId(userTokenId);
             addUPOAPM.setApmData(apmData);
             addUPOAPM.setBillingAddress(billingAddress);

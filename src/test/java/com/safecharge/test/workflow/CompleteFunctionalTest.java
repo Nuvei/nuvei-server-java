@@ -21,10 +21,13 @@ import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.CreateUserRequest;
 import com.safecharge.request.Dynamic3DRequest;
+import com.safecharge.request.EditUPOAPMRequest;
+import com.safecharge.request.EditUPOCreditCardRequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.GetUserDetailsRequest;
+import com.safecharge.request.GetUserUPOsRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
@@ -42,10 +45,13 @@ import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
 import com.safecharge.response.Dynamic3DResponse;
+import com.safecharge.response.EditUPOAPMResponse;
+import com.safecharge.response.EditUPOCreditCardResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
 import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.response.GetUserDetailsResponse;
+import com.safecharge.response.GetUserUPOsResponse;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.Payment3DResponse;
 import com.safecharge.response.PaymentAPMResponse;
@@ -251,6 +257,34 @@ public class CompleteFunctionalTest extends BaseTest {
     public void testAddUPOCreditCardByTokenRequest() {
         AddUPOCreditCardByTokenResponse response =
                 baseMockTest("./mock/request/addUPOCreditCardByToken.json", AddUPOCreditCardByTokenRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test
+    public void testGetUserUPOsRequest() {
+        GetUserUPOsResponse response = baseMockTest("./mock/request/getUserUPOs.json", GetUserUPOsRequest.class);
+
+        Assert.assertTrue(defined(response.getMerchantId()));
+        Assert.assertTrue(defined(response.getMerchantSiteId()));
+        Assert.assertTrue(defined(response.getClientRequestId()));
+        Assert.assertNotNull(response.getPaymentMethods());
+        Assert.assertTrue(!response.getPaymentMethods().isEmpty());
+        Assert.assertTrue(defined(response.getPaymentMethods().get(0).getUpoName()));
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test
+    public void testEditUpoCreditCardRequest() {
+        EditUPOCreditCardResponse response = baseMockTestMethodWithoutSessionToken("mock/request/editUPOCreditCard.json", EditUPOCreditCardRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test
+    public void testEditUpoAPMRequest() {
+        EditUPOAPMResponse response = baseMockTestMethodWithoutSessionToken("mock/request/editUPOAPM.json", EditUPOAPMRequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
     }

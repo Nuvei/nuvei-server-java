@@ -88,6 +88,13 @@ public class ChecksumUtils {
                 "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "ccExpMonth", "ccExpYear", "ccNameOnCard",
                 "ccToken", "brand", "uniqueCC", "bin", "last4Digits", "billingAddress", "lastDepositUse", "lastDepositSuccess",
                 "lastWithdrawalUse", "lastWithdrawalSuccess", "registrationDate", "expiryDate", "timeStamp"));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.EDIT_CASHIER_CC_CARD.name(), Arrays.asList(
+                "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "userPaymentOptionId", "ccExpMonth",
+                "ccExpYear", "ccNameOnCard", "billingAddress", "timeStamp"));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.EDIT_CASHIER_APM.name(), Arrays.asList(
+                "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "userPaymentOptionId", "apmData", "billingAddress", "timeStamp"));
     }
 
     /**

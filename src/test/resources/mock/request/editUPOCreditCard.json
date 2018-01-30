@@ -1,0 +1,23 @@
+{
+  "merchantId": "7228839313016442768",
+  "merchantSiteId": "117711",
+  "userTokenId": "test_rest_api",
+  "clientRequestId": "1490268819000",
+  "timeStamp": "20170323133339",
+  "checksum": "901e5382400687668af391a849e2d99ce5bdc122d6698c333d36b6c79b79024a",
+  "userPaymentOptionId": "162300",
+  "ccExpMonth": "03",
+  "ccExpYear": "21",
+  "ccNameOnCard": "PetkaNameOnCard",
+  "billingAddress": {
+    "firstName": "Zilsijihrw",
+    "lastName": "Jgethizxrr",
+    "address": "340689 Billing Str.",
+    "email": "mhsbg.xxnbx@udapl.rg",
+    "phone": "359888526527",
+    "city": "Billing City",
+    "zip": "BNE48957",
+    "countryCode": "BG",
+    "state": ""
+  }
+}
