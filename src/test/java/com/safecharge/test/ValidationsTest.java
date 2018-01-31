@@ -27,8 +27,10 @@ import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CancelSubscriptionRequest;
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.CreateSubscriptionRequest;
+import com.safecharge.request.DeleteUPORequest;
 import com.safecharge.request.EditUPOAPMRequest;
 import com.safecharge.request.EditUPOCreditCardRequest;
+import com.safecharge.request.EnableUPORequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
@@ -43,8 +45,10 @@ import com.safecharge.request.PayoutRequest;
 import com.safecharge.request.RefundTransactionRequest;
 import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.SettleTransactionRequest;
+import com.safecharge.request.SuspendUPORequest;
 import com.safecharge.request.UpdateOrderRequest;
 import com.safecharge.request.VoidTransactionRequest;
+import com.safecharge.request.basic.EditUPOBasicRequest;
 import com.safecharge.util.AddressUtils;
 import com.safecharge.util.Constants;
 import com.safecharge.util.DynamicDescriptorUtils;
@@ -183,6 +187,18 @@ public class ValidationsTest {
         dummyCardData.setExpirationMonth("01");
         dummyCardData.setExpirationYear("2020");
 
+    }
+
+    private void commonFailedValidationEnableUPORequest(Constants.EditUpoBuilderType builderType, int expectedConstraintViolationCount) {
+
+        try {
+            EditUPOBasicRequest.builder(builderType)
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(expectedConstraintViolationCount, e.getConstraintViolations().size());
+        }
     }
 
     @Test
@@ -824,14 +840,7 @@ public class ValidationsTest {
     @Test
     public void testFailedValidation_EditUPOCreditCardRequest() {
 
-        try {
-            EditUPOCreditCardRequest.builder()
-                    .addMerchantInfo(invalidMerchantInfo)
-                    .build();
-            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
-        } catch (ConstraintViolationException e) {
-            assertEquals(7, e.getConstraintViolations().size());
-        }
+        commonFailedValidationEnableUPORequest(Constants.EditUpoBuilderType.CCARD, 7);
     }
 
     @Test
@@ -849,13 +858,57 @@ public class ValidationsTest {
     @Test
     public void testFailedValidation_EditUPOAPMRequest() {
 
-        try {
-            EditUPOAPMRequest.builder()
-                    .addMerchantInfo(invalidMerchantInfo)
-                    .build();
-            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
-        } catch (ConstraintViolationException e) {
-            assertEquals(5, e.getConstraintViolations().size());
-        }
+        commonFailedValidationEnableUPORequest(Constants.EditUpoBuilderType.APM, 5);
+    }
+
+    @Test
+    public void testSuccessfulValidation_DeleteUPORequest() {
+
+        SafechargeBaseRequest safechargeRequest = DeleteUPORequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addUserTokenId(dummyUserId)
+                .addUserPaymentOptionId(dummyUserPaymentOptionId)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_DeleteUPORequest() {
+
+        commonFailedValidationEnableUPORequest(Constants.EditUpoBuilderType.DELETE, 4);
+    }
+
+    @Test
+    public void testSuccessfulValidation_SuspendUPORequest() {
+
+        SafechargeBaseRequest safechargeRequest = SuspendUPORequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addUserTokenId(dummyUserId)
+                .addUserPaymentOptionId(dummyUserPaymentOptionId)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_SuspendUPORequest() {
+
+        commonFailedValidationEnableUPORequest(Constants.EditUpoBuilderType.SUSPEND, 4);
+    }
+
+    @Test
+    public void testSuccessfulValidation_EnableUPORequest() {
+
+        SafechargeBaseRequest safechargeRequest = EnableUPORequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addUserTokenId(dummyUserId)
+                .addUserPaymentOptionId(dummyUserPaymentOptionId)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testFailedValidation_EnableUPORequest() {
+
+        commonFailedValidationEnableUPORequest(Constants.EditUpoBuilderType.ENABLE, 4);
     }
 }

@@ -95,6 +95,15 @@ public class ChecksumUtils {
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.EDIT_CASHIER_APM.name(), Arrays.asList(
                 "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "userPaymentOptionId", "apmData", "billingAddress", "timeStamp"));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.DELETE_UPO.name(), Arrays.asList(
+                "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "userPaymentOptionId", "timeStamp"));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.SUSPEND_UPO.name(), Arrays.asList(
+                "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "userPaymentOptionId", "timeStamp"));
+
+        requestChecksumOrder.put(Constants.ChecksumOrderMapping.ENABLE_UPO.name(), Arrays.asList(
+                "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "userPaymentOptionId", "timeStamp"));
     }
 
     /**
