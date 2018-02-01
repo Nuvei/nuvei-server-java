@@ -20,9 +20,11 @@ import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.CreateUserRequest;
+import com.safecharge.request.DeleteUPORequest;
 import com.safecharge.request.Dynamic3DRequest;
 import com.safecharge.request.EditUPOAPMRequest;
 import com.safecharge.request.EditUPOCreditCardRequest;
+import com.safecharge.request.EnableUPORequest;
 import com.safecharge.request.GetMerchantPaymentMethodsRequest;
 import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
@@ -35,6 +37,7 @@ import com.safecharge.request.PaymentCCRequest;
 import com.safecharge.request.PayoutRequest;
 import com.safecharge.request.RefundTransactionRequest;
 import com.safecharge.request.SettleTransactionRequest;
+import com.safecharge.request.SuspendUPORequest;
 import com.safecharge.request.UpdateOrderRequest;
 import com.safecharge.request.UpdateUserRequest;
 import com.safecharge.request.VoidTransactionRequest;
@@ -44,9 +47,11 @@ import com.safecharge.response.AddUPOCreditCardByTokenResponse;
 import com.safecharge.response.AddUPOCreditCardResponse;
 import com.safecharge.response.Authorization3DResponse;
 import com.safecharge.response.CardTokenizationResponse;
+import com.safecharge.response.DeleteUPOResponse;
 import com.safecharge.response.Dynamic3DResponse;
 import com.safecharge.response.EditUPOAPMResponse;
 import com.safecharge.response.EditUPOCreditCardResponse;
+import com.safecharge.response.EnableUPOResponse;
 import com.safecharge.response.GetMerchantPaymentMethodsResponse;
 import com.safecharge.response.GetOrderDetailsResponse;
 import com.safecharge.response.GetSessionTokenResponse;
@@ -59,6 +64,7 @@ import com.safecharge.response.PaymentCCResponse;
 import com.safecharge.response.PayoutResponse;
 import com.safecharge.response.RefundTransactionResponse;
 import com.safecharge.response.SettleTransactionResponse;
+import com.safecharge.response.SuspendUPOResponse;
 import com.safecharge.response.UpdateOrderResponse;
 import com.safecharge.response.UserResponse;
 import com.safecharge.response.VoidTransactionResponse;
@@ -285,6 +291,29 @@ public class CompleteFunctionalTest extends BaseTest {
     @Test
     public void testEditUpoAPMRequest() {
         EditUPOAPMResponse response = baseMockTestMethodWithoutSessionToken("mock/request/editUPOAPM.json", EditUPOAPMRequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test
+    public void testEnableUpoRequest() {
+        EnableUPOResponse response = baseMockTestMethodWithoutSessionToken("mock/request/basicEditUPO.json", EnableUPORequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+
+    @Test
+    public void testDeleteUpoRequest() {
+        DeleteUPOResponse response = baseMockTestMethodWithoutSessionToken("mock/request/basicEditUPO.json", DeleteUPORequest.class);
+
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+
+    @Test
+    public void testSuspendUpoRequest() {
+        SuspendUPOResponse response = baseMockTestMethodWithoutSessionToken("mock/request/basicEditUPO.json", SuspendUPORequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
     }
