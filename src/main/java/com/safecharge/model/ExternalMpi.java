@@ -5,19 +5,19 @@ import javax.validation.constraints.Size;
 
 public class ExternalMpi {
 
-    @Size(max = 1)
+    @Size(min=1, max = 1, message = "value is invalid. The allowed values are: (0, {max}).")
     @NotNull
     private String isExternalMpi;
 
-    @Size(max = 2)
+    @Size(min=1, max = 2, message = "value is invalid.")
     @NotNull
     String eci;
 
-    @Size(max = 50)
+    @Size(min=1, max = 50, message = "value is invalid. The length of the value should be between {min} and {max} symbols.")
     @NotNull
     String cavv;
 
-    @Size(max = 5)
+    @Size(max = 50, message = "value is invalid. The length of the value should be maximum {max} symbols.")
     String xid;
 
     public String getIsExternalMpi() {
