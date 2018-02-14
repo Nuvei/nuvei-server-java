@@ -144,6 +144,10 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
                 .append(cardData);
         sb.append(", userPaymentOption=")
                 .append(userPaymentOption);
+        sb.append(", isPartialApproval=")
+                .append(isPartialApproval);
+        sb.append(", externalMpi=")
+                .append(externalMpi);
         sb.append(", isRebilling=")
                 .append(isRebilling);
         sb.append(", ");
