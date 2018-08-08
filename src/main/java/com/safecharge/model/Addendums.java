@@ -16,6 +16,12 @@ public class Addendums {
     @Valid
     private AddendumsLocalPayment localPayment;
 
+    @Valid
+    private AddendumsCardPresentPointOfSale cardPresentPointOfSale;
+
+    @Valid
+    private AddendumsAirlines airlines;
+
     public AddendumsLocalPayment getLocalPayment() {
         return localPayment;
     }
@@ -24,4 +30,19 @@ public class Addendums {
         this.localPayment = localPayment;
     }
 
+    public AddendumsCardPresentPointOfSale getCardPresentPointOfSale() {
+        return cardPresentPointOfSale;
+    }
+
+    public void setCardPresentPointOfSale(AddendumsCardPresentPointOfSale cardPresentPointOfSale) {
+        this.cardPresentPointOfSale = cardPresentPointOfSale;
+    }
+
+    public AddendumsAirlines getAirlines() {
+        return airlines;
+    }
+
+    public void setAirlines(AddendumsAirlines airlines) {
+        this.airlines = airlines;
+    }
 }
