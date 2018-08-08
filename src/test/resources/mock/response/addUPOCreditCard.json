@@ -27,5 +27,5 @@
     "locale": "de_DE",
     "birthdate": "20/01/1990"
   },
-  "externalTokenProvider": "externalTokenProvider"
+  "externalTokenProvider": ""
 }
