@@ -18,5 +18,6 @@
   "clientRequestId": "20170316103410",
   "CVV2Reply": "3434",
   "AVSCode": "344",
-  "transactionType": "Auth"
+  "transactionType": "Auth",
+  "externalTokenProvider" : ""
 }
