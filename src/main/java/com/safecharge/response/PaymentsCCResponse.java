@@ -9,6 +9,8 @@ public class PaymentsCCResponse extends PaymentsResponse {
     protected String CVV2Reply;
     protected String AVSCode;
 
+    protected String transactionType;
+
     public PartialApprovalDetails getPartialApprovalDetails() {
         return partialApprovalDetails;
     }
@@ -33,17 +35,35 @@ public class PaymentsCCResponse extends PaymentsResponse {
         this.AVSCode = AVSCode;
     }
 
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sBuilder = new StringBuilder("PaymentsCCResponse [");
-        sBuilder.append(super.toString());
-        sBuilder.append(", partialApprovalDetails=");
-        sBuilder.append(partialApprovalDetails);
-        sBuilder.append(", CVV2Reply=");
-        sBuilder.append(CVV2Reply);
-        sBuilder.append(", AVSCode=");
-        sBuilder.append(AVSCode);
-        sBuilder.append("]");
-        return sBuilder.toString();
+        final StringBuilder sb = new StringBuilder("PaymentsCCResponse{");
+        sb.append("partialApprovalDetails=").append(partialApprovalDetails);
+        sb.append(", CVV2Reply='").append(CVV2Reply).append('\'');
+        sb.append(", AVSCode='").append(AVSCode).append('\'');
+        sb.append(", transactionType='").append(transactionType).append('\'');
+        sb.append(", orderId='").append(orderId).append('\'');
+        sb.append(", transactionStatus='").append(transactionStatus).append('\'');
+        sb.append(", paymentMethodErrorCode='").append(paymentMethodErrorCode).append('\'');
+        sb.append(", paymentMethodErrorReason='").append(paymentMethodErrorReason).append('\'');
+        sb.append(", gwErrorCode=").append(gwErrorCode);
+        sb.append(", gwErrorReason='").append(gwErrorReason).append('\'');
+        sb.append(", gwExtendedErrorCode=").append(gwExtendedErrorCode);
+        sb.append(", userPaymentOptionId='").append(userPaymentOptionId).append('\'');
+        sb.append(", externalTransactionId='").append(externalTransactionId).append('\'');
+        sb.append(", transactionId='").append(transactionId).append('\'');
+        sb.append(", authCode='").append(authCode).append('\'');
+        sb.append(", userTokenId='").append(userTokenId).append('\'');
+        sb.append(", externalToken=").append(externalToken);
+        sb.append('}');
+        return sb.toString();
     }
 }

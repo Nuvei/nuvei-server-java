@@ -19,5 +19,6 @@
   "version": "1.0",
   "clientRequestId": "1488984483585",
   "CVV2Reply": "3434",
-  "AVSCode": "344"
+  "AVSCode": "344",
+  "transactionType": "Auth"
 }
