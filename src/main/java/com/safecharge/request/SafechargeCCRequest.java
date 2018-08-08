@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.model.CardData;
 import com.safecharge.model.ExternalMpi;
+import com.safecharge.model.ExternalTokenProvider;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.util.Constants;
 
@@ -74,7 +75,10 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
     private String isPartialApproval;
 
     @Valid
-    ExternalMpi externalMpi;
+    private ExternalMpi externalMpi;
+
+    @Valid
+    private ExternalTokenProvider externalTokenProvider;
 
     public String getOrderId() {
         return orderId;
@@ -132,6 +136,14 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
         this.externalMpi = externalMpi;
     }
 
+    public ExternalTokenProvider getExternalTokenProvider() {
+        return externalTokenProvider;
+    }
+
+    public void setExternalTokenProvider(ExternalTokenProvider externalTokenProvider) {
+        this.externalTokenProvider = externalTokenProvider;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -150,6 +162,8 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
                 .append(externalMpi);
         sb.append(", isRebilling=")
                 .append(isRebilling);
+        sb.append(", externalTokenProvider=")
+                .append(externalTokenProvider);
         sb.append(", ");
         sb.append(super.toString());
         return sb.toString();

@@ -10,6 +10,7 @@ public class PaymentsCCResponse extends PaymentsResponse {
     protected String AVSCode;
 
     protected String transactionType;
+    private String externalTokenProvider;
 
     public PartialApprovalDetails getPartialApprovalDetails() {
         return partialApprovalDetails;
@@ -43,6 +44,14 @@ public class PaymentsCCResponse extends PaymentsResponse {
         this.transactionType = transactionType;
     }
 
+    public String getExternalTokenProvider() {
+        return externalTokenProvider;
+    }
+
+    public void setExternalTokenProvider(String externalTokenProvider) {
+        this.externalTokenProvider = externalTokenProvider;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentsCCResponse{");
@@ -50,6 +59,7 @@ public class PaymentsCCResponse extends PaymentsResponse {
         sb.append(", CVV2Reply='").append(CVV2Reply).append('\'');
         sb.append(", AVSCode='").append(AVSCode).append('\'');
         sb.append(", transactionType='").append(transactionType).append('\'');
+        sb.append(", externalTokenProvider='").append(externalTokenProvider).append('\'');
         sb.append(", orderId='").append(orderId).append('\'');
         sb.append(", transactionStatus='").append(transactionStatus).append('\'');
         sb.append(", paymentMethodErrorCode='").append(paymentMethodErrorCode).append('\'');

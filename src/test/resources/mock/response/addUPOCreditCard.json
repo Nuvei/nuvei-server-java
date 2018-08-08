@@ -14,5 +14,18 @@
   "merchantId": "7228839313016442768",
   "merchantSiteId": "117711",
   "version": "1.0",
-  "clientRequestId": "1490268886000"
+  "clientRequestId": "1490268886000",
+  "billingAddress": {
+    "firstName": "First",
+    "lastName": "Last",
+    "address": "Address",
+    "phone": "012345687890",
+    "zip": "12345",
+    "city": "City",
+    "countryCode": "DE",
+    "email": "test@test.com",
+    "locale": "de_DE",
+    "birthdate": "20/01/1990"
+  },
+  "externalTokenProvider": "externalTokenProvider"
 }

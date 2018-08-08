@@ -2,6 +2,7 @@ package com.safecharge.request.builder;
 
 import com.safecharge.model.CardData;
 import com.safecharge.model.ExternalMpi;
+import com.safecharge.model.ExternalTokenProvider;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.SafechargeCCRequest;
 import com.safecharge.util.CardUtils;
@@ -27,6 +28,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     private int isRebilling;
     private String isPartialApproval;
     private ExternalMpi externalMpi;
+    private ExternalTokenProvider externalTokenProvider;
 
     /**
      * Adds an order to the request.
@@ -150,6 +152,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         request.setIsRebilling(isRebilling);
         request.setExternalMpi(externalMpi);
         request.setIsPartialApproval(isPartialApproval);
+        request.setExternalTokenProvider(externalTokenProvider);
 
         return request;
     }
