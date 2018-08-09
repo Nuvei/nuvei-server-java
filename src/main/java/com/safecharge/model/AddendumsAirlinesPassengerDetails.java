@@ -102,12 +102,4 @@ public class AddendumsAirlinesPassengerDetails {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    public String getPassengerIndex() {
-        return passangerId;
-    }
-
-    public void setPassengerIndex(String passengerIndex) {
-        this.passangerId = passengerIndex;
-    }
 }
