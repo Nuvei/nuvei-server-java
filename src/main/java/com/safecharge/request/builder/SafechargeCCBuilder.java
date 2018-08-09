@@ -129,8 +129,23 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         return (T) this;
     }
 
+    /**
+     *
+     * @param externalMpi
+     * @return
+     */
     public T addExternalMpi(ExternalMpi externalMpi) {
         this.externalMpi = externalMpi;
+        return (T) this;
+    }
+
+    /**
+     *
+     * @param externalTokenProvider
+     * @return
+     */
+    public T addExternalTokenProvider(ExternalTokenProvider externalTokenProvider) {
+        this.externalTokenProvider = externalTokenProvider;
         return (T) this;
     }
 
