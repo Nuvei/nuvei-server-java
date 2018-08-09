@@ -1,5 +1,7 @@
 package com.safecharge.response;
 
+import com.safecharge.model.UserDetails;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
@@ -40,6 +42,10 @@ public class AddUPOCreditCardResponse extends SafechargeResponse {
      * Value describing if the card used is a credit card or debit card.
      */
     private String cardType;
+
+    private String externalTokenProvider;
+
+    private UserDetails billingAddress;
 
     public Long getUserPaymentOptionId() {
         return userPaymentOptionId;
@@ -97,6 +103,22 @@ public class AddUPOCreditCardResponse extends SafechargeResponse {
         this.cardType = cardType;
     }
 
+    public String getExternalTokenProvider() {
+        return externalTokenProvider;
+    }
+
+    public void setExternalTokenProvider(String externalTokenProvider) {
+        this.externalTokenProvider = externalTokenProvider;
+    }
+
+    public UserDetails getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(UserDetails billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("AddUPOCreditCardResponse{");
@@ -119,6 +141,12 @@ public class AddUPOCreditCardResponse extends SafechargeResponse {
                 .append('\'');
         sb.append(", cardType='")
                 .append(cardType)
+                .append('\'');
+        sb.append(", externalTokenProvider='")
+                .append(externalTokenProvider)
+                .append('\'');
+        sb.append(", billingAddress='")
+                .append(billingAddress)
                 .append('\'');
         sb.append(", ")
                 .append(super.toString());

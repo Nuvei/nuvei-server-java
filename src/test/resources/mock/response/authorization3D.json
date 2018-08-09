@@ -15,5 +15,9 @@
   "merchantId": "2885023999185468261",
   "merchantSiteId": "5612",
   "version": "1.0",
-  "clientRequestId": "20170316103410"
+  "clientRequestId": "20170316103410",
+  "CVV2Reply": "3434",
+  "AVSCode": "344",
+  "transactionType": "Auth",
+  "externalTokenProvider" : ""
 }

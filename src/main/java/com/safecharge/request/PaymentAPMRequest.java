@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.safecharge.model.SubMethodDetails;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.builder.SafechargeOrderBuilder;
 import com.safecharge.util.Constants;
@@ -62,6 +63,9 @@ public class PaymentAPMRequest
     @Valid
     private UserPaymentOption userPaymentOption;
 
+    @Valid
+    private SubMethodDetails subMethodDetails;
+
     public static Builder builder() {
         return new Builder();
     }
@@ -99,22 +103,22 @@ public class PaymentAPMRequest
         this.userPaymentOption = userPaymentOption;
     }
 
+    public SubMethodDetails getSubMethodDetails() {
+        return subMethodDetails;
+    }
+
+    public void setSubMethodDetails(SubMethodDetails subMethodDetails) {
+        this.subMethodDetails = subMethodDetails;
+    }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentAPMRequest{");
-        sb.append("orderId='")
-                .append(orderId)
-                .append('\'');
-        sb.append(", paymentMethod='")
-                .append(paymentMethod)
-                .append('\'');
-        sb.append(", userAccountDetails=")
-                .append(userAccountDetails);
-        sb.append(", userPaymentOption=")
-                .append(userPaymentOption);
-        sb.append(", ")
-                .append(super.toString());
+        sb.append("orderId='").append(orderId).append('\'');
+        sb.append(", paymentMethod='").append(paymentMethod).append('\'');
+        sb.append(", userAccountDetails=").append(userAccountDetails);
+        sb.append(", userPaymentOption=").append(userPaymentOption);
+        sb.append(", subMethodDetails=").append(subMethodDetails);
         sb.append('}');
         return sb.toString();
     }
@@ -125,6 +129,7 @@ public class PaymentAPMRequest
         private String paymentMethod;
         private Map<String, String> userAccountDetails;
         private UserPaymentOption userPaymentOption;
+        private SubMethodDetails subMethodDetails;
 
         /**
          * Adds order ID to the request.
@@ -189,6 +194,16 @@ public class PaymentAPMRequest
         }
 
         /**
+         * Adds {@link SubMethodDetails} to the request.
+         * @param subMethodDetails
+         * @return
+         */
+        public Builder addSubMethodDetails(SubMethodDetails subMethodDetails) {
+            this.subMethodDetails = subMethodDetails;
+            return this;
+        }
+
+        /**
          * Builds the request.
          *
          * @return {@link SafechargeRequest} object build from the params set by this builder
@@ -200,6 +215,7 @@ public class PaymentAPMRequest
             paymentAPMRequest.setPaymentMethod(paymentMethod);
             paymentAPMRequest.setUserAccountDetails(userAccountDetails);
             paymentAPMRequest.setUserPaymentOption(userPaymentOption);
+            paymentAPMRequest.setSubMethodDetails(subMethodDetails);
             return ValidationUtils.validate(super.build(paymentAPMRequest));
         }
     }

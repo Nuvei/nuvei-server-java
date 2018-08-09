@@ -5,6 +5,7 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.MerchantDetails;
+import com.safecharge.model.SubMethodDetails;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.builder.SafechargeBuilder;
@@ -59,6 +60,9 @@ public class PayoutRequest extends SafechargeRequest {
 
     @Valid
     private UrlDetails urlDetails;
+
+    @Valid
+    private SubMethodDetails subMethodDetails;
 
     public static PayoutRequest.Builder builder() {
         return new PayoutRequest.Builder();
@@ -136,40 +140,28 @@ public class PayoutRequest extends SafechargeRequest {
         this.urlDetails = urlDetails;
     }
 
+    public SubMethodDetails getSubMethodDetails() {
+        return subMethodDetails;
+    }
+
+    public void setSubMethodDetails(SubMethodDetails subMethodDetails) {
+        this.subMethodDetails = subMethodDetails;
+    }
+
     @Override
     public String toString() {
-
-        final StringBuilder sb = new StringBuilder();
-        sb.append("PayoutRequest{");
-        sb.append(super.toString());
-        sb.append(", userTokenId='")
-                .append(userTokenId)
-                .append('\'');
-        sb.append(", clientUniqueId='")
-                .append(clientUniqueId)
-                .append('\'');
-        sb.append(", amount='")
-                .append(amount)
-                .append('\'');
-        sb.append(", currency='")
-                .append(currency)
-                .append('\'');
-        sb.append("}");
-        sb.append(", userPaymentOption='")
-                .append(userPaymentOption)
-                .append('\'');
-        sb.append(", comment='")
-                .append(comment)
-                .append('\'');
-        sb.append(", dynamicDescriptor='")
-                .append(dynamicDescriptor)
-                .append('\'');
-        sb.append(", merchantDetails='")
-                .append(merchantDetails)
-                .append('\'');
-        sb.append(", urlDetails='")
-                .append(urlDetails)
-                .append('\'');
+        final StringBuilder sb = new StringBuilder("PayoutRequest{");
+        sb.append("userTokenId='").append(userTokenId).append('\'');
+        sb.append(", clientUniqueId='").append(clientUniqueId).append('\'');
+        sb.append(", amount='").append(amount).append('\'');
+        sb.append(", currency='").append(currency).append('\'');
+        sb.append(", userPaymentOption=").append(userPaymentOption);
+        sb.append(", comment='").append(comment).append('\'');
+        sb.append(", dynamicDescriptor=").append(dynamicDescriptor);
+        sb.append(", merchantDetails=").append(merchantDetails);
+        sb.append(", urlDetails=").append(urlDetails);
+        sb.append(", subMethodDetails=").append(subMethodDetails);
+        sb.append('}');
         return sb.toString();
     }
 
@@ -183,6 +175,7 @@ public class PayoutRequest extends SafechargeRequest {
         private DynamicDescriptor dynamicDescriptor;
         private MerchantDetails merchantDetails;
         private UrlDetails urlDetails;
+        private SubMethodDetails subMethodDetails;
 
         /**
          * @param userTokenId
@@ -259,6 +252,23 @@ public class PayoutRequest extends SafechargeRequest {
         }
 
         /**
+         *
+         * @param subMethodDetails
+         * @return
+         */
+        public Builder addSubMethodDetails(SubMethodDetails subMethodDetails) {
+            this.subMethodDetails = subMethodDetails;
+            return this;
+        }
+
+        public Builder addSubMethodDetails(String subMethod) {
+            SubMethodDetails subMethodDetails = new SubMethodDetails();
+            subMethodDetails.setSubMethod(subMethod);
+            this.subMethodDetails = subMethodDetails;
+            return this;
+        }
+
+        /**
          * Builds the request.
          *
          * @return this object
@@ -275,6 +285,7 @@ public class PayoutRequest extends SafechargeRequest {
             request.setDynamicDescriptor(dynamicDescriptor);
             request.setMerchantDetails(merchantDetails);
             request.setUrlDetails(urlDetails);
+            request.setSubMethodDetails(subMethodDetails);
             return ValidationUtils.validate(super.build(request));
         }
     }
