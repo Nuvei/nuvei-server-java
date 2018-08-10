@@ -16,6 +16,11 @@
     "locale": "de_DE",
     "birthdate": "20/01/1990"
   },
+  "externalTokenProvider": {
+    "externalTokenProvider":"externalTokenProvider",
+    "externalTokenData":"",
+    "cardType":""
+  },
   "clientRequestId": "1490268886000",
   "merchantId": "7228839313016442768",
   "merchantSiteId": "117711",

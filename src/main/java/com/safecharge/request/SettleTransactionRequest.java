@@ -1,8 +1,10 @@
 package com.safecharge.request;
 
 import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
+import com.safecharge.model.Addendums;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.request.builder.SafechargeTransactionBuilder;
 import com.safecharge.util.Constants;
@@ -33,6 +35,9 @@ public class SettleTransactionRequest
     @Size(max = 13, message = "descriptorMerchantPhone size must be up to 13 characters long!")
     private String descriptorMerchantPhone;
 
+    @Valid
+    private Addendums addendums;
+
     public static Builder builder() {
         return new Builder();
     }
@@ -53,6 +58,14 @@ public class SettleTransactionRequest
         this.descriptorMerchantPhone = descriptorMerchantPhone;
     }
 
+    public Addendums getAddendums() {
+        return addendums;
+    }
+
+    public void setAddendums(Addendums addendums) {
+        this.addendums = addendums;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SettleTransactionRequest{");
@@ -71,6 +84,8 @@ public class SettleTransactionRequest
 
         private String descriptorMerchantName;
         private String descriptorMerchantPhone;
+
+        private Addendums addendums;
 
         /**
          * Sets the Descriptor merchant name in the request.
@@ -109,6 +124,11 @@ public class SettleTransactionRequest
             return this;
         }
 
+        public Builder addAddendums(Addendums addendums) {
+            this.addendums = addendums;
+            return this;
+        }
+
         /**
          * Builds the request.
          *
@@ -120,6 +140,7 @@ public class SettleTransactionRequest
             SettleTransactionRequest settleTransactionRequest = new SettleTransactionRequest();
             settleTransactionRequest.setDescriptorMerchantName(descriptorMerchantName);
             settleTransactionRequest.setDescriptorMerchantPhone(descriptorMerchantPhone);
+            settleTransactionRequest.setAddendums(addendums);
             return ValidationUtils.validate(super.build(settleTransactionRequest));
         }
     }

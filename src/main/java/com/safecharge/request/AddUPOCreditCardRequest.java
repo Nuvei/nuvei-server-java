@@ -1,9 +1,11 @@
 package com.safecharge.request;
 
 import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.safecharge.model.ExternalTokenProvider;
 import com.safecharge.model.UserDetails;
 import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.APIConstants;
@@ -67,6 +69,9 @@ public class AddUPOCreditCardRequest extends SafechargeRequest {
      */
     private UserDetails billingAddress;
 
+    @Valid
+    private ExternalTokenProvider externalTokenProvider;
+
     public static Builder builder() {
         return new Builder();
     }
@@ -119,6 +124,14 @@ public class AddUPOCreditCardRequest extends SafechargeRequest {
         this.billingAddress = billingAddress;
     }
 
+    public ExternalTokenProvider getExternalTokenProvider() {
+        return externalTokenProvider;
+    }
+
+    public void setExternalTokenProvider(ExternalTokenProvider externalTokenProvider) {
+        this.externalTokenProvider = externalTokenProvider;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("AddUPOCreditCard{");
@@ -139,6 +152,9 @@ public class AddUPOCreditCardRequest extends SafechargeRequest {
         sb.append(", userTokenId='")
                 .append(userTokenId)
                 .append('\'');
+        sb.append(", externalTokenProvider='")
+                .append(externalTokenProvider)
+                .append('\'');
         sb.append(", ")
                 .append(super.toString());
         sb.append('}');
@@ -153,6 +169,7 @@ public class AddUPOCreditCardRequest extends SafechargeRequest {
         private String ccNameOnCard;
         private String userTokenId;
         private UserDetails billingAddress;
+        private ExternalTokenProvider externalTokenProvider;
 
         /**
          * Adds credit card number to the request.
@@ -248,6 +265,11 @@ public class AddUPOCreditCardRequest extends SafechargeRequest {
             return addBillingAddress(billingAddress);
         }
 
+        public Builder addExternalTokenProvider(ExternalTokenProvider externalTokenProvider) {
+            this.externalTokenProvider = externalTokenProvider;
+            return this;
+        }
+
         /**
          * Builds the request.
          *
@@ -263,6 +285,7 @@ public class AddUPOCreditCardRequest extends SafechargeRequest {
             addUPOCreditCard.setCcNameOnCard(ccNameOnCard);
             addUPOCreditCard.setUserTokenId(userTokenId);
             addUPOCreditCard.setBillingAddress(billingAddress);
+            addUPOCreditCard.setExternalTokenProvider(externalTokenProvider);
             return ValidationUtils.validate(super.build(addUPOCreditCard));
         }
     }

@@ -26,5 +26,8 @@
   "urlDetails": {
     "notificationUrl": "http://notificationUrl.com"
   },
+  "subMethodDetails": {
+    "subMethod":""
+  },
   "checksum": "dd11a0f0e745b285edbc77a6c6940d50eb36aa96a4bb7b12bea52172960103d4"
 }
