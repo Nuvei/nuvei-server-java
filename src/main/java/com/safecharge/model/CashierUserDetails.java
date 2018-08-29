@@ -23,8 +23,7 @@ public class CashierUserDetails {
             message = "lastName size must be up to 40 characters long!")
     private String lastName;
 
-    @Pattern(regexp = APIConstants.EMAIL_REGEX,
-            message = "the entered value is not a valid email")
+    @Size(max = APIConstants.EMAIL_MAX_LENGTH, message = "email size must be up to 100 characters long!")
     private String email;
 
     @Size(max = APIConstants.PHONE_MAX_LENGTH,

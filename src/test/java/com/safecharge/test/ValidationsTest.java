@@ -130,7 +130,7 @@ public class ValidationsTest {
     private static final CashierUserDetails dummyValidCashierUserDetails =
             AddressUtils.createCashierUserDetailsFromParams("Test street 1", "Sofia", "BG", "test@test.com",
                     "Test", "Testov", "0884123456", null, "1000", "1990-01-01", "county usr");
-    private static final CashierUserDetails dummyInvalidCashierUserDetails = AddressUtils.createCashierUserDetailsFromParams("Test street 1 ", "Sofia", "BG", "invalid_email",
+    private static final CashierUserDetails dummyInvalidCashierUserDetails = AddressUtils.createCashierUserDetailsFromParams("Test street 1 ", "Sofia", "BG", "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789-9",
             "Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
             "Test Long Name that should fail the validation! Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
             "0884123456", null, "1000", "1990-01-01", "county usr");
@@ -143,7 +143,7 @@ public class ValidationsTest {
     private static final UserAddress dummyInvalidBillingDetails =
             AddressUtils.createUserAddressFromParams("Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
                     "Test Long Name that should fail the validation! Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
-                    "invalid_email", "0884123456", "Test street 1",
+                    "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789-9", "0884123456", "Test street 1",
                     "Sofia", "BG", null, "1000", "0884123456", "county bil 1");
     private static final UserAddress dummyInvalidShippingDetails = dummyInvalidBillingDetails; //shipping address same as billing address
 
