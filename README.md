@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/SafeChargeInternational/safecharge-java.svg?branch=master)](https://travis-ci.org/SafeChargeInternational/safecharge-java)
 
 SafeCharge’s REST API SDK for Java provides developer tools for accessing Safecharge's REST API. SafeCharge’s REST API is a simple, easy to use, secure and stateless API, which enables online merchants and service providers to process consumer payments through SafeCharge’s payment gateway. The API supports merchants of all levels of PCI certification, from their online and mobile merchant applications, and is compatible with a large variety of payment options, i.e. payment cards, alternative payment methods, etc. For SafeCharge REST API documentation, please see: https://www.safecharge.com/docs/api/
-
+ 
 ## Requirements
 
 Java 1.7 or later.
@@ -17,7 +17,7 @@ If your application is going to be deployed on a Java EE server add the followin
 <dependency>    
     <groupId>com.safecharge</groupId>
     <artifactId>safecharge-sdk-java</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -31,7 +31,7 @@ For example:
     <dependency>    
         <groupId>com.safecharge</groupId>
         <artifactId>safecharge-sdk-java</artifactId>
-        <version>1.1.1-SNAPSHOT</version>
+        <version>1.1.0</version>
     </dependency>
     <dependency>
         <groupId>org.apache.bval</groupId>

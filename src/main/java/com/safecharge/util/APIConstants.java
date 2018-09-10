@@ -61,7 +61,7 @@ public interface APIConstants {
 
     // Field limitations:
 
-    short ADDRESS_MAX_LENGTH = 60;
+    short ADDRESS_MAX_LENGTH = 120;
     short FIRST_NAME_MAX_LENGTH = 30;
     short LAST_NAME_MAX_LENGTH = 40;
     short CARD_HOLDER_MAX_LENGTH = 70;
@@ -72,11 +72,11 @@ public interface APIConstants {
     short MERCHANT_DESCRIPTOR_PHONE_MAX_LENGTH = 13;
     short MERCHANT_DESCRIPTOR_NAME_MAX_LENGTH = 25;
     short COUNTY_MAX_LENGTH = 255;
+    short EMAIL_MAX_LENGTH = 100;
 
     // field limitations using regular expressions:
 
     String IP_ADDRESS_REGEX = "^(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}$";
-    String EMAIL_REGEX = "^[A-Za-z0-9._%+\\-]+@[A-Za-z0-9.\\-]+\\.[A-Za-z]{2,10}$";
     String EXP_YEAR_REGEX = "^(?:(20)\\d{2}|\\d{2})$"; // two or four digits
     String EXP_MONTH_REGEX = "^(0?[1-9]|1[012])$";
     String DATE_OF_BIRTH_REGEX = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
