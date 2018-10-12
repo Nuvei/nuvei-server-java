@@ -59,6 +59,15 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
     @Valid
     protected UrlDetails urlDetails;
 
+    @Size(max = 50)
+    private String customSiteName;
+
+    @Size(max = 50)
+    private String productId;
+
+    @Size(max = 255)
+    private String customData;
+
     public String getAmount() {
         return amount;
     }
@@ -115,31 +124,44 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
         this.urlDetails = urlDetails;
     }
 
+    public String getCustomSiteName() {
+        return customSiteName;
+    }
+
+    public void setCustomSiteName(String customSiteName) {
+        this.customSiteName = customSiteName;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getCustomData() {
+        return customData;
+    }
+
+    public void setCustomData(String customData) {
+        this.customData = customData;
+    }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("amount='")
-                .append(amount)
-                .append('\'');
-        sb.append(", currency='")
-                .append(currency)
-                .append('\'');
-        sb.append(", authCode='")
-                .append(authCode)
-                .append('\'');
-        sb.append(", comment='")
-                .append(comment)
-                .append('\'');
-        sb.append(", clientUniqueId='")
-                .append(clientUniqueId)
-                .append('\'');
-        sb.append(", relatedTransactionId='")
-                .append(relatedTransactionId)
-                .append('\'');
-        sb.append(", urlDetails=")
-                .append(urlDetails);
-        sb.append(", ")
-                .append(super.toString());
+        final StringBuilder sb = new StringBuilder("SafechargeTransactionRequest{");
+        sb.append("amount='").append(amount).append('\'');
+        sb.append(", currency='").append(currency).append('\'');
+        sb.append(", authCode='").append(authCode).append('\'');
+        sb.append(", comment='").append(comment).append('\'');
+        sb.append(", clientUniqueId='").append(clientUniqueId).append('\'');
+        sb.append(", relatedTransactionId='").append(relatedTransactionId).append('\'');
+        sb.append(", urlDetails=").append(urlDetails);
+        sb.append(", customSiteName='").append(customSiteName).append('\'');
+        sb.append(", productId='").append(productId).append('\'');
+        sb.append(", customData='").append(customData).append('\'');
+        sb.append('}');
         return sb.toString();
     }
 }

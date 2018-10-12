@@ -237,11 +237,12 @@ public class SafechargeRequestExecutor {
         Gson gson = gsonBuilder.create();
 
         try {
-            String serviceUrl = request.getServerHost() + REQUEST_URL_BY_REQUEST_TYPE.get(request.getClass());
+            Class requestClass = request.getClass();
+            String serviceUrl = request.getServerHost() + REQUEST_URL_BY_REQUEST_TYPE.get(requestClass);
             request.setServerHost(null); // remove API url from request
 
             String requestJSON = gson.toJson(request);
-            String responseJSON = executeJsonRequest(requestJSON, serviceUrl);
+            String responseJSON = executeJsonRequest(requestJSON, serviceUrl, requestClass);
 
             return (SafechargeResponse)gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(request.getClass()));
 
@@ -263,8 +264,8 @@ public class SafechargeRequestExecutor {
      * @return {@link String} response from the service (representing JSON object)
      * @throws IOException if the connection is interrupted or the response is unparsable
      */
-    public String executeJsonRequest(String requestJSON, String serviceUrl) throws IOException {
-        return executeRequest(requestJSON, serviceUrl, APIConstants.REQUEST_HEADERS);
+    public String executeJsonRequest(String requestJSON, String serviceUrl, Class requestClass) throws IOException {
+        return executeRequest(requestJSON, serviceUrl, APIConstants.REQUEST_HEADERS, requestClass);
     }
 
     /**
@@ -274,23 +275,25 @@ public class SafechargeRequestExecutor {
      * @param request    A {@link String} representation of a request object. Can be JSON object, form data, etc...
      * @param serviceUrl The service URL to sent the request to
      * @param headers    An array of {@link Header} objects, used to determine the request type
+     * @param requestClass  The Type Of request Used
      * @return {@link String} response from the service (representing JSON object)
      * @throws IOException if the connection is interrupted or the response is unparsable
      */
-    public String executeRequest(String request, String serviceUrl, Header[] headers) throws IOException {
+    public String executeRequest(String request, String serviceUrl, Header[] headers, Class requestClass) throws IOException {
         HttpPost httpPost = new HttpPost(serviceUrl);
         httpPost.setHeaders(headers);
         httpPost.setEntity(new StringEntity(request, Charset.forName("UTF-8")));
 
         if (logger.isDebugEnabled()) {
-            logger.debug("Sent {}" + request);
+            logger.debug(requestClass.getSimpleName() + " Sent " + request);
         }
 
         HttpResponse response = httpClient.execute(httpPost);
 
         String responseJSON = EntityUtils.toString(response.getEntity(), UTF8_CHARSET);
         if (logger.isDebugEnabled()) {
-            logger.debug("Received " + responseJSON);
+            Class responseClass = RESPONSE_TYPE_BY_REQUEST_TYPE.get(requestClass);
+            logger.debug(responseClass.getSimpleName() + " Received " + responseJSON);
         }
         return responseJSON;
     }
