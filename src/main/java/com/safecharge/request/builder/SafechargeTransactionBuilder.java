@@ -26,6 +26,9 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     private String clientUniqueId;
     private String relatedTransactionId;
     private UrlDetails urlDetails;
+    private String customSiteName;
+    private String productId;
+    private String customData;
 
     /**
      * Adds amount to the request.
@@ -120,6 +123,36 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     }
 
     /**
+     * The method is used to ad to the builder custom site name which will overwrite the one of the merchant site.
+     * @param customSiteName
+     * @return
+     */
+    public T addCustomSiteName(String customSiteName) {
+        this.customSiteName = customSiteName;
+        return (T) this;
+    }
+
+    /**
+     * Adds product id to request builder.
+     * @param productId
+     * @return
+     */
+    public T addProductId(String productId) {
+        this.productId = productId;
+        return (T) this;
+    }
+
+    /**
+     * Adds custom data to request builder.
+     * @param customData
+     * @return
+     */
+    public T addCustomData(String customData) {
+        this.customData = customData;
+        return (T) this;
+    }
+
+    /**
      * Adds the order details data, collected by this builder.
      *
      * @param safechargeTransactionRequest an already created request of type T
@@ -137,6 +170,9 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
         safechargeTransactionRequest.setClientUniqueId(clientUniqueId);
         safechargeTransactionRequest.setRelatedTransactionId(relatedTransactionId);
         safechargeTransactionRequest.setUrlDetails(urlDetails);
+        safechargeTransactionRequest.setCustomSiteName(customSiteName);
+        safechargeTransactionRequest.setProductId(productId);
+        safechargeTransactionRequest.setCustomData(customData);
 
         safechargeTransactionRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeTransactionRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",
