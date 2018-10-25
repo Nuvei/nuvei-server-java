@@ -89,6 +89,9 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
     @Size(max = 255)
     private String customData;
 
+    @Size(max = 19)
+    private String relatedTransactionId;
+
     public String getOrderId() {
         return orderId;
     }
@@ -177,6 +180,14 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
         this.customData = customData;
     }
 
+    public String getRelatedTransactionId() {
+        return relatedTransactionId;
+    }
+
+    public void setRelatedTransactionId(String relatedTransactionId) {
+        this.relatedTransactionId = relatedTransactionId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SafechargeCCRequest{");
@@ -191,6 +202,7 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
         sb.append(", customSiteName='").append(customSiteName).append('\'');
         sb.append(", productId='").append(productId).append('\'');
         sb.append(", customData='").append(customData).append('\'');
+        sb.append(", relatedTransactionId='").append(relatedTransactionId).append('\'');
         sb.append('}');
         return sb.toString();
     }
