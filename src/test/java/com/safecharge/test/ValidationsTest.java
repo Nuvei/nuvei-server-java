@@ -272,7 +272,7 @@ public class ValidationsTest {
                     .build();
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
-            assertEquals(7, e.getConstraintViolations().size());
+            assertEquals(3, e.getConstraintViolations().size());
         }
     }
 
