@@ -32,6 +32,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     private String customSiteName;
     private String productId;
     private String customData;
+    private String relatedTransactionId;
 
     /**
      * Adds an order to the request.
@@ -183,6 +184,16 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     }
 
     /**
+     * Adds relatedTransactionId data to request builder.
+     * @param relatedTransactionId
+     * @return
+     */
+    public T addRelatedTransactionId(String relatedTransactionId) {
+        this.relatedTransactionId = relatedTransactionId;
+        return (T) this;
+    }
+
+    /**
      * Adds the common credit/debit data, collected by this builder.
      *
      * @param request an already created request of type T
@@ -204,6 +215,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         request.setCustomSiteName(customSiteName);
         request.setProductId(productId);
         request.setCustomData(customData);
+        request.setRelatedTransactionId(relatedTransactionId);
 
         return request;
     }
