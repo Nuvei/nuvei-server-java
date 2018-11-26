@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 import com.safecharge.model.CardData;
 import com.safecharge.model.ExternalMpi;
 import com.safecharge.model.ExternalTokenProvider;
+import com.safecharge.model.StoredCredentials;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.util.Constants;
 
@@ -91,6 +92,8 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
 
     @Size(max = 19)
     private String relatedTransactionId;
+
+    private StoredCredentials storedCredentials;
 
     public String getOrderId() {
         return orderId;
@@ -188,6 +191,14 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
         this.relatedTransactionId = relatedTransactionId;
     }
 
+    public StoredCredentials getStoredCredentials() {
+        return storedCredentials;
+    }
+
+    public void setStoredCredentials(StoredCredentials storedCredentials) {
+        this.storedCredentials = storedCredentials;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SafechargeCCRequest{");
@@ -203,6 +214,7 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
         sb.append(", productId='").append(productId).append('\'');
         sb.append(", customData='").append(customData).append('\'');
         sb.append(", relatedTransactionId='").append(relatedTransactionId).append('\'');
+        sb.append(", storedCredentials='").append(storedCredentials).append('\'');
         sb.append('}');
         return sb.toString();
     }
