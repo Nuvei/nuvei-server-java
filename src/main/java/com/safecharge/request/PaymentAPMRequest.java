@@ -66,6 +66,8 @@ public class PaymentAPMRequest
     @Valid
     private SubMethodDetails subMethodDetails;
 
+    private String customData;
+
     public static Builder builder() {
         return new Builder();
     }
@@ -111,6 +113,14 @@ public class PaymentAPMRequest
         this.subMethodDetails = subMethodDetails;
     }
 
+    public String getCustomData() {
+        return customData;
+    }
+
+    public void setCustomData(String customData) {
+        this.customData = customData;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentAPMRequest{");
@@ -119,6 +129,7 @@ public class PaymentAPMRequest
         sb.append(", userAccountDetails=").append(userAccountDetails);
         sb.append(", userPaymentOption=").append(userPaymentOption);
         sb.append(", subMethodDetails=").append(subMethodDetails);
+        sb.append(", customData=").append(customData);
         sb.append('}');
         return sb.toString();
     }
@@ -130,6 +141,7 @@ public class PaymentAPMRequest
         private Map<String, String> userAccountDetails;
         private UserPaymentOption userPaymentOption;
         private SubMethodDetails subMethodDetails;
+        private String customData;
 
         /**
          * Adds order ID to the request.
@@ -203,6 +215,11 @@ public class PaymentAPMRequest
             return this;
         }
 
+        public Builder addCustomData(String customData) {
+            this.customData = customData;
+            return this;
+        }
+
         /**
          * Builds the request.
          *
@@ -216,6 +233,7 @@ public class PaymentAPMRequest
             paymentAPMRequest.setUserAccountDetails(userAccountDetails);
             paymentAPMRequest.setUserPaymentOption(userPaymentOption);
             paymentAPMRequest.setSubMethodDetails(subMethodDetails);
+            paymentAPMRequest.setCustomData(customData);
             return ValidationUtils.validate(super.build(paymentAPMRequest));
         }
     }

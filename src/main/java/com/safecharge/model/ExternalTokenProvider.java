@@ -13,6 +13,9 @@ public class ExternalTokenProvider {
     @Size(max = 255)
     private String externalTokenData;
 
+    @Size(max = 5000)
+    private String mobileToken;
+
     public String getExternalTokenProvider() {
         return externalTokenProvider;
     }
@@ -35,5 +38,13 @@ public class ExternalTokenProvider {
 
     public void setExternalTokenData(String externalTokenData) {
         this.externalTokenData = externalTokenData;
+    }
+
+    public String getMobileToken() {
+        return mobileToken;
+    }
+
+    public void setMobileToken(String mobileToken) {
+        this.mobileToken = mobileToken;
     }
 }

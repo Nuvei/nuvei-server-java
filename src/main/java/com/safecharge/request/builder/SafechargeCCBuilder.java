@@ -3,6 +3,7 @@ package com.safecharge.request.builder;
 import com.safecharge.model.CardData;
 import com.safecharge.model.ExternalMpi;
 import com.safecharge.model.ExternalTokenProvider;
+import com.safecharge.model.StoredCredentials;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.SafechargeCCRequest;
 import com.safecharge.util.CardUtils;
@@ -33,6 +34,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     private String productId;
     private String customData;
     private String relatedTransactionId;
+    private StoredCredentials storedCredentials;
 
     /**
      * Adds an order to the request.
@@ -192,6 +194,11 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         this.relatedTransactionId = relatedTransactionId;
         return (T) this;
     }
+    
+    public T addStoredCredentials(StoredCredentials storedCredentials) {
+        this.storedCredentials = storedCredentials;
+        return (T) this;
+    }
 
     /**
      * Adds the common credit/debit data, collected by this builder.
@@ -216,6 +223,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         request.setProductId(productId);
         request.setCustomData(customData);
         request.setRelatedTransactionId(relatedTransactionId);
+        request.setStoredCredentials(storedCredentials);
 
         return request;
     }
