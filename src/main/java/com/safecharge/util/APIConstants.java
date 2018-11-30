@@ -77,8 +77,8 @@ public interface APIConstants {
     // field limitations using regular expressions:
 
     String IP_ADDRESS_REGEX = "^(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}$";
-    String EXP_YEAR_REGEX = "^(?:(20)\\d{2}|\\d{2})$"; // two or four digits
-    String EXP_MONTH_REGEX = "^(0?[1-9]|1[012])$";
+    String EXP_YEAR_REGEX = "^$|(?:(20)\\d{2}|\\d{2})$"; // two or four digits
+    String EXP_MONTH_REGEX = "^$|(0?[1-9]|1[012])$";
     String DATE_OF_BIRTH_REGEX = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
     String IS_DYNAMIC_3D_REGEX = "^(0|1)$";
 

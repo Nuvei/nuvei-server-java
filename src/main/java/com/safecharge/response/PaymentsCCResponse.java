@@ -1,5 +1,6 @@
 package com.safecharge.response;
 
+import com.safecharge.model.FraudDetails;
 import com.safecharge.model.PartialApprovalDetails;
 
 public class PaymentsCCResponse extends PaymentsResponse {
@@ -11,6 +12,10 @@ public class PaymentsCCResponse extends PaymentsResponse {
 
     protected String transactionType;
     private String externalTokenProvider;
+
+    private String customData;
+
+    private FraudDetails fraudDetails;
 
     public PartialApprovalDetails getPartialApprovalDetails() {
         return partialApprovalDetails;
@@ -52,6 +57,22 @@ public class PaymentsCCResponse extends PaymentsResponse {
         this.externalTokenProvider = externalTokenProvider;
     }
 
+    public String getCustomData() {
+        return customData;
+    }
+
+    public void setCustomData(String customData) {
+        this.customData = customData;
+    }
+
+    public FraudDetails getFraudDetails() {
+        return fraudDetails;
+    }
+
+    public void setFraudDetails(FraudDetails fraudDetails) {
+        this.fraudDetails = fraudDetails;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentsCCResponse{");
@@ -73,6 +94,8 @@ public class PaymentsCCResponse extends PaymentsResponse {
         sb.append(", authCode='").append(authCode).append('\'');
         sb.append(", userTokenId='").append(userTokenId).append('\'');
         sb.append(", externalToken=").append(externalToken);
+        sb.append(", customData=").append(customData);
+        sb.append(", fraudDetails=").append(fraudDetails);
         sb.append('}');
         return sb.toString();
     }

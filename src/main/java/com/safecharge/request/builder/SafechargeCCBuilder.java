@@ -3,6 +3,7 @@ package com.safecharge.request.builder;
 import com.safecharge.model.CardData;
 import com.safecharge.model.ExternalMpi;
 import com.safecharge.model.ExternalTokenProvider;
+import com.safecharge.model.StoredCredentials;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.SafechargeCCRequest;
 import com.safecharge.util.CardUtils;
@@ -29,6 +30,11 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     private String isPartialApproval;
     private ExternalMpi externalMpi;
     private ExternalTokenProvider externalTokenProvider;
+    private String customSiteName;
+    private String productId;
+    private String customData;
+    private String relatedTransactionId;
+    private StoredCredentials storedCredentials;
 
     /**
      * Adds an order to the request.
@@ -150,6 +156,51 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     }
 
     /**
+     * The method is used to ad to the builder custom site name which will overwrite the one of the merchant site.
+     * @param customSiteName
+     * @return
+     */
+    public T addCustomSiteName(String customSiteName) {
+        this.customSiteName = customSiteName;
+        return (T) this;
+    }
+
+    /**
+     * Adds product id to request builder.
+     * @param productId
+     * @return
+     */
+    public T addProductId(String productId) {
+        this.productId = productId;
+        return (T) this;
+    }
+
+    /**
+     * Adds custom data to request builder.
+     * @param customData
+     * @return
+     */
+    public T addCustomData(String customData) {
+        this.customData = customData;
+        return (T) this;
+    }
+
+    /**
+     * Adds relatedTransactionId data to request builder.
+     * @param relatedTransactionId
+     * @return
+     */
+    public T addRelatedTransactionId(String relatedTransactionId) {
+        this.relatedTransactionId = relatedTransactionId;
+        return (T) this;
+    }
+    
+    public T addStoredCredentials(StoredCredentials storedCredentials) {
+        this.storedCredentials = storedCredentials;
+        return (T) this;
+    }
+
+    /**
      * Adds the common credit/debit data, collected by this builder.
      *
      * @param request an already created request of type T
@@ -168,6 +219,11 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         request.setExternalMpi(externalMpi);
         request.setIsPartialApproval(isPartialApproval);
         request.setExternalTokenProvider(externalTokenProvider);
+        request.setCustomSiteName(customSiteName);
+        request.setProductId(productId);
+        request.setCustomData(customData);
+        request.setRelatedTransactionId(relatedTransactionId);
+        request.setStoredCredentials(storedCredentials);
 
         return request;
     }

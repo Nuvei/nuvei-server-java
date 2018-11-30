@@ -33,13 +33,11 @@ public class AddUPOCreditCardRequest extends SafechargeRequest {
     /**
      * A valid credit card number.
      */
-    @NotNull(message = "ccCardNumber parameter is mandatory!")
     private String ccCardNumber;
 
     /**
      * One or two digit value that is the expiration month.
      */
-    @NotNull(message = "ccExpMonth parameter is mandatory!")
     @Pattern(regexp = APIConstants.EXP_MONTH_REGEX, message = "Expiration month must have a valid value")
     private String ccExpMonth;
 
@@ -48,14 +46,12 @@ public class AddUPOCreditCardRequest extends SafechargeRequest {
      * When the value is two digits, the year is assumed to be 2000 + ccExpYear; ccExpMonth and ccExpYear must be a date that is after the current date.
      * The year may not exceed 10 years in to the future.
      */
-    @NotNull(message = "ccExpYear parameter is mandatory!")
     @Pattern(regexp = APIConstants.EXP_YEAR_REGEX, message = "Expiration year must 2 or 4 digits")
     private String ccExpYear;
 
     /**
      * The name of the credit card owner as it is written on the card.
      */
-    @NotNull(message = "ccNameOnCard parameter is mandatory!")
     private String ccNameOnCard;
 
     /**

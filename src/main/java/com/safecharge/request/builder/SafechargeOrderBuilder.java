@@ -124,8 +124,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      */
     public T addDeviceDetails(String deviceType, String deviceName, String deviceOS, String browser, String ipAddress) {
 
-        DeviceUtils.createDeviceDetailsFromParams(deviceType, deviceName, deviceOS, browser, ipAddress);
-        return addDeviceDetails(deviceDetails);
+        return addDeviceDetails(DeviceUtils.createDeviceDetailsFromParams(deviceType, deviceName, deviceOS, browser, ipAddress));
     }
 
     /**

@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 import com.safecharge.model.CardData;
 import com.safecharge.model.ExternalMpi;
 import com.safecharge.model.ExternalTokenProvider;
+import com.safecharge.model.StoredCredentials;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.util.Constants;
 
@@ -71,7 +72,7 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
     @Min(value = 0)
     private int isRebilling;
 
-    @Max(value = 1)
+    @Size(max = 1)
     private String isPartialApproval;
 
     @Valid
@@ -79,6 +80,20 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
 
     @Valid
     private ExternalTokenProvider externalTokenProvider;
+
+    @Size(max = 50)
+    private String customSiteName;
+
+    @Size(max = 50)
+    private String productId;
+
+    @Size(max = 255)
+    private String customData;
+
+    @Size(max = 19)
+    private String relatedTransactionId;
+
+    private StoredCredentials storedCredentials;
 
     public String getOrderId() {
         return orderId;
@@ -144,28 +159,63 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
         this.externalTokenProvider = externalTokenProvider;
     }
 
+    public String getCustomSiteName() {
+        return customSiteName;
+    }
+
+    public void setCustomSiteName(String customSiteName) {
+        this.customSiteName = customSiteName;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getCustomData() {
+        return customData;
+    }
+
+    public void setCustomData(String customData) {
+        this.customData = customData;
+    }
+
+    public String getRelatedTransactionId() {
+        return relatedTransactionId;
+    }
+
+    public void setRelatedTransactionId(String relatedTransactionId) {
+        this.relatedTransactionId = relatedTransactionId;
+    }
+
+    public StoredCredentials getStoredCredentials() {
+        return storedCredentials;
+    }
+
+    public void setStoredCredentials(StoredCredentials storedCredentials) {
+        this.storedCredentials = storedCredentials;
+    }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("orderId='")
-                .append(orderId)
-                .append('\'');
-        sb.append(", transactionType=")
-                .append(transactionType);
-        sb.append(", cardData=")
-                .append(cardData);
-        sb.append(", userPaymentOption=")
-                .append(userPaymentOption);
-        sb.append(", isPartialApproval=")
-                .append(isPartialApproval);
-        sb.append(", externalMpi=")
-                .append(externalMpi);
-        sb.append(", isRebilling=")
-                .append(isRebilling);
-        sb.append(", externalTokenProvider=")
-                .append(externalTokenProvider);
-        sb.append(", ");
-        sb.append(super.toString());
+        final StringBuilder sb = new StringBuilder("SafechargeCCRequest{");
+        sb.append("orderId='").append(orderId).append('\'');
+        sb.append(", transactionType=").append(transactionType);
+        sb.append(", cardData=").append(cardData);
+        sb.append(", userPaymentOption=").append(userPaymentOption);
+        sb.append(", isRebilling=").append(isRebilling);
+        sb.append(", isPartialApproval='").append(isPartialApproval).append('\'');
+        sb.append(", externalMpi=").append(externalMpi);
+        sb.append(", externalTokenProvider=").append(externalTokenProvider);
+        sb.append(", customSiteName='").append(customSiteName).append('\'');
+        sb.append(", productId='").append(productId).append('\'');
+        sb.append(", customData='").append(customData).append('\'');
+        sb.append(", relatedTransactionId='").append(relatedTransactionId).append('\'');
+        sb.append(", storedCredentials='").append(storedCredentials).append('\'');
+        sb.append('}');
         return sb.toString();
     }
 }

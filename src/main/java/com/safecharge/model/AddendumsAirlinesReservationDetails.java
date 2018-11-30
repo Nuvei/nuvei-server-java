@@ -1,5 +1,7 @@
 package com.safecharge.model;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 /**
@@ -38,10 +40,10 @@ public class AddendumsAirlinesReservationDetails {
     private String ticketIssueAddress;
 
     @Valid
-    private AddendumsAirlinesPassengerDetails[] passengerDetails = new AddendumsAirlinesPassengerDetails[10];
+    private List<AddendumsAirlinesPassengerDetails> passengerDetails;
 
     @Valid
-    private AddendumsAirlinesFlightLegDetails[] flightLegDetails = new AddendumsAirlinesFlightLegDetails[4];
+    private List<AddendumsAirlinesFlightLegDetails> flightLegDetails;
 
     public String getAddendumSent() {
         return addendumSent;
@@ -135,11 +137,11 @@ public class AddendumsAirlinesReservationDetails {
         return ticketIssueAddress;
     }
 
-    public AddendumsAirlinesPassengerDetails[] getPassengerDetails() {
+    public List<AddendumsAirlinesPassengerDetails> getPassengerDetails() {
         return passengerDetails;
     }
 
-    public AddendumsAirlinesFlightLegDetails[] getFlightLegDetails() {
+    public List<AddendumsAirlinesFlightLegDetails> getFlightLegDetails() {
         return flightLegDetails;
     }
 
@@ -235,11 +237,11 @@ public class AddendumsAirlinesReservationDetails {
         this.ticketIssueAddress = ticketIssueAddress;
     }
 
-    public void setPassengerDetails(AddendumsAirlinesPassengerDetails[] passengerDetails) {
+    public void setPassengerDetails(List<AddendumsAirlinesPassengerDetails> passengerDetails) {
         this.passengerDetails = passengerDetails;
     }
 
-    public void setFlightLegDetails(AddendumsAirlinesFlightLegDetails[] flightLegDetails) {
+    public void setFlightLegDetails(List<AddendumsAirlinesFlightLegDetails> flightLegDetails) {
         this.flightLegDetails = flightLegDetails;
     }
 }
