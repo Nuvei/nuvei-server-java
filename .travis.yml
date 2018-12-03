@@ -1,6 +1,7 @@
 language: java
 install: "mvn clean install -Dgpg.skip -Dmaven.javadoc.skip=true"
 
+language: java
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 env:
