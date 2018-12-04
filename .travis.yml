@@ -5,4 +5,4 @@ export CODECOV_TOKEN="3ab1b81d-ae5e-4c25-9bc1-10649a47f587"
 
 language: java
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash |-X coveragepy)
