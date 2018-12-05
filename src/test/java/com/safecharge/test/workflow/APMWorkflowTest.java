@@ -15,9 +15,11 @@ import com.safecharge.request.GetOrderDetailsRequest;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.PaymentAPMRequest;
+import com.safecharge.request.PaymentCCRequest;
 import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.UpdateOrderRequest;
 import com.safecharge.response.OpenOrderResponse;
+import com.safecharge.response.PaymentCCResponse;
 import com.safecharge.response.SafechargeResponse;
 import com.safecharge.response.UpdateOrderResponse;
 import com.safecharge.test.BaseTest;
@@ -148,6 +150,46 @@ public class APMWorkflowTest extends BaseTest {
                 .addUserAccountDetails(userAccountDetails)
                 .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(request);
+
+        Assert.assertTrue(response != null);
+        Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(response.getStatus()));
+
+    }
+    
+    @Test
+    public void test6_paymentCC() {
+        Map<String, String> userAccountDetails = new HashMap<>();
+        userAccountDetails.put("email", "nikolad_safecharge_2@abv.bg");
+        userAccountDetails.put("account_id", "XX362V4DC76VU");
+        SafechargeBaseRequest request = PaymentCCRequest.builder()
+                .addMerchantInfo(merchantInfo)
+                .addCurrency("EUR")
+                .addAmount("4")
+                .addSessionToken(sessionToken)
+                .addItem("test_item_1", "2", "2")
+                .addItem("test_item_2", "2", "2")
+                .addMerchantDetails("test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9", "test10",
+                        "test11", "test12", "test13", "test14", "test15")
+                .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov", "0884123456",
+                        null, "1000", "1990-01-01","county usr")
+                .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",
+                        "BG", null, "1000", "0884123456","county billing")
+                .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",
+                        "BG", null, "1000", "0884123456","county shipping")
+                .addAmountDetails("1.5", "1.0", "1.0", "0.5")
+                .addOrderId(orderId)
+                .addURLDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
+                        "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
+                        "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do", null)
+                .build();
+        PaymentCCResponse response = (PaymentCCResponse) safechargeRequestExecutor.executeRequest(request);
+        Assert.assertTrue(response.getPartialApprovalDetails() == null);
+        Assert.assertTrue(response.getFraudDetails() == null);
+        Assert.assertEquals("3434",response.getCVV2Reply());
+        Assert.assertEquals("344", response.getAVSCode());
+        Assert.assertEquals("",response.getExternalTokenProvider());
+        
+        
 
         Assert.assertTrue(response != null);
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(response.getStatus()));

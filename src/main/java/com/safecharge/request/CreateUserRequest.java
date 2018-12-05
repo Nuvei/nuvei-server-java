@@ -1,8 +1,5 @@
 package com.safecharge.request;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import com.safecharge.request.basic.CashierUserRequest;
 import com.safecharge.request.builder.SafechargeCashierUserBuilder;
 import com.safecharge.util.Constants;
