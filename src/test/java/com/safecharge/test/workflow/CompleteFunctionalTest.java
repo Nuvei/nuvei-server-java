@@ -71,6 +71,7 @@ import com.safecharge.response.VoidTransactionResponse;
 import com.safecharge.test.BaseTest;
 import com.safecharge.util.Constants;
 
+import static com.safecharge.test.workflow.TestVariables.*;
 public class CompleteFunctionalTest extends BaseTest {
 
     @Test
@@ -92,11 +93,28 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertTrue(response.getAmount() != null && response.getAmount() > 0.0D);
         Assert.assertTrue(response.getItems() != null && !response.getItems()
                 .isEmpty());
+        Assert.assertTrue(response.getUserDetails() != null);
+        Assert.assertTrue(response.getShippingAddress() != null);
+        Assert.assertTrue(response.getBillingAddress() != null);
+        Assert.assertTrue(response.getMerchantDetails() != null);
+        Assert.assertTrue(response.getTransactionCreationDate() != null);
+        Assert.assertTrue(response.getOrderCreationDate() != null);
+        Assert.assertTrue(response.getOrderStatus() != null);
+        Assert.assertTrue(response.getDynamicDescriptor() == null);
+        Assert.assertTrue(response.getDeviceDetails() == null);
+        Assert.assertTrue(response.getAddendums() == null);
+        Assert.assertTrue(response.getTransactionStatus() == null);
+        Assert.assertTrue(response.getTransactionId() == null);
         for (Item item : response.getItems()) {
             Assert.assertTrue(validator.validate(item)
                     .size() == 0);
         }
-
+        
+        Assert.assertTrue(response.toString().contains(getOrderDetailsOrderID));
+        Assert.assertTrue(response.toString().contains(getOrderDetailsCurrency));
+        Assert.assertTrue(response.toString().contains(getOrderDetailsAmount));
+        Assert.assertTrue(response.toString().contains(getorderDetailsOrderCreationDate));
+        
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
     }
 
@@ -124,6 +142,10 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertTrue(defined(response.getTransactionId()));
         Assert.assertEquals("APPROVED", response.getTransactionStatus());
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+        Assert.assertTrue(response.toString().contains(paymentCCOrderID));
+        Assert.assertTrue(response.toString().contains(transactionStatusApproved));
+        Assert.assertTrue(response.toString().contains(paymentCCTransactionId));
+        Assert.assertTrue(response.toString().contains(transactionTypeAuth));
     }
 
     @Test
@@ -178,6 +200,16 @@ public class CompleteFunctionalTest extends BaseTest {
         AddUPOCreditCardResponse response = baseMockTest("./mock/request/addUPOCreditCard.json", AddUPOCreditCardRequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+        Assert.assertTrue(response.getUserPaymentOptionId() != null);
+        Assert.assertTrue(response.getCcToken() != null);
+        Assert.assertTrue(response.getBrand()!= null);
+        Assert.assertTrue(response.getUniqueCC() != null);
+        Assert.assertTrue(response.getBin() != null);
+        Assert.assertTrue(response.getLast4Digits() != null);
+        Assert.assertTrue(response.getCardType().isEmpty());
+        
+        Assert.assertTrue(response.toString().contains(addUPOCreditCardSessionToken));
+        
     }
 
     @Test
@@ -224,6 +256,23 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
         Assert.assertTrue(!response.getUserPaymentOptionId().trim().isEmpty());
         Assert.assertTrue(!response.getUserTokenId().trim().isEmpty());
+        Assert.assertTrue(!response.getClientUniqueId().trim().isEmpty());
+        Assert.assertTrue(response.getInternalRequestId() != null);
+        Assert.assertTrue(response.getTransactionStatus() == null);
+        Assert.assertTrue(response.getPaymentMethodErrorCode() == null);
+        Assert.assertTrue(response.getPaymentMethodErrorReason() == null);
+        Assert.assertTrue(response.getGwErrorCode() == null);
+        Assert.assertTrue(response.getGwErrorReason() == null);
+        Assert.assertTrue(response.getPaymentMethodErrorReason() == null);
+        Assert.assertTrue(response.getGwExtendedErrorCode() == null);
+        Assert.assertTrue(response.getExternalTransactionId() == null);
+        Assert.assertTrue(response.getTransactionId() == null);
+        
+        Assert.assertTrue(response.toString().contains(payoutMerchantID));
+        Assert.assertTrue(response.toString().contains(payoutMerchantSiteID));
+        Assert.assertTrue(response.toString().contains(statusSuccess));
+        Assert.assertTrue(response.toString().contains(payoutUPOID));
+        Assert.assertTrue(response.toString().contains(payoutInternalRequestD));
     }
 
     @Test
