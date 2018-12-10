@@ -170,6 +170,18 @@ public class CompleteFunctionalTest extends BaseTest {
 
         Assert.assertTrue(defined(response.getOrderId()));
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+        
+        Assert.assertTrue(response.getCVV2Reply() != null);
+        Assert.assertTrue(response.getInternalRequestId() != null);
+        Assert.assertTrue(response.getTransactionStatus() != null);
+        Assert.assertTrue(response.getTransactionId() != null);
+        Assert.assertTrue(response.getAcsUrl() == null);
+        Assert.assertTrue(response.getPaymentMethodErrorCode() == null);
+        Assert.assertTrue(response.getGwErrorReason() == null);
+        
+        Assert.assertTrue(response.toString().contains(authorization3DCVV2Reply));
+        Assert.assertTrue(response.toString().contains(authorization3DTransactionID));
+        Assert.assertTrue(!response.toString().contains(authorization3DInternalRequestID));
     }
 
     @Test
@@ -208,7 +220,10 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertTrue(response.getLast4Digits() != null);
         Assert.assertTrue(response.getCardType().isEmpty());
         
+        Assert.assertTrue(response.toString().contains(addUPOMerchantID));
         Assert.assertTrue(response.toString().contains(addUPOCreditCardSessionToken));
+        Assert.assertTrue(response.toString().contains(addUPOBin));
+        Assert.assertTrue(response.toString().contains(addUPOBrand));
         
     }
 
@@ -224,6 +239,20 @@ public class CompleteFunctionalTest extends BaseTest {
         SettleTransactionResponse response = baseMockTest("./mock/request/settleTransaction.json", SettleTransactionRequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+
+        Assert.assertTrue(response.getSessionToken() != null);
+        Assert.assertTrue(response.getInternalRequestId() != null);
+        Assert.assertTrue(response.getVersion() != null);
+        Assert.assertTrue(response.getClientRequestId() != null);
+        Assert.assertTrue(response.getEci() != null);
+        Assert.assertTrue(response.getReason().isEmpty());
+        
+        Assert.assertTrue(response.getExternalTransactionId() == null);
+        Assert.assertTrue(response.getUserPaymentOptionId() == null);
+        Assert.assertTrue(response.getPaymentMethodErrorReason() == null);
+        Assert.assertTrue(response.getPaymentMethodErrorCode() == null);
+        Assert.assertTrue(response.getPaRequest() == null);
+        Assert.assertTrue(response.getRedirectUrl() == null);
     }
 
     @Test
@@ -231,6 +260,19 @@ public class CompleteFunctionalTest extends BaseTest {
         VoidTransactionResponse response = baseMockTest("./mock/request/voidTransaction.json", VoidTransactionRequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+
+        Assert.assertTrue(response.getTransactionId() != null);
+        Assert.assertTrue(response.getGwExtendedErrorCode() != null);
+        Assert.assertTrue(response.getGwErrorCode() != null);
+        Assert.assertTrue(response.getAuthCode() != null);
+        Assert.assertTrue(response.getMerchantId() != null);
+        Assert.assertTrue(response.getMerchantSiteId() != null);
+        
+        Assert.assertTrue(response.toString().contains(transactionStatusApproved));
+        Assert.assertTrue(response.toString().contains(voidAuthCode));
+        Assert.assertTrue(response.toString().contains(voidTransactionID));
+        Assert.assertTrue(response.toString().contains(voidEci));
+        Assert.assertTrue(response.toString().contains(voidClientRequestID));
     }
 
     @Test

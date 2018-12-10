@@ -241,6 +241,8 @@ public class ValidationsTest {
         try {
             AddUPOAPMRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
+                    .addBillingAddress(dummyAddress, dummyCity, dummyCountryCode, dummyEMail, dummyFirstName, dummyLastName, dummyPhone, dummyState,
+                            dummyZip, dummyBirthDate, dummyCountry, dummyLocale)
                     .build();
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
@@ -882,6 +884,8 @@ public class ValidationsTest {
                 .addCCExpYear(dummyCcExpYear)
                 .addUserPaymentOptionId(dummyUserPaymentOptionId)
                 .addCcNameOnCard(dummyCcNameOnCard)
+                .addBillingAddress(dummyFirstName, dummyLastName, dummyAddress, dummyPhone, dummyZip, dummyCity, dummyCountryCode, dummyState, dummyEMail,
+                        dummyLocale, dummyBirthDate, dummyCountry)
                 .build();
         assertTrue(safechargeRequest != null);
     }
