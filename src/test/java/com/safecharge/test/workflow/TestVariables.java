@@ -115,4 +115,15 @@ public class TestVariables {
     public static final String payoutMerchantSiteID = "19";
     public static final String payoutUPOID = "162176";
     public static final String payoutInternalRequestD = "7424";
+    public static final String addUPOBin = "544308";
+    public static final String addUPOBrand = "master_card";
+    public static final String addUPOMerchantID = "7228839313016442768";
+    public static final String authorization3DCVV2Reply = "3434";
+    public static final String authorization3DTransactionID = "1000045200";
+    public static final String authorization3DInternalRequestID = "822";
+    public static final String voidAuthCode = "0910F8";
+    public static final String voidTransactionID = "1000047955";
+    public static final String voidEci = "0";
+    public static final String voidClientRequestID = "1490270436000";
+    
 }
