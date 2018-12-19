@@ -35,6 +35,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     private String customData;
     private String relatedTransactionId;
     private StoredCredentials storedCredentials;
+    private String webMasterId;
 
     /**
      * Adds an order to the request.
@@ -200,6 +201,11 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         return (T) this;
     }
 
+    public T addWebMasterId(String webMasterId) {
+        this.webMasterId = webMasterId;
+        return (T) this;
+    }
+
     /**
      * Adds the common credit/debit data, collected by this builder.
      *
@@ -224,6 +230,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         request.setCustomData(customData);
         request.setRelatedTransactionId(relatedTransactionId);
         request.setStoredCredentials(storedCredentials);
+        request.setWebMasterId(webMasterId);
 
         return request;
     }

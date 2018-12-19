@@ -95,6 +95,8 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
 
     private StoredCredentials storedCredentials;
 
+    private String webMasterId;
+
     public String getOrderId() {
         return orderId;
     }
@@ -199,6 +201,14 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
         this.storedCredentials = storedCredentials;
     }
 
+    public String getWebMasterId() {
+        return webMasterId;
+    }
+
+    public void setWebMasterId(String webMasterId) {
+        this.webMasterId = webMasterId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SafechargeCCRequest{");
@@ -215,6 +225,7 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
         sb.append(", customData='").append(customData).append('\'');
         sb.append(", relatedTransactionId='").append(relatedTransactionId).append('\'');
         sb.append(", storedCredentials='").append(storedCredentials).append('\'');
+        sb.append(", webMasterId='").append(webMasterId).append('\'');
         sb.append('}');
         return sb.toString();
     }
