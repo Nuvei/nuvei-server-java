@@ -68,8 +68,6 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
     @Size(max = 255)
     private String customData;
 
-    private String webMasterId;
-
     public String getAmount() {
         return amount;
     }
@@ -150,14 +148,6 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
         this.customData = customData;
     }
 
-    public String getWebMasterId() {
-        return webMasterId;
-    }
-
-    public void setWebMasterId(String webMasterId) {
-        this.webMasterId = webMasterId;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SafechargeTransactionRequest{");
@@ -171,7 +161,6 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
         sb.append(", customSiteName='").append(customSiteName).append('\'');
         sb.append(", productId='").append(productId).append('\'');
         sb.append(", customData='").append(customData).append('\'');
-        sb.append(", webMasterId='").append(webMasterId).append('\'');
         sb.append('}');
         return sb.toString();
     }

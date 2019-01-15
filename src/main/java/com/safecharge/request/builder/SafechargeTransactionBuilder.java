@@ -29,7 +29,6 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     private String customSiteName;
     private String productId;
     private String customData;
-    private String webMasterId;
 
     /**
      * Adds amount to the request.
@@ -152,16 +151,6 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
         this.customData = customData;
         return (T) this;
     }
-    
-    /**
-     * Adds webMasterId to request builder.
-     * @param webMasterId
-     * @return
-     */
-    public T addWebMasterId(String webMasterId) {
-        this.webMasterId = webMasterId;
-        return (T) this;
-    }
 
     /**
      * Adds the order details data, collected by this builder.
@@ -184,7 +173,6 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
         safechargeTransactionRequest.setCustomSiteName(customSiteName);
         safechargeTransactionRequest.setProductId(productId);
         safechargeTransactionRequest.setCustomData(customData);
-        safechargeTransactionRequest.setWebMasterId(webMasterId);
 
         safechargeTransactionRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeTransactionRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",

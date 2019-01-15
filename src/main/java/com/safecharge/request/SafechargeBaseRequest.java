@@ -2,6 +2,8 @@ package com.safecharge.request;
 
 import javax.validation.constraints.NotNull;
 
+import com.safecharge.util.APIConstants;
+
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
@@ -42,6 +44,9 @@ public abstract class SafechargeBaseRequest {
     private String sessionToken;
 
     private String serverHost;
+
+    private final String webMasterId = SafechargeBaseRequest.class.getPackage().getImplementationVersion() != null
+            ? APIConstants.SDK_JAVA_VERSION.concat(SafechargeBaseRequest.class.getPackage().getImplementationVersion()) : null;
 
     public String getInternalRequestId() {
         return internalRequestId;
