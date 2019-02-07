@@ -82,4 +82,5 @@ public interface APIConstants {
     String DATE_OF_BIRTH_REGEX = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
     String IS_DYNAMIC_3D_REGEX = "^(0|1)$";
 
+    String SDK_JAVA_VERSION = "sdk_java_ver";
 }

@@ -1,6 +1,8 @@
 package com.safecharge.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +19,7 @@ import com.safecharge.model.Item;
 import com.safecharge.model.MerchantBaseInfo;
 import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.MerchantInfo;
+import com.safecharge.model.SubMethodDetails;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 import com.safecharge.request.AddUPOAPMRequest;
@@ -80,6 +83,10 @@ public class ValidationsTest {
     private static final MerchantDetails merchantDetails = MerchantUtils.createMerchantDetailsFromParams("customField1", "customField2", "customField3", "customField4",
             "customField5", "customField6", "customField7", "customField8", "customField9", "customField10",
             "customField11", "customField12", "customField13", "customField14", "customField15");
+    
+    private static final SubMethodDetails subMethodDetails = new SubMethodDetails("testSubmethod", "testField1", "testField2");
+    private static final DynamicDescriptor dynamicDescriptor = new DynamicDescriptor("testName", "029999999");
+    private static final CardData cardData = new CardData("testNumber", "testCardHolderName", "2", "2001", "testCCtempToken", "222");
 
     private static final String dummySessionToken = "dummySessionToken";
 
@@ -126,7 +133,22 @@ public class ValidationsTest {
 
     private static final String validBrand = "Visa";
 
-
+    private static final String dummyAddress = "address";
+    private static final String dummyCity = "Sofia";
+    private static final String dummyCountryCode = "1111";
+    private static final String dummyEMail = "email@abv.bg";
+    private static final String dummyFirstName = "Nikola";
+    private static final String dummyLastName = "Dichev";
+    private static final String dummyPhone = "029999999";
+    private static final String dummyState = "New York";
+    private static final String dummyZip = "1111";
+    private static final String dummyBirthDate = "1990-01-01";
+    private static final String dummyCountry = "USA";
+    private static final String dummyLocale= "EN";
+    private static final String dummyUserTokenId = "userTokenID";
+    private static final String dummyClientUniqueId = "clientUniqueId";
+    private static final String dummySubmethod = "submethod";
+    
     private static final CashierUserDetails dummyValidCashierUserDetails =
             AddressUtils.createCashierUserDetailsFromParams("Test street 1", "Sofia", "BG", "test@test.com",
                     "Test", "Testov", "0884123456", null, "1000", "1990-01-01", "county usr");
@@ -219,6 +241,8 @@ public class ValidationsTest {
         try {
             AddUPOAPMRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
+                    .addBillingAddress(dummyAddress, dummyCity, dummyCountryCode, dummyEMail, dummyFirstName, dummyLastName, dummyPhone, dummyState,
+                            dummyZip, dummyBirthDate, dummyCountry, dummyLocale)
                     .build();
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
@@ -259,6 +283,8 @@ public class ValidationsTest {
                 .addCcExpMonth(dummyCcExpMonth)
                 .addCCExpYear(dummyCcExpYear)
                 .addCcNameOnCard(dummyCcNameOnCard)
+                .addBillingAddress(dummyFirstName, dummyLastName, dummyAddress, dummyPhone, dummyZip, dummyCity, dummyCountryCode, dummyState,
+                        dummyEMail, dummyLocale, dummyBirthDate, dummyCountry)
                 .build();
         assertTrue(safechargeRequest != null);
     }
@@ -359,6 +385,14 @@ public class ValidationsTest {
                 .addMerchantInfo(validMerchantInfo)
                 .addUserTokenId(dummyUserId)
                 .addSubscriptionPlanId(dummySubscriptionPlanId)
+                .addCardData(cardData)
+                .addDynamicDescriptor(dynamicDescriptor)
+                .addDeviceDetails("type", "name", "windows", "firefox", "127.0.0.1")
+                .addMerchantDetails("customField1", "customField2", "customField3", "customField4", "customField5", "customField6", "customField7",
+                        "customField8", "customField9", "customField10", "customField11", "customField12", "customField13", "customField14",
+                        "customField15")
+                .addURLDetails("failureUrl", "pendingUrl", "successUrl", "notificationUrl")
+                .addUserPaymentOption("cvv", "111111")
                 .build();
         assertTrue(safechargeRequest != null);
     }
@@ -751,7 +785,11 @@ public class ValidationsTest {
                 .addComment(dummyComment)
                 .addDynamicDescriptor(someDynamicDescriptor)
                 .addMerchantDetails(merchantDetails)
+                .addSubMethodDetails(subMethodDetails)
                 .addUrlDetails(dummyValidUrlDetails)
+                .addUserTokenId(dummyUserTokenId)
+                .addClientUniqueId(dummyClientUniqueId)
+                .addSubMethodDetails(dummySubmethod)
                 .build();
         assertTrue(safechargeRequest != null);
     }
@@ -784,8 +822,21 @@ public class ValidationsTest {
                 .addCcExpMonth(dummyCCExpMonth)
                 .addCCExpYear(dummyCCExpYear)
                 .addCcNameOnCard(dummyCCNameOnCard)
+                .addBillingAddress(dummyAddress, dummyCity, dummyCountryCode, dummyEMail, dummyFirstName, dummyLastName, dummyPhone, dummyState,
+                        dummyZip, dummyBirthDate, dummyCountry, dummyLocale)
+                .addLastDepositUse("lastDepositUse")
+                .addLastDepositSuccess("lastDepositSuccess")
+                .addLastWithdrawalUse("lastWithdrawalUse")
+                .addLastWithdrawalSuccess("lastWithdrawalSuccess")
+                .addRegistrationDate("registrationDate")
+                .addExpiryDate("expiryDate")
                 .build();
         assertTrue(safechargeRequest != null);
+        assertTrue(safechargeRequest.toString().contains(dummyCcToken));
+        assertTrue(safechargeRequest.toString().contains(dummyBrand));
+        assertTrue(safechargeRequest.toString().contains(dummyUniqueCC));
+        assertTrue(safechargeRequest.toString().contains(dummyLast4Digits));
+        assertTrue(safechargeRequest.toString().contains(dummyCCNameOnCard));
     }
 
     @Test
@@ -833,6 +884,8 @@ public class ValidationsTest {
                 .addCCExpYear(dummyCcExpYear)
                 .addUserPaymentOptionId(dummyUserPaymentOptionId)
                 .addCcNameOnCard(dummyCcNameOnCard)
+                .addBillingAddress(dummyFirstName, dummyLastName, dummyAddress, dummyPhone, dummyZip, dummyCity, dummyCountryCode, dummyState, dummyEMail,
+                        dummyLocale, dummyBirthDate, dummyCountry)
                 .build();
         assertTrue(safechargeRequest != null);
     }

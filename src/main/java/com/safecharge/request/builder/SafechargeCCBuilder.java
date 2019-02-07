@@ -35,7 +35,6 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     private String customData;
     private String relatedTransactionId;
     private StoredCredentials storedCredentials;
-
     /**
      * Adds an order to the request.
      *
