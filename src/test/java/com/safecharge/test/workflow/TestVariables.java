@@ -100,4 +100,30 @@ public class TestVariables {
     public static final String userPaymentOptionIdNeteller = "6225006";
     public static final String PaRes = "";
     public static final String dateOfBirth = "1990-01-01";
+    public static final String addUPOCreditCardSessionToken = "297f9f04-9bc5-4ecd-a3f9-51a0fe4aebca";
+    
+    public static final String paymentCCOrderID = "9169329";
+    public static final String statusSuccess = "SUCCESS";
+    public static final String transactionStatusApproved = "APPROVED";
+    public static final String paymentCCTransactionId = "1000045504";
+    public static final String transactionTypeAuth = "Auth";
+    public static final String getOrderDetailsOrderID = "9169306";
+    public static final String getOrderDetailsCurrency = "EUR";
+    public static final String getOrderDetailsAmount = "2.0";
+    public static final String getorderDetailsOrderCreationDate = "20170301170326";
+    public static final String payoutMerchantID = "7777777";
+    public static final String payoutMerchantSiteID = "19";
+    public static final String payoutUPOID = "162176";
+    public static final String payoutInternalRequestD = "7424";
+    public static final String addUPOBin = "544308";
+    public static final String addUPOBrand = "master_card";
+    public static final String addUPOMerchantID = "7228839313016442768";
+    public static final String authorization3DCVV2Reply = "3434";
+    public static final String authorization3DTransactionID = "1000045200";
+    public static final String authorization3DInternalRequestID = "822";
+    public static final String voidAuthCode = "0910F8";
+    public static final String voidTransactionID = "1000047955";
+    public static final String voidEci = "0";
+    public static final String voidClientRequestID = "1490270436000";
+    
 }
