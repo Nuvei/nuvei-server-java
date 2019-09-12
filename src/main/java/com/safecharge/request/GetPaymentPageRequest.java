@@ -52,6 +52,20 @@ public class GetPaymentPageRequest extends SafechargeRequest {
     private UrlDetails urlDetails;
 
     /**
+     * The type of payment method selected by the customer (pre-selected):
+     * credit card: cc_card
+     * debit card: dc_card
+     * APMs: SafeCharge’s unique name of the payment method (for example apmgw_Neteller).
+     */
+    private String paymentMethod;
+
+    /**
+     * This parameter filters out any payment method that is not the payment method sent in paymentMethod parameter.
+     * Possible values: filter or no value at all.
+     */
+    private String paymentMethodMode;
+
+    /**
      * Adds an item that will be purchased.
      * <p>
      * At least one item must be added for a successful order.
@@ -110,6 +124,22 @@ public class GetPaymentPageRequest extends SafechargeRequest {
         this.urlDetails = urlDetails;
     }
 
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentMethodMode() {
+        return paymentMethodMode;
+    }
+
+    public void setPaymentMethodMode(String paymentMethodMode) {
+        this.paymentMethodMode = paymentMethodMode;
+    }
+
     public static GetPaymentPageRequest.Builder builder() {
         return new GetPaymentPageRequest.Builder();
     }
@@ -134,6 +164,12 @@ public class GetPaymentPageRequest extends SafechargeRequest {
                 .append('\'');
         sb.append(", urlDetails='")
                 .append(urlDetails)
+                .append('\'');
+        sb.append(", paymentMethod='")
+                .append(paymentMethod)
+                .append('\'');
+        sb.append(", paymentMethodMode='")
+                .append(paymentMethodMode)
                 .append('\'');
         sb.append(", ")
                 .append(super.toString());

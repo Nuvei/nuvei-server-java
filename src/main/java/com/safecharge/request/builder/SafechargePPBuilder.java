@@ -18,6 +18,8 @@ public abstract class SafechargePPBuilder<T extends SafechargePPBuilder<T>> exte
     private UrlDetails urlDetails;
     private String userTokenId;
     private String clientUniqueId;
+    private String paymentMethod;
+    private String paymentMethodMode;
 
     /**
      * Adds amount to the request.
@@ -122,6 +124,16 @@ public abstract class SafechargePPBuilder<T extends SafechargePPBuilder<T>> exte
         return (T) this;
     }
 
+    public T addPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+        return (T) this;
+    }
+
+    public T addPaymentMethodMode(String paymentMethodMode) {
+        this.paymentMethodMode = paymentMethodMode;
+        return (T) this;
+    }
+
     /**
      * Adds the order details data, collected by this builder.
      *
@@ -141,6 +153,8 @@ public abstract class SafechargePPBuilder<T extends SafechargePPBuilder<T>> exte
         getPaymentPageRequest.setUrlDetails(urlDetails);
         getPaymentPageRequest.setUserTokenId(userTokenId);
         getPaymentPageRequest.setClientUniqueId(clientUniqueId);
+        getPaymentPageRequest.setPaymentMethod(paymentMethod);
+        getPaymentPageRequest.setPaymentMethodMode(paymentMethodMode);
 
         getPaymentPageRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(getPaymentPageRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",
