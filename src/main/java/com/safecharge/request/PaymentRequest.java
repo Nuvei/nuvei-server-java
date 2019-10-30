@@ -40,7 +40,6 @@ public class PaymentRequest extends SafechargeOrderDetailsRequest {
     @NotNull(message = "currency parameter is mandatory!")
     private PaymentOption paymentOption;
 
-    @Size(max = 1, message = "isRebilling must be one character long!")
     private Integer isRebilling;
 
 

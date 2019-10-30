@@ -17,6 +17,7 @@ import com.safecharge.util.APIConstants;
 import com.safecharge.util.Constants;
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.io.IOException;
 
@@ -362,50 +363,9 @@ public class CompleteFunctionalTest extends BaseTest {
     @Test
     public void testPaymentRequest() {
         String jsonPath = "mock/request/payment.json";
-        SafechargeRequestExecutor executor = SafechargeRequestExecutor.getInstance();
+        SafechargeResponse response = baseMockTestMethodWithoutSessionToken(jsonPath, PaymentRequest.class);
 
-        MerchantInfo merchantInfo = new MerchantInfo("8Tg5e3hwoIU31deT", "7777777",
-                "38", "http://bsf-vasiln.gw-4u.com:8080/ppp/", Constants.HashAlgorithm.SHA256);
-        SafechargeRequest sessionToken = (SafechargeRequest) GetSessionTokenRequest.builder()
-                .addMerchantInfo(merchantInfo)
-                .build();
-        SafechargeResponse sessionResponse = executor.executeRequest(sessionToken);
-
-        PaymentRequest requestFromFile = gson.fromJson(loadResourceFile(jsonPath), PaymentRequest.class);
-
-        SafechargeRequest finalRequest = PaymentRequest.builder()
-                .addSessionToken(sessionResponse.getSessionToken())
-                .addPaymentOption(requestFromFile.getPaymentOption())
-                .addIsRebilling(requestFromFile.getIsRebilling())
-                .addAddendums(requestFromFile.getAddendums())
-                .addAmountDetails(requestFromFile.getAmountDetails())
-                .addAmount(requestFromFile.getAmount())
-                .addBillingDetails(requestFromFile.getBillingAddress())
-                .addDeviceDetails(requestFromFile.getDeviceDetails())
-                .addDynamicDescriptor(requestFromFile.getDynamicDescriptor())
-                .addMerchantDetails(requestFromFile.getMerchantDetails())
-                .addShippingDetails(requestFromFile.getShippingAddress())
-                .addMerchantInfo(merchantInfo)
-                .addURLDetails(requestFromFile.getUrlDetails())
-                .addUserDetails(requestFromFile.getUserDetails())
-                .addClientRequestId(requestFromFile.getClientRequestId())
-                .addClientUniqueId(requestFromFile.getClientUniqueId())
-                .addCurrency(requestFromFile.getCurrency())
-                .addInternalRequestId(requestFromFile.getInternalRequestId())
-                .addUserTokenId(requestFromFile.getUserTokenId())
-                .addSessionToken(sessionResponse.getSessionToken())
-                .addItem(requestFromFile.getItems().get(0))
-                .addItem(requestFromFile.getItems().get(1))
-                .build();
-
-        finalRequest.setServerHost("http://bsf-vasiln.gw-4u.com:8080/ppp/");
-//        requestFromFile.setSessionToken(sessionResponse.getSessionToken());
-        finalRequest.setTimeStamp(sessionToken.getTimeStamp());
-
-        PaymentResponse paymentResponse = (PaymentResponse) executor.executeRequest(finalRequest);
-
-
-        Assert.assertNotNull(paymentResponse);
-        System.out.println(paymentResponse.toString());
+        Assert.assertNotNull(response);
+        Mockito.verify(safechargeRequestExecutor).executeRequest(Mockito.any(PaymentRequest.class));
     }
 }
