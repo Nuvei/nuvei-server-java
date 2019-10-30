@@ -7,7 +7,6 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * Copyright (C) 2007-2019 SafeCharge International Group Limited.
@@ -22,7 +21,7 @@ public class PaymentRequest extends SafechargeOrderDetailsRequest {
     /**
      * Copyright (C) 2007-2019 SafeCharge International Group Limited.
      * <p>
-     *  Represents the details of the payment method. Can be one of 3 options:
+     * Represents the details of the payment method. Can be one of 3 options:
      * </p>
      * <ol>
      *     <li>
@@ -41,7 +40,6 @@ public class PaymentRequest extends SafechargeOrderDetailsRequest {
     private PaymentOption paymentOption;
 
     private Integer isRebilling;
-
 
     public PaymentOption getPaymentOption() {
         return paymentOption;
