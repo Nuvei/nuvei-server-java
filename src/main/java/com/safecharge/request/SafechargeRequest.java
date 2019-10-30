@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
  * @since 2/14/2017
  */
 //@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING.GET_CASHIER_USER_INFO)
-public class SafechargeRequest extends SafechargeBaseRequest {
+public abstract class SafechargeRequest extends SafechargeBaseRequest {
 
     /**
      * Merchant ID provided by SafeCharge.

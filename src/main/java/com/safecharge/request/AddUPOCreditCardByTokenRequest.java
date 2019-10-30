@@ -16,11 +16,11 @@ import com.safecharge.util.ValidationUtils;
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Request to add Credit/Debit card User Payment Option(UPO) to a User.
- * <p>
+ * </p>
  * This goal of this request is to add a credit card UPO for a specific user according to their Temporary card token and User Token ID.
  * Once a credit card UPO is added to the user’s list of UPOs, the credit card is displayed in the payment page.
  *
- * @author <a mailto:bozhidarsh@safecharge.com>Bozhidar Shumanov</a>
+ * @author <a href="mailto:bozhidarsh@safecharge.com">Bozhidar Shumanov</a>
  * @since 3/21/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.ADD_CASHIER_CC_CARD_DATA)

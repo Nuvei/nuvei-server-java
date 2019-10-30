@@ -7,71 +7,21 @@ package com.safecharge.test.workflow;
  * @since 2/28/2017
  */
 
-import java.io.IOException;
-
+import com.safecharge.biz.SafechargeRequestExecutor;
+import com.safecharge.model.Item;
+import com.safecharge.model.MerchantInfo;
+import com.safecharge.request.*;
+import com.safecharge.response.*;
+import com.safecharge.test.BaseTest;
+import com.safecharge.util.APIConstants;
+import com.safecharge.util.Constants;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.safecharge.model.Item;
-import com.safecharge.request.AddUPOAPMRequest;
-import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
-import com.safecharge.request.AddUPOCreditCardByTokenRequest;
-import com.safecharge.request.AddUPOCreditCardRequest;
-import com.safecharge.request.Authorization3DRequest;
-import com.safecharge.request.CardTokenizationRequest;
-import com.safecharge.request.CreateUserRequest;
-import com.safecharge.request.DeleteUPORequest;
-import com.safecharge.request.Dynamic3DRequest;
-import com.safecharge.request.EditUPOAPMRequest;
-import com.safecharge.request.EditUPOCreditCardRequest;
-import com.safecharge.request.EnableUPORequest;
-import com.safecharge.request.GetMerchantPaymentMethodsRequest;
-import com.safecharge.request.GetOrderDetailsRequest;
-import com.safecharge.request.GetSessionTokenRequest;
-import com.safecharge.request.GetUserDetailsRequest;
-import com.safecharge.request.GetUserUPOsRequest;
-import com.safecharge.request.OpenOrderRequest;
-import com.safecharge.request.Payment3DRequest;
-import com.safecharge.request.PaymentAPMRequest;
-import com.safecharge.request.PaymentCCRequest;
-import com.safecharge.request.PayoutRequest;
-import com.safecharge.request.RefundTransactionRequest;
-import com.safecharge.request.SettleTransactionRequest;
-import com.safecharge.request.SuspendUPORequest;
-import com.safecharge.request.UpdateOrderRequest;
-import com.safecharge.request.UpdateUserRequest;
-import com.safecharge.request.VoidTransactionRequest;
-import com.safecharge.response.AddUPOAPMResponse;
-import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
-import com.safecharge.response.AddUPOCreditCardByTokenResponse;
-import com.safecharge.response.AddUPOCreditCardResponse;
-import com.safecharge.response.Authorization3DResponse;
-import com.safecharge.response.CardTokenizationResponse;
-import com.safecharge.response.DeleteUPOResponse;
-import com.safecharge.response.Dynamic3DResponse;
-import com.safecharge.response.EditUPOAPMResponse;
-import com.safecharge.response.EditUPOCreditCardResponse;
-import com.safecharge.response.EnableUPOResponse;
-import com.safecharge.response.GetMerchantPaymentMethodsResponse;
-import com.safecharge.response.GetOrderDetailsResponse;
-import com.safecharge.response.GetSessionTokenResponse;
-import com.safecharge.response.GetUserDetailsResponse;
-import com.safecharge.response.GetUserUPOsResponse;
-import com.safecharge.response.OpenOrderResponse;
-import com.safecharge.response.Payment3DResponse;
-import com.safecharge.response.PaymentAPMResponse;
-import com.safecharge.response.PaymentCCResponse;
-import com.safecharge.response.PayoutResponse;
-import com.safecharge.response.RefundTransactionResponse;
-import com.safecharge.response.SettleTransactionResponse;
-import com.safecharge.response.SuspendUPOResponse;
-import com.safecharge.response.UpdateOrderResponse;
-import com.safecharge.response.UserResponse;
-import com.safecharge.response.VoidTransactionResponse;
-import com.safecharge.test.BaseTest;
-import com.safecharge.util.Constants;
+import java.io.IOException;
 
 import static com.safecharge.test.workflow.TestVariables.*;
+
 public class CompleteFunctionalTest extends BaseTest {
 
     @Test
@@ -109,12 +59,12 @@ public class CompleteFunctionalTest extends BaseTest {
             Assert.assertTrue(validator.validate(item)
                     .size() == 0);
         }
-        
+
         Assert.assertTrue(response.toString().contains(getOrderDetailsOrderID));
         Assert.assertTrue(response.toString().contains(getOrderDetailsCurrency));
         Assert.assertTrue(response.toString().contains(getOrderDetailsAmount));
         Assert.assertTrue(response.toString().contains(getorderDetailsOrderCreationDate));
-        
+
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
     }
 
@@ -170,7 +120,7 @@ public class CompleteFunctionalTest extends BaseTest {
 
         Assert.assertTrue(defined(response.getOrderId()));
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
-        
+
         Assert.assertTrue(response.getCVV2Reply() != null);
         Assert.assertTrue(response.getInternalRequestId() != null);
         Assert.assertTrue(response.getTransactionStatus() != null);
@@ -178,7 +128,7 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertTrue(response.getAcsUrl() == null);
         Assert.assertTrue(response.getPaymentMethodErrorCode() == null);
         Assert.assertTrue(response.getGwErrorReason() == null);
-        
+
         Assert.assertTrue(response.toString().contains(authorization3DCVV2Reply));
         Assert.assertTrue(response.toString().contains(authorization3DTransactionID));
         Assert.assertTrue(!response.toString().contains(authorization3DInternalRequestID));
@@ -214,17 +164,17 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
         Assert.assertTrue(response.getUserPaymentOptionId() != null);
         Assert.assertTrue(response.getCcToken() != null);
-        Assert.assertTrue(response.getBrand()!= null);
+        Assert.assertTrue(response.getBrand() != null);
         Assert.assertTrue(response.getUniqueCC() != null);
         Assert.assertTrue(response.getBin() != null);
         Assert.assertTrue(response.getLast4Digits() != null);
         Assert.assertTrue(response.getCardType().isEmpty());
-        
+
         Assert.assertTrue(response.toString().contains(addUPOMerchantID));
         Assert.assertTrue(response.toString().contains(addUPOCreditCardSessionToken));
         Assert.assertTrue(response.toString().contains(addUPOBin));
         Assert.assertTrue(response.toString().contains(addUPOBrand));
-        
+
     }
 
     @Test
@@ -246,7 +196,7 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertTrue(response.getClientRequestId() != null);
         Assert.assertTrue(response.getEci() != null);
         Assert.assertTrue(response.getReason().isEmpty());
-        
+
         Assert.assertTrue(response.getExternalTransactionId() == null);
         Assert.assertTrue(response.getUserPaymentOptionId() == null);
         Assert.assertTrue(response.getPaymentMethodErrorReason() == null);
@@ -267,7 +217,7 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertTrue(response.getAuthCode() != null);
         Assert.assertTrue(response.getMerchantId() != null);
         Assert.assertTrue(response.getMerchantSiteId() != null);
-        
+
         Assert.assertTrue(response.toString().contains(transactionStatusApproved));
         Assert.assertTrue(response.toString().contains(voidAuthCode));
         Assert.assertTrue(response.toString().contains(voidTransactionID));
@@ -309,7 +259,7 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertTrue(response.getGwExtendedErrorCode() == null);
         Assert.assertTrue(response.getExternalTransactionId() == null);
         Assert.assertTrue(response.getTransactionId() == null);
-        
+
         Assert.assertTrue(response.toString().contains(payoutMerchantID));
         Assert.assertTrue(response.toString().contains(payoutMerchantSiteID));
         Assert.assertTrue(response.toString().contains(statusSuccess));
@@ -407,5 +357,55 @@ public class CompleteFunctionalTest extends BaseTest {
         SuspendUPOResponse response = baseMockTestMethodWithoutSessionToken("mock/request/basicEditUPO.json", SuspendUPORequest.class);
 
         Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
+    }
+
+    @Test
+    public void testPaymentRequest() {
+        String jsonPath = "mock/request/payment.json";
+        SafechargeRequestExecutor executor = SafechargeRequestExecutor.getInstance();
+
+        MerchantInfo merchantInfo = new MerchantInfo("8Tg5e3hwoIU31deT", "7777777",
+                "38", "http://bsf-vasiln.gw-4u.com:8080/ppp/", Constants.HashAlgorithm.SHA256);
+        SafechargeRequest sessionToken = (SafechargeRequest) GetSessionTokenRequest.builder()
+                .addMerchantInfo(merchantInfo)
+                .build();
+        SafechargeResponse sessionResponse = executor.executeRequest(sessionToken);
+
+        PaymentRequest requestFromFile = gson.fromJson(loadResourceFile(jsonPath), PaymentRequest.class);
+
+        SafechargeRequest finalRequest = PaymentRequest.builder()
+                .addSessionToken(sessionResponse.getSessionToken())
+                .addPaymentOption(requestFromFile.getPaymentOption())
+                .addIsRebilling(requestFromFile.getIsRebilling())
+                .addAddendums(requestFromFile.getAddendums())
+                .addAmountDetails(requestFromFile.getAmountDetails())
+                .addAmount(requestFromFile.getAmount())
+                .addBillingDetails(requestFromFile.getBillingAddress())
+                .addDeviceDetails(requestFromFile.getDeviceDetails())
+                .addDynamicDescriptor(requestFromFile.getDynamicDescriptor())
+                .addMerchantDetails(requestFromFile.getMerchantDetails())
+                .addShippingDetails(requestFromFile.getShippingAddress())
+                .addMerchantInfo(merchantInfo)
+                .addURLDetails(requestFromFile.getUrlDetails())
+                .addUserDetails(requestFromFile.getUserDetails())
+                .addClientRequestId(requestFromFile.getClientRequestId())
+                .addClientUniqueId(requestFromFile.getClientUniqueId())
+                .addCurrency(requestFromFile.getCurrency())
+                .addInternalRequestId(requestFromFile.getInternalRequestId())
+                .addUserTokenId(requestFromFile.getUserTokenId())
+                .addSessionToken(sessionResponse.getSessionToken())
+                .addItem(requestFromFile.getItems().get(0))
+                .addItem(requestFromFile.getItems().get(1))
+                .build();
+
+        finalRequest.setServerHost("http://bsf-vasiln.gw-4u.com:8080/ppp/");
+//        requestFromFile.setSessionToken(sessionResponse.getSessionToken());
+        finalRequest.setTimeStamp(sessionToken.getTimeStamp());
+
+        PaymentResponse paymentResponse = (PaymentResponse) executor.executeRequest(finalRequest);
+
+
+        Assert.assertNotNull(paymentResponse);
+        System.out.println(paymentResponse.toString());
     }
 }

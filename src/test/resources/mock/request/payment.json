@@ -1,0 +1,81 @@
+{
+  "sessionToken": "e57074c4-9e35-48f2-9d4c-10e79e5ff0ec",
+  "merchantId": "7777777",
+  "merchantSiteId": "38",
+  "userTokenId": "vasiln",
+  "clientUniqueId": "uniqueIdCC",
+  "clientRequestId": "1488984483585",
+  "transactionType": "Sale",
+  "paymentOption": {
+    "userPaymentOptionId": "1000189",
+    "card": {
+      "CVV": "2322",
+      "threeD": {
+        "isDynamic3D": "1",
+        "dynamic3DMode": "ON",
+        "convertNonEnrolled": "True"
+      }
+    }
+  },
+  "currency": "EUR",
+  "amount": "1.00",
+  "items": [
+    {
+      "name": "watch",
+      "price": "0.50",
+      "quantity": 1
+    },
+    {
+      "name": "color",
+      "price": "0.50",
+      "quantity": 1
+    }
+  ],
+  "deviceDetails": {
+    "deviceType": "DESKTOP",
+    "deviceName": "deviceName",
+    "deviceOS": "deviceOS",
+    "browser": "browser",
+    "ipAddress": "127.0.0.1"
+  },
+  "userDetails": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "email": "email@email.com",
+    "phone1": "phone1",
+    "phone2": "phone2",
+    "phone3": "phone3"
+  },
+  "shippingAddress": {
+    "address1": "address1",
+    "address2": "address2",
+    "city": "city",
+    "country": "DE",
+    "state": "",
+    "zip": "1340"
+  },
+  "billingAddress": {
+    "address1": "address1",
+    "address2": "address2",
+    "city": "city",
+    "country": "DE",
+    "state": "",
+    "zip": "1335"
+  },
+  "dynamicDescriptor": {
+    "merchantName": "merchantName",
+    "merchantPhone": "merchantPhone"
+  },
+  "merchantDetails": {
+    "customField1": "merchantName",
+    "customField2": "merchantName",
+    "customField3": "merchantName",
+    "customField4": "merchantName",
+    "customField9": "merchantName"
+  },
+  "urlDetails": {
+    "notificationUrl": "http://www.notificationurl.com/Pol.HtMl"
+  },
+  "timeStamp": "{{timestamp}}",
+  "checksum": "{{checksum}}"
+}
