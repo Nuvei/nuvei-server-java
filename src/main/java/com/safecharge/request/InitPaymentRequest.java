@@ -4,10 +4,19 @@ import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.InitPaymentPaymentOption;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
+import com.safecharge.util.Constants;
+import com.safecharge.util.ValidChecksum;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * Copyright (C) 2007-2019 SafeCharge International Group Limited.
+ * <p>
+ * Request for initiation of payment process for transactions.
+ * </p>
+ */
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
 public class InitPaymentRequest extends SafechargeRequest {
 
     @Size(max = 255, message = "userTokenId size must be up to 255 characters long!")
