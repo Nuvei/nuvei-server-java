@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class PaymentOption {
 
-    private CardData card;
+    private Card card;
 
     private Map<String, String> alternativePaymentMethod;
 
@@ -14,11 +14,11 @@ public class PaymentOption {
 
     private SubMethod submethod;
 
-    public CardData getCard() {
+    public Card getCard() {
         return card;
     }
 
-    public void setCard(CardData card) {
+    public void setCard(Card card) {
         this.card = card;
     }
 }

@@ -368,4 +368,13 @@ public class CompleteFunctionalTest extends BaseTest {
         Assert.assertNotNull(response);
         Mockito.verify(safechargeRequestExecutor).executeRequest(Mockito.any(PaymentRequest.class));
     }
+
+    @Test
+    public void testInitPaymentRequest() {
+        String jsonPath = "mock/request/initPayment.json";
+        SafechargeResponse response = baseMockTestMethodWithoutSessionToken(jsonPath, InitPaymentRequest.class);
+
+        Assert.assertNotNull(response);
+        Mockito.verify(safechargeRequestExecutor).executeRequest(Mockito.any(InitPaymentRequest.class));
+    }
 }

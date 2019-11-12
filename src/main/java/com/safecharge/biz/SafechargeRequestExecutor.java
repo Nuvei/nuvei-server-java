@@ -70,6 +70,7 @@ public class SafechargeRequestExecutor {
                     put(DeleteUPORequest.class, DeleteUPOResponse.class);
                     put(SuspendUPORequest.class, SuspendUPOResponse.class);
                     put(PaymentRequest.class, PaymentResponse.class);
+                    put(InitPaymentRequest.class, InitPaymentResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -110,6 +111,7 @@ public class SafechargeRequestExecutor {
                     put(DeleteUPORequest.class, APIConstants.DELETE_UPO_APM_URL);
                     put(SuspendUPORequest.class, APIConstants.SUSPEND_UPO_APM_URL);
                     put(PaymentRequest.class, APIConstants.PAYMENT_URL);
+                    put(InitPaymentRequest.class, APIConstants.INIT_PAYMENT_URL);
                 }
             };
 

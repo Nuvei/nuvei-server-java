@@ -51,6 +51,7 @@ public interface APIConstants {
     String DELETE_UPO_APM_URL = "api/v1/deleteUPO.do";
     String SUSPEND_UPO_APM_URL = "api/v1/suspendUPO.do";
     String PAYMENT_URL = "api/v1/payment.do";
+    String INIT_PAYMENT_URL = "api/v1/initPayment.do";
 
 
     // Request Headers:

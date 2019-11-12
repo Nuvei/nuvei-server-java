@@ -32,15 +32,6 @@ public class CardData {
     @Size(min = 3, max = 4, message = "cvv size must be 3 or 4 characters long!")
     private String CVV;
 
-    private ExternalToken externalToken;
-
-    private StoredCredentials storedCredentials;
-
-    @Size(max = 2, message = "acquirerId size must be up to 2 characters long!")
-    private String acquirerId;
-
-    private ThreeD threeD;
-
     public CardData() {
     }
 
