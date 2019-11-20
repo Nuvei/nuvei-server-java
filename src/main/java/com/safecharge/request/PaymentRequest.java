@@ -2,11 +2,12 @@ package com.safecharge.request;
 
 import com.safecharge.model.PaymentOption;
 import com.safecharge.request.builder.SafechargeOrderBuilder;
+import com.safecharge.request.builder.SafechargePaymentBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
 
 /**
  * Copyright (C) 2007-2019 SafeCharge International Group Limited.
@@ -16,30 +17,18 @@ import javax.validation.constraints.NotNull;
  * </p>
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
-public class PaymentRequest extends SafechargeOrderDetailsRequest {
+public class PaymentRequest extends SafechargePaymentRequest {
 
-    /**
-     * Copyright (C) 2007-2019 SafeCharge International Group Limited.
-     * <p>
-     * Represents the details of the payment method. Can be one of 3 options:
-     * </p>
-     * <ol>
-     *     <li>
-     *         CardData(such as card number, cardholder name, CVV, expiration date)
-     *     </li>
-     *     <li>
-     *         Alternative payment method. See
-     *     </li>
-     *     <li>
-     *         User Payment Option ID of previously used credit/debit card, which info is stored by the SafeCharge's system.
-     *     </li>
-     * </ol>
-     * <
-     */
-    @NotNull(message = "currency parameter is mandatory!")
+    @Valid
     private PaymentOption paymentOption;
 
     private Integer isRebilling;
+
+    private boolean autoPayment3D;
+
+    private String sourceApplication;
+
+    private String isMoto;
 
     public PaymentOption getPaymentOption() {
         return paymentOption;
@@ -57,6 +46,30 @@ public class PaymentRequest extends SafechargeOrderDetailsRequest {
         this.isRebilling = isRebilling;
     }
 
+    public boolean isAutoPayment3D() {
+        return autoPayment3D;
+    }
+
+    public void setAutoPayment3D(boolean autoPayment3D) {
+        this.autoPayment3D = autoPayment3D;
+    }
+
+    public String getSourceApplication() {
+        return sourceApplication;
+    }
+
+    public void setSourceApplication(String sourceApplication) {
+        this.sourceApplication = sourceApplication;
+    }
+
+    public String getIsMoto() {
+        return isMoto;
+    }
+
+    public void setIsMoto(String isMoto) {
+        this.isMoto = isMoto;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -66,15 +79,21 @@ public class PaymentRequest extends SafechargeOrderDetailsRequest {
         final StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
         sb.append(", paymentOption=").append(paymentOption)
-                .append(", isRebilling=").append(isRebilling);
+                .append(", isRebilling=").append(isRebilling)
+                .append(", sourceApplication=").append(sourceApplication)
+                .append(", isMoto=").append(isMoto)
+                .append(", autoPayment3D=").append(autoPayment3D);
 
         return super.toString();
     }
 
-    public static class Builder extends SafechargeOrderBuilder<Builder> {
+    public static class Builder extends SafechargePaymentBuilder<Builder> {
 
         private PaymentOption paymentOption;
         private Integer isRebilling;
+        private String sourceApplication;
+        private String isMoto;
+        private boolean autoPayment3D;
 
 
         public Builder addPaymentOption(PaymentOption paymentOption) {
@@ -87,11 +106,30 @@ public class PaymentRequest extends SafechargeOrderDetailsRequest {
             return this;
         }
 
+        public Builder addSourceApplication(String sourceApplication) {
+            this.sourceApplication = sourceApplication;
+            return this;
+        }
+
+        public Builder addIsMoto(String isMoto) {
+            this.isMoto = isMoto;
+            return this;
+        }
+
+        public Builder addAutoPayment3D(boolean autoPayment3D) {
+            this.autoPayment3D = autoPayment3D;
+            return this;
+        }
+
         @Override
         public PaymentRequest build() {
             PaymentRequest request = new PaymentRequest();
             request.setPaymentOption(paymentOption);
             request.setIsRebilling(isRebilling);
+            request.setSourceApplication(sourceApplication);
+            request.setIsMoto(isMoto);
+            request.setIsRebilling(isRebilling);
+            request.setAutoPayment3D(autoPayment3D);
 
             return ValidationUtils.validate(super.build(request));
         }
