@@ -116,8 +116,8 @@ public class PaymentRequest extends SafechargePaymentRequest {
             return this;
         }
 
-        public Builder addAutoPayment3D(boolean autoPayment3D) {
-            this.autoPayment3D = autoPayment3D;
+        public Builder addAutoPayment3D(Boolean autoPayment3D) {
+            this.autoPayment3D = Boolean.TRUE.equals(autoPayment3D);
             return this;
         }
 
