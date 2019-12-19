@@ -100,6 +100,12 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         return addItem(item);
     }
 
+    public T addItems(List<Item> items) {
+        this.items.addAll(items);
+
+        return (T)this;
+    }
+
     /**
      * Adds device details to the request.
      *

@@ -20,18 +20,13 @@ import com.safecharge.util.Constants;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 4/10/2017
  */
-public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest implements SafechargeOrderRequest {
+public abstract class SafechargeCCRequest extends SafechargePaymentRequest implements SafechargeOrderRequest {
 
     /**
      * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
      */
     @Size(max = 45)
     private String orderId;
-
-    /**
-     * Transaction Type of the request. Possible values: Auth / Sale.
-     */
-    private Constants.TransactionType transactionType;
 
     /**
      * Card data must be passed as parameter in the payment methods and not before that in the payment flow (openOrder, updateOrder)
@@ -81,18 +76,6 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
     @Valid
     private ExternalTokenProvider externalTokenProvider;
 
-    @Size(max = 50)
-    private String customSiteName;
-
-    @Size(max = 50)
-    private String productId;
-
-    @Size(max = 255)
-    private String customData;
-
-    @Size(max = 19)
-    private String relatedTransactionId;
-
     private StoredCredentials storedCredentials;
 
     public String getOrderId() {
@@ -101,14 +84,6 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
-    }
-
-    public Constants.TransactionType getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(Constants.TransactionType transactionType) {
-        this.transactionType = transactionType;
     }
 
     public CardData getCardData() {
@@ -159,37 +134,7 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
         this.externalTokenProvider = externalTokenProvider;
     }
 
-    public String getCustomSiteName() {
-        return customSiteName;
-    }
 
-    public void setCustomSiteName(String customSiteName) {
-        this.customSiteName = customSiteName;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public String getCustomData() {
-        return customData;
-    }
-
-    public void setCustomData(String customData) {
-        this.customData = customData;
-    }
-
-    public String getRelatedTransactionId() {
-        return relatedTransactionId;
-    }
-
-    public void setRelatedTransactionId(String relatedTransactionId) {
-        this.relatedTransactionId = relatedTransactionId;
-    }
 
     public StoredCredentials getStoredCredentials() {
         return storedCredentials;
@@ -202,18 +147,14 @@ public abstract class SafechargeCCRequest extends SafechargeOrderDetailsRequest 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SafechargeCCRequest{");
+        sb.append(super.toString());
         sb.append("orderId='").append(orderId).append('\'');
-        sb.append(", transactionType=").append(transactionType);
         sb.append(", cardData=").append(cardData);
         sb.append(", userPaymentOption=").append(userPaymentOption);
         sb.append(", isRebilling=").append(isRebilling);
         sb.append(", isPartialApproval='").append(isPartialApproval).append('\'');
         sb.append(", externalMpi=").append(externalMpi);
         sb.append(", externalTokenProvider=").append(externalTokenProvider);
-        sb.append(", customSiteName='").append(customSiteName).append('\'');
-        sb.append(", productId='").append(productId).append('\'');
-        sb.append(", customData='").append(customData).append('\'');
-        sb.append(", relatedTransactionId='").append(relatedTransactionId).append('\'');
         sb.append(", storedCredentials='").append(storedCredentials).append('\'');
         sb.append('}');
         return sb.toString();

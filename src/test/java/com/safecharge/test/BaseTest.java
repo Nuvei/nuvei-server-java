@@ -11,6 +11,8 @@ import javax.validation.Validation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
 
+import com.safecharge.request.*;
+import com.safecharge.response.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -19,63 +21,6 @@ import org.mockito.Mockito;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.safecharge.biz.SafechargeRequestExecutor;
-import com.safecharge.request.AddUPOAPMRequest;
-import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
-import com.safecharge.request.AddUPOCreditCardByTokenRequest;
-import com.safecharge.request.AddUPOCreditCardRequest;
-import com.safecharge.request.Authorization3DRequest;
-import com.safecharge.request.CardTokenizationRequest;
-import com.safecharge.request.CreateUserRequest;
-import com.safecharge.request.DeleteUPORequest;
-import com.safecharge.request.Dynamic3DRequest;
-import com.safecharge.request.EditUPOAPMRequest;
-import com.safecharge.request.EditUPOCreditCardRequest;
-import com.safecharge.request.EnableUPORequest;
-import com.safecharge.request.GetMerchantPaymentMethodsRequest;
-import com.safecharge.request.GetOrderDetailsRequest;
-import com.safecharge.request.GetSessionTokenRequest;
-import com.safecharge.request.GetUserDetailsRequest;
-import com.safecharge.request.GetUserUPOsRequest;
-import com.safecharge.request.OpenOrderRequest;
-import com.safecharge.request.Payment3DRequest;
-import com.safecharge.request.PaymentAPMRequest;
-import com.safecharge.request.PaymentCCRequest;
-import com.safecharge.request.PayoutRequest;
-import com.safecharge.request.RefundTransactionRequest;
-import com.safecharge.request.SafechargeBaseRequest;
-import com.safecharge.request.SettleTransactionRequest;
-import com.safecharge.request.SuspendUPORequest;
-import com.safecharge.request.UpdateOrderRequest;
-import com.safecharge.request.UpdateUserRequest;
-import com.safecharge.request.VoidTransactionRequest;
-import com.safecharge.response.AddUPOAPMResponse;
-import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
-import com.safecharge.response.AddUPOCreditCardByTokenResponse;
-import com.safecharge.response.AddUPOCreditCardResponse;
-import com.safecharge.response.Authorization3DResponse;
-import com.safecharge.response.CardTokenizationResponse;
-import com.safecharge.response.DeleteUPOResponse;
-import com.safecharge.response.Dynamic3DResponse;
-import com.safecharge.response.EditUPOAPMResponse;
-import com.safecharge.response.EditUPOCreditCardResponse;
-import com.safecharge.response.EnableUPOResponse;
-import com.safecharge.response.GetMerchantPaymentMethodsResponse;
-import com.safecharge.response.GetOrderDetailsResponse;
-import com.safecharge.response.GetSessionTokenResponse;
-import com.safecharge.response.GetUserDetailsResponse;
-import com.safecharge.response.GetUserUPOsResponse;
-import com.safecharge.response.OpenOrderResponse;
-import com.safecharge.response.Payment3DResponse;
-import com.safecharge.response.PaymentAPMResponse;
-import com.safecharge.response.PaymentCCResponse;
-import com.safecharge.response.PayoutResponse;
-import com.safecharge.response.RefundTransactionResponse;
-import com.safecharge.response.SafechargeResponse;
-import com.safecharge.response.SettleTransactionResponse;
-import com.safecharge.response.SuspendUPOResponse;
-import com.safecharge.response.UpdateOrderResponse;
-import com.safecharge.response.UserResponse;
-import com.safecharge.response.VoidTransactionResponse;
 import com.safecharge.util.ValidationUtils;
 
 /**
@@ -184,6 +129,12 @@ public abstract class BaseTest {
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(SuspendUPORequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("mock/response/basicEditUPO.json"), SuspendUPOResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(PaymentRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("mock/response/payment.json"), PaymentResponse.class));
+
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(InitPaymentRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("mock/response/initPayment.json"), PaymentResponse.class));
     }
 
     protected String loadResourceFile(String path) {

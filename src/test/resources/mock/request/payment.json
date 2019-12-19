@@ -1,0 +1,112 @@
+{
+  "sessionToken": "{{sessionToken}}",
+  "merchantId": "{{merchantId}}",
+  "merchantSiteId": "{{merchantSiteId}}",
+  "userTokenId": "vasiln",
+  "clientRequestId": "{{clientRequestId}}",
+  "clientUniqueId": "695701003",
+  "orderId": "29263369",
+  "currency": "USD",
+  "amount": "500",
+  "items": [
+    {"name": "Item 1U", "price": "500", "quantity": "1"}
+  ],
+  "paymentOption": {
+    "card": {
+      "cardNumber": "5111426646345761",
+      "cardHolderName": "CL-BRW1",
+      "expirationMonth": "12",
+      "expirationYear": "25",
+      "CVV": "217",
+      "threeD": {
+        "acquirer":{
+          "bin": "testBin",
+          "merchantId": "testMerchantId",
+          "merchantName": "testMerchantName"
+        },
+        "externalMpi":{
+          "isExternalMpi":"0",
+          "cavv":"3q2+78r+ur7erb7vyv66vv",
+          "eci":"05",
+          "xid": "123123123",
+          "dsTransID":"c4e59ceb-a382-4d6a-bc87-385d591fa09d"
+        },
+        "v2AdditionalParams":{
+          "challengePreference": "02",
+          "deliveryEmail": "the_email_address_the_merchandise_was_delivered@yoyoyo.com",
+          "deliveryTimeFrame": "03",
+          "giftCardAmount": "1",
+          "giftCardCount": "41",
+          "giftCardCurrency": "USD",
+          "preOrderDate": "20220511",
+          "preOrderPurchaseInd": "02",
+          "reorderItemsInd": "01",
+          "shipIndicator": "06",
+          "rebillExpiry": "20200101",
+          "rebillFrequency": "13",
+          "challengeWindowSize": "05"
+        },
+        "methodCompletionInd": "Y",
+        "version": "2.1.0",
+        "notificationURL": "http://192.168.103.237:8080/ppp/api/threeDSecure/completePayment.do",
+        "merchantURL": "www.The-Merchant-Website-Fully-Quallified-URL.com",
+        "platformType": "02",
+
+        "browserDetails": {
+          "acceptHeader": "Y",
+          "ip": "190.0.23.160",
+          "javaEnabled": "true",
+          "javaScriptEnabled": "true",
+          "language": "BG",
+          "colorDepth": "64",
+          "screenHeight": "1024",
+          "screenWidth": "1024",
+          "timeZone": "+3",
+          "userAgent": "Mozilla"
+        }
+      }
+    }
+  },
+  "relatedTransactionId": "2110000000000848997",
+  "billingAddress": {
+    "firstName": "Wxjtyskuuj","lastName": "Pauwbeuyid","email": "jhahn.jhnui@srzaw.cb","phone": "359888797070","cell": "359881797073","address": "340689 Billing Str. Updated.",
+    "city": "Billing City Updated","zip": "BNE 4895U","county": "BCountyU","state": "","country": "GB"
+  },
+  "userDetails": {
+    "firstName": "Doefvvblct","lastName": "Vxbfcfwoii","email": "fihay.ymfgd@fwfla.mq","phone": "359888440549","cell": "3598874405493","dateOfBirth": "1972-06-02",
+    "address": "22 Automation Str. Updated.","city": "Chiprovci Updated","zip": "CH 233242U","county": "UCountyU","state": "","country": "DE"
+  },
+  "shippingAddress": {
+    "firstName": "Mlxdwieffa","lastName": "Uvnoirngbg","email": "gmwch.bphmv@ducdb.qz","phone": "359888576900","cell": "359887576903","address": "33 Shipping Str. Updated.",
+    "city": "Shipping City Updated","zip": "SDC 33334U","county": "SCountyU","state": "","country": "DE"
+  },
+  "deviceDetails": {
+    "deviceType": "TABLET","deviceName": "iPad","deviceOS": "iOS U","browser": "safari U","ipAddress": "93.146.254.172"
+  },
+  "dynamicDescriptor": {
+    "merchantName": "Darin Cashier API U","merchantPhone": "359889526524"
+  },
+  "merchantDetails": {
+    "customField1": "customField1-valueUVVV","customField2": "customField2-valueUVVV"
+  },
+  "addendums":{
+
+    "localPayment":{"nationalId":"FRA","debitType":"instalments","firstInstallment":"11","periodicalInstallment":"11",
+      "numberOfInstallments":"121"
+
+    }
+  },
+  "urlDetails": {
+    "successUrl": "https://srv-bsf-devppptrunk.gw-4u.com/ppp/defaultSuccess.do",
+    "pendingUrl": "https://srv-bsf-devppptrunk.gw-4u.com/ppp/defaultPending.do",
+    "failureUrl": "https://srv-bsf-devppptrunk.gw-4u.com/ppp/defaultCancel.do",
+    "notificationUrl": "http://srv-bsf-devppptrunk.gw-4u.com/ppptest/NotifyMerchantTest"
+  },
+  "customSiteName": "DarinCustomSiteName",
+  "autoPayment3D": "true",
+  "productId": "UZAWVZWSOFNT",
+  "customData": "Custom Data Inserted By Darin!",
+  "webMasterId": "CL659GECFOTW",
+  "timeStamp": "{{timestamp}}",
+  "checksum": "{{checksum}}"
+}

@@ -5,8 +5,6 @@ import javax.validation.constraints.Size;
 /**
  * Copyright (C) 2007-2018 SafeCharge International Group Limited.
  * <p>
- * Holder for Cashier's Merchant's specific URL to redirect to in case of successful, pending, failed transaction.
- * It also contains a URL to which to send a Direct Merchant Notification(DMN) with the result of the transaction.
  *
  * @author <a mailto:bozhidarsh@safecharge.com>Bozhidar Shumanov</a>
  * @since 8/7/2018

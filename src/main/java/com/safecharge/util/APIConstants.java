@@ -11,10 +11,27 @@ import org.apache.http.message.BasicHeader;
  */
 public interface APIConstants {
 
-    // Pre-configured hosts:
+    /**
+     * Use this enum instead of the String constants below. It provides better readability and easier maintenance.
+     */
+    enum Environment {
+        PRODUCTION_HOST("https://secure.safecharge.com/ppp/"),
+        INTEGRATION_HOSTINTEGRATION_HOST("https://ppp-test.safecharge.com/ppp/");
 
-    String PRODUCTION_HOST = "https://secure.safecharge.com/ppp/";
-    String INTEGRATION_HOST = "https://ppp-test.safecharge.com/ppp/";
+        private String url;
+
+        Environment(String url) {
+            this.url = url;
+        }
+
+        public String getUrl() {
+            return this.url;
+        }
+    }
+
+    // Pre-configured hosts:
+    String PRODUCTION_HOST = Environment.PRODUCTION_HOST.url;
+    String INTEGRATION_HOSTINTEGRATION_HOST = Environment.INTEGRATION_HOSTINTEGRATION_HOST.url;
 
     // API enpoints:
 
@@ -50,6 +67,8 @@ public interface APIConstants {
     String ENABLE_UPO_URL = "api/v1/enableUPO.do";
     String DELETE_UPO_APM_URL = "api/v1/deleteUPO.do";
     String SUSPEND_UPO_APM_URL = "api/v1/suspendUPO.do";
+    String PAYMENT_URL = "api/v1/payment.do";
+    String INIT_PAYMENT_URL = "api/v1/initPayment.do";
 
 
     // Request Headers:

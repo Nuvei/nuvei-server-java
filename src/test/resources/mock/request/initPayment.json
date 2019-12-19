@@ -1,0 +1,44 @@
+{
+  "sessionToken": "{{sessionToken}}",
+  "merchantId": "{{merchantId}}",
+  "merchantSiteId": "{{merchantSiteId}}",
+  "userTokenId": "vasiln",
+  "clientRequestId": "{{clientRequestId}}",
+  "clientUniqueId": "695701003",
+  "currency": "EUR",
+  "amount": "100",
+  "paymentOption": {
+    "card": {
+      "cardNumber": "5111426646345761",
+      "cardHolderName": "CL-BRW1",
+      "expirationMonth": "12",
+      "expirationYear": "25",
+      "CVV": "217",
+      "threeD": {
+        "methodNotificationUrl": "www.thisisamethodnotificationurl.com",
+        "acquirer":{
+          "bin": "testBin",
+          "merchantId": "testMerchantId",
+          "merchantName": "testMerchantName"
+        }
+      }
+    }
+  },
+  "deviceDetails": {
+    "deviceType": "TABLET",
+    "deviceName": "iPad",
+    "deviceOS": "iOS U",
+    "browser": "safari U",
+    "ipAddress": "FE80::0202:B3FF:FE1E:8329"
+  },
+  "urlDetails": {
+    "successUrl": "https://srv-bsf-devppptrunk.gw-4u.com/ppp/defaultSuccess.do",
+    "pendingUrl": "https://srv-bsf-devppptrunk.gw-4u.com/ppp/defaultPending.do",
+    "failureUrl": "https://srv-bsf-devppptrunk.gw-4u.com/ppp/defaultCancel.do",
+    "notificationUrl": "http://srv-bsf-devppptrunk.gw-4u.com/ppptest/NotifyMerchantTest"
+  },
+  "customData": "Custom Data Inserted By Darin!",
+  "webMasterId": "CL659GECFOTW",
+  "timeStamp": "{{timestamp}}",
+  "checksum": "{{checksum}}"
+}

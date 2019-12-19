@@ -29,6 +29,9 @@ public class UrlDetails {
     @Size(max = 1000, message = "notificationUrl size must be up to 1000 characters long!")
     private String notificationUrl;
 
+    @Size(max = 1000, message = "backUrl size must be up to 1000 characters long!")
+    private String backUrl;
+
     public String getSuccessUrl() {
         return successUrl;
     }
@@ -59,5 +62,13 @@ public class UrlDetails {
 
     public void setNotificationUrl(String notificationUrl) {
         this.notificationUrl = notificationUrl;
+    }
+
+    public String getBackUrl() {
+        return backUrl;
+    }
+
+    public void setBackUrl(String backUrl) {
+        this.backUrl = backUrl;
     }
 }

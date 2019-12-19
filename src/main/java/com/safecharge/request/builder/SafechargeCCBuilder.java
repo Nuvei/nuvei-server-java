@@ -20,20 +20,15 @@ import com.safecharge.util.Constants;
  * @see SafechargeTransactionBuilder
  * @since 4/4/2017
  */
-public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> extends SafechargeOrderBuilder<T> {
+public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> extends SafechargePaymentBuilder<T> {
 
     private CardData cardData;
-    private Constants.TransactionType transactionType;
     private UserPaymentOption userPaymentOption;
     private String orderId;
     private int isRebilling;
     private String isPartialApproval;
     private ExternalMpi externalMpi;
     private ExternalTokenProvider externalTokenProvider;
-    private String customSiteName;
-    private String productId;
-    private String customData;
-    private String relatedTransactionId;
     private StoredCredentials storedCredentials;
     /**
      * Adds an order to the request.
@@ -43,17 +38,6 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
      */
     public T addOrderId(String orderId) {
         this.orderId = orderId;
-        return (T) this;
-    }
-
-    /**
-     * Adds transaction type to the request.
-     *
-     * @param transactionType the type of the transaction. Possible types: {@link com.safecharge.util.Constants.TransactionType}
-     * @return this object
-     */
-    public T addTransactionType(Constants.TransactionType transactionType) {
-        this.transactionType = transactionType;
         return (T) this;
     }
 
@@ -153,46 +137,6 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         this.externalTokenProvider = externalTokenProvider;
         return (T) this;
     }
-
-    /**
-     * The method is used to ad to the builder custom site name which will overwrite the one of the merchant site.
-     * @param customSiteName
-     * @return
-     */
-    public T addCustomSiteName(String customSiteName) {
-        this.customSiteName = customSiteName;
-        return (T) this;
-    }
-
-    /**
-     * Adds product id to request builder.
-     * @param productId
-     * @return
-     */
-    public T addProductId(String productId) {
-        this.productId = productId;
-        return (T) this;
-    }
-
-    /**
-     * Adds custom data to request builder.
-     * @param customData
-     * @return
-     */
-    public T addCustomData(String customData) {
-        this.customData = customData;
-        return (T) this;
-    }
-
-    /**
-     * Adds relatedTransactionId data to request builder.
-     * @param relatedTransactionId
-     * @return
-     */
-    public T addRelatedTransactionId(String relatedTransactionId) {
-        this.relatedTransactionId = relatedTransactionId;
-        return (T) this;
-    }
     
     public T addStoredCredentials(StoredCredentials storedCredentials) {
         this.storedCredentials = storedCredentials;
@@ -211,17 +155,14 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         super.build(request);
 
         request.setUserPaymentOption(userPaymentOption);
-        request.setTransactionType(transactionType);
+
         request.setCardData(cardData);
         request.setOrderId(orderId);
         request.setIsRebilling(isRebilling);
         request.setExternalMpi(externalMpi);
         request.setIsPartialApproval(isPartialApproval);
         request.setExternalTokenProvider(externalTokenProvider);
-        request.setCustomSiteName(customSiteName);
-        request.setProductId(productId);
-        request.setCustomData(customData);
-        request.setRelatedTransactionId(relatedTransactionId);
+
         request.setStoredCredentials(storedCredentials);
 
         return request;
