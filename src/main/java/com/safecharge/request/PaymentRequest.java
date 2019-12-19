@@ -84,7 +84,7 @@ public class PaymentRequest extends SafechargePaymentRequest {
                 .append(", isMoto=").append(isMoto)
                 .append(", autoPayment3D=").append(autoPayment3D);
 
-        return super.toString();
+        return sb.toString();
     }
 
     public static class Builder extends SafechargePaymentBuilder<Builder> {
