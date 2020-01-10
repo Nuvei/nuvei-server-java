@@ -132,9 +132,9 @@ public class Safecharge {
      * @param sourceApplication
      * @return Passes through the response from Safecharge's REST API.
      */
-    public SafechargeResponse initPayment(String userTokenId, String clientUniqueId, String clientRequestId, String currency, String amount,
-                                          DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails, String customData,
-                                          UserAddress billingAddress, String sourceApplication) {
+    public SafechargeResponse createInitPayment(String userTokenId, String clientUniqueId, String clientRequestId, String currency, String amount,
+                                                DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails, String customData,
+                                                UserAddress billingAddress, String sourceApplication) {
         ensureMerchantInfoAndSessionTokenNotNull();
         MerchantBaseInfo merchant = new MerchantBaseInfo(merchantInfo.getMerchantKey(), merchantInfo.getServerHost(), merchantInfo.getHashAlgorithm());
 
@@ -176,12 +176,12 @@ public class Safecharge {
      * @param isMoto
      * @return Passes through the response from Safecharge's REST API.
      */
-    public SafechargeResponse openOrder(String userTokenId, String clientRequestId, String clientUniqueId, String customSiteName, String productId,
-                                        OpenOrderPaymentOption paymentOption, Constants.TransactionType transactionType, String currency, String amount,
-                                        List<Item> items, DeviceDetails deviceDetails, CashierUserDetails userDetails, UserAddress shippingAddress,
-                                        UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
-                                        UrlDetails urlDetails, UserPaymentOption userPaymentOption, String paymentMethod, AmountDetails amountDetails,
-                                        Addendums addendums, String customData, Boolean autoPayment3D, String sourceApplication, String isMoto) {
+    public SafechargeResponse createOpenOrder(String userTokenId, String clientRequestId, String clientUniqueId, String customSiteName, String productId,
+                                              OpenOrderPaymentOption paymentOption, Constants.TransactionType transactionType, String currency, String amount,
+                                              List<Item> items, DeviceDetails deviceDetails, CashierUserDetails userDetails, UserAddress shippingAddress,
+                                              UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
+                                              UrlDetails urlDetails, UserPaymentOption userPaymentOption, String paymentMethod, AmountDetails amountDetails,
+                                              Addendums addendums, String customData, Boolean autoPayment3D, String sourceApplication, String isMoto) {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         PaymentService service = serviceFactory.getPaymentService();

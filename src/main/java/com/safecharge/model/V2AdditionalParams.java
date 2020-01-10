@@ -16,6 +16,9 @@ public class V2AdditionalParams {
     @Size(max = 2, message = "giftCardCount must be up to 2 characters long!")
     private String giftCardCount;
 
+    @Size(min = 3, max = 3, message = "giftCardCurrency must be 3 characters long!")
+    private String giftCardCurrency;
+
     @Size(max = 8, message = "preOrderDate must be up to 8 characters long!")
     private String preOrderDate;
 
@@ -72,6 +75,14 @@ public class V2AdditionalParams {
 
     public void setGiftCardCount(String giftCardCount) {
         this.giftCardCount = giftCardCount;
+    }
+
+    public String getGiftCardCurrency() {
+        return giftCardCurrency;
+    }
+
+    public void setGiftCardCurrency(String giftCardCurrency) {
+        this.giftCardCurrency = giftCardCurrency;
     }
 
     public String getPreOrderDate() {

@@ -21,4 +21,28 @@ public class PaymentOption {
     public void setCard(Card card) {
         this.card = card;
     }
+
+    public Map<String, String> getAlternativePaymentMethod() {
+        return alternativePaymentMethod;
+    }
+
+    public void setAlternativePaymentMethod(Map<String, String> alternativePaymentMethod) {
+        this.alternativePaymentMethod = alternativePaymentMethod;
+    }
+
+    public String getUserPaymentOptionId() {
+        return userPaymentOptionId;
+    }
+
+    public void setUserPaymentOptionId(String userPaymentOptionId) {
+        this.userPaymentOptionId = userPaymentOptionId;
+    }
+
+    public SubMethod getSubmethod() {
+        return submethod;
+    }
+
+    public void setSubmethod(SubMethod submethod) {
+        this.submethod = submethod;
+    }
 }
