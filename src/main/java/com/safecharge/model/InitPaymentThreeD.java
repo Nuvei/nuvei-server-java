@@ -9,10 +9,6 @@ public class InitPaymentThreeD {
 
     private Acquirer acquirer;
 
-    public InitPaymentThreeD(String methodNotificationUrl) {
-        this.methodNotificationUrl = methodNotificationUrl;
-    }
-
     public String getMethodNotificationUrl() {
         return methodNotificationUrl;
     }

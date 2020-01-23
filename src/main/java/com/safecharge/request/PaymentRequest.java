@@ -84,7 +84,7 @@ public class PaymentRequest extends SafechargePaymentRequest {
                 .append(", isMoto=").append(isMoto)
                 .append(", autoPayment3D=").append(autoPayment3D);
 
-        return super.toString();
+        return sb.toString();
     }
 
     public static class Builder extends SafechargePaymentBuilder<Builder> {
@@ -116,8 +116,8 @@ public class PaymentRequest extends SafechargePaymentRequest {
             return this;
         }
 
-        public Builder addAutoPayment3D(boolean autoPayment3D) {
-            this.autoPayment3D = autoPayment3D;
+        public Builder addAutoPayment3D(Boolean autoPayment3D) {
+            this.autoPayment3D = Boolean.TRUE.equals(autoPayment3D);
             return this;
         }
 

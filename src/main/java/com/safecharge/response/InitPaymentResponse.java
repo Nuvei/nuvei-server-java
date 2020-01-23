@@ -6,6 +6,8 @@ public class InitPaymentResponse extends SafechargeResponse {
 
     private String userTokenId;
 
+    private String transactionId;
+
     private String transactionType;
 
     private String transactionStatus;
@@ -34,6 +36,14 @@ public class InitPaymentResponse extends SafechargeResponse {
 
     public void setUserTokenId(String userTokenId) {
         this.userTokenId = userTokenId;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 
     public String getTransactionType() {
