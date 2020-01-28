@@ -51,10 +51,8 @@ public class TestVariables {
     public static final String passwordSkrill = "RAc9AimVLF";
     public static final String paymentMethodSkrill = "apmgw_MoneyBookers";
     public static final String paymentMethodPayPall = "apmgw_expresscheckout";
-    public static final String emailPP = "petarg_1249288328_per@safecharge.com";
-    public static final String password1 = "346316832";
-    public static final String cardNumber = "4012001037141112";
-    public static final String cardHolderName = "Sara Brawn";
+    public static final String cardNumber = "40XXXXXXXXXXXX12";
+    public static final String cardHolderName = "Some Name";
     public static final String expirationMonth = "05";
     public static final String expirationYear = "2025";
     public static final String CVV = "123";
