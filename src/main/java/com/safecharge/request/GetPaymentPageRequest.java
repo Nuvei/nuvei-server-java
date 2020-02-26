@@ -2,6 +2,7 @@ package com.safecharge.request;
 
 import com.safecharge.model.Item;
 import com.safecharge.model.UrlDetails;
+import com.safecharge.model.UserAddress;
 import com.safecharge.request.builder.SafechargePPBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
@@ -64,6 +65,12 @@ public class GetPaymentPageRequest extends SafechargeRequest {
      * Possible values: filter or no value at all.
      */
     private String paymentMethodMode;
+
+    /**
+     * Billing address related to a user payment option. Since order can contain only one payment option billing address is part of the order parameters.
+     */
+    @Valid
+    private UserAddress billingAddress;
 
     /**
      * Adds an item that will be purchased.
@@ -140,6 +147,14 @@ public class GetPaymentPageRequest extends SafechargeRequest {
         this.paymentMethodMode = paymentMethodMode;
     }
 
+    public UserAddress getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(UserAddress billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
     public static GetPaymentPageRequest.Builder builder() {
         return new GetPaymentPageRequest.Builder();
     }
@@ -170,6 +185,9 @@ public class GetPaymentPageRequest extends SafechargeRequest {
                 .append('\'');
         sb.append(", paymentMethodMode='")
                 .append(paymentMethodMode)
+                .append('\'');
+        sb.append(", billingAddress='")
+                .append(billingAddress)
                 .append('\'');
         sb.append(", ")
                 .append(super.toString());

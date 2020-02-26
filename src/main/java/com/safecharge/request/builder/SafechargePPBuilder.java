@@ -2,6 +2,7 @@ package com.safecharge.request.builder;
 
 import com.safecharge.model.Item;
 import com.safecharge.model.UrlDetails;
+import com.safecharge.model.UserAddress;
 import com.safecharge.request.GetPaymentPageRequest;
 import com.safecharge.util.ChecksumUtils;
 import com.safecharge.util.Constants;
@@ -20,6 +21,7 @@ public abstract class SafechargePPBuilder<T extends SafechargePPBuilder<T>> exte
     private String clientUniqueId;
     private String paymentMethod;
     private String paymentMethodMode;
+    private UserAddress billingAddress;
 
     /**
      * Adds amount to the request.
@@ -135,6 +137,18 @@ public abstract class SafechargePPBuilder<T extends SafechargePPBuilder<T>> exte
     }
 
     /**
+     * Adds billing info to the request.
+     *
+     * @param userAddress {@link UserAddress} object to add to the request as billing details
+     * @return this object
+     */
+    public T addBillingDetails(UserAddress userAddress) {
+
+        this.billingAddress = userAddress;
+        return (T) this;
+    }
+
+    /**
      * Adds the order details data, collected by this builder.
      *
      * @param getPaymentPageRequest an already created request of type T
@@ -155,6 +169,7 @@ public abstract class SafechargePPBuilder<T extends SafechargePPBuilder<T>> exte
         getPaymentPageRequest.setClientUniqueId(clientUniqueId);
         getPaymentPageRequest.setPaymentMethod(paymentMethod);
         getPaymentPageRequest.setPaymentMethodMode(paymentMethodMode);
+        getPaymentPageRequest.setBillingAddress(billingAddress);
 
         getPaymentPageRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(getPaymentPageRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",
