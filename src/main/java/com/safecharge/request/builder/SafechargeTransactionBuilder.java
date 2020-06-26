@@ -29,6 +29,7 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     private String customSiteName;
     private String productId;
     private String customData;
+    private String sourceApplication;
 
     /**
      * Adds amount to the request.
@@ -153,6 +154,16 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     }
 
     /**
+     * Adds source application to request builder.
+     * @param sourceApplication
+     * @return
+     */
+    public T addSourceApplication(String sourceApplication) {
+        this.sourceApplication = sourceApplication;
+        return (T)this;
+    }
+
+    /**
      * Adds the order details data, collected by this builder.
      *
      * @param safechargeTransactionRequest an already created request of type T
@@ -173,6 +184,7 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
         safechargeTransactionRequest.setCustomSiteName(customSiteName);
         safechargeTransactionRequest.setProductId(productId);
         safechargeTransactionRequest.setCustomData(customData);
+        safechargeTransactionRequest.setSourceApplication(sourceApplication);
 
         safechargeTransactionRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeTransactionRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",

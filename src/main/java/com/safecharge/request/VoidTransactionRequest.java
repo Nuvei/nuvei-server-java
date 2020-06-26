@@ -41,11 +41,11 @@ public class VoidTransactionRequest
         /**
          * Builds the request.
          *
-         * @return {@link SafechargeRequest} object build from the params set by this builder
+         * @return {@link VoidTransactionRequest} object build from the params set by this builder
          * @throws ConstraintViolationException if the validation of the params fails
          */
         @Override
-        public SafechargeBaseRequest build() throws ConstraintViolationException {
+        public VoidTransactionRequest build() throws ConstraintViolationException {
             VoidTransactionRequest voidTransactionRequest = new VoidTransactionRequest();
             return ValidationUtils.validate(super.build(voidTransactionRequest));
         }

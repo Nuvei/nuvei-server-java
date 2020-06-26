@@ -74,6 +74,11 @@ public abstract class SafechargeResponse {
      */
     private Constants.APIType apiType;
 
+    /**
+     * If configured to use hints will returned URL pointing to more detailed error description when request fails
+     */
+    private String hint;
+
     public SafechargeResponse() {
     }
 
@@ -173,6 +178,14 @@ public abstract class SafechargeResponse {
         this.apiType = apiType;
     }
 
+    public String getHint() {
+        return hint;
+    }
+
+    public void setHint(String hint) {
+        this.hint = hint;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -207,6 +220,7 @@ public abstract class SafechargeResponse {
                 .append(errorType);
         sb.append(", apiType=")
                 .append(apiType);
+        sb.append(", hint=").append(hint);
         return sb.toString();
     }
 }

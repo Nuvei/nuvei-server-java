@@ -68,6 +68,8 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
     @Size(max = 255)
     private String customData;
 
+    private String sourceApplication;
+
     public String getAmount() {
         return amount;
     }
@@ -146,6 +148,14 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
 
     public void setCustomData(String customData) {
         this.customData = customData;
+    }
+
+    public String getSourceApplication() {
+        return sourceApplication;
+    }
+
+    public void setSourceApplication(String sourceApplication) {
+        this.sourceApplication = sourceApplication;
     }
 
     @Override
