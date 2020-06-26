@@ -134,7 +134,9 @@ public abstract class BaseTest {
                 gson.fromJson(loadResourceFile("mock/response/payment.json"), PaymentResponse.class));
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(InitPaymentRequest.class))).thenReturn(
-                gson.fromJson(loadResourceFile("mock/response/initPayment.json"), PaymentResponse.class));
+                gson.fromJson(loadResourceFile("mock/response/initPayment.json"), InitPaymentResponse.class));
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(GetPaymentStatusRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("mock/response/getPaymentStatus.json"), GetPaymentStatusResponse.class));
     }
 
     protected String loadResourceFile(String path) {
