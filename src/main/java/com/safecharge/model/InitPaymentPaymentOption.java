@@ -1,6 +1,6 @@
 package com.safecharge.model;
 
-public class InitPaymentPaymentOption  {
+public class InitPaymentPaymentOption extends BasePaymentOption {
 
     private InitPaymentCard card;
 

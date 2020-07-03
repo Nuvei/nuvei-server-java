@@ -1,3 +1,9 @@
 {
-  "sessionToken": "{{sessionToken}}"
+  "sessionToken": "{{sessionToken}}",
+  "merchantId": "{{merchantId}}",
+  "merchantSiteId": "{{merchantSiteId}}",
+  "clientUniqueId": "uniqueIdCC",
+  "clientRequestId": "{{clientRequestId}}",
+  "timeStamp": "{{timestamp}}",
+  "checksum": "{{checksum}}"
 }

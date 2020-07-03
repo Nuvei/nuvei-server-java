@@ -22,7 +22,7 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
     private String paymentMethod;
     private UserPaymentOption userPaymentOption;
     private String customData;
-    private boolean autoPayment3D;
+    private Boolean autoPayment3D;
     private String sourceApplication;
     private String isMoto;
 
@@ -54,7 +54,7 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
         return autoPayment3D;
     }
 
-    public void setAutoPayment3D(boolean autoPayment3D) {
+    public void setAutoPayment3D(Boolean autoPayment3D) {
         this.autoPayment3D = autoPayment3D;
     }
 

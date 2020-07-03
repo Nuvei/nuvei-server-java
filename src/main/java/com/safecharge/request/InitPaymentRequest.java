@@ -1,17 +1,17 @@
 package com.safecharge.request;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.InitPaymentPaymentOption;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
-import com.safecharge.request.builder.SafechargeBaseBuilder;
+import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
-
-import javax.validation.ConstraintViolationException;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * Copyright (C) 2007-2019 SafeCharge International Group Limited.
@@ -155,7 +155,7 @@ public class InitPaymentRequest extends SafechargeRequest {
         return new Builder();
     }
 
-    public static class Builder extends SafechargeBaseBuilder<Builder> {
+    public static class Builder extends SafechargeBuilder<Builder> {
 
         private String userTokenId;
         private String clientUniqueId;
