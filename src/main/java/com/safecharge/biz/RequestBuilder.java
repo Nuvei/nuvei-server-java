@@ -26,42 +26,28 @@ import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.PaymentRequest;
 import com.safecharge.request.RefundTransactionRequest;
 import com.safecharge.request.SafechargeBaseRequest;
-import com.safecharge.request.SafechargeRequest;
 import com.safecharge.request.SettleTransactionRequest;
 import com.safecharge.request.Verify3dRequest;
 import com.safecharge.request.VoidTransactionRequest;
-import com.safecharge.response.GetPaymentStatusResponse;
-import com.safecharge.response.GetSessionTokenResponse;
-import com.safecharge.response.InitPaymentResponse;
-import com.safecharge.response.OpenOrderResponse;
-import com.safecharge.response.PaymentResponse;
-import com.safecharge.response.RefundTransactionResponse;
-import com.safecharge.response.SettleTransactionResponse;
-import com.safecharge.response.Verify3dResponse;
-import com.safecharge.response.VoidTransactionResponse;
 import com.safecharge.util.Constants;
 
-public class PaymentService {
+public class RequestBuilder {
 
-    private SafechargeRequestExecutor requestExecutor = SafechargeRequestExecutor.getInstance();
-
-    public GetSessionTokenResponse getSessionTokenresponse(MerchantInfo merchantInfo) {
-        SafechargeRequest safechargeRequest = (SafechargeRequest) GetSessionTokenRequest.builder()
+    public SafechargeBaseRequest getSessionTokenRequest(MerchantInfo merchantInfo) {
+        return GetSessionTokenRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .build();
-
-        return (GetSessionTokenResponse) requestExecutor.executeRequest(safechargeRequest);
     }
 
-    public PaymentResponse getPaymentResponse(MerchantInfo merchantInfo, String sessionToken, String userTokenId, String clientUniqueId,
-                                              String clientRequestId, PaymentOption paymentOption, Integer isRebilling, String currency,
-                                              String amount, AmountDetails amountDetails, List<Item> items, DeviceDetails deviceDetails,
-                                              CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress,
-                                              DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails, Addendums addendums,
-                                              UrlDetails urlDetails, String customSiteName, String productId, String customData,
-                                              String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D, String sourceApplication,
-                                              String isMoto, String internalRequestId) {
-        SafechargeRequest request = PaymentRequest.builder()
+    public SafechargeBaseRequest getPaymentRequest(MerchantInfo merchantInfo, String sessionToken, String userTokenId, String clientUniqueId,
+                                                   String clientRequestId, PaymentOption paymentOption, Integer isRebilling, String currency,
+                                                   String amount, AmountDetails amountDetails, List<Item> items, DeviceDetails deviceDetails,
+                                                   CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress,
+                                                   DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails, Addendums addendums,
+                                                   UrlDetails urlDetails, String customSiteName, String productId, String customData,
+                                                   String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D, String sourceApplication,
+                                                   String isMoto, String internalRequestId) {
+        return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
                 .addPaymentOption(paymentOption)
@@ -91,15 +77,13 @@ public class PaymentService {
                 .addIsMoto(isMoto)
                 .addInternalRequestId(internalRequestId)
                 .build();
-
-        return (PaymentResponse) requestExecutor.executeRequest(request);
     }
 
-    public InitPaymentResponse getInitPaymentResponse(String sessionToken, String userTokenId, String clientUniqueId, String clientRequestId, String currency,
-                                                      String amount, DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails,
-                                                      String customData, UserAddress billingAddress, String sourceApplication,
-                                                      MerchantInfo merchantInfo, String internalRequestId) {
-        SafechargeBaseRequest request = InitPaymentRequest.builder()
+    public SafechargeBaseRequest getInitPaymentRequest(String sessionToken, String userTokenId, String clientUniqueId, String clientRequestId, String currency,
+                                                       String amount, DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails,
+                                                       String customData, UserAddress billingAddress, String sourceApplication,
+                                                       MerchantInfo merchantInfo, String internalRequestId) {
+        return InitPaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addUserTokenId(userTokenId)
                 .addClientRequestId(clientRequestId)
@@ -115,18 +99,16 @@ public class PaymentService {
                 .addMerchantInfo(merchantInfo)
                 .addInternalRequestId(internalRequestId)
                 .build();
-
-        return (InitPaymentResponse) requestExecutor.executeRequest(request);
     }
 
-    public OpenOrderResponse getOpenOrderResponse(MerchantInfo merchantInfo, String sessionToken, String clientRequestId, String customSiteName,
-                                                  String productId, OpenOrderPaymentOption paymentOption, Constants.TransactionType transactionType,
-                                                  String currency, String amount, List<Item> items, DeviceDetails deviceDetails, CashierUserDetails userDetails,
-                                                  UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
-                                                  UrlDetails urlDetails, String userTokenId, String clientUniqueId, UserPaymentOption userPaymentOption,
-                                                  String paymentMethod, AmountDetails amountDetails, Addendums addendums, String customData, Boolean autoPayment3D,
-                                                  String sourceApplication, String isMoto, String internalRequestId) {
-        SafechargeBaseRequest request = OpenOrderRequest.builder()
+    public SafechargeBaseRequest getOpenOrderRequest(MerchantInfo merchantInfo, String sessionToken, String clientRequestId, String customSiteName,
+                                                     String productId, OpenOrderPaymentOption paymentOption, Constants.TransactionType transactionType,
+                                                     String currency, String amount, List<Item> items, DeviceDetails deviceDetails, CashierUserDetails userDetails,
+                                                     UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
+                                                     UrlDetails urlDetails, String userTokenId, String clientUniqueId, UserPaymentOption userPaymentOption,
+                                                     String paymentMethod, AmountDetails amountDetails, Addendums addendums, String customData, Boolean autoPayment3D,
+                                                     String sourceApplication, String isMoto, String internalRequestId) {
+        return OpenOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
                 .addClientRequestId(clientRequestId)
@@ -156,28 +138,24 @@ public class PaymentService {
                 .addInternalRequestId(internalRequestId)
                 .addIsMoto(isMoto)
                 .build();
-
-        return (OpenOrderResponse) requestExecutor.executeRequest(request);
     }
 
-    public GetPaymentStatusResponse getPaymentStatusResponse(String sessionToken, String clientRequestId, MerchantInfo merchantInfo,
-                                                             String internalRequestId) {
-        GetPaymentStatusRequest request = GetPaymentStatusRequest.builder()
+    public SafechargeBaseRequest getPaymentStatusRequest(String sessionToken, String clientRequestId, MerchantInfo merchantInfo,
+                                                         String internalRequestId) {
+        return GetPaymentStatusRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
                 .addClientRequestId(clientRequestId)
                 .addInternalRequestId(internalRequestId)
                 .build();
-
-        return (GetPaymentStatusResponse) requestExecutor.executeRequest(request);
     }
 
-    public VoidTransactionResponse getVoidTransactionResponse(String sessionToken, String clientRequestId, MerchantInfo merchantInfo,
-                                                              String relatedTransactionId, String amount, String currency, String authCode,
-                                                              String clientUniqueId, UrlDetails urlDetails, String customSiteName,
-                                                              String productId, String customData, String sourceApplication, String comment,
-                                                              String internalRequestId) {
-        VoidTransactionRequest request = VoidTransactionRequest.builder()
+    public SafechargeBaseRequest getVoidTransactionRequest(String sessionToken, String clientRequestId, MerchantInfo merchantInfo,
+                                                           String relatedTransactionId, String amount, String currency, String authCode,
+                                                           String clientUniqueId, UrlDetails urlDetails, String customSiteName,
+                                                           String productId, String customData, String sourceApplication, String comment,
+                                                           String internalRequestId) {
+        return VoidTransactionRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
                 .addRelatedTransactionId(relatedTransactionId)
@@ -194,17 +172,15 @@ public class PaymentService {
                 .addAuthCode(authCode)
                 .addInternalRequestId(internalRequestId)
                 .build();
-
-        return (VoidTransactionResponse) requestExecutor.executeRequest(request);
     }
 
-    public SettleTransactionResponse getSettleTransactionResponse(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId,
-                                                                  String clientRequestId, Addendums addendums, String descriptorMerchantName,
-                                                                  String descriptorMerchantPhone, DynamicDescriptor dynamicDescriptor,
-                                                                  UrlDetails urlDetails, String amount, String authCode, String customData,
-                                                                  String comment, String currency, String customSiteName, String productId,
-                                                                  String relatedTransactionId, String sourceApplication, String internalRequestId) {
-        SafechargeBaseRequest request = SettleTransactionRequest.builder()
+    public SafechargeBaseRequest getSettleTransactionRequest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId,
+                                                             String clientRequestId, Addendums addendums, String descriptorMerchantName,
+                                                             String descriptorMerchantPhone, DynamicDescriptor dynamicDescriptor,
+                                                             UrlDetails urlDetails, String amount, String authCode, String customData,
+                                                             String comment, String currency, String customSiteName, String productId,
+                                                             String relatedTransactionId, String sourceApplication, String internalRequestId) {
+        return SettleTransactionRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addClientUniqueId(clientUniqueId)
                 .addClientRequestId(clientRequestId)
@@ -225,16 +201,14 @@ public class PaymentService {
                 .addSourceApplication(sourceApplication)
                 .addInternalRequestId(internalRequestId)
                 .build();
-
-        return (SettleTransactionResponse) requestExecutor.executeRequest(request);
     }
 
-    public RefundTransactionResponse getRefundTransactionResponse(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId,
-                                                                  String clientRequestId, UrlDetails urlDetails, String amount, String authCode,
-                                                                  String comment, String currency, String customData, String customSiteName,
-                                                                  String productId, String relatedTransactionId, String sourceApplication,
-                                                                  String internalRequestId) {
-        SafechargeBaseRequest request = RefundTransactionRequest.builder()
+    public SafechargeBaseRequest getRefundTransactionRequest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId,
+                                                             String clientRequestId, UrlDetails urlDetails, String amount, String authCode,
+                                                             String comment, String currency, String customData, String customSiteName,
+                                                             String productId, String relatedTransactionId, String sourceApplication,
+                                                             String internalRequestId) {
+        return RefundTransactionRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
                 .addClientUniqueId(clientUniqueId)
@@ -251,16 +225,14 @@ public class PaymentService {
                 .addSourceApplication(sourceApplication)
                 .addInternalRequestId(internalRequestId)
                 .build();
-
-        return (RefundTransactionResponse) requestExecutor.executeRequest(request);
     }
 
-    public Verify3dResponse getVerify3dResponse(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId, String clientRequestId,
-                                                String amount, String currency, UserAddress billingAddress, String customData,
-                                                String customSiteName, MerchantDetails merchantDetails, String relatedTransactionId,
-                                                SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption,
-                                                String sourceApplication, String internalRequestId) {
-        SafechargeBaseRequest request = new Verify3dRequest.Builder()
+    public SafechargeBaseRequest getVerify3dResquest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId, String clientRequestId,
+                                                     String amount, String currency, UserAddress billingAddress, String customData,
+                                                     String customSiteName, MerchantDetails merchantDetails, String relatedTransactionId,
+                                                     SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption,
+                                                     String sourceApplication, String internalRequestId) {
+        return Verify3dRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
                 .addClientUniqueId(clientUniqueId)
@@ -279,19 +251,17 @@ public class PaymentService {
                 .addSourceApplication(sourceApplication)
                 .addInternalRequestId(internalRequestId)
                 .build();
-
-        return (Verify3dResponse) requestExecutor.executeRequest(request);
     }
 
-    public PaymentResponse getAuthorize3dResponse(MerchantInfo merchantInfo, String sessionToken, String userTokenId, String clientUniqueId,
-                                                  String clientRequestId, PaymentOption paymentOption, Integer isRebilling, String currency,
-                                                  String amount, AmountDetails amountDetails, List<Item> items, DeviceDetails deviceDetails,
-                                                  CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress,
-                                                  DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails, Addendums addendums,
-                                                  UrlDetails urlDetails, String customSiteName, String productId, String customData,
-                                                  String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D, String sourceApplication,
-                                                  String isMoto, String internalRequestId) {
-        SafechargeRequest request = Authorize3dRequest.builder()
+    public SafechargeBaseRequest getAuthorize3dRequest(MerchantInfo merchantInfo, String sessionToken, String userTokenId, String clientUniqueId,
+                                                       String clientRequestId, PaymentOption paymentOption, Integer isRebilling, String currency,
+                                                       String amount, AmountDetails amountDetails, List<Item> items, DeviceDetails deviceDetails,
+                                                       CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress,
+                                                       DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails, Addendums addendums,
+                                                       UrlDetails urlDetails, String customSiteName, String productId, String customData,
+                                                       String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D, String sourceApplication,
+                                                       String isMoto, String internalRequestId) {
+        return Authorize3dRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
                 .addPaymentOption(paymentOption)
@@ -321,7 +291,5 @@ public class PaymentService {
                 .addIsMoto(isMoto)
                 .addInternalRequestId(internalRequestId)
                 .build();
-
-        return (PaymentResponse) requestExecutor.executeRequest(request);
     }
 }

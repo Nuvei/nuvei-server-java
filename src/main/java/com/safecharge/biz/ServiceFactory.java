@@ -2,7 +2,7 @@ package com.safecharge.biz;
 
 public class ServiceFactory {
 
-    public PaymentService getPaymentService() {
-        return new PaymentService();
+    public RequestBuilder getRequestBuilder() {
+        return new RequestBuilder();
     }
 }
