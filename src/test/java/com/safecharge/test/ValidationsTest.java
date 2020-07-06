@@ -1,6 +1,7 @@
 package com.safecharge.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -9,6 +10,8 @@ import java.util.Map;
 
 import javax.validation.ConstraintViolationException;
 
+import com.safecharge.model.SubMerchant;
+import com.safecharge.request.Verify3dRequest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -189,6 +192,8 @@ public class ValidationsTest {
     private static final String dummyCcExpMonth = "12";
     private static final String dummyCcExpYear = "22";
     private static final String dummyCcNameOnCard = "Ivan Ivanov";
+
+    private static final SubMerchant subMerchant = new SubMerchant();
 
     @Before
     public void initialization() {
@@ -806,6 +811,23 @@ public class ValidationsTest {
         } catch (ConstraintViolationException e) {
             assertEquals(2, e.getConstraintViolations().size());
         }
+    }
+
+    @Test
+    public void testSuccessfulValidation_Verify3dRequest() {
+        SafechargeBaseRequest safechargeRequest = Verify3dRequest.builder()
+                .addSessionToken(dummySessionToken)
+                .addMerchantInfo(validMerchantInfo)
+                .addClientUniqueId(dummyClientUniqueId)
+                .addUserTokenId(dummyUserTokenId)
+                .addUserId(dummyUserId)
+                .addSubMerchant(subMerchant)
+                .addAmount(validAmount)
+                .addCurrency(validCurrencyCode)
+                .addRelatedTransactionId(dummyRelatedTransactionId)
+                .build();
+
+        assertNotNull(safechargeRequest);
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.safecharge.response;
+package com.safecharge.model;
 
 public class PaymentOptionResponse {
 

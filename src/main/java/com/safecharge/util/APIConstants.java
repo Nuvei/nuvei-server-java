@@ -16,7 +16,7 @@ public interface APIConstants {
      */
     enum Environment {
         PRODUCTION_HOST("https://secure.safecharge.com/ppp/"),
-        INTEGRATION_HOSTINTEGRATION_HOST("https://ppp-test.safecharge.com/ppp/");
+        INTEGRATION_HOST("https://ppp-test.safecharge.com/ppp/");
 
         private String url;
 
@@ -31,7 +31,7 @@ public interface APIConstants {
 
     // Pre-configured hosts:
     String PRODUCTION_HOST = Environment.PRODUCTION_HOST.url;
-    String INTEGRATION_HOSTINTEGRATION_HOST = Environment.INTEGRATION_HOSTINTEGRATION_HOST.url;
+    String INTEGRATION_HOST = Environment.INTEGRATION_HOST.url;
 
     // API enpoints:
 
@@ -70,6 +70,8 @@ public interface APIConstants {
     String PAYMENT_URL = "api/v1/payment.do";
     String INIT_PAYMENT_URL = "api/v1/initPayment.do";
     String GET_PAYMENT_STATUS_URL = "api/v1/getPaymentStatus.do";
+    String VERIFY3D_URL = "api/v1/verify3d.do";
+    String AUTHORIZE3D_URL = "api/v1/authorize3d.do";
 
 
     // Request Headers:

@@ -1,5 +1,7 @@
 package com.safecharge.response;
 
+import com.safecharge.model.PaymentOptionResponse;
+
 public class InitPaymentResponse extends SafechargeResponse {
 
     private String orderId;
@@ -100,5 +102,22 @@ public class InitPaymentResponse extends SafechargeResponse {
 
     public void setCustomData(String customData) {
         this.customData = customData;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("InitPaymentResponse{");
+        sb.append(super.toString());
+        sb.append(", orderId= ").append(orderId)
+                .append(", userTokenId=").append(userTokenId).append('\'')
+                .append(", transactionId=").append(transactionId).append('\'')
+                .append(", transactionType=").append(transactionType).append('\'')
+                .append(", transactionStatus=").append(transactionStatus).append('\'')
+                .append(", gwErrorCode=").append(gwErrorCode).append('\'')
+                .append(", gwErrorReason=").append(gwErrorReason).append('\'')
+                .append(", paymentOption=").append(paymentOption).append('\'')
+                .append(", customData=").append(customData);
+
+        return sb.toString();
     }
 }

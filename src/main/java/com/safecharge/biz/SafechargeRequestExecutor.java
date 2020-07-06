@@ -72,6 +72,8 @@ public class SafechargeRequestExecutor {
                     put(PaymentRequest.class, PaymentResponse.class);
                     put(InitPaymentRequest.class, InitPaymentResponse.class);
                     put(GetPaymentStatusRequest.class, GetPaymentStatusResponse.class);
+                    put(Verify3dRequest.class, Verify3dResponse.class);
+                    put(Authorize3dRequest.class, PaymentResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -114,6 +116,8 @@ public class SafechargeRequestExecutor {
                     put(PaymentRequest.class, APIConstants.PAYMENT_URL);
                     put(InitPaymentRequest.class, APIConstants.INIT_PAYMENT_URL);
                     put(GetPaymentStatusRequest.class, APIConstants.GET_PAYMENT_STATUS_URL);
+                    put(Verify3dRequest.class, APIConstants.VERIFY3D_URL);
+                    put(Authorize3dRequest.class, APIConstants.AUTHORIZE3D_URL);
                 }
             };
 
@@ -180,14 +184,14 @@ public class SafechargeRequestExecutor {
         Gson gson = gsonBuilder.create();
 
         try {
-            Class requestClass = request.getClass();
+            Class<? extends SafechargeBaseRequest> requestClass = request.getClass();
             String serviceUrl = request.getServerHost() + REQUEST_URL_BY_REQUEST_TYPE.get(requestClass);
             request.setServerHost(null); // remove API url from request
 
             String requestJSON = gson.toJson(request);
             String responseJSON = executeJsonRequest(requestJSON, serviceUrl, requestClass);
 
-            return (SafechargeResponse)gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(request.getClass()));
+            return gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(requestClass));
 
         } catch (IOException e) {
 
@@ -207,7 +211,7 @@ public class SafechargeRequestExecutor {
      * @return {@link String} response from the service (representing JSON object)
      * @throws IOException if the connection is interrupted or the response is unparsable
      */
-    public String executeJsonRequest(String requestJSON, String serviceUrl, Class requestClass) throws IOException {
+    public String executeJsonRequest(String requestJSON, String serviceUrl, Class<? extends SafechargeBaseRequest> requestClass) throws IOException {
         return executeRequest(requestJSON, serviceUrl, APIConstants.REQUEST_HEADERS, requestClass);
     }
 
@@ -222,7 +226,7 @@ public class SafechargeRequestExecutor {
      * @return {@link String} response from the service (representing JSON object)
      * @throws IOException if the connection is interrupted or the response is unparsable
      */
-    public String executeRequest(String request, String serviceUrl, Header[] headers, Class requestClass) throws IOException {
+    public String executeRequest(String request, String serviceUrl, Header[] headers, Class<? extends SafechargeBaseRequest> requestClass) throws IOException {
         HttpPost httpPost = new HttpPost(serviceUrl);
         httpPost.setHeaders(headers);
         httpPost.setEntity(new StringEntity(request, Charset.forName("UTF-8")));
@@ -235,7 +239,7 @@ public class SafechargeRequestExecutor {
 
         String responseJSON = EntityUtils.toString(response.getEntity(), UTF8_CHARSET);
         if (logger.isDebugEnabled()) {
-            Class responseClass = RESPONSE_TYPE_BY_REQUEST_TYPE.get(requestClass);
+            Class<? extends SafechargeResponse> responseClass = RESPONSE_TYPE_BY_REQUEST_TYPE.get(requestClass);
             logger.debug(responseClass.getSimpleName() + " Received " + responseJSON);
         }
         return responseJSON;

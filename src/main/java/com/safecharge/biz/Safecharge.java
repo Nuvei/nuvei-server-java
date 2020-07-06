@@ -1,13 +1,36 @@
 package com.safecharge.biz;
 
+import java.util.List;
+
 import com.safecharge.exception.SafechargeConfigurationException;
-import com.safecharge.model.*;
-import com.safecharge.response.GetSessionTokenResponse;
+import com.safecharge.model.Addendums;
+import com.safecharge.model.AmountDetails;
+import com.safecharge.model.CashierUserDetails;
+import com.safecharge.model.DeviceDetails;
+import com.safecharge.model.DynamicDescriptor;
+import com.safecharge.model.InitPaymentPaymentOption;
+import com.safecharge.model.Item;
+import com.safecharge.model.MerchantDetails;
+import com.safecharge.model.MerchantInfo;
+import com.safecharge.model.OpenOrderPaymentOption;
+import com.safecharge.model.PaymentOption;
+import com.safecharge.model.SubMerchant;
+import com.safecharge.model.UrlDetails;
+import com.safecharge.model.UserAddress;
+import com.safecharge.model.UserPaymentOption;
+import com.safecharge.model.Verify3dPaymentOption;
+import com.safecharge.request.SafechargeBaseRequest;
+import com.safecharge.response.GetPaymentStatusResponse;
+import com.safecharge.response.InitPaymentResponse;
+import com.safecharge.response.OpenOrderResponse;
+import com.safecharge.response.PaymentResponse;
+import com.safecharge.response.RefundTransactionResponse;
 import com.safecharge.response.SafechargeResponse;
+import com.safecharge.response.SettleTransactionResponse;
+import com.safecharge.response.Verify3dResponse;
+import com.safecharge.response.VoidTransactionResponse;
 import com.safecharge.util.APIConstants;
 import com.safecharge.util.Constants;
-
-import java.util.List;
 
 /**
  * Copyright (C) 2007-2019 SafeCharge International Group Limited.
@@ -24,9 +47,11 @@ public class Safecharge {
     private final ServiceFactory serviceFactory;
     private MerchantInfo merchantInfo;
     private String sessionToken;
+    private final SafechargeRequestExecutor requestExecutor;
 
     public Safecharge() {
         this.serviceFactory = new ServiceFactory();
+        this.requestExecutor = SafechargeRequestExecutor.getInstance();
     }
 
     /**
@@ -38,31 +63,34 @@ public class Safecharge {
      * @param merchantId  The id corresponding to the merchant's GwId in Safecharge's system
      * @param siteId      The Merchant site id in Safecharge's system
      * @param merchantKey The merchant key in Safecharge's system
-     * @param environment Points to the environment's URL to which to make the corresponding request. Currently can be either integration or production
+     * @param serverHost  Points to the environment's URL to which to make the corresponding request. Currently can be either integration or production
      * @param algorithm   Hashing algorithm. Can be MD5 or SHA-256
      */
-    public void initialize(String merchantId, String siteId, String merchantKey, APIConstants.Environment environment, Constants.HashAlgorithm algorithm) {
-        merchantInfo = createMerchantInfo(merchantId, siteId, merchantKey, environment, algorithm);
+    public void initialize(String merchantId, String siteId, String merchantKey, String serverHost, Constants.HashAlgorithm algorithm) {
+        merchantInfo = createMerchantInfo(merchantId, siteId, merchantKey, serverHost, algorithm);
         sessionToken = getSessionToken();
     }
 
-    private MerchantInfo createMerchantInfo(String merchantId, String siteId, String merchantKey, APIConstants.Environment environment, Constants.HashAlgorithm algorithm) {
-        return new MerchantInfo(merchantKey, merchantId, siteId, environment.getUrl(), algorithm);
+    private MerchantInfo createMerchantInfo(String merchantId, String siteId, String merchantKey, String serverHost, Constants.HashAlgorithm algorithm) {
+        return new MerchantInfo(merchantKey, merchantId, siteId, serverHost, algorithm);
     }
 
     private String getSessionToken() {
-        PaymentService service = serviceFactory.getPaymentService();
-        GetSessionTokenResponse response = service.getSessionTokenresponse(merchantInfo);
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getSessionTokenRequest(merchantInfo);
+        SafechargeResponse response = requestExecutor.executeRequest(request);
         if (Constants.APIResponseStatus.ERROR.equals(response.getStatus())) {
             throw new SafechargeConfigurationException(response.getReason());
         }
+
         return response.getSessionToken();
     }
 
     /**
      * <p>
-     *     This method should be used to create request for payment endpoint in Safecharge's REST API.
+     * This method should be used to create request for payment endpoint in Safecharge's REST API.
      * </p>
+     *
      * @param userTokenId
      * @param clientUniqueId
      * @param clientRequestId
@@ -91,23 +119,23 @@ public class Safecharge {
      * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
-     * method is not invoked beforehand this exception will be thrown
+     *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown
      */
-    public SafechargeResponse createPayment(String userTokenId, String clientUniqueId, String clientRequestId, PaymentOption paymentOption, Integer isRebilling,
-                                            String currency, String amount, AmountDetails amountDetails, List<Item> items, DeviceDetails deviceDetails,
-                                            CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
-                                            MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails, String customSiteName, String productId,
-                                            String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D, String sourceApplication,
-                                            String isMoto, String internalRequestId) {
+    public PaymentResponse payment(String userTokenId, String clientUniqueId, String clientRequestId, PaymentOption paymentOption, Integer isRebilling,
+                                   String currency, String amount, AmountDetails amountDetails, List<Item> items, DeviceDetails deviceDetails,
+                                   CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
+                                   MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails, String customSiteName, String productId,
+                                   String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D, String sourceApplication,
+                                   String isMoto, String internalRequestId) {
         ensureMerchantInfoAndSessionTokenNotNull();
 
-        PaymentService service = serviceFactory.getPaymentService();
-        SafechargeResponse response = service.getPaymentResponse(merchantInfo, sessionToken, userTokenId, clientUniqueId, clientRequestId, paymentOption,
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getPaymentRequest(merchantInfo, sessionToken, userTokenId, clientUniqueId, clientRequestId, paymentOption,
                 isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
                 transactionType, autoPayment3D, sourceApplication, isMoto, internalRequestId);
 
-        return response;
+        return (PaymentResponse) requestExecutor.executeRequest(request);
     }
 
     private void ensureMerchantInfoAndSessionTokenNotNull() {
@@ -118,8 +146,9 @@ public class Safecharge {
 
     /**
      * <p>
-     *     This method should be used to create request for initPayment endpoint in Safecharge's REST API.
+     * This method should be used to create request for initPayment endpoint in Safecharge's REST API.
      * </p>
+     *
      * @param userTokenId
      * @param clientUniqueId
      * @param clientRequestId
@@ -134,25 +163,25 @@ public class Safecharge {
      * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
-     * method is not invoked beforehand this exception will be thrown
+     *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown
      */
-    public SafechargeResponse createInitPayment(String userTokenId, String clientUniqueId, String clientRequestId, String currency, String amount,
-                                                DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails, String customData,
-                                                UserAddress billingAddress, String sourceApplication, String internalRequestId) {
+    public InitPaymentResponse initPayment(String userTokenId, String clientUniqueId, String clientRequestId, String currency, String amount,
+                                           DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails, String customData,
+                                           UserAddress billingAddress, String sourceApplication, String internalRequestId) {
         ensureMerchantInfoAndSessionTokenNotNull();
-        MerchantBaseInfo merchant = new MerchantBaseInfo(merchantInfo.getMerchantKey(), merchantInfo.getServerHost(), merchantInfo.getHashAlgorithm());
 
-        PaymentService service = serviceFactory.getPaymentService();
-        SafechargeResponse response = service.getInitPaymentResponse(sessionToken, userTokenId, clientUniqueId, clientRequestId, currency,
-                amount, deviceDetails, paymentOption, urlDetails, customData, billingAddress, sourceApplication, merchant, internalRequestId);
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getInitPaymentRequest(sessionToken, userTokenId, clientUniqueId, clientRequestId, currency,
+                amount, deviceDetails, paymentOption, urlDetails, customData, billingAddress, sourceApplication, merchantInfo, internalRequestId);
 
-        return response;
+        return (InitPaymentResponse) requestExecutor.executeRequest(request);
     }
 
     /**
      * <p>
-     *     This method should be used to create request for openOrder endpoint in Safecharge's REST API.
+     * This method should be used to create request for openOrder endpoint in Safecharge's REST API.
      * </p>
+     *
      * @param userTokenId
      * @param clientRequestId
      * @param clientUniqueId
@@ -181,49 +210,49 @@ public class Safecharge {
      * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
-     * method is not invoked beforehand this exception will be thrown
+     *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown
      */
-    public SafechargeResponse createOpenOrder(String userTokenId, String clientRequestId, String clientUniqueId, String customSiteName, String productId,
-                                              OpenOrderPaymentOption paymentOption, Constants.TransactionType transactionType, String currency, String amount,
-                                              List<Item> items, DeviceDetails deviceDetails, CashierUserDetails userDetails, UserAddress shippingAddress,
-                                              UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
-                                              UrlDetails urlDetails, UserPaymentOption userPaymentOption, String paymentMethod, AmountDetails amountDetails,
-                                              Addendums addendums, String customData, Boolean autoPayment3D, String sourceApplication, String isMoto,
-                                              String internalRequestId) {
+    public OpenOrderResponse openOrder(String userTokenId, String clientRequestId, String clientUniqueId, String customSiteName, String productId,
+                                       OpenOrderPaymentOption paymentOption, Constants.TransactionType transactionType, String currency, String amount,
+                                       List<Item> items, DeviceDetails deviceDetails, CashierUserDetails userDetails, UserAddress shippingAddress,
+                                       UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
+                                       UrlDetails urlDetails, UserPaymentOption userPaymentOption, String paymentMethod, AmountDetails amountDetails,
+                                       Addendums addendums, String customData, Boolean autoPayment3D, String sourceApplication, String isMoto,
+                                       String internalRequestId) {
         ensureMerchantInfoAndSessionTokenNotNull();
 
-        PaymentService service = serviceFactory.getPaymentService();
-        SafechargeResponse response = service.getOpenOrderResponse(merchantInfo, sessionToken, clientRequestId, customSiteName, productId,
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getOpenOrderRequest(merchantInfo, sessionToken, clientRequestId, customSiteName, productId,
                 paymentOption, transactionType, currency, amount, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, urlDetails, userTokenId, clientUniqueId, userPaymentOption, paymentMethod,
                 amountDetails, addendums, customData, autoPayment3D, sourceApplication, isMoto, internalRequestId);
 
-        return response;
+        return (OpenOrderResponse) requestExecutor.executeRequest(request);
     }
 
     /**
      * <p>
-     *     This method should be used to create request for getPaymentStatus endpoint in Safecharge's REST API.
+     * This method should be used to create request for getPaymentStatus endpoint in Safecharge's REST API.
      * </p>
      *
      * @param clientRequestId
      * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
-     * method is not invoked beforehand this exception will be thrown
+     *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown
      */
-    public SafechargeResponse createPaymentStatus(String clientRequestId, String internalRequestId) {
+    public GetPaymentStatusResponse paymentStatus(String clientRequestId, String internalRequestId) {
         ensureMerchantInfoAndSessionTokenNotNull();
 
-        PaymentService service = serviceFactory.getPaymentService();
-        SafechargeResponse response = service.getPaymentStatusResponse(sessionToken, clientRequestId, merchantInfo, internalRequestId);
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getPaymentStatusRequest(sessionToken, clientRequestId, merchantInfo, internalRequestId);
 
-        return response;
+        return (GetPaymentStatusResponse) requestExecutor.executeRequest(request);
     }
 
     /**
      * <p>
-     *     This method should be used to create request for voidTransaction endpoint in Safecharge's REST API.
+     * This method should be used to create request for voidTransaction endpoint in Safecharge's REST API.
      * </p>
      *
      * @param clientRequestId
@@ -241,26 +270,27 @@ public class Safecharge {
      * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
-     *  method is not invoked beforehand this exception will be thrown
+     *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown
      */
-    public SafechargeResponse createVoidTransaction(String clientRequestId, String relatedTransactionId, String amount, String currency,
-                                                    String authCode, String clientUniqueId, UrlDetails urlDetails, String customSiteName,
-                                                    String productId, String customData, String sourceApplication, String comment,
-                                                    String internalRequestId) {
+    public VoidTransactionResponse voidTransaction(String clientRequestId, String relatedTransactionId, String amount, String currency,
+                                                   String authCode, String clientUniqueId, UrlDetails urlDetails, String customSiteName,
+                                                   String productId, String customData, String sourceApplication, String comment,
+                                                   String internalRequestId) {
         ensureMerchantInfoAndSessionTokenNotNull();
 
-        PaymentService service = serviceFactory.getPaymentService();
-        SafechargeResponse response = service.getVoidTransactionResponse(sessionToken, clientRequestId, merchantInfo, relatedTransactionId,
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getVoidTransactionRequest(sessionToken, clientRequestId, merchantInfo, relatedTransactionId,
                 amount, currency, authCode, clientUniqueId, urlDetails, customSiteName, productId, customData, sourceApplication,
                 comment, internalRequestId);
 
-        return response;
+        return (VoidTransactionResponse) requestExecutor.executeRequest(request);
     }
 
     /**
      * <p>
-     *     This method should be used to create request for settleTransaction endpoint in Safecharge's REST API.
+     * This method should be used to create request for settleTransaction endpoint in Safecharge's REST API.
      * </p>
+     *
      * @param clientUniqueId
      * @param clientRequestId
      * @param addendums
@@ -280,27 +310,28 @@ public class Safecharge {
      * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
-     * method is not invoked beforehand this exception will be thrown
+     *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown
      */
-    public SafechargeResponse createSettleTransaction(String clientUniqueId, String clientRequestId, Addendums addendums,
-                                                      String descriptorMerchantName, String descriptorMerchantPhone, DynamicDescriptor dynamicDescriptor,
-                                                      UrlDetails urlDetails, String amount, String authCode, String customData,
-                                                      String comment, String currency, String customSiteName, String productId,
-                                                      String relatedTransactionid, String sourceApplication, String internalRequestId) {
+    public SettleTransactionResponse settleTransaction(String clientUniqueId, String clientRequestId, Addendums addendums,
+                                                       String descriptorMerchantName, String descriptorMerchantPhone, DynamicDescriptor dynamicDescriptor,
+                                                       UrlDetails urlDetails, String amount, String authCode, String customData,
+                                                       String comment, String currency, String customSiteName, String productId,
+                                                       String relatedTransactionid, String sourceApplication, String internalRequestId) {
         ensureMerchantInfoAndSessionTokenNotNull();
 
-        PaymentService service = serviceFactory.getPaymentService();
-        SafechargeResponse response = service.getSettleTransactionResponse(sessionToken, merchantInfo, clientUniqueId, clientRequestId, addendums,
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getSettleTransactionRequest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, addendums,
                 descriptorMerchantName, descriptorMerchantPhone, dynamicDescriptor, urlDetails, amount, authCode, customData, comment, currency,
                 customSiteName, productId, relatedTransactionid, sourceApplication, internalRequestId);
 
-        return response;
+        return (SettleTransactionResponse) requestExecutor.executeRequest(request);
     }
 
     /**
      * <p>
-     *     This method should be used to create request for refundTransaction endpoint in Safecharge's REST API.
+     * This method should be used to create request for refundTransaction endpoint in Safecharge's REST API.
      * </p>
+     *
      * @param clientUniqueId
      * @param clientRequestId
      * @param urlDetails
@@ -316,19 +347,105 @@ public class Safecharge {
      * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
-     * method is not invoked beforehand this exception will be thrown
+     *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown
      */
-    public SafechargeResponse createRefundTransaction(String clientUniqueId, String clientRequestId, UrlDetails urlDetails,
-                                                      String amount, String authCode, String comment, String currency, String customData,
-                                                      String customSiteName, String productId, String relatedTransactionId,
-                                                      String sourceApplication, String internalRequestId) {
+    public RefundTransactionResponse refundTransaction(String clientUniqueId, String clientRequestId, UrlDetails urlDetails,
+                                                       String amount, String authCode, String comment, String currency, String customData,
+                                                       String customSiteName, String productId, String relatedTransactionId,
+                                                       String sourceApplication, String internalRequestId) {
         ensureMerchantInfoAndSessionTokenNotNull();
 
-        PaymentService service = serviceFactory.getPaymentService();
-        SafechargeResponse response = service.getRefundTransactionResponse(sessionToken, merchantInfo, clientUniqueId, clientRequestId,
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getRefundTransactionRequest(sessionToken, merchantInfo, clientUniqueId, clientRequestId,
                 urlDetails, amount, authCode, comment, currency, customData, customSiteName, productId, relatedTransactionId,
                 sourceApplication, internalRequestId);
 
-        return response;
+        return (RefundTransactionResponse) requestExecutor.executeRequest(request);
+    }
+
+    /**
+     * @param clientUniqueId
+     * @param clientRequestId
+     * @param amount
+     * @param currency
+     * @param billingAddress
+     * @param customData
+     * @param customSiteName
+     * @param merchantDetails
+     * @param relatedTransactionid
+     * @param subMerchant
+     * @param userId
+     * @param userTokenId
+     * @param paymentOption
+     * @param sourceApplication
+     * @param internalRequestId
+     * @return Passes through the response from Safecharge's REST API.
+     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
+     *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown
+     */
+    public Verify3dResponse verify3d(String clientUniqueId, String clientRequestId, String amount, String currency, UserAddress billingAddress,
+                                     String customData, String customSiteName, MerchantDetails merchantDetails, String relatedTransactionid,
+                                     SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption,
+                                     String sourceApplication, String internalRequestId) {
+        ensureMerchantInfoAndSessionTokenNotNull();
+
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getVerify3dResquest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, amount,
+                currency, billingAddress, customData, customSiteName, merchantDetails, relatedTransactionid, subMerchant, userId,
+                userTokenId, paymentOption, sourceApplication, internalRequestId);
+
+        return (Verify3dResponse) requestExecutor.executeRequest(request);
+    }
+
+    /**
+     * <p>
+     * This method should be used to create request for authorize3d endpoint in Safecharge's REST API.
+     * </p>
+     *
+     * @param userTokenId
+     * @param clientUniqueId
+     * @param clientRequestId
+     * @param paymentOption
+     * @param isRebilling
+     * @param currency
+     * @param amount
+     * @param amountDetails
+     * @param items
+     * @param deviceDetails
+     * @param userDetails
+     * @param shippingAddress
+     * @param billingAddress
+     * @param dynamicDescriptor
+     * @param merchantDetails
+     * @param addendums
+     * @param urlDetails
+     * @param customSiteName
+     * @param productId
+     * @param customData
+     * @param relatedTransactionId
+     * @param transactionType
+     * @param autoPayment3D
+     * @param sourceApplication
+     * @param isMoto
+     * @param internalRequestId
+     * @return Passes through the response from Safecharge's REST API.
+     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
+     *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown
+     */
+    public PaymentResponse authorize3d(String userTokenId, String clientUniqueId, String clientRequestId, PaymentOption paymentOption, Integer isRebilling,
+                                               String currency, String amount, AmountDetails amountDetails, List<Item> items, DeviceDetails deviceDetails,
+                                               CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
+                                               MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails, String customSiteName, String productId,
+                                               String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D, String sourceApplication,
+                                               String isMoto, String internalRequestId) {
+        ensureMerchantInfoAndSessionTokenNotNull();
+
+        RequestBuilder requestBuilder= serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getAuthorize3dRequest(merchantInfo, sessionToken, userTokenId, clientUniqueId, clientRequestId, paymentOption,
+                isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
+                dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
+                transactionType, autoPayment3D, sourceApplication, isMoto, internalRequestId);
+
+        return (PaymentResponse)requestExecutor.executeRequest(request);
     }
 }

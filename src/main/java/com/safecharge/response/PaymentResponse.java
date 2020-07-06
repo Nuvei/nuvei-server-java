@@ -2,11 +2,12 @@ package com.safecharge.response;
 
 import com.safecharge.model.FraudDetails;
 import com.safecharge.model.MerchantDetails;
+import com.safecharge.model.PaymentOptionResponse;
 
 /**
  * Copyright (C) 2007-2019 SafeCharge International Group Limited.
  * <p>
- *   Response received from the Safecharge's servers to the {@link com.safecharge.request.PaymentRequest}
+ * Response received from the Safecharge's servers to the {@link com.safecharge.request.PaymentRequest}
  * </p>
  */
 public class PaymentResponse extends SafechargeResponse {
@@ -165,8 +166,21 @@ public class PaymentResponse extends SafechargeResponse {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
-        sb.append(", gwErrorCode= ").append(gwErrorCode)
-                .append(", gwErrorReason= ").append(gwErrorReason);
+        sb.append(", orderId=").append(orderId).append('\'')
+                .append(", userToken=").append(userTokenId).append('\'')
+                .append(", paymentOption=").append(paymentOptionResponse).append('\'')
+                .append(", transactionStatus=").append(transactionStatus).append('\'')
+                .append(", merchantDetails=").append(merchantDetails).append('\'')
+                .append(", gwErrorCode=").append(gwErrorCode).append('\'')
+                .append(", gwErrorReason=").append(gwErrorReason)
+                .append(", gwExtendedErrorCode=").append(gwExtendedErrorCode).append('\'')
+                .append(", paymentMethodErrorReason=").append(paymentMethodErrorReason).append('\'')
+                .append(", transactionType=").append(transactionType).append('\'')
+                .append(", transactionId=").append(transactionId).append('\'')
+                .append(", externalTransactionId=").append(externalTransactionId).append('\'')
+                .append(", authCode=").append(authCode).append('\'')
+                .append(", customData=").append(customData).append('\'')
+                .append(", fraudDetails=").append(fraudDetails);
 
         return sb.toString();
     }

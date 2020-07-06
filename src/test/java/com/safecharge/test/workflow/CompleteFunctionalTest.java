@@ -7,13 +7,12 @@ package com.safecharge.test.workflow;
  * @since 2/28/2017
  */
 
-import com.safecharge.biz.SafechargeRequestExecutor;
 import com.safecharge.model.Item;
 import com.safecharge.model.MerchantInfo;
+import com.safecharge.model.SubMerchant;
 import com.safecharge.request.*;
 import com.safecharge.response.*;
 import com.safecharge.test.BaseTest;
-import com.safecharge.util.APIConstants;
 import com.safecharge.util.Constants;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,9 +29,7 @@ public class CompleteFunctionalTest extends BaseTest {
         GetSessionTokenResponse getSessionTokenResponse = baseMockTest("./mock/request/getSessionToken.json", GetSessionTokenRequest.class);
 
         Assert.assertTrue(defined(getSessionTokenResponse.getVersion()));
-
-        //        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, response.getStatus());
-
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS, getSessionTokenResponse.getStatus());
     }
 
     @Test
@@ -385,5 +382,25 @@ public class CompleteFunctionalTest extends BaseTest {
 
         Assert.assertNotNull(response);
         Mockito.verify(safechargeRequestExecutor).executeRequest(Mockito.any(GetPaymentStatusRequest.class));
+    }
+
+    @Test
+    public void testVerify3dRequest() {
+        SafechargeBaseRequest request = Verify3dRequest.builder()
+                .addSessionToken("sessionToken")
+                .addMerchantInfo(new MerchantInfo("key", "merchantId", "merchantSiteId", "host", Constants.HashAlgorithm.SHA256))
+                .addClientUniqueId("dummyClientUniqueId")
+                .addUserTokenId("dummyUserTokenId")
+                .addUserId("dummyUserId")
+                .addSubMerchant(new SubMerchant())
+                .addAmount("100")
+                .addCurrency("USD")
+                .addRelatedTransactionId("1234567")
+                .build();
+
+        SafechargeResponse response = baseMockTestMethodWithPrebuiltObjectWithoutSession(request);
+
+        Assert.assertNotNull(response);
+        Mockito.verify(safechargeRequestExecutor).executeRequest(Mockito.any(Verify3dRequest.class));
     }
 }

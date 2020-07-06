@@ -1,6 +1,6 @@
-package com.safecharge.response;
+package com.safecharge.model;
 
-import com.safecharge.model.ExternalToken;
+import com.safecharge.response.ThreeDResponse;
 
 public class CardResponse {
 

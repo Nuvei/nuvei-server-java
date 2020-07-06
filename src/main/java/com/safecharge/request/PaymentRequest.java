@@ -1,13 +1,12 @@
 package com.safecharge.request;
 
+import javax.validation.Valid;
+
 import com.safecharge.model.PaymentOption;
-import com.safecharge.request.builder.SafechargeOrderBuilder;
 import com.safecharge.request.builder.SafechargePaymentBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
-
-import javax.validation.Valid;
 
 /**
  * Copyright (C) 2007-2019 SafeCharge International Group Limited.
@@ -76,13 +75,14 @@ public class PaymentRequest extends SafechargePaymentRequest {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append(super.toString());
-        sb.append(", paymentOption=").append(paymentOption)
+        final StringBuilder sb = new StringBuilder("PaymentRequest{");
+        sb.append("paymentOption=").append(paymentOption)
                 .append(", isRebilling=").append(isRebilling)
                 .append(", sourceApplication=").append(sourceApplication)
                 .append(", isMoto=").append(isMoto)
                 .append(", autoPayment3D=").append(autoPayment3D);
+        sb.append(super.toString());
+        sb.append('}');
 
         return sb.toString();
     }

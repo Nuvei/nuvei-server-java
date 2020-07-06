@@ -16,6 +16,7 @@ import com.safecharge.response.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import com.google.gson.Gson;
@@ -137,6 +138,8 @@ public abstract class BaseTest {
                 gson.fromJson(loadResourceFile("mock/response/initPayment.json"), InitPaymentResponse.class));
         when(safechargeRequestExecutor.executeRequest(Mockito.any(GetPaymentStatusRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("mock/response/getPaymentStatus.json"), GetPaymentStatusResponse.class));
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(Verify3dRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("mock/response/verify3d.json"), Verify3dResponse.class));
     }
 
     protected String loadResourceFile(String path) {
@@ -166,10 +169,14 @@ public abstract class BaseTest {
 
     protected <T extends SafechargeResponse> T baseMockTest(String jsonPath, Class<? extends SafechargeBaseRequest> requestClass) {
 
-        T response = (T) baseMockTestMethodWithoutSessionToken(jsonPath, requestClass);
+        T response = baseMockTestMethodWithoutSessionToken(jsonPath, requestClass);
         Assert.assertTrue(defined(response.getSessionToken()));
 
         return response;
+    }
+
+    protected <T extends SafechargeResponse> T baseMockTestMethodWithPrebuiltObjectWithoutSession(SafechargeBaseRequest request) {
+        return executeAndValidateResponse(request);
     }
 
     protected <T extends SafechargeResponse> T baseMockTestMethodWithoutSessionToken(String jsonPath, Class<? extends SafechargeBaseRequest> requestClass) {
@@ -177,13 +184,16 @@ public abstract class BaseTest {
 
         validateRequest(request);
 
+        return executeAndValidateResponse(request);
+    }
+
+    private <T extends SafechargeResponse> T executeAndValidateResponse(SafechargeBaseRequest request) {
         T response = (T) safechargeRequestExecutor.executeRequest(request);
 
         Assert.assertTrue(response != null);
         Assert.assertTrue(defined(response.getMerchantId()));
         Assert.assertTrue(defined(response.getMerchantSiteId()));
         Assert.assertTrue(defined(response.getClientRequestId()));
-
         return response;
     }
 
