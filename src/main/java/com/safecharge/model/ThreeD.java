@@ -1,5 +1,10 @@
 package com.safecharge.model;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import javax.validation.constraints.Size;
 
 public class ThreeD {
@@ -158,5 +163,19 @@ public class ThreeD {
 
     public void setV2AdditionalParams(V2AdditionalParams v2AdditionalParams) {
         this.v2AdditionalParams = v2AdditionalParams;
+    }
+
+    private Map<String, String> getAlternativeMethods(String[]key, String[] value) {
+        Map<String, String> result = new HashMap<>();
+        for (int i = 0; i < key.length; i++) {
+            for (int j = 0; j < value.length; j++) {
+                result.put(key[i], value[j]);
+            }
+        }
+
+        Map<String, String> days = IntStream.range(0, key.length).boxed()
+                .collect(Collectors.toMap(i -> key[i], i -> value[i]));
+
+        return result;
     }
 }

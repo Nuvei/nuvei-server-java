@@ -128,6 +128,7 @@ public class SafechargeClientBuilder {
                 .setConnectTimeout(DEFAULT_TIMEOUT_MILLISECONDS)
                 .setConnectionRequestTimeout(DEFAULT_TIMEOUT_MILLISECONDS)
                 .setCookieSpec(CookieSpecs.IGNORE_COOKIES)
+                .setStaleConnectionCheckEnabled(true)
                 .build();
         return this;
     }

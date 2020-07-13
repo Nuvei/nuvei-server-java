@@ -1,22 +1,34 @@
 package com.safecharge.request;
 
+import com.safecharge.util.Constants;
+import com.safecharge.util.ValidChecksum;
+import com.safecharge.util.ValidationUtils;
+
 /**
- * Copyright (C) 2007-2019 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
- * Uniform request to perform card transactions(credit or debit)
- * It supports 3D Secure and alternative payment method transactions.
+ * This request is used when wanting to perform a 3d secure only request. It is used after an {@link InitPaymentRequest}
+ * to provide to the merchant information whether a Challenge is needed or if they receive a frictionless response
  * <p>
- * Note that Authorize3d is virtually the same as the Payment request but is executed against a different REST endpoint.
+ * Note that Authorize3d is virtually the same as the Payment request(has the same fields) but is executed against a different REST endpoint.
+ * <p>
+ * see <a href="https://www.safecharge.com/docs/api/?json#authorize3dAPI">Authorize3d API</a>
+ *
+ * @since 6/29/2020
  * </p>
  */
-public class Authorize3dRequest extends PaymentRequest {
+@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
+public class Authorize3dRequest extends Authorize3dAndPaymentRequest {
+
+    public static Builder builder() {
+        return new Builder();
+    }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentRequest{");
         sb.append("paymentOption=").append(getPaymentOption())
                 .append(", isRebilling=").append(getIsRebilling())
-                .append(", sourceApplication=").append(getSourceApplication())
                 .append(", isMoto=").append(getIsMoto())
                 .append(", autoPayment3D=").append(isAutoPayment3D())
                 .append("currency='").append(getCurrency()).append('\'')
@@ -50,5 +62,14 @@ public class Authorize3dRequest extends PaymentRequest {
                 .append('}');
 
         return sb.toString();
+    }
+
+    public static class Builder extends Authorize3dAndPaymentRequest.Builder<Builder> {
+
+        @Override
+        public Authorize3dRequest build() {
+            Authorize3dRequest request = new Authorize3dRequest();
+            return ValidationUtils.validate(super.build(request));
+        }
     }
 }

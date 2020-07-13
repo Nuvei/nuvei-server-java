@@ -12,7 +12,6 @@ import com.safecharge.util.APIConstants;
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
  */
-//@ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING.GET_CASHIER_USER_INFO)
 public abstract class SafechargeBaseRequest {
 
     /**
