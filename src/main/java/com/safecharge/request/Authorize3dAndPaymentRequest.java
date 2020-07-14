@@ -4,8 +4,6 @@ import javax.validation.Valid;
 
 import com.safecharge.model.PaymentOption;
 import com.safecharge.request.builder.SafechargePaymentBuilder;
-import com.safecharge.util.Constants;
-import com.safecharge.util.ValidChecksum;
 
 public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequest {
 
@@ -79,7 +77,7 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             return (T) this;
         }
 
-        protected <S extends PaymentRequest> S build(S request) {
+        protected <S extends Authorize3dAndPaymentRequest> S build(S request) {
             request.setPaymentOption(paymentOption);
             request.setIsRebilling(isRebilling);
             request.setIsMoto(isMoto);

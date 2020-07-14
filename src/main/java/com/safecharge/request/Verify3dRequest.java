@@ -65,7 +65,7 @@ public class Verify3dRequest extends SafechargeRequest {
     @Valid
     private Verify3dPaymentOption paymentOption;
 
-    private String sourceApplication;
+    private final String sourceApplication = "31";
 
     @Size(max = 255)
     private String userId;
@@ -153,14 +153,6 @@ public class Verify3dRequest extends SafechargeRequest {
         this.paymentOption = paymentOption;
     }
 
-    public String getSourceApplication() {
-        return sourceApplication;
-    }
-
-    public void setSourceApplication(String sourceApplication) {
-        this.sourceApplication = sourceApplication;
-    }
-
     public String getUserId() {
         return userId;
     }
@@ -201,7 +193,6 @@ public class Verify3dRequest extends SafechargeRequest {
         private UserAddress billingAddress;
         private MerchantDetails merchantDetails;
         private Verify3dPaymentOption paymentOption;
-        private String sourceApplication;
         private String userId;
         private SubMerchant subMerchant;
 
@@ -255,11 +246,6 @@ public class Verify3dRequest extends SafechargeRequest {
             return this;
         }
 
-        public Builder addSourceApplication(String sourceApplication) {
-            this.sourceApplication = sourceApplication;
-            return this;
-        }
-
         public Builder addUserId(String userId) {
             this.userId = userId;
             return this;
@@ -282,7 +268,6 @@ public class Verify3dRequest extends SafechargeRequest {
             verify3dRequest.setMerchantDetails(merchantDetails);
             verify3dRequest.setPaymentOption(paymentOption);
             verify3dRequest.setRelatedTransactionId(relatedTransactionId);
-            verify3dRequest.setSourceApplication(sourceApplication);
             verify3dRequest.setSubMerchant(subMerchant);
             verify3dRequest.setUserId(userId);
             verify3dRequest.setUserTokenId(userTokenId);

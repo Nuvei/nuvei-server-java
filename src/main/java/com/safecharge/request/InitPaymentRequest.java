@@ -51,7 +51,7 @@ public class InitPaymentRequest extends SafechargeRequest {
 
     private UserAddress billingAddress;
 
-    private String sourceApplication;
+    private final String sourceApplication = "31";
 
     public String getUserTokenId() {
         return userTokenId;
@@ -125,14 +125,6 @@ public class InitPaymentRequest extends SafechargeRequest {
         this.billingAddress = billingAddress;
     }
 
-    public String getSourceApplication() {
-        return sourceApplication;
-    }
-
-    public void setSourceApplication(String sourceApplication) {
-        this.sourceApplication = sourceApplication;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -166,7 +158,6 @@ public class InitPaymentRequest extends SafechargeRequest {
         private UrlDetails urlDetails;
         private String customData;
         private UserAddress billingAddress;
-        private String sourceApplication;
 
         public Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
@@ -213,11 +204,6 @@ public class InitPaymentRequest extends SafechargeRequest {
             return this;
         }
 
-        public Builder addSourceApplication(String sourceApplication) {
-            this.sourceApplication = sourceApplication;
-            return this;
-        }
-
         @Override
         public InitPaymentRequest build() throws ConstraintViolationException {
             InitPaymentRequest request = new InitPaymentRequest();
@@ -227,7 +213,6 @@ public class InitPaymentRequest extends SafechargeRequest {
             request.setCustomData(customData);
             request.setDeviceDetails(deviceDetails);
             request.setPaymentOption(paymentOption);
-            request.setSourceApplication(sourceApplication);
             request.setUrlDetails(urlDetails);
             request.setUserTokenId(userTokenId);
             request.setClientUniqueId(clientUniqueId);

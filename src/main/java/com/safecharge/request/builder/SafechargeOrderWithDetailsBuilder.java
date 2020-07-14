@@ -19,7 +19,6 @@ public abstract class SafechargeOrderWithDetailsBuilder<T extends SafechargeOrde
     private UserPaymentOption userPaymentOption;
     private String customData;
     private Boolean autoPayment3D;
-    private String sourceApplication;
     private String isMoto;
 
     public T addPaymentMethod(String paymentMethod) {
@@ -42,11 +41,6 @@ public abstract class SafechargeOrderWithDetailsBuilder<T extends SafechargeOrde
         return (T) this;
     }
 
-    public T addSourceApplication(String sourceApplication) {
-        this.sourceApplication = sourceApplication;
-        return (T) this;
-    }
-
     public T addIsMoto(String isMoto) {
         this.isMoto = isMoto;
         return (T) this;
@@ -66,7 +60,6 @@ public abstract class SafechargeOrderWithDetailsBuilder<T extends SafechargeOrde
         request.setUserPaymentOption(userPaymentOption);
         request.setCustomData(customData);
         request.setAutoPayment3D(autoPayment3D);
-        request.setSourceApplication(sourceApplication);
         request.setIsMoto(isMoto);
 
         return request;
