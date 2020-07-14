@@ -5,6 +5,7 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.safecharge.exception.SafechargeException;
 import com.safecharge.request.*;
 import com.safecharge.response.*;
 import org.apache.commons.logging.Log;
@@ -176,6 +177,21 @@ public class SafechargeRequestExecutor {
      */
     public SafechargeResponse executeRequest(SafechargeBaseRequest request) {
 
+        try {
+            return execute(request);
+        } catch (SafechargeException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Sends a {@link SafechargeRequest} to SafeCharge's API via HTTP POST method.
+     *
+     * @param request {@link SafechargeRequest} API request object
+     * @return {@link SafechargeResponse} API response object.
+     * @throws SafechargeException If the request execution throws IOException it is wrapped and rethrown in {@link SafechargeException}
+     */
+    public SafechargeResponse execute(SafechargeBaseRequest request) throws SafechargeException {
         if (!isInitialized) {
             init();
         }
@@ -198,9 +214,8 @@ public class SafechargeRequestExecutor {
             if (logger.isDebugEnabled()) {
                 logger.debug(e.getMessage());
             }
+            throw new SafechargeException(e.getMessage());
         }
-
-        return null;
     }
 
     /**

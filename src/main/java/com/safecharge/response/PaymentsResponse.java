@@ -1,6 +1,6 @@
 package com.safecharge.response;
 
-import com.safecharge.model.ExternalToken;
+import com.safecharge.model.ApiExternalToken;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
@@ -77,7 +77,7 @@ public abstract class PaymentsResponse extends SafechargeResponse {
     /**
      * This block contain external token parameters arriving from a 3rd party payment provider which is not SafeCharge (such as CreditGuard ect.)
      */
-    protected ExternalToken externalToken;
+    protected ApiExternalToken externalToken;
     
     public String getOrderId() {
         return orderId;
@@ -175,11 +175,11 @@ public abstract class PaymentsResponse extends SafechargeResponse {
         this.authCode = authCode;
     }
 
-    public ExternalToken getExternalToken() {
+    public ApiExternalToken getExternalToken() {
         return externalToken;
     }
 
-    public void setExternalToken(ExternalToken externalToken) {
+    public void setExternalToken(ApiExternalToken externalToken) {
         this.externalToken = externalToken;
     }
 
