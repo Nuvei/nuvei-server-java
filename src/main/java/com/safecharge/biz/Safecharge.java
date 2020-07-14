@@ -21,6 +21,7 @@ import com.safecharge.model.UserAddress;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.model.Verify3dPaymentOption;
 import com.safecharge.request.SafechargeBaseRequest;
+import com.safecharge.response.Authorize3dResponse;
 import com.safecharge.response.GetPaymentStatusResponse;
 import com.safecharge.response.InitPaymentResponse;
 import com.safecharge.response.OpenOrderResponse;
@@ -435,7 +436,7 @@ public class Safecharge {
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
-    public PaymentResponse authorize3d(String userTokenId, String clientUniqueId, String clientRequestId, PaymentOption paymentOption, Integer isRebilling,
+    public Authorize3dResponse authorize3d(String userTokenId, String clientUniqueId, String clientRequestId, PaymentOption paymentOption, Integer isRebilling,
                                        String currency, String amount, AmountDetails amountDetails, List<Item> items, DeviceDetails deviceDetails,
                                        CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
                                        MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails, String customSiteName, String productId,
@@ -449,6 +450,6 @@ public class Safecharge {
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
                 transactionType, autoPayment3D, isMoto, internalRequestId);
 
-        return (PaymentResponse)requestExecutor.execute(request);
+        return (Authorize3dResponse)requestExecutor.execute(request);
     }
 }

@@ -101,7 +101,9 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     }
 
     public T addItems(List<Item> items) {
-        this.items.addAll(items);
+        if (items != null) {
+            this.items.addAll(items);
+        }
 
         return (T)this;
     }
