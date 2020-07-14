@@ -1,6 +1,6 @@
 package com.safecharge.exception;
 
-public class SafechargeException extends RuntimeException {
+public class SafechargeException extends Exception {
 
     public SafechargeException() {
     }

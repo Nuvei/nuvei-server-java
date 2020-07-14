@@ -188,10 +188,10 @@ public class SafechargeRequestExecutor {
      * Sends a {@link SafechargeRequest} to SafeCharge's API via HTTP POST method.
      *
      * @param request {@link SafechargeRequest} API request object
-     * @return {@link SafechargeResponse} API response object or null if the response can't be parsed
+     * @return {@link SafechargeResponse} API response object.
      * @throws SafechargeException If the request execution throws IOException it is wrapped and rethrown in {@link SafechargeException}
      */
-    public SafechargeResponse execute(SafechargeBaseRequest request) {
+    public SafechargeResponse execute(SafechargeBaseRequest request) throws SafechargeException {
         if (!isInitialized) {
             init();
         }
