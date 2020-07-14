@@ -23,7 +23,7 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
     private UserPaymentOption userPaymentOption;
     private String customData;
     private Boolean autoPayment3D;
-    private String sourceApplication;
+    private final String sourceApplication = "31";
     private String isMoto;
 
     public String getPaymentMethod() {
@@ -56,14 +56,6 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
 
     public void setAutoPayment3D(Boolean autoPayment3D) {
         this.autoPayment3D = autoPayment3D;
-    }
-
-    public String getSourceApplication() {
-        return sourceApplication;
-    }
-
-    public void setSourceApplication(String sourceApplication) {
-        this.sourceApplication = sourceApplication;
     }
 
     public String getIsMoto() {

@@ -69,7 +69,6 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
     }
 
 
-
     public static Builder builder() {
         return new Builder();
     }
