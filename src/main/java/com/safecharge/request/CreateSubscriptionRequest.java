@@ -344,6 +344,7 @@ public class CreateSubscriptionRequest
          * @param state       The state of the user(two-letter ISO state code)
          * @param zip         The postal code of the user
          * @param dateOfBirth The date of birth of the user
+         * @param county      The county of the recipient
          * @return this object
          */
         public CreateSubscriptionRequest.Builder addUserDetails(String address, String city, String country, String email, String firstName,
@@ -401,7 +402,7 @@ public class CreateSubscriptionRequest
                                                                     String customField13, String customField14, String customField15) {
 
             MerchantDetails merchantDetails = MerchantUtils.createMerchantDetailsFromParams(customField1, customField2, customField3,
-                    customField4, customField5, customField6, customField7, customField8, customField9, customField10, customField11, 
+                    customField4, customField5, customField6, customField7, customField8, customField9, customField10, customField11,
                     customField12, customField13, customField14, customField15);
 
             return addMerchantDetails(merchantDetails);
@@ -474,6 +475,7 @@ public class CreateSubscriptionRequest
          * @param state     The state of the recipient(two-letter ISO state code)
          * @param zip       The postal code of the recipient
          * @param cell      The cell number of the recipient
+         * @param county    The county of the recipient
          * @return this object
          */
         public Builder addBillingAddress(String firstName, String lastName, String email, String phone, String address, String city, String country,

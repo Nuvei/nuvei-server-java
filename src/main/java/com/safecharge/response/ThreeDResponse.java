@@ -1,5 +1,7 @@
 package com.safecharge.response;
 
+import com.safecharge.model.Sdk;
+
 public class ThreeDResponse {
 
     private String threeDReason;
@@ -38,7 +40,7 @@ public class ThreeDResponse {
 
     private String cardHolderInfoText;
 
-    private String sdk;
+    private Sdk sdk;
 
     private String xid;
 
@@ -192,11 +194,11 @@ public class ThreeDResponse {
         this.cardHolderInfoText = cardHolderInfoText;
     }
 
-    public String getSdk() {
+    public Sdk getSdk() {
         return sdk;
     }
 
-    public void setSdk(String sdk) {
+    public void setSdk(Sdk sdk) {
         this.sdk = sdk;
     }
 

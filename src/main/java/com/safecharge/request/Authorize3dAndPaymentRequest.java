@@ -14,9 +14,7 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
 
     private boolean autoPayment3D;
 
-    private final String sourceApplication = "31";
-
-    private String isMoto;
+    private final String sourceApplication = "JAVA_SDK";
 
     public PaymentOption getPaymentOption() {
         return paymentOption;
@@ -42,19 +40,10 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         this.autoPayment3D = autoPayment3D;
     }
 
-    public String getIsMoto() {
-        return isMoto;
-    }
-
-    public void setIsMoto(String isMoto) {
-        this.isMoto = isMoto;
-    }
-
     public abstract static class Builder<T extends Builder<T>> extends SafechargePaymentBuilder<T> {
 
         private PaymentOption paymentOption;
         private Integer isRebilling;
-        private String isMoto;
         private boolean autoPayment3D;
 
         public T addPaymentOption(PaymentOption paymentOption) {
@@ -67,11 +56,6 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             return (T) this;
         }
 
-        public T addIsMoto(String isMoto) {
-            this.isMoto = isMoto;
-            return (T) this;
-        }
-
         public T addAutoPayment3D(Boolean autoPayment3D) {
             this.autoPayment3D = Boolean.TRUE.equals(autoPayment3D);
             return (T) this;
@@ -80,7 +64,6 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         protected <S extends Authorize3dAndPaymentRequest> S build(S request) {
             request.setPaymentOption(paymentOption);
             request.setIsRebilling(isRebilling);
-            request.setIsMoto(isMoto);
             request.setIsRebilling(isRebilling);
             request.setAutoPayment3D(autoPayment3D);
 

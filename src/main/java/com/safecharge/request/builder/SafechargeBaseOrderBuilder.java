@@ -153,6 +153,7 @@ public abstract class SafechargeBaseOrderBuilder<T extends SafechargeBaseOrderBu
      * @param state       The state of the user(two-letter ISO state code)
      * @param zip         The postal code of the user
      * @param dateOfBirth The date of birth of the user
+     * @param county      The county of the recipient
      * @return this object
      */
     public T addUserDetails(String address, String city, String country, String email, String firstName, String lastName, String phone, String state,
@@ -188,6 +189,7 @@ public abstract class SafechargeBaseOrderBuilder<T extends SafechargeBaseOrderBu
      * @param state     The state of the recipient(two-letter ISO state code)
      * @param zip       The postal code of the recipient
      * @param cell      The cell number of the recipient
+     * @param county    The county of the recipient
      * @return this object
      */
     public T addShippingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
@@ -224,6 +226,7 @@ public abstract class SafechargeBaseOrderBuilder<T extends SafechargeBaseOrderBu
      * @param state     The state of the recipient(two-letter ISO state code)
      * @param zip       The postal code of the recipient
      * @param cell      The cell number of the recipient
+     * @param county    The county of the recipient
      * @return this object
      */
     public T addBillingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
@@ -384,6 +387,7 @@ public abstract class SafechargeBaseOrderBuilder<T extends SafechargeBaseOrderBu
     /**
      * Adds Amount details to the request.
      *
+     * @param amountDetails the amount details to add to the request
      * @return this object
      */
     public T addAmountDetails(AmountDetails amountDetails) {

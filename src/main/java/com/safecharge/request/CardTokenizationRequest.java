@@ -184,6 +184,7 @@ public class CardTokenizationRequest extends SafechargeBaseRequest {
          * @param state     The state of the recipient(two-letter ISO state code)
          * @param zip       The postal code of the recipient
          * @param cell      The cell number of the recipient
+         * @param county    The county of the recipient
          * @return this object
          */
         public Builder addBillingAddress(String firstName, String lastName, String email, String phone, String address, String city, String country,

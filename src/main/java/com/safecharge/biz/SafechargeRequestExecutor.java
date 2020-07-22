@@ -246,7 +246,7 @@ public class SafechargeRequestExecutor {
         httpPost.setEntity(new StringEntity(request, Charset.forName("UTF-8")));
 
         if (logger.isDebugEnabled()) {
-            logger.debug(requestClass.getSimpleName() + " Sent " + request);
+            logger.debug(requestClass.getSimpleName() + " Sent " + System.lineSeparator() + request);
         }
 
         HttpResponse response = httpClient.execute(httpPost);

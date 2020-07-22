@@ -110,7 +110,7 @@ public class EditUPOCreditCardRequest extends EditUPOBasicRequest {
         return sb.toString();
     }
 
-    public static class Builder extends EditUPOBasicRequest.Builder<EditUPOCreditCardRequest.Builder>  {
+    public static class Builder extends EditUPOBasicRequest.Builder<EditUPOCreditCardRequest.Builder> {
 
         private String ccExpMonth;
         private String ccExpYear;
@@ -178,10 +178,11 @@ public class EditUPOCreditCardRequest extends EditUPOBasicRequest {
          * @param email       The email of the recipient
          * @param locale      The recipient’s locale and default language, for example en_UK.
          * @param dateOfBirth The date of birth of the recipient
+         * @param county      The county of the recipient
          * @return this object
          */
         public EditUPOCreditCardRequest.Builder addBillingAddress(String firstName, String lastName, String address, String phone, String zip, String city, String countryCode,
-                                         String state, String email, String locale, String dateOfBirth, String county) {
+                                                                  String state, String email, String locale, String dateOfBirth, String county) {
 
             UserDetails billingAddress = AddressUtils.createUserDetailsFromParams(firstName, lastName, address, phone,
                     zip, city, countryCode, state, email, locale, dateOfBirth, county);

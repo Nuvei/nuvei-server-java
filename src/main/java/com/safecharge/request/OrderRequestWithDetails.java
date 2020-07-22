@@ -23,7 +23,7 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
     private UserPaymentOption userPaymentOption;
     private String customData;
     private Boolean autoPayment3D;
-    private final String sourceApplication = "31";
+    private final String sourceApplication = "JAVA_SDK";
     private String isMoto;
 
     public String getPaymentMethod() {

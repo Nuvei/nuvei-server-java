@@ -43,8 +43,6 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
      * List of items that will be purchased.
      */
     @Valid
-    @NotNull
-    @Size(min = 1, message = "Request must have at least one item!")
     private List<Item> items = new ArrayList<>();
 
     /**

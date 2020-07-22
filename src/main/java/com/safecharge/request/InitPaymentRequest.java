@@ -51,7 +51,7 @@ public class InitPaymentRequest extends SafechargeRequest {
 
     private UserAddress billingAddress;
 
-    private final String sourceApplication = "31";
+    private final String sourceApplication = "JAVA_SDK";
 
     public String getUserTokenId() {
         return userTokenId;

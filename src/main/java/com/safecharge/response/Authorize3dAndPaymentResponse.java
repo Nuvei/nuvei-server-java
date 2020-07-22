@@ -5,11 +5,12 @@ import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.PaymentOptionResponse;
 
 public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
+
     private String orderId;
 
     private String userTokenId;
 
-    private PaymentOptionResponse paymentOptionResponse;
+    private PaymentOptionResponse paymentOption;
 
     private String transactionStatus;
 
@@ -51,12 +52,12 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
         this.userTokenId = userTokenId;
     }
 
-    public PaymentOptionResponse getPaymentOptionResponse() {
-        return paymentOptionResponse;
+    public PaymentOptionResponse getPaymentOption() {
+        return paymentOption;
     }
 
-    public void setPaymentOptionResponse(PaymentOptionResponse paymentOptionResponse) {
-        this.paymentOptionResponse = paymentOptionResponse;
+    public void setPaymentOption(PaymentOptionResponse paymentOption) {
+        this.paymentOption = paymentOption;
     }
 
     public String getTransactionStatus() {
@@ -161,7 +162,7 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
         sb.append(super.toString());
         sb.append(", orderId=").append(orderId).append('\'')
                 .append(", userToken=").append(userTokenId).append('\'')
-                .append(", paymentOption=").append(paymentOptionResponse).append('\'')
+                .append(", paymentOption=").append(paymentOption).append('\'')
                 .append(", transactionStatus=").append(transactionStatus).append('\'')
                 .append(", merchantDetails=").append(merchantDetails).append('\'')
                 .append(", gwErrorCode=").append(gwErrorCode).append('\'')

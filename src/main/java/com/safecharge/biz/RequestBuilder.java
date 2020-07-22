@@ -46,7 +46,7 @@ public class RequestBuilder {
                                                    DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails, Addendums addendums,
                                                    UrlDetails urlDetails, String customSiteName, String productId, String customData,
                                                    String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
-                                                   String isMoto, String internalRequestId) {
+                                                   String isMoto) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -74,14 +74,13 @@ public class RequestBuilder {
                 .addTransactionType(transactionType)
                 .addAutoPayment3D(autoPayment3D)
                 .addIsMoto(isMoto)
-                .addInternalRequestId(internalRequestId)
                 .build();
     }
 
     public SafechargeBaseRequest getInitPaymentRequest(String sessionToken, String userTokenId, String clientUniqueId, String clientRequestId, String currency,
                                                        String amount, DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails,
                                                        String customData, UserAddress billingAddress,
-                                                       MerchantInfo merchantInfo, String internalRequestId) {
+                                                       MerchantInfo merchantInfo) {
         return InitPaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addUserTokenId(userTokenId)
@@ -95,7 +94,6 @@ public class RequestBuilder {
                 .addCustomData(customData)
                 .addBillingAddress(billingAddress)
                 .addMerchantInfo(merchantInfo)
-                .addInternalRequestId(internalRequestId)
                 .build();
     }
 
@@ -105,7 +103,7 @@ public class RequestBuilder {
                                                      UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
                                                      UrlDetails urlDetails, String userTokenId, String clientUniqueId, UserPaymentOption userPaymentOption,
                                                      String paymentMethod, AmountDetails amountDetails, Addendums addendums, String customData, Boolean autoPayment3D,
-                                                     String isMoto, String internalRequestId) {
+                                                     String isMoto) {
         return OpenOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
@@ -132,26 +130,21 @@ public class RequestBuilder {
                 .addUserPaymentOption(userPaymentOption)
                 .addCustomData(customData)
                 .addAutoPayment3D(autoPayment3D)
-                .addInternalRequestId(internalRequestId)
                 .addIsMoto(isMoto)
                 .build();
     }
 
-    public SafechargeBaseRequest getPaymentStatusRequest(String sessionToken, String clientRequestId, MerchantInfo merchantInfo,
-                                                         String internalRequestId) {
+    public SafechargeBaseRequest getPaymentStatusRequest(String sessionToken, MerchantInfo merchantInfo) {
         return GetPaymentStatusRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
-                .addClientRequestId(clientRequestId)
-                .addInternalRequestId(internalRequestId)
                 .build();
     }
 
     public SafechargeBaseRequest getVoidTransactionRequest(String sessionToken, String clientRequestId, MerchantInfo merchantInfo,
                                                            String relatedTransactionId, String amount, String currency, String authCode,
                                                            String clientUniqueId, UrlDetails urlDetails, String customSiteName,
-                                                           String productId, String customData, String comment,
-                                                           String internalRequestId) {
+                                                           String productId, String customData, String comment) {
         return VoidTransactionRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
@@ -166,7 +159,6 @@ public class RequestBuilder {
                 .addCustomData(customData)
                 .addClientRequestId(clientRequestId)
                 .addAuthCode(authCode)
-                .addInternalRequestId(internalRequestId)
                 .build();
     }
 
@@ -175,7 +167,7 @@ public class RequestBuilder {
                                                              String descriptorMerchantPhone, DynamicDescriptor dynamicDescriptor,
                                                              UrlDetails urlDetails, String amount, String authCode, String customData,
                                                              String comment, String currency, String customSiteName, String productId,
-                                                             String relatedTransactionId, String internalRequestId) {
+                                                             String relatedTransactionId) {
         return SettleTransactionRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addClientUniqueId(clientUniqueId)
@@ -194,15 +186,13 @@ public class RequestBuilder {
                 .addCustomSiteName(customSiteName)
                 .addProductId(productId)
                 .addRelatedTransactionId(relatedTransactionId)
-                .addInternalRequestId(internalRequestId)
                 .build();
     }
 
     public SafechargeBaseRequest getRefundTransactionRequest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId,
                                                              String clientRequestId, UrlDetails urlDetails, String amount, String authCode,
                                                              String comment, String currency, String customData, String customSiteName,
-                                                             String productId, String relatedTransactionId,
-                                                             String internalRequestId) {
+                                                             String productId, String relatedTransactionId) {
         return RefundTransactionRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -217,15 +207,13 @@ public class RequestBuilder {
                 .addCustomSiteName(customSiteName)
                 .addProductId(productId)
                 .addRelatedTransactionId(relatedTransactionId)
-                .addInternalRequestId(internalRequestId)
                 .build();
     }
 
     public SafechargeBaseRequest getVerify3dResquest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId, String clientRequestId,
                                                      String amount, String currency, UserAddress billingAddress, String customData,
                                                      String customSiteName, MerchantDetails merchantDetails, String relatedTransactionId,
-                                                     SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption,
-                                                     String internalRequestId) {
+                                                     SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption) {
         return Verify3dRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -242,7 +230,6 @@ public class RequestBuilder {
                 .addUserId(userId)
                 .addUserTokenId(userTokenId)
                 .addPaymentOption(paymentOption)
-                .addInternalRequestId(internalRequestId)
                 .build();
     }
 
@@ -252,8 +239,7 @@ public class RequestBuilder {
                                                        CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress,
                                                        DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails, Addendums addendums,
                                                        UrlDetails urlDetails, String customSiteName, String productId, String customData,
-                                                       String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
-                                                       String isMoto, String internalRequestId) {
+                                                       String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D) {
         return Authorize3dRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -280,8 +266,6 @@ public class RequestBuilder {
                 .addRelatedTransactionId(relatedTransactionId)
                 .addTransactionType(transactionType)
                 .addAutoPayment3D(autoPayment3D)
-                .addIsMoto(isMoto)
-                .addInternalRequestId(internalRequestId)
                 .build();
     }
 }

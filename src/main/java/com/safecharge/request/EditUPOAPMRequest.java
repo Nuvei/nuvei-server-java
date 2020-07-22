@@ -77,7 +77,7 @@ public class EditUPOAPMRequest extends EditUPOBasicRequest {
         return sb.toString();
     }
 
-    public static class Builder  extends EditUPOBasicRequest.Builder<EditUPOAPMRequest.Builder> {
+    public static class Builder extends EditUPOBasicRequest.Builder<EditUPOAPMRequest.Builder> {
 
         UserDetailsCashier billingAddress;
         private Map<String, String> apmData;
@@ -132,13 +132,14 @@ public class EditUPOAPMRequest extends EditUPOBasicRequest {
          * @param countryCode The country of the recipient(two-letter ISO country code)
          * @param state       The state of the recipient(two-letter ISO state code)
          * @param email       The email of the recipient
-         * @param birthdate The date of birth of the recipient
-         * @param locale The date of birth of the recipient
+         * @param birthdate   The date of birth of the recipient
+         * @param county      The county of the recipient
+         * @param locale      The date of birth of the recipient
          * @return this object
          */
         public EditUPOAPMRequest.Builder addBillingAddress(String address, String city, String countryCode, String email, String firstName,
-                                         String lastName, String phone, String state, String zip, String birthdate,
-                                         String county, String locale) {
+                                                           String lastName, String phone, String state, String zip, String birthdate,
+                                                           String county, String locale) {
 
             UserDetailsCashier billingAddress = AddressUtils.createUserDetailsCashierFromParams(address, city, countryCode, email, firstName,
                     lastName, phone, state, zip, birthdate, county, locale);
