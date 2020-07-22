@@ -21,6 +21,7 @@ import com.safecharge.model.UserAddress;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.model.Verify3dPaymentOption;
 import com.safecharge.request.SafechargeBaseRequest;
+import com.safecharge.response.Authorize3dResponse;
 import com.safecharge.response.GetPaymentStatusResponse;
 import com.safecharge.response.InitPaymentResponse;
 import com.safecharge.response.OpenOrderResponse;
@@ -118,7 +119,6 @@ public class Safecharge {
      * @param transactionType
      * @param autoPayment3D
      * @param isMoto
-     * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -129,14 +129,14 @@ public class Safecharge {
                                    CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
                                    MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails, String customSiteName, String productId,
                                    String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
-                                   String isMoto, String internalRequestId) throws SafechargeException {
+                                   String isMoto) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getPaymentRequest(merchantInfo, sessionToken, userTokenId, clientUniqueId, clientRequestId, paymentOption,
                 isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
-                transactionType, autoPayment3D, isMoto, internalRequestId);
+                transactionType, autoPayment3D, isMoto);
 
         return (PaymentResponse) requestExecutor.execute(request);
     }
@@ -162,7 +162,6 @@ public class Safecharge {
      * @param urlDetails
      * @param customData
      * @param billingAddress
-     * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -170,12 +169,12 @@ public class Safecharge {
      */
     public InitPaymentResponse initPayment(String userTokenId, String clientUniqueId, String clientRequestId, String currency, String amount,
                                            DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails, String customData,
-                                           UserAddress billingAddress, String internalRequestId) throws SafechargeException {
+                                           UserAddress billingAddress) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getInitPaymentRequest(sessionToken, userTokenId, clientUniqueId, clientRequestId, currency,
-                amount, deviceDetails, paymentOption, urlDetails, customData, billingAddress, merchantInfo, internalRequestId);
+                amount, deviceDetails, paymentOption, urlDetails, customData, billingAddress, merchantInfo);
 
         return (InitPaymentResponse) requestExecutor.execute(request);
     }
@@ -209,7 +208,6 @@ public class Safecharge {
      * @param customData
      * @param autoPayment3D
      * @param isMoto
-     * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -220,14 +218,14 @@ public class Safecharge {
                                        List<Item> items, DeviceDetails deviceDetails, CashierUserDetails userDetails, UserAddress shippingAddress,
                                        UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
                                        UrlDetails urlDetails, UserPaymentOption userPaymentOption, String paymentMethod, AmountDetails amountDetails,
-                                       Addendums addendums, String customData, Boolean autoPayment3D, String isMoto, String internalRequestId) throws SafechargeException {
+                                       Addendums addendums, String customData, Boolean autoPayment3D, String isMoto) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getOpenOrderRequest(merchantInfo, sessionToken, clientRequestId, customSiteName, productId,
                 paymentOption, transactionType, currency, amount, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, urlDetails, userTokenId, clientUniqueId, userPaymentOption, paymentMethod,
-                amountDetails, addendums, customData, autoPayment3D, isMoto, internalRequestId);
+                amountDetails, addendums, customData, autoPayment3D, isMoto);
 
         return (OpenOrderResponse) requestExecutor.execute(request);
     }
@@ -237,18 +235,16 @@ public class Safecharge {
      * This method should be used to create request for getPaymentStatus endpoint in Safecharge's REST API.
      * </p>
      *
-     * @param clientRequestId
-     * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
-    public GetPaymentStatusResponse paymentStatus(String clientRequestId, String internalRequestId) throws SafechargeException {
+    public GetPaymentStatusResponse getPaymentStatus() throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
-        SafechargeBaseRequest request = requestBuilder.getPaymentStatusRequest(sessionToken, clientRequestId, merchantInfo, internalRequestId);
+        SafechargeBaseRequest request = requestBuilder.getPaymentStatusRequest(sessionToken, merchantInfo);
 
         return (GetPaymentStatusResponse) requestExecutor.execute(request);
     }
@@ -269,7 +265,6 @@ public class Safecharge {
      * @param productId
      * @param customData
      * @param comment
-     * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -277,14 +272,13 @@ public class Safecharge {
      */
     public VoidTransactionResponse voidTransaction(String clientRequestId, String relatedTransactionId, String amount, String currency,
                                                    String authCode, String clientUniqueId, UrlDetails urlDetails, String customSiteName,
-                                                   String productId, String customData, String comment,
-                                                   String internalRequestId) throws SafechargeException {
+                                                   String productId, String customData, String comment) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getVoidTransactionRequest(sessionToken, clientRequestId, merchantInfo, relatedTransactionId,
                 amount, currency, authCode, clientUniqueId, urlDetails, customSiteName, productId, customData,
-                comment, internalRequestId);
+                comment);
 
         return (VoidTransactionResponse) requestExecutor.execute(request);
     }
@@ -309,7 +303,6 @@ public class Safecharge {
      * @param customSiteName
      * @param productId
      * @param relatedTransactionid
-     * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -319,13 +312,13 @@ public class Safecharge {
                                                        String descriptorMerchantName, String descriptorMerchantPhone, DynamicDescriptor dynamicDescriptor,
                                                        UrlDetails urlDetails, String amount, String authCode, String customData,
                                                        String comment, String currency, String customSiteName, String productId,
-                                                       String relatedTransactionid, String internalRequestId) throws SafechargeException {
+                                                       String relatedTransactionid) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getSettleTransactionRequest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, addendums,
                 descriptorMerchantName, descriptorMerchantPhone, dynamicDescriptor, urlDetails, amount, authCode, customData, comment, currency,
-                customSiteName, productId, relatedTransactionid, internalRequestId);
+                customSiteName, productId, relatedTransactionid);
 
         return (SettleTransactionResponse) requestExecutor.execute(request);
     }
@@ -346,7 +339,6 @@ public class Safecharge {
      * @param customSiteName
      * @param productId
      * @param relatedTransactionId
-     * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -354,14 +346,13 @@ public class Safecharge {
      */
     public RefundTransactionResponse refundTransaction(String clientUniqueId, String clientRequestId, UrlDetails urlDetails,
                                                        String amount, String authCode, String comment, String currency, String customData,
-                                                       String customSiteName, String productId, String relatedTransactionId,
-                                                       String internalRequestId) throws SafechargeException {
+                                                       String customSiteName, String productId, String relatedTransactionId) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getRefundTransactionRequest(sessionToken, merchantInfo, clientUniqueId, clientRequestId,
-                urlDetails, amount, authCode, comment, currency, customData, customSiteName, productId, relatedTransactionId,
-                internalRequestId);
+                urlDetails, amount, authCode, comment, currency, customData, customSiteName, productId, relatedTransactionId
+        );
 
         return (RefundTransactionResponse) requestExecutor.execute(request);
     }
@@ -380,7 +371,6 @@ public class Safecharge {
      * @param userId
      * @param userTokenId
      * @param paymentOption
-     * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -388,14 +378,13 @@ public class Safecharge {
      */
     public Verify3dResponse verify3d(String clientUniqueId, String clientRequestId, String amount, String currency, UserAddress billingAddress,
                                      String customData, String customSiteName, MerchantDetails merchantDetails, String relatedTransactionId,
-                                     SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption,
-                                     String internalRequestId) throws SafechargeException {
+                                     SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getVerify3dResquest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, amount,
                 currency, billingAddress, customData, customSiteName, merchantDetails, relatedTransactionId, subMerchant, userId,
-                userTokenId, paymentOption, internalRequestId);
+                userTokenId, paymentOption);
 
         return (Verify3dResponse) requestExecutor.execute(request);
     }
@@ -428,27 +417,24 @@ public class Safecharge {
      * @param relatedTransactionId
      * @param transactionType
      * @param autoPayment3D
-     * @param isMoto
-     * @param internalRequestId
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
-    public PaymentResponse authorize3d(String userTokenId, String clientUniqueId, String clientRequestId, PaymentOption paymentOption, Integer isRebilling,
-                                       String currency, String amount, AmountDetails amountDetails, List<Item> items, DeviceDetails deviceDetails,
-                                       CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
-                                       MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails, String customSiteName, String productId,
-                                       String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
-                                       String isMoto, String internalRequestId) throws SafechargeException {
+    public Authorize3dResponse authorize3d(String userTokenId, String clientUniqueId, String clientRequestId, PaymentOption paymentOption, Integer isRebilling,
+                                           String currency, String amount, AmountDetails amountDetails, List<Item> items, DeviceDetails deviceDetails,
+                                           CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
+                                           MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails, String customSiteName, String productId,
+                                           String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder= serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getAuthorize3dRequest(merchantInfo, sessionToken, userTokenId, clientUniqueId, clientRequestId, paymentOption,
                 isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
-                transactionType, autoPayment3D, isMoto, internalRequestId);
+                transactionType, autoPayment3D);
 
-        return (PaymentResponse)requestExecutor.execute(request);
+        return (Authorize3dResponse)requestExecutor.execute(request);
     }
 }

@@ -5,20 +5,26 @@ import javax.validation.constraints.Size;
 
 public class ExternalMpi {
 
-    @Size(min=1, max = 1, message = "value is invalid. The allowed values are: (0, {max}).")
+    @Size(min = 1, max = 1, message = "value is invalid. The allowed values are: (0, {max}).")
     @NotNull
     private String isExternalMpi;
 
-    @Size(min=1, max = 2, message = "value is invalid.")
+    @Size(min = 1, max = 2, message = "value is invalid.")
     @NotNull
     String eci;
 
-    @Size(min=1, max = 50, message = "value is invalid. The length of the value should be between {min} and {max} symbols.")
+    @Size(min = 1, max = 50, message = "value is invalid. The length of the value should be between {min} and {max} symbols.")
     @NotNull
     String cavv;
 
     @Size(max = 50, message = "value is invalid. The length of the value should be maximum {max} symbols.")
     String xid;
+
+    @Size(max = 36, message = "value is invalid. The length of the value should be maximum {max} symbols.")
+    private String dsTransID;
+
+    @Size(max = 1, message = "value is invalid. The length of the value should be maximum {max} symbol.")
+    private String threeDProtocolVersion;
 
     public String getIsExternalMpi() {
         return isExternalMpi;
@@ -52,17 +58,32 @@ public class ExternalMpi {
         this.xid = xid;
     }
 
+    public String getDsTransID() {
+        return dsTransID;
+    }
+
+    public void setDsTransID(String dsTransID) {
+        this.dsTransID = dsTransID;
+    }
+
+    public String getThreeDProtocolVersion() {
+        return threeDProtocolVersion;
+    }
+
+    public void setThreeDProtocolVersion(String threeDProtocolVersion) {
+        this.threeDProtocolVersion = threeDProtocolVersion;
+    }
+
     @Override
     public String toString() {
 
         StringBuilder builder = new StringBuilder("ApiExternalMpiDTO [isExternalMpi=");
-        builder.append(isExternalMpi);
-        builder.append(", eci=");
-        builder.append(eci);
-        builder.append(", cavv=");
-        builder.append(cavv);
-        builder.append(", xid=");
-        builder.append(xid);
+        builder.append(isExternalMpi)
+                .append(", eci=").append(eci)
+                .append(", cavv=").append(cavv)
+                .append(", xid=").append(xid)
+                .append(", dsTransId=").append(dsTransID)
+                .append(", threeDProtocolVersion=").append(threeDProtocolVersion);
 
         return builder.toString();
     }

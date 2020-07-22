@@ -15,7 +15,7 @@ public class CardResponse {
     private String avsCode;
     private String ccTempToken;
     private String isVerified;
-    private ThreeDResponse threeDResponse;
+    private ThreeDResponse threeD;
 
     public ApiExternalToken getExternalToken() {
         return externalToken;
@@ -105,11 +105,11 @@ public class CardResponse {
         this.isVerified = isVerified;
     }
 
-    public ThreeDResponse getThreeDResponse() {
-        return threeDResponse;
+    public ThreeDResponse getThreeD() {
+        return threeD;
     }
 
-    public void setThreeDResponse(ThreeDResponse threeDResponse) {
-        this.threeDResponse = threeDResponse;
+    public void setThreeD(ThreeDResponse threeD) {
+        this.threeD = threeD;
     }
 }

@@ -29,7 +29,6 @@ public class Authorize3dRequest extends Authorize3dAndPaymentRequest {
         final StringBuilder sb = new StringBuilder("PaymentRequest{");
         sb.append("paymentOption=").append(getPaymentOption())
                 .append(", isRebilling=").append(getIsRebilling())
-                .append(", isMoto=").append(getIsMoto())
                 .append(", autoPayment3D=").append(isAutoPayment3D())
                 .append("currency='").append(getCurrency()).append('\'')
                 .append(", amount='").append(getAmount()).append('\'')

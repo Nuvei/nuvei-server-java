@@ -74,7 +74,7 @@ public class SafechargeRequestExecutor {
                     put(InitPaymentRequest.class, InitPaymentResponse.class);
                     put(GetPaymentStatusRequest.class, GetPaymentStatusResponse.class);
                     put(Verify3dRequest.class, Verify3dResponse.class);
-                    put(Authorize3dRequest.class, PaymentResponse.class);
+                    put(Authorize3dRequest.class, Authorize3dResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -176,7 +176,6 @@ public class SafechargeRequestExecutor {
      * @return {@link SafechargeResponse} API response object or null if the response can't be parsed
      */
     public SafechargeResponse executeRequest(SafechargeBaseRequest request) {
-
         try {
             return execute(request);
         } catch (SafechargeException e) {
@@ -247,7 +246,7 @@ public class SafechargeRequestExecutor {
         httpPost.setEntity(new StringEntity(request, Charset.forName("UTF-8")));
 
         if (logger.isDebugEnabled()) {
-            logger.debug(requestClass.getSimpleName() + " Sent " + request);
+            logger.debug(requestClass.getSimpleName() + " Sent " + System.lineSeparator() + request);
         }
 
         HttpResponse response = httpClient.execute(httpPost);

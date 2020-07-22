@@ -68,7 +68,7 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
     @Size(max = 255)
     private String customData;
 
-    private final String sourceApplication = "31";
+    private final String sourceApplication = "JAVA_SDK";
 
     public String getAmount() {
         return amount;

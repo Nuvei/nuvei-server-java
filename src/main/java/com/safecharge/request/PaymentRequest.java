@@ -14,6 +14,16 @@ import com.safecharge.util.ValidationUtils;
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
 public class PaymentRequest extends Authorize3dAndPaymentRequest {
 
+    private String isMoto;
+
+    public String getIsMoto() {
+        return isMoto;
+    }
+
+    public void setIsMoto(String isMoto) {
+        this.isMoto = isMoto;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -33,9 +43,18 @@ public class PaymentRequest extends Authorize3dAndPaymentRequest {
 
     public static class Builder extends Authorize3dAndPaymentRequest.Builder<Builder> {
 
+        private String isMoto;
+
+        public Builder addIsMoto(String isMoto) {
+            this.isMoto = isMoto;
+            return this;
+        }
+
         @Override
         public PaymentRequest build() {
             PaymentRequest request = new PaymentRequest();
+            request.setIsMoto(isMoto);
+
             return ValidationUtils.validate(super.build(request));
         }
     }
