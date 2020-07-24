@@ -120,7 +120,7 @@ public class Safecharge {
      * @param autoPayment3D
      * @param isMoto
      * @return Passes through the response from Safecharge's REST API.
-     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
+     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
@@ -163,7 +163,7 @@ public class Safecharge {
      * @param customData
      * @param billingAddress
      * @return Passes through the response from Safecharge's REST API.
-     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
+     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
@@ -209,7 +209,7 @@ public class Safecharge {
      * @param autoPayment3D
      * @param isMoto
      * @return Passes through the response from Safecharge's REST API.
-     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
+     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
@@ -236,7 +236,7 @@ public class Safecharge {
      * </p>
      *
      * @return Passes through the response from Safecharge's REST API.
-     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
+     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
@@ -266,7 +266,7 @@ public class Safecharge {
      * @param customData
      * @param comment
      * @return Passes through the response from Safecharge's REST API.
-     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
+     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
@@ -304,7 +304,7 @@ public class Safecharge {
      * @param productId
      * @param relatedTransactionid
      * @return Passes through the response from Safecharge's REST API.
-     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
+     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
@@ -340,7 +340,7 @@ public class Safecharge {
      * @param productId
      * @param relatedTransactionId
      * @return Passes through the response from Safecharge's REST API.
-     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
+     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
@@ -372,7 +372,7 @@ public class Safecharge {
      * @param userTokenId
      * @param paymentOption
      * @return Passes through the response from Safecharge's REST API.
-     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
+     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
@@ -418,7 +418,7 @@ public class Safecharge {
      * @param transactionType
      * @param autoPayment3D
      * @return Passes through the response from Safecharge's REST API.
-     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, APIConstants.Environment, Constants.HashAlgorithm)}
+     * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException if there are request related problems.
      */
