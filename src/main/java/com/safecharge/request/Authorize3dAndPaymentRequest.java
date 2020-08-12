@@ -3,6 +3,7 @@ package com.safecharge.request;
 import javax.validation.Valid;
 
 import com.safecharge.model.PaymentOption;
+import com.safecharge.model.SubMerchant;
 import com.safecharge.request.builder.SafechargePaymentBuilder;
 
 public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequest {
@@ -13,6 +14,9 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
     private Integer isRebilling;
 
     private boolean autoPayment3D;
+
+    @Valid
+    private SubMerchant subMerchant;
 
     private final String sourceApplication = "JAVA_SDK";
 
@@ -40,11 +44,21 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         this.autoPayment3D = autoPayment3D;
     }
 
+    public SubMerchant getSubMerchant() {
+        return subMerchant;
+    }
+
+    public void setSubMerchant(SubMerchant subMerchant) {
+        this.subMerchant = subMerchant;
+    }
+
+
     public abstract static class Builder<T extends Builder<T>> extends SafechargePaymentBuilder<T> {
 
         private PaymentOption paymentOption;
         private Integer isRebilling;
         private boolean autoPayment3D;
+        private SubMerchant subMerchant;
 
         public T addPaymentOption(PaymentOption paymentOption) {
             this.paymentOption = paymentOption;
@@ -61,11 +75,17 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             return (T) this;
         }
 
+        public T addSubMerchant(SubMerchant subMerchant) {
+            this.subMerchant = subMerchant;
+            return (T) this;
+        }
+
         protected <S extends Authorize3dAndPaymentRequest> S build(S request) {
             request.setPaymentOption(paymentOption);
             request.setIsRebilling(isRebilling);
             request.setIsRebilling(isRebilling);
             request.setAutoPayment3D(autoPayment3D);
+            request.setSubMerchant(subMerchant);
 
             return super.build(request);
         }

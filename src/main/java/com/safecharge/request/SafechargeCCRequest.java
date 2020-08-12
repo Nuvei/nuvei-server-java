@@ -13,9 +13,10 @@ import com.safecharge.model.UserPaymentOption;
 import com.safecharge.util.Constants;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Abstract class to be used as a base for credit card payment requests.
+ * </p>
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 4/10/2017
@@ -37,11 +38,12 @@ public abstract class SafechargeCCRequest extends SafechargePaymentRequest imple
      * expirationMonth <br />
      * expirationYear <br />
      * cvv <br />
-     * <p>
+     * </p>
      * OR
      * <p>
      * cardToken <br />
      * cvv
+     * </p>
      */
     @Valid
     private CardData cardData;
@@ -52,6 +54,7 @@ public abstract class SafechargeCCRequest extends SafechargePaymentRequest imple
      * <p>
      * SafeCharge decide per client in gateway and per site in cashier, weather CVV is mandatory to be provided with a UPO.
      * Sending CVV will gain a getter interchange. if neded it will be sent by the merchant in cardData class, cvv parameter.
+     * </p>
      */
     @Valid
     private UserPaymentOption userPaymentOption;
@@ -62,6 +65,7 @@ public abstract class SafechargeCCRequest extends SafechargePaymentRequest imple
      * Re-bill can only be performed using a user payment option (UPO) ID, and not with card data or card token.
      * The re-bill transaction is based on a previous successful transaction performed using the same UPO ID.
      * This allows the merchant to manage the subscription on its side and send only re-bill transactions.
+     * </p>
      */
     @Max(value = 1)
     @Min(value = 0)

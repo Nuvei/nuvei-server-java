@@ -4,13 +4,14 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.safecharge.model.SubMerchant;
 import com.safecharge.model.UrlDetails;
 
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Abstract class to be used as a base for transaction related requests.
- *
+ *</p>
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/22/2017
  */
@@ -67,6 +68,9 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
 
     @Size(max = 255)
     private String customData;
+
+    @Valid
+    private SubMerchant subMerchant;
 
     private final String sourceApplication = "JAVA_SDK";
 
@@ -150,6 +154,14 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
         this.customData = customData;
     }
 
+    public SubMerchant getSubMerchant() {
+        return subMerchant;
+    }
+
+    public void setSubMerchant(SubMerchant subMerchant) {
+        this.subMerchant = subMerchant;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SafechargeTransactionRequest{");
@@ -163,6 +175,7 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
         sb.append(", customSiteName='").append(customSiteName).append('\'');
         sb.append(", productId='").append(productId).append('\'');
         sb.append(", customData='").append(customData).append('\'');
+        sb.append(", subMerchant='").append(subMerchant).append('\'');
         sb.append('}');
         return sb.toString();
     }

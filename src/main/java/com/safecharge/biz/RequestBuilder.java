@@ -19,6 +19,7 @@ import com.safecharge.model.UserAddress;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.model.Verify3dPaymentOption;
 import com.safecharge.request.Authorize3dRequest;
+import com.safecharge.request.CardDetailsRequest;
 import com.safecharge.request.GetPaymentStatusRequest;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.InitPaymentRequest;
@@ -31,6 +32,9 @@ import com.safecharge.request.Verify3dRequest;
 import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.util.Constants;
 
+/**
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
+ */
 public class RequestBuilder {
 
     public SafechargeBaseRequest getSessionTokenRequest(MerchantInfo merchantInfo) {
@@ -46,7 +50,7 @@ public class RequestBuilder {
                                                    DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails, Addendums addendums,
                                                    UrlDetails urlDetails, String customSiteName, String productId, String customData,
                                                    String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
-                                                   String isMoto) {
+                                                   String isMoto, SubMerchant subMerchant) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -74,6 +78,7 @@ public class RequestBuilder {
                 .addTransactionType(transactionType)
                 .addAutoPayment3D(autoPayment3D)
                 .addIsMoto(isMoto)
+                .addSubMerchant(subMerchant)
                 .build();
     }
 
@@ -103,7 +108,7 @@ public class RequestBuilder {
                                                      UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
                                                      UrlDetails urlDetails, String userTokenId, String clientUniqueId, UserPaymentOption userPaymentOption,
                                                      String paymentMethod, AmountDetails amountDetails, Addendums addendums, String customData, Boolean autoPayment3D,
-                                                     String isMoto) {
+                                                     String isMoto, String authenticationOnlyType, SubMerchant subMerchant, Integer isRebilling, String rebillingType, String preventOverride) {
         return OpenOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
@@ -131,6 +136,11 @@ public class RequestBuilder {
                 .addCustomData(customData)
                 .addAutoPayment3D(autoPayment3D)
                 .addIsMoto(isMoto)
+                .addAuthenticationOnlyType(authenticationOnlyType)
+                .addSubMerchant(subMerchant)
+                .addIsRebilling(isRebilling)
+                .addRebillingType(rebillingType)
+                .addPreventOverride(preventOverride)
                 .build();
     }
 
@@ -144,7 +154,7 @@ public class RequestBuilder {
     public SafechargeBaseRequest getVoidTransactionRequest(String sessionToken, String clientRequestId, MerchantInfo merchantInfo,
                                                            String relatedTransactionId, String amount, String currency, String authCode,
                                                            String clientUniqueId, UrlDetails urlDetails, String customSiteName,
-                                                           String productId, String customData, String comment) {
+                                                           String productId, String customData, String comment, SubMerchant subMerchant) {
         return VoidTransactionRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
@@ -159,15 +169,16 @@ public class RequestBuilder {
                 .addCustomData(customData)
                 .addClientRequestId(clientRequestId)
                 .addAuthCode(authCode)
+                .addSubMerchant(subMerchant)
                 .build();
     }
 
     public SafechargeBaseRequest getSettleTransactionRequest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId,
                                                              String clientRequestId, Addendums addendums, String descriptorMerchantName,
-                                                             String descriptorMerchantPhone, DynamicDescriptor dynamicDescriptor,
+                                                             String descriptorMerchantPhone,
                                                              UrlDetails urlDetails, String amount, String authCode, String customData,
                                                              String comment, String currency, String customSiteName, String productId,
-                                                             String relatedTransactionId) {
+                                                             String relatedTransactionId, SubMerchant subMerchant) {
         return SettleTransactionRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addClientUniqueId(clientUniqueId)
@@ -176,7 +187,6 @@ public class RequestBuilder {
                 .addAddendums(addendums)
                 .addDescriptorMerchantName(descriptorMerchantName)
                 .addDescriptorMerchantPhone(descriptorMerchantPhone)
-                .addDynamicDescriptor(dynamicDescriptor)
                 .addURLDetails(urlDetails)
                 .addAmount(amount)
                 .addAuthCode(authCode)
@@ -186,13 +196,14 @@ public class RequestBuilder {
                 .addCustomSiteName(customSiteName)
                 .addProductId(productId)
                 .addRelatedTransactionId(relatedTransactionId)
+                .addSubMerchant(subMerchant)
                 .build();
     }
 
     public SafechargeBaseRequest getRefundTransactionRequest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId,
                                                              String clientRequestId, UrlDetails urlDetails, String amount, String authCode,
                                                              String comment, String currency, String customData, String customSiteName,
-                                                             String productId, String relatedTransactionId) {
+                                                             String productId, String relatedTransactionId, SubMerchant subMerchant) {
         return RefundTransactionRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -207,6 +218,7 @@ public class RequestBuilder {
                 .addCustomSiteName(customSiteName)
                 .addProductId(productId)
                 .addRelatedTransactionId(relatedTransactionId)
+                .addSubMerchant(subMerchant)
                 .build();
     }
 
@@ -239,7 +251,8 @@ public class RequestBuilder {
                                                        CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress,
                                                        DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails, Addendums addendums,
                                                        UrlDetails urlDetails, String customSiteName, String productId, String customData,
-                                                       String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D) {
+                                                       String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
+                                                       SubMerchant subMerchant) {
         return Authorize3dRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -266,6 +279,18 @@ public class RequestBuilder {
                 .addRelatedTransactionId(relatedTransactionId)
                 .addTransactionType(transactionType)
                 .addAutoPayment3D(autoPayment3D)
+                .addSubMerchant(subMerchant)
+                .build();
+    }
+
+    public CardDetailsRequest getCardDetailsRequest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId,
+                                                    String clientRequestId, String cardNumber) {
+        return CardDetailsRequest.builder()
+                .addSessionToken(sessionToken)
+                .addMerchantInfo(merchantInfo)
+                .addClientUniqueId(clientUniqueId)
+                .addClientRequestId(clientRequestId)
+                .addCardNumber(cardNumber)
                 .build();
     }
 }

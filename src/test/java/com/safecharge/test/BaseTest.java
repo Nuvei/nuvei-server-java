@@ -25,7 +25,7 @@ import com.safecharge.biz.SafechargeRequestExecutor;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/28/2017
@@ -140,6 +140,8 @@ public abstract class BaseTest {
                 gson.fromJson(loadResourceFile("mock/response/getPaymentStatus.json"), GetPaymentStatusResponse.class));
         when(safechargeRequestExecutor.executeRequest(Mockito.any(Verify3dRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("mock/response/verify3d.json"), Verify3dResponse.class));
+        when(safechargeRequestExecutor.executeRequest(Mockito.any(CardDetailsRequest.class))).thenReturn(
+                gson.fromJson(loadResourceFile("mock/response/cardDetails.json"), CardDetailsResponse.class));
     }
 
     protected String loadResourceFile(String path) {

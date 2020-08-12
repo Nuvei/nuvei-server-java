@@ -22,7 +22,7 @@ import com.google.gson.GsonBuilder;
 import com.safecharge.util.APIConstants;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * This class provides functionality to execute {@link SafechargeRequest}s directly to the SafeCharge's REST API
  *</p>
@@ -75,6 +75,7 @@ public class SafechargeRequestExecutor {
                     put(GetPaymentStatusRequest.class, GetPaymentStatusResponse.class);
                     put(Verify3dRequest.class, Verify3dResponse.class);
                     put(Authorize3dRequest.class, Authorize3dResponse.class);
+                    put(CardDetailsRequest.class, CardDetailsResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -119,6 +120,7 @@ public class SafechargeRequestExecutor {
                     put(GetPaymentStatusRequest.class, APIConstants.GET_PAYMENT_STATUS_URL);
                     put(Verify3dRequest.class, APIConstants.VERIFY3D_URL);
                     put(Authorize3dRequest.class, APIConstants.AUTHORIZE3D_URL);
+                    put(CardDetailsRequest.class, APIConstants.GET_CARD_DETAILS_URL);
                 }
             };
 

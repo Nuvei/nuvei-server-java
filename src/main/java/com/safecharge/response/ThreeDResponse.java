@@ -46,9 +46,9 @@ public class ThreeDResponse {
 
     private String result;
 
-    private String acsTtransId;
+    private String acsTransID;
 
-    private String dsTransId;
+    private String dsTransID;
 
     public String getThreeDReason() {
         return threeDReason;
@@ -218,19 +218,19 @@ public class ThreeDResponse {
         this.result = result;
     }
 
-    public String getAcsTtransId() {
-        return acsTtransId;
+    public String getAcsTransID() {
+        return acsTransID;
     }
 
-    public void setAcsTtransId(String acsTtransId) {
-        this.acsTtransId = acsTtransId;
+    public void setAcsTransID(String acsTransID) {
+        this.acsTransID = acsTransID;
     }
 
-    public String getDsTransId() {
-        return dsTransId;
+    public String getDsTransID() {
+        return dsTransID;
     }
 
-    public void setDsTransId(String dsTransId) {
-        this.dsTransId = dsTransId;
+    public void setDsTransID(String dsTransID) {
+        this.dsTransID = dsTransID;
     }
 }

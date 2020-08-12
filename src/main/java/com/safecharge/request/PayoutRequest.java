@@ -14,19 +14,20 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Request to execute payout.
+ * </p>
  * <p>
  * This method is intended for  merchants implementing payout for Credit cards and APMs(paypal, skrill, neteller and so on).
  * and use a native mobile application are not required to use the payout client SDK.
  * However, they are able to use this {@link PayoutRequest} directly.
- * <p>
+ * </p>
  * Merchants are able to use the payout client SDK, according to the instructions <
- * a href="https://www.safecharge.com/docs/api/?java#payout">here</a>
+ * <a href="https://www.safecharge.com/docs/api/?java#payout">here</a>
  * which performs credit card tokenization for them.
  *
- * @author <a mailto:bozhidarsh@safecharge.com>Bozhidar sHumanov</a>
+ * @author <a mailto:bozhidarsh@safecharge.com>Bozhidar Shumanov</a>
  * @see <a href="https://www.safecharge.com/docs/api/?java#payout">payout</a>
  * @since 11/21/2017
  */
@@ -179,7 +180,7 @@ public class PayoutRequest extends SafechargeRequest {
 
         /**
          * @param userTokenId
-         * @return
+         * @return this object
          */
         public Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
@@ -188,7 +189,7 @@ public class PayoutRequest extends SafechargeRequest {
 
         /**
          * @param clientUniqueId
-         * @return
+         * @return this objct
          */
         public Builder addClientUniqueId(String clientUniqueId) {
             this.clientUniqueId = clientUniqueId;
@@ -198,7 +199,7 @@ public class PayoutRequest extends SafechargeRequest {
         /**
          * @param amount
          * @param currency
-         * @return
+         * @return this object
          */
         public Builder addAmountAndCurrency(String amount, String currency) {
             this.amount = amount;
@@ -208,7 +209,7 @@ public class PayoutRequest extends SafechargeRequest {
 
         /**
          * @param userPaymentOption
-         * @return
+         * @return this object
          */
         public Builder addUserPaymentOption(UserPaymentOption userPaymentOption) {
             this.userPaymentOption = userPaymentOption;
@@ -217,7 +218,7 @@ public class PayoutRequest extends SafechargeRequest {
 
         /**
          * @param comment
-         * @return
+         * @return this object
          */
         public Builder addComment(String comment) {
             this.comment = comment;
@@ -226,7 +227,7 @@ public class PayoutRequest extends SafechargeRequest {
 
         /**
          * @param dynamicDescriptor
-         * @return
+         * @return this object
          */
         public Builder addDynamicDescriptor(DynamicDescriptor dynamicDescriptor) {
             this.dynamicDescriptor = dynamicDescriptor;
@@ -235,7 +236,7 @@ public class PayoutRequest extends SafechargeRequest {
 
         /**
          * @param merchantDetails
-         * @return
+         * @return this object
          */
         public Builder addMerchantDetails(MerchantDetails merchantDetails) {
             this.merchantDetails = merchantDetails;
@@ -244,7 +245,7 @@ public class PayoutRequest extends SafechargeRequest {
 
         /**
          * @param urlDetails
-         * @return
+         * @return this object
          */
         public Builder addUrlDetails(UrlDetails urlDetails) {
             this.urlDetails = urlDetails;
@@ -254,7 +255,7 @@ public class PayoutRequest extends SafechargeRequest {
         /**
          *
          * @param subMethodDetails
-         * @return
+         * @return this object
          */
         public Builder addSubMethodDetails(SubMethodDetails subMethodDetails) {
             this.subMethodDetails = subMethodDetails;

@@ -10,6 +10,7 @@ import com.safecharge.util.ValidationUtils;
  * Uniform request to perform card transactions(credit or debit)
  * It supports 3D Secure and alternative payment method transactions.
  * </p>
+ * see <a href="https://www.safecharge.com/docs/api/?json#payment">Payment</a>
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
 public class PaymentRequest extends Authorize3dAndPaymentRequest {
@@ -50,6 +51,9 @@ public class PaymentRequest extends Authorize3dAndPaymentRequest {
             return this;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public PaymentRequest build() {
             PaymentRequest request = new PaymentRequest();

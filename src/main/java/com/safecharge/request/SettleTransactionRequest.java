@@ -15,7 +15,7 @@ import com.safecharge.util.ValidationUtils;
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Request to settle a transaction.
- * <p>
+ * </p>
  * This request is used for settling an authorization transaction that was previously performed, with a two-phase
  * auth-settle process, for either a full or partial settles. When partial settles are issued – multiple settle requests
  * can be performed for up to the entire amount of the original authorized transaction.
@@ -114,6 +114,7 @@ public class SettleTransactionRequest
          * <p>
          * Note that this request do not send the data as a {@code dynamicDescriptor} JSON,
          * it sends the two params instead: {@code descriptorMerchantName} and {@code descriptorMerchantPhone}
+         * </p>
          *
          * @param dynamicDescriptor {@link DynamicDescriptor} object to add to the request
          * @return this object

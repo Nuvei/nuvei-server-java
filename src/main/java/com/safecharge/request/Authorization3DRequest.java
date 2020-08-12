@@ -83,9 +83,7 @@ public class Authorization3DRequest
         }
 
         /**
-         * Builds the request.
-         *
-         * @return this object
+         * {@inheritDoc}
          */
         @Override
         public SafechargeRequest build() {

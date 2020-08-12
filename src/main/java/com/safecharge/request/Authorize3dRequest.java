@@ -9,7 +9,7 @@ import com.safecharge.util.ValidationUtils;
  * <p>
  * This request is used when wanting to perform a 3d secure only request. It is used after an {@link InitPaymentRequest}
  * to provide to the merchant information whether a Challenge is needed or if they receive a frictionless response
- * <p>
+ * </p>
  * Note that Authorize3d is virtually the same as the Payment request(has the same fields) but is executed against a different REST endpoint.
  * <p>
  * see <a href="https://www.safecharge.com/docs/api/?json#authorize3dAPI">Authorize3d API</a>

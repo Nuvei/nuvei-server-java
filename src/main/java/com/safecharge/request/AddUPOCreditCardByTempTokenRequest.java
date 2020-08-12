@@ -13,10 +13,10 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Request to add Credit/Debit card(via temporary token) User Payment Option to a User.
- * <p>
+ * </p>
  * When submitting consumer’s full credit card number, SafeCharge provides a temporary token in the response that
  * represents the consumer’s credit card.
  * The next time the consumer completes a transaction, the merchant sends SafeCharge the temporary token instead

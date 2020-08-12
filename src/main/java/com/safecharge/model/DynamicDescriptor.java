@@ -8,6 +8,7 @@ import com.safecharge.util.APIConstants;
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * This class allows the merchant to define a dynamic descriptor for its name and phone number, which will appear in the payment statement.
+ * </p>
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017

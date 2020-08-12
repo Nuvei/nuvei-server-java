@@ -1,10 +1,10 @@
 package com.safecharge.response;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Response received from the SafeCharge's servers to the {@link com.safecharge.request.CreateSubscriptionRequest}.
- *
+ * </p>
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @see com.safecharge.request.CreateSubscriptionRequest
  * @since 6/6/2017
