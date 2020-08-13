@@ -11,7 +11,7 @@ public class CardResponse {
     private String ccExpMonth;
     private String ccExpYear;
     private String acquirerId;
-    private String cvv2Replay;
+    private String cvv2Reply;
     private String avsCode;
     private String ccTempToken;
     private String isVerified;
@@ -73,12 +73,12 @@ public class CardResponse {
         this.acquirerId = acquirerId;
     }
 
-    public String getCvv2Replay() {
-        return cvv2Replay;
+    public String getCvv2Reply() {
+        return cvv2Reply;
     }
 
-    public void setCvv2Replay(String cvv2Replay) {
-        this.cvv2Replay = cvv2Replay;
+    public void setCvv2Reply(String cvv2Reply) {
+        this.cvv2Reply = cvv2Reply;
     }
 
     public String getAvsCode() {
