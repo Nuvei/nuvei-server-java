@@ -36,4 +36,13 @@ public class SubMerchant {
     public void setCity(String city) {
         this.city = city;
     }
+
+    @Override
+    public String toString() {
+        return "SubMerchant{" +
+                "id='" + id + '\'' +
+                ", countryCode='" + countryCode + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

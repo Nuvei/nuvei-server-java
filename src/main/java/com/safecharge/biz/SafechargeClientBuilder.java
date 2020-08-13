@@ -23,10 +23,10 @@ import org.apache.http.ssl.SSLContexts;
 import com.safecharge.model.Proxy;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Builder for a {@link HttpClient} for communicating with the Safecharge's servers
- *
+ * </p>
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/16/2017
  */

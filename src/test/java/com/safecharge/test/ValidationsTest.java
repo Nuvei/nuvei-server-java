@@ -1,17 +1,10 @@
 package com.safecharge.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.ConstraintViolationException;
 
-import com.safecharge.model.SubMerchant;
-import com.safecharge.request.Verify3dRequest;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,6 +15,7 @@ import com.safecharge.model.Item;
 import com.safecharge.model.MerchantBaseInfo;
 import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.MerchantInfo;
+import com.safecharge.model.SubMerchant;
 import com.safecharge.model.SubMethodDetails;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
@@ -31,6 +25,7 @@ import com.safecharge.request.AddUPOCreditCardByTokenRequest;
 import com.safecharge.request.AddUPOCreditCardRequest;
 import com.safecharge.request.Authorization3DRequest;
 import com.safecharge.request.CancelSubscriptionRequest;
+import com.safecharge.request.CardDetailsRequest;
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.CreateSubscriptionRequest;
 import com.safecharge.request.DeleteUPORequest;
@@ -53,6 +48,7 @@ import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.request.SettleTransactionRequest;
 import com.safecharge.request.SuspendUPORequest;
 import com.safecharge.request.UpdateOrderRequest;
+import com.safecharge.request.Verify3dRequest;
 import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.request.basic.EditUPOBasicRequest;
 import com.safecharge.util.AddressUtils;
@@ -61,8 +57,13 @@ import com.safecharge.util.DynamicDescriptorUtils;
 import com.safecharge.util.MerchantUtils;
 import com.safecharge.util.UrlUtils;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/24/2017
@@ -985,5 +986,28 @@ public class ValidationsTest {
     public void testFailedValidation_EnableUPORequest() {
 
         commonFailedValidationEnableUPORequest(Constants.EditUpoBuilderType.ENABLE, 4);
+    }
+
+    @Test
+    public void testSuccessfulValidation_GetCardDetailsRequest() {
+        CardDetailsRequest getCardDetailsRequest = CardDetailsRequest.builder()
+                .addCardNumber(dummyCcCardNumber)
+                .addClientUniqueId(dummyClientUniqueId)
+                .addMerchantInfo(validMerchantInfo)
+                .build();
+
+        assertNotNull(getCardDetailsRequest);
+    }
+
+    @Test
+    public void testFailedValidation_GetCardDetailsRequest() {
+        try {
+            CardDetailsRequest getCardDetailsRequest = CardDetailsRequest.builder()
+                    .addMerchantInfo(validMerchantInfo)
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(1, e.getConstraintViolations().size());
+        }
     }
 }

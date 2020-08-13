@@ -1,5 +1,6 @@
 package com.safecharge.request.builder;
 
+import com.safecharge.model.SubMerchant;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.request.SafechargeTransactionRequest;
 import com.safecharge.util.ChecksumUtils;
@@ -7,10 +8,10 @@ import com.safecharge.util.Constants;
 import com.safecharge.util.UrlUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * A base builder for a transaction related requests.
- *
+ * </p>
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @see SafechargeBuilder
  * @see SafechargeCCBuilder
@@ -29,6 +30,7 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     private String customSiteName;
     private String productId;
     private String customData;
+    private SubMerchant subMerchant;
 
     /**
      * Adds amount to the request.
@@ -123,9 +125,10 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     }
 
     /**
-     * The method is used to ad to the builder custom site name which will overwrite the one of the merchant site.
-     * @param customSiteName
-     * @return
+     * The method is used to add to the builder custom site name which will overwrite the one of the merchant site.
+     *
+     * @param customSiteName The merchant’s site name.
+     * @return this object
      */
     public T addCustomSiteName(String customSiteName) {
         this.customSiteName = customSiteName;
@@ -134,8 +137,8 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
 
     /**
      * Adds product id to request builder.
-     * @param productId
-     * @return
+     * @param productId A free text field used to identify the product/service sold.
+     * @return this object
      */
     public T addProductId(String productId) {
         this.productId = productId;
@@ -144,11 +147,22 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
 
     /**
      * Adds custom data to request builder.
-     * @param customData
-     * @return
+     * @param customData Can be used to pass any type of information.
+     * @return this object
      */
     public T addCustomData(String customData) {
         this.customData = customData;
+        return (T) this;
+    }
+
+    /**
+     * Adds SubMerchant to request builder.
+     *
+     * @param subMerchant Information about the SubMerchant.
+     * @return this object
+     */
+    public T addSubMerchant(SubMerchant subMerchant) {
+        this.subMerchant = subMerchant;
         return (T) this;
     }
 
@@ -173,6 +187,7 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
         safechargeTransactionRequest.setCustomSiteName(customSiteName);
         safechargeTransactionRequest.setProductId(productId);
         safechargeTransactionRequest.setCustomData(customData);
+        safechargeTransactionRequest.setSubMerchant(subMerchant);
         safechargeTransactionRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeTransactionRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",
                         Constants.CHARSET_UTF8, merchantInfo != null ? merchantInfo.getHashAlgorithm() : null));

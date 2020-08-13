@@ -23,8 +23,7 @@ import com.safecharge.util.ValidationUtils;
  * @since 2/15/2017
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
-public class PaymentCCRequest
-        extends SafechargeCCRequest {
+public class PaymentCCRequest extends SafechargeCCRequest {
 
     public static Builder builder() {
         return new Builder();

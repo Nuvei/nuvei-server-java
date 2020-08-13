@@ -20,13 +20,13 @@ import com.safecharge.util.ValidationUtils;
 /**
  * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
- * Call this method if you need to use the SafeCharge MPI service to perform a 3D Secure only request. This method is called
+ * Use this request if you need the SafeCharge MPI service to perform a 3D Secure only request. This method is called
  * after the {@link Authorize3dRequest} method in case of the Challenge.
- *
+ * </p>
  * This method retrieves the generic 3D Secure result (ECI and CAVV) that you need to send to your PSP or acquirer to benefit
  * from the 3D Secure liability shift received from the SafeCharge 3D Secure service.
- *
  * see <a href="https://www.safecharge.com/docs/api/?json#verify3d">Verify3d</a>
+ *
  * @since 6/29/2020
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)

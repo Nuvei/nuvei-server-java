@@ -11,7 +11,7 @@ import com.safecharge.util.ValidationUtils;
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Request to refund a transaction.
- * <p>
+ * </p>
  * This request can be used to refund a previously settled transaction. Full or partial refunds are supported.
  * When partial refunds are issued, multiple refund requests can be performed for up to the entire amount
  * of the original settled transaction.

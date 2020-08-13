@@ -1,20 +1,20 @@
 package com.safecharge.request;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
+
 import com.safecharge.model.OpenOrderPaymentOption;
-import com.safecharge.request.builder.SafechargeOrderBuilder;
+import com.safecharge.model.SubMerchant;
 import com.safecharge.request.builder.SafechargeOrderWithDetailsBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Size;
-
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Request to create an order in the SafeCharge's system.
- * <p>
+ * </p>
  * This request represents the state of the order when it is created, it can be changed at later time.
  * Note that no payment request is send, it is used mainly to store the order details at the time of creation.
  *
@@ -28,13 +28,26 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
 
     private String customSiteName;
 
-    @Size(max=50, message = "productId size must be up to 50 characters long!")
+    @Size(max = 50, message = "productId size must be up to 50 characters long!")
     private String productId;
 
     @Valid
     private OpenOrderPaymentOption paymentOption;
 
     private Constants.TransactionType transactionType;
+
+    private String authenticationOnlyType;
+
+    @Valid
+    private SubMerchant subMerchant;
+
+    private Integer isRebilling;
+
+    @Size(max = 10)
+    private String rebillingType;
+
+    @Size(max = 1)
+    private String preventOverride;
 
     public String getCustomSiteName() {
         return customSiteName;
@@ -68,6 +81,45 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
         this.transactionType = transactionType;
     }
 
+    public String getAuthenticationOnlyType() {
+        return authenticationOnlyType;
+    }
+
+    public void setAuthenticationOnlyType(String authenticationOnlyType) {
+        this.authenticationOnlyType = authenticationOnlyType;
+    }
+
+    public SubMerchant getSubMerchant() {
+        return subMerchant;
+    }
+
+    public void setSubMerchant(SubMerchant subMerchant) {
+        this.subMerchant = subMerchant;
+    }
+
+    public Integer getIsRebilling() {
+        return isRebilling;
+    }
+
+    public void setIsRebilling(Integer isRebilling) {
+        this.isRebilling = isRebilling;
+    }
+
+    public String getRebillingType() {
+        return rebillingType;
+    }
+
+    public void setRebillingType(String rebillingType) {
+        this.rebillingType = rebillingType;
+    }
+
+    public String getPreventOverride() {
+        return preventOverride;
+    }
+
+    public void setPreventOverride(String preventOverride) {
+        this.preventOverride = preventOverride;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -80,7 +132,12 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
         sb.append(", customSiteName=").append(customSiteName)
                 .append(", productId=").append(productId)
                 .append(", paymentOption=").append(paymentOption)
-                .append(", transactionType=").append(transactionType);
+                .append(", transactionType=").append(transactionType)
+                .append(", authenticationOnlyType=").append(authenticationOnlyType)
+                .append(", subMerchant=").append(subMerchant)
+                .append(", isRebilling=").append(isRebilling)
+                .append(", rebillingType=").append(rebillingType)
+                .append(", preventOverride=").append(preventOverride);
         sb.append('}');
         return sb.toString();
     }
@@ -91,7 +148,12 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
         private String productId;
         private OpenOrderPaymentOption paymentOption;
         private Constants.TransactionType transactionType;
+        private String authenticationOnlyType;
+        private SubMerchant subMerchant;
+        private Integer isRebilling;
+        private String rebillingType;
         private String paymentMethod;
+        private String preventOverride;
 
         public Builder addCustomSiteName(String customSiteName) {
             this.customSiteName = customSiteName;
@@ -113,14 +175,38 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
             return this;
         }
 
+        public Builder addAuthenticationOnlyType(String authenticationOnlyType) {
+            this.authenticationOnlyType = authenticationOnlyType;
+            return this;
+        }
+
+        public Builder addSubMerchant(SubMerchant subMerchant) {
+            this.subMerchant = subMerchant;
+            return this;
+        }
+
+        public Builder addIsRebilling(Integer isRebilling) {
+            this.isRebilling = isRebilling;
+            return this;
+        }
+
+        public Builder addRebillingType(String rebillingType) {
+            this.rebillingType = rebillingType;
+            return this;
+        }
+
         public Builder addPaymentMethod(String paymentMethod) {
             this.paymentMethod = paymentMethod;
             return this;
         }
 
+        public Builder addPreventOverride(String preventOverride) {
+            this.preventOverride = preventOverride;
+            return this;
+        }
+
         /**
          * Builds the request.
-         *
          *
          * @return {@link SafechargeRequest} object build from the params set by this builder
          */
@@ -131,8 +217,15 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
             request.setProductId(productId);
             request.setPaymentOption(paymentOption);
             request.setTransactionType(transactionType);
+            request.setAuthenticationOnlyType(authenticationOnlyType);
+            request.setSubMerchant(subMerchant);
+            request.setIsRebilling(isRebilling);
+            request.setRebillingType(rebillingType);
+            request.setPaymentMethod(paymentMethod);
+            request.setPreventOverride(preventOverride);
 
             return ValidationUtils.validate(super.build(request));
         }
     }
 }
+

@@ -14,20 +14,20 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Request to perform a payment using an alternative payment method(APM).
  * <p>
  * PaymentAPM transaction is implemented in four main stages:
  * <ol>
- * <li>Ensuring that SafeCharge is integrated to the desired APM.
- * <li>The {@code paymentAPM} request.
- * <li>The required merchant actions (for APM’s who use redirect).
+ * <li>Ensuring that SafeCharge is integrated to the desired APM.</li>
+ * <li>The {@code paymentAPM} request.</li>
+ * <li>The required merchant actions (for APM’s who use redirect).</li>
  * Following a positive response from the paymentAPM request, per output parameter {@code transactionStatus} returned value,
  * the merchant is redirected to the APM’s payment page (using {@code redirectUrl}) to login and confirm the billing information.
  * <li>The APM required actions (for APM’s who use redirect). Once the credentials are typed and the payment is confirmed,
  * the APM redirects (with some additional information) back to SafeCharge’s gateway using a {@code returnUrl} from previous APM-SafeCharge
- * communications at 1st stage. Afterwards, the SafeCharge gateway redirects to a {@code successURL} or to a {@code failureURL}.
+ * communications at 1st stage. Afterwards, the SafeCharge gateway redirects to a {@code successURL} or to a {@code failureURL}.</li>
  * </ol>
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
@@ -208,7 +208,7 @@ public class PaymentAPMRequest
         /**
          * Adds {@link SubMethodDetails} to the request.
          * @param subMethodDetails
-         * @return
+         * @return this object
          */
         public Builder addSubMethodDetails(SubMethodDetails subMethodDetails) {
             this.subMethodDetails = subMethodDetails;

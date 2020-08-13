@@ -13,7 +13,7 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Request to add Credit/Debit card User Payment Option(UPO) to a User.
  * </p>
@@ -421,7 +421,7 @@ public class AddUPOCreditCardByTokenRequest extends SafechargeRequest {
          * @param zip
          * @param birthdate
          * @param county
-         * @return
+         * @return this object
          */
         public Builder addBillingAddress(String address, String city, String countryCode, String email, String firstName,
                                          String lastName, String phone, String state, String zip, String birthdate,

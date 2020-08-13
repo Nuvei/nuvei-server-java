@@ -19,14 +19,14 @@ import com.safecharge.util.ValidationUtils;
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Request to obtain a temporary card token.
- * <p>
+ * </p>
  * High-level PCI certified merchants can work with this API request fully server to server, as well as perform credit card payments using the {@link PaymentCCRequest}.
  * <p>
  * This method is intended for low-level PCI certified merchants implementing card tokenization.
  * For security and PCI reasons, please note that low-level PCI certified merchants that cannot enter card data on their side
  * and use a native mobile application are not required to use the credit card tokenization client SDK.
  * However, they are able to use this {@link CardTokenizationRequest} directly.
- * <p>
+ * </p>
  * Low-level PCI certified merchants that cannot enter card data on their side and use an online website are required to use
  * the credit card tokenization client SDK, according to the instructions <a href="https://www.safecharge.com/docs/api/?java#cardTokenization">here</a>
  * which performs credit card tokenization for them.

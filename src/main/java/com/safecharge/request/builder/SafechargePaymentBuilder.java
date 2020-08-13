@@ -15,7 +15,7 @@ public abstract class SafechargePaymentBuilder<T extends SafechargeOrderBuilder<
      * The method is used to ad to the builder custom site name which will overwrite the one of the merchant site.
      *
      * @param customSiteName
-     * @return
+     * @return this object
      */
     public T addCustomSiteName(String customSiteName) {
         this.customSiteName = customSiteName;
@@ -26,7 +26,7 @@ public abstract class SafechargePaymentBuilder<T extends SafechargeOrderBuilder<
      * Adds product id to request builder.
      *
      * @param productId
-     * @return
+     * @return this object
      */
     public T addProductId(String productId) {
         this.productId = productId;
@@ -37,7 +37,7 @@ public abstract class SafechargePaymentBuilder<T extends SafechargeOrderBuilder<
      * Adds custom data to request builder.
      *
      * @param customData
-     * @return
+     * @return this object
      */
     public T addCustomData(String customData) {
         this.customData = customData;
@@ -48,7 +48,7 @@ public abstract class SafechargePaymentBuilder<T extends SafechargeOrderBuilder<
      * Adds relatedTransactionId data to request builder.
      *
      * @param relatedTransactionId
-     * @return
+     * @return this object
      */
     public T addRelatedTransactionId(String relatedTransactionId) {
         this.relatedTransactionId = relatedTransactionId;

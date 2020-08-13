@@ -1,29 +1,40 @@
 package com.safecharge.request;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
+
 import com.safecharge.model.UserPaymentOption;
 
 /**
- * Copyright (C) 2007-2019 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Abstract class with basic fields used with requests to create an order in the SafeCharge's system.
  * </p>
  * <p>
  * This request represents the state of the order when it is created, it can be changed at later time.
  * Note that no payment request is send, it is used mainly to store the order details at the time of creation.
- *</p>
+ * </p>
  *
- * @author <a mailto:vasiln@safecharge.com>Vassil Nikovv</a>
+ * @author <a mailto:vasiln@safecharge.com>Vassil Nikov</a>
  * @see GetOrderDetailsRequest
  * @see UpdateOrderRequest
  * @see OpenOrderRequest
  */
 public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequest {
 
+    @Size(max = 50)
     private String paymentMethod;
+
+    @Valid
     private UserPaymentOption userPaymentOption;
+
+    @Size(max = 255)
     private String customData;
+
     private Boolean autoPayment3D;
+
     private final String sourceApplication = "JAVA_SDK";
+
     private String isMoto;
 
     public String getPaymentMethod() {
@@ -64,5 +75,19 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
 
     public void setIsMoto(String isMoto) {
         this.isMoto = isMoto;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("OrderRequestWithDetails{");
+        sb.append("paymentMethod='").append(paymentMethod)
+                .append(", userPaymentOption=").append(userPaymentOption)
+                .append(", customData='").append(customData)
+                .append(", autoPayment3D=").append(autoPayment3D)
+                .append(", sourceApplication='").append(sourceApplication)
+                .append(", isMoto='").append(isMoto);
+        sb.append(super.toString());
+
+        return sb.toString();
     }
 }

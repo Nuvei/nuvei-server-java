@@ -4,7 +4,7 @@ import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/17/2017
@@ -72,6 +72,7 @@ public interface APIConstants {
     String GET_PAYMENT_STATUS_URL = "api/v1/getPaymentStatus.do";
     String VERIFY3D_URL = "api/v1/verify3d.do";
     String AUTHORIZE3D_URL = "api/v1/authorize3d.do";
+    String GET_CARD_DETAILS_URL = "api/v1/getCardDetails.do";
 
 
     // Request Headers:

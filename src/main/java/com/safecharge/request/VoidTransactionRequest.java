@@ -11,7 +11,7 @@ import com.safecharge.util.ValidationUtils;
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Request to void a transaction.
- * <p>
+ * </p>
  * This request is used for voiding a previously performed authorization, within a two-phase auth-settle process.
  * Please note that a void action is not always supported by the payment method or the card issuer.
  *

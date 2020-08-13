@@ -1,0 +1,18 @@
+{
+  "brand": "VISA",
+  "cardType": "",
+  "cardProduct": "",
+  "program": "",
+  "visaDirectSupport": "0",
+  "issuerCountry": "",
+  "dccAllowed": false,
+  "sessionToken": "0e3431fd-b03d-4931-953e-259f3fe3ae9c",
+  "clientUniqueId": "695701003",
+  "internalRequestId": 2230,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "merchantId": "7777777",
+  "merchantSiteId": "38",
+  "version": "1.0",
+  "clientRequestId": "20200729113145"
+}
