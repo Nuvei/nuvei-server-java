@@ -1,11 +1,13 @@
 package com.safecharge.response;
 
+import com.safecharge.model.MerchantDetails;
+
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Response received from the SafeCharge's servers to the {@link com.safecharge.request.OpenOrderRequest}.
- *
- * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * </p>
+ * @author Nikola Dichev
  * @see com.safecharge.request.OpenOrderRequest
  * @since 2/15/2017
  */
@@ -20,6 +22,8 @@ public class OpenOrderResponse extends SafechargeResponse implements SafechargeO
      * ID of the user in merchant system.
      */
     private String userTokenId;
+
+    MerchantDetails merchantDetails;
 
     @Override
     public String getOrderId() {
@@ -38,17 +42,21 @@ public class OpenOrderResponse extends SafechargeResponse implements SafechargeO
         this.userTokenId = userTokenId;
     }
 
+    public MerchantDetails getMerchantDetails() {
+        return merchantDetails;
+    }
+
+    public void setMerchantDetails(MerchantDetails merchantDetails) {
+        this.merchantDetails = merchantDetails;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OpenOrderResponse{");
-        sb.append("orderId='")
-                .append(orderId)
-                .append('\'');
-        sb.append(", userTokenId='")
-                .append(userTokenId)
-                .append('\'');
-        sb.append(", ")
-                .append(super.toString());
+        sb.append("orderId='").append(orderId).append('\'');
+        sb.append(", userTokenId='").append(userTokenId).append('\'');
+        sb.append(", merchantDetails='").append(merchantDetails).append('\'');
+        sb.append(", ").append(super.toString());
         sb.append('}');
         return sb.toString();
     }

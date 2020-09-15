@@ -96,39 +96,42 @@ public class Safecharge {
      * This method should be used to create request for payment endpoint in Safecharge's REST API. The payment method is your endpoint for performing payment of any kind.
      * </p>
      *
-     * @param userTokenId          This field uniquely identifies your consumer/user in your system.
-     *                             Required if you wish to use the paymentOptionId field for future charging of this user without re-collecting the payment details
-     * @param clientUniqueId       This ID identifies the transaction in your system. Optionally, you can pass this value
-     *                             to us and we will store it with the transaction record created in our system for your future reference.
-     * @param clientRequestId      The ID of the API request in the merchant’s system. This value must be unique, and though
-     *                             not mandatory it is recommended that it is sent.
-     * @param paymentOption        This class represents the details on the payment method.
-     * @param isRebilling          When performing recurring/rebilling, use this field to indicate the recurring step.
-     * @param currency             The three-character ISO currency code.
-     * @param amount               The transaction amount. This amount must be identical to the amount listed in the dynamic3D.
-     * @param amountDetails        Details for the amount. Note that the items and amountDetails prices should be summed up in
-     *                             the amount parameter and sent separately.
-     * @param items                An array describing the items in the purchase. The items price should be summed up to the amount parameter sent separately.
-     * @param deviceDetails        The device details.
-     * @param userDetails          The user details.
-     * @param shippingAddress      Shipping address.
-     * @param billingAddress       The billing address related to a user payment option.
-     * @param dynamicDescriptor    The dynamicDescriptor is used to provide additional information for merchant name and phone.
-     * @param merchantDetails      Merchant details
-     * @param addendums            This block contains industry specific addendums. The addendum fields that appear are based on the specific addendum type.
-     * @param urlDetails           Although DMN responses can be configured per merchant site, it allows dynamically returning the
-     *                             DMN to the provided address per request.
-     * @param customSiteName       The merchant’s site name. This is useful for merchants operating many websites that are distinguished only by name.
-     * @param productId            A free text field used to identify the product/service sold. If this parameter is not
-     *                             sent or is sent with an empty value, then it contains the concatenation of all item names up until the parameter maximum length.
-     * @param customData           This parameter can be used to pass any type of information.
-     *                             If sent in request, then is passed on to the payments gateway, is visible in SafeCharge’s
-     *                             back-office tool transaction reporting and is returned in response.
-     * @param relatedTransactionId Mandatory in some flows like 3DSecure v2.
-     * @param transactionType      The type of transaction: Sale or Auth.
-     * @param autoPayment3D        Autopayment3D flag.
-     * @param isMoto               Set this field to “1” to mark the transaction as MOTO (mail order/telephone order).
-     * @param subMerchant          Contains information about the SubMerchant.
+     * @param userTokenId            This field uniquely identifies your consumer/user in your system.
+     *                               Required if you wish to use the paymentOptionId field for future charging of this user without re-collecting the payment details
+     * @param clientUniqueId         This ID identifies the transaction in your system. Optionally, you can pass this value
+     *                               to us and we will store it with the transaction record created in our system for your future reference.
+     * @param clientRequestId        The ID of the API request in the merchant’s system. This value must be unique, and though
+     *                               not mandatory it is recommended that it is sent.
+     * @param paymentOption          This class represents the details on the payment method.
+     * @param isRebilling            When performing recurring/rebilling, use this field to indicate the recurring step.
+     * @param currency               The three-character ISO currency code.
+     * @param amount                 The transaction amount. This amount must be identical to the amount listed in the dynamic3D.
+     * @param amountDetails          Details for the amount. Note that the items and amountDetails prices should be summed up in
+     *                               the amount parameter and sent separately.
+     * @param items                  An array describing the items in the purchase. The items price should be summed up to the amount parameter sent separately.
+     * @param deviceDetails          The device details.
+     * @param userDetails            The user details.
+     * @param shippingAddress        Shipping address.
+     * @param billingAddress         The billing address related to a user payment option.
+     * @param dynamicDescriptor      The dynamicDescriptor is used to provide additional information for merchant name and phone.
+     * @param merchantDetails        Merchant details
+     * @param addendums              This block contains industry specific addendums. The addendum fields that appear are based on the specific addendum type.
+     * @param urlDetails             Although DMN responses can be configured per merchant site, it allows dynamically returning the
+     *                               DMN to the provided address per request.
+     * @param customSiteName         The merchant’s site name. This is useful for merchants operating many websites that are distinguished only by name.
+     * @param productId              A free text field used to identify the product/service sold. If this parameter is not
+     *                               sent or is sent with an empty value, then it contains the concatenation of all item names up until the parameter maximum length.
+     * @param customData             This parameter can be used to pass any type of information.
+     *                               If sent in request, then is passed on to the payments gateway, is visible in SafeCharge’s
+     *                               back-office tool transaction reporting and is returned in response.
+     * @param relatedTransactionId   Mandatory in some flows like 3DSecure v2.
+     * @param transactionType        The type of transaction: Sale or Auth.
+     * @param autoPayment3D          Autopayment3D flag.
+     * @param isMoto                 Set this field to “1” to mark the transaction as MOTO (mail order/telephone order).
+     * @param subMerchant            Contains information about the SubMerchant.
+     * @param rebillingType          When performing recurring/rebilling, use this field to indicate the recurring type
+     * @param authenticationOnlyType This field is intended for merchants using the Zero Authorisation feature.
+     * @param userId                 Unique identifier of the user in SafeCharge.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -139,14 +142,14 @@ public class Safecharge {
                                    CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
                                    MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails, String customSiteName, String productId,
                                    String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
-                                   String isMoto, SubMerchant subMerchant) throws SafechargeException {
+                                   String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType, String userId) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getPaymentRequest(merchantInfo, sessionToken, userTokenId, clientUniqueId, clientRequestId, paymentOption,
                 isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
-                transactionType, autoPayment3D, isMoto, subMerchant);
+                transactionType, autoPayment3D, isMoto, subMerchant, rebillingType, authenticationOnlyType, userId);
 
         return (PaymentResponse) requestExecutor.execute(request);
     }
@@ -175,6 +178,7 @@ public class Safecharge {
      *                        DMN to the provided address per request.
      * @param customData      General data about the customer provided by the merchant.
      * @param billingAddress  The billing address.
+     * @param userId          Unique identifier of the user in SafeCharge.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -182,12 +186,12 @@ public class Safecharge {
      */
     public InitPaymentResponse initPayment(String userTokenId, String clientUniqueId, String clientRequestId, String currency, String amount,
                                            DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails, String customData,
-                                           UserAddress billingAddress) throws SafechargeException {
+                                           UserAddress billingAddress, String userId) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getInitPaymentRequest(sessionToken, userTokenId, clientUniqueId, clientRequestId, currency,
-                amount, deviceDetails, paymentOption, urlDetails, customData, billingAddress, merchantInfo);
+                amount, deviceDetails, paymentOption, urlDetails, customData, billingAddress, merchantInfo, userId);
 
         return (InitPaymentResponse) requestExecutor.execute(request);
     }
@@ -227,11 +231,12 @@ public class Safecharge {
      *                               back-office tool transaction reporting and is returned in response.
      * @param autoPayment3D          Autopayment3D flag.
      * @param isMoto                 When performing recurring/rebilling, use this field to indicate the recurring step
-     * @param authenticationOnlyType
+     * @param authenticationOnlyType This field is intended for merchants using the Zero Authorisation feature.
      * @param subMerchant            Contains information about the SubMerchant.
      * @param isRebilling            When performing recurring/rebilling, use this field to indicate the recurring step.
-     * @param rebillingType
+     * @param rebillingType          When performing recurring/rebilling, use this field to indicate the recurring type
      * @param preventOverride
+     * @param userId                 Unique identifier of the user in SafeCharge.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -243,14 +248,15 @@ public class Safecharge {
                                        UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
                                        UrlDetails urlDetails, UserPaymentOption userPaymentOption, String paymentMethod, AmountDetails amountDetails,
                                        Addendums addendums, String customData, Boolean autoPayment3D, String isMoto, String authenticationOnlyType,
-                                       SubMerchant subMerchant, Integer isRebilling, String rebillingType, String preventOverride) throws SafechargeException {
+                                       SubMerchant subMerchant, Integer isRebilling, String rebillingType, String preventOverride, String userId) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getOpenOrderRequest(merchantInfo, sessionToken, clientRequestId, customSiteName, productId,
                 paymentOption, transactionType, currency, amount, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, urlDetails, userTokenId, clientUniqueId, userPaymentOption, paymentMethod,
-                amountDetails, addendums, customData, autoPayment3D, isMoto, authenticationOnlyType, subMerchant, isRebilling, rebillingType, preventOverride);
+                amountDetails, addendums, customData, autoPayment3D, isMoto, authenticationOnlyType, subMerchant, isRebilling, rebillingType,
+                preventOverride, userId);
 
         return (OpenOrderResponse) requestExecutor.execute(request);
     }
@@ -297,7 +303,7 @@ public class Safecharge {
      *                             If sent in request, then is passed on to the payments gateway, is visible in SafeCharge’s
      *                             back-office tool transaction reporting and is returned in response.
      * @param comment              Enables the addition of a free text comment to the request.
-     * @param subMerchant Contains information about the SubMerchant.
+     * @param subMerchant          Contains information about the SubMerchant.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -341,7 +347,7 @@ public class Safecharge {
      * @param productId               A free text field used to identify the product/service sold. If this parameter is not
      *                                sent or is sent with an empty value, then it contains the concatenation of all item names up until the parameter maximum length.
      * @param relatedTransactionId    The ID of the original transaction to be settled.
-     * @param subMerchant Contains information about the SubMerchant.
+     * @param subMerchant             Contains information about the SubMerchant.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -425,7 +431,7 @@ public class Safecharge {
      *                             UserAddress, DynamicDescriptor, MerchantDetails, Addendums, UrlDetails, String, String, String, String,
      *                             Constants.TransactionType, Boolean, SubMerchant)}.
      * @param subMerchant          Contains information about the SubMerchant.
-     * @param userId
+     * @param userId               Unique identifier of the user in SafeCharge.
      * @param userTokenId          This field uniquely identifies your consumer/user in your system.
      *                             Required if you wish to use the paymentOptionId field for future charging of this user without re-collecting the payment details
      * @param paymentOption        This class represents the details about the payment method.
@@ -441,7 +447,7 @@ public class Safecharge {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
-        SafechargeBaseRequest request = requestBuilder.getVerify3dResquest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, amount,
+        SafechargeBaseRequest request = requestBuilder.getVerify3dRequest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, amount,
                 currency, billingAddress, customData, customSiteName, merchantDetails, relatedTransactionId, subMerchant, userId,
                 userTokenId, paymentOption);
 
@@ -501,14 +507,14 @@ public class Safecharge {
                                            UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
                                            MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails,
                                            String customSiteName, String productId, String customData, String relatedTransactionId,
-                                           Constants.TransactionType transactionType, Boolean autoPayment3D, SubMerchant subMerchant) throws SafechargeException {
+                                           Constants.TransactionType transactionType, Boolean autoPayment3D, SubMerchant subMerchant, String userId) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getAuthorize3dRequest(merchantInfo, sessionToken, userTokenId, clientUniqueId,
                 clientRequestId, paymentOption, isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails,
                 shippingAddress, billingAddress, dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName,
-                productId, customData, relatedTransactionId, transactionType, autoPayment3D, subMerchant);
+                productId, customData, relatedTransactionId, transactionType, autoPayment3D, subMerchant, userId);
 
         return (Authorize3dResponse) requestExecutor.execute(request);
     }

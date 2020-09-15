@@ -3,6 +3,8 @@ package com.safecharge.request;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
+import com.safecharge.model.CardData;
+import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.SubMethodDetails;
@@ -27,7 +29,7 @@ import com.safecharge.util.ValidationUtils;
  * <a href="https://www.safecharge.com/docs/api/?java#payout">here</a>
  * which performs credit card tokenization for them.
  *
- * @author <a mailto:bozhidarsh@safecharge.com>Bozhidar Shumanov</a>
+ * @author Bozhidar Shumanov
  * @see <a href="https://www.safecharge.com/docs/api/?java#payout">payout</a>
  * @since 11/21/2017
  */
@@ -64,6 +66,12 @@ public class PayoutRequest extends SafechargeRequest {
 
     @Valid
     private SubMethodDetails subMethodDetails;
+
+    @Valid
+    private CardData cardData;
+
+    @Valid
+    private DeviceDetails deviceDetails;
 
     public static PayoutRequest.Builder builder() {
         return new PayoutRequest.Builder();
@@ -149,6 +157,22 @@ public class PayoutRequest extends SafechargeRequest {
         this.subMethodDetails = subMethodDetails;
     }
 
+    public CardData getCardData() {
+        return cardData;
+    }
+
+    public void setCardData(CardData cardData) {
+        this.cardData = cardData;
+    }
+
+    public DeviceDetails getDeviceDetails() {
+        return deviceDetails;
+    }
+
+    public void setDeviceDetails(DeviceDetails deviceDetails) {
+        this.deviceDetails = deviceDetails;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PayoutRequest{");
@@ -162,11 +186,14 @@ public class PayoutRequest extends SafechargeRequest {
         sb.append(", merchantDetails=").append(merchantDetails);
         sb.append(", urlDetails=").append(urlDetails);
         sb.append(", subMethodDetails=").append(subMethodDetails);
+        sb.append(", cardData='").append(cardData);
+        sb.append(", deviceDetails='").append(deviceDetails);
         sb.append('}');
         return sb.toString();
     }
 
     public static class Builder extends SafechargeBuilder<Builder> {
+
         private String userTokenId;
         private String clientUniqueId;
         private String amount;
@@ -177,6 +204,8 @@ public class PayoutRequest extends SafechargeRequest {
         private MerchantDetails merchantDetails;
         private UrlDetails urlDetails;
         private SubMethodDetails subMethodDetails;
+        private CardData cardData;
+        private DeviceDetails deviceDetails;
 
         /**
          * @param userTokenId
@@ -269,6 +298,16 @@ public class PayoutRequest extends SafechargeRequest {
             return this;
         }
 
+        public Builder addCardData(CardData cardData) {
+            this.cardData = cardData;
+            return this;
+        }
+
+        public Builder addDeviceDetails(DeviceDetails deviceDetails) {
+            this.deviceDetails = deviceDetails;
+            return this;
+        }
+
         /**
          * Builds the request.
          *
@@ -287,6 +326,8 @@ public class PayoutRequest extends SafechargeRequest {
             request.setMerchantDetails(merchantDetails);
             request.setUrlDetails(urlDetails);
             request.setSubMethodDetails(subMethodDetails);
+            request.setCardData(cardData);
+            request.setDeviceDetails(deviceDetails);
             return ValidationUtils.validate(super.build(request));
         }
     }

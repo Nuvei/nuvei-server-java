@@ -18,11 +18,11 @@ import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Abstract class to be used as a base for order related and payment requests.
- *
- * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * </p>
+ * @author Nikola Dichev
  * @since 2/15/2017
  */
 public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {

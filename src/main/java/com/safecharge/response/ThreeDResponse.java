@@ -1,6 +1,7 @@
 package com.safecharge.response;
 
 import com.safecharge.model.Sdk;
+import com.safecharge.model.SdkResponse;
 
 public class ThreeDResponse {
 
@@ -40,7 +41,7 @@ public class ThreeDResponse {
 
     private String cardHolderInfoText;
 
-    private Sdk sdk;
+    private SdkResponse sdk;
 
     private String xid;
 
@@ -49,6 +50,18 @@ public class ThreeDResponse {
     private String acsTransID;
 
     private String dsTransID;
+
+    private String threeDReasonId;
+
+    private String challengeCancelReasonId;
+
+    private String challengeCancelReason;
+
+    private String isLiabilityOnIssuer;
+
+    private String isExemptionRequestInAuthentication;
+
+    private String challengePreferenceReason;
 
     public String getThreeDReason() {
         return threeDReason;
@@ -194,11 +207,11 @@ public class ThreeDResponse {
         this.cardHolderInfoText = cardHolderInfoText;
     }
 
-    public Sdk getSdk() {
+    public SdkResponse getSdk() {
         return sdk;
     }
 
-    public void setSdk(Sdk sdk) {
+    public void setSdk(SdkResponse sdk) {
         this.sdk = sdk;
     }
 
@@ -232,5 +245,53 @@ public class ThreeDResponse {
 
     public void setDsTransID(String dsTransID) {
         this.dsTransID = dsTransID;
+    }
+
+    public String getThreeDReasonId() {
+        return threeDReasonId;
+    }
+
+    public void setThreeDReasonId(String threeDReasonId) {
+        this.threeDReasonId = threeDReasonId;
+    }
+
+    public String getChallengeCancelReasonId() {
+        return challengeCancelReasonId;
+    }
+
+    public void setChallengeCancelReasonId(String challengeCancelReasonId) {
+        this.challengeCancelReasonId = challengeCancelReasonId;
+    }
+
+    public String getChallengeCancelReason() {
+        return challengeCancelReason;
+    }
+
+    public void setChallengeCancelReason(String challengeCancelReason) {
+        this.challengeCancelReason = challengeCancelReason;
+    }
+
+    public String getIsLiabilityOnIssuer() {
+        return isLiabilityOnIssuer;
+    }
+
+    public void setIsLiabilityOnIssuer(String isLiabilityOnIssuer) {
+        this.isLiabilityOnIssuer = isLiabilityOnIssuer;
+    }
+
+    public String getIsExemptionRequestInAuthentication() {
+        return isExemptionRequestInAuthentication;
+    }
+
+    public void setIsExemptionRequestInAuthentication(String isExemptionRequestInAuthentication) {
+        this.isExemptionRequestInAuthentication = isExemptionRequestInAuthentication;
+    }
+
+    public String getChallengePreferenceReason() {
+        return challengePreferenceReason;
+    }
+
+    public void setChallengePreferenceReason(String challengePreferenceReason) {
+        this.challengePreferenceReason = challengePreferenceReason;
     }
 }

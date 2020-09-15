@@ -22,6 +22,8 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
 
     private Integer gwExtendedErrorCode;
 
+    private Integer paymentMethodErrorCode;
+
     private String paymentMethodErrorReason;
 
     private String transactionType;
@@ -100,6 +102,14 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
         this.gwExtendedErrorCode = gwExtendedErrorCode;
     }
 
+    public Integer getPaymentMethodErrorCode() {
+        return paymentMethodErrorCode;
+    }
+
+    public void setPaymentMethodErrorCode(Integer paymentMethodErrorCode) {
+        this.paymentMethodErrorCode = paymentMethodErrorCode;
+    }
+
     public String getPaymentMethodErrorReason() {
         return paymentMethodErrorReason;
     }
@@ -168,6 +178,7 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
                 .append(", gwErrorCode=").append(gwErrorCode).append('\'')
                 .append(", gwErrorReason=").append(gwErrorReason)
                 .append(", gwExtendedErrorCode=").append(gwExtendedErrorCode).append('\'')
+                .append(", paymentMethodErrorCode=").append(paymentMethodErrorCode).append('\'')
                 .append(", paymentMethodErrorReason=").append(paymentMethodErrorReason).append('\'')
                 .append(", transactionType=").append(transactionType).append('\'')
                 .append(", transactionId=").append(transactionId).append('\'')

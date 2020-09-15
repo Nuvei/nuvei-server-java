@@ -1,6 +1,7 @@
 package com.safecharge.request;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
 
 import com.safecharge.model.PaymentOption;
 import com.safecharge.model.SubMerchant;
@@ -13,10 +14,18 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
 
     private Integer isRebilling;
 
+    @Size(max = 10)
+    private String rebillingType;
+
     private boolean autoPayment3D;
+
+    private String authenticationOnlyType;
 
     @Valid
     private SubMerchant subMerchant;
+
+    @Size(max = 255)
+    private String userId;
 
     private final String sourceApplication = "JAVA_SDK";
 
@@ -36,12 +45,28 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         this.isRebilling = isRebilling;
     }
 
+    public String getRebillingType() {
+        return rebillingType;
+    }
+
+    public void setRebillingType(String rebillingType) {
+        this.rebillingType = rebillingType;
+    }
+
     public boolean isAutoPayment3D() {
         return autoPayment3D;
     }
 
     public void setAutoPayment3D(boolean autoPayment3D) {
         this.autoPayment3D = autoPayment3D;
+    }
+
+    public String getAuthenticationOnlyType() {
+        return authenticationOnlyType;
+    }
+
+    public void setAuthenticationOnlyType(String authenticationOnlyType) {
+        this.authenticationOnlyType = authenticationOnlyType;
     }
 
     public SubMerchant getSubMerchant() {
@@ -52,13 +77,23 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         this.subMerchant = subMerchant;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public abstract static class Builder<T extends Builder<T>> extends SafechargePaymentBuilder<T> {
 
         private PaymentOption paymentOption;
         private Integer isRebilling;
+        private String rebillingType;
         private boolean autoPayment3D;
+        private String authenticationOnlyType;
         private SubMerchant subMerchant;
+        private String userId;
 
         public T addPaymentOption(PaymentOption paymentOption) {
             this.paymentOption = paymentOption;
@@ -70,8 +105,18 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             return (T) this;
         }
 
+        public T addRebillingType(String rebillingType) {
+            this.rebillingType = rebillingType;
+            return (T) this;
+        }
+
         public T addAutoPayment3D(Boolean autoPayment3D) {
             this.autoPayment3D = Boolean.TRUE.equals(autoPayment3D);
+            return (T) this;
+        }
+
+        public T addAuthenticationOnlyType(String authenticationOnlyType) {
+            this.authenticationOnlyType = authenticationOnlyType;
             return (T) this;
         }
 
@@ -80,12 +125,19 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             return (T) this;
         }
 
+        public T addUserId(String userId) {
+            this.userId = userId;
+            return (T) this;
+        }
+
         protected <S extends Authorize3dAndPaymentRequest> S build(S request) {
             request.setPaymentOption(paymentOption);
             request.setIsRebilling(isRebilling);
-            request.setIsRebilling(isRebilling);
+            request.setRebillingType(rebillingType);
             request.setAutoPayment3D(autoPayment3D);
+            request.setAuthenticationOnlyType(authenticationOnlyType);
             request.setSubMerchant(subMerchant);
+            request.setUserId(userId);
 
             return super.build(request);
         }

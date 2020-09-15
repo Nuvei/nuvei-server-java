@@ -41,6 +41,9 @@ public class GetMerchantPaymentMethodsRequest
     @Size(min = 2, max = 3, message = "languageCode size must be 2 or 3 characters long!")
     private String languageCode;
 
+    @Size(max=10)
+    private String type;
+
     public static Builder builder() {
         return new Builder();
     }
@@ -69,20 +72,22 @@ public class GetMerchantPaymentMethodsRequest
         this.languageCode = languageCode;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("GetMerchantPaymentMethodsRequest{");
-        sb.append("currencyCode='")
-                .append(currencyCode)
-                .append('\'');
-        sb.append(", countryCode='")
-                .append(countryCode)
-                .append('\'');
-        sb.append(", languageCode='")
-                .append(languageCode)
-                .append('\'');
-        sb.append(", ")
-                .append(super.toString());
+        sb.append("currencyCode='").append(currencyCode).append('\'');
+        sb.append(", countryCode='").append(countryCode).append('\'');
+        sb.append(", languageCode='").append(languageCode).append('\'');
+        sb.append(", type='").append(type).append('\'');
+        sb.append(", ").append(super.toString());
         sb.append('}');
         return sb.toString();
     }
@@ -92,6 +97,7 @@ public class GetMerchantPaymentMethodsRequest
         private String currencyCode;
         private String countryCode;
         private String languageCode;
+        private String type;
 
         /**
          * Adds currency code to the request.
@@ -126,6 +132,11 @@ public class GetMerchantPaymentMethodsRequest
             return this;
         }
 
+        public Builder addType(String type) {
+            this.type = type;
+            return this;
+        }
+
         /**
          * Builds the request.
          *
@@ -139,6 +150,7 @@ public class GetMerchantPaymentMethodsRequest
             getMerchantPaymentMethodsRequest.setCountryCode(countryCode);
             getMerchantPaymentMethodsRequest.setCurrencyCode(currencyCode);
             getMerchantPaymentMethodsRequest.setLanguageCode(languageCode);
+            getMerchantPaymentMethodsRequest.setType(type);
             return ValidationUtils.validate(getMerchantPaymentMethodsRequest);
         }
     }
