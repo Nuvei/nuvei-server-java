@@ -7,7 +7,7 @@ public class CardResponse {
     private ApiExternalToken externalToken;
     private String ccCardNumber;
     private String bin;
-    private String lastFourDigits;
+    private String last4Digits;
     private String ccExpMonth;
     private String ccExpYear;
     private String acquirerId;
@@ -15,6 +15,9 @@ public class CardResponse {
     private String avsCode;
     private String ccTempToken;
     private String isVerified;
+    private String cardType;
+    private String cardBrand;
+    private String issuerCountry;
     private ThreeDResponse threeD;
 
     public ApiExternalToken getExternalToken() {
@@ -41,12 +44,12 @@ public class CardResponse {
         this.bin = bin;
     }
 
-    public String getLastFourDigits() {
-        return lastFourDigits;
+    public String getLast4Digits() {
+        return last4Digits;
     }
 
-    public void setLastFourDigits(String lastFourDigits) {
-        this.lastFourDigits = lastFourDigits;
+    public void setLast4Digits(String last4Digits) {
+        this.last4Digits = last4Digits;
     }
 
     public String getCcExpMonth() {
@@ -103,6 +106,30 @@ public class CardResponse {
 
     public void setIsVerified(String isVerified) {
         this.isVerified = isVerified;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+    public String getCardBrand() {
+        return cardBrand;
+    }
+
+    public void setCardBrand(String cardBrand) {
+        this.cardBrand = cardBrand;
+    }
+
+    public String getIssuerCountry() {
+        return issuerCountry;
+    }
+
+    public void setIssuerCountry(String issuerCountry) {
+        this.issuerCountry = issuerCountry;
     }
 
     public ThreeDResponse getThreeD() {

@@ -51,6 +51,9 @@ public class InitPaymentRequest extends SafechargeRequest {
 
     private UserAddress billingAddress;
 
+    @Size(max = 255)
+    private String userId;
+
     private final String sourceApplication = "JAVA_SDK";
 
     public String getUserTokenId() {
@@ -125,6 +128,14 @@ public class InitPaymentRequest extends SafechargeRequest {
         this.billingAddress = billingAddress;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -138,7 +149,7 @@ public class InitPaymentRequest extends SafechargeRequest {
                 .append(", urlDetails=").append(urlDetails)
                 .append(", customData=").append(customData)
                 .append(", billingAddress=").append(billingAddress)
-                .append(", sourceApplication=").append(sourceApplication);
+                .append(", userId=").append(userId);
 
         return sb.toString();
     }
@@ -158,6 +169,7 @@ public class InitPaymentRequest extends SafechargeRequest {
         private UrlDetails urlDetails;
         private String customData;
         private UserAddress billingAddress;
+        private String userId;
 
         public Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
@@ -204,6 +216,11 @@ public class InitPaymentRequest extends SafechargeRequest {
             return this;
         }
 
+        public Builder addUserId(String userId) {
+            this.userId = userId;
+            return this;
+        }
+
         @Override
         public InitPaymentRequest build() throws ConstraintViolationException {
             InitPaymentRequest request = new InitPaymentRequest();
@@ -216,6 +233,7 @@ public class InitPaymentRequest extends SafechargeRequest {
             request.setUrlDetails(urlDetails);
             request.setUserTokenId(userTokenId);
             request.setClientUniqueId(clientUniqueId);
+            request.setUserId(userId);
 
             return ValidationUtils.validate(super.build(request));
         }

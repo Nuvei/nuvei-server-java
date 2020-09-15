@@ -21,11 +21,11 @@ import com.safecharge.util.MerchantUtils;
 import com.safecharge.util.UrlUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * A base builder for an order related requests.
- *
- * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * </p>
+ * @author Nikola Dichev
  * @see SafechargeBuilder
  * @see SafechargeCCBuilder
  * @see SafechargeTransactionBuilder

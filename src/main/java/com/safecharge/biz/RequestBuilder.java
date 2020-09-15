@@ -50,7 +50,8 @@ public class RequestBuilder {
                                                    DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails, Addendums addendums,
                                                    UrlDetails urlDetails, String customSiteName, String productId, String customData,
                                                    String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
-                                                   String isMoto, SubMerchant subMerchant) {
+                                                   String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType,
+                                                   String userId) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -79,13 +80,15 @@ public class RequestBuilder {
                 .addAutoPayment3D(autoPayment3D)
                 .addIsMoto(isMoto)
                 .addSubMerchant(subMerchant)
+                .addRebillingType(rebillingType)
+                .addAuthenticationOnlyType(authenticationOnlyType)
+                .addUserId(userId)
                 .build();
     }
 
     public SafechargeBaseRequest getInitPaymentRequest(String sessionToken, String userTokenId, String clientUniqueId, String clientRequestId, String currency,
                                                        String amount, DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails,
-                                                       String customData, UserAddress billingAddress,
-                                                       MerchantInfo merchantInfo) {
+                                                       String customData, UserAddress billingAddress, MerchantInfo merchantInfo, String userId) {
         return InitPaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addUserTokenId(userTokenId)
@@ -99,6 +102,7 @@ public class RequestBuilder {
                 .addCustomData(customData)
                 .addBillingAddress(billingAddress)
                 .addMerchantInfo(merchantInfo)
+                .addUserId(userId)
                 .build();
     }
 
@@ -108,7 +112,8 @@ public class RequestBuilder {
                                                      UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
                                                      UrlDetails urlDetails, String userTokenId, String clientUniqueId, UserPaymentOption userPaymentOption,
                                                      String paymentMethod, AmountDetails amountDetails, Addendums addendums, String customData, Boolean autoPayment3D,
-                                                     String isMoto, String authenticationOnlyType, SubMerchant subMerchant, Integer isRebilling, String rebillingType, String preventOverride) {
+                                                     String isMoto, String authenticationOnlyType, SubMerchant subMerchant, Integer isRebilling, String rebillingType,
+                                                     String preventOverride, String userId) {
         return OpenOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
@@ -141,6 +146,7 @@ public class RequestBuilder {
                 .addIsRebilling(isRebilling)
                 .addRebillingType(rebillingType)
                 .addPreventOverride(preventOverride)
+                .addUserId(userId)
                 .build();
     }
 
@@ -222,10 +228,10 @@ public class RequestBuilder {
                 .build();
     }
 
-    public SafechargeBaseRequest getVerify3dResquest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId, String clientRequestId,
-                                                     String amount, String currency, UserAddress billingAddress, String customData,
-                                                     String customSiteName, MerchantDetails merchantDetails, String relatedTransactionId,
-                                                     SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption) {
+    public SafechargeBaseRequest getVerify3dRequest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId, String clientRequestId,
+                                                    String amount, String currency, UserAddress billingAddress, String customData,
+                                                    String customSiteName, MerchantDetails merchantDetails, String relatedTransactionId,
+                                                    SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption) {
         return Verify3dRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -252,7 +258,7 @@ public class RequestBuilder {
                                                        DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails, Addendums addendums,
                                                        UrlDetails urlDetails, String customSiteName, String productId, String customData,
                                                        String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
-                                                       SubMerchant subMerchant) {
+                                                       SubMerchant subMerchant, String userId) {
         return Authorize3dRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -280,6 +286,7 @@ public class RequestBuilder {
                 .addTransactionType(transactionType)
                 .addAutoPayment3D(autoPayment3D)
                 .addSubMerchant(subMerchant)
+                .addUserId(userId)
                 .build();
     }
 

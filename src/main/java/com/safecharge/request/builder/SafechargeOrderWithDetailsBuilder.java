@@ -4,7 +4,7 @@ import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.OrderRequestWithDetails;
 
 /**
- * Copyright (C) 2007-2019 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * A base builder for order with details related requests.
  * </p>
@@ -20,6 +20,7 @@ public abstract class SafechargeOrderWithDetailsBuilder<T extends SafechargeOrde
     private String customData;
     private Boolean autoPayment3D;
     private String isMoto;
+    private String userId;
 
     public T addPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
@@ -46,6 +47,11 @@ public abstract class SafechargeOrderWithDetailsBuilder<T extends SafechargeOrde
         return (T) this;
     }
 
+    public T addUserId(String userId) {
+        this.userId = userId;
+        return (T) this;
+    }
+
     /**
      * Adds the common order data, collected by this builder.
      *
@@ -61,6 +67,7 @@ public abstract class SafechargeOrderWithDetailsBuilder<T extends SafechargeOrde
         request.setCustomData(customData);
         request.setAutoPayment3D(autoPayment3D);
         request.setIsMoto(isMoto);
+        request.setUserId(userId);
 
         return request;
     }

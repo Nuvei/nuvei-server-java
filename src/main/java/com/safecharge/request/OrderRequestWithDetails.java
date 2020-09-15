@@ -33,9 +33,12 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
 
     private Boolean autoPayment3D;
 
-    private final String sourceApplication = "JAVA_SDK";
-
     private String isMoto;
+
+    @Size(max = 255)
+    private String userId;
+
+    private final String sourceApplication = "JAVA_SDK";
 
     public String getPaymentMethod() {
         return paymentMethod;
@@ -77,6 +80,14 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
         this.isMoto = isMoto;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OrderRequestWithDetails{");
@@ -84,8 +95,8 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
                 .append(", userPaymentOption=").append(userPaymentOption)
                 .append(", customData='").append(customData)
                 .append(", autoPayment3D=").append(autoPayment3D)
-                .append(", sourceApplication='").append(sourceApplication)
-                .append(", isMoto='").append(isMoto);
+                .append(", isMoto='").append(isMoto)
+                .append(", userId='").append(userId);
         sb.append(super.toString());
 
         return sb.toString();
