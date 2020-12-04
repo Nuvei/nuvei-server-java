@@ -3,6 +3,7 @@ package com.safecharge.request;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
+import com.safecharge.model.ExternalSchemeDetails;
 import com.safecharge.model.PaymentOption;
 import com.safecharge.model.SubMerchant;
 import com.safecharge.request.builder.SafechargePaymentBuilder;
@@ -26,6 +27,9 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
 
     @Size(max = 255)
     private String userId;
+
+    @Valid
+    private ExternalSchemeDetails externalSchemeDetails;
 
     private final String sourceApplication = "JAVA_SDK";
 
@@ -85,6 +89,14 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         this.userId = userId;
     }
 
+    public ExternalSchemeDetails getExternalSchemeDetails() {
+        return externalSchemeDetails;
+    }
+
+    public void setExternalSchemeDetails(ExternalSchemeDetails externalSchemeDetails) {
+        this.externalSchemeDetails = externalSchemeDetails;
+    }
+
     public abstract static class Builder<T extends Builder<T>> extends SafechargePaymentBuilder<T> {
 
         private PaymentOption paymentOption;
@@ -94,6 +106,7 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         private String authenticationOnlyType;
         private SubMerchant subMerchant;
         private String userId;
+        private ExternalSchemeDetails externalSchemeDetails;
 
         public T addPaymentOption(PaymentOption paymentOption) {
             this.paymentOption = paymentOption;
@@ -130,6 +143,11 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             return (T) this;
         }
 
+        public T addExternalSchemeDetails(ExternalSchemeDetails externalSchemeDetails) {
+            this.externalSchemeDetails = externalSchemeDetails;
+            return (T) this;
+        }
+
         protected <S extends Authorize3dAndPaymentRequest> S build(S request) {
             request.setPaymentOption(paymentOption);
             request.setIsRebilling(isRebilling);
@@ -138,6 +156,7 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             request.setAuthenticationOnlyType(authenticationOnlyType);
             request.setSubMerchant(subMerchant);
             request.setUserId(userId);
+            request.setExternalSchemeDetails(externalSchemeDetails);
 
             return super.build(request);
         }

@@ -26,7 +26,7 @@ public class CardData {
     @Size(min = 2, max = 4, message = "expirationYear size must be from 2 to 4 characters long!")
     private String expirationYear;
 
-    @Size(max = 45, message = "userTokenId size must be up to 45 characters long!")
+    @Size(max = 45, message = "ccTempToken size must be up to 45 characters long!")
     private String ccTempToken;
 
     @Size(min = 3, max = 4, message = "cvv size must be 3 or 4 characters long!")
