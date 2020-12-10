@@ -2,18 +2,19 @@ package com.safecharge.request.builder;
 
 import com.safecharge.model.CardData;
 import com.safecharge.model.ExternalMpi;
+import com.safecharge.model.ExternalSchemeDetails;
 import com.safecharge.model.ExternalTokenProvider;
 import com.safecharge.model.StoredCredentials;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.SafechargeCCRequest;
 import com.safecharge.util.CardUtils;
-import com.safecharge.util.Constants;
 
 /**
  * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * A base builder for a credit/debit card specific requests.
  * </p>
+ *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @see SafechargeBuilder
  * @see SafechargeOrderBuilder
@@ -30,6 +31,8 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     private ExternalMpi externalMpi;
     private ExternalTokenProvider externalTokenProvider;
     private StoredCredentials storedCredentials;
+    private ExternalSchemeDetails externalSchemeDetails;
+
     /**
      * Adds an order to the request.
      *
@@ -60,6 +63,7 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
      * Adds user payment option (UPO) to the request. It is the payment option that will be used for the transaction.
      * If CVV is required it should be set in the passed {@code userPaymentOption}.
      * </p>
+     *
      * @param userPaymentOption the UPO to add to the request
      * @return this object
      */
@@ -120,7 +124,6 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     }
 
     /**
-     *
      * @param externalMpi
      * @return this object
      */
@@ -130,7 +133,6 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
     }
 
     /**
-     *
      * @param externalTokenProvider
      * @return this object
      */
@@ -145,6 +147,11 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
      */
     public T addStoredCredentials(StoredCredentials storedCredentials) {
         this.storedCredentials = storedCredentials;
+        return (T) this;
+    }
+
+    public T addExternalSchemeDetails(ExternalSchemeDetails externalSchemeDetails) {
+        this.externalSchemeDetails = externalSchemeDetails;
         return (T) this;
     }
 
@@ -167,8 +174,8 @@ public abstract class SafechargeCCBuilder<T extends SafechargeCCBuilder<T>> exte
         request.setExternalMpi(externalMpi);
         request.setIsPartialApproval(isPartialApproval);
         request.setExternalTokenProvider(externalTokenProvider);
-
         request.setStoredCredentials(storedCredentials);
+        request.setExternalSchemeDetails(externalSchemeDetails);
 
         return request;
     }

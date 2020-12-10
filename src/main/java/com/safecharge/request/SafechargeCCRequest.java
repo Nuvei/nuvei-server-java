@@ -7,10 +7,10 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.model.CardData;
 import com.safecharge.model.ExternalMpi;
+import com.safecharge.model.ExternalSchemeDetails;
 import com.safecharge.model.ExternalTokenProvider;
 import com.safecharge.model.StoredCredentials;
 import com.safecharge.model.UserPaymentOption;
-import com.safecharge.util.Constants;
 
 /**
  * Copyright (C) 2007-2020 SafeCharge International Group Limited.
@@ -80,7 +80,11 @@ public abstract class SafechargeCCRequest extends SafechargePaymentRequest imple
     @Valid
     private ExternalTokenProvider externalTokenProvider;
 
+    @Valid
     private StoredCredentials storedCredentials;
+
+    @Valid
+    private ExternalSchemeDetails externalSchemeDetails;
 
     public String getOrderId() {
         return orderId;
@@ -138,14 +142,20 @@ public abstract class SafechargeCCRequest extends SafechargePaymentRequest imple
         this.externalTokenProvider = externalTokenProvider;
     }
 
-
-
     public StoredCredentials getStoredCredentials() {
         return storedCredentials;
     }
 
     public void setStoredCredentials(StoredCredentials storedCredentials) {
         this.storedCredentials = storedCredentials;
+    }
+
+    public ExternalSchemeDetails getExternalSchemeDetails() {
+        return externalSchemeDetails;
+    }
+
+    public void setExternalSchemeDetails(ExternalSchemeDetails externalSchemeDetails) {
+        this.externalSchemeDetails = externalSchemeDetails;
     }
 
     @Override
@@ -160,6 +170,7 @@ public abstract class SafechargeCCRequest extends SafechargePaymentRequest imple
         sb.append(", externalMpi=").append(externalMpi);
         sb.append(", externalTokenProvider=").append(externalTokenProvider);
         sb.append(", storedCredentials='").append(storedCredentials).append('\'');
+        sb.append(", externalSchemeDetails='").append(externalSchemeDetails).append('\'');
         sb.append('}');
         return sb.toString();
     }

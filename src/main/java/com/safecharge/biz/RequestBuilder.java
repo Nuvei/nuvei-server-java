@@ -7,6 +7,7 @@ import com.safecharge.model.AmountDetails;
 import com.safecharge.model.CashierUserDetails;
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
+import com.safecharge.model.ExternalSchemeDetails;
 import com.safecharge.model.InitPaymentPaymentOption;
 import com.safecharge.model.Item;
 import com.safecharge.model.MerchantDetails;
@@ -51,7 +52,7 @@ public class RequestBuilder {
                                                    UrlDetails urlDetails, String customSiteName, String productId, String customData,
                                                    String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType,
-                                                   String userId) {
+                                                   String userId, ExternalSchemeDetails externalSchemeDetails) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -83,6 +84,7 @@ public class RequestBuilder {
                 .addRebillingType(rebillingType)
                 .addAuthenticationOnlyType(authenticationOnlyType)
                 .addUserId(userId)
+                .addExternalSchemeDetails(externalSchemeDetails)
                 .build();
     }
 
