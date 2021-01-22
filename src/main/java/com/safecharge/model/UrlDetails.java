@@ -8,9 +8,9 @@ import com.safecharge.util.ValidChecksum;
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
- * Holder for Cashier's Merchant's specific URL to redirect to in case of successful, pending, failed transaction.
+ * Holder for Checkout Page's Merchant's specific URL to redirect to in case of successful, pending, failed transaction.
  * It also contains a URL to which to send a Direct Merchant Notification(DMN) with the result of the transaction.
- *
+ * </p>
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
  */

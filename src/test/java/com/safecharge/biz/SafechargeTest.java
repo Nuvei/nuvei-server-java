@@ -16,9 +16,11 @@ import com.safecharge.exception.SafechargeConfigurationException;
 import com.safecharge.exception.SafechargeException;
 import com.safecharge.request.Authorize3dRequest;
 import com.safecharge.request.CardDetailsRequest;
+import com.safecharge.request.DccDetailsRequest;
 import com.safecharge.request.GetPaymentStatusRequest;
 import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.InitPaymentRequest;
+import com.safecharge.request.McpRatesRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.PaymentRequest;
 import com.safecharge.request.RefundTransactionRequest;
@@ -27,8 +29,10 @@ import com.safecharge.request.Verify3dRequest;
 import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.response.Authorize3dResponse;
 import com.safecharge.response.CardDetailsResponse;
+import com.safecharge.response.DccDetailsResponse;
 import com.safecharge.response.GetPaymentStatusResponse;
 import com.safecharge.response.InitPaymentResponse;
+import com.safecharge.response.McpRatesResponse;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.PaymentResponse;
 import com.safecharge.response.RefundTransactionResponse;
@@ -104,7 +108,7 @@ public class SafechargeTest {
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
         PaymentResponse response = sut.payment("userTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11", null, null,
                 null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(PaymentRequest.class));
@@ -121,7 +125,7 @@ public class SafechargeTest {
 
         sut.payment("userTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11", null, null,
                 null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null, null, null);
     }
 
     @Test
@@ -354,7 +358,7 @@ public class SafechargeTest {
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
         Authorize3dResponse response = sut.authorize3d("usertTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11",
                 null, null, null, null, null, null, null, null, null, null,
-                null, null, null, "relatedTransaction", null, null, null, null);
+                null, null, null, "relatedTransaction", null, null, null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(Authorize3dRequest.class));
@@ -371,7 +375,7 @@ public class SafechargeTest {
 
         sut.authorize3d("usertTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11",
                 null, null, null, null, null, null, null, null, null, null,
-                null, null, null, "relatedTransaction", null, null, null, null);
+                null, null, null, "relatedTransaction", null, null, null, null, null, null);
     }
 
     @Test
@@ -401,6 +405,66 @@ public class SafechargeTest {
         exception.expectMessage("Missing mandatory info for execution of payments! Please run initialization method before creating payments.");
 
         sut.getCardDetails(null, null, "123456");
+    }
+
+    @Test
+    public void shouldExecuteGetDccDetailsRequestAndReturnResponse() throws SafechargeException {
+        SafechargeResponse sessionResponse = mock(SafechargeResponse.class);
+        when(sessionResponse.getSessionToken()).thenReturn("sessionToken");
+
+        SafechargeResponse dccDetailsResponse = new DccDetailsResponse();
+
+        when(executor.execute(any(GetSessionTokenRequest.class))).thenReturn(sessionResponse);
+        when(executor.execute(any(DccDetailsRequest.class))).thenReturn(dccDetailsResponse);
+
+        sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
+        DccDetailsResponse response = sut.getDccDetails("clientUniqueId", "clentRequestId", "123456", null, "10",
+                "BGN", "EUR", null);
+
+        verify(executor).execute(any(GetSessionTokenRequest.class));
+        verify(executor).execute(any(DccDetailsRequest.class));
+        verifyNoMoreInteractions(executor);
+        verify(sessionResponse).getStatus();
+        verify(sessionResponse).getSessionToken();
+        assertNotNull(response);
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenGetDccDetailsRequestIsExecutedWithoutInitializeRequestBeforehand() throws SafechargeException {
+        exception.expect(SafechargeConfigurationException.class);
+        exception.expectMessage("Missing mandatory info for execution of payments! Please run initialization method before creating payments.");
+
+        sut.getDccDetails("clientUniqueId", "clentRequestId", "123456", null, "10",
+                "BGN", "EUR", null);
+    }
+
+    @Test
+    public void shouldExecuteGetMcpRatesRequestAndReturnResponse() throws SafechargeException {
+        SafechargeResponse sessionResponse = mock(SafechargeResponse.class);
+        when(sessionResponse.getSessionToken()).thenReturn("sessionToken");
+
+        SafechargeResponse mcpRatesRequest = new McpRatesResponse();
+
+        when(executor.execute(any(GetSessionTokenRequest.class))).thenReturn(sessionResponse);
+        when(executor.execute(any(McpRatesRequest.class))).thenReturn(mcpRatesRequest);
+
+        sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
+        McpRatesResponse response = sut.getMcpRates("clientUniqueId", "clentRequestId", "BGN", null, null);
+
+        verify(executor).execute(any(GetSessionTokenRequest.class));
+        verify(executor).execute(any(McpRatesRequest.class));
+        verifyNoMoreInteractions(executor);
+        verify(sessionResponse).getStatus();
+        verify(sessionResponse).getSessionToken();
+        assertNotNull(response);
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenGetMcpRatesRequestIsExecutedWithoutInitializeRequestBeforehand() throws SafechargeException {
+        exception.expect(SafechargeConfigurationException.class);
+        exception.expectMessage("Missing mandatory info for execution of payments! Please run initialization method before creating payments.");
+
+        sut.getMcpRates("clientUniqueId", "clentRequestId", "BGN", null, null);
     }
 
     @Test

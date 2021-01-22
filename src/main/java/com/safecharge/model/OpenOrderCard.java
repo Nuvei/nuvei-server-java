@@ -3,8 +3,8 @@ package com.safecharge.model;
 /**
  * Copyright (C) 2007-2019 SafeCharge International Group Limited.
  * <p>
- * Holder for Cashier's OpenOrder PaymentOption card data.
- *
+ * Holder for Checkout Page's OpenOrder PaymentOption card data.
+ * </p>
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/10/2017
  */

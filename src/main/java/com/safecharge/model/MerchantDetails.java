@@ -5,8 +5,8 @@ import javax.validation.constraints.Size;
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
- * Holder for Cashier's Merchant's specific uncategorized data.
- *
+ * Holder for Checkout Page's Merchant's specific uncategorized data.
+ * </p>
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/14/2017
  */

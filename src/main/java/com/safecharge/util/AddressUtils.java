@@ -1,6 +1,6 @@
 package com.safecharge.util;
 
-import com.safecharge.model.CashierUserDetails;
+import com.safecharge.model.RestApiUserDetails;
 import com.safecharge.model.UserAddress;
 import com.safecharge.model.UserDetails;
 import com.safecharge.model.UserDetailsCashier;
@@ -87,7 +87,7 @@ public class AddressUtils {
     }
 
     /**
-     * Static factory method to create new {@link CashierUserDetails} object based on the passed params.
+     * Static factory method to create new {@link RestApiUserDetails} object based on the passed params.
      *
      * @param address     The address of the user
      * @param city        The city of the user
@@ -99,13 +99,13 @@ public class AddressUtils {
      * @param state       The state of the user(two-letter ISO state code)
      * @param zip         The postal code of the user
      * @param dateOfBirth The date of birth of the user
-     * @return new {@link CashierUserDetails} object created from the passed params
+     * @return new {@link RestApiUserDetails} object created from the passed params
      */
-    public static CashierUserDetails createCashierUserDetailsFromParams(String address, String city, String country, String email, String firstName,
+    public static RestApiUserDetails createRestApiUserDetailsFromParams(String address, String city, String country, String email, String firstName,
                                                                         String lastName, String phone, String state, String zip, String dateOfBirth,
                                                                         String county) {
 
-        CashierUserDetails userDetails = new CashierUserDetails();
+        RestApiUserDetails userDetails = new RestApiUserDetails();
         userDetails.setAddress(address);
         userDetails.setCity(city);
         userDetails.setCountry(country);

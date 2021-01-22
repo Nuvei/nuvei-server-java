@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
- * Holder for Cashier's Merchant's specific info. For example: order id, account name, etc. in the Merchant's ERP system.
+ * Holder for Checkout Page's Merchant's specific info. For example: order id, account name, etc. in the Merchant's ERP system.
  * The data in the field can be validated by regular expression.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>

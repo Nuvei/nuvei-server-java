@@ -20,17 +20,17 @@ public abstract class SafechargeResponse {
     private Long internalRequestId;
 
     /**
-     * The cashier status of merchant request.
+     * The Checkout Page status of merchant request.
      */
     private Constants.APIResponseStatus status;
 
     /**
-     * The error code of the error occurred at the cashier site.
+     * The error code of the error occurred at the Checkout Page site.
      */
     private Integer errCode = Constants.ERR_CODE_NO_ERROR;
 
     /**
-     * The error reason if error occurred at the cashier side.
+     * The error reason if error occurred at the Checkout Page side.
      */
     private String reason = "";
 

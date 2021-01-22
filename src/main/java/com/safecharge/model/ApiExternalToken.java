@@ -3,7 +3,7 @@ package com.safecharge.model;
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
- * Holder for Cashier's Payment Gateway external token data.
+ * Holder for Checkout Page's Payment Gateway external token data.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/10/2017

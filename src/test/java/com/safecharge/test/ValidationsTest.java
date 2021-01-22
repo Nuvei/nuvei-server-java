@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.safecharge.model.CardData;
-import com.safecharge.model.CashierUserDetails;
+import com.safecharge.model.RestApiUserDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
 import com.safecharge.model.MerchantBaseInfo;
@@ -153,10 +153,10 @@ public class ValidationsTest {
     private static final String dummyClientUniqueId = "clientUniqueId";
     private static final String dummySubmethod = "submethod";
     
-    private static final CashierUserDetails dummyValidCashierUserDetails =
-            AddressUtils.createCashierUserDetailsFromParams("Test street 1", "Sofia", "BG", "test@test.com",
+    private static final RestApiUserDetails dummyValidRestApiUserDetails =
+            AddressUtils.createRestApiUserDetailsFromParams("Test street 1", "Sofia", "BG", "test@test.com",
                     "Test", "Testov", "0884123456", null, "1000", "1990-01-01", "county usr");
-    private static final CashierUserDetails dummyInvalidCashierUserDetails = AddressUtils.createCashierUserDetailsFromParams("Test street 1 ", "Sofia", "BG", "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789-9",
+    private static final RestApiUserDetails dummyInvalidRestApiUserDetails = AddressUtils.createRestApiUserDetailsFromParams("Test street 1 ", "Sofia", "BG", "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789-9",
             "Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
             "Test Long Name that should fail the validation! Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
             "0884123456", null, "1000", "1990-01-01", "county usr");
@@ -603,7 +603,7 @@ public class ValidationsTest {
                 .addSessionToken(dummySessionToken)
                 .addItem(dummyValidItem)
                 .addItem(dummyValidItem2)
-                .addUserDetails(dummyValidCashierUserDetails)
+                .addUserDetails(dummyValidRestApiUserDetails)
                 .addBillingDetails(dummyValidBillingDetails)
                 .addShippingDetails(dummyValidShippingDetails)
                 .addOrderId(dummyOrderId)
@@ -620,7 +620,7 @@ public class ValidationsTest {
             SafechargeBaseRequest safechargeRequest = PaymentAPMRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
                     .addItem(dummyInvalidItem)
-                    .addUserDetails(dummyInvalidCashierUserDetails)
+                    .addUserDetails(dummyInvalidRestApiUserDetails)
                     .addBillingDetails(dummyInvalidShippingDetails)
                     .addShippingDetails(dummyInvalidShippingDetails)
                     .addURLDetails(dummyInvalidUrlDetails)
@@ -641,7 +641,7 @@ public class ValidationsTest {
                 .addSessionToken(dummySessionToken)
                 .addItem(dummyValidItem)
                 .addItem(dummyValidItem2)
-                .addUserDetails(dummyValidCashierUserDetails)
+                .addUserDetails(dummyValidRestApiUserDetails)
                 .addBillingDetails(dummyValidBillingDetails)
                 .addShippingDetails(dummyValidShippingDetails)
                 .addOrderId(dummyOrderId)
@@ -659,7 +659,7 @@ public class ValidationsTest {
             SafechargeBaseRequest safechargeRequest = PaymentCCRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
                     .addItem(dummyInvalidItem)
-                    .addUserDetails(dummyInvalidCashierUserDetails)
+                    .addUserDetails(dummyInvalidRestApiUserDetails)
                     .addBillingDetails(dummyInvalidShippingDetails)
                     .addShippingDetails(dummyInvalidShippingDetails)
                     .addURLDetails(dummyInvalidUrlDetails)

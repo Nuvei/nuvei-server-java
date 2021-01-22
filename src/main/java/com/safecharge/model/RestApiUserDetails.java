@@ -6,14 +6,13 @@ import javax.validation.constraints.Size;
 import com.safecharge.util.APIConstants;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
+ * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
- * Holder for Cashier's User data.
- *
- * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
+ * Holder for Checkout Page's User data.
+ * </p>
  * @since 2/14/2017
  */
-public class CashierUserDetails {
+public class RestApiUserDetails {
 
     @Size(max = APIConstants.FIRST_NAME_MAX_LENGTH,
             message = "firstName size must be up to 30 characters long!")
@@ -148,7 +147,7 @@ public class CashierUserDetails {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("CashierUserDetails{");
+        final StringBuilder sb = new StringBuilder("RestApiUserDetails{");
         sb.append("firstName='")
                 .append(firstName)
                 .append('\'');
