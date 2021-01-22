@@ -3,7 +3,7 @@ package com.safecharge.response;
 import java.util.List;
 
 import com.safecharge.model.Addendums;
-import com.safecharge.model.CashierUserDetails;
+import com.safecharge.model.RestApiUserDetails;
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
@@ -49,7 +49,7 @@ public class GetOrderDetailsResponse extends SafechargeResponse implements Safec
     /**
      * The user details assigned to the order.
      */
-    private CashierUserDetails userDetails;
+    private RestApiUserDetails userDetails;
 
     /**
      * The shipping address assigned to the order.
@@ -153,11 +153,11 @@ public class GetOrderDetailsResponse extends SafechargeResponse implements Safec
         this.deviceDetails = deviceDetails;
     }
 
-    public CashierUserDetails getUserDetails() {
+    public RestApiUserDetails getUserDetails() {
         return userDetails;
     }
 
-    public void setUserDetails(CashierUserDetails userDetails) {
+    public void setUserDetails(RestApiUserDetails userDetails) {
         this.userDetails = userDetails;
     }
 

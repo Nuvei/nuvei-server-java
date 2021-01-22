@@ -3,7 +3,7 @@ package com.safecharge.request.builder;
 import com.safecharge.request.SafechargePaymentRequest;
 import com.safecharge.util.Constants;
 
-public abstract class SafechargePaymentBuilder<T extends SafechargeOrderBuilder<T>> extends SafechargeOrderBuilder<T> {
+public abstract class SafechargePaymentBuilder<T extends SafechargePaymentBuilder<T>> extends SafechargeOrderBuilder<T> {
 
     private String customSiteName;
     private String productId;

@@ -128,7 +128,7 @@ public interface Constants {
      * All possible Credit/Debit card transaction types.
      */
     enum TransactionType {
-        Sale, Auth, Auth3D, Credit, Void, Sale3D, Settle, Refund, RiskOnly
+        Sale, Auth, Auth3D, Credit, Void, Sale3D, Settle, Refund, RiskOnly, PreAuth
     }
 
     /**

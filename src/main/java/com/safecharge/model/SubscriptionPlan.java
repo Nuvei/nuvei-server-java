@@ -4,7 +4,7 @@ package com.safecharge.model;
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Holder for the data needed to create subscription(a recurring payment). Based on the data provided
- * the Cashier's Merchant's client is billed automatically by the Cashier system.
+ * the Checkout Page's Merchant's client is billed automatically by the Checkout Page system.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 6/6/2017

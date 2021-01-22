@@ -7,9 +7,9 @@ import com.safecharge.util.Constants;
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
- * Holder for the required for a payment Cashier's Merchant's data such as
+ * Holder for the required for a payment Checkout Page's Merchant's data such as
  * secret key, the merchant id, the merchant site id, etc.
- *
+ * </p>
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/17/2017
  */

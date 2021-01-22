@@ -6,7 +6,8 @@ import com.safecharge.exception.SafechargeConfigurationException;
 import com.safecharge.exception.SafechargeException;
 import com.safecharge.model.Addendums;
 import com.safecharge.model.AmountDetails;
-import com.safecharge.model.CashierUserDetails;
+import com.safecharge.model.CurrencyConversion;
+import com.safecharge.model.RestApiUserDetails;
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.ExternalSchemeDetails;
@@ -22,11 +23,15 @@ import com.safecharge.model.UserAddress;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.model.Verify3dPaymentOption;
 import com.safecharge.request.CardDetailsRequest;
+import com.safecharge.request.DccDetailsRequest;
+import com.safecharge.request.McpRatesRequest;
 import com.safecharge.request.SafechargeBaseRequest;
 import com.safecharge.response.Authorize3dResponse;
 import com.safecharge.response.CardDetailsResponse;
+import com.safecharge.response.DccDetailsResponse;
 import com.safecharge.response.GetPaymentStatusResponse;
 import com.safecharge.response.InitPaymentResponse;
+import com.safecharge.response.McpRatesResponse;
 import com.safecharge.response.OpenOrderResponse;
 import com.safecharge.response.PaymentResponse;
 import com.safecharge.response.RefundTransactionResponse;
@@ -141,17 +146,18 @@ public class Safecharge {
      */
     public PaymentResponse payment(String userTokenId, String clientUniqueId, String clientRequestId, PaymentOption paymentOption, Integer isRebilling,
                                    String currency, String amount, AmountDetails amountDetails, List<Item> items, DeviceDetails deviceDetails,
-                                   CashierUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
+                                   RestApiUserDetails userDetails, UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
                                    MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails, String customSiteName, String productId,
                                    String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
-                                   String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType, String userId, ExternalSchemeDetails externalSchemeDetails) throws SafechargeException {
+                                   String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType, String userId,
+                                   ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getPaymentRequest(merchantInfo, sessionToken, userTokenId, clientUniqueId, clientRequestId, paymentOption,
                 isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
-                transactionType, autoPayment3D, isMoto, subMerchant, rebillingType, authenticationOnlyType, userId, externalSchemeDetails);
+                transactionType, autoPayment3D, isMoto, subMerchant, rebillingType, authenticationOnlyType, userId, externalSchemeDetails, currencyConversion);
 
         return (PaymentResponse) requestExecutor.execute(request);
     }
@@ -246,7 +252,7 @@ public class Safecharge {
      */
     public OpenOrderResponse openOrder(String userTokenId, String clientRequestId, String clientUniqueId, String customSiteName, String productId,
                                        OpenOrderPaymentOption paymentOption, Constants.TransactionType transactionType, String currency, String amount,
-                                       List<Item> items, DeviceDetails deviceDetails, CashierUserDetails userDetails, UserAddress shippingAddress,
+                                       List<Item> items, DeviceDetails deviceDetails, RestApiUserDetails userDetails, UserAddress shippingAddress,
                                        UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
                                        UrlDetails urlDetails, UserPaymentOption userPaymentOption, String paymentMethod, AmountDetails amountDetails,
                                        Addendums addendums, String customData, Boolean autoPayment3D, String isMoto, String authenticationOnlyType,
@@ -429,7 +435,7 @@ public class Safecharge {
      * @param customSiteName       The merchant’s site name. This is useful for merchants operating many websites that are distinguished only by name.
      * @param merchantDetails
      * @param relatedTransactionId The transaction ID of the of the call to {@link Safecharge#authorize3d(String, String, String,
-     *                             PaymentOption, Integer, String, String, AmountDetails, List, DeviceDetails, CashierUserDetails, UserAddress,
+     *                             PaymentOption, Integer, String, String, AmountDetails, List, DeviceDetails, RestApiUserDetails, UserAddress,
      *                             UserAddress, DynamicDescriptor, MerchantDetails, Addendums, UrlDetails, String, String, String, String,
      *                             Constants.TransactionType, Boolean, SubMerchant, String)}.
      * @param subMerchant          Contains information about the SubMerchant.
@@ -505,18 +511,19 @@ public class Safecharge {
      */
     public Authorize3dResponse authorize3d(String userTokenId, String clientUniqueId, String clientRequestId, PaymentOption paymentOption,
                                            Integer isRebilling, String currency, String amount, AmountDetails amountDetails,
-                                           List<Item> items, DeviceDetails deviceDetails, CashierUserDetails userDetails,
+                                           List<Item> items, DeviceDetails deviceDetails, RestApiUserDetails userDetails,
                                            UserAddress shippingAddress, UserAddress billingAddress, DynamicDescriptor dynamicDescriptor,
                                            MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails,
                                            String customSiteName, String productId, String customData, String relatedTransactionId,
-                                           Constants.TransactionType transactionType, Boolean autoPayment3D, SubMerchant subMerchant, String userId) throws SafechargeException {
+                                           Constants.TransactionType transactionType, Boolean autoPayment3D, SubMerchant subMerchant,
+                                           String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getAuthorize3dRequest(merchantInfo, sessionToken, userTokenId, clientUniqueId,
                 clientRequestId, paymentOption, isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails,
                 shippingAddress, billingAddress, dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName,
-                productId, customData, relatedTransactionId, transactionType, autoPayment3D, subMerchant, userId);
+                productId, customData, relatedTransactionId, transactionType, autoPayment3D, subMerchant, userId, externalSchemeDetails, currencyConversion);
 
         return (Authorize3dResponse) requestExecutor.execute(request);
     }
@@ -538,5 +545,26 @@ public class Safecharge {
         CardDetailsRequest request = requestBuilder.getCardDetailsRequest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, cardNumber);
 
         return (CardDetailsResponse) requestExecutor.execute(request);
+    }
+
+    public DccDetailsResponse getDccDetails(String clientUniqueId, String clientRequestId, String cardNumber, String apm, String originalAmount,
+                                            String originalCurrency, String currency, String country) throws SafechargeException {
+        ensureMerchantInfoAndSessionTokenNotNull();
+
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        DccDetailsRequest request = requestBuilder.getDccDetailsRequest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, cardNumber,
+                apm, originalAmount, originalCurrency, currency, country);
+
+        return (DccDetailsResponse) requestExecutor.execute(request);
+    }
+
+    public McpRatesResponse getMcpRates(String clientUniqueId, String clientRequestId, String fromCurrency, List<String> toCurrency, List<String> paymentMethods) throws SafechargeException {
+        ensureMerchantInfoAndSessionTokenNotNull();
+
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        McpRatesRequest request = requestBuilder.getMcpRatesRequest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, fromCurrency,
+                toCurrency, paymentMethods);
+
+        return (McpRatesResponse) requestExecutor.execute(request);
     }
 }

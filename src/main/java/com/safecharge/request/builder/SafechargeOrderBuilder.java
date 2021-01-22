@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.safecharge.model.Addendums;
 import com.safecharge.model.AmountDetails;
-import com.safecharge.model.CashierUserDetails;
+import com.safecharge.model.RestApiUserDetails;
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
@@ -37,7 +37,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     private String amount;
     private List<Item> items = new ArrayList<>();
     private DeviceDetails deviceDetails;
-    private CashierUserDetails userDetails;
+    private RestApiUserDetails userDetails;
     private UserAddress shippingAddress;
     private UserAddress billingAddress;
     private DynamicDescriptor dynamicDescriptor;
@@ -138,10 +138,10 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     /**
      * Adds user details to the request.
      *
-     * @param userDetails the {@link CashierUserDetails} to add to the request
+     * @param userDetails the {@link RestApiUserDetails} to add to the request
      * @return this object
      */
-    public T addUserDetails(CashierUserDetails userDetails) {
+    public T addUserDetails(RestApiUserDetails userDetails) {
 
         this.userDetails = userDetails;
         return (T) this;
@@ -165,7 +165,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     public T addUserDetails(String address, String city, String country, String email, String firstName, String lastName, String phone, String state,
                             String zip, String dateOfBirth, String county) {
 
-        CashierUserDetails userDetails = AddressUtils.createCashierUserDetailsFromParams(address, city, country, email,
+        RestApiUserDetails userDetails = AddressUtils.createRestApiUserDetailsFromParams(address, city, country, email,
                 firstName, lastName, phone, state, zip, dateOfBirth, county);
         return addUserDetails(userDetails);
     }

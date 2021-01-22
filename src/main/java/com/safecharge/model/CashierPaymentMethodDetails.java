@@ -8,7 +8,7 @@ import com.safecharge.util.ValidChecksum;
 /**
  * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
- * Holder for an already saved Cashier's User Payment Option(UPO) data. It can hold credit/debit card or APM data.
+ * Holder for an already saved Checkout Page's User Payment Option(UPO) data. It can hold credit/debit card or APM data.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 6/6/2017

@@ -24,12 +24,12 @@ public abstract class PaymentsResponse extends SafechargeResponse {
     protected String transactionStatus;
 
     /**
-     * Тhe error code if error occurred at the cashier side.
+     * Тhe error code if error occurred at the Checkout Page side.
      */
     protected String paymentMethodErrorCode;
 
     /**
-     * Тhe error reason if error occurred at the cashier side.
+     * Тhe error reason if error occurred at the Checkout Page side.
      */
     protected String paymentMethodErrorReason;
 

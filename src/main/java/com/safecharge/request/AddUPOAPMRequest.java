@@ -33,7 +33,7 @@ import com.safecharge.util.ValidationUtils;
 public class AddUPOAPMRequest extends SafechargeRequest {
 
     /**
-     * The unique name of the payment method in Cashier system (for example apmgw_Neteller).  For a list of possible values, see APM Unique SafeCharge Cashier Names.
+     * The unique name of the payment method in Checkout Page system (for example apmgw_Neteller).  For a list of possible values, see APM Unique SafeCharge Checkout Names.
      */
     @NotNull(message = "paymentMethodName parameter is mandatory!")
     private String paymentMethodName;
@@ -123,7 +123,7 @@ public class AddUPOAPMRequest extends SafechargeRequest {
         /**
          * Adds the payment method name to the request.
          *
-         * @param paymentMethodName The unique name of the payment method in Cashier system.
+         * @param paymentMethodName The unique name of the payment method in Checkout Page system.
          * @return this object
          * @see <a href="https://www.safecharge.com/docs/api/#apm-account-identifiers}">APM account identifiers</a>
          */

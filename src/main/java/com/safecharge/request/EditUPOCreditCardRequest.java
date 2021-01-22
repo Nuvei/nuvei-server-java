@@ -6,7 +6,6 @@ import javax.validation.constraints.Pattern;
 
 import com.safecharge.model.UserDetails;
 import com.safecharge.request.basic.EditUPOBasicRequest;
-import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.APIConstants;
 import com.safecharge.util.AddressUtils;
 import com.safecharge.util.Constants;

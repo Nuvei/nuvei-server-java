@@ -76,6 +76,8 @@ public class SafechargeRequestExecutor {
                     put(Verify3dRequest.class, Verify3dResponse.class);
                     put(Authorize3dRequest.class, Authorize3dResponse.class);
                     put(CardDetailsRequest.class, CardDetailsResponse.class);
+                    put(DccDetailsRequest.class, DccDetailsResponse.class);
+                    put(McpRatesRequest.class, McpRatesResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -121,6 +123,8 @@ public class SafechargeRequestExecutor {
                     put(Verify3dRequest.class, APIConstants.VERIFY3D_URL);
                     put(Authorize3dRequest.class, APIConstants.AUTHORIZE3D_URL);
                     put(CardDetailsRequest.class, APIConstants.GET_CARD_DETAILS_URL);
+                    put(DccDetailsRequest.class, APIConstants.DCC_DETAILS_URL);
+                    put(McpRatesRequest.class, APIConstants.MCP_RATES_URL);
                 }
             };
 
@@ -258,6 +262,7 @@ public class SafechargeRequestExecutor {
             Class<? extends SafechargeResponse> responseClass = RESPONSE_TYPE_BY_REQUEST_TYPE.get(requestClass);
             logger.debug(responseClass.getSimpleName() + " Received " + responseJSON);
         }
+
         return responseJSON;
     }
 }

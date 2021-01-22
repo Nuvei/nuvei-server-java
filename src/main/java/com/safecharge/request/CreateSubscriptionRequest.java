@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.safecharge.model.CardData;
-import com.safecharge.model.CashierUserDetails;
+import com.safecharge.model.RestApiUserDetails;
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.MerchantDetails;
@@ -62,7 +62,7 @@ public class CreateSubscriptionRequest
     private DynamicDescriptor dynamicDescriptor;
 
     @Valid
-    private CashierUserDetails userDetails;
+    private RestApiUserDetails userDetails;
 
     @Valid
     private DeviceDetails deviceDetails;
@@ -110,11 +110,11 @@ public class CreateSubscriptionRequest
         this.dynamicDescriptor = dynamicDescriptor;
     }
 
-    public CashierUserDetails getUserDetails() {
+    public RestApiUserDetails getUserDetails() {
         return userDetails;
     }
 
-    public void setUserDetails(CashierUserDetails userDetails) {
+    public void setUserDetails(RestApiUserDetails userDetails) {
         this.userDetails = userDetails;
     }
 
@@ -200,7 +200,7 @@ public class CreateSubscriptionRequest
         private String subscriptionPlanId;
         private String userTokenId;
         private DynamicDescriptor dynamicDescriptor;
-        private CashierUserDetails userDetails;
+        private RestApiUserDetails userDetails;
         private DeviceDetails deviceDetails;
         private MerchantDetails merchantDetails;
         private UrlDetails urlDetails;
@@ -247,10 +247,10 @@ public class CreateSubscriptionRequest
         /**
          * Adds user details to the request.
          *
-         * @param userDetails the {@link CashierUserDetails} to add to the request
+         * @param userDetails the {@link RestApiUserDetails} to add to the request
          * @return this object
          */
-        public CreateSubscriptionRequest.Builder addUserDetails(CashierUserDetails userDetails) {
+        public CreateSubscriptionRequest.Builder addUserDetails(RestApiUserDetails userDetails) {
 
             this.userDetails = userDetails;
             return this;
@@ -351,7 +351,7 @@ public class CreateSubscriptionRequest
                                                                 String lastName, String phone, String state, String zip, String dateOfBirth,
                                                                 String county) {
 
-            CashierUserDetails userDetails = AddressUtils.createCashierUserDetailsFromParams(address, city, country, email,
+            RestApiUserDetails userDetails = AddressUtils.createRestApiUserDetailsFromParams(address, city, country, email,
                     firstName, lastName, phone, state, zip, dateOfBirth, county);
 
             return addUserDetails(userDetails);

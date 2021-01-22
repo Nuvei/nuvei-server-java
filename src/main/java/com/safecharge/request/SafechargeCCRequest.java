@@ -31,7 +31,7 @@ public abstract class SafechargeCCRequest extends SafechargePaymentRequest imple
 
     /**
      * Card data must be passed as parameter in the payment methods and not before that in the payment flow (openOrder, updateOrder)
-     * since it's not allowed to be saved in the cashier/checkout DB.
+     * since it's not allowed to be saved in the Checkout Page DB.
      * <p>
      * cardNumber <br />
      * cardHolderName <br />
@@ -52,7 +52,7 @@ public abstract class SafechargeCCRequest extends SafechargePaymentRequest imple
      * User payment option can to be provided as an alternative for providing card data/card token/Apple Pay token.
      * Only one of them can be in use for a certain transaction. If both not provided or both provided it will cause an error.
      * <p>
-     * SafeCharge decide per client in gateway and per site in cashier, weather CVV is mandatory to be provided with a UPO.
+     * SafeCharge decide per client in gateway and per site in Checkout Page, weather CVV is mandatory to be provided with a UPO.
      * Sending CVV will gain a getter interchange. if neded it will be sent by the merchant in cardData class, cvv parameter.
      * </p>
      */

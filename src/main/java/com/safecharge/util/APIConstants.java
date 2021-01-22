@@ -73,6 +73,8 @@ public interface APIConstants {
     String VERIFY3D_URL = "api/v1/verify3d.do";
     String AUTHORIZE3D_URL = "api/v1/authorize3d.do";
     String GET_CARD_DETAILS_URL = "api/v1/getCardDetails.do";
+    String DCC_DETAILS_URL = "api/v1/getDccDetails.do";
+    String MCP_RATES_URL = "api/v1/getMcpRates.do";
 
 
     // Request Headers:

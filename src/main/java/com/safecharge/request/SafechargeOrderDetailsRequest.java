@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.model.Addendums;
 import com.safecharge.model.AmountDetails;
-import com.safecharge.model.CashierUserDetails;
+import com.safecharge.model.RestApiUserDetails;
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
@@ -55,7 +55,7 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
      * Details about the user which include the user's name, email, address, etc.
      */
     @Valid
-    private CashierUserDetails userDetails;
+    private RestApiUserDetails userDetails;
 
     /**
      * Shipping address related to a user's order.
@@ -149,11 +149,11 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
         this.deviceDetails = deviceDetails;
     }
 
-    public CashierUserDetails getUserDetails() {
+    public RestApiUserDetails getUserDetails() {
         return userDetails;
     }
 
-    public void setUserDetails(CashierUserDetails userDetails) {
+    public void setUserDetails(RestApiUserDetails userDetails) {
         this.userDetails = userDetails;
     }
 
