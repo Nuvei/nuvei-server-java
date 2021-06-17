@@ -47,7 +47,7 @@ public class ValidationUtils {
         if (constraintViolations != null && !constraintViolations.isEmpty()) {
             StringBuilder sb = new StringBuilder();
             for (ConstraintViolation<T> constraintViolation : constraintViolations) {
-                sb.append(constraintViolation.getMessage())
+                sb.append(constraintViolation.getPropertyPath()).append(" ").append(constraintViolation.getMessage())
                         .append(" ");
             }
 

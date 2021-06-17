@@ -1,5 +1,6 @@
 package com.safecharge.response;
 
+import com.safecharge.model.AmountInfo;
 import com.safecharge.model.FraudDetails;
 import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.PaymentOptionResponse;
@@ -37,6 +38,8 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
     private String customData;
 
     private FraudDetails fraudDetails;
+
+    private AmountInfo partialApproval;
 
     public String getOrderId() {
         return orderId;
@@ -166,6 +169,14 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
         this.fraudDetails = fraudDetails;
     }
 
+    public AmountInfo getPartialApproval() {
+        return partialApproval;
+    }
+
+    public void setPartialApproval(AmountInfo partialApproval) {
+        this.partialApproval = partialApproval;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -185,7 +196,8 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
                 .append(", externalTransactionId=").append(externalTransactionId).append('\'')
                 .append(", authCode=").append(authCode).append('\'')
                 .append(", customData=").append(customData).append('\'')
-                .append(", fraudDetails=").append(fraudDetails);
+                .append(", fraudDetails=").append(fraudDetails)
+                .append(", partialApproval=").append(partialApproval);
 
         return sb.toString();
     }

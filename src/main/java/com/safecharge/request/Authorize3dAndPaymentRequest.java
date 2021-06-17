@@ -35,6 +35,9 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
     @Valid
     private CurrencyConversion currencyConversion;
 
+    @Size(max = 1)
+    private String isPartialApproval;
+
     private final String sourceApplication = "JAVA_SDK";
 
     public PaymentOption getPaymentOption() {
@@ -109,6 +112,14 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         this.currencyConversion = currencyConversion;
     }
 
+    public String getIsPartialApproval() {
+        return isPartialApproval;
+    }
+
+    public void setIsPartialApproval(String isPartialApproval) {
+        this.isPartialApproval = isPartialApproval;
+    }
+
     public abstract static class Builder<T extends Builder<T>> extends SafechargePaymentBuilder<T> {
 
         private PaymentOption paymentOption;
@@ -120,6 +131,7 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         private String userId;
         private ExternalSchemeDetails externalSchemeDetails;
         private CurrencyConversion currencyConversion;
+        private String isPartialApproval;
 
         public T addPaymentOption(PaymentOption paymentOption) {
             this.paymentOption = paymentOption;
@@ -166,6 +178,11 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             return (T) this;
         }
 
+        public T addIsPartialApproval(String isPartialApproval) {
+            this.isPartialApproval = isPartialApproval;
+            return (T) this;
+        }
+
         protected <S extends Authorize3dAndPaymentRequest> S build(S request) {
             request.setPaymentOption(paymentOption);
             request.setIsRebilling(isRebilling);
@@ -176,6 +193,7 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             request.setUserId(userId);
             request.setExternalSchemeDetails(externalSchemeDetails);
             request.setCurrencyConversion(currencyConversion);
+            request.setIsPartialApproval(isPartialApproval);
 
             return super.build(request);
         }

@@ -38,8 +38,6 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
     @Size(max = 255)
     private String userId;
 
-    private final String sourceApplication = "JAVA_SDK";
-
     public String getPaymentMethod() {
         return paymentMethod;
     }

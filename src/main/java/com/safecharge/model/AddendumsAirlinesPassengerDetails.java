@@ -22,6 +22,7 @@ public class AddendumsAirlinesPassengerDetails {
     private String middleName;
     private String dateOfBirth;
     private String phoneNumber;
+    private String passengerName;
 
     public String getPassangerId() {
         return passangerId;
@@ -101,5 +102,13 @@ public class AddendumsAirlinesPassengerDetails {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassengerName() {
+        return passengerName;
+    }
+
+    public void setPassengerName(String passengerName) {
+        this.passengerName = passengerName;
     }
 }

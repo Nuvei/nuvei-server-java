@@ -9,16 +9,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.safecharge.model.CardData;
-import com.safecharge.model.RestApiUserDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
 import com.safecharge.model.MerchantBaseInfo;
 import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.MerchantInfo;
+import com.safecharge.model.RestApiUserDetails;
 import com.safecharge.model.SubMerchant;
 import com.safecharge.model.SubMethodDetails;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
+import com.safecharge.request.AccountCaptureRequest;
 import com.safecharge.request.AddUPOAPMRequest;
 import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
 import com.safecharge.request.AddUPOCreditCardByTokenRequest;
@@ -28,6 +29,7 @@ import com.safecharge.request.CancelSubscriptionRequest;
 import com.safecharge.request.CardDetailsRequest;
 import com.safecharge.request.CardTokenizationRequest;
 import com.safecharge.request.CreateSubscriptionRequest;
+import com.safecharge.request.DccDetailsRequest;
 import com.safecharge.request.DeleteUPORequest;
 import com.safecharge.request.EditUPOAPMRequest;
 import com.safecharge.request.EditUPOCreditCardRequest;
@@ -38,6 +40,7 @@ import com.safecharge.request.GetSessionTokenRequest;
 import com.safecharge.request.GetSubscriptionPlansRequest;
 import com.safecharge.request.GetSubscriptionsListRequest;
 import com.safecharge.request.GetUserUPOsRequest;
+import com.safecharge.request.McpRatesRequest;
 import com.safecharge.request.OpenOrderRequest;
 import com.safecharge.request.Payment3DRequest;
 import com.safecharge.request.PaymentAPMRequest;
@@ -87,7 +90,7 @@ public class ValidationsTest {
     private static final MerchantDetails merchantDetails = MerchantUtils.createMerchantDetailsFromParams("customField1", "customField2", "customField3", "customField4",
             "customField5", "customField6", "customField7", "customField8", "customField9", "customField10",
             "customField11", "customField12", "customField13", "customField14", "customField15");
-    
+
     private static final SubMethodDetails subMethodDetails = new SubMethodDetails("testSubmethod", "testField1", "testField2");
     private static final DynamicDescriptor dynamicDescriptor = new DynamicDescriptor("testName", "029999999");
     private static final CardData cardData = new CardData("testNumber", "testCardHolderName", "2", "2001", "testCCtempToken", "222");
@@ -148,11 +151,11 @@ public class ValidationsTest {
     private static final String dummyZip = "1111";
     private static final String dummyBirthDate = "1990-01-01";
     private static final String dummyCountry = "USA";
-    private static final String dummyLocale= "EN";
+    private static final String dummyLocale = "EN";
     private static final String dummyUserTokenId = "userTokenID";
     private static final String dummyClientUniqueId = "clientUniqueId";
     private static final String dummySubmethod = "submethod";
-    
+
     private static final RestApiUserDetails dummyValidRestApiUserDetails =
             AddressUtils.createRestApiUserDetailsFromParams("Test street 1", "Sofia", "BG", "test@test.com",
                     "Test", "Testov", "0884123456", null, "1000", "1990-01-01", "county usr");
@@ -696,7 +699,7 @@ public class ValidationsTest {
 
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
-            assertEquals(6, e.getConstraintViolations().size());
+            assertEquals(5, e.getConstraintViolations().size());
         }
     }
 
@@ -723,7 +726,7 @@ public class ValidationsTest {
 
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
-            assertEquals(6, e.getConstraintViolations().size());
+            assertEquals(5, e.getConstraintViolations().size());
         }
     }
 
@@ -778,7 +781,7 @@ public class ValidationsTest {
 
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
-            assertEquals(6, e.getConstraintViolations().size());
+            assertEquals(5, e.getConstraintViolations().size());
         }
     }
 
@@ -1002,8 +1005,90 @@ public class ValidationsTest {
     @Test
     public void testFailedValidation_GetCardDetailsRequest() {
         try {
-            CardDetailsRequest getCardDetailsRequest = CardDetailsRequest.builder()
+            CardDetailsRequest.builder()
                     .addMerchantInfo(validMerchantInfo)
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(1, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_GetDccDetails() {
+        DccDetailsRequest dccDetailsRequest = DccDetailsRequest.builder()
+                .addCardNumber(dummyCcCardNumber)
+                .addClientUniqueId(dummyClientUniqueId)
+                .addMerchantInfo(validMerchantInfo)
+                .addOriginalAmount("20")
+                .addOriginalCurrency("BGN")
+                .build();
+
+        assertNotNull(dccDetailsRequest);
+    }
+
+    @Test
+    public void testFailedValidation_GetDccDetails() {
+        try {
+            DccDetailsRequest.builder()
+                    .addCardNumber(dummyCcCardNumber)
+                    .addClientUniqueId(dummyClientUniqueId)
+                    .addMerchantInfo(validMerchantInfo)
+                    .addOriginalAmount("20")
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(1, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_GetMcpRates() {
+        McpRatesRequest mcpRatesRequest = McpRatesRequest.builder()
+                .addClientUniqueId(dummyClientUniqueId)
+                .addMerchantInfo(validMerchantInfo)
+                .addFromCurrency("BGN")
+                .build();
+
+        assertNotNull(mcpRatesRequest);
+    }
+
+    @Test
+    public void testFailedValidation_GetMcpRates() {
+        try {
+            McpRatesRequest.builder()
+                    .addClientUniqueId(dummyClientUniqueId)
+                    .addMerchantInfo(validMerchantInfo)
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(1, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testSuccessfulValidation_AccountCapture() {
+        AccountCaptureRequest accountCaptureRequest = AccountCaptureRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addPaymentMethod("payment_method")
+                .addCountryCode("BG")
+                .addUserTokenId("userTokenId")
+                .addCurrencyCode("BGN")
+                .addLanguageCode("en")
+                .build();
+
+        assertNotNull(accountCaptureRequest);
+    }
+
+    @Test
+    public void testFailedValidation_AccountCapture() {
+        try {
+            AccountCaptureRequest.builder()
+                    .addMerchantInfo(validMerchantInfo)
+                    .addPaymentMethod("payment_method")
+                    .addCountryCode("BG")
+                    .addUserTokenId("userTokenId")
+                    .addCurrencyCode("BGN")
                     .build();
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
