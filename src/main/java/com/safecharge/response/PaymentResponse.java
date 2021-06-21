@@ -1,9 +1,5 @@
 package com.safecharge.response;
 
-import com.safecharge.model.FraudDetails;
-import com.safecharge.model.MerchantDetails;
-import com.safecharge.model.PaymentOptionResponse;
-
 /**
  * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>

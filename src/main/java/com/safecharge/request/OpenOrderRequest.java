@@ -49,6 +49,9 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
     @Size(max = 1)
     private String preventOverride;
 
+    @Size(max = 1)
+    private String isPartialApproval;
+
     public String getCustomSiteName() {
         return customSiteName;
     }
@@ -121,6 +124,14 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
         this.preventOverride = preventOverride;
     }
 
+    public String getIsPartialApproval() {
+        return isPartialApproval;
+    }
+
+    public void setIsPartialApproval(String isPartialApproval) {
+        this.isPartialApproval = isPartialApproval;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -137,7 +148,8 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
                 .append(", subMerchant=").append(subMerchant)
                 .append(", isRebilling=").append(isRebilling)
                 .append(", rebillingType=").append(rebillingType)
-                .append(", preventOverride=").append(preventOverride);
+                .append(", preventOverride=").append(preventOverride)
+                .append(", isPartialApproval=").append(isPartialApproval);
         sb.append('}');
         return sb.toString();
     }
@@ -154,6 +166,7 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
         private String rebillingType;
         private String paymentMethod;
         private String preventOverride;
+        private String isPartialApproval;
 
         public Builder addCustomSiteName(String customSiteName) {
             this.customSiteName = customSiteName;
@@ -205,6 +218,11 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
             return this;
         }
 
+        public Builder addIsPartialApproval(String isPartialApproval) {
+            this.isPartialApproval = isPartialApproval;
+            return this;
+        }
+
         /**
          * Builds the request.
          *
@@ -223,6 +241,7 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
             request.setRebillingType(rebillingType);
             request.setPaymentMethod(paymentMethod);
             request.setPreventOverride(preventOverride);
+            request.setIsPartialApproval(isPartialApproval);
 
             return ValidationUtils.validate(super.build(request));
         }

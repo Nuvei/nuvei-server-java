@@ -20,6 +20,7 @@ import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.model.Verify3dPaymentOption;
+import com.safecharge.request.AccountCaptureRequest;
 import com.safecharge.request.Authorize3dRequest;
 import com.safecharge.request.CardDetailsRequest;
 import com.safecharge.request.DccDetailsRequest;
@@ -55,7 +56,8 @@ public class RequestBuilder {
                                                    UrlDetails urlDetails, String customSiteName, String productId, String customData,
                                                    String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType,
-                                                   String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion) {
+                                                   String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
+                                                   String isPartialApproval) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -89,6 +91,7 @@ public class RequestBuilder {
                 .addUserId(userId)
                 .addExternalSchemeDetails(externalSchemeDetails)
                 .addCurrencyConversion(currencyConversion)
+                .addIsPartialApproval(isPartialApproval)
                 .build();
     }
 
@@ -119,7 +122,7 @@ public class RequestBuilder {
                                                      UrlDetails urlDetails, String userTokenId, String clientUniqueId, UserPaymentOption userPaymentOption,
                                                      String paymentMethod, AmountDetails amountDetails, Addendums addendums, String customData, Boolean autoPayment3D,
                                                      String isMoto, String authenticationOnlyType, SubMerchant subMerchant, Integer isRebilling, String rebillingType,
-                                                     String preventOverride, String userId) {
+                                                     String preventOverride, String userId, String isPartialApproval) {
         return OpenOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
@@ -153,6 +156,7 @@ public class RequestBuilder {
                 .addRebillingType(rebillingType)
                 .addPreventOverride(preventOverride)
                 .addUserId(userId)
+                .addIsPartialApproval(isPartialApproval)
                 .build();
     }
 
@@ -265,7 +269,7 @@ public class RequestBuilder {
                                                        UrlDetails urlDetails, String customSiteName, String productId, String customData,
                                                        String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                                        SubMerchant subMerchant, String userId, ExternalSchemeDetails externalSchemeDetails,
-                                                       CurrencyConversion currencyConversion) {
+                                                       CurrencyConversion currencyConversion, String isPartialApproval) {
         return Authorize3dRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -296,6 +300,7 @@ public class RequestBuilder {
                 .addUserId(userId)
                 .addExternalSchemeDetails(externalSchemeDetails)
                 .addCurrencyConversion(currencyConversion)
+                .addIsPartialApproval(isPartialApproval)
                 .build();
     }
 
@@ -337,6 +342,22 @@ public class RequestBuilder {
                 .addFromCurrency(fromCurrency)
                 .addToCurrency(toCurrency)
                 .addPaymentMethods(paymentMethods)
+                .build();
+    }
+
+    public AccountCaptureRequest getAccountCaptureRequest(String sessionToken, MerchantInfo merchantInfo, String clientRequestId,
+                                                          String userTokenId, String paymentMethod, String currencyCode, String countryCode,
+                                                          String languageCode, String notificationUrl) {
+        return AccountCaptureRequest.builder()
+                .addSessionToken(sessionToken)
+                .addMerchantInfo(merchantInfo)
+                .addClientRequestId(clientRequestId)
+                .addUserTokenId(userTokenId)
+                .addPaymentMethod(paymentMethod)
+                .addCurrencyCode(currencyCode)
+                .addCountryCode(countryCode)
+                .addLanguageCode(languageCode)
+                .addNotificationUrl(notificationUrl)
                 .build();
     }
 }

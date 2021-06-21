@@ -1,5 +1,8 @@
 package com.safecharge.response;
 
+import com.safecharge.model.AmountInfo;
+import com.safecharge.model.PaymentDetailsPaymentOption;
+
 public class GetPaymentStatusResponse extends SafechargeResponse {
 
     private String customData;
@@ -23,6 +26,14 @@ public class GetPaymentStatusResponse extends SafechargeResponse {
     private String userTokenId;
 
     private String transactionId;
+
+    private PaymentDetailsPaymentOption paymentOption;
+
+    private AmountInfo partialApproval;
+
+    private String currency;
+
+    private String amount;
 
     public String getCustomData() {
         return customData;
@@ -110,5 +121,37 @@ public class GetPaymentStatusResponse extends SafechargeResponse {
 
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
+    }
+
+    public PaymentDetailsPaymentOption getPaymentOption() {
+        return paymentOption;
+    }
+
+    public void setPaymentOption(PaymentDetailsPaymentOption paymentOption) {
+        this.paymentOption = paymentOption;
+    }
+
+    public AmountInfo getPartialApproval() {
+        return partialApproval;
+    }
+
+    public void setPartialApproval(AmountInfo partialApproval) {
+        this.partialApproval = partialApproval;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 }

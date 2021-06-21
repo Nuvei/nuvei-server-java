@@ -9,6 +9,13 @@ import java.util.List;
 
 import com.safecharge.model.Rate;
 
+/**
+ * <p>
+ * Response received from the Safecharge's servers to the {@link com.safecharge.request.McpRatesRequest}
+ * </p>
+ *
+ * @see com.safecharge.request.McpRatesRequest
+ */
 public class McpRatesResponse extends SafechargeResponse {
 
     private String mcpTimestamp;

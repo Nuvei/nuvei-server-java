@@ -78,6 +78,7 @@ public class SafechargeRequestExecutor {
                     put(CardDetailsRequest.class, CardDetailsResponse.class);
                     put(DccDetailsRequest.class, DccDetailsResponse.class);
                     put(McpRatesRequest.class, McpRatesResponse.class);
+                    put(AccountCaptureRequest.class, AccountCaptureResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -125,6 +126,7 @@ public class SafechargeRequestExecutor {
                     put(CardDetailsRequest.class, APIConstants.GET_CARD_DETAILS_URL);
                     put(DccDetailsRequest.class, APIConstants.DCC_DETAILS_URL);
                     put(McpRatesRequest.class, APIConstants.MCP_RATES_URL);
+                    put(AccountCaptureRequest.class, APIConstants.ACCOUNT_CAPTURE_URL);
                 }
             };
 

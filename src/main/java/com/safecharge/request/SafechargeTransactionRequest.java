@@ -32,7 +32,6 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
     /**
      * The authorization code of the related auth transaction, to be compared to the original one.
      */
-    @NotNull(message = "authCode parameter is mandatory!")
     protected String authCode;
 
     /**

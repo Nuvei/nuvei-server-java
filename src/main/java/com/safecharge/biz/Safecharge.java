@@ -7,7 +7,6 @@ import com.safecharge.exception.SafechargeException;
 import com.safecharge.model.Addendums;
 import com.safecharge.model.AmountDetails;
 import com.safecharge.model.CurrencyConversion;
-import com.safecharge.model.RestApiUserDetails;
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.ExternalSchemeDetails;
@@ -17,15 +16,18 @@ import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.MerchantInfo;
 import com.safecharge.model.OpenOrderPaymentOption;
 import com.safecharge.model.PaymentOption;
+import com.safecharge.model.RestApiUserDetails;
 import com.safecharge.model.SubMerchant;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.model.Verify3dPaymentOption;
+import com.safecharge.request.AccountCaptureRequest;
 import com.safecharge.request.CardDetailsRequest;
 import com.safecharge.request.DccDetailsRequest;
 import com.safecharge.request.McpRatesRequest;
 import com.safecharge.request.SafechargeBaseRequest;
+import com.safecharge.response.AccountCaptureResponse;
 import com.safecharge.response.Authorize3dResponse;
 import com.safecharge.response.CardDetailsResponse;
 import com.safecharge.response.DccDetailsResponse;
@@ -150,14 +152,14 @@ public class Safecharge {
                                    MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails, String customSiteName, String productId,
                                    String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType, String userId,
-                                   ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion) throws SafechargeException {
+                                   ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion, String isPartialApproval) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getPaymentRequest(merchantInfo, sessionToken, userTokenId, clientUniqueId, clientRequestId, paymentOption,
                 isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
-                transactionType, autoPayment3D, isMoto, subMerchant, rebillingType, authenticationOnlyType, userId, externalSchemeDetails, currencyConversion);
+                transactionType, autoPayment3D, isMoto, subMerchant, rebillingType, authenticationOnlyType, userId, externalSchemeDetails, currencyConversion, isPartialApproval);
 
         return (PaymentResponse) requestExecutor.execute(request);
     }
@@ -217,7 +219,7 @@ public class Safecharge {
      * @param customSiteName         The merchant’s site name. This is useful for merchants operating many websites that are distinguished only by name.
      * @param productId              A free text field used to identify the product/service sold. If this parameter is not
      *                               sent or is sent with an empty value, then it contains the concatenation of all item names up until the parameter maximum length.
-     * @param paymentOption
+     * @param paymentOption          Details about the payment method.
      * @param transactionType        The type of transaction
      * @param currency               The three-character ISO currency code.
      * @param amount                 The transaction amount.
@@ -230,8 +232,8 @@ public class Safecharge {
      * @param merchantDetails        This allows the merchant to send information with the request to be saved in the API level and returned in response.
      * @param urlDetails             Although DMN responses can be configured per merchant site, it allows dynamically returning the
      *                               DMN to the provided address per request.
-     * @param userPaymentOption
-     * @param paymentMethod
+     * @param userPaymentOption      User payment option details
+     * @param paymentMethod          Specifies the payment method name of the payment option to be charged.
      * @param amountDetails          The amount details.
      * @param addendums              This block contains industry specific addendums. The addendum fields that appear are based on the specific addendum type.
      * @param customData             This parameter can be used to pass any type of information.
@@ -243,8 +245,10 @@ public class Safecharge {
      * @param subMerchant            Contains information about the SubMerchant.
      * @param isRebilling            When performing recurring/rebilling, use this field to indicate the recurring step.
      * @param rebillingType          When performing recurring/rebilling, use this field to indicate the recurring type
-     * @param preventOverride
+     * @param preventOverride        Enables the merchant to override /openOrder with Web SDK fields like shippingAddress or billingAddress.
      * @param userId                 Unique identifier of the user in SafeCharge.
+     * @param isPartialApproval      Used in cases where the deposit was completed and processed with an amount lower than the requested amount
+     *                               due to a consumer’s lack of funds within the desired payment method.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -256,7 +260,8 @@ public class Safecharge {
                                        UserAddress billingAddress, DynamicDescriptor dynamicDescriptor, MerchantDetails merchantDetails,
                                        UrlDetails urlDetails, UserPaymentOption userPaymentOption, String paymentMethod, AmountDetails amountDetails,
                                        Addendums addendums, String customData, Boolean autoPayment3D, String isMoto, String authenticationOnlyType,
-                                       SubMerchant subMerchant, Integer isRebilling, String rebillingType, String preventOverride, String userId) throws SafechargeException {
+                                       SubMerchant subMerchant, Integer isRebilling, String rebillingType, String preventOverride, String userId,
+                                       String isPartialApproval) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
@@ -264,7 +269,7 @@ public class Safecharge {
                 paymentOption, transactionType, currency, amount, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, urlDetails, userTokenId, clientUniqueId, userPaymentOption, paymentMethod,
                 amountDetails, addendums, customData, autoPayment3D, isMoto, authenticationOnlyType, subMerchant, isRebilling, rebillingType,
-                preventOverride, userId);
+                preventOverride, userId, isPartialApproval);
 
         return (OpenOrderResponse) requestExecutor.execute(request);
     }
@@ -433,11 +438,11 @@ public class Safecharge {
      *                             If sent in request, then is passed on to the payments gateway, is visible in SafeCharge’s back-office
      *                             tool transaction reporting and is returned in response.
      * @param customSiteName       The merchant’s site name. This is useful for merchants operating many websites that are distinguished only by name.
-     * @param merchantDetails
+     * @param merchantDetails      Optional custom fields.
      * @param relatedTransactionId The transaction ID of the of the call to {@link Safecharge#authorize3d(String, String, String,
      *                             PaymentOption, Integer, String, String, AmountDetails, List, DeviceDetails, RestApiUserDetails, UserAddress,
      *                             UserAddress, DynamicDescriptor, MerchantDetails, Addendums, UrlDetails, String, String, String, String,
-     *                             Constants.TransactionType, Boolean, SubMerchant, String)}.
+     *                             Constants.TransactionType, Boolean, SubMerchant, String, ExternalSchemeDetails, CurrencyConversion)}.
      * @param subMerchant          Contains information about the SubMerchant.
      * @param userId               Unique identifier of the user in SafeCharge.
      * @param userTokenId          This field uniquely identifies your consumer/user in your system.
@@ -516,19 +521,26 @@ public class Safecharge {
                                            MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails,
                                            String customSiteName, String productId, String customData, String relatedTransactionId,
                                            Constants.TransactionType transactionType, Boolean autoPayment3D, SubMerchant subMerchant,
-                                           String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion) throws SafechargeException {
+                                           String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
+                                           String isPartialApproval) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getAuthorize3dRequest(merchantInfo, sessionToken, userTokenId, clientUniqueId,
                 clientRequestId, paymentOption, isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails,
                 shippingAddress, billingAddress, dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName,
-                productId, customData, relatedTransactionId, transactionType, autoPayment3D, subMerchant, userId, externalSchemeDetails, currencyConversion);
+                productId, customData, relatedTransactionId, transactionType, autoPayment3D, subMerchant, userId, externalSchemeDetails,
+                currencyConversion, isPartialApproval);
 
         return (Authorize3dResponse) requestExecutor.execute(request);
     }
 
     /**
+     * <p>
+     * Call this method to retrieve details about a card, such as card type and brand. In addition,
+     * the method also returns the account’s currency, which is needed for Dynamic Currency Conversion (DCC).
+     * </p>
+     *
      * @param clientUniqueId  This ID identifies the transaction in your system. Optionally, you can pass this value to us
      *                        and we will store it with the transaction record created in our system for your future reference.
      * @param clientRequestId The ID of the API request in the merchant’s system. This value must be unique.
@@ -547,6 +559,25 @@ public class Safecharge {
         return (CardDetailsResponse) requestExecutor.execute(request);
     }
 
+    /**
+     * <p>
+     * Call this method in order to get currency conversion details for particular currency pair and payment method.
+     * The REST returns the DCC information based on the received payment method, source amount, source currency and target currency.
+     * </p>
+     *
+     * @param clientUniqueId   The ID of the transaction in the merchant’s system.
+     * @param clientRequestId  The ID of the API request in the merchant’s system. This value must be unique.
+     * @param cardNumber       The card number (REQUIRED if apm is not populated).
+     * @param apm              The payment method (REQUIRED if cardNumber is not populated).
+     * @param originalAmount   The original amount of the transaction in the merchant’s own currency
+     * @param originalCurrency The 3-letter ISO currency code of the merchant’s own currency.
+     * @param currency         The 3-letter ISO currency code of the conversion currency (REQUIRED if country is not populated).
+     *                         If both currency and country are provided in the input, the currency takes precedence.
+     * @param country          The 2-letter ISO country code of the conversion country (REQUIRED if currency is not populated).
+     *                         If both currency and country are provided in the input, the currency takes precedence.
+     * @return Passes through the response from Safecharge's REST API.
+     * @throws SafechargeException
+     */
     public DccDetailsResponse getDccDetails(String clientUniqueId, String clientRequestId, String cardNumber, String apm, String originalAmount,
                                             String originalCurrency, String currency, String country) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
@@ -558,6 +589,20 @@ public class Safecharge {
         return (DccDetailsResponse) requestExecutor.execute(request);
     }
 
+    /**
+     * <p>
+     * Call this method to retrieve the current conversion rates (markup included), per currency and PM, and timestamp.
+     * The timestamp persists in the system next to the relevant rates matrix snapshot.
+     * </p>
+     *
+     * @param clientUniqueId  The ID of the transaction in the merchant’s system.
+     * @param clientRequestId The ID of the API request in the merchant’s system. This value must be unique.
+     * @param fromCurrency    The original merchant currency.
+     * @param toCurrency      The list of target currencies separated by commas. If not supplied, all the Merchant Site related currencies are retrieved.
+     * @param paymentMethods  The list of payment methods separated by commas. If not supplied, all the Merchant related payment methods are retrieved.
+     * @return Passes through the response from Safecharge's REST API.
+     * @throws SafechargeException
+     */
     public McpRatesResponse getMcpRates(String clientUniqueId, String clientRequestId, String fromCurrency, List<String> toCurrency, List<String> paymentMethods) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
@@ -566,5 +611,31 @@ public class Safecharge {
                 toCurrency, paymentMethods);
 
         return (McpRatesResponse) requestExecutor.execute(request);
+    }
+
+    /**
+     * <p>
+     * Call this method to capture the bank account details of their clients and store them as User Payment Options for subsequent use for payout operations.
+     * </p>
+     *
+     * @param clientRequestId The ID of the API request in the merchant’s system. This value must be unique.
+     * @param userTokenId     The ID of the user in the merchant’s system.
+     * @param paymentMethod   Specifies the payment method name of the payment option to be charged.
+     * @param currencyCode    The three-letter ISO currency code.
+     * @param countryCode     The two-letter ISO country code.
+     * @param languageCode    The language in which the transaction is to be completed.
+     * @param notificationUrl The URL to which DMNs are sent (see our DMNs Guide).
+     * @return Passes through the response from Safecharge's REST API.
+     * @throws SafechargeException
+     */
+    public AccountCaptureResponse accountCapture(String clientRequestId, String userTokenId, String paymentMethod, String currencyCode,
+                                                 String countryCode, String languageCode, String notificationUrl) throws SafechargeException {
+        ensureMerchantInfoAndSessionTokenNotNull();
+
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        AccountCaptureRequest request = requestBuilder.getAccountCaptureRequest(sessionToken, merchantInfo, clientRequestId,
+                userTokenId, paymentMethod, currencyCode, countryCode, languageCode, notificationUrl);
+
+        return (AccountCaptureResponse) requestExecutor.execute(request);
     }
 }
