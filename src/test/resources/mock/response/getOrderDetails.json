@@ -1,0 +1,54 @@
+{
+  "orderId": "9169306",
+  "currency": "EUR",
+  "amount": 2.0,
+  "items": [
+    {
+      "name": "test_item_1",
+      "price": "1.0",
+      "quantity": "1"
+    },
+    {
+      "name": "test_item_2",
+      "price": "1.0",
+      "quantity": "1"
+    }
+  ],
+  "userDetails": {
+  },
+  "shippingAddress": {
+    "firstName": "Test",
+    "lastName": "Testov",
+    "email": "test@test.com",
+    "phone": "0884123456",
+    "address": "Test street 1",
+    "city": "Sofia",
+    "country": "BG",
+    "zip": "1000",
+    "cell": "0884123456"
+  },
+  "billingAddress": {
+    "firstName": "Test",
+    "lastName": "Testov",
+    "email": "test@test.com",
+    "phone": "0884123456",
+    "address": "Test street 1",
+    "city": "Sofia",
+    "country": "BG",
+    "zip": "1000"
+  },
+  "merchantDetails": {
+  },
+  "transactionCreationDate": "20170301170326",
+  "orderCreationDate": "20170301170326",
+  "orderStatus": "OPENED",
+  "sessionToken": "7bae06b6-b4d1-43a3-94ea-557e0207d06f",
+  "internalRequestId": 727,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "reason": "",
+  "merchantId": "2885023999185468261",
+  "merchantSiteId": "5612",
+  "version": "1.0",
+  "clientRequestId": "1488380606000"
+}

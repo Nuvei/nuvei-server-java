@@ -1,0 +1,8 @@
+{
+  "sessionToken": "{{sessionToken}}",
+  "merchantId": "{{merchantId}}",
+  "merchantSiteId": "{{merchantSiteId}}",
+  "clientRequestId": "{{clientRequestId}}",
+  "clientUniqueId": "695701003",
+  "cardNumber": "401735"
+}

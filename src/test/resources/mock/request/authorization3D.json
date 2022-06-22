@@ -1,0 +1,79 @@
+{
+  "sessionToken": "9610a8f6-44cf-4c4f-976a-005da69a2a3b",
+  "merchantSiteId": 19,
+  "merchantId": 7777777,
+  "orderId": "39272",
+  "clientRequestId": "1484759925666",
+  "timeStamp": "20170118191845",
+  "checksum": "649c79075b9147de12d2b0ff62484a09",
+  "clientUniqueId": "uniqueIdCC",
+  "currency": "EUR",
+  "amount": "10",
+  "cardData": {
+    "cardNumber": "4916378656977498",
+    "cardHolderName": "test name",
+    "expirationMonth": "01",
+    "expirationYear": "2020",
+    "CVV": "122"
+  },
+  "items": [
+    {
+      "quantity": "1",
+      "name": "name",
+      "price": "10"
+    }
+  ],
+  "deviceDetails": {
+    "deviceType": "DESKTOP",
+    "deviceName": "deviceName",
+    "deviceOS": "deviceOS",
+    "browser": "browser",
+    "ipAddress": "127.0.0.1"
+  },
+  "userDetails": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "email": "email@email.com",
+    "phone1": "phone1",
+    "phone2": "phone2",
+    "phone3": "phone3",
+    "county":"user county"
+  },
+  "shippingAddress": {
+    "address1": "address1",
+    "address2": "address2",
+    "city": "city",
+    "country": "DE",
+    "state": "",
+    "zip": "1340",
+    "county":"shipping county"
+  },
+  "billingAddress": {
+    "address1": "address1",
+    "address2": "address2",
+    "city": "city",
+    "country": "DE",
+    "state": "",
+    "zip": "1335",
+    "county":"billing county"
+  },
+  "dynamicDescriptor": {
+    "merchantName": "merchantName",
+    "merchantPhone": "merchantPhone"
+  },
+  "merchantDetails": {
+    "customField1": "merchantName",
+    "customField2": "merchantName",
+    "customField3": "merchantName",
+    "customField4": "merchantName",
+    "customField9": "merchantName"
+  },
+  "externalMpi": {
+    "isExternalMpi": "0",
+    "eci": "1",
+    "cavv": "654744564564684",
+    "xid": ""
+  },
+  "isDynamic3D": "1",
+  "dynamic3DMode": "off"
+}

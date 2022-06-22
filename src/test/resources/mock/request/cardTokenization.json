@@ -1,0 +1,27 @@
+{
+  "merchantSiteId": 19,
+  "merchantId": 7777777,
+  "clientRequestId": "1484759925666",
+  "timeStamp": "20170118191845",
+  "sessionToken": "f954c279-57ae-4353-9a28-3f23dcac2ee2",
+  "checksum": "f357a3b3869d422678b779f64e34a091f1d0320c1eaa4436edbcfdadcdfac4c3",
+  "userTokenId": "test_rest_api",
+  "cardData": {
+    "cardNumber": "5560595370301111",
+    "cardHolderName": "test name",
+    "expirationMonth": "11",
+    "expirationYear": "2022",
+    "CVV": "123"
+  },
+  "billingAddress": {
+    "firstName": "Test",
+    "lastName": "Test",
+    "phone": "0884123456789",
+    "email": "email@email.com",
+    "address": "address",
+    "city": "Test",
+    "zip": "1234",
+    "country": "DE",
+    "state": ""
+  }
+}

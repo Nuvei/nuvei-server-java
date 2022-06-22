@@ -1,0 +1,7 @@
+language: java
+install: "mvn clean install -Dgpg.skip -Dmaven.javadoc.skip=true"
+
+script: "mvn clean test"
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t 3ab1b81d-ae5e-4c25-9bc1-10649a47f587

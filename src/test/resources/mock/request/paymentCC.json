@@ -1,0 +1,74 @@
+{
+  "merchantSiteId": "{{merchantSiteId}}",
+  "merchantId": "{{merchantId}}",
+  "sessionToken": "{{sessionToken}}",
+  "clientRequestId": "{{clientRequestId}}",
+  "timeStamp": "{{timestamp}}",
+  "checksum": "{{checksum}}",
+  "clientUniqueId": "uniqueIdCC",
+  "currency": "EUR",
+  "amount": "1",
+  "transactionType": "Sale",
+  "orderId": "{{apiMerchantOrder}}",
+  "isPartialApproval": "0",
+  "cardData": {
+    "cardNumber": "4111111111111111",
+    "cardHolderName": "test name",
+    "expirationMonth": "01",
+    "expirationYear": "2020",
+    "CVV": "122"
+  },
+  "items": [
+    {
+      "name": "name",
+      "price": "1",
+      "quantity": 1
+    }
+  ],
+  "deviceDetails": {
+    "deviceType": "DESKTOP",
+    "deviceName": "deviceName",
+    "deviceOS": "deviceOS",
+    "browser": "browser",
+    "ipAddress": "127.0.0.1"
+  },
+  "userDetails": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "email": "email@email.com",
+    "phone1": "phone1",
+    "phone2": "phone2",
+    "phone3": "phone3"
+  },
+  "shippingAddress": {
+    "address": "address1",
+    "city": "city",
+    "country": "DE",
+    "state": "",
+    "zip": "1340"
+  },
+  "billingAddress": {
+    "address": "address1",
+    "city": "city",
+    "country": "DE",
+    "state": "",
+    "zip": "1335"
+  },
+  "dynamicDescriptor": {
+    "merchantName": "merchantName",
+    "merchantPhone": "merchantPhone"
+  },
+  "merchantDetails": {
+    "customField1": "merchantName",
+    "customField2": "merchantName",
+    "customField3": "merchantName",
+    "customField4": "merchantName",
+    "customField9": "merchantName"
+  },
+  "externalMpi": {
+    "isExternalMpi": "0",
+    "eci": "1",
+    "cavv": "654744564564684",
+    "xid": ""
+  }
+}
