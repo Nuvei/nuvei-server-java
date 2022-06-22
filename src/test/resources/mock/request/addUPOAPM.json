@@ -1,0 +1,26 @@
+{
+  "paymentMethodName": "apmgw_expresscheckout",
+  "apmData": {
+    "account_id": "5DBCG3A5LKE5W",
+    "email": "test@mail.com"
+  },
+  "userTokenId": "test_rest_api",
+  "billingAddress": {
+    "firstName": "First",
+    "lastName": "Last",
+    "address": "Address",
+    "phone": "012345687890",
+    "zip": "12345",
+    "city": "City",
+    "countryCode": "DE",
+    "email": "test@test.com",
+    "locale": "de_DE",
+    "birthdate": "20/01/1990"
+  },
+  "clientRequestId": "1490268819000",
+  "merchantId": "7228839313016442768",
+  "merchantSiteId": "117711",
+  "timeStamp": "20170323133339",
+  "checksum": "901e5382400687668af391a849e2d99ce5bdc122d6698c333d36b6c79b79024a",
+  "sessionToken": "e65c5859-ce32-43e2-9c0c-c978d1a03dbf"
+}

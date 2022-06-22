@@ -1,0 +1,15 @@
+{
+  "descriptorMerchantName": "MerchantName",
+  "descriptorMerchantPhone": "0123456789",
+  "amount": "1",
+  "currency": "EUR",
+  "authCode": "092D34",
+  "comment": "Something something something .... dark side",
+  "relatedTransactionId": "1000047946",
+  "clientRequestId": "1490269731000",
+  "merchantId": "7228839313016442768",
+  "merchantSiteId": "117711",
+  "timeStamp": "20170323134851",
+  "checksum": "d806f98258c88d6fece745e11a6756f4e4884667e9edfe62f80446c5fab88a6b",
+  "sessionToken": "f465cfcc-fcb5-41eb-b49d-6d3273fa29f7"
+}

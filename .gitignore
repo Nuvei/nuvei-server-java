@@ -1,0 +1,10 @@
+*.swp
+.classpath
+.project
+.settings
+tags
+# IntelliJ project files
+target
+.idea
+*.iml
+out

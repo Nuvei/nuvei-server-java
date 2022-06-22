@@ -1,0 +1,36 @@
+{
+  "orderId": "66665",
+  "userTokenId": "vasiln",
+  "transactionId": "2110000000001230986",
+  "transactionType": "InitAuth3D",
+  "transactionStatus": "APPROVED",
+  "gwErrorCode": 0,
+  "gwExtendedErrorCode": 0,
+  "paymentOption": {
+    "card": {
+      "ccCardNumber": "5****5761",
+      "bin": "511142",
+      "last4Digits": "5761",
+      "ccExpMonth": "12",
+      "ccExpYear": "25",
+      "threeD": {
+        "methodUrl": "https://3d-secure.pluscard.de/3ds-method-start?org=pcs",
+        "version": "2.1.0",
+        "v2supported": "true",
+        "methodPayload": "eyJ0aHJlZURTU2VydmVyVHJhbnNJRCI6IjhiMGNmZGM5LTZjZGEtNDYyOS04MjVkLTllNDhhMjA3ZjFlNCIsInRocmVlRFNNZXRob2ROb3RpZmljYXRpb25VUkwiOiJ3d3cudGhpc2lzYW1ldGhvZG5vdGlmaWNhdGlvbnVybC5jb20ifQ==",
+        "serverTransId": "8b0cfdc9-6cda-4629-825d-9e48a207f1e4"
+      }
+    }
+  },
+  "customData": "Custom Data Inserted By Darin!",
+  "sessionToken": "bf013d61-0009-4556-af32-a651efc56c81",
+  "clientUniqueId": "695701003",
+  "internalRequestId": 1539,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "reason": "",
+  "merchantId": "7777777",
+  "merchantSiteId": "38",
+  "version": "1.0",
+  "clientRequestId": "20191111182144"
+}

@@ -1,20 +1,77 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# SafeCharge REST API SDK for Java.
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.safecharge/safecharge-sdk-java/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.safecharge/safecharge-sdk-java)
+[![Build Status](https://travis-ci.org/SafeChargeInternational/safecharge-java.svg?branch=master)](https://travis-ci.org/SafeChargeInternational/safecharge-java)
+[![codecov](https://codecov.io/gh/SafeChargeInternational/safecharge-java/branch/development/graph/badge.svg)](https://codecov.io/gh/SafeChargeInternational/safecharge-java)
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+SafeCharge’s REST API SDK for Java provides developer tools for accessing Safecharge's REST API. SafeCharge’s REST API is a simple, easy to use, secure and stateless API, which enables online merchants and service providers to process consumer payments through SafeCharge’s payment gateway. The API supports merchants of all levels of PCI certification, from their online and mobile merchant applications, and is compatible with a large variety of payment options, i.e. payment cards, alternative payment methods, etc. For SafeCharge REST API documentation, please see: https://www.safecharge.com/docs/api/
+ 
+## Requirements
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+Java 1.7 or later.
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+### Maven
+
+If your application is going to be deployed on a Java EE server add the following dependency:
+
+```xml
+<dependency>    
+    <groupId>com.safecharge</groupId>
+    <artifactId>safecharge-sdk-java</artifactId>
+    <version>1.6.0</version>
+</dependency>
+```
+
+If you are going to use the SDK in Java SE or a non Java EE server please add a Bean Validation API Implementation dependency. Certified implementations of Bean Validation API can be found here: http://beanvalidation.org/certified/ (v.1.1 implementation required). 
+
+For example:
+
+ ```xml
+<dependencies>
+    ...
+    <dependency>    
+        <groupId>com.safecharge</groupId>
+        <artifactId>safecharge-sdk-java</artifactId>
+        <version>1.6.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.bval</groupId>
+        <artifactId>bval-jsr</artifactId>
+        <version>1.1.2</version>
+    </dependency>
+</dependencies>
+ ```
+
+## Running your first request
+
+You only need to setup a HTTP Client and to provide the SafeCharge API host to the request executor and then you can start building requests and send them to the SafeCharge API. 
+
+Check how simple it is trough this sample:
+
+```java
+import com.safecharge.biz.SafechargeRequestExecutor;
+import com.safecharge.model.MerchantInfo;
+import com.safecharge.request.GetSessionTokenRequest;
+import com.safecharge.request.SafechargeRequest;
+import com.safecharge.response.SafechargeResponse;
+import com.safecharge.util.APIConstants;
+import com.safecharge.util.Constants;
+
+public class Sample {
+
+    public static void main(String[] args) {
+        SafechargeRequestExecutor requestExecutor = SafechargeRequestExecutor.getInstance();
+
+        MerchantInfo merchantInfo = new MerchantInfo("MERCHANT_KEY_PROVIDED_BY_SAFECHARGE", "MERCHANT_ID_PROVIDED_BY_SAFECHARGE",
+                "MERCHANT_SITE_ID_PROVIDED_BY_SAFECHARGE", APIConstants.INTEGRATION_HOST, Constants.HashAlgorithm.SHA256);
+
+        SafechargeRequest safechargeRequest = GetSessionTokenRequest.builder()
+                                                                    .addMerchantInfo(merchantInfo)
+                                                                    .build();
+
+        SafechargeResponse response = requestExecutor.executeRequest(safechargeRequest);
+        System.out.println("Received sessionToken = " + response.getSessionToken());
+    }
+}
+```
+More samples tests can be found [here](https://github.com/SafeChargeInternational/safecharge-java/tree/master/src/test/java/com/safecharge/test/workflow/).

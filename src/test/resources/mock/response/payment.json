@@ -1,0 +1,48 @@
+{
+  "orderId": "66657",
+  "userTokenId": "vasiln",
+  "paymentOption": {
+    "userPaymentOptionId": "1000188",
+    "card": {
+      "ccCardNumber": "5****5761",
+      "bin": "511142",
+      "last4Digits": "5761",
+      "ccExpMonth": "12",
+      "ccExpYear": "25",
+      "acquirerId": "99",
+      "cvv2Reply": "M",
+      "avsCode": "X",
+      "threeD": {
+        "threeDFlow": "0",
+        "sdk": {}
+      }
+    }
+  },
+  "transactionStatus": "APPROVED",
+  "merchantDetails": {
+    "customField1": "customField1-valueUVVV",
+    "customField2": "customField2-valueUVVV"
+  },
+  "gwErrorCode": 0,
+  "gwExtendedErrorCode": 0,
+  "transactionType": "Sale",
+  "transactionId": "2110000000001190994",
+  "externalTransactionId": "211001190994",
+  "authCode": "HOSTOK",
+  "customData": "Custom Data Inserted By Darin!",
+  "fraudDetails": {
+    "finalDecision": "Accept",
+    "score": "0"
+  },
+  "sessionToken": "f39376be-f32b-4e99-a21b-59ec1edcbeba",
+  "clientUniqueId": "695701003",
+  "internalRequestId": 1526,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "reason": "",
+  "merchantId": "7777777",
+  "merchantSiteId": "38",
+  "version": "1.0",
+  "clientRequestId": "20191030171148"
+}
+

@@ -1,0 +1,69 @@
+{
+  "sessionToken": "9610a8f6-44cf-4c4f-976a-005da69a2a3b",
+  "timeStamp": "20170118191706",
+  "checksum": "c1569123a7a9fe162f34d5c5703db821",
+  "clientRequestId": "1484759826495",
+  "merchantSiteId": "19",
+  "merchantId": "7777777",
+  "userTokenId": "2",
+  "currency": "EUR",
+  "amount": "10",
+  "items": [
+    {
+      "name": "name",
+      "price": 10,
+      "quantity": 1
+    }
+  ],
+  "deviceDetails": {
+    "deviceName": "petka",
+    "deviceOS": "PetkaOS",
+    "browser": "Petka Browser",
+    "ipAddress": "127.0.0.1"
+  },
+  "userDetails": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "phone": "",
+    "email": "test@test.com",
+    "address": "",
+    "city": "",
+    "zip": "",
+    "country": "",
+    "state": ""
+  },
+  "shippingAddress": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "cell": "",
+    "phone": "",
+    "email": "test@test.com",
+    "address": "",
+    "city": "",
+    "zip": "",
+    "country": "",
+    "state": ""
+  },
+  "billingAddress": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "phone": "",
+    "email": "test@test.com",
+    "address": "",
+    "city": "",
+    "zip": "",
+    "country": "",
+    "state": ""
+  },
+  "dynamicDescriptor": {
+    "merchantName": "merchantName",
+    "merchantPhone": "merchantPhone"
+  },
+  "merchantDetails": {
+    "customInfoField1": "merchantName",
+    "customInfoField2": "merchantName",
+    "customInfoField3": "merchantName",
+    "customInfoField4": "merchantName",
+    "customInfoField5": "merchantName"
+  }
+}
