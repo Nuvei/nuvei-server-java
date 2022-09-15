@@ -1,0 +1,17 @@
+{
+  "sessionToken": "d65cb64c-798c-4e6d-8496-41e962a091cd",
+  "merchantSiteId": "117711",
+  "merchantId": "7228839313016442768",
+  "userTokenId": "test_rest_api",
+  "clientRequestId": "20170316120028",
+  "timeStamp": "20170316120028",
+  "checksum": "8a91b23cd09eaa20fb4f7741a42ba5f089b6473657d485f62c3a9fdfb1f734d6",
+  "ccExpMonth":"12",
+  "ccExpYear":"23",
+  "ccNameOnCard":"Petka",
+  "ccToken":"bwBuAGQARgAwAEYAbABsAEYATgB5AD4AQwBgAC0AIwBKAFMAcwAuAFkAeAApAHQAdgBYAC4AIwBrAHoAVgBhAGkAMQBaAFIAKgAkAHoARwBjAG4AMwA",
+  "brand":"visa",
+  "uniqueCC":"123",
+  "bin":"411111",
+  "last4Digits":"1137"
+}

@@ -1,0 +1,23 @@
+{
+  "orderId": "9169329",
+  "transactionStatus": "APPROVED",
+  "gwErrorCode": 0,
+  "gwExtendedErrorCode": 0,
+  "userPaymentOptionId": 0,
+  "transactionId": "1000045504",
+  "authCode": "0916AD",
+  "sessionToken": "c1dfa191-2193-4930-ba3c-a01b66538f0e",
+  "clientUniqueId": "uniqueIdCC",
+  "internalRequestId": 883,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "reason": "",
+  "merchantId": "7228839313016442768",
+  "merchantSiteId": "117711",
+  "version": "1.0",
+  "clientRequestId": "20170316152036",
+  "CVV2Reply": "3434",
+  "AVSCode": "344",
+  "transactionType": "Auth",
+  "externalTokenProvider" : ""
+}

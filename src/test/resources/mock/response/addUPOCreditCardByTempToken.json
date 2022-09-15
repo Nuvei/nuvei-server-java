@@ -1,0 +1,12 @@
+{
+  "userPaymentOptionId": "5854720",
+  "sessionToken": "d65cb64c-798c-4e6d-8496-41e962a091cd",
+  "internalRequestId": 864,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "reason": "",
+  "merchantId": "7228839313016442768",
+  "merchantSiteId": "117711",
+  "version": "1.0",
+  "clientRequestId": "20170316120028"
+}

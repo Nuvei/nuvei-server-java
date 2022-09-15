@@ -1,0 +1,16 @@
+{
+  "redirectURL": "http://www.safecharge.com",
+  "orderId": "9169303",
+  "paymentMethodErrorCode": "0",
+  "gwErrorCode": 0,
+  "gwErrorReason": "",
+  "sessionToken": "e8c7b6dd-2a90-4348-8a17-82101f6a032e",
+  "internalRequestId": 714,
+  "status": "SUCCESS",
+  "errCode": 0,
+  "reason": "",
+  "merchantId": "2885023999185468261",
+  "merchantSiteId": "5612",
+  "version": "1.0",
+  "clientRequestId": "1488379532000"
+}
