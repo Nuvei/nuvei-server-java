@@ -2,39 +2,8 @@ package com.safecharge.biz;
 
 import java.util.List;
 
-import com.safecharge.model.Addendums;
-import com.safecharge.model.AmountDetails;
-import com.safecharge.model.CurrencyConversion;
-import com.safecharge.model.RestApiUserDetails;
-import com.safecharge.model.DeviceDetails;
-import com.safecharge.model.DynamicDescriptor;
-import com.safecharge.model.ExternalSchemeDetails;
-import com.safecharge.model.InitPaymentPaymentOption;
-import com.safecharge.model.Item;
-import com.safecharge.model.MerchantDetails;
-import com.safecharge.model.MerchantInfo;
-import com.safecharge.model.OpenOrderPaymentOption;
-import com.safecharge.model.PaymentOption;
-import com.safecharge.model.SubMerchant;
-import com.safecharge.model.UrlDetails;
-import com.safecharge.model.UserAddress;
-import com.safecharge.model.UserPaymentOption;
-import com.safecharge.model.Verify3dPaymentOption;
-import com.safecharge.request.AccountCaptureRequest;
-import com.safecharge.request.Authorize3dRequest;
-import com.safecharge.request.CardDetailsRequest;
-import com.safecharge.request.DccDetailsRequest;
-import com.safecharge.request.GetPaymentStatusRequest;
-import com.safecharge.request.GetSessionTokenRequest;
-import com.safecharge.request.InitPaymentRequest;
-import com.safecharge.request.McpRatesRequest;
-import com.safecharge.request.OpenOrderRequest;
-import com.safecharge.request.PaymentRequest;
-import com.safecharge.request.RefundTransactionRequest;
-import com.safecharge.request.SafechargeBaseRequest;
-import com.safecharge.request.SettleTransactionRequest;
-import com.safecharge.request.Verify3dRequest;
-import com.safecharge.request.VoidTransactionRequest;
+import com.safecharge.model.*;
+import com.safecharge.request.*;
 import com.safecharge.util.Constants;
 
 /**
@@ -358,6 +327,27 @@ public class RequestBuilder {
                 .addCountryCode(countryCode)
                 .addLanguageCode(languageCode)
                 .addNotificationUrl(notificationUrl)
+                .build();
+    }
+
+    public PayoutRequest getPayoutRequest(String sessionToken, MerchantInfo merchantInfo, String userTokenId, String clientUniqueId, String amount, String currency,
+                                UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
+                                MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
+                                CardData cardData, DeviceDetails deviceDetails) {
+        return PayoutRequest.builder()
+                .addSessionToken(sessionToken)
+                .addMerchantInfo(merchantInfo)
+                .addClientUniqueId(clientUniqueId)
+                .addUserTokenId(userTokenId)
+                .addAmountAndCurrency(amount, currency)
+                .addUserPaymentOption(userPaymentOption)
+                .addComment(comment)
+                .addDynamicDescriptor(dynamicDescriptor)
+                .addMerchantDetails(merchantDetails)
+                .addUrlDetails(urlDetails)
+                .addSubMethodDetails(subMethodDetails)
+                .addCardData(cardData)
+                .addDeviceDetails(deviceDetails)
                 .build();
     }
 }

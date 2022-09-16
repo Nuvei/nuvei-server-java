@@ -4,43 +4,9 @@ import java.util.List;
 
 import com.safecharge.exception.SafechargeConfigurationException;
 import com.safecharge.exception.SafechargeException;
-import com.safecharge.model.Addendums;
-import com.safecharge.model.AmountDetails;
-import com.safecharge.model.CurrencyConversion;
-import com.safecharge.model.DeviceDetails;
-import com.safecharge.model.DynamicDescriptor;
-import com.safecharge.model.ExternalSchemeDetails;
-import com.safecharge.model.InitPaymentPaymentOption;
-import com.safecharge.model.Item;
-import com.safecharge.model.MerchantDetails;
-import com.safecharge.model.MerchantInfo;
-import com.safecharge.model.OpenOrderPaymentOption;
-import com.safecharge.model.PaymentOption;
-import com.safecharge.model.RestApiUserDetails;
-import com.safecharge.model.SubMerchant;
-import com.safecharge.model.UrlDetails;
-import com.safecharge.model.UserAddress;
-import com.safecharge.model.UserPaymentOption;
-import com.safecharge.model.Verify3dPaymentOption;
-import com.safecharge.request.AccountCaptureRequest;
-import com.safecharge.request.CardDetailsRequest;
-import com.safecharge.request.DccDetailsRequest;
-import com.safecharge.request.McpRatesRequest;
-import com.safecharge.request.SafechargeBaseRequest;
-import com.safecharge.response.AccountCaptureResponse;
-import com.safecharge.response.Authorize3dResponse;
-import com.safecharge.response.CardDetailsResponse;
-import com.safecharge.response.DccDetailsResponse;
-import com.safecharge.response.GetPaymentStatusResponse;
-import com.safecharge.response.InitPaymentResponse;
-import com.safecharge.response.McpRatesResponse;
-import com.safecharge.response.OpenOrderResponse;
-import com.safecharge.response.PaymentResponse;
-import com.safecharge.response.RefundTransactionResponse;
-import com.safecharge.response.SafechargeResponse;
-import com.safecharge.response.SettleTransactionResponse;
-import com.safecharge.response.Verify3dResponse;
-import com.safecharge.response.VoidTransactionResponse;
+import com.safecharge.model.*;
+import com.safecharge.request.*;
+import com.safecharge.response.*;
 import com.safecharge.util.Constants;
 
 /**
@@ -637,5 +603,42 @@ public class Safecharge {
                 userTokenId, paymentMethod, currencyCode, countryCode, languageCode, notificationUrl);
 
         return (AccountCaptureResponse) requestExecutor.execute(request);
+    }
+
+
+    /**
+     * <p>
+     *     The payout method allows performing a payout (a transfer of funds from the merchant to the consumer) with no connection to a previous transaction.
+     * </p>
+     *
+     * @param userTokenId           This ID uniquely identifies your consumer/user in your system.
+     * @param clientUniqueId        The ID of the transaction in the merchant’s system.
+     * @param amount                The transaction amount.
+     * @param currency              The 3-letter ISO currency code.
+     * @param userPaymentOption     User Payment Option
+     * @param comment               Enables the addition of a free text comment to the request.
+     * @param dynamicDescriptor     The merchant name, as is displayed for the transaction on the consumer’s card statement.
+     * @param merchantDetails       This allows the merchant to send information with the request to be saved in the API level and returned in response.
+     * @param urlDetails            The URL to which DMNs are sent.
+     * @param subMethodDetails      Details about submethod
+     * @param cardData              An alternative to sending the userPaymentOptionId for card payouts.
+     * @param deviceDetails         Information about client device
+     * @return Passes through the response from Safecharge's REST API.
+     * @throws SafechargeException
+     */
+    public PayoutResponse payout(String userTokenId, String clientUniqueId, String amount, String currency,
+                                 UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
+                                 MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
+                                 CardData cardData, DeviceDetails deviceDetails) throws SafechargeException {
+
+        ensureMerchantInfoAndSessionTokenNotNull();
+
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        PayoutRequest request = requestBuilder.getPayoutRequest(sessionToken, merchantInfo,
+                userTokenId, clientUniqueId, amount, currency,userPaymentOption, comment, dynamicDescriptor,
+                merchantDetails, urlDetails, subMethodDetails, cardData, deviceDetails);
+
+
+        return (PayoutResponse) requestExecutor.execute(request);
     }
 }

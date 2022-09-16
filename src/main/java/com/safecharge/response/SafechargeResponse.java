@@ -79,6 +79,11 @@ public abstract class SafechargeResponse {
      */
     private String hint;
 
+    /**
+     * Full json representation of the response
+     */
+    private String json = "";
+
     public SafechargeResponse() {
     }
 
@@ -184,6 +189,14 @@ public abstract class SafechargeResponse {
 
     public void setHint(String hint) {
         this.hint = hint;
+    }
+
+    public String getJson() {
+        return json;
+    }
+
+    public void setJson(String json) {
+        this.json = json;
     }
 
     @Override

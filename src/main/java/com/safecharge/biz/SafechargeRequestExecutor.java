@@ -214,7 +214,9 @@ public class SafechargeRequestExecutor {
             String requestJSON = gson.toJson(request);
             String responseJSON = executeJsonRequest(requestJSON, serviceUrl, requestClass);
 
-            return gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(requestClass));
+            SafechargeResponse response = gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(requestClass));
+            response.setJson(responseJSON);
+            return response;
 
         } catch (IOException e) {
 
