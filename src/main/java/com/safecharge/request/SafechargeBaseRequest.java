@@ -47,6 +47,8 @@ public abstract class SafechargeBaseRequest {
     private final String webMasterId = SafechargeBaseRequest.class.getPackage().getImplementationVersion() != null
             ? APIConstants.SDK_JAVA_VERSION.concat(SafechargeBaseRequest.class.getPackage().getImplementationVersion()) : null;
 
+    private final String sourceApplication = "JAVA_SDK";
+
     public String getInternalRequestId() {
         return internalRequestId;
     }
@@ -93,6 +95,14 @@ public abstract class SafechargeBaseRequest {
 
     public void setServerHost(String serverHost) {
         this.serverHost = serverHost;
+    }
+
+    public String getWebMasterId() {
+        return webMasterId;
+    }
+
+    public String getSourceApplication() {
+        return sourceApplication;
     }
 
     @Override

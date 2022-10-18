@@ -71,8 +71,6 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
     @Valid
     private SubMerchant subMerchant;
 
-    private final String sourceApplication = "JAVA_SDK";
-
     public String getAmount() {
         return amount;
     }

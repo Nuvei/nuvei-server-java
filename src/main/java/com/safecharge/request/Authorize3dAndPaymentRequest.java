@@ -38,8 +38,6 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
     @Size(max = 1)
     private String isPartialApproval;
 
-    private final String sourceApplication = "JAVA_SDK";
-
     public PaymentOption getPaymentOption() {
         return paymentOption;
     }

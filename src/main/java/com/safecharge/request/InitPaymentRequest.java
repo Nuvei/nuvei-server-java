@@ -54,8 +54,6 @@ public class InitPaymentRequest extends SafechargeRequest {
     @Size(max = 255)
     private String userId;
 
-    private final String sourceApplication = "JAVA_SDK";
-
     public String getUserTokenId() {
         return userTokenId;
     }

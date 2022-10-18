@@ -39,8 +39,6 @@ public class AccountCaptureRequest extends SafechargeRequest {
     @Size(max = 1000)
     private String notificationUrl;
 
-    private final String sourceApplication = "JAVA_SDK";
-
     public String getUserTokenId() {
         return userTokenId;
     }

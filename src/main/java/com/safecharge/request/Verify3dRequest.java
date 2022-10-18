@@ -65,8 +65,6 @@ public class Verify3dRequest extends SafechargeRequest {
     @Valid
     private Verify3dPaymentOption paymentOption;
 
-    private final String sourceApplication = "JAVA_SDK";
-
     @Size(max = 255)
     private String userId;
 
