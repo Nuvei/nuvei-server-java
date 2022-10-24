@@ -1,6 +1,7 @@
 package com.safecharge.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import com.safecharge.exception.SafechargeConfigurationException;
 import com.safecharge.exception.SafechargeException;
@@ -640,5 +641,27 @@ public class Safecharge {
 
 
         return (PayoutResponse) requestExecutor.execute(request);
+    }
+
+    /**
+     * <p>
+     * Adds an alternative payment method (APM) to a specific user's list of UPOs.
+     * </p>
+     *
+     * @param userTokenId     The ID of the user in the merchant’s system.
+     * @param paymentMethodName   Specifies the payment method name of the payment option.
+     * @param apmData     APM data.
+     * @param billingAddress    Billing address.
+     * @return Passes through the response from Safecharge's REST API.
+     * @throws SafechargeException
+     */
+    public AddUPOAPMResponse addUpoApm(String userTokenId, String paymentMethodName, Map<String, String> apmData, UserDetailsCashier billingAddress) throws SafechargeException {
+        ensureMerchantInfoAndSessionTokenNotNull();
+
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getAddUpoApmRequest(sessionToken, merchantInfo,
+                userTokenId, paymentMethodName, billingAddress, apmData);
+
+        return (AddUPOAPMResponse) requestExecutor.execute(request);
     }
 }

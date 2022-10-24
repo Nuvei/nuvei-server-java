@@ -82,7 +82,7 @@ public abstract class SafechargeResponse {
     /**
      * Full json representation of the response
      */
-    private String json = "";
+    private String json;
 
     public SafechargeResponse() {
     }

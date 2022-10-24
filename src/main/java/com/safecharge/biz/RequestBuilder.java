@@ -1,6 +1,7 @@
 package com.safecharge.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import com.safecharge.model.*;
 import com.safecharge.request.*;
@@ -348,6 +349,17 @@ public class RequestBuilder {
                 .addSubMethodDetails(subMethodDetails)
                 .addCardData(cardData)
                 .addDeviceDetails(deviceDetails)
+                .build();
+    }
+
+    public SafechargeBaseRequest getAddUpoApmRequest(String sessionToken, MerchantInfo merchantInfo, String userTokenId, String paymentMethodName, UserDetailsCashier billingAddress, Map<String, String> apmData) {
+        return AddUPOAPMRequest.builder()
+                .addSessionToken(sessionToken)
+                .addMerchantInfo(merchantInfo)
+                .addUserTokenId(userTokenId)
+                .addPaymentMethodName(paymentMethodName)
+                .addBillingAddress(billingAddress)
+                .addApmData(apmData)
                 .build();
     }
 }
