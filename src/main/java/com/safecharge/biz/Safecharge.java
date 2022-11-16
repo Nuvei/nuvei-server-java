@@ -664,4 +664,13 @@ public class Safecharge {
 
         return (AddUPOAPMResponse) requestExecutor.execute(request);
     }
+
+    public GetPayoutStatusResponse getPayoutStatus() throws SafechargeException {
+        ensureMerchantInfoAndSessionTokenNotNull();
+
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getPayoutStatusRequest(sessionToken, merchantInfo);
+
+        return (GetPayoutStatusResponse) requestExecutor.execute(request);
+    }
 }

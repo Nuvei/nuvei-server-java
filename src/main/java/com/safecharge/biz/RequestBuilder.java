@@ -137,6 +137,13 @@ public class RequestBuilder {
                 .build();
     }
 
+    public SafechargeBaseRequest getPayoutStatusRequest(String sessionToken, MerchantInfo merchantInfo) {
+        return GetPayoutStatusRequest.builder()
+                .addSessionToken(sessionToken)
+                .addMerchantInfo(merchantInfo)
+                .build();
+    }
+
     public SafechargeBaseRequest getVoidTransactionRequest(String sessionToken, String clientRequestId, MerchantInfo merchantInfo,
                                                            String relatedTransactionId, String amount, String currency, String authCode,
                                                            String clientUniqueId, UrlDetails urlDetails, String customSiteName,
