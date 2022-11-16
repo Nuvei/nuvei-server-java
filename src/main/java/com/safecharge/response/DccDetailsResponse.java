@@ -18,6 +18,8 @@ public class DccDetailsResponse extends SafechargeResponse {
 
     private String originalCurrency;
 
+    private String dccFullSupport;
+
     public String getRateValueWitMarkUp() {
         return rateValueWitMarkUp;
     }
@@ -64,5 +66,13 @@ public class DccDetailsResponse extends SafechargeResponse {
 
     public void setOriginalCurrency(String originalCurrency) {
         this.originalCurrency = originalCurrency;
+    }
+
+    public String getDccFullSupport() {
+        return dccFullSupport;
+    }
+
+    public void setDccFullSupport(String dccFullSupport) {
+        this.dccFullSupport = dccFullSupport;
     }
 }

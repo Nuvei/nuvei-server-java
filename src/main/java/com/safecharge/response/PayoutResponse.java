@@ -1,5 +1,6 @@
 package com.safecharge.response;
 
+import com.safecharge.model.CardData;
 import com.safecharge.model.MerchantDetails;
 
 /**
@@ -26,6 +27,7 @@ public class PayoutResponse extends SafechargeResponse {
     private String transactionId;
 
     private MerchantDetails merchantDetails;
+    private CardData cardData;
 
     public String getUserTokenId() {
         return userTokenId;
