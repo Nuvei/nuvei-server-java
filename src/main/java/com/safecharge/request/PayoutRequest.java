@@ -43,6 +43,9 @@ public class PayoutRequest extends SafechargeRequest {
     @Size(max = 45)
     private String clientUniqueId;
 
+    @Size(max = 20)
+    private String clientRequestId;
+
     @Size(max = 12)
     private String amount;
 
@@ -174,10 +177,21 @@ public class PayoutRequest extends SafechargeRequest {
     }
 
     @Override
+    public String getClientRequestId() {
+        return clientRequestId;
+    }
+
+    @Override
+    public void setClientRequestId(String clientRequestId) {
+        this.clientRequestId = clientRequestId;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PayoutRequest{");
         sb.append("userTokenId='").append(userTokenId).append('\'');
         sb.append(", clientUniqueId='").append(clientUniqueId).append('\'');
+        sb.append(", clientRequestId='").append(clientRequestId).append('\'');
         sb.append(", amount='").append(amount).append('\'');
         sb.append(", currency='").append(currency).append('\'');
         sb.append(", userPaymentOption=").append(userPaymentOption);
@@ -196,6 +210,7 @@ public class PayoutRequest extends SafechargeRequest {
 
         private String userTokenId;
         private String clientUniqueId;
+        private String clientRequestId;
         private String amount;
         private String currency;
         private UserPaymentOption userPaymentOption;
@@ -222,6 +237,11 @@ public class PayoutRequest extends SafechargeRequest {
          */
         public Builder addClientUniqueId(String clientUniqueId) {
             this.clientUniqueId = clientUniqueId;
+            return this;
+        }
+
+        public Builder addClientRequestId(String clientRequestId) {
+            this.clientRequestId = clientRequestId;
             return this;
         }
 
@@ -328,6 +348,7 @@ public class PayoutRequest extends SafechargeRequest {
             request.setSubMethodDetails(subMethodDetails);
             request.setCardData(cardData);
             request.setDeviceDetails(deviceDetails);
+            request.setClientRequestId(clientRequestId);
             return ValidationUtils.validate(super.build(request));
         }
     }

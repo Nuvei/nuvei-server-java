@@ -137,10 +137,11 @@ public class RequestBuilder {
                 .build();
     }
 
-    public SafechargeBaseRequest getPayoutStatusRequest(String sessionToken, MerchantInfo merchantInfo) {
+    public SafechargeBaseRequest getPayoutStatusRequest(String sessionToken, MerchantInfo merchantInfo, String clientRequestId) {
         return GetPayoutStatusRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
+                .addClientRequestId(clientRequestId)
                 .build();
     }
 
@@ -338,7 +339,7 @@ public class RequestBuilder {
                 .build();
     }
 
-    public PayoutRequest getPayoutRequest(String sessionToken, MerchantInfo merchantInfo, String userTokenId, String clientUniqueId, String amount, String currency,
+    public PayoutRequest getPayoutRequest(String sessionToken, MerchantInfo merchantInfo, String userTokenId, String clientUniqueId, String clientRequestId, String amount, String currency,
                                 UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
                                 MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
                                 CardData cardData, DeviceDetails deviceDetails) {
@@ -346,6 +347,7 @@ public class RequestBuilder {
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
                 .addClientUniqueId(clientUniqueId)
+                .addClientRequestId(clientRequestId)
                 .addUserTokenId(userTokenId)
                 .addAmountAndCurrency(amount, currency)
                 .addUserPaymentOption(userPaymentOption)

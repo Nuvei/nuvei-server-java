@@ -627,7 +627,7 @@ public class Safecharge {
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeException
      */
-    public PayoutResponse payout(String userTokenId, String clientUniqueId, String amount, String currency,
+    public PayoutResponse payout(String userTokenId, String clientUniqueId, String clientRequestId, String amount, String currency,
                                  UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
                                  MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
                                  CardData cardData, DeviceDetails deviceDetails) throws SafechargeException {
@@ -636,7 +636,7 @@ public class Safecharge {
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         PayoutRequest request = requestBuilder.getPayoutRequest(sessionToken, merchantInfo,
-                userTokenId, clientUniqueId, amount, currency,userPaymentOption, comment, dynamicDescriptor,
+                userTokenId, clientUniqueId, clientRequestId, amount, currency,userPaymentOption, comment, dynamicDescriptor,
                 merchantDetails, urlDetails, subMethodDetails, cardData, deviceDetails);
 
 
@@ -665,11 +665,11 @@ public class Safecharge {
         return (AddUPOAPMResponse) requestExecutor.execute(request);
     }
 
-    public GetPayoutStatusResponse getPayoutStatus() throws SafechargeException {
+    public GetPayoutStatusResponse getPayoutStatus(String clientRequestId) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
-        SafechargeBaseRequest request = requestBuilder.getPayoutStatusRequest(sessionToken, merchantInfo);
+        SafechargeBaseRequest request = requestBuilder.getPayoutStatusRequest(sessionToken, merchantInfo, clientRequestId);
 
         return (GetPayoutStatusResponse) requestExecutor.execute(request);
     }
