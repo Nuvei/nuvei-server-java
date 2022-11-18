@@ -14,41 +14,20 @@ public class GetPayoutStatusRequest extends SafechargeRequest {
         return new GetPayoutStatusRequest.Builder();
     }
 
-    private String clientRequestId;
-
-    @Override
-    public String getClientRequestId() {
-        return clientRequestId;
-    }
-
-    @Override
-    public void setClientRequestId(String clientRequestId) {
-        this.clientRequestId = clientRequestId;
-    }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("GetPayoutStatusRequest{");
         sb.append(super.toString());
-        sb.append(", clientRequestId='").append(clientRequestId).append('\'');
         sb.append("}");
         return sb.toString();
     }
 
     public static class Builder extends SafechargeBuilder<GetPayoutStatusRequest.Builder> {
 
-        private String clientRequestId;
-
-        public GetPayoutStatusRequest.Builder addClientRequestId(String clientRequestId) {
-            this.clientRequestId = clientRequestId;
-            return this;
-        }
-
         @Override
         public GetPayoutStatusRequest build() throws ConstraintViolationException {
-            GetPayoutStatusRequest request = new GetPayoutStatusRequest();
-            request.setClientRequestId(this.clientRequestId);
-            return ValidationUtils.validate(super.build(request));
+            return ValidationUtils.validate(super.build(new GetPayoutStatusRequest()));
         }
     }
 }
