@@ -596,12 +596,12 @@ public class Safecharge {
      * @throws SafechargeException
      */
     public AccountCaptureResponse accountCapture(String clientRequestId, String userTokenId, String paymentMethod, String currencyCode,
-                                                 String countryCode, String languageCode, String notificationUrl) throws SafechargeException {
+                                                 String countryCode, String languageCode, String amount, String notificationUrl) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         AccountCaptureRequest request = requestBuilder.getAccountCaptureRequest(sessionToken, merchantInfo, clientRequestId,
-                userTokenId, paymentMethod, currencyCode, countryCode, languageCode, notificationUrl);
+                userTokenId, paymentMethod, currencyCode, countryCode, languageCode, amount, notificationUrl);
 
         return (AccountCaptureResponse) requestExecutor.execute(request);
     }

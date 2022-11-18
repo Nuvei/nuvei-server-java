@@ -36,6 +36,9 @@ public class AccountCaptureRequest extends SafechargeRequest {
     @Size(max = 2)
     private String languageCode;
 
+    @Size(max = 12)
+    private String amount;
+
     @Size(max = 1000)
     private String notificationUrl;
 
@@ -79,6 +82,14 @@ public class AccountCaptureRequest extends SafechargeRequest {
         this.languageCode = languageCode;
     }
 
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
     public String getNotificationUrl() {
         return notificationUrl;
     }
@@ -98,6 +109,7 @@ public class AccountCaptureRequest extends SafechargeRequest {
         private String currencyCode;
         private String countryCode;
         private String languageCode;
+        private String amount;
         private String notificationUrl;
 
         public Builder addUserTokenId(String userTokenId) {
@@ -125,6 +137,11 @@ public class AccountCaptureRequest extends SafechargeRequest {
             return this;
         }
 
+        public Builder addAmount(String amount) {
+            this.amount = amount;
+            return this;
+        }
+
         public Builder addNotificationUrl(String notificationUrl) {
             this.notificationUrl = notificationUrl;
             return this;
@@ -139,6 +156,7 @@ public class AccountCaptureRequest extends SafechargeRequest {
             request.setCurrencyCode(currencyCode);
             request.setCountryCode(countryCode);
             request.setLanguageCode(languageCode);
+            request.setAmount(amount);
             request.setNotificationUrl(notificationUrl);
 
             return ValidationUtils.validate(super.build(request));
