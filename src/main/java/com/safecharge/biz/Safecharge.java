@@ -228,7 +228,8 @@ public class Safecharge {
                                        UrlDetails urlDetails, UserPaymentOption userPaymentOption, String paymentMethod, AmountDetails amountDetails,
                                        Addendums addendums, String customData, Boolean autoPayment3D, String isMoto, String authenticationOnlyType,
                                        SubMerchant subMerchant, Integer isRebilling, String rebillingType, String preventOverride, String userId,
-                                       String isPartialApproval) throws SafechargeException {
+                                       String isPartialApproval, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
+                                       String openAmount, String aftOverride) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
@@ -236,7 +237,7 @@ public class Safecharge {
                 paymentOption, transactionType, currency, amount, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, urlDetails, userTokenId, clientUniqueId, userPaymentOption, paymentMethod,
                 amountDetails, addendums, customData, autoPayment3D, isMoto, authenticationOnlyType, subMerchant, isRebilling, rebillingType,
-                preventOverride, userId, isPartialApproval);
+                preventOverride, userId, isPartialApproval, externalSchemeDetails, currencyConversion, openAmount, aftOverride);
 
         return (OpenOrderResponse) requestExecutor.execute(request);
     }

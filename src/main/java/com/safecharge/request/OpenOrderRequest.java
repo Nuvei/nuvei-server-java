@@ -3,6 +3,8 @@ package com.safecharge.request;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
+import com.safecharge.model.CurrencyConversion;
+import com.safecharge.model.ExternalSchemeDetails;
 import com.safecharge.model.OpenOrderPaymentOption;
 import com.safecharge.model.SubMerchant;
 import com.safecharge.request.builder.SafechargeOrderWithDetailsBuilder;
@@ -167,6 +169,11 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
         private String paymentMethod;
         private String preventOverride;
         private String isPartialApproval;
+        private ExternalSchemeDetails externalSchemeDetails;
+        private CurrencyConversion currencyConversion;
+        private String openAmount;
+        private String aftOverride;
+
 
         public Builder addCustomSiteName(String customSiteName) {
             this.customSiteName = customSiteName;
@@ -218,11 +225,30 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
             return this;
         }
 
+        public Builder addExternalSchemaDetails(ExternalSchemeDetails externalSchemeDetails) {
+            this.externalSchemeDetails = externalSchemeDetails;
+            return this;
+        }
+
+        public Builder addCurrencyConversion(CurrencyConversion currencyConversion) {
+            this.currencyConversion = currencyConversion;
+            return this;
+        }
+
+        public Builder addOpenAmount(String openAmount) {
+            this.openAmount = openAmount;
+            return this;
+        }
+
+        public Builder addAftOverride(String aftOverride) {
+            this.aftOverride = aftOverride;
+            return this;
+        }
+
         public Builder addIsPartialApproval(String isPartialApproval) {
             this.isPartialApproval = isPartialApproval;
             return this;
         }
-
         /**
          * Builds the request.
          *
@@ -242,6 +268,10 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
             request.setPaymentMethod(paymentMethod);
             request.setPreventOverride(preventOverride);
             request.setIsPartialApproval(isPartialApproval);
+            request.setExternalSchemeDetails(externalSchemeDetails);
+            request.setCurrencyConversion(currencyConversion);
+            request.setOpenAmount(openAmount);
+            request.setAftOverride(aftOverride);
 
             return ValidationUtils.validate(super.build(request));
         }

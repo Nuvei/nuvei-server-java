@@ -92,7 +92,8 @@ public class RequestBuilder {
                                                      UrlDetails urlDetails, String userTokenId, String clientUniqueId, UserPaymentOption userPaymentOption,
                                                      String paymentMethod, AmountDetails amountDetails, Addendums addendums, String customData, Boolean autoPayment3D,
                                                      String isMoto, String authenticationOnlyType, SubMerchant subMerchant, Integer isRebilling, String rebillingType,
-                                                     String preventOverride, String userId, String isPartialApproval) {
+                                                     String preventOverride, String userId, String isPartialApproval, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
+                                                     String openAmount, String aftOverride) {
         return OpenOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
@@ -127,6 +128,10 @@ public class RequestBuilder {
                 .addPreventOverride(preventOverride)
                 .addUserId(userId)
                 .addIsPartialApproval(isPartialApproval)
+                .addExternalSchemaDetails(externalSchemeDetails)
+                .addCurrencyConversion(currencyConversion)
+                .addOpenAmount(openAmount)
+                .addAftOverride(aftOverride)
                 .build();
     }
 

@@ -174,7 +174,7 @@ public class SafechargeTest {
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
         OpenOrderResponse response = sut.openOrder("userTokenId", "clientRequestId", "clientUniqueId", null, null, null, null, "BGN", "11", null,
                 null, null, null, null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(OpenOrderRequest.class));
@@ -191,7 +191,7 @@ public class SafechargeTest {
 
         sut.openOrder("userTokenId", "clientRequestId", "clientUniqueId", null, null, null, null, "BGN", "11", null,
                 null, null, null, null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null, null, null, null);
     }
 
     @Test

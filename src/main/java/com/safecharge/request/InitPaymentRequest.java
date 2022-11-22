@@ -51,6 +51,9 @@ public class InitPaymentRequest extends SafechargeRequest {
 
     private UserAddress billingAddress;
 
+    @Size(max = 1)
+    private String aftOverride;
+
     @Size(max = 255)
     private String userId;
 
