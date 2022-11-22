@@ -1,5 +1,7 @@
 package com.safecharge.response;
 
+import com.safecharge.model.PaymentOption;
+
 public class GetPayoutStatusResponse extends SafechargeResponse {
 
     private String transactionStatus;
@@ -9,6 +11,12 @@ public class GetPayoutStatusResponse extends SafechargeResponse {
     private String currency;
 
     private String userPaymentOptionId;
+
+    private PaymentOption paymentOption;
+
+    private String paymentMethodErrorCode;
+
+    private String paymentMethodErrorReason;
 
     private String gwExtendedErrorCode;
 
@@ -50,6 +58,30 @@ public class GetPayoutStatusResponse extends SafechargeResponse {
 
     public void setUserPaymentOptionId(String userPaymentOptionId) {
         this.userPaymentOptionId = userPaymentOptionId;
+    }
+
+    public PaymentOption getPaymentOption() {
+        return paymentOption;
+    }
+
+    public void setPaymentOption(PaymentOption paymentOption) {
+        this.paymentOption = paymentOption;
+    }
+
+    public String getPaymentMethodErrorCode() {
+        return paymentMethodErrorCode;
+    }
+
+    public void setPaymentMethodErrorCode(String paymentMethodErrorCode) {
+        this.paymentMethodErrorCode = paymentMethodErrorCode;
+    }
+
+    public String getPaymentMethodErrorReason() {
+        return paymentMethodErrorReason;
+    }
+
+    public void setPaymentMethodErrorReason(String paymentMethodErrorReason) {
+        this.paymentMethodErrorReason = paymentMethodErrorReason;
     }
 
     public String getGwExtendedErrorCode() {
@@ -99,6 +131,9 @@ public class GetPayoutStatusResponse extends SafechargeResponse {
                 ", amount='" + amount + '\'' +
                 ", currency='" + currency + '\'' +
                 ", userPaymentOptionId='" + userPaymentOptionId + '\'' +
+                ", paymentOption=" + paymentOption +
+                ", paymentMethodErrorCode='" + paymentMethodErrorCode + '\'' +
+                ", paymentMethodErrorReason='" + paymentMethodErrorReason + '\'' +
                 ", gwExtendedErrorCode='" + gwExtendedErrorCode + '\'' +
                 ", gwErrorCode='" + gwErrorCode + '\'' +
                 ", gwErrorReason='" + gwErrorReason + '\'' +

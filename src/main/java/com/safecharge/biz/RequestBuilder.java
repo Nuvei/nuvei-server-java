@@ -325,7 +325,7 @@ public class RequestBuilder {
 
     public AccountCaptureRequest getAccountCaptureRequest(String sessionToken, MerchantInfo merchantInfo, String clientRequestId,
                                                           String userTokenId, String paymentMethod, String currencyCode, String countryCode,
-                                                          String languageCode, String amount, String notificationUrl) {
+                                                          String languageCode, String amount, String notificationUrl, DeviceDetails deviceDetails, UserDetails userDetails) {
         return AccountCaptureRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -337,6 +337,8 @@ public class RequestBuilder {
                 .addLanguageCode(languageCode)
                 .addAmount(amount)
                 .addNotificationUrl(notificationUrl)
+                .addDeviceDetails(deviceDetails)
+                .addUserDetails(userDetails)
                 .build();
     }
 
