@@ -16,6 +16,7 @@ public class CardResponse {
     private String avsCode;
     private String ccTempToken;
     private String isVerified;
+    private String isPrepaid;
     private String cardType;
     private String cardBrand;
     private String issuerCountry;
@@ -27,6 +28,14 @@ public class CardResponse {
 
     public void setExternalToken(ApiExternalToken externalToken) {
         this.externalToken = externalToken;
+    }
+
+    public ExternalTokenProvider getExternalTokenProvider() {
+        return externalTokenProvider;
+    }
+
+    public void setExternalTokenProvider(ExternalTokenProvider externalTokenProvider) {
+        this.externalTokenProvider = externalTokenProvider;
     }
 
     public String getCcCardNumber() {
@@ -107,6 +116,14 @@ public class CardResponse {
 
     public void setIsVerified(String isVerified) {
         this.isVerified = isVerified;
+    }
+
+    public String getIsPrepaid() {
+        return isPrepaid;
+    }
+
+    public void setIsPrepaid(String isPrepaid) {
+        this.isPrepaid = isPrepaid;
     }
 
     public String getCardType() {

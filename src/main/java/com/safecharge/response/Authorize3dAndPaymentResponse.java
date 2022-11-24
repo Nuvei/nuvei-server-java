@@ -41,6 +41,14 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
 
     private AmountInfo partialApproval;
 
+    private String issuerDeclineCode;
+
+    private String issuerDeclineReason;
+
+    private String externalSchemeTransactionId;
+
+    private String additionalTransactionBankId;
+
     public String getOrderId() {
         return orderId;
     }
@@ -177,6 +185,38 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
         this.partialApproval = partialApproval;
     }
 
+    public String getIssuerDeclineCode() {
+        return issuerDeclineCode;
+    }
+
+    public void setIssuerDeclineCode(String issuerDeclineCode) {
+        this.issuerDeclineCode = issuerDeclineCode;
+    }
+
+    public String getIssuerDeclineReason() {
+        return issuerDeclineReason;
+    }
+
+    public void setIssuerDeclineReason(String issuerDeclineReason) {
+        this.issuerDeclineReason = issuerDeclineReason;
+    }
+
+    public String getExternalSchemeTransactionId() {
+        return externalSchemeTransactionId;
+    }
+
+    public void setExternalSchemeTransactionId(String externalSchemeTransactionId) {
+        this.externalSchemeTransactionId = externalSchemeTransactionId;
+    }
+
+    public String getAdditionalTransactionBankId() {
+        return additionalTransactionBankId;
+    }
+
+    public void setAdditionalTransactionBankId(String additionalTransactionBankId) {
+        this.additionalTransactionBankId = additionalTransactionBankId;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -197,6 +237,10 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
                 .append(", authCode=").append(authCode).append('\'')
                 .append(", customData=").append(customData).append('\'')
                 .append(", fraudDetails=").append(fraudDetails)
+                .append(", issuerDeclineCode=").append(issuerDeclineCode)
+                .append(", issuerDeclineReason=").append(issuerDeclineReason)
+                .append(", externalSchemeTransactionId=").append(externalSchemeTransactionId)
+                .append(", additionalTransactionBankId=").append(additionalTransactionBankId)
                 .append(", partialApproval=").append(partialApproval);
 
         return sb.toString();

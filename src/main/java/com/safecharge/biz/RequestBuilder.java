@@ -27,7 +27,7 @@ public class RequestBuilder {
                                                    String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType,
                                                    String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                                   String isPartialApproval) {
+                                                   String isPartialApproval, String paymentFlow) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -62,6 +62,7 @@ public class RequestBuilder {
                 .addExternalSchemeDetails(externalSchemeDetails)
                 .addCurrencyConversion(currencyConversion)
                 .addIsPartialApproval(isPartialApproval)
+                .addPaymentFlow(paymentFlow)
                 .build();
     }
 

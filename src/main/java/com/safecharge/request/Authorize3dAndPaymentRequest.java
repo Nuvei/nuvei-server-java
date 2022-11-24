@@ -38,6 +38,8 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
     @Size(max = 1)
     private String isPartialApproval;
 
+    private String paymentFlow;
+
     public PaymentOption getPaymentOption() {
         return paymentOption;
     }
@@ -118,6 +120,14 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         this.isPartialApproval = isPartialApproval;
     }
 
+    public String getPaymentFlow() {
+        return paymentFlow;
+    }
+
+    public void setPaymentFlow(String paymentFlow) {
+        this.paymentFlow = paymentFlow;
+    }
+
     public abstract static class Builder<T extends Builder<T>> extends SafechargePaymentBuilder<T> {
 
         private PaymentOption paymentOption;
@@ -130,6 +140,7 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         private ExternalSchemeDetails externalSchemeDetails;
         private CurrencyConversion currencyConversion;
         private String isPartialApproval;
+        private String paymentFlow;
 
         public T addPaymentOption(PaymentOption paymentOption) {
             this.paymentOption = paymentOption;
@@ -181,6 +192,11 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             return (T) this;
         }
 
+        public T addPaymentFlow(String paymentFlow) {
+            this.paymentFlow = paymentFlow;
+            return (T) this;
+        }
+
         protected <S extends Authorize3dAndPaymentRequest> S build(S request) {
             request.setPaymentOption(paymentOption);
             request.setIsRebilling(isRebilling);
@@ -192,6 +208,7 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             request.setExternalSchemeDetails(externalSchemeDetails);
             request.setCurrencyConversion(currencyConversion);
             request.setIsPartialApproval(isPartialApproval);
+            request.setPaymentFlow(paymentFlow);
 
             return super.build(request);
         }
