@@ -5,6 +5,7 @@ import com.safecharge.response.ThreeDResponse;
 public class CardResponse {
 
     private ApiExternalToken externalToken;
+    private ExternalTokenProvider externalTokenProvider;
     private String ccCardNumber;
     private String bin;
     private String last4Digits;

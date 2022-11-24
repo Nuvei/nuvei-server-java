@@ -67,7 +67,8 @@ public class RequestBuilder {
 
     public SafechargeBaseRequest getInitPaymentRequest(String sessionToken, String userTokenId, String clientUniqueId, String clientRequestId, String currency,
                                                        String amount, DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails,
-                                                       String customData, UserAddress billingAddress, MerchantInfo merchantInfo, String userId) {
+                                                       String customData, UserAddress billingAddress, MerchantInfo merchantInfo, String userId, String aftOverride,
+                                                       RecipientDetails recipientDetails, DecryptedMessage decryptedMessage, ApplePayPaymentDataHolder applePayPaymentDataHolder) {
         return InitPaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addUserTokenId(userTokenId)
@@ -82,6 +83,10 @@ public class RequestBuilder {
                 .addBillingAddress(billingAddress)
                 .addMerchantInfo(merchantInfo)
                 .addUserId(userId)
+                .addAftOverride(aftOverride)
+                .addRecipientDetails(recipientDetails)
+                .addDecryptedMessage(decryptedMessage)
+                .addApplePayPaymentDataHolder(applePayPaymentDataHolder)
                 .build();
     }
 

@@ -163,12 +163,14 @@ public class Safecharge {
      */
     public InitPaymentResponse initPayment(String userTokenId, String clientUniqueId, String clientRequestId, String currency, String amount,
                                            DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails, String customData,
-                                           UserAddress billingAddress, String userId) throws SafechargeException {
+                                           UserAddress billingAddress, String userId, String aftOverride,
+                                           RecipientDetails recipientDetails, DecryptedMessage decryptedMessage, ApplePayPaymentDataHolder applePayPaymentDataHolder) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getInitPaymentRequest(sessionToken, userTokenId, clientUniqueId, clientRequestId, currency,
-                amount, deviceDetails, paymentOption, urlDetails, customData, billingAddress, merchantInfo, userId);
+                amount, deviceDetails, paymentOption, urlDetails, customData, billingAddress, merchantInfo, userId, aftOverride,
+                 recipientDetails, decryptedMessage, applePayPaymentDataHolder);
 
         return (InitPaymentResponse) requestExecutor.execute(request);
     }

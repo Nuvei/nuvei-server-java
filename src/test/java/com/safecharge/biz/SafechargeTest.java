@@ -142,7 +142,7 @@ public class SafechargeTest {
 
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
         InitPaymentResponse response = sut.initPayment("userTokenId", "clientUniqueId", "clientRequestId", "BGN", "11",
-                null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(InitPaymentRequest.class));
@@ -158,7 +158,7 @@ public class SafechargeTest {
         exception.expectMessage("Missing mandatory info for execution of payments! Please run initialization method before creating payments.");
 
         sut.initPayment("userTokenId", "clientUniqueId", "clientRequestId", "BGN", "11",
-                null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null, null);
     }
 
     @Test
