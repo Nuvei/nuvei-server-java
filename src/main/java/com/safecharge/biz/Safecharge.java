@@ -119,14 +119,20 @@ public class Safecharge {
                                    MerchantDetails merchantDetails, Addendums addendums, UrlDetails urlDetails, String customSiteName, String productId,
                                    String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType, String userId,
-                                   ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion, String isPartialApproval, String paymentFlow) throws SafechargeException {
+                                   ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion, String isPartialApproval, String paymentFlow,
+                                   String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails,
+                                   String apiVersion, Integer subscriptionStep, String upoExpirationMonth, String upoExpirationYear,
+                                   GooglePayData googlePayData, DecryptedMessage decryptedMessage, ApplePayPaymentDataHolder applePayPaymentDataHolder) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getPaymentRequest(merchantInfo, sessionToken, userTokenId, clientUniqueId, clientRequestId, paymentOption,
                 isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
-                transactionType, autoPayment3D, isMoto, subMerchant, rebillingType, authenticationOnlyType, userId, externalSchemeDetails, currencyConversion, isPartialApproval, paymentFlow);
+                transactionType, autoPayment3D, isMoto, subMerchant, rebillingType, authenticationOnlyType, userId, externalSchemeDetails, currencyConversion, isPartialApproval, paymentFlow,
+                redirectFlowUITheme, aftOverride, recipientDetails,
+                apiVersion, subscriptionStep, upoExpirationMonth, upoExpirationYear,
+                googlePayData, decryptedMessage, applePayPaymentDataHolder);
 
         return (PaymentResponse) requestExecutor.execute(request);
     }

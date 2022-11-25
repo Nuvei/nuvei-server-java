@@ -27,7 +27,9 @@ public class RequestBuilder {
                                                    String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType,
                                                    String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                                   String isPartialApproval, String paymentFlow) {
+                                                   String isPartialApproval, String paymentFlow, String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails,
+                                                   String apiVersion, Integer subscriptionStep, String upoExpirationMonth, String upoExpirationYear,
+                                                   GooglePayData googlePayData, DecryptedMessage decryptedMessage, ApplePayPaymentDataHolder applePayPaymentDataHolder) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -63,6 +65,16 @@ public class RequestBuilder {
                 .addCurrencyConversion(currencyConversion)
                 .addIsPartialApproval(isPartialApproval)
                 .addPaymentFlow(paymentFlow)
+                .addRedirectFlowUITheme(redirectFlowUITheme)
+                .addAftOverride(aftOverride)
+                .addRecipientDetails(recipientDetails)
+                .addApiVersion(apiVersion)
+                .addSubscriptionStep(subscriptionStep)
+                .addUpoExpirationMonth(upoExpirationMonth)
+                .addUpoExpirationYear(upoExpirationYear)
+                .addGooglePayData(googlePayData)
+                .addDecryptedMessage(decryptedMessage)
+                .addApplePayPaymentDataHolder(applePayPaymentDataHolder)
                 .build();
     }
 
