@@ -29,6 +29,8 @@ public class PayoutResponse extends SafechargeResponse {
     private MerchantDetails merchantDetails;
     private CardData cardData;
 
+    private String additionalTransactionBankId;
+
     public String getUserTokenId() {
         return userTokenId;
     }
@@ -125,6 +127,14 @@ public class PayoutResponse extends SafechargeResponse {
         this.cardData = cardData;
     }
 
+    public String getAdditionalTransactionBankId() {
+        return additionalTransactionBankId;
+    }
+
+    public void setAdditionalTransactionBankId(String additionalTransactionBankId) {
+        this.additionalTransactionBankId = additionalTransactionBankId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PayoutResponse{");
@@ -141,6 +151,7 @@ public class PayoutResponse extends SafechargeResponse {
         sb.append(", transactionId='").append(transactionId).append('\'');
         sb.append(", cardData='").append(cardData).append('\'');
         sb.append(", merchantDetails=").append(merchantDetails);
+        sb.append(", additionalTransactionBankId='").append(additionalTransactionBankId).append('\'');
         sb.append('}');
         return sb.toString();
     }
