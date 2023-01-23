@@ -3,10 +3,7 @@ package com.safecharge.request;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
-import com.safecharge.model.CurrencyConversion;
-import com.safecharge.model.ExternalSchemeDetails;
-import com.safecharge.model.OpenOrderPaymentOption;
-import com.safecharge.model.SubMerchant;
+import com.safecharge.model.*;
 import com.safecharge.request.builder.SafechargeOrderWithDetailsBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
@@ -171,7 +168,7 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
         private String isPartialApproval;
         private ExternalSchemeDetails externalSchemeDetails;
         private CurrencyConversion currencyConversion;
-        private String openAmount;
+        private OpenAmount openAmount;
         private String aftOverride;
 
 
@@ -235,7 +232,7 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
             return this;
         }
 
-        public Builder addOpenAmount(String openAmount) {
+        public Builder addOpenAmount(OpenAmount openAmount) {
             this.openAmount = openAmount;
             return this;
         }

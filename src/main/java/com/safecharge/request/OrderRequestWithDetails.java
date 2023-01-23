@@ -5,6 +5,7 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.model.CurrencyConversion;
 import com.safecharge.model.ExternalSchemeDetails;
+import com.safecharge.model.OpenAmount;
 import com.safecharge.model.UserPaymentOption;
 
 /**
@@ -36,8 +37,7 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
     @Valid
     private CurrencyConversion currencyConversion;
 
-    @Size(max = 12)
-    private String openAmount;
+    private OpenAmount openAmount;
 
     @Size(max = 1)
     private String aftOverride;
@@ -116,11 +116,11 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
         this.currencyConversion = currencyConversion;
     }
 
-    public String getOpenAmount() {
+    public OpenAmount getOpenAmount() {
         return openAmount;
     }
 
-    public void setOpenAmount(String openAmount) {
+    public void setOpenAmount(OpenAmount openAmount) {
         this.openAmount = openAmount;
     }
 

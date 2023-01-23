@@ -224,6 +224,10 @@ public class Safecharge {
      * @param userId                 Unique identifier of the user in SafeCharge.
      * @param isPartialApproval      Used in cases where the deposit was completed and processed with an amount lower than the requested amount
      *                               due to a consumer’s lack of funds within the desired payment method.
+     * @param externalSchemeDetails  Used to provide original transactionId for the initial payment as originated in external system and card brand.
+     * @param currencyConversion     Used to specify currency conversion details
+     * @param openAmount             Defines minimum and maximum allowed amount for the order
+     * @param aftOverride
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -237,7 +241,7 @@ public class Safecharge {
                                        Addendums addendums, String customData, Boolean autoPayment3D, String isMoto, String authenticationOnlyType,
                                        SubMerchant subMerchant, Integer isRebilling, String rebillingType, String preventOverride, String userId,
                                        String isPartialApproval, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                       String openAmount, String aftOverride) throws SafechargeException {
+                                       OpenAmount openAmount, String aftOverride) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
