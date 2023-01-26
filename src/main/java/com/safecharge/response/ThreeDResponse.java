@@ -63,6 +63,14 @@ public class ThreeDResponse {
 
     private String challengePreferenceReason;
 
+    private String cascadedTo3Dv1;
+
+    private String flow;
+
+    private String acquirerDecision;
+
+    private String decisionReason;
+
     public String getThreeDReason() {
         return threeDReason;
     }
@@ -293,5 +301,37 @@ public class ThreeDResponse {
 
     public void setChallengePreferenceReason(String challengePreferenceReason) {
         this.challengePreferenceReason = challengePreferenceReason;
+    }
+
+    public String getCascadedTo3Dv1() {
+        return cascadedTo3Dv1;
+    }
+
+    public void setCascadedTo3Dv1(String cascadedTo3Dv1) {
+        this.cascadedTo3Dv1 = cascadedTo3Dv1;
+    }
+
+    public String getFlow() {
+        return flow;
+    }
+
+    public void setFlow(String flow) {
+        this.flow = flow;
+    }
+
+    public String getAcquirerDecision() {
+        return acquirerDecision;
+    }
+
+    public void setAcquirerDecision(String acquirerDecision) {
+        this.acquirerDecision = acquirerDecision;
+    }
+
+    public String getDecisionReason() {
+        return decisionReason;
+    }
+
+    public void setDecisionReason(String decisionReason) {
+        this.decisionReason = decisionReason;
     }
 }

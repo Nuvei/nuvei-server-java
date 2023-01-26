@@ -27,7 +27,9 @@ public class RequestBuilder {
                                                    String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType,
                                                    String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                                   String isPartialApproval) {
+                                                   String isPartialApproval, String paymentFlow, String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails,
+                                                   String apiVersion, Integer subscriptionStep, String upoExpirationMonth, String upoExpirationYear,
+                                                   GooglePayData googlePayData, DecryptedMessage decryptedMessage, ApplePayPaymentDataHolder applePayPaymentDataHolder) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -62,12 +64,24 @@ public class RequestBuilder {
                 .addExternalSchemeDetails(externalSchemeDetails)
                 .addCurrencyConversion(currencyConversion)
                 .addIsPartialApproval(isPartialApproval)
+                .addPaymentFlow(paymentFlow)
+                .addRedirectFlowUITheme(redirectFlowUITheme)
+                .addAftOverride(aftOverride)
+                .addRecipientDetails(recipientDetails)
+                .addApiVersion(apiVersion)
+                .addSubscriptionStep(subscriptionStep)
+                .addUpoExpirationMonth(upoExpirationMonth)
+                .addUpoExpirationYear(upoExpirationYear)
+                .addGooglePayData(googlePayData)
+                .addDecryptedMessage(decryptedMessage)
+                .addApplePayPaymentDataHolder(applePayPaymentDataHolder)
                 .build();
     }
 
     public SafechargeBaseRequest getInitPaymentRequest(String sessionToken, String userTokenId, String clientUniqueId, String clientRequestId, String currency,
                                                        String amount, DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails,
-                                                       String customData, UserAddress billingAddress, MerchantInfo merchantInfo, String userId) {
+                                                       String customData, UserAddress billingAddress, MerchantInfo merchantInfo, String userId, String aftOverride,
+                                                       RecipientDetails recipientDetails, DecryptedMessage decryptedMessage, ApplePayPaymentDataHolder applePayPaymentDataHolder) {
         return InitPaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addUserTokenId(userTokenId)
@@ -82,6 +96,10 @@ public class RequestBuilder {
                 .addBillingAddress(billingAddress)
                 .addMerchantInfo(merchantInfo)
                 .addUserId(userId)
+                .addAftOverride(aftOverride)
+                .addRecipientDetails(recipientDetails)
+                .addDecryptedMessage(decryptedMessage)
+                .addApplePayPaymentDataHolder(applePayPaymentDataHolder)
                 .build();
     }
 
@@ -92,7 +110,8 @@ public class RequestBuilder {
                                                      UrlDetails urlDetails, String userTokenId, String clientUniqueId, UserPaymentOption userPaymentOption,
                                                      String paymentMethod, AmountDetails amountDetails, Addendums addendums, String customData, Boolean autoPayment3D,
                                                      String isMoto, String authenticationOnlyType, SubMerchant subMerchant, Integer isRebilling, String rebillingType,
-                                                     String preventOverride, String userId, String isPartialApproval) {
+                                                     String preventOverride, String userId, String isPartialApproval, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
+                                                     OpenAmount openAmount, String aftOverride) {
         return OpenOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
@@ -127,6 +146,10 @@ public class RequestBuilder {
                 .addPreventOverride(preventOverride)
                 .addUserId(userId)
                 .addIsPartialApproval(isPartialApproval)
+                .addExternalSchemaDetails(externalSchemeDetails)
+                .addCurrencyConversion(currencyConversion)
+                .addOpenAmount(openAmount)
+                .addAftOverride(aftOverride)
                 .build();
     }
 
@@ -134,6 +157,14 @@ public class RequestBuilder {
         return GetPaymentStatusRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
+                .build();
+    }
+
+    public SafechargeBaseRequest getPayoutStatusRequest(String sessionToken, MerchantInfo merchantInfo, String clientRequestId) {
+        return GetPayoutStatusRequest.builder()
+                .addSessionToken(sessionToken)
+                .addMerchantInfo(merchantInfo)
+                .addClientRequestId(clientRequestId)
                 .build();
     }
 
@@ -317,7 +348,7 @@ public class RequestBuilder {
 
     public AccountCaptureRequest getAccountCaptureRequest(String sessionToken, MerchantInfo merchantInfo, String clientRequestId,
                                                           String userTokenId, String paymentMethod, String currencyCode, String countryCode,
-                                                          String languageCode, String notificationUrl) {
+                                                          String languageCode, String amount, String notificationUrl, DeviceDetails deviceDetails, UserDetails userDetails) {
         return AccountCaptureRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -327,11 +358,14 @@ public class RequestBuilder {
                 .addCurrencyCode(currencyCode)
                 .addCountryCode(countryCode)
                 .addLanguageCode(languageCode)
+                .addAmount(amount)
                 .addNotificationUrl(notificationUrl)
+                .addDeviceDetails(deviceDetails)
+                .addUserDetails(userDetails)
                 .build();
     }
 
-    public PayoutRequest getPayoutRequest(String sessionToken, MerchantInfo merchantInfo, String userTokenId, String clientUniqueId, String amount, String currency,
+    public PayoutRequest getPayoutRequest(String sessionToken, MerchantInfo merchantInfo, String userTokenId, String clientUniqueId, String clientRequestId, String amount, String currency,
                                 UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
                                 MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
                                 CardData cardData, DeviceDetails deviceDetails) {
@@ -339,6 +373,7 @@ public class RequestBuilder {
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
                 .addClientUniqueId(clientUniqueId)
+                .addClientRequestId(clientRequestId)
                 .addUserTokenId(userTokenId)
                 .addAmountAndCurrency(amount, currency)
                 .addUserPaymentOption(userPaymentOption)

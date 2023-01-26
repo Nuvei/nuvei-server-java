@@ -78,7 +78,12 @@ public abstract class PaymentsResponse extends SafechargeResponse {
      * This block contain external token parameters arriving from a 3rd party payment provider which is not SafeCharge (such as CreditGuard ect.)
      */
     protected ApiExternalToken externalToken;
-    
+
+    /**
+     * APM reference ID
+     */
+    protected String additionalTransactionBankId;
+
     public String getOrderId() {
         return orderId;
     }
@@ -183,6 +188,14 @@ public abstract class PaymentsResponse extends SafechargeResponse {
         this.externalToken = externalToken;
     }
 
+    public String getAdditionalTransactionBankId() {
+        return additionalTransactionBankId;
+    }
+
+    public void setAdditionalTransactionBankId(String additionalTransactionBankId) {
+        this.additionalTransactionBankId = additionalTransactionBankId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -221,6 +234,9 @@ public abstract class PaymentsResponse extends SafechargeResponse {
                 .append('\'');
         sb.append(", ")
                 .append(externalToken);
+        sb.append(", additionalTransactionBankId='")
+                .append(additionalTransactionBankId)
+                .append('\'');
         sb.append(", ")
                 .append(super.toString());
         return sb.toString();

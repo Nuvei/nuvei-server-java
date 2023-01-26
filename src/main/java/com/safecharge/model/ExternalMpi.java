@@ -23,6 +23,15 @@ public class ExternalMpi {
     @Size(max = 36, message = "value is invalid. The length of the value should be maximum {max} symbols.")
     private String dsTransID;
 
+    @Size(max = 25)
+    private String challengePreference;
+
+    @Size(max = 25)
+    private String exemptionRequestReason;
+
+    @Size(max = 45)
+    private String externalTokenProvider;
+
     public String getIsExternalMpi() {
         return isExternalMpi;
     }
@@ -63,6 +72,30 @@ public class ExternalMpi {
         this.dsTransID = dsTransID;
     }
 
+    public String getChallengePreference() {
+        return challengePreference;
+    }
+
+    public void setChallengePreference(String challengePreference) {
+        this.challengePreference = challengePreference;
+    }
+
+    public String getExemptionRequestReason() {
+        return exemptionRequestReason;
+    }
+
+    public void setExemptionRequestReason(String exemptionRequestReason) {
+        this.exemptionRequestReason = exemptionRequestReason;
+    }
+
+    public String getExternalTokenProvider() {
+        return externalTokenProvider;
+    }
+
+    public void setExternalTokenProvider(String externalTokenProvider) {
+        this.externalTokenProvider = externalTokenProvider;
+    }
+
     @Override
     public String toString() {
 
@@ -71,6 +104,9 @@ public class ExternalMpi {
                 .append(", eci=").append(eci)
                 .append(", cavv=").append(cavv)
                 .append(", xid=").append(xid)
+                .append(", exemptionRequestReason=").append(exemptionRequestReason)
+                .append(", externalTokenProvider=").append(externalTokenProvider)
+                .append(", challengePreference=").append(challengePreference)
                 .append(", dsTransId=").append(dsTransID);
 
         return builder.toString();
