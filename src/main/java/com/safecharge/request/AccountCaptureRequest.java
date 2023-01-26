@@ -8,6 +8,8 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.safecharge.model.DeviceDetails;
+import com.safecharge.model.UserDetails;
 import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
@@ -36,10 +38,15 @@ public class AccountCaptureRequest extends SafechargeRequest {
     @Size(max = 2)
     private String languageCode;
 
+    @Size(max = 12)
+    private String amount;
+
     @Size(max = 1000)
     private String notificationUrl;
 
-    private final String sourceApplication = "JAVA_SDK";
+    private DeviceDetails deviceDetails;
+
+    private UserDetails userDetails;
 
     public String getUserTokenId() {
         return userTokenId;
@@ -81,6 +88,30 @@ public class AccountCaptureRequest extends SafechargeRequest {
         this.languageCode = languageCode;
     }
 
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public DeviceDetails getDeviceDetails() {
+        return deviceDetails;
+    }
+
+    public void setDeviceDetails(DeviceDetails deviceDetails) {
+        this.deviceDetails = deviceDetails;
+    }
+
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
+
     public String getNotificationUrl() {
         return notificationUrl;
     }
@@ -100,7 +131,10 @@ public class AccountCaptureRequest extends SafechargeRequest {
         private String currencyCode;
         private String countryCode;
         private String languageCode;
+        private String amount;
         private String notificationUrl;
+        private DeviceDetails deviceDetails;
+        private UserDetails userDetails;
 
         public Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
@@ -127,6 +161,21 @@ public class AccountCaptureRequest extends SafechargeRequest {
             return this;
         }
 
+        public Builder addAmount(String amount) {
+            this.amount = amount;
+            return this;
+        }
+
+        public Builder addDeviceDetails(DeviceDetails deviceDetails) {
+            this.deviceDetails = deviceDetails;
+            return this;
+        }
+
+        public Builder addUserDetails(UserDetails userDetails) {
+            this.userDetails = userDetails;
+            return this;
+        }
+
         public Builder addNotificationUrl(String notificationUrl) {
             this.notificationUrl = notificationUrl;
             return this;
@@ -141,7 +190,10 @@ public class AccountCaptureRequest extends SafechargeRequest {
             request.setCurrencyCode(currencyCode);
             request.setCountryCode(countryCode);
             request.setLanguageCode(languageCode);
+            request.setAmount(amount);
             request.setNotificationUrl(notificationUrl);
+            request.setDeviceDetails(deviceDetails);
+            request.setUserDetails(userDetails);
 
             return ValidationUtils.validate(super.build(request));
         }

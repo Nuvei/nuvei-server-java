@@ -6,6 +6,8 @@ public class PaymentOptionResponse {
 
     private String userPaymentOptionId;
 
+    private String paymentAccountReference;
+
     private CardResponse card;
 
     public String getRedirectUrl() {

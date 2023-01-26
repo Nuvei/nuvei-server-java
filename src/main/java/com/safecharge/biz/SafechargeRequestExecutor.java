@@ -79,6 +79,7 @@ public class SafechargeRequestExecutor {
                     put(DccDetailsRequest.class, DccDetailsResponse.class);
                     put(McpRatesRequest.class, McpRatesResponse.class);
                     put(AccountCaptureRequest.class, AccountCaptureResponse.class);
+                    put(GetPayoutStatusRequest.class, GetPayoutStatusResponse.class);
                 }
             };
     private static final Map<Class<? extends SafechargeBaseRequest>, String> REQUEST_URL_BY_REQUEST_TYPE =
@@ -127,6 +128,7 @@ public class SafechargeRequestExecutor {
                     put(DccDetailsRequest.class, APIConstants.DCC_DETAILS_URL);
                     put(McpRatesRequest.class, APIConstants.MCP_RATES_URL);
                     put(AccountCaptureRequest.class, APIConstants.ACCOUNT_CAPTURE_URL);
+                    put(GetPayoutStatusRequest.class, APIConstants.GET_PAYOUT_STATUS_URL);
                 }
             };
 
@@ -214,7 +216,9 @@ public class SafechargeRequestExecutor {
             String requestJSON = gson.toJson(request);
             String responseJSON = executeJsonRequest(requestJSON, serviceUrl, requestClass);
 
-            return gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(requestClass));
+            SafechargeResponse response = gson.fromJson(responseJSON, RESPONSE_TYPE_BY_REQUEST_TYPE.get(requestClass));
+            response.setJson(responseJSON);
+            return response;
 
         } catch (IOException e) {
 

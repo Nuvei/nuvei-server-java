@@ -80,7 +80,7 @@ public class AddressUtils {
         billingAddress.setState(state);
         billingAddress.setEmail(email);
         billingAddress.setLocale(locale);
-        billingAddress.setDateOfBirth(dateOfBirth);
+        billingAddress.setBirthdate(dateOfBirth);
         billingAddress.setCounty(county);
 
         return billingAddress;

@@ -76,7 +76,7 @@ public interface APIConstants {
     String DCC_DETAILS_URL = "api/v1/getDccDetails.do";
     String MCP_RATES_URL = "api/v1/getMcpRates.do";
     String ACCOUNT_CAPTURE_URL = "api/v1/accountCapture.do";
-
+    String GET_PAYOUT_STATUS_URL = "api/v1/getPayoutStatus.do";
 
     // Request Headers:
 
