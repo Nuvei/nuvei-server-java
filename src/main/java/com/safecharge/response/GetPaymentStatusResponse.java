@@ -35,6 +35,10 @@ public class GetPaymentStatusResponse extends SafechargeResponse {
 
     private String amount;
 
+    private String issuerDeclineCode;
+
+    private String issuerDeclineReason;
+
     public String getCustomData() {
         return customData;
     }
@@ -153,5 +157,21 @@ public class GetPaymentStatusResponse extends SafechargeResponse {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    public String getIssuerDeclineCode() {
+        return issuerDeclineCode;
+    }
+
+    public void setIssuerDeclineCode(String issuerDeclineCode) {
+        this.issuerDeclineCode = issuerDeclineCode;
+    }
+
+    public String getIssuerDeclineReason() {
+        return issuerDeclineReason;
+    }
+
+    public void setIssuerDeclineReason(String issuerDeclineReason) {
+        this.issuerDeclineReason = issuerDeclineReason;
     }
 }

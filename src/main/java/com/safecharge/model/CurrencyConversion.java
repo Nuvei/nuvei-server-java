@@ -14,6 +14,8 @@ public class CurrencyConversion {
     @NotNull
     private String originalCurrency;
 
+    private String type;
+
     public String getOriginalAmount() {
         return originalAmount;
     }
@@ -28,5 +30,13 @@ public class CurrencyConversion {
 
     public void setOriginalCurrency(String originalCurrency) {
         this.originalCurrency = originalCurrency;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -40,6 +40,14 @@ public class ThreeD {
 
     private V2AdditionalParams v2AdditionalParams;
 
+    @Size(max = 25)
+    private String mpiChallengePreference;
+
+    @Size(max = 25)
+    private String mpiExemptionRequestReason;
+
+    private String externalRiskScore;
+
     public String getIsDynamic3D() {
         return isDynamic3D;
     }
@@ -158,5 +166,29 @@ public class ThreeD {
 
     public void setV2AdditionalParams(V2AdditionalParams v2AdditionalParams) {
         this.v2AdditionalParams = v2AdditionalParams;
+    }
+
+    public String getMpiChallengePreference() {
+        return mpiChallengePreference;
+    }
+
+    public void setMpiChallengePreference(String mpiChallengePreference) {
+        this.mpiChallengePreference = mpiChallengePreference;
+    }
+
+    public String getMpiExemptionRequestReason() {
+        return mpiExemptionRequestReason;
+    }
+
+    public void setMpiExemptionRequestReason(String mpiExemptionRequestReason) {
+        this.mpiExemptionRequestReason = mpiExemptionRequestReason;
+    }
+
+    public String getExternalRiskScore() {
+        return externalRiskScore;
+    }
+
+    public void setExternalRiskScore(String externalRiskScore) {
+        this.externalRiskScore = externalRiskScore;
     }
 }

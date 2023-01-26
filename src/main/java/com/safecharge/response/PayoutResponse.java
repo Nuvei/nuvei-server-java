@@ -1,5 +1,6 @@
 package com.safecharge.response;
 
+import com.safecharge.model.CardData;
 import com.safecharge.model.MerchantDetails;
 
 /**
@@ -26,6 +27,9 @@ public class PayoutResponse extends SafechargeResponse {
     private String transactionId;
 
     private MerchantDetails merchantDetails;
+    private CardData cardData;
+
+    private String additionalTransactionBankId;
 
     public String getUserTokenId() {
         return userTokenId;
@@ -115,6 +119,22 @@ public class PayoutResponse extends SafechargeResponse {
         this.merchantDetails = merchantDetails;
     }
 
+    public CardData getCardData() {
+        return cardData;
+    }
+
+    public void setCardData(CardData cardData) {
+        this.cardData = cardData;
+    }
+
+    public String getAdditionalTransactionBankId() {
+        return additionalTransactionBankId;
+    }
+
+    public void setAdditionalTransactionBankId(String additionalTransactionBankId) {
+        this.additionalTransactionBankId = additionalTransactionBankId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PayoutResponse{");
@@ -129,7 +149,9 @@ public class PayoutResponse extends SafechargeResponse {
         sb.append(", userPaymentOptionId='").append(userPaymentOptionId).append('\'');
         sb.append(", externalTransactionId='").append(externalTransactionId).append('\'');
         sb.append(", transactionId='").append(transactionId).append('\'');
+        sb.append(", cardData='").append(cardData).append('\'');
         sb.append(", merchantDetails=").append(merchantDetails);
+        sb.append(", additionalTransactionBankId='").append(additionalTransactionBankId).append('\'');
         sb.append('}');
         return sb.toString();
     }
