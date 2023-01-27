@@ -1,5 +1,9 @@
 
 
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.biz;
 
 import javax.validation.ConstraintViolationException;
