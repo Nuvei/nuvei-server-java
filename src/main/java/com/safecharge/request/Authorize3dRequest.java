@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import com.safecharge.util.Constants;
@@ -5,7 +9,6 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * This request is used when wanting to perform a 3d secure only request. It is used after an {@link InitPaymentRequest}
  * to provide to the merchant information whether a Challenge is needed or if they receive a frictionless response

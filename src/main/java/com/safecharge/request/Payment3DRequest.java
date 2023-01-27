@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import com.safecharge.request.builder.SafechargeCCBuilder;
@@ -6,7 +10,6 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Request to complete a payment using 3D Secure authentication. It must be preceded by {@link Authorization3DRequest}.
  * <p>

@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.biz;
 
 import java.io.IOException;
@@ -22,12 +26,10 @@ import com.google.gson.GsonBuilder;
 import com.safecharge.util.APIConstants;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * This class provides functionality to execute {@link SafechargeRequest}s directly to the SafeCharge's REST API
  *</p>
  * @author <a href="mailto:nikolad@safecharge.com">Nikola Dichev</a>
- *
  * @since 2/16/2017
  */
 public class SafechargeRequestExecutor {

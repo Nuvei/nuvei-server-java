@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.Valid;
@@ -13,7 +17,6 @@ import com.safecharge.model.StoredCredentials;
 import com.safecharge.model.UserPaymentOption;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Abstract class to be used as a base for credit card payment requests.
  * </p>

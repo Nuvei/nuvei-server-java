@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import java.util.ArrayList;
@@ -18,7 +22,6 @@ import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Abstract class to be used as a base for order related and payment requests.
  * </p>

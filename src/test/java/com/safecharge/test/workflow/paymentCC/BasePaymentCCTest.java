@@ -21,7 +21,6 @@ import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.util.Constants;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/29/2017

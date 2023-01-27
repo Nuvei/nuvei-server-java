@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.util;
 
 import com.safecharge.model.RestApiUserDetails;
@@ -6,7 +10,6 @@ import com.safecharge.model.UserDetails;
 import com.safecharge.model.UserDetailsCashier;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  *
  * @author <a mailto:antona@safecharge.com>Anton Antonov</a>
  * @since 19.09.2017 г.

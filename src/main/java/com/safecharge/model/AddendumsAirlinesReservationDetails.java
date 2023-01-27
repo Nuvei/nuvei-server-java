@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 import java.util.List;
@@ -5,7 +9,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Local payment info specific for some clients. Part of {@link Addendums}.
  *

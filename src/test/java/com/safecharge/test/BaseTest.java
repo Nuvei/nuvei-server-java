@@ -25,7 +25,6 @@ import com.safecharge.biz.SafechargeRequestExecutor;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/28/2017

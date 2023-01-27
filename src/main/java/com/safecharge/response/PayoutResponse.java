@@ -1,10 +1,13 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.response;
 
 import com.safecharge.model.CardData;
 import com.safecharge.model.MerchantDetails;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Response returned in result of payout method execution.
  *

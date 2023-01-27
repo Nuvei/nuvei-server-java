@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.response;
 
 import com.safecharge.model.ExternalTokenInfo;
@@ -5,7 +9,6 @@ import com.safecharge.model.FraudDetails;
 import com.safecharge.model.PartialApprovalDetails;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * This is the unified response for the Settle, Void and Refund transaction requests.
  * </p>

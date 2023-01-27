@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.biz;
 
 import java.util.ArrayList;
@@ -23,7 +27,6 @@ import org.apache.http.ssl.SSLContexts;
 import com.safecharge.model.Proxy;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Builder for a {@link HttpClient} for communicating with the Safecharge's servers
  * </p>

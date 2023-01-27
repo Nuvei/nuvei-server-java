@@ -51,9 +51,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-/*
- * Copyright (c) 2007-2020 SafeCharge International Group Limited.
- */
+
 public class SafechargeTest {
 
     @Mock

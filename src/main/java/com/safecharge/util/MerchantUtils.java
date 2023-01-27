@@ -1,9 +1,12 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.util;
 
 import com.safecharge.model.MerchantDetails;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  *
  * @author <a mailto:antona@safecharge.com>Anton Antonov</a>
  * @since 25.09.2017 г.
