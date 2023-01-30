@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import com.safecharge.util.Constants;
@@ -5,7 +9,6 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2019 SafeCharge International Group Limited.
  * <p>
  * Uniform request to perform card transactions(credit or debit)
  * It supports 3D Secure and alternative payment method transactions.

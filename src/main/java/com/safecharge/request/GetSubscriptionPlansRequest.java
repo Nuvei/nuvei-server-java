@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import com.safecharge.request.builder.SafechargeBuilder;
@@ -6,7 +10,6 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Request to obtain available subscription plans for the merchant.
  * Creating and updating subscription plans is possible using CPanel, SafeCharge’s back-office tool.

@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.util;
 
 import java.util.Set;
@@ -14,7 +18,6 @@ import org.apache.commons.logging.LogFactory;
 import com.safecharge.request.SafechargeBaseRequest;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Utility class for validating the request to Safecharge
  *

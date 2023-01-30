@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.ConstraintViolationException;
@@ -12,7 +16,6 @@ import com.safecharge.util.ValidationUtils;
 
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * A request used to retrieve card details such as card brand and type. It will also return amount info.
  * </p>

@@ -1,10 +1,12 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 import javax.validation.constraints.Size;
 
 /**
- * Copyright (C) 2007-2018 SafeCharge International Group Limited.
- * <p>
  *
  * @author <a mailto:bozhidarsh@safecharge.com>Bozhidar Shumanov</a>
  * @since 8/7/2018

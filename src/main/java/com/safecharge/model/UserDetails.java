@@ -1,10 +1,13 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Holder for User's personal details and a "generic" address. Note that a User can have different billing/shipping
  * address per order stored in {@link UserAddress} object.

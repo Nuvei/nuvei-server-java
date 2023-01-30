@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.biz.simple.payment;
 
 import java.util.Map;
@@ -12,7 +16,6 @@ import com.safecharge.response.SafechargeResponse;
 import com.safecharge.util.Constants;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * An example class demonstrating the use of the Safecharge's API to process a payment using
  * Alternative Payment Method(E.g. PayPal, Netteler, Skrill, ...).

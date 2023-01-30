@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.response;
 
 import java.util.ArrayList;
@@ -6,7 +10,6 @@ import java.util.List;
 import com.safecharge.model.CashierPaymentMethodDetails;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Request to add Credit/Debit card User Payment Option(UPO) to a User.
  * <p>

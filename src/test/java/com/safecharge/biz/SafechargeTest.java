@@ -1,5 +1,9 @@
 
 
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.biz;
 
 import javax.validation.ConstraintViolationException;
@@ -51,9 +55,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-/*
- * Copyright (c) 2007-2020 SafeCharge International Group Limited.
- */
+
 public class SafechargeTest {
 
     @Mock
