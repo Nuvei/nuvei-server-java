@@ -678,6 +678,12 @@ public class Safecharge {
         return (AddUPOAPMResponse) requestExecutor.execute(request);
     }
 
+    /**
+     * Gets the status of payout transaction by clientRequestId
+     * @param clientRequestId The ID of the API request in the merchant’s system. This value must be unique.
+     * @return
+     * @throws SafechargeException
+     */
     public GetPayoutStatusResponse getPayoutStatus(String clientRequestId) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
