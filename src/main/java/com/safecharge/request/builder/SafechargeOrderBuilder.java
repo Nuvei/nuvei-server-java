@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request.builder;
 
 import java.util.ArrayList;
@@ -21,7 +25,6 @@ import com.safecharge.util.MerchantUtils;
 import com.safecharge.util.UrlUtils;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * A base builder for an order related requests.
  * </p>

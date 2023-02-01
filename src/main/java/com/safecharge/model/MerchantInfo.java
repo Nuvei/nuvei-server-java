@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 import javax.validation.constraints.NotNull;
@@ -5,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import com.safecharge.util.Constants;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Holder for the required for a payment Checkout Page's Merchant's data such as
  * secret key, the merchant id, the merchant site id, etc.

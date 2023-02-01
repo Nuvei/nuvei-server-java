@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.biz;
 
 import org.apache.http.client.HttpClient;
@@ -5,7 +9,6 @@ import org.apache.http.client.HttpClient;
 import com.safecharge.model.Proxy;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Wrapper class for {@link HttpClient} with specific Safecharge's properties
  *

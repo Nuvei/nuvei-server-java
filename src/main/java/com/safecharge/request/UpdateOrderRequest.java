@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.constraints.Size;
@@ -8,7 +12,6 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @see GetOrderDetailsRequest

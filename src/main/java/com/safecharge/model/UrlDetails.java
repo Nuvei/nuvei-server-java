@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 import javax.validation.constraints.Size;
@@ -6,7 +10,6 @@ import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Holder for Checkout Page's Merchant's specific URL to redirect to in case of successful, pending, failed transaction.
  * It also contains a URL to which to send a Direct Merchant Notification(DMN) with the result of the transaction.

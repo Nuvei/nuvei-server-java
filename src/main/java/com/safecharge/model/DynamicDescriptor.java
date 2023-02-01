@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 import javax.validation.constraints.Size;
@@ -5,7 +9,6 @@ import javax.validation.constraints.Size;
 import com.safecharge.util.APIConstants;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * This class allows the merchant to define a dynamic descriptor for its name and phone number, which will appear in the payment statement.
  * </p>

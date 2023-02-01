@@ -1,7 +1,10 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 /**
- * Copyright (C) 2007-2019 SafeCharge International Group Limited.
  * <p>
  * Holder for Checkout Page's OpenOrder PaymentOption card data.
  * </p>

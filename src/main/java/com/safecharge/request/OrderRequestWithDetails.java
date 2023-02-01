@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.Valid;
@@ -9,7 +13,6 @@ import com.safecharge.model.OpenAmount;
 import com.safecharge.model.UserPaymentOption;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Abstract class with basic fields used with requests to create an order in the SafeCharge's system.
  * </p>

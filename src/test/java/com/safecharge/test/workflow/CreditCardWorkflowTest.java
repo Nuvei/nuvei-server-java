@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.test.workflow;
 
 import static org.mockito.Mockito.when;
@@ -34,7 +38,6 @@ import com.safecharge.test.BaseTest;
 import com.safecharge.util.Constants;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/16/2017

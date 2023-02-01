@@ -1,7 +1,10 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.util;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/15/2017

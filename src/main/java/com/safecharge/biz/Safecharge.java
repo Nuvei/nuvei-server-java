@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.biz;
 
 import java.util.List;
@@ -11,7 +15,6 @@ import com.safecharge.response.*;
 import com.safecharge.util.Constants;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * This class is a wrapper for the most used endpoints in Safecharge's REST API. It makes it easier to execute openOrder,
  * initPayment and createPayment requests. First you have to invoke initialize method and then choose the corresponding request
