@@ -111,6 +111,15 @@ public class Safecharge {
      * @param authenticationOnlyType This field is intended for merchants using the Zero Authorisation feature.
      * @param userId                 Unique identifier of the user in SafeCharge.
      * @param externalSchemeDetails  This block should be used if a merchant is changing from another Acquirer.
+     * @param currencyConversion     Holds information about currency conversion type (DCC / MCP) and amount.
+     * @param isPartialApproval      This describes a situation where the deposit was completed and processed with an amount lower than the requested amount due to a consumer’s lack of funds within the desired payment method.
+     * @param paymentFlow            Indicates the payment flow (direct / redirect) the merchant would like to follow.
+     * @param redirectFlowUITheme    The UI theme of the redirect page shown to the end user during the 3D-Secure payment flow managed by Web SDK.
+     * @param aftOverride            Used to instruct the gateway that this transaction should not be marked as AFT. Accepted values: "0" / "1".
+     * @param recipientDetails       This class is relevant for Visa’s AFTs, and contains the details of the recipient receiving the funding.
+     * @param googlePayData          Holds GooglePay data
+     * @param decryptedMessage       Holds information about GooglePay decrypted token
+     * @param applePayPaymentDataHolder Holds information about ApplePay
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -165,6 +174,10 @@ public class Safecharge {
      * @param customData      General data about the customer provided by the merchant.
      * @param billingAddress  The billing address.
      * @param userId          Unique identifier of the user in SafeCharge.
+     * @param aftOverride     Used to instruct the gateway that this transaction should not be marked as AFT. Accepted values: "0" / "1".
+     * @param recipientDetails This class is relevant for Visa’s AFTs, and contains the details of the recipient receiving the funding.
+     * @param decryptedMessage Holds information about GooglePay decrypted token
+     * @param applePayPaymentDataHolder Holds information about ApplePay
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -230,7 +243,7 @@ public class Safecharge {
      * @param externalSchemeDetails  Used to provide original transactionId for the initial payment as originated in external system and card brand.
      * @param currencyConversion     Used to specify currency conversion details
      * @param openAmount             Defines minimum and maximum allowed amount for the order
-     * @param aftOverride
+     * @param aftOverride            Used to instruct the gateway that this transaction should not be marked as AFT. Accepted values: "0" / "1".
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -422,10 +435,7 @@ public class Safecharge {
      *                             tool transaction reporting and is returned in response.
      * @param customSiteName       The merchant’s site name. This is useful for merchants operating many websites that are distinguished only by name.
      * @param merchantDetails      Optional custom fields.
-     * @param relatedTransactionId The transaction ID of the of the call to {@link Safecharge#authorize3d(String, String, String,
-     *                             PaymentOption, Integer, String, String, AmountDetails, List, DeviceDetails, RestApiUserDetails, UserAddress,
-     *                             UserAddress, DynamicDescriptor, MerchantDetails, Addendums, UrlDetails, String, String, String, String,
-     *                             Constants.TransactionType, Boolean, SubMerchant, String, ExternalSchemeDetails, CurrencyConversion)}.
+     * @param relatedTransactionId The transaction ID of the of the call to .
      * @param subMerchant          Contains information about the SubMerchant.
      * @param userId               Unique identifier of the user in SafeCharge.
      * @param userTokenId          This field uniquely identifies your consumer/user in your system.
@@ -492,6 +502,11 @@ public class Safecharge {
      * @param transactionType      The type of transaction
      * @param autoPayment3D        Autopayment3D flag.
      * @param subMerchant          Contains information about the SubMerchant.
+     * @param userId                 Unique identifier of the user in SafeCharge.
+     * @param isPartialApproval      Used in cases where the deposit was completed and processed with an amount lower than the requested amount
+     *                               due to a consumer’s lack of funds within the desired payment method.
+     * @param externalSchemeDetails  Used to provide original transactionId for the initial payment as originated in external system and card brand.
+     * @param currencyConversion     Used to specify currency conversion details
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -607,7 +622,10 @@ public class Safecharge {
      * @param currencyCode    The three-letter ISO currency code.
      * @param countryCode     The two-letter ISO country code.
      * @param languageCode    The language in which the transaction is to be completed.
+     * @param amount          The transaction amount.
      * @param notificationUrl The URL to which DMNs are sent (see our DMNs Guide).
+     * @param deviceDetails   Information about client device
+     * @param userDetails     Holder for user details.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeException
      */
@@ -630,6 +648,7 @@ public class Safecharge {
      *
      * @param userTokenId           This ID uniquely identifies your consumer/user in your system.
      * @param clientUniqueId        The ID of the transaction in the merchant’s system.
+     * @param clientRequestId       The ID of the API request in the merchant’s system. This value must be unique.
      * @param amount                The transaction amount.
      * @param currency              The 3-letter ISO currency code.
      * @param userPaymentOption     User Payment Option
@@ -681,6 +700,12 @@ public class Safecharge {
         return (AddUPOAPMResponse) requestExecutor.execute(request);
     }
 
+    /**
+     * Gets the status of payout transaction by clientRequestId
+     * @param clientRequestId The ID of the API request in the merchant’s system. This value must be unique.
+     * @return Passes through the response from Safecharge's REST API.
+     * @throws SafechargeException
+     */
     public GetPayoutStatusResponse getPayoutStatus(String clientRequestId) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
