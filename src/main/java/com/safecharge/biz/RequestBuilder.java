@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.biz;
 
 import java.util.List;
@@ -7,9 +11,6 @@ import com.safecharge.model.*;
 import com.safecharge.request.*;
 import com.safecharge.util.Constants;
 
-/**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
- */
 public class RequestBuilder {
 
     public SafechargeBaseRequest getSessionTokenRequest(MerchantInfo merchantInfo) {

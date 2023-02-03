@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.ConstraintViolationException;
@@ -11,7 +15,6 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2019 SafeCharge International Group Limited.
  * <p>
  * Request for initiation of payment process for transactions.
  * </p>

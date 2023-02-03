@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.util;
 
 import java.lang.reflect.Field;
@@ -17,7 +21,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Utility class used for calculating the Safecharge's request's checksum. Merchant key can be obtained by contacting
  * <a mailto:integration@safecharge.com>SafeCharge’s Integration Team</a>

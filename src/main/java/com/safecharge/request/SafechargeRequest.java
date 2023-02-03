@@ -1,9 +1,12 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.constraints.NotNull;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Abstract class to be used as a base for all of the requests to SafeCharge's servers.
  *</p>

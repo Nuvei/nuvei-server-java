@@ -1,10 +1,13 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.util;
 
 import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 2/17/2017

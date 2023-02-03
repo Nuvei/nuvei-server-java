@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.ConstraintViolationException;
@@ -15,7 +19,6 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Request to add Credit/Debit card User Payment Option(UPO) to a User.
  * <p>

@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.response;
 
 import java.util.List;
@@ -11,7 +15,6 @@ import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.UserAddress;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Response received from the SafeCharge's servers to the {@link com.safecharge.request.GetOrderDetailsRequest}.
  *
