@@ -369,7 +369,7 @@ public class RequestBuilder {
     public PayoutRequest getPayoutRequest(String sessionToken, MerchantInfo merchantInfo, String userTokenId, String clientUniqueId, String clientRequestId, String amount, String currency,
                                 UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
                                 MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
-                                CardData cardData, DeviceDetails deviceDetails) {
+                                CardData cardData, DeviceDetails deviceDetails, UserDetails userDetails) {
         return PayoutRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -385,6 +385,7 @@ public class RequestBuilder {
                 .addSubMethodDetails(subMethodDetails)
                 .addCardData(cardData)
                 .addDeviceDetails(deviceDetails)
+                .addUserDetails(userDetails)
                 .build();
     }
 

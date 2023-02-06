@@ -665,14 +665,14 @@ public class Safecharge {
     public PayoutResponse payout(String userTokenId, String clientUniqueId, String clientRequestId, String amount, String currency,
                                  UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
                                  MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
-                                 CardData cardData, DeviceDetails deviceDetails) throws SafechargeException {
+                                 CardData cardData, DeviceDetails deviceDetails, UserDetails userDetails) throws SafechargeException {
 
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         PayoutRequest request = requestBuilder.getPayoutRequest(sessionToken, merchantInfo,
                 userTokenId, clientUniqueId, clientRequestId, amount, currency,userPaymentOption, comment, dynamicDescriptor,
-                merchantDetails, urlDetails, subMethodDetails, cardData, deviceDetails);
+                merchantDetails, urlDetails, subMethodDetails, cardData, deviceDetails, userDetails);
 
 
         return (PayoutResponse) requestExecutor.execute(request);
