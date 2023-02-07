@@ -37,7 +37,7 @@ public class SafechargeClientBuilder {
 
     public static final int DEFAULT_MAX_TOTAL_CONNECTIONS = 100;
     public static final int DEFAULT_MAX_CONNECTIONS_PER_ROUTE = 10;
-    public static final int CONNECTION_TIME_TO_LIVE_MINUTES = 15;
+    public static final int CONNECTION_TIME_TO_LIVE_SECONDS = 30;
     private static final int DEFAULT_TIMEOUT_SECONDS = 30;
     private static final int DEFAULT_TIMEOUT_MILLISECONDS = DEFAULT_TIMEOUT_SECONDS * 1000;
     private static final String[] SERVER_SUPPORTED_SSL_PROTOCOLS = new String[]{"TLSv1.1", "TLSv1.2"};
@@ -143,20 +143,20 @@ public class SafechargeClientBuilder {
      * @return this object
      */
     public SafechargeClientBuilder setDefaultConnectionManager() {
-        this.connectionManager = new PoolingHttpClientConnectionManager(CONNECTION_TIME_TO_LIVE_MINUTES, TimeUnit.MINUTES);
+        this.connectionManager = new PoolingHttpClientConnectionManager(CONNECTION_TIME_TO_LIVE_SECONDS, TimeUnit.SECONDS);
         ((PoolingHttpClientConnectionManager) this.connectionManager).setMaxTotal(DEFAULT_MAX_TOTAL_CONNECTIONS);
         ((PoolingHttpClientConnectionManager) this.connectionManager).setDefaultMaxPerRoute(DEFAULT_MAX_CONNECTIONS_PER_ROUTE);
         return this;
     }
 
     /**
-     * Sets default connection TTL ({@value CONNECTION_TIME_TO_LIVE_MINUTES} in {@link TimeUnit#MINUTES}).
+     * Sets default connection TTL ({@value CONNECTION_TIME_TO_LIVE_SECONDS} in {@link TimeUnit#SECONDS}).
      *
      * @return this object
      */
     public SafechargeClientBuilder setDefaultConnectionTTL() {
-        this.timeToLive = CONNECTION_TIME_TO_LIVE_MINUTES;
-        this.timeToLiveTimeUnit = TimeUnit.MINUTES;
+        this.timeToLive = CONNECTION_TIME_TO_LIVE_SECONDS;
+        this.timeToLiveTimeUnit = TimeUnit.SECONDS;
         return this;
     }
 
