@@ -28,9 +28,7 @@ public class RequestBuilder {
                                                    String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType,
                                                    String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                                   String isPartialApproval, String paymentFlow, String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails,
-                                                   String apiVersion, Integer subscriptionStep, String upoExpirationMonth, String upoExpirationYear,
-                                                   GooglePayData googlePayData, DecryptedMessage decryptedMessage, ApplePayPaymentDataHolder applePayPaymentDataHolder) {
+                                                   String isPartialApproval, String paymentFlow, String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -69,20 +67,13 @@ public class RequestBuilder {
                 .addRedirectFlowUITheme(redirectFlowUITheme)
                 .addAftOverride(aftOverride)
                 .addRecipientDetails(recipientDetails)
-                .addApiVersion(apiVersion)
-                .addSubscriptionStep(subscriptionStep)
-                .addUpoExpirationMonth(upoExpirationMonth)
-                .addUpoExpirationYear(upoExpirationYear)
-                .addGooglePayData(googlePayData)
-                .addDecryptedMessage(decryptedMessage)
-                .addApplePayPaymentDataHolder(applePayPaymentDataHolder)
                 .build();
     }
 
     public SafechargeBaseRequest getInitPaymentRequest(String sessionToken, String userTokenId, String clientUniqueId, String clientRequestId, String currency,
                                                        String amount, DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails,
                                                        String customData, UserAddress billingAddress, MerchantInfo merchantInfo, String userId, String aftOverride,
-                                                       RecipientDetails recipientDetails, DecryptedMessage decryptedMessage, ApplePayPaymentDataHolder applePayPaymentDataHolder) {
+                                                       RecipientDetails recipientDetails) {
         return InitPaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addUserTokenId(userTokenId)
@@ -99,8 +90,6 @@ public class RequestBuilder {
                 .addUserId(userId)
                 .addAftOverride(aftOverride)
                 .addRecipientDetails(recipientDetails)
-                .addDecryptedMessage(decryptedMessage)
-                .addApplePayPaymentDataHolder(applePayPaymentDataHolder)
                 .build();
     }
 
