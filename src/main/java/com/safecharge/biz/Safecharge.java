@@ -117,9 +117,6 @@ public class Safecharge {
      * @param redirectFlowUITheme    The UI theme of the redirect page shown to the end user during the 3D-Secure payment flow managed by Web SDK.
      * @param aftOverride            Used to instruct the gateway that this transaction should not be marked as AFT. Accepted values: "0" / "1".
      * @param recipientDetails       This class is relevant for Visa’s AFTs, and contains the details of the recipient receiving the funding.
-     * @param googlePayData          Holds GooglePay data
-     * @param decryptedMessage       Holds information about GooglePay decrypted token
-     * @param applePayPaymentDataHolder Holds information about ApplePay
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -132,9 +129,7 @@ public class Safecharge {
                                    String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType, String userId,
                                    ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion, String isPartialApproval, String paymentFlow,
-                                   String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails,
-                                   String apiVersion, Integer subscriptionStep, String upoExpirationMonth, String upoExpirationYear,
-                                   GooglePayData googlePayData, DecryptedMessage decryptedMessage, ApplePayPaymentDataHolder applePayPaymentDataHolder) throws SafechargeException {
+                                   String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
@@ -142,9 +137,7 @@ public class Safecharge {
                 isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
                 transactionType, autoPayment3D, isMoto, subMerchant, rebillingType, authenticationOnlyType, userId, externalSchemeDetails, currencyConversion, isPartialApproval, paymentFlow,
-                redirectFlowUITheme, aftOverride, recipientDetails,
-                apiVersion, subscriptionStep, upoExpirationMonth, upoExpirationYear,
-                googlePayData, decryptedMessage, applePayPaymentDataHolder);
+                redirectFlowUITheme, aftOverride, recipientDetails);
 
         return (PaymentResponse) requestExecutor.execute(request);
     }
@@ -176,8 +169,6 @@ public class Safecharge {
      * @param userId          Unique identifier of the user in SafeCharge.
      * @param aftOverride     Used to instruct the gateway that this transaction should not be marked as AFT. Accepted values: "0" / "1".
      * @param recipientDetails This class is relevant for Visa’s AFTs, and contains the details of the recipient receiving the funding.
-     * @param decryptedMessage Holds information about GooglePay decrypted token
-     * @param applePayPaymentDataHolder Holds information about ApplePay
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -186,13 +177,13 @@ public class Safecharge {
     public InitPaymentResponse initPayment(String userTokenId, String clientUniqueId, String clientRequestId, String currency, String amount,
                                            DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails, String customData,
                                            UserAddress billingAddress, String userId, String aftOverride,
-                                           RecipientDetails recipientDetails, DecryptedMessage decryptedMessage, ApplePayPaymentDataHolder applePayPaymentDataHolder) throws SafechargeException {
+                                           RecipientDetails recipientDetails) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getInitPaymentRequest(sessionToken, userTokenId, clientUniqueId, clientRequestId, currency,
                 amount, deviceDetails, paymentOption, urlDetails, customData, billingAddress, merchantInfo, userId, aftOverride,
-                 recipientDetails, decryptedMessage, applePayPaymentDataHolder);
+                 recipientDetails);
 
         return (InitPaymentResponse) requestExecutor.execute(request);
     }
@@ -665,14 +656,14 @@ public class Safecharge {
     public PayoutResponse payout(String userTokenId, String clientUniqueId, String clientRequestId, String amount, String currency,
                                  UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
                                  MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
-                                 CardData cardData, DeviceDetails deviceDetails) throws SafechargeException {
+                                 CardData cardData, DeviceDetails deviceDetails, UserDetails userDetails) throws SafechargeException {
 
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         PayoutRequest request = requestBuilder.getPayoutRequest(sessionToken, merchantInfo,
                 userTokenId, clientUniqueId, clientRequestId, amount, currency,userPaymentOption, comment, dynamicDescriptor,
-                merchantDetails, urlDetails, subMethodDetails, cardData, deviceDetails);
+                merchantDetails, urlDetails, subMethodDetails, cardData, deviceDetails, userDetails);
 
 
         return (PayoutResponse) requestExecutor.execute(request);

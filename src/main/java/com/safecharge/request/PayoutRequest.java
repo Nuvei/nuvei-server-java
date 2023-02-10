@@ -13,6 +13,7 @@ import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.MerchantDetails;
 import com.safecharge.model.SubMethodDetails;
 import com.safecharge.model.UrlDetails;
+import com.safecharge.model.UserDetails;
 import com.safecharge.model.UserPaymentOption;
 import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.Constants;
@@ -75,6 +76,9 @@ public class PayoutRequest extends SafechargeRequest {
 
     @Valid
     private DeviceDetails deviceDetails;
+
+    @Valid
+    private UserDetails userDetails;
 
     public static PayoutRequest.Builder builder() {
         return new PayoutRequest.Builder();
@@ -176,6 +180,14 @@ public class PayoutRequest extends SafechargeRequest {
         this.deviceDetails = deviceDetails;
     }
 
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PayoutRequest{");
@@ -191,6 +203,7 @@ public class PayoutRequest extends SafechargeRequest {
         sb.append(", subMethodDetails=").append(subMethodDetails);
         sb.append(", cardData='").append(cardData);
         sb.append(", deviceDetails='").append(deviceDetails);
+        sb.append(", userDetails='").append(userDetails);
         sb.append('}');
         return sb.toString();
     }
@@ -209,6 +222,7 @@ public class PayoutRequest extends SafechargeRequest {
         private SubMethodDetails subMethodDetails;
         private CardData cardData;
         private DeviceDetails deviceDetails;
+        private UserDetails userDetails;
 
         /**
          * @param userTokenId
@@ -311,6 +325,11 @@ public class PayoutRequest extends SafechargeRequest {
             return this;
         }
 
+        public Builder addUserDetails(UserDetails userDetails) {
+            this.userDetails = userDetails;
+            return this;
+        }
+
         /**
          * Builds the request.
          *
@@ -331,6 +350,7 @@ public class PayoutRequest extends SafechargeRequest {
             request.setSubMethodDetails(subMethodDetails);
             request.setCardData(cardData);
             request.setDeviceDetails(deviceDetails);
+            request.setUserDetails(userDetails);
             return ValidationUtils.validate(super.build(request));
         }
     }
