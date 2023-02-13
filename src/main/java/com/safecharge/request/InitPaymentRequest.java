@@ -56,10 +56,6 @@ public class InitPaymentRequest extends SafechargeRequest {
 
     private RecipientDetails recipientDetails;
 
-    private DecryptedMessage decryptedMessage;
-
-    private ApplePayPaymentDataHolder applePayPaymentDataHolder;
-
     @Size(max = 255)
     private String userId;
 
@@ -159,22 +155,6 @@ public class InitPaymentRequest extends SafechargeRequest {
         this.recipientDetails = recipientDetails;
     }
 
-    public DecryptedMessage getDecryptedMessage() {
-        return decryptedMessage;
-    }
-
-    public void setDecryptedMessage(DecryptedMessage decryptedMessage) {
-        this.decryptedMessage = decryptedMessage;
-    }
-
-    public ApplePayPaymentDataHolder getApplePayPaymentDataHolder() {
-        return applePayPaymentDataHolder;
-    }
-
-    public void setApplePayPaymentDataHolder(ApplePayPaymentDataHolder applePayPaymentDataHolder) {
-        this.applePayPaymentDataHolder = applePayPaymentDataHolder;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -190,8 +170,6 @@ public class InitPaymentRequest extends SafechargeRequest {
                 .append(", billingAddress=").append(billingAddress)
                 .append(", aftOverride=").append(aftOverride)
                 .append(", recipientDetails=").append(recipientDetails)
-                .append(", decryptedMessage=").append(decryptedMessage)
-                .append(", applePayPaymentDataHolder=").append(applePayPaymentDataHolder)
                 .append(", userId=").append(userId);
 
         return sb.toString();
@@ -215,8 +193,6 @@ public class InitPaymentRequest extends SafechargeRequest {
         private String userId;
         private String aftOverride;
         private RecipientDetails recipientDetails;
-        private DecryptedMessage decryptedMessage;
-        private ApplePayPaymentDataHolder applePayPaymentDataHolder;
 
         public Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
@@ -278,16 +254,6 @@ public class InitPaymentRequest extends SafechargeRequest {
             return this;
         }
 
-        public Builder addDecryptedMessage(DecryptedMessage decryptedMessage) {
-            this.decryptedMessage = decryptedMessage;
-            return this;
-        }
-
-        public Builder addApplePayPaymentDataHolder(ApplePayPaymentDataHolder applePayPaymentDataHolder) {
-            this.applePayPaymentDataHolder = applePayPaymentDataHolder;
-            return this;
-        }
-
         @Override
         public InitPaymentRequest build() throws ConstraintViolationException {
             InitPaymentRequest request = new InitPaymentRequest();
@@ -303,8 +269,6 @@ public class InitPaymentRequest extends SafechargeRequest {
             request.setUserId(userId);
             request.setAftOverride(aftOverride);
             request.setRecipientDetails(recipientDetails);
-            request.setDecryptedMessage(decryptedMessage);
-            request.setApplePayPaymentDataHolder(applePayPaymentDataHolder);
 
             return ValidationUtils.validate(super.build(request));
         }
