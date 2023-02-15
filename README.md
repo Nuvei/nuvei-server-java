@@ -8,7 +8,7 @@ SafeCharge’s REST API SDK for Java provides developer tools for accessing Safe
  
 ## Requirements
 
-Java 1.7 or later.
+Java 1.7 or later
 
 ### Maven
 
