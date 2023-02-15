@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import java.util.Date;
@@ -18,7 +22,6 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Use this request if you need the SafeCharge MPI service to perform a 3D Secure only request. This method is called
  * after the {@link Authorize3dRequest} method in case of the Challenge.
@@ -64,8 +67,6 @@ public class Verify3dRequest extends SafechargeRequest {
 
     @Valid
     private Verify3dPaymentOption paymentOption;
-
-    private final String sourceApplication = "JAVA_SDK";
 
     @Size(max = 255)
     private String userId;

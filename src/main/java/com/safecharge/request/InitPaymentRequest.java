@@ -1,20 +1,20 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.safecharge.model.DeviceDetails;
-import com.safecharge.model.InitPaymentPaymentOption;
-import com.safecharge.model.UrlDetails;
-import com.safecharge.model.UserAddress;
+import com.safecharge.model.*;
 import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2019 SafeCharge International Group Limited.
  * <p>
  * Request for initiation of payment process for transactions.
  * </p>
@@ -51,10 +51,13 @@ public class InitPaymentRequest extends SafechargeRequest {
 
     private UserAddress billingAddress;
 
+    @Size(max = 1)
+    private String aftOverride;
+
+    private RecipientDetails recipientDetails;
+
     @Size(max = 255)
     private String userId;
-
-    private final String sourceApplication = "JAVA_SDK";
 
     public String getUserTokenId() {
         return userTokenId;
@@ -136,6 +139,22 @@ public class InitPaymentRequest extends SafechargeRequest {
         this.userId = userId;
     }
 
+    public String getAftOverride() {
+        return aftOverride;
+    }
+
+    public void setAftOverride(String aftOverride) {
+        this.aftOverride = aftOverride;
+    }
+
+    public RecipientDetails getRecipientDetails() {
+        return recipientDetails;
+    }
+
+    public void setRecipientDetails(RecipientDetails recipientDetails) {
+        this.recipientDetails = recipientDetails;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -149,6 +168,8 @@ public class InitPaymentRequest extends SafechargeRequest {
                 .append(", urlDetails=").append(urlDetails)
                 .append(", customData=").append(customData)
                 .append(", billingAddress=").append(billingAddress)
+                .append(", aftOverride=").append(aftOverride)
+                .append(", recipientDetails=").append(recipientDetails)
                 .append(", userId=").append(userId);
 
         return sb.toString();
@@ -170,6 +191,8 @@ public class InitPaymentRequest extends SafechargeRequest {
         private String customData;
         private UserAddress billingAddress;
         private String userId;
+        private String aftOverride;
+        private RecipientDetails recipientDetails;
 
         public Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
@@ -221,6 +244,16 @@ public class InitPaymentRequest extends SafechargeRequest {
             return this;
         }
 
+        public Builder addAftOverride(String aftOverride) {
+            this.aftOverride = aftOverride;
+            return this;
+        }
+
+        public Builder addRecipientDetails(RecipientDetails recipientDetails) {
+            this.recipientDetails = recipientDetails;
+            return this;
+        }
+
         @Override
         public InitPaymentRequest build() throws ConstraintViolationException {
             InitPaymentRequest request = new InitPaymentRequest();
@@ -234,6 +267,8 @@ public class InitPaymentRequest extends SafechargeRequest {
             request.setUserTokenId(userTokenId);
             request.setClientUniqueId(clientUniqueId);
             request.setUserId(userId);
+            request.setAftOverride(aftOverride);
+            request.setRecipientDetails(recipientDetails);
 
             return ValidationUtils.validate(super.build(request));
         }

@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.ConstraintViolationException;
@@ -13,7 +17,6 @@ import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Request to add Credit/Debit card(via temporary token) User Payment Option to a User.
  * </p>

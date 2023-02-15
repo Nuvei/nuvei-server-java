@@ -1,5 +1,7 @@
+
+
 /*
- * Copyright (c) 2007-2021 SafeCharge International Group Limited.
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
  */
 
 package com.safecharge.model;
@@ -13,6 +15,8 @@ public class CurrencyConversion {
 
     @NotNull
     private String originalCurrency;
+
+    private String type;
 
     public String getOriginalAmount() {
         return originalAmount;
@@ -28,5 +32,13 @@ public class CurrencyConversion {
 
     public void setOriginalCurrency(String originalCurrency) {
         this.originalCurrency = originalCurrency;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.constraints.NotNull;
@@ -5,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import com.safecharge.util.APIConstants;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Abstract class to be used as a base for all of the requests to SafeCharge's servers.
  *
@@ -46,6 +49,8 @@ public abstract class SafechargeBaseRequest {
 
     private final String webMasterId = SafechargeBaseRequest.class.getPackage().getImplementationVersion() != null
             ? APIConstants.SDK_JAVA_VERSION.concat(SafechargeBaseRequest.class.getPackage().getImplementationVersion()) : null;
+
+    private final String sourceApplication = "JAVA_SDK";
 
     public String getInternalRequestId() {
         return internalRequestId;
@@ -93,6 +98,14 @@ public abstract class SafechargeBaseRequest {
 
     public void setServerHost(String serverHost) {
         this.serverHost = serverHost;
+    }
+
+    public String getWebMasterId() {
+        return webMasterId;
+    }
+
+    public String getSourceApplication() {
+        return sourceApplication;
     }
 
     @Override

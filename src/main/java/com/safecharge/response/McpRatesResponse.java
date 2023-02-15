@@ -1,5 +1,7 @@
+
+
 /*
- * Copyright (c) 2007-2020 SafeCharge International Group Limited.
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
  */
 
 package com.safecharge.response;

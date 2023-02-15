@@ -1,9 +1,12 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 import java.util.List;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Holder for a Checkout Page's Payment method(PM) data.
  * Along with PM's specific info it contains a list of allowed countries and currencies ISO codes for use with the PM.

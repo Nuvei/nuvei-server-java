@@ -1,7 +1,10 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.response;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * Interface that all responses working with order must implement.
  *

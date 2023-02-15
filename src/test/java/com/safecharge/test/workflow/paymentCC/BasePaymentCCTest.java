@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.test.workflow.paymentCC;
 
 import static org.mockito.Mockito.mock;
@@ -21,7 +25,6 @@ import com.safecharge.response.GetSessionTokenResponse;
 import com.safecharge.util.Constants;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  *
  * @author <a mailto:nikolad@safecharge.com>Nikola Dichev</a>
  * @since 3/29/2017

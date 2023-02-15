@@ -1,7 +1,10 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Holder for the data needed to create subscription(a recurring payment). Based on the data provided
  * the Checkout Page's Merchant's client is billed automatically by the Checkout Page system.

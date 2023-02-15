@@ -1,9 +1,12 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 import javax.validation.Valid;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Container for additional domain specific payment info such as Airplane tickets data,
  * country's law specific payment data, etc.

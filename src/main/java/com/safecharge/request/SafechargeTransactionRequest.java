@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.Valid;
@@ -8,7 +12,6 @@ import com.safecharge.model.SubMerchant;
 import com.safecharge.model.UrlDetails;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Abstract class to be used as a base for transaction related requests.
  *</p>
@@ -70,8 +73,6 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
 
     @Valid
     private SubMerchant subMerchant;
-
-    private final String sourceApplication = "JAVA_SDK";
 
     public String getAmount() {
         return amount;

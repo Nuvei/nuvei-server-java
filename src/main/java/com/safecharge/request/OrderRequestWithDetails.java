@@ -1,12 +1,18 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
+import com.safecharge.model.CurrencyConversion;
+import com.safecharge.model.ExternalSchemeDetails;
+import com.safecharge.model.OpenAmount;
 import com.safecharge.model.UserPaymentOption;
 
 /**
- * Copyright (C) 2007-2020 SafeCharge International Group Limited.
  * <p>
  * Abstract class with basic fields used with requests to create an order in the SafeCharge's system.
  * </p>
@@ -27,6 +33,17 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
 
     @Valid
     private UserPaymentOption userPaymentOption;
+
+    @Valid
+    private ExternalSchemeDetails externalSchemeDetails;
+
+    @Valid
+    private CurrencyConversion currencyConversion;
+
+    private OpenAmount openAmount;
+
+    @Size(max = 1)
+    private String aftOverride;
 
     @Size(max = 255)
     private String customData;
@@ -86,6 +103,42 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
         this.userId = userId;
     }
 
+    public ExternalSchemeDetails getExternalSchemeDetails() {
+        return externalSchemeDetails;
+    }
+
+    public void setExternalSchemeDetails(ExternalSchemeDetails externalSchemeDetails) {
+        this.externalSchemeDetails = externalSchemeDetails;
+    }
+
+    public CurrencyConversion getCurrencyConversion() {
+        return currencyConversion;
+    }
+
+    public void setCurrencyConversion(CurrencyConversion currencyConversion) {
+        this.currencyConversion = currencyConversion;
+    }
+
+    public OpenAmount getOpenAmount() {
+        return openAmount;
+    }
+
+    public void setOpenAmount(OpenAmount openAmount) {
+        this.openAmount = openAmount;
+    }
+
+    public String getAftOverride() {
+        return aftOverride;
+    }
+
+    public void setAftOverride(String aftOverride) {
+        this.aftOverride = aftOverride;
+    }
+
+    public Boolean getAutoPayment3D() {
+        return autoPayment3D;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OrderRequestWithDetails{");
@@ -94,7 +147,11 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
                 .append(", customData='").append(customData)
                 .append(", autoPayment3D=").append(autoPayment3D)
                 .append(", isMoto='").append(isMoto)
-                .append(", userId='").append(userId);
+                .append(", userId='").append(userId)
+                .append(", externalSchemeDetails='").append(externalSchemeDetails)
+                .append(", currencyConversion='").append(currencyConversion)
+                .append(", openAmount='").append(openAmount)
+                .append(", aftOverride='").append(aftOverride);
         sb.append(super.toString());
 
         return sb.toString();

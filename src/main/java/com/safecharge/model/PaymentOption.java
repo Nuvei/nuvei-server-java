@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 import javax.validation.constraints.Size;
@@ -13,6 +17,8 @@ public class PaymentOption {
     private String userPaymentOptionId;
 
     private SubMethod submethod;
+
+    private String savePm;
 
     public Card getCard() {
         return card;
@@ -44,5 +50,13 @@ public class PaymentOption {
 
     public void setSubmethod(SubMethod submethod) {
         this.submethod = submethod;
+    }
+
+    public String getSavePm() {
+        return savePm;
+    }
+
+    public void setSavePm(String savePm) {
+        this.savePm = savePm;
     }
 }

@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.model;
 
 import java.util.Map;
@@ -6,7 +10,6 @@ import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Holder for an already saved Checkout Page's User Payment Option(UPO) data. It can hold credit/debit card or APM data.
  *

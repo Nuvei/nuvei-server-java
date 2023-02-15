@@ -1,9 +1,12 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.response;
 
 import com.safecharge.util.Constants;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Abstract class to be used as a base for all of the responses from SafeCharge's servers.
  *
@@ -78,6 +81,11 @@ public abstract class SafechargeResponse {
      * If configured to use hints will returned URL pointing to more detailed error description when request fails
      */
     private String hint;
+
+    /**
+     * Full json representation of the response
+     */
+    private String json;
 
     public SafechargeResponse() {
     }
@@ -184,6 +192,14 @@ public abstract class SafechargeResponse {
 
     public void setHint(String hint) {
         this.hint = hint;
+    }
+
+    public String getJson() {
+        return json;
+    }
+
+    public void setJson(String json) {
+        this.json = json;
     }
 
     @Override

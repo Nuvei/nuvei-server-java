@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.util;
 
 import java.text.ParseException;
@@ -6,7 +10,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * Utility class with helper methods for calculating some of the params needed when creating a request to Safecharge
  *

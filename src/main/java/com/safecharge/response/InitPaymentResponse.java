@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.response;
 
 import com.safecharge.model.PaymentOptionResponse;
@@ -23,6 +27,12 @@ public class InitPaymentResponse extends SafechargeResponse {
     private PaymentOptionResponse paymentOption;
 
     private String customData;
+
+    private String resultStatus;
+
+    private String resultCode;
+
+    private String resultDescription;
 
     public String getOrderId() {
         return orderId;
@@ -104,6 +114,30 @@ public class InitPaymentResponse extends SafechargeResponse {
         this.customData = customData;
     }
 
+    public String getResultStatus() {
+        return resultStatus;
+    }
+
+    public void setResultStatus(String resultStatus) {
+        this.resultStatus = resultStatus;
+    }
+
+    public String getResultCode() {
+        return resultCode;
+    }
+
+    public void setResultCode(String resultCode) {
+        this.resultCode = resultCode;
+    }
+
+    public String getResultDescription() {
+        return resultDescription;
+    }
+
+    public void setResultDescription(String resultDescription) {
+        this.resultDescription = resultDescription;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("InitPaymentResponse{");
@@ -116,7 +150,10 @@ public class InitPaymentResponse extends SafechargeResponse {
                 .append(", gwErrorCode=").append(gwErrorCode).append('\'')
                 .append(", gwErrorReason=").append(gwErrorReason).append('\'')
                 .append(", paymentOption=").append(paymentOption).append('\'')
-                .append(", customData=").append(customData);
+                .append(", gwErrorCode=").append(gwErrorCode).append('\'')
+                .append(", resultStatus=").append(resultStatus).append('\'')
+                .append(", resultCode=").append(resultCode).append('\'')
+                .append(", resultDescription=").append(resultDescription);
 
         return sb.toString();
     }

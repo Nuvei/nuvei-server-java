@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
+ */
+
 package com.safecharge.request.builder;
 
 import javax.validation.ConstraintViolationException;
@@ -10,7 +14,6 @@ import com.safecharge.util.Constants;
 import com.safecharge.util.RequestUtils;
 
 /**
- * Copyright (C) 2007-2017 SafeCharge International Group Limited.
  * <p>
  * A base builder class for a request to Safecharge.
  *

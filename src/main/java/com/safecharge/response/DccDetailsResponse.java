@@ -1,5 +1,7 @@
+
+
 /*
- * Copyright (c) 2007-2020 SafeCharge International Group Limited.
+ * Copyright (C) 2007 - 2023 SafeCharge International Group Limited.
  */
 
 package com.safecharge.response;
@@ -17,6 +19,8 @@ public class DccDetailsResponse extends SafechargeResponse {
     private String originalAmount;
 
     private String originalCurrency;
+
+    private String dccFullSupport;
 
     public String getRateValueWitMarkUp() {
         return rateValueWitMarkUp;
@@ -64,5 +68,13 @@ public class DccDetailsResponse extends SafechargeResponse {
 
     public void setOriginalCurrency(String originalCurrency) {
         this.originalCurrency = originalCurrency;
+    }
+
+    public String getDccFullSupport() {
+        return dccFullSupport;
+    }
+
+    public void setDccFullSupport(String dccFullSupport) {
+        this.dccFullSupport = dccFullSupport;
     }
 }
