@@ -44,8 +44,8 @@ public class RestApiUserDetails {
             message = "country size must be up to 2 characters long!")
     private String country;
 
-    @Size(max = 2,
-            message = "state size must be up to 2 characters long!")
+    @Size(max = 5,
+            message = "state size must be up to 5 characters long!")
     private String state;
 
     @Size(max = APIConstants.ZIP_MAX_LENGTH,
