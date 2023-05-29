@@ -18,7 +18,7 @@ If your application is going to be deployed on a Java EE server add the followin
 <dependency>    
     <groupId>com.safecharge</groupId>
     <artifactId>safecharge-sdk-java</artifactId>
-    <version>1.7.0</version>
+    <version>1.7.1</version>
 </dependency>
 ```
 
@@ -32,7 +32,7 @@ For example:
     <dependency>    
         <groupId>com.safecharge</groupId>
         <artifactId>safecharge-sdk-java</artifactId>
-        <version>1.7.0</version>
+        <version>1.7.1</version>
     </dependency>
     <dependency>
         <groupId>org.apache.bval</groupId>
