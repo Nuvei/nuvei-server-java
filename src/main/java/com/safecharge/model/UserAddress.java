@@ -63,7 +63,7 @@ public class UserAddress {
     /**
      * The state of the recipient(two-letter ISO state code)
      */
-    @Size(max = 2, message = "state size must be up to 2 characters long!")
+    @Size(max = 5, message = "state size must be up to 5 characters long!")
     private String state;
 
     /**
