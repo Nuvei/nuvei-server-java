@@ -17,7 +17,7 @@ public class Card extends CardData {
 
     private ThreeD threeD;
 
-    public ExternalToken getExternalToken() {
+    public ExternalTokenProvider getExternalToken() {
         return externalToken;
     }
 
