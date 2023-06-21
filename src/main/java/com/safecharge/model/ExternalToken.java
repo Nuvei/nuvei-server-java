@@ -14,6 +14,28 @@ public class ExternalToken {
     @Size(max = 5000)
     private String mobileToken;
 
+    @Size(max = 2)
+    private String eciProvider;
+
+    @Size(max = 100)
+    private String cryptogram;
+
+    public String getEciProvider() {
+        return eciProvider;
+    }
+
+    public void setEciProvider(String eciProvider) {
+        this.eciProvider = eciProvider;
+    }
+
+    public String getCryptogram() {
+        return cryptogram;
+    }
+
+    public void setCryptogram(String cryptogram) {
+        this.cryptogram = cryptogram;
+    }
+
     public String getExternalTokenProvider() {
         return externalTokenProvider;
     }
