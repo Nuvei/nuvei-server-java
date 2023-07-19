@@ -9,7 +9,7 @@ import com.safecharge.response.ThreeDResponse;
 public class CardResponse {
 
     private ApiExternalToken externalToken;
-    private ExternalTokenProvider externalTokenProvider;
+    private String externalTokenProvider;
     private String ccCardNumber;
     private String bin;
     private String last4Digits;
@@ -34,11 +34,11 @@ public class CardResponse {
         this.externalToken = externalToken;
     }
 
-    public ExternalTokenProvider getExternalTokenProvider() {
+    public String getExternalTokenProvider() {
         return externalTokenProvider;
     }
 
-    public void setExternalTokenProvider(ExternalTokenProvider externalTokenProvider) {
+    public void setExternalTokenProvider(String externalTokenProvider) {
         this.externalTokenProvider = externalTokenProvider;
     }
 
