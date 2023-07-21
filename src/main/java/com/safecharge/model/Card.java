@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 public class Card extends CardData {
 
-    private ExternalToken externalToken;
+    private ExternalTokenProvider externalToken;
 
     private StoredCredentials storedCredentials;
 
@@ -17,11 +17,11 @@ public class Card extends CardData {
 
     private ThreeD threeD;
 
-    public ExternalToken getExternalToken() {
+    public ExternalTokenProvider getExternalToken() {
         return externalToken;
     }
 
-    public void setExternalToken(ExternalToken externalToken) {
+    public void setExternalToken(ExternalTokenProvider externalToken) {
         this.externalToken = externalToken;
     }
 
