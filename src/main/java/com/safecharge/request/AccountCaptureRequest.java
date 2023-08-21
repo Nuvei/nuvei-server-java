@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.safecharge.model.DeviceDetails;
+import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserDetails;
 import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.util.Constants;
@@ -49,6 +50,8 @@ public class AccountCaptureRequest extends SafechargeRequest {
     private DeviceDetails deviceDetails;
 
     private UserDetails userDetails;
+
+    private UrlDetails urlDetails;
 
     public String getUserTokenId() {
         return userTokenId;
@@ -122,6 +125,14 @@ public class AccountCaptureRequest extends SafechargeRequest {
         this.notificationUrl = notificationUrl;
     }
 
+    public UrlDetails getUrlDetails() {
+        return urlDetails;
+    }
+
+    public void setUrlDetails(UrlDetails urlDetails) {
+        this.urlDetails = urlDetails;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -137,6 +148,7 @@ public class AccountCaptureRequest extends SafechargeRequest {
         private String notificationUrl;
         private DeviceDetails deviceDetails;
         private UserDetails userDetails;
+        private UrlDetails urlDetails;
 
         public Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
@@ -183,6 +195,10 @@ public class AccountCaptureRequest extends SafechargeRequest {
             return this;
         }
 
+        public Builder addUrlDetails(UrlDetails urlDetails) {
+            this.urlDetails = urlDetails;
+            return this;
+        }
 
         @Override
         public AccountCaptureRequest build() throws ConstraintViolationException {
@@ -196,6 +212,7 @@ public class AccountCaptureRequest extends SafechargeRequest {
             request.setNotificationUrl(notificationUrl);
             request.setDeviceDetails(deviceDetails);
             request.setUserDetails(userDetails);
+            request.setUrlDetails(urlDetails);
 
             return ValidationUtils.validate(super.build(request));
         }
