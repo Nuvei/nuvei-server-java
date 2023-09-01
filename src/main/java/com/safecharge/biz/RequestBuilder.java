@@ -389,4 +389,16 @@ public class RequestBuilder {
                 .addApmData(apmData)
                 .build();
     }
+
+    public SafechargeBaseRequest getGetMerchantPaymentMethodsRequest(String sessionToken, MerchantInfo merchantInfo, String clientRequestId, String currencyCode, String countryCode, String languageCode, String type) {
+        return GetMerchantPaymentMethodsRequest.builder()
+                .addSessionToken(sessionToken)
+                .addMerchantInfo(merchantInfo)
+                .addClientRequestId(clientRequestId)
+                .addCountryCode(countryCode)
+                .addCurrencyCode(currencyCode)
+                .addLanguageCode(languageCode)
+                .addType(type)
+                .build();
+    }
 }
