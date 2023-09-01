@@ -18,6 +18,7 @@ public class AccountCaptureResponse extends SafechargeResponse {
 
     private String redirectUrl;
     private String userTokenId;
+    private String openInExternalBrowser;
 
     public String getRedirectUrl() {
         return redirectUrl;
@@ -33,5 +34,13 @@ public class AccountCaptureResponse extends SafechargeResponse {
 
     public void setUserTokenId(String userTokenId) {
         this.userTokenId = userTokenId;
+    }
+
+    public String getOpenInExternalBrowser() {
+        return openInExternalBrowser;
+    }
+
+    public void setOpenInExternalBrowser(String openInExternalBrowser) {
+        this.openInExternalBrowser = openInExternalBrowser;
     }
 }

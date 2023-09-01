@@ -617,6 +617,8 @@ public class Safecharge {
      * @param notificationUrl The URL to which DMNs are sent (see our DMNs Guide).
      * @param deviceDetails   Information about client device
      * @param userDetails     Holder for user details.
+     * @param urlDetails      Although DMN responses can be configured per merchant site, it allows dynamically returning the
+     *                        DMN to the provided address per request.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeException
      */
