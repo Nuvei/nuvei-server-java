@@ -53,6 +53,8 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
 
     private String additionalTransactionBankId;
 
+    private String openInExternalBrowser;
+
     public String getOrderId() {
         return orderId;
     }
@@ -221,6 +223,14 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
         this.additionalTransactionBankId = additionalTransactionBankId;
     }
 
+    public String getOpenInExternalBrowser() {
+        return openInExternalBrowser;
+    }
+
+    public void setOpenInExternalBrowser(String openInExternalBrowser) {
+        this.openInExternalBrowser = openInExternalBrowser;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -245,7 +255,8 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
                 .append(", issuerDeclineReason=").append(issuerDeclineReason)
                 .append(", externalSchemeTransactionId=").append(externalSchemeTransactionId)
                 .append(", additionalTransactionBankId=").append(additionalTransactionBankId)
-                .append(", partialApproval=").append(partialApproval);
+                .append(", partialApproval=").append(partialApproval)
+                .append(", openInExternalBrowser=").append(openInExternalBrowser);
 
         return sb.toString();
     }
