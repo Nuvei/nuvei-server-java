@@ -35,6 +35,12 @@ public class UrlDetails {
     @Size(max = 1000, message = "backUrl size must be up to 1000 characters long!")
     private String backUrl;
 
+    @Size(max = 1000, message = "appUrl size must be up to 1000 characters long!")
+    private String appUrl;
+
+    @Size(max = 1000, message = "appReturnLink size must be up to 1000 characters long!")
+    private String appReturnLink;
+
     public String getSuccessUrl() {
         return successUrl;
     }
@@ -73,5 +79,21 @@ public class UrlDetails {
 
     public void setBackUrl(String backUrl) {
         this.backUrl = backUrl;
+    }
+
+    public String getAppUrl() {
+        return appUrl;
+    }
+
+    public void setAppUrl(String appUrl) {
+        this.appUrl = appUrl;
+    }
+
+    public String getAppReturnLink() {
+        return appReturnLink;
+    }
+
+    public void setAppReturnLink(String appReturnLink) {
+        this.appReturnLink = appReturnLink;
     }
 }

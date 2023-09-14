@@ -30,6 +30,8 @@ public class PaymentMethod {
 
     private List<Field> fields;
 
+    private String openInExternalBrowser;
+
     public String getPaymentMethod() {
         return paymentMethod;
     }
@@ -86,6 +88,14 @@ public class PaymentMethod {
         this.fields = fields;
     }
 
+    public String getOpenInExternalBrowser() {
+        return openInExternalBrowser;
+    }
+
+    public void setOpenInExternalBrowser(String openInExternalBrowser) {
+        this.openInExternalBrowser = openInExternalBrowser;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentMethod{");
@@ -104,6 +114,8 @@ public class PaymentMethod {
                 .append('\'');
         sb.append(", paymentMethodDisplayName=")
                 .append(paymentMethodDisplayName);
+        sb.append(", openInExternalBrowser=")
+                .append(openInExternalBrowser);
         sb.append(", fields=")
                 .append(fields);
         sb.append('}');
