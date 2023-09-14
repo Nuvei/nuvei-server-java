@@ -617,16 +617,18 @@ public class Safecharge {
      * @param notificationUrl The URL to which DMNs are sent (see our DMNs Guide).
      * @param deviceDetails   Information about client device
      * @param userDetails     Holder for user details.
+     * @param urlDetails      Although DMN responses can be configured per merchant site, it allows dynamically returning the
+     *                        DMN to the provided address per request.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeException
      */
     public AccountCaptureResponse accountCapture(String clientRequestId, String userTokenId, String paymentMethod, String currencyCode,
-                                                 String countryCode, String languageCode, String amount, String notificationUrl, DeviceDetails deviceDetails, UserDetails userDetails) throws SafechargeException {
+                                                 String countryCode, String languageCode, String amount, String notificationUrl, DeviceDetails deviceDetails, UserDetails userDetails, UrlDetails urlDetails) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         AccountCaptureRequest request = requestBuilder.getAccountCaptureRequest(sessionToken, merchantInfo, clientRequestId,
-                userTokenId, paymentMethod, currencyCode, countryCode, languageCode, amount, notificationUrl, deviceDetails, userDetails);
+                userTokenId, paymentMethod, currencyCode, countryCode, languageCode, amount, notificationUrl, deviceDetails, userDetails, urlDetails);
 
         return (AccountCaptureResponse) requestExecutor.execute(request);
     }
@@ -704,5 +706,27 @@ public class Safecharge {
         SafechargeBaseRequest request = requestBuilder.getPayoutStatusRequest(sessionToken, merchantInfo, clientRequestId);
 
         return (GetPayoutStatusResponse) requestExecutor.execute(request);
+    }
+
+    /**
+     * Allows the merchant view the names, IDs and other information regarding the enabled payment methods,
+     * which may be filtered based on country, currency and language.
+     *
+     * @param clientRequestId   ID of the API request in merchant system.
+     * @param currencyCode      The three character ISO currency code.
+     * @param countryCode       The country the transaction is to be completed in.
+     * @param languageCode      The language the transaction is to be completed in.
+     * @param type              Will determain which type of payment methods will be returned. Possible values: DEPOSIT, WITHDRAWAL.
+     * @return
+     * @throws SafechargeException
+     */
+    public GetMerchantPaymentMethodsResponse getMerchantPaymentMethods(String clientRequestId, String currencyCode, String countryCode, String languageCode, String type) throws SafechargeException  {
+        ensureMerchantInfoAndSessionTokenNotNull();
+
+        RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
+        SafechargeBaseRequest request = requestBuilder.getGetMerchantPaymentMethodsRequest(sessionToken, merchantInfo,
+                clientRequestId, currencyCode, countryCode, languageCode, type);
+
+        return (GetMerchantPaymentMethodsResponse) requestExecutor.execute(request);
     }
 }
