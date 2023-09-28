@@ -655,13 +655,15 @@ public class Safecharge {
      * @param subMethodDetails      Details about submethod
      * @param cardData              An alternative to sending the userPaymentOptionId for card payouts.
      * @param deviceDetails         Information about client device
+     * @param currencyConversion     Holds information about currency conversion type (DCC / MCP) and amount.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeException
      */
     public PayoutResponse payout(String userTokenId, String clientUniqueId, String clientRequestId, String amount, String currency,
                                  UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
                                  MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
-                                 CardData cardData, DeviceDetails deviceDetails, UserDetails userDetails, CompanyDetails companyDetails)
+                                 CardData cardData, DeviceDetails deviceDetails, UserDetails userDetails, CompanyDetails companyDetails,
+                                 CurrencyConversion currencyConversion)
             throws SafechargeException {
 
         ensureMerchantInfoAndSessionTokenNotNull();
@@ -669,8 +671,8 @@ public class Safecharge {
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         PayoutRequest request = requestBuilder.getPayoutRequest(sessionToken, merchantInfo,
                 userTokenId, clientUniqueId, clientRequestId, amount, currency,userPaymentOption, comment, dynamicDescriptor,
-                merchantDetails, urlDetails, subMethodDetails, cardData, deviceDetails, userDetails, companyDetails);
-
+                merchantDetails, urlDetails, subMethodDetails, cardData, deviceDetails, userDetails, companyDetails,
+                currencyConversion);
 
         return (PayoutResponse) requestExecutor.execute(request);
     }
