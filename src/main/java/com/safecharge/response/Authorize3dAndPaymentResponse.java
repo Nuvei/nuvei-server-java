@@ -55,6 +55,8 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
 
     private String openInExternalBrowser;
 
+    private String merchantAdviceCode;
+
     public String getOrderId() {
         return orderId;
     }
@@ -231,6 +233,14 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
         this.openInExternalBrowser = openInExternalBrowser;
     }
 
+    public String getMerchantAdviceCode() {
+        return merchantAdviceCode;
+    }
+
+    public void setMerchantAdviceCode(String merchantAdviceCode) {
+        this.merchantAdviceCode = merchantAdviceCode;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -256,7 +266,8 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
                 .append(", externalSchemeTransactionId=").append(externalSchemeTransactionId)
                 .append(", additionalTransactionBankId=").append(additionalTransactionBankId)
                 .append(", partialApproval=").append(partialApproval)
-                .append(", openInExternalBrowser=").append(openInExternalBrowser);
+                .append(", openInExternalBrowser=").append(openInExternalBrowser)
+                .append(", merchantAdviceCode=").append(merchantAdviceCode);
 
         return sb.toString();
     }
