@@ -54,6 +54,9 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
     @Size(max = 1)
     private String isPartialApproval;
 
+    @Valid
+    private CompanyDetails companyDetails;
+
     public String getCustomSiteName() {
         return customSiteName;
     }
@@ -80,6 +83,14 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
 
     public Constants.TransactionType getTransactionType() {
         return transactionType;
+    }
+
+    public CompanyDetails getCompanyDetails() {
+        return companyDetails;
+    }
+
+    public void setCompanyDetails(CompanyDetails companyDetails) {
+        this.companyDetails = companyDetails;
     }
 
     public void setTransactionType(Constants.TransactionType transactionType) {
@@ -151,7 +162,8 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
                 .append(", isRebilling=").append(isRebilling)
                 .append(", rebillingType=").append(rebillingType)
                 .append(", preventOverride=").append(preventOverride)
-                .append(", isPartialApproval=").append(isPartialApproval);
+                .append(", isPartialApproval=").append(isPartialApproval)
+                .append(", companyDetails=").append(companyDetails);
         sb.append('}');
         return sb.toString();
     }
@@ -173,6 +185,7 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
         private CurrencyConversion currencyConversion;
         private OpenAmount openAmount;
         private String aftOverride;
+        private CompanyDetails companyDetails;
 
 
         public Builder addCustomSiteName(String customSiteName) {
@@ -249,6 +262,11 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
             this.isPartialApproval = isPartialApproval;
             return this;
         }
+
+        public Builder addCompanyDetails(CompanyDetails companyDetails) {
+            this.companyDetails = companyDetails;
+            return this;
+        }
         /**
          * Builds the request.
          *
@@ -272,6 +290,7 @@ public class OpenOrderRequest extends OrderRequestWithDetails {
             request.setCurrencyConversion(currencyConversion);
             request.setOpenAmount(openAmount);
             request.setAftOverride(aftOverride);
+            request.setCompanyDetails(companyDetails);
 
             return ValidationUtils.validate(super.build(request));
         }

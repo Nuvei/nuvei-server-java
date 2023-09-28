@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.safecharge.model.CompanyDetails;
 import com.safecharge.model.SubMerchant;
 import com.safecharge.model.UrlDetails;
 
@@ -73,6 +74,9 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
 
     @Valid
     private SubMerchant subMerchant;
+
+    @Valid
+    private CompanyDetails companyDetails;
 
     public String getAmount() {
         return amount;
@@ -162,6 +166,14 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
         this.subMerchant = subMerchant;
     }
 
+    public CompanyDetails getCompanyDetails() {
+        return companyDetails;
+    }
+
+    public void setCompanyDetails(CompanyDetails companyDetails) {
+        this.companyDetails = companyDetails;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SafechargeTransactionRequest{");
@@ -176,6 +188,7 @@ public abstract class SafechargeTransactionRequest extends SafechargeRequest {
         sb.append(", productId='").append(productId).append('\'');
         sb.append(", customData='").append(customData).append('\'');
         sb.append(", subMerchant='").append(subMerchant).append('\'');
+        sb.append(", companyDetails='").append(companyDetails).append('\'');
         sb.append('}');
         return sb.toString();
     }

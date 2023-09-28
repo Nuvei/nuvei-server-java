@@ -47,6 +47,9 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
 
     private RecipientDetails recipientDetails;
 
+    private CompanyDetails companyDetails;
+
+
     public PaymentOption getPaymentOption() {
         return paymentOption;
     }
@@ -159,6 +162,14 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         this.recipientDetails = recipientDetails;
     }
 
+    public CompanyDetails getCompanyDetails() {
+        return companyDetails;
+    }
+
+    public void setCompanyDetails(CompanyDetails companyDetails) {
+        this.companyDetails = companyDetails;
+    }
+
     public abstract static class Builder<T extends Builder<T>> extends SafechargePaymentBuilder<T> {
 
         private PaymentOption paymentOption;
@@ -175,6 +186,7 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
         private String redirectFlowUITheme;
         private String aftOverride;
         private RecipientDetails recipientDetails;
+        private CompanyDetails companyDetails;
 
         public T addPaymentOption(PaymentOption paymentOption) {
             this.paymentOption = paymentOption;
@@ -246,6 +258,11 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             return (T) this;
         }
 
+        public T addCompanyDetails(CompanyDetails companyDetails) {
+            this.companyDetails = companyDetails;
+            return (T) this;
+        }
+
         protected <S extends Authorize3dAndPaymentRequest> S build(S request) {
             request.setPaymentOption(paymentOption);
             request.setIsRebilling(isRebilling);
@@ -261,6 +278,7 @@ public abstract class Authorize3dAndPaymentRequest extends SafechargePaymentRequ
             request.setRedirectFlowUITheme(redirectFlowUITheme);
             request.setAftOverride(aftOverride);
             request.setRecipientDetails(recipientDetails);
+            request.setCompanyDetails(companyDetails);
 
             return super.build(request);
         }
