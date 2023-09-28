@@ -57,6 +57,8 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
 
     private String merchantAdviceCode;
 
+    private String isAFT;
+
     public String getOrderId() {
         return orderId;
     }
@@ -241,6 +243,14 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
         this.merchantAdviceCode = merchantAdviceCode;
     }
 
+    public String getIsAFT() {
+        return isAFT;
+    }
+
+    public void setIsAFT(String isAFT) {
+        this.isAFT = isAFT;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -267,7 +277,9 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
                 .append(", additionalTransactionBankId=").append(additionalTransactionBankId)
                 .append(", partialApproval=").append(partialApproval)
                 .append(", openInExternalBrowser=").append(openInExternalBrowser)
-                .append(", merchantAdviceCode=").append(merchantAdviceCode);
+                .append(", merchantAdviceCode=").append(merchantAdviceCode)
+                .append(", openInExternalBrowser=").append(openInExternalBrowser)
+                .append(", isAFT=").append(isAFT);
 
         return sb.toString();
     }
