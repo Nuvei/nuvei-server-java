@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.model.CardData;
 import com.safecharge.model.CompanyDetails;
+import com.safecharge.model.CurrencyConversion;
 import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.MerchantDetails;
@@ -83,6 +84,9 @@ public class PayoutRequest extends SafechargeRequest {
 
     @Valid
     private CompanyDetails companyDetails;
+
+    @Valid
+    private CurrencyConversion currencyConversion;
 
     public static PayoutRequest.Builder builder() {
         return new PayoutRequest.Builder();
@@ -200,6 +204,14 @@ public class PayoutRequest extends SafechargeRequest {
         this.companyDetails = companyDetails;
     }
 
+    public CurrencyConversion getCurrencyConversion() {
+        return currencyConversion;
+    }
+
+    public void setCurrencyConversion(CurrencyConversion currencyConversion) {
+        this.currencyConversion = currencyConversion;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PayoutRequest{");
@@ -217,6 +229,7 @@ public class PayoutRequest extends SafechargeRequest {
         sb.append(", deviceDetails='").append(deviceDetails);
         sb.append(", userDetails='").append(userDetails);
         sb.append(", companyDetails='").append(companyDetails);
+        sb.append(", currencyConversion='").append(currencyConversion);
         sb.append('}');
         return sb.toString();
     }
@@ -237,6 +250,7 @@ public class PayoutRequest extends SafechargeRequest {
         private DeviceDetails deviceDetails;
         private UserDetails userDetails;
         private CompanyDetails companyDetails;
+        private CurrencyConversion currencyConversion;
 
         /**
          * @param userTokenId
@@ -350,6 +364,15 @@ public class PayoutRequest extends SafechargeRequest {
         }
 
         /**
+         * @param currencyConversion
+         * @return this object
+         */
+        public Builder addCurrencyConversion(CurrencyConversion currencyConversion) {
+            this.currencyConversion = currencyConversion;
+            return this;
+        }
+
+        /**
          * Builds the request.
          *
          * @return this object
@@ -371,6 +394,7 @@ public class PayoutRequest extends SafechargeRequest {
             request.setDeviceDetails(deviceDetails);
             request.setUserDetails(userDetails);
             request.setCompanyDetails(companyDetails);
+            request.setCurrencyConversion(currencyConversion);
             return ValidationUtils.validate(super.build(request));
         }
     }
