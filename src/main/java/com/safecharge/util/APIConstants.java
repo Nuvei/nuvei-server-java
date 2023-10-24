@@ -91,6 +91,7 @@ public interface APIConstants {
     // Field limitations:
 
     short ADDRESS_MAX_LENGTH = 120;
+    short ADDRESS_LINE_MAX_LENGTH = 60;
     short FIRST_NAME_MAX_LENGTH = 30;
     short LAST_NAME_MAX_LENGTH = 40;
     short CARD_HOLDER_MAX_LENGTH = 70;
