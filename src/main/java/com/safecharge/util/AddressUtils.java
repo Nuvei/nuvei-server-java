@@ -36,7 +36,6 @@ public class AddressUtils {
      */
     public static UserAddress createUserAddressFromParams(String firstName, String lastName, String email, String phone, String address, String city,
                                                           String country, String state, String zip, String cell, String county) {
-
         UserAddress userAddress = new UserAddress();
         userAddress.setFirstName(firstName);
         userAddress.setLastName(lastName);
@@ -49,6 +48,38 @@ public class AddressUtils {
         userAddress.setZip(zip);
         userAddress.setCell(cell);
         userAddress.setCounty(county);
+
+        return userAddress;
+    }
+
+    /**
+     * Static factory method to create new {@link UserAddress} object based on the passed params.
+     *
+     * @param firstName The first name of the recipient
+     * @param lastName  The last name of the recipient
+     * @param email     The email of the recipient
+     * @param phone     The phone number of the recipient
+     * @param address   The address of the recipient
+     * @param city      The city of the recipient
+     * @param country   The country of the recipient(two-letter ISO country code)
+     * @param state     The state of the recipient(two-letter ISO state code)
+     * @param zip       The postal code of the recipient
+     * @param cell      The cell number of the recipient
+     * @param addressLine2 The address line 2 of the recipient's address
+     * @param addressLine3 The address line 3 of the recipient's address
+     * @param shipAddressLine2 The shipping address line 2 of the recipient's address
+     * @param shipAddressLine3 The shipping address line 3 of the recipient's address
+     * @return new {@link UserAddress} object created from the passed params
+     */
+    public static UserAddress createUserAddressFromParams(String firstName, String lastName, String email, String phone, String address, String city,
+                                                          String country, String state, String zip, String cell, String county, String addressLine2, String addressLine3,
+                                                          String shipAddressLine2, String shipAddressLine3) {
+
+        UserAddress userAddress = createUserAddressFromParams(firstName, lastName, email, phone, address, city, country, state, zip, cell, county);
+        userAddress.setAddressLine2(addressLine2);
+        userAddress.setAddressLine3(addressLine3);
+        userAddress.setShipAddressLine2(shipAddressLine2);
+        userAddress.setShipAddressLine3(shipAddressLine3);
 
         return userAddress;
     }
