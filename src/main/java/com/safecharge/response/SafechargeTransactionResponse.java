@@ -149,6 +149,7 @@ public abstract class SafechargeTransactionResponse extends SafechargeResponse {
     private String isExemptionRequestInAuthentication;
     private String challengePreferenceReason;
 
+
     public String getTransactionId() {
         return transactionId;
     }
@@ -588,6 +589,8 @@ public abstract class SafechargeTransactionResponse extends SafechargeResponse {
     public void setChallengePreferenceReason(String challengePreferenceReason) {
         this.challengePreferenceReason = challengePreferenceReason;
     }
+
+
 
     @Override
     public String toString() {
