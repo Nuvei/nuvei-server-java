@@ -4,7 +4,6 @@
 
 package com.safecharge.model;
 
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.safecharge.util.APIConstants;
@@ -45,7 +44,7 @@ public class UserAddress {
     /**
      * The address of the recipient
      */
-    @Size(max = APIConstants.ADDRESS_MAX_LENGTH, message = "address size must be up to 60 characters long!")
+    @Size(max = APIConstants.ADDRESS_MAX_LENGTH, message = "address size must be up to 120 characters long!")
     private String address;
 
     /**
@@ -83,6 +82,18 @@ public class UserAddress {
      */
     @Size(max = APIConstants.COUNTY_MAX_LENGTH, message = "county size must be up to 255 characters long!")
     private String county;
+
+    @Size(max = APIConstants.ADDRESS_LINE_MAX_LENGTH, message = "shipAddressLine2 size must be up to 60 characters long!")
+    private String shipAddressLine2;
+
+    @Size(max = APIConstants.ADDRESS_LINE_MAX_LENGTH, message = "shipAddressLine3 size must be up to 60 characters long!")
+    private String shipAddressLine3;
+
+    @Size(max = APIConstants.ADDRESS_LINE_MAX_LENGTH, message = "addressLine2 size must be up to 60 characters long!")
+    private String addressLine2;
+
+    @Size(max = APIConstants.ADDRESS_LINE_MAX_LENGTH, message = "addressLine3 size must be up to 60 characters long!")
+    private String addressLine3;
 
     public String getAddress() {
         return address;
@@ -170,5 +181,37 @@ public class UserAddress {
 
     public void setCounty(String county) {
         this.county = county;
+    }
+
+    public String getShipAddressLine2() {
+        return shipAddressLine2;
+    }
+
+    public void setShipAddressLine2(String shipAddressLine2) {
+        this.shipAddressLine2 = shipAddressLine2;
+    }
+
+    public String getShipAddressLine3() {
+        return shipAddressLine3;
+    }
+
+    public void setShipAddressLine3(String shipAddressLine3) {
+        this.shipAddressLine3 = shipAddressLine3;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getAddressLine3() {
+        return addressLine3;
+    }
+
+    public void setAddressLine3(String addressLine3) {
+        this.addressLine3 = addressLine3;
     }
 }
