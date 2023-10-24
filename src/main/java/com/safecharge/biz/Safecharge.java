@@ -105,7 +105,7 @@ public class Safecharge {
      * @param relatedTransactionId   Mandatory in some flows like 3DSecure v2.
      * @param transactionType        The type of transaction: Sale or Auth.
      * @param autoPayment3D          Autopayment3D flag.
-     * @param isMoto                 Set this field to “1” to mark the transaction as MOTO (mail order/telephone order).
+     * @param isMoto                 Set this field to "1" to mark the transaction as MOTO (mail order/telephone order).
      * @param subMerchant            Contains information about the SubMerchant.
      * @param rebillingType          When performing recurring/rebilling, use this field to indicate the recurring type
      * @param authenticationOnlyType This field is intended for merchants using the Zero Authorisation feature.
