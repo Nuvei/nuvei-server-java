@@ -5,5 +5,10 @@ resources:
       name: DigitalPayments/DevOps-Templates
       type: git
       ref: master
+
+
+stages:
+- stage: build
+  displayName: "Build RestAPI1.0-SDK"
   jobs:
-    - template: pipelines/restapi1.0-java-sdk.yaml@DevOpsTemplates
+  - template: pipelines/restapi1.0-java-sdk.yaml@DevOpsTemplates
