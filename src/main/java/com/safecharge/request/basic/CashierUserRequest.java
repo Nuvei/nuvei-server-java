@@ -22,7 +22,7 @@ public class CashierUserRequest extends SafechargeRequest {
     private String phone;
     private String city;
     private String zip;
-    private String countryCode;
+    private String country;
     private String state;
     private String locale;
     private String dateOfBirth;
@@ -84,12 +84,30 @@ public class CashierUserRequest extends SafechargeRequest {
         this.zip = zip;
     }
 
+    /**
+     *  This method is no longer acceptable to get the country code.
+     *  <p> Use {@link #getCountry()} instead.
+     */
+    @Deprecated
     public String getCountryCode() {
-        return countryCode;
+        return getCountry();
     }
 
+    /**
+     *  This method is no longer acceptable to set the country code.
+     *  <p> Use {@link #setCountry(String)} instead.
+     */
+    @Deprecated
     public void setCountryCode(String country) {
-        this.countryCode = country;
+        setCountry(country);
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getState() {

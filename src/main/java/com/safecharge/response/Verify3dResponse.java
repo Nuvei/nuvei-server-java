@@ -31,6 +31,8 @@ public class Verify3dResponse extends SafechargeResponse {
 
     private Integer gwExtendedErrorCode;
 
+    private String mcc;
+
     public String getOrderId() {
         return orderId;
     }
@@ -117,5 +119,13 @@ public class Verify3dResponse extends SafechargeResponse {
 
     public void setGwExtendedErrorCode(Integer gwExtendedErrorCode) {
         this.gwExtendedErrorCode = gwExtendedErrorCode;
+    }
+
+    public String getMcc() {
+        return mcc;
+    }
+
+    public void setMcc(String mcc) {
+        this.mcc = mcc;
     }
 }

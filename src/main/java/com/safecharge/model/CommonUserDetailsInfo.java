@@ -14,7 +14,7 @@ public abstract class CommonUserDetailsInfo {
     private String phone;
     private String zip;
     private String city;
-    private String countryCode;
+    private String country;
     private String state;
     private String email;
     private String locale;
@@ -68,12 +68,29 @@ public abstract class CommonUserDetailsInfo {
         this.city = city;
     }
 
+    /**
+     *  This method is no longer acceptable to get the country code.
+     *  <p> Use {@link #getCountry()} instead.
+     */
+    @Deprecated
     public String getCountryCode() {
-        return countryCode;
+        return getCountry();
     }
 
+    /**
+     *  This method is no longer acceptable to set the country code.
+     *  <p> Use {@link #setCountry(String)} instead.
+     */
     public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+        setCountry(countryCode);
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getState() {
@@ -129,8 +146,8 @@ public abstract class CommonUserDetailsInfo {
         sb.append(", city='")
                 .append(city)
                 .append('\'');
-        sb.append(", countryCode='")
-                .append(countryCode)
+        sb.append(", country='")
+                .append(country)
                 .append('\'');
         sb.append(", state='")
                 .append(state)
