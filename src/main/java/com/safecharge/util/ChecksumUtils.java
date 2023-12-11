@@ -81,11 +81,11 @@ public class ChecksumUtils {
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.MODIFY_CASHIER_USER.name(),
                 Arrays.asList("merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "firstName", "lastName", "address", "state",
-                        "city", "zip", "countryCode", "phone", "locale", "email", "county", "timeStamp"));
+                        "city", "zip", "country", "phone", "locale", "email", "county", "timeStamp"));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.ADD_CASHIER_USER.name(),
                 Arrays.asList("merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "firstName", "lastName",
-                        "address", "state", "city", "zip", "countryCode", "phone", "locale", "email", "county", "timeStamp"));
+                        "address", "state", "city", "zip", "country", "phone", "locale", "email", "county", "timeStamp"));
 
         requestChecksumOrder.put(Constants.ChecksumOrderMapping.ADD_CASHIER_CC_CARD_DATA.name(), Arrays.asList(
                 "merchantId", "merchantSiteId", "userTokenId", "clientRequestId", "ccExpMonth", "ccExpYear", "ccNameOnCard",

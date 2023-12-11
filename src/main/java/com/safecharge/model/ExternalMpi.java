@@ -27,6 +27,8 @@ public class ExternalMpi {
     @Size(max = 36, message = "value is invalid. The length of the value should be maximum {max} symbols.")
     private String dsTransID;
 
+    private String threeDProtocolVersion;
+
     @Size(max = 25)
     private String challengePreference;
 
@@ -100,6 +102,14 @@ public class ExternalMpi {
         this.externalTokenProvider = externalTokenProvider;
     }
 
+    public String getThreeDProtocolVersion() {
+        return threeDProtocolVersion;
+    }
+
+    public void setThreeDProtocolVersion(String threeDProtocolVersion) {
+        this.threeDProtocolVersion = threeDProtocolVersion;
+    }
+
     @Override
     public String toString() {
 
@@ -111,7 +121,8 @@ public class ExternalMpi {
                 .append(", exemptionRequestReason=").append(exemptionRequestReason)
                 .append(", externalTokenProvider=").append(externalTokenProvider)
                 .append(", challengePreference=").append(challengePreference)
-                .append(", dsTransId=").append(dsTransID);
+                .append(", dsTransId=").append(dsTransID)
+                .append(", threeDProtocolVersion=").append(threeDProtocolVersion);
 
         return builder.toString();
     }
