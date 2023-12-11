@@ -7,6 +7,7 @@ package com.safecharge.request;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.safecharge.model.CardData;
@@ -84,6 +85,10 @@ public class CreateSubscriptionRequest
 
     @Valid
     private UserAddress billingAddress;
+
+    @Size(max = 20, message = "is not valid")
+    @Pattern(regexp = "\\d+", message = "is not valid")
+    private String initialTransactionId;
 
     public static Builder builder() {
         return new Builder();
@@ -169,11 +174,22 @@ public class CreateSubscriptionRequest
         this.billingAddress = billingAddress;
     }
 
+    public String getInitialTransactionId() {
+        return initialTransactionId;
+    }
+
+    public void setInitialTransactionId(String initialTransactionId) {
+        this.initialTransactionId = initialTransactionId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CreateSubscriptionRequest{");
         sb.append("subscriptionPlanId='")
                 .append(subscriptionPlanId)
+                .append('\'');
+        sb.append(", initialTransactionId='")
+                .append(initialTransactionId)
                 .append('\'');
         sb.append(", userTokenId='")
                 .append(userTokenId)
@@ -201,6 +217,7 @@ public class CreateSubscriptionRequest
     public static class Builder extends SafechargeBuilder<CreateSubscriptionRequest.Builder> {
 
         private String subscriptionPlanId;
+        private String initialTransactionId;
         private String userTokenId;
         private DynamicDescriptor dynamicDescriptor;
         private RestApiUserDetails userDetails;
@@ -221,6 +238,17 @@ public class CreateSubscriptionRequest
          */
         public CreateSubscriptionRequest.Builder addSubscriptionPlanId(String subscriptionPlanId) {
             this.subscriptionPlanId = subscriptionPlanId;
+            return this;
+        }
+
+        /**
+         * Adds initial transaction ID to the request.
+         *
+         * @param initialTransactionId The initial transaction ID as {@link String}
+         * @return this object
+         */
+        public CreateSubscriptionRequest.Builder addInitialTransactionId(String initialTransactionId) {
+            this.initialTransactionId = initialTransactionId;
             return this;
         }
 
@@ -541,6 +569,7 @@ public class CreateSubscriptionRequest
         public SafechargeBaseRequest build() throws ConstraintViolationException {
             CreateSubscriptionRequest createSubscriptionRequest = new CreateSubscriptionRequest();
             createSubscriptionRequest.setSubscriptionPlanId(subscriptionPlanId);
+            createSubscriptionRequest.setInitialTransactionId(initialTransactionId);
             createSubscriptionRequest.setUserTokenId(userTokenId);
             createSubscriptionRequest.setDynamicDescriptor(dynamicDescriptor);
             createSubscriptionRequest.setUserDetails(userDetails);
