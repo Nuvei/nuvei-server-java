@@ -33,9 +33,8 @@ public class AccountCaptureRequest extends SafechargeRequest {
     @Size(max = 3)
     private String currencyCode;
 
-    @NotNull
     @Size(max = 2)
-    private String countryCode;
+    private String country;
 
     @NotNull
     @Size(max = 2)
@@ -77,12 +76,30 @@ public class AccountCaptureRequest extends SafechargeRequest {
         this.currencyCode = currencyCode;
     }
 
+    /**
+     *  This method is no longer acceptable to get the country code.
+     *  <p> Use {@link #getCountry()} instead.
+     */
+    @Deprecated
     public String getCountryCode() {
-        return countryCode;
+        return getCountry();
     }
 
+    /**
+     *  This method is no longer acceptable to set the country code.
+     *  <p> Use {@link #setCountry(String)} instead.
+     */
+    @Deprecated
     public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+       setCountry(countryCode);
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getLanguageCode() {
@@ -142,7 +159,7 @@ public class AccountCaptureRequest extends SafechargeRequest {
         private String userTokenId;
         private String paymentMethod;
         private String currencyCode;
-        private String countryCode;
+        private String country;
         private String languageCode;
         private String amount;
         private String notificationUrl;
@@ -165,8 +182,18 @@ public class AccountCaptureRequest extends SafechargeRequest {
             return this;
         }
 
+        /**
+         *  This method is no longer acceptable to set the country code.
+         *  <p> Use {@link #addCountry(String)} instead.
+         */
+        @Deprecated
         public Builder addCountryCode(String countryCode) {
-            this.countryCode = countryCode;
+            this.country = countryCode;
+            return this;
+        }
+
+        public Builder addCountry(String country) {
+            this.country = country;
             return this;
         }
 
@@ -206,7 +233,7 @@ public class AccountCaptureRequest extends SafechargeRequest {
             request.setUserTokenId(userTokenId);
             request.setPaymentMethod(paymentMethod);
             request.setCurrencyCode(currencyCode);
-            request.setCountryCode(countryCode);
+            request.setCountry(country);
             request.setLanguageCode(languageCode);
             request.setAmount(amount);
             request.setNotificationUrl(notificationUrl);

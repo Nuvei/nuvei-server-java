@@ -34,6 +34,8 @@ public class InitPaymentResponse extends SafechargeResponse {
 
     private String resultDescription;
 
+    private String mcc;
+
     public String getOrderId() {
         return orderId;
     }
@@ -138,6 +140,14 @@ public class InitPaymentResponse extends SafechargeResponse {
         this.resultDescription = resultDescription;
     }
 
+    public String getMcc() {
+        return mcc;
+    }
+
+    public void setMcc(String mcc) {
+        this.mcc = mcc;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("InitPaymentResponse{");
@@ -153,8 +163,8 @@ public class InitPaymentResponse extends SafechargeResponse {
                 .append(", gwErrorCode=").append(gwErrorCode).append('\'')
                 .append(", resultStatus=").append(resultStatus).append('\'')
                 .append(", resultCode=").append(resultCode).append('\'')
-                .append(", resultDescription=").append(resultDescription);
-
+                .append(", resultDescription=").append(resultDescription)
+                .append(", mcc=").append(mcc);
         return sb.toString();
     }
 }

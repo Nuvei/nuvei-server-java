@@ -614,7 +614,7 @@ public class Safecharge {
      * @param userTokenId     The ID of the user in the merchant’s system.
      * @param paymentMethod   Specifies the payment method name of the payment option to be charged.
      * @param currencyCode    The three-letter ISO currency code.
-     * @param countryCode     The two-letter ISO country code.
+     * @param country     The two-letter ISO country code.
      * @param languageCode    The language in which the transaction is to be completed.
      * @param amount          The transaction amount.
      * @param notificationUrl The URL to which DMNs are sent (see our DMNs Guide).
@@ -626,12 +626,12 @@ public class Safecharge {
      * @throws SafechargeException
      */
     public AccountCaptureResponse accountCapture(String clientRequestId, String userTokenId, String paymentMethod, String currencyCode,
-                                                 String countryCode, String languageCode, String amount, String notificationUrl, DeviceDetails deviceDetails, UserDetails userDetails, UrlDetails urlDetails) throws SafechargeException {
+                                                 String country, String languageCode, String amount, String notificationUrl, DeviceDetails deviceDetails, UserDetails userDetails, UrlDetails urlDetails) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         AccountCaptureRequest request = requestBuilder.getAccountCaptureRequest(sessionToken, merchantInfo, clientRequestId,
-                userTokenId, paymentMethod, currencyCode, countryCode, languageCode, amount, notificationUrl, deviceDetails, userDetails, urlDetails);
+                userTokenId, paymentMethod, currencyCode, country, languageCode, amount, notificationUrl, deviceDetails, userDetails, urlDetails);
 
         return (AccountCaptureResponse) requestExecutor.execute(request);
     }
@@ -723,7 +723,7 @@ public class Safecharge {
      * @param countryCode       The country the transaction is to be completed in.
      * @param languageCode      The language the transaction is to be completed in.
      * @param type              Will determain which type of payment methods will be returned. Possible values: DEPOSIT, WITHDRAWAL.
-     * @return
+     * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeException
      */
     public GetMerchantPaymentMethodsResponse getMerchantPaymentMethods(String clientRequestId, String currencyCode, String countryCode, String languageCode, String type) throws SafechargeException  {

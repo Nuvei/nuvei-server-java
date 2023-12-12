@@ -35,6 +35,11 @@ public class CardData {
     @Size(min = 3, max = 4, message = "cvv size must be 3 or 4 characters long!")
     private String CVV;
 
+    private String brand;
+
+    @Size(max = 4, message = "last4Digits size must be up to 4 digits long!")
+    private String last4Digits;
+
     public CardData() {
     }
 
@@ -93,5 +98,21 @@ public class CardData {
 
     public void setCcTempToken(String ccTempToken) {
         this.ccTempToken = ccTempToken;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getLast4Digits() {
+        return last4Digits;
+    }
+
+    public void setLast4Digits(String last4Digits) {
+        this.last4Digits = last4Digits;
     }
 }
