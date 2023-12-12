@@ -33,6 +33,8 @@ public class DeviceDetails {
     @Pattern(regexp = APIConstants.IP_ADDRESS_REGEX, message = "the entered value is not a valid ipAddress")
     private String ipAddress;
 
+    private String deviceManufacturerIdentifier;
+
     public String getDeviceType() {
         return deviceType;
     }
@@ -73,4 +75,11 @@ public class DeviceDetails {
         this.ipAddress = ipAddress;
     }
 
+    public String getDeviceManufacturerIdentifier() {
+        return deviceManufacturerIdentifier;
+    }
+
+    public void setDeviceManufacturerIdentifier(String deviceManufacturerIdentifier) {
+        this.deviceManufacturerIdentifier = deviceManufacturerIdentifier;
+    }
 }

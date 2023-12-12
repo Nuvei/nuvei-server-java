@@ -11,7 +11,6 @@ import com.safecharge.util.Constants;
 public abstract class SafechargeCashierUserBuilder<T extends SafechargeCashierUserBuilder<T>> extends SafechargeBuilder<T> {
 
     private String userTokenId;
-
     private String firstName;
     private String lastName;
     private String address;
@@ -19,7 +18,7 @@ public abstract class SafechargeCashierUserBuilder<T extends SafechargeCashierUs
     private String phone;
     private String city;
     private String zip;
-    private String countryCode;
+    private String country;
     private String state;
     private String locale;
     private String dateOfBirth;
@@ -65,8 +64,18 @@ public abstract class SafechargeCashierUserBuilder<T extends SafechargeCashierUs
         return (T) this;
     }
 
+    /**
+     *  This method is no longer acceptable to set the country code.
+     *  <p> Use {@link #country(String)} instead.
+     */
+    @Deprecated
     public T countryCode(String countryCode) {
-        this.countryCode = countryCode;
+        this.country = countryCode;
+        return (T) this;
+    }
+
+    public T country(String country) {
+        this.country = country;
         return (T) this;
     }
 
@@ -102,7 +111,7 @@ public abstract class SafechargeCashierUserBuilder<T extends SafechargeCashierUs
         request.setPhone(phone);
         request.setCity(city);
         request.setZip(zip);
-        request.setCountryCode(countryCode);
+        request.setCountry(country);
         request.setState(state);
         request.setLocale(locale);
         request.setDateOfBirth(dateOfBirth);
