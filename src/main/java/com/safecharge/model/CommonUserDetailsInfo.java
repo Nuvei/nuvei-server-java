@@ -19,6 +19,8 @@ public abstract class CommonUserDetailsInfo {
     private String email;
     private String locale;
     private String county;
+    private String identification;
+    private String identificationType;
 
     public String getFirstName() {
         return firstName;
@@ -125,6 +127,24 @@ public abstract class CommonUserDetailsInfo {
         this.county = county;
     }
 
+    public String getIdentification() {
+        return identification;
+    }
+
+    public CommonUserDetailsInfo setIdentification(String identification) {
+        this.identification = identification;
+        return this;
+    }
+
+    public String getIdentificationType() {
+        return identificationType;
+    }
+
+    public CommonUserDetailsInfo setIdentificationType(String identificationType) {
+        this.identificationType = identificationType;
+        return this;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -160,6 +180,12 @@ public abstract class CommonUserDetailsInfo {
                 .append('\'');
         sb.append(", county='")
                 .append(county)
+                .append('\'');
+        sb.append(", identification='")
+                .append(identification)
+                .append('\'');
+        sb.append(", identificationType='")
+                .append(identificationType)
                 .append('\'');
         sb.append('}');
 
