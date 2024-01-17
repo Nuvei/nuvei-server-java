@@ -133,6 +133,7 @@ public class ValidationsTest {
 
     private static final CardData dummyCardData = new CardData();
     private static final String dummySubscriptionPlanId = "123456";
+    private static final String dummyInitialTransactionId = "123456";
     private static final String dummyRelatedTransactionId = "1234567";
     private static final String dummyAuthCode = "auth_code";
 
@@ -421,6 +422,7 @@ public class ValidationsTest {
                 .addMerchantInfo(validMerchantInfo)
                 .addUserTokenId(dummyUserId)
                 .addSubscriptionPlanId(dummySubscriptionPlanId)
+                .addInitialTransactionId(dummyInitialTransactionId)
                 .addCardData(cardData)
                 .addDynamicDescriptor(dynamicDescriptor)
                 .addDeviceDetails("type", "name", "windows", "firefox", "127.0.0.1")
@@ -444,6 +446,35 @@ public class ValidationsTest {
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
             assertEquals(4, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testFailedValidationForInitialTransactionId_CreateSubscriptionRequest() {
+
+        try {
+            CreateSubscriptionRequest.builder()
+                    .addMerchantInfo(validMerchantInfo)
+                    .addUserTokenId(dummyUserId)
+                    .addSubscriptionPlanId(dummySubscriptionPlanId)
+                    .addInitialTransactionId("abcd")
+                    .addCardData(cardData)
+                    .addDynamicDescriptor(dynamicDescriptor)
+                    .addDeviceDetails("type", "name", "windows", "firefox", "127.0.0.1")
+                    .addMerchantDetails("customField1", "customField2", "customField3", "customField4", "customField5",
+                            "customField6", "customField7",
+                            "customField8", "customField9", "customField10", "customField11", "customField12",
+                            "customField13", "customField14",
+                            "customField15")
+                    .addURLDetails("failureUrl", "pendingUrl", "successUrl", "notificationUrl")
+                    .addUserPaymentOption("cvv", "111111")
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(1, e.getConstraintViolations().size());
+            ConstraintViolation violation = e.getConstraintViolations().iterator().next();
+            assertEquals("initialTransactionId", violation.getPropertyPath().toString());
+            assertEquals("is not valid", violation.getMessage());
         }
     }
 
@@ -1178,7 +1209,7 @@ public class ValidationsTest {
     }
 
     @Test
-    public void testSuccessfulValidation_AccountCapture() {
+    public void testSuccessfulValidationWithDeprecatedCountryCode_AccountCapture() {
         AccountCaptureRequest accountCaptureRequest = AccountCaptureRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addPaymentMethod("payment_method")
@@ -1192,12 +1223,27 @@ public class ValidationsTest {
     }
 
     @Test
-    public void testFailedValidation_AccountCapture() {
+    public void testSuccessfulValidation_AccountCapture() {
+        AccountCaptureRequest accountCaptureRequest = AccountCaptureRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addPaymentMethod("payment_method")
+                .addCountry("BG")
+                .addUserTokenId("userTokenId")
+                .addCurrencyCode("BGN")
+                .addLanguageCode("en")
+                .build();
+
+        assertNotNull(accountCaptureRequest);
+    }
+
+    @Test
+    
+  
         try {
             AccountCaptureRequest.builder()
                     .addMerchantInfo(validMerchantInfo)
                     .addPaymentMethod("payment_method")
-                    .addCountryCode("BG")
+                    .addCountry("BG")
                     .addUserTokenId("userTokenId")
                     .addCurrencyCode("BGN")
                     .build();
