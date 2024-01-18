@@ -104,6 +104,9 @@ public interface APIConstants {
     short COUNTY_MAX_LENGTH = 255;
     short EMAIL_MAX_LENGTH = 100;
 
+    short APM_IDENTIFICATION_TYPE_MAX_LENGTH =100;
+    short SSN_IDENTIFICATION_MAX_LENGTH = 15;
+
     // field limitations using regular expressions:
 
     String IP_ADDRESS_REGEX = "^(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}$";
