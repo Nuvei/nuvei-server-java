@@ -55,6 +55,12 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
 
     private String openInExternalBrowser;
 
+    private String merchantAdviceCode;
+
+    private String isAFT;
+
+    private String mcc;
+
     public String getOrderId() {
         return orderId;
     }
@@ -231,6 +237,30 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
         this.openInExternalBrowser = openInExternalBrowser;
     }
 
+    public String getMerchantAdviceCode() {
+        return merchantAdviceCode;
+    }
+
+    public void setMerchantAdviceCode(String merchantAdviceCode) {
+        this.merchantAdviceCode = merchantAdviceCode;
+    }
+
+    public String getIsAFT() {
+        return isAFT;
+    }
+
+    public void setIsAFT(String isAFT) {
+        this.isAFT = isAFT;
+    }
+
+    public String getMcc() {
+        return mcc;
+    }
+
+    public void setMcc(String mcc) {
+        this.mcc = mcc;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -256,8 +286,12 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
                 .append(", externalSchemeTransactionId=").append(externalSchemeTransactionId)
                 .append(", additionalTransactionBankId=").append(additionalTransactionBankId)
                 .append(", partialApproval=").append(partialApproval)
-                .append(", openInExternalBrowser=").append(openInExternalBrowser);
-
+                .append(", openInExternalBrowser=").append(openInExternalBrowser)
+                .append(", merchantAdviceCode=").append(merchantAdviceCode)
+                .append(", openInExternalBrowser=").append(openInExternalBrowser)
+                .append(", isAFT=").append(isAFT)
+                .append(", partialApproval=").append(partialApproval)
+                .append(", mcc=").append(mcc);
         return sb.toString();
     }
 }

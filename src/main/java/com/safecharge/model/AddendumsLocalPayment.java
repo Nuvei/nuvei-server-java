@@ -31,6 +31,24 @@ public class AddendumsLocalPayment {
     @Size(max = 255)
     private String numberOfInstallments;
 
+    @Size(max = 12)
+    private String vatAmount;
+
+    @Size(max = 12)
+    private String nationalConsumptionTaxAmount;
+
+    @Size(max = 12)
+    private String taxAmountBase;
+
+    @Size(max = 12)
+    private String tipAmount;
+
+    @Size(max = 3)
+    private String taxCurrencyCodeBase;
+
+    @Size(max = 12)
+    private String airportChargeAmount;
+
     public String getNationalId() {
         return nationalId;
     }
@@ -69,5 +87,53 @@ public class AddendumsLocalPayment {
 
     public void setNumberOfInstallments(String numberOfInstallments) {
         this.numberOfInstallments = numberOfInstallments;
+    }
+
+    public String getVatAmount() {
+        return vatAmount;
+    }
+
+    public void setVatAmount(String vatAmount) {
+        this.vatAmount = vatAmount;
+    }
+
+    public String getNationalConsumptionTaxAmount() {
+        return nationalConsumptionTaxAmount;
+    }
+
+    public void setNationalConsumptionTaxAmount(String nationalConsumptionTaxAmount) {
+        this.nationalConsumptionTaxAmount = nationalConsumptionTaxAmount;
+    }
+
+    public String getTaxAmountBase() {
+        return taxAmountBase;
+    }
+
+    public void setTaxAmountBase(String taxAmountBase) {
+        this.taxAmountBase = taxAmountBase;
+    }
+
+    public String getTipAmount() {
+        return tipAmount;
+    }
+
+    public void setTipAmount(String tipAmount) {
+        this.tipAmount = tipAmount;
+    }
+
+    public String getTaxCurrencyCodeBase() {
+        return taxCurrencyCodeBase;
+    }
+
+    public void setTaxCurrencyCodeBase(String taxCurrencyCodeBase) {
+        this.taxCurrencyCodeBase = taxCurrencyCodeBase;
+    }
+
+    public String getAirportChargeAmount() {
+        return airportChargeAmount;
+    }
+
+    public void setAirportChargeAmount(String airportChargeAmount) {
+        this.airportChargeAmount = airportChargeAmount;
     }
 }

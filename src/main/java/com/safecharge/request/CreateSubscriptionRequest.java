@@ -7,6 +7,7 @@ package com.safecharge.request;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.safecharge.model.CardData;
@@ -84,6 +85,10 @@ public class CreateSubscriptionRequest
 
     @Valid
     private UserAddress billingAddress;
+
+    @Size(max = 20, message = "is not valid")
+    @Pattern(regexp = "\\d+", message = "is not valid")
+    private String initialTransactionId;
 
     public static Builder builder() {
         return new Builder();
@@ -169,11 +174,22 @@ public class CreateSubscriptionRequest
         this.billingAddress = billingAddress;
     }
 
+    public String getInitialTransactionId() {
+        return initialTransactionId;
+    }
+
+    public void setInitialTransactionId(String initialTransactionId) {
+        this.initialTransactionId = initialTransactionId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CreateSubscriptionRequest{");
         sb.append("subscriptionPlanId='")
                 .append(subscriptionPlanId)
+                .append('\'');
+        sb.append(", initialTransactionId='")
+                .append(initialTransactionId)
                 .append('\'');
         sb.append(", userTokenId='")
                 .append(userTokenId)
@@ -201,6 +217,7 @@ public class CreateSubscriptionRequest
     public static class Builder extends SafechargeBuilder<CreateSubscriptionRequest.Builder> {
 
         private String subscriptionPlanId;
+        private String initialTransactionId;
         private String userTokenId;
         private DynamicDescriptor dynamicDescriptor;
         private RestApiUserDetails userDetails;
@@ -221,6 +238,17 @@ public class CreateSubscriptionRequest
          */
         public CreateSubscriptionRequest.Builder addSubscriptionPlanId(String subscriptionPlanId) {
             this.subscriptionPlanId = subscriptionPlanId;
+            return this;
+        }
+
+        /**
+         * Adds initial transaction ID to the request.
+         *
+         * @param initialTransactionId The initial transaction ID as {@link String}
+         * @return this object
+         */
+        public CreateSubscriptionRequest.Builder addInitialTransactionId(String initialTransactionId) {
+            this.initialTransactionId = initialTransactionId;
             return this;
         }
 
@@ -493,6 +521,36 @@ public class CreateSubscriptionRequest
         /**
          * Adds billing info to the request.
          *
+         * @param firstName The first name of the recipient
+         * @param lastName  The last name of the recipient
+         * @param email     The email of the recipient
+         * @param phone     The phone number of the recipient
+         * @param address   The address of the recipient
+         * @param city      The city of the recipient
+         * @param country   The country of the recipient(two-letter ISO country code)
+         * @param state     The state of the recipient(two-letter ISO state code)
+         * @param zip       The postal code of the recipient
+         * @param cell      The cell number of the recipient
+         * @param county    The county of the recipient
+         * @param addressLine2 The address line 2 of the recipient's address
+         * @param addressLine3 The address line 3 of the recipient's address
+         * @param shipAddressLine2 The shipping address line 2 of the recipient's address
+         * @param shipAddressLine3 The shipping address line 3 of the recipient's address
+         * @return this object
+         */
+        public Builder addBillingAddress(String firstName, String lastName, String email, String phone, String address, String city, String country,
+                                         String state, String zip, String cell, String county, String addressLine2, String addressLine3, String shipAddressLine2,
+                                         String shipAddressLine3) {
+
+            UserAddress billingAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address, city, country,
+                    state, zip, cell, county, addressLine2, addressLine3, shipAddressLine2, shipAddressLine3);
+
+            return addBillingAddress(billingAddress);
+        }
+
+        /**
+         * Adds billing info to the request.
+         *
          * @param billingAddress {@link UserAddress} object to add to the request as billing details
          * @return this object
          */
@@ -511,6 +569,7 @@ public class CreateSubscriptionRequest
         public SafechargeBaseRequest build() throws ConstraintViolationException {
             CreateSubscriptionRequest createSubscriptionRequest = new CreateSubscriptionRequest();
             createSubscriptionRequest.setSubscriptionPlanId(subscriptionPlanId);
+            createSubscriptionRequest.setInitialTransactionId(initialTransactionId);
             createSubscriptionRequest.setUserTokenId(userTokenId);
             createSubscriptionRequest.setDynamicDescriptor(dynamicDescriptor);
             createSubscriptionRequest.setUserDetails(userDetails);

@@ -28,7 +28,8 @@ public class RequestBuilder {
                                                    String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType,
                                                    String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                                   String isPartialApproval, String paymentFlow, String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails) {
+                                                   String isPartialApproval, String paymentFlow, String redirectFlowUITheme, String aftOverride,
+                                                   RecipientDetails recipientDetails, CompanyDetails companyDetails) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -67,6 +68,7 @@ public class RequestBuilder {
                 .addRedirectFlowUITheme(redirectFlowUITheme)
                 .addAftOverride(aftOverride)
                 .addRecipientDetails(recipientDetails)
+                .addCompanyDetails(companyDetails)
                 .build();
     }
 
@@ -101,7 +103,7 @@ public class RequestBuilder {
                                                      String paymentMethod, AmountDetails amountDetails, Addendums addendums, String customData, Boolean autoPayment3D,
                                                      String isMoto, String authenticationOnlyType, SubMerchant subMerchant, Integer isRebilling, String rebillingType,
                                                      String preventOverride, String userId, String isPartialApproval, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                                     OpenAmount openAmount, String aftOverride) {
+                                                     OpenAmount openAmount, String aftOverride, CompanyDetails companyDetails) {
         return OpenOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
@@ -140,6 +142,7 @@ public class RequestBuilder {
                 .addCurrencyConversion(currencyConversion)
                 .addOpenAmount(openAmount)
                 .addAftOverride(aftOverride)
+                .addCompanyDetails(companyDetails)
                 .build();
     }
 
@@ -210,7 +213,8 @@ public class RequestBuilder {
     public SafechargeBaseRequest getRefundTransactionRequest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId,
                                                              String clientRequestId, UrlDetails urlDetails, String amount, String authCode,
                                                              String comment, String currency, String customData, String customSiteName,
-                                                             String productId, String relatedTransactionId, SubMerchant subMerchant) {
+                                                             String productId, String relatedTransactionId, SubMerchant subMerchant,
+                                                             CompanyDetails companyDetails) {
         return RefundTransactionRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -226,6 +230,7 @@ public class RequestBuilder {
                 .addProductId(productId)
                 .addRelatedTransactionId(relatedTransactionId)
                 .addSubMerchant(subMerchant)
+                .addCompanyDetails(companyDetails)
                 .build();
     }
 
@@ -337,7 +342,7 @@ public class RequestBuilder {
     }
 
     public AccountCaptureRequest getAccountCaptureRequest(String sessionToken, MerchantInfo merchantInfo, String clientRequestId,
-                                                          String userTokenId, String paymentMethod, String currencyCode, String countryCode,
+                                                          String userTokenId, String paymentMethod, String currencyCode, String country,
                                                           String languageCode, String amount, String notificationUrl, DeviceDetails deviceDetails, UserDetails userDetails, UrlDetails urlDetails) {
         return AccountCaptureRequest.builder()
                 .addSessionToken(sessionToken)
@@ -346,7 +351,7 @@ public class RequestBuilder {
                 .addUserTokenId(userTokenId)
                 .addPaymentMethod(paymentMethod)
                 .addCurrencyCode(currencyCode)
-                .addCountryCode(countryCode)
+                .addCountry(country)
                 .addLanguageCode(languageCode)
                 .addAmount(amount)
                 .addNotificationUrl(notificationUrl)
@@ -359,7 +364,8 @@ public class RequestBuilder {
     public PayoutRequest getPayoutRequest(String sessionToken, MerchantInfo merchantInfo, String userTokenId, String clientUniqueId, String clientRequestId, String amount, String currency,
                                 UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
                                 MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
-                                CardData cardData, DeviceDetails deviceDetails, UserDetails userDetails) {
+                                CardData cardData, DeviceDetails deviceDetails, UserDetails userDetails, CompanyDetails companyDetails,
+                                CurrencyConversion currencyConversion) {
         return PayoutRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -376,6 +382,8 @@ public class RequestBuilder {
                 .addCardData(cardData)
                 .addDeviceDetails(deviceDetails)
                 .addUserDetails(userDetails)
+                .addCompanyDetails(companyDetails)
+                .addCurrencyConversion(currencyConversion)
                 .build();
     }
 

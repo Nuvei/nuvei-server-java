@@ -4,6 +4,7 @@
 
 package com.safecharge.request.builder;
 
+import com.safecharge.model.CompanyDetails;
 import com.safecharge.model.SubMerchant;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.request.SafechargeTransactionRequest;
@@ -34,6 +35,7 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     private String productId;
     private String customData;
     private SubMerchant subMerchant;
+    private CompanyDetails companyDetails;
 
     /**
      * Adds amount to the request.
@@ -169,6 +171,13 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
         return (T) this;
     }
 
+    public T addCompanyDetails(CompanyDetails companyDetails) {
+        this.companyDetails = companyDetails;
+        return (T) this;
+    }
+
+
+
     /**
      * Adds the order details data, collected by this builder.
      *
@@ -194,6 +203,7 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
         safechargeTransactionRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeTransactionRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",
                         Constants.CHARSET_UTF8, merchantInfo != null ? merchantInfo.getHashAlgorithm() : null));
+        safechargeTransactionRequest.setCompanyDetails(companyDetails);
 
         return safechargeTransactionRequest;
     }

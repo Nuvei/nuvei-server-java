@@ -91,6 +91,7 @@ public interface APIConstants {
     // Field limitations:
 
     short ADDRESS_MAX_LENGTH = 120;
+    short ADDRESS_LINE_MAX_LENGTH = 60;
     short FIRST_NAME_MAX_LENGTH = 30;
     short LAST_NAME_MAX_LENGTH = 40;
     short CARD_HOLDER_MAX_LENGTH = 70;
@@ -102,6 +103,9 @@ public interface APIConstants {
     short MERCHANT_DESCRIPTOR_NAME_MAX_LENGTH = 25;
     short COUNTY_MAX_LENGTH = 255;
     short EMAIL_MAX_LENGTH = 100;
+
+    short APM_IDENTIFICATION_TYPE_MAX_LENGTH =100;
+    short SSN_IDENTIFICATION_MAX_LENGTH = 15;
 
     // field limitations using regular expressions:
 

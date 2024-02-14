@@ -60,6 +60,14 @@ public class RestApiUserDetails {
             message = "county size must be up to 255 characters long!")
     private String county;
 
+    @Size(max = APIConstants.SSN_IDENTIFICATION_MAX_LENGTH,
+            message = "identification size must be up to 15 characters long!")
+    private String identification;
+
+    @Size(max = APIConstants.APM_IDENTIFICATION_TYPE_MAX_LENGTH,
+            message = "identification type size must be up to 100 characters long!")
+    private String identificationType;
+
     public String getFirstName() {
         return firstName;
     }
@@ -148,6 +156,24 @@ public class RestApiUserDetails {
         this.county = county;
     }
 
+    public String getIdentification() {
+        return identification;
+    }
+
+    public RestApiUserDetails setIdentification(String identification) {
+        this.identification = identification;
+        return this;
+    }
+
+    public String getIdentificationType() {
+        return identificationType;
+    }
+
+    public RestApiUserDetails setIdentificationType(String identificationType) {
+        this.identificationType = identificationType;
+        return this;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("RestApiUserDetails{");
@@ -183,6 +209,12 @@ public class RestApiUserDetails {
                 .append('\'');
         sb.append(", county='")
                 .append(county)
+                .append('\'');
+        sb.append(", identification='")
+                .append(identification)
+                .append('\'');
+        sb.append(", identificationType='")
+                .append(identificationType)
                 .append('\'');
         sb.append('}');
         return sb.toString();

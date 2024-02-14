@@ -282,4 +282,11 @@ public interface Constants {
     enum EditUpoBuilderType {
         APM, CCARD, DELETE, SUSPEND, ENABLE
     }
+
+    /**
+     * Used for mapping the authMethod: PAN_ONLY to PAN_ONLY; CRYPTOGRAM_3DS to DPAN
+     */
+    public enum CardAuthMethod {
+        DPAN, PAN_ONLY
+    }
 }

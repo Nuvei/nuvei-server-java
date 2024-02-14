@@ -4,9 +4,13 @@
 
 package com.safecharge.test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
 import org.junit.Before;
@@ -129,6 +133,7 @@ public class ValidationsTest {
 
     private static final CardData dummyCardData = new CardData();
     private static final String dummySubscriptionPlanId = "123456";
+    private static final String dummyInitialTransactionId = "123456";
     private static final String dummyRelatedTransactionId = "1234567";
     private static final String dummyAuthCode = "auth_code";
 
@@ -172,12 +177,32 @@ public class ValidationsTest {
                     "Sofia", "BG", null, "1000", "0884123456", "county billing");
     private static final UserAddress dummyValidShippingDetails = dummyValidBillingDetails; //shipping address same as billing address
 
+    private static final UserAddress dummyValidBillingDetailsWithAddressLines =
+            AddressUtils.createUserAddressFromParams("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
+                    "Sofia", "BG", null, "1000", "0884123456", "county billing",
+                    "address line 2", "address line 3", null, null);
+
+    private static final UserAddress dummyValidShippingDetailsWithAddressLines =  AddressUtils.createUserAddressFromParams("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
+            "Sofia", "BG", null, "1000", "0884123456", "county billing",
+            null, null, "shipping address line 2", "shipping address line 3");
+
     private static final UserAddress dummyInvalidBillingDetails =
             AddressUtils.createUserAddressFromParams("Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
                     "Test Long Name that should fail the validation! Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
                     "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789-9", "0884123456", "Test street 1",
                     "Sofia", "BG", null, "1000", "0884123456", "county bil 1");
     private static final UserAddress dummyInvalidShippingDetails = dummyInvalidBillingDetails; //shipping address same as billing address
+
+    private static final UserAddress dummyInvalidBillingDetailsWithLongAddressLines =
+            AddressUtils.createUserAddressFromParams("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
+                    "Sofia", "BG", null, "1000", "0884123456", "county billing",
+                    "1234567890123456789012345678901234567890123456789012345678901", "1234567890123456789012345678901234567890123456789012345678901", null, null);
+
+    private static final UserAddress dummyInvalidShippingDetailsWithLongAddressLines =
+            AddressUtils.createUserAddressFromParams("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
+                    "Sofia", "BG", null, "1000", "0884123456", "county billing",
+                    null , null, "1234567890123456789012345678901234567890123456789012345678901", "1234567890123456789012345678901234567890123456789012345678901");
+
 
     private static final UrlDetails dummyValidUrlDetails = UrlUtils.createUrlDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
             "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
@@ -397,6 +422,7 @@ public class ValidationsTest {
                 .addMerchantInfo(validMerchantInfo)
                 .addUserTokenId(dummyUserId)
                 .addSubscriptionPlanId(dummySubscriptionPlanId)
+                .addInitialTransactionId(dummyInitialTransactionId)
                 .addCardData(cardData)
                 .addDynamicDescriptor(dynamicDescriptor)
                 .addDeviceDetails("type", "name", "windows", "firefox", "127.0.0.1")
@@ -420,6 +446,35 @@ public class ValidationsTest {
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {
             assertEquals(4, e.getConstraintViolations().size());
+        }
+    }
+
+    @Test
+    public void testFailedValidationForInitialTransactionId_CreateSubscriptionRequest() {
+
+        try {
+            CreateSubscriptionRequest.builder()
+                    .addMerchantInfo(validMerchantInfo)
+                    .addUserTokenId(dummyUserId)
+                    .addSubscriptionPlanId(dummySubscriptionPlanId)
+                    .addInitialTransactionId("abcd")
+                    .addCardData(cardData)
+                    .addDynamicDescriptor(dynamicDescriptor)
+                    .addDeviceDetails("type", "name", "windows", "firefox", "127.0.0.1")
+                    .addMerchantDetails("customField1", "customField2", "customField3", "customField4", "customField5",
+                            "customField6", "customField7",
+                            "customField8", "customField9", "customField10", "customField11", "customField12",
+                            "customField13", "customField14",
+                            "customField15")
+                    .addURLDetails("failureUrl", "pendingUrl", "successUrl", "notificationUrl")
+                    .addUserPaymentOption("cvv", "111111")
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(1, e.getConstraintViolations().size());
+            ConstraintViolation violation = e.getConstraintViolations().iterator().next();
+            assertEquals("initialTransactionId", violation.getPropertyPath().toString());
+            assertEquals("is not valid", violation.getMessage());
         }
     }
 
@@ -617,6 +672,90 @@ public class ValidationsTest {
                 .addPaymentMethod(validPaymentMethodName)
                 .build();
         assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void testSuccessfulValidation_withAddressLines_PaymentAPMRequest() {
+        SafechargeBaseRequest safechargeRequest = PaymentAPMRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addCurrency(validCurrencyCode)
+                .addAmount(validAmountTwoItems)
+                .addSessionToken(dummySessionToken)
+                .addItem(dummyValidItem)
+                .addItem(dummyValidItem2)
+                .addUserDetails(dummyValidRestApiUserDetails)
+                .addBillingDetails(dummyValidBillingDetailsWithAddressLines)
+                .addShippingDetails(dummyValidShippingDetailsWithAddressLines)
+                .addOrderId(dummyOrderId)
+                .addURLDetails(dummyValidUrlDetails)
+                .addPaymentMethod(validPaymentMethodName)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    public void  testFailedValidation_withLongBillingAddressLines_PaymentAPMRequest() {
+
+        try {
+            PaymentAPMRequest.builder()
+                    .addMerchantInfo(validMerchantInfo)
+                    .addCurrency(validCurrencyCode)
+                    .addAmount(validAmountTwoItems)
+                    .addSessionToken(dummySessionToken)
+                    .addItem(dummyValidItem)
+                    .addItem(dummyValidItem2)
+                    .addUserDetails(dummyValidRestApiUserDetails)
+                    .addBillingDetails(dummyInvalidBillingDetailsWithLongAddressLines)
+                    .addShippingDetails(dummyValidShippingDetailsWithAddressLines)
+                    .addOrderId(dummyOrderId)
+                    .addURLDetails(dummyValidUrlDetails)
+                    .addPaymentMethod(validPaymentMethodName)
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        }  catch (ConstraintViolationException e) {
+            List<String> messages = extractConstraintViolationMessages(e);
+            assertEquals(2, messages.size());
+            assertTrue(messages.contains("addressLine2 size must be up to 60 characters long!"));
+            assertTrue(messages.contains("addressLine3 size must be up to 60 characters long!"));
+        }
+    }
+
+    @Test
+    public void  testFailedValidation_withLongShippingAddressLines_PaymentAPMRequest() {
+
+        try {
+            PaymentAPMRequest.builder()
+                    .addMerchantInfo(validMerchantInfo)
+                    .addCurrency(validCurrencyCode)
+                    .addAmount(validAmountTwoItems)
+                    .addSessionToken(dummySessionToken)
+                    .addItem(dummyValidItem)
+                    .addItem(dummyValidItem2)
+                    .addUserDetails(dummyValidRestApiUserDetails)
+                    .addBillingDetails(dummyValidBillingDetailsWithAddressLines)
+                    .addShippingDetails(dummyInvalidShippingDetailsWithLongAddressLines)
+                    .addOrderId(dummyOrderId)
+                    .addURLDetails(dummyValidUrlDetails)
+                    .addPaymentMethod(validPaymentMethodName)
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        }  catch (ConstraintViolationException e) {
+            List<String> messages = extractConstraintViolationMessages(e);
+            assertEquals(2, messages.size());
+            assertTrue(messages.contains("shipAddressLine2 size must be up to 60 characters long!"));
+            assertTrue(messages.contains("shipAddressLine3 size must be up to 60 characters long!"));
+        }
+    }
+
+    private List<String> extractConstraintViolationMessages(ConstraintViolationException e) {
+        List<String> messages = new ArrayList<>();
+        Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
+        if (constraintViolations != null) {
+            for (ConstraintViolation constraintViolation : constraintViolations) {
+                messages.add(constraintViolation.getMessage());
+            }
+        }
+        return messages;
     }
 
     @Test
@@ -1070,11 +1209,25 @@ public class ValidationsTest {
     }
 
     @Test
-    public void testSuccessfulValidation_AccountCapture() {
+    public void testSuccessfulValidationWithDeprecatedCountryCode_AccountCapture() {
         AccountCaptureRequest accountCaptureRequest = AccountCaptureRequest.builder()
                 .addMerchantInfo(validMerchantInfo)
                 .addPaymentMethod("payment_method")
                 .addCountryCode("BG")
+                .addUserTokenId("userTokenId")
+                .addCurrencyCode("BGN")
+                .addLanguageCode("en")
+                .build();
+
+        assertNotNull(accountCaptureRequest);
+    }
+
+    @Test
+    public void testSuccessfulValidation_AccountCapture() {
+        AccountCaptureRequest accountCaptureRequest = AccountCaptureRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addPaymentMethod("payment_method")
+                .addCountry("BG")
                 .addUserTokenId("userTokenId")
                 .addCurrencyCode("BGN")
                 .addLanguageCode("en")
@@ -1089,7 +1242,7 @@ public class ValidationsTest {
             AccountCaptureRequest.builder()
                     .addMerchantInfo(validMerchantInfo)
                     .addPaymentMethod("payment_method")
-                    .addCountryCode("BG")
+                    .addCountry("BG")
                     .addUserTokenId("userTokenId")
                     .addCurrencyCode("BGN")
                     .build();
