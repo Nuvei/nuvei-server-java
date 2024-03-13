@@ -359,13 +359,13 @@ public class Safecharge {
                                                        String descriptorMerchantName, String descriptorMerchantPhone,
                                                        UrlDetails urlDetails, String amount, String authCode, String customData,
                                                        String comment, String currency, String customSiteName, String productId,
-                                                       String relatedTransactionId, SubMerchant subMerchant) throws SafechargeException {
+                                                       String relatedTransactionId, SubMerchant subMerchant, ShippingTrackingDetails shippingTrackingDetails) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getSettleTransactionRequest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, addendums,
                 descriptorMerchantName, descriptorMerchantPhone, urlDetails, amount, authCode, customData, comment, currency,
-                customSiteName, productId, relatedTransactionId, subMerchant);
+                customSiteName, productId, relatedTransactionId, subMerchant, shippingTrackingDetails);
 
         return (SettleTransactionResponse) requestExecutor.execute(request);
     }

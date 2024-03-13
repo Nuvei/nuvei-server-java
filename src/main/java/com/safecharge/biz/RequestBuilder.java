@@ -190,7 +190,7 @@ public class RequestBuilder {
                                                              String descriptorMerchantPhone,
                                                              UrlDetails urlDetails, String amount, String authCode, String customData,
                                                              String comment, String currency, String customSiteName, String productId,
-                                                             String relatedTransactionId, SubMerchant subMerchant) {
+                                                             String relatedTransactionId, SubMerchant subMerchant, ShippingTrackingDetails shippingTrackingDetails) {
         return SettleTransactionRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addClientUniqueId(clientUniqueId)
@@ -209,6 +209,7 @@ public class RequestBuilder {
                 .addProductId(productId)
                 .addRelatedTransactionId(relatedTransactionId)
                 .addSubMerchant(subMerchant)
+                .addShippingTrackingDetails(shippingTrackingDetails)
                 .build();
     }
 
