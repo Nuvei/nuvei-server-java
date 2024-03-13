@@ -29,7 +29,7 @@ public class RequestBuilder {
                                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType,
                                                    String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
                                                    String isPartialApproval, String paymentFlow, String redirectFlowUITheme, String aftOverride,
-                                                   RecipientDetails recipientDetails, CompanyDetails companyDetails) {
+                                                   RecipientDetails recipientDetails, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -69,6 +69,7 @@ public class RequestBuilder {
                 .addAftOverride(aftOverride)
                 .addRecipientDetails(recipientDetails)
                 .addCompanyDetails(companyDetails)
+                .addShippingTrackingDetails(shippingTrackingDetails)
                 .build();
     }
 
@@ -103,7 +104,7 @@ public class RequestBuilder {
                                                      String paymentMethod, AmountDetails amountDetails, Addendums addendums, String customData, Boolean autoPayment3D,
                                                      String isMoto, String authenticationOnlyType, SubMerchant subMerchant, Integer isRebilling, String rebillingType,
                                                      String preventOverride, String userId, String isPartialApproval, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                                     OpenAmount openAmount, String aftOverride, CompanyDetails companyDetails) {
+                                                     OpenAmount openAmount, String aftOverride, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails) {
         return OpenOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
@@ -143,6 +144,7 @@ public class RequestBuilder {
                 .addOpenAmount(openAmount)
                 .addAftOverride(aftOverride)
                 .addCompanyDetails(companyDetails)
+                .addShippingTrackingDetails(shippingTrackingDetails)
                 .build();
     }
 
