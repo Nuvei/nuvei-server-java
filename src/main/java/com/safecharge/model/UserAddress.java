@@ -95,6 +95,10 @@ public class UserAddress {
     @Size(max = APIConstants.ADDRESS_LINE_MAX_LENGTH, message = "addressLine3 size must be up to 60 characters long!")
     private String addressLine3;
 
+    private String careOf;
+
+    private String salutation;
+
     public String getAddress() {
         return address;
     }
@@ -213,5 +217,21 @@ public class UserAddress {
 
     public void setAddressLine3(String addressLine3) {
         this.addressLine3 = addressLine3;
+    }
+
+    public String getCareOf() {
+        return careOf;
+    }
+
+    public void setCareOf(String careOf) {
+        this.careOf = careOf;
+    }
+
+    public String getSalutation() {
+        return salutation;
+    }
+
+    public void setSalutation(String salutation) {
+        this.salutation = salutation;
     }
 }

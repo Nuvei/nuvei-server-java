@@ -28,6 +28,28 @@ public class Item {
     @Size(min = 1, max = 10, message = "quantity size must be up to 10 characters long!")
     private String quantity;
 
+
+    @Size(max=50, message = "type size must be up to 50 characters long!")
+    private String type;
+
+    @Size(max=10, message = "discount size must be up to 10 characters long!")
+    private String discount;
+
+    @Size(max=10, message = "shipping size must be up to 10 characters long!")
+    private String shipping;
+
+    @Size(max=10, message = "shippingTax size must be up to 10 characters long!")
+    private String shippingTax;
+
+    @Size(max=10, message = "tax size must be up to 10 characters long!")
+    private String tax;
+
+    private String groupId;
+
+    private String imageUrl;
+
+    private String productUrl;
+
     public String getName() {
         return name;
     }
@@ -50,5 +72,69 @@ public class Item {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+    public String getShipping() {
+        return shipping;
+    }
+
+    public void setShipping(String shipping) {
+        this.shipping = shipping;
+    }
+
+    public String getShippingTax() {
+        return shippingTax;
+    }
+
+    public void setShippingTax(String shippingTax) {
+        this.shippingTax = shippingTax;
+    }
+
+    public String getTax() {
+        return tax;
+    }
+
+    public void setTax(String tax) {
+        this.tax = tax;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getProductUrl() {
+        return productUrl;
+    }
+
+    public void setProductUrl(String productUrl) {
+        this.productUrl = productUrl;
     }
 }

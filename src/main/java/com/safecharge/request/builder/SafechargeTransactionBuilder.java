@@ -5,6 +5,7 @@
 package com.safecharge.request.builder;
 
 import com.safecharge.model.CompanyDetails;
+import com.safecharge.model.ShippingTrackingDetails;
 import com.safecharge.model.SubMerchant;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.request.SafechargeTransactionRequest;
@@ -36,6 +37,8 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     private String customData;
     private SubMerchant subMerchant;
     private CompanyDetails companyDetails;
+
+    private ShippingTrackingDetails shippingTrackingDetails;
 
     /**
      * Adds amount to the request.
@@ -176,7 +179,17 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
         return (T) this;
     }
 
+    /**
+     * Adds shippingTrackingDetails info to the request.
+     *
+     * @param shippingTrackingDetails {@link ShippingTrackingDetails} object to add to the request as shipping details
+     * @return this object
+     */
+    public T addShippingTrackingDetails(ShippingTrackingDetails shippingTrackingDetails) {
 
+        this.shippingTrackingDetails = shippingTrackingDetails;
+        return (T) this;
+    }
 
     /**
      * Adds the order details data, collected by this builder.
