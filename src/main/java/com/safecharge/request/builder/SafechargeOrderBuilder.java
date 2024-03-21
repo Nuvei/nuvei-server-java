@@ -511,6 +511,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         safechargeOrderDetailsRequest.setUserTokenId(userTokenId);
         safechargeOrderDetailsRequest.setClientUniqueId(clientUniqueId);
         safechargeOrderDetailsRequest.setAmountDetails(amountDetails);
+        safechargeOrderDetailsRequest.setShippingTrackingDetails(shippingTrackingDetails);
 
         safechargeOrderDetailsRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeOrderDetailsRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",
