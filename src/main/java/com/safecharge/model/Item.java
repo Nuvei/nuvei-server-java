@@ -50,6 +50,12 @@ public class Item {
 
     private String productUrl;
 
+    private String taxRate;
+
+    private String discountRate;
+
+    private String shippingTaxRate;
+
     public String getName() {
         return name;
     }
@@ -136,5 +142,30 @@ public class Item {
 
     public void setProductUrl(String productUrl) {
         this.productUrl = productUrl;
+    }
+
+
+    public String getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(String taxRate) {
+        this.taxRate = taxRate;
+    }
+
+    public String getDiscountRate() {
+        return discountRate;
+    }
+
+    public void setDiscountRate(String discountRate) {
+        this.discountRate = discountRate;
+    }
+
+    public String getShippingTaxRate() {
+        return shippingTaxRate;
+    }
+
+    public void setShippingTaxRate(String shippingTaxRate) {
+        this.shippingTaxRate = shippingTaxRate;
     }
 }
