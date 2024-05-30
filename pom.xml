@@ -8,6 +8,10 @@
     <artifactId>safecharge-sdk-java</artifactId>
     <version>1.7.8-SNAPSHOT</version>
 
+    <properties>
+        <safecharge_artifactory>https://srv-bsf-jfedge.gw-4u.com/artifactory/nvi-maven-vrt</safecharge_artifactory>
+    </properties>
+
     <name>Safecharge SDK for Java</name>
     <description>SafeCharge’s REST API SDK for Java provides developer tools for accessing Safecharge's REST API. SafeCharge’s REST API is a simple,
         easy to use, secure and stateless API, which enables online merchants and service providers to process consumer payments through SafeCharge’s
@@ -34,12 +38,6 @@
         <url>http://github.com/SafeChargeInternational/safecharge-java/tree/master</url>
     </scm>
 
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent>
-
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -62,6 +60,27 @@
             </properties>
         </profile>
     </profiles>
+
+    <repositories>
+        <repository>
+            <id>safecharge-libs</id>
+            <name>Safecharge libraries</name>
+            <url>${safecharge_artifactory}</url>
+        </repository>
+        <repository>
+            <id>safecharge-snapshot</id>
+            <name>Safecharge snapshot</name>
+            <url>${safecharge_artifactory}</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>safecharge-maven-plugins</id>
+            <name>Safecharge maven plugins</name>
+            <url>${safecharge_artifactory}</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <build>
         <resources>
