@@ -10,7 +10,6 @@ import javax.validation.constraints.Size;
 
 import com.safecharge.model.Addendums;
 import com.safecharge.model.DynamicDescriptor;
-import com.safecharge.model.ShippingTrackingDetails;
 import com.safecharge.request.builder.SafechargeTransactionBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
@@ -91,8 +90,6 @@ public class SettleTransactionRequest
 
         private Addendums addendums;
 
-        private ShippingTrackingDetails shippingTrackingDetails;
-
         /**
          * Sets the Descriptor merchant name in the request.
          *
@@ -137,17 +134,6 @@ public class SettleTransactionRequest
         }
 
         /**
-         * Adds shippingTrackingDetails info to the request.
-         *
-         * @param shippingTrackingDetails {@link ShippingTrackingDetails} object to add to the request as shipping details
-         * @return this object
-         */
-        public Builder addShippingTrackingDetails(ShippingTrackingDetails shippingTrackingDetails) {
-            this.shippingTrackingDetails = shippingTrackingDetails;
-            return this;
-        }
-
-        /**
          * Builds the request.
          *
          * @return {@link SafechargeRequest} object build from the params set by this builder
@@ -159,8 +145,6 @@ public class SettleTransactionRequest
             settleTransactionRequest.setDescriptorMerchantName(descriptorMerchantName);
             settleTransactionRequest.setDescriptorMerchantPhone(descriptorMerchantPhone);
             settleTransactionRequest.setAddendums(addendums);
-            settleTransactionRequest.setShippingTrackingDetails(shippingTrackingDetails);
-
             return ValidationUtils.validate(super.build(settleTransactionRequest));
         }
     }

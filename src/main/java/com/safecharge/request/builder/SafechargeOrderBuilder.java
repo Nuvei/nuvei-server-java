@@ -14,7 +14,6 @@ import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
 import com.safecharge.model.MerchantDetails;
-import com.safecharge.model.ShippingTrackingDetails;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 import com.safecharge.request.SafechargeOrderDetailsRequest;
@@ -51,7 +50,6 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     private String userTokenId;
     private String clientUniqueId;
     private AmountDetails amountDetails;
-    private ShippingTrackingDetails shippingTrackingDetails;
 
     /**
      * Adds amount to the request.
@@ -471,19 +469,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         amountDetails.setTotalTax(totalTax);
         return addAmountDetails(amountDetails);
     }
-
-    /**
-     * Adds shippingTrackingDetails info to the request.
-     *
-     * @param shippingTrackingDetails {@link ShippingTrackingDetails} object to add to the request as shipping details
-     * @return this object
-     */
-    public T addShippingTrackingDetails(ShippingTrackingDetails shippingTrackingDetails) {
-
-        this.shippingTrackingDetails = shippingTrackingDetails;
-        return (T) this;
-    }
-
+    
     /**
      * Adds the order details data, collected by this builder.
      *
@@ -511,7 +497,6 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         safechargeOrderDetailsRequest.setUserTokenId(userTokenId);
         safechargeOrderDetailsRequest.setClientUniqueId(clientUniqueId);
         safechargeOrderDetailsRequest.setAmountDetails(amountDetails);
-        safechargeOrderDetailsRequest.setShippingTrackingDetails(shippingTrackingDetails);
 
         safechargeOrderDetailsRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeOrderDetailsRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",

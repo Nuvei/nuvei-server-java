@@ -25,8 +25,6 @@ public class Addendums {
     @Valid
     private AddendumsAirlines airlines;
 
-    private RiskInfo risk;
-
     public AddendumsLocalPayment getLocalPayment() {
         return localPayment;
     }
@@ -49,13 +47,5 @@ public class Addendums {
 
     public void setAirlines(AddendumsAirlines airlines) {
         this.airlines = airlines;
-    }
-
-    public RiskInfo getRisk() {
-        return risk;
-    }
-
-    public void setRisk(RiskInfo risk) {
-        this.risk = risk;
     }
 }

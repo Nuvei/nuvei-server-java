@@ -118,7 +118,6 @@ public class Safecharge {
      * @param aftOverride            Used to instruct the gateway that this transaction should not be marked as AFT. Accepted values: "0" / "1".
      * @param recipientDetails       This class is relevant for Visa’s AFTs, and contains the details of the recipient receiving the funding.
      * @param companyDetails         Holds information about company taxId.
-     * @param shippingTrackingDetails Holds information about shippingTrackingDetails.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -131,7 +130,7 @@ public class Safecharge {
                                    String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType, String userId,
                                    ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion, String isPartialApproval, String paymentFlow,
-                                   String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails) throws SafechargeException {
+                                   String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails, CompanyDetails companyDetails) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
@@ -139,7 +138,7 @@ public class Safecharge {
                 isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
                 transactionType, autoPayment3D, isMoto, subMerchant, rebillingType, authenticationOnlyType, userId, externalSchemeDetails, currencyConversion, isPartialApproval, paymentFlow,
-                redirectFlowUITheme, aftOverride, recipientDetails, companyDetails, shippingTrackingDetails);
+                redirectFlowUITheme, aftOverride, recipientDetails, companyDetails);
 
         return (PaymentResponse) requestExecutor.execute(request);
     }
@@ -250,7 +249,7 @@ public class Safecharge {
                                        Addendums addendums, String customData, Boolean autoPayment3D, String isMoto, String authenticationOnlyType,
                                        SubMerchant subMerchant, Integer isRebilling, String rebillingType, String preventOverride, String userId,
                                        String isPartialApproval, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                       OpenAmount openAmount, String aftOverride, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails) throws SafechargeException {
+                                       OpenAmount openAmount, String aftOverride, CompanyDetails companyDetails) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
@@ -258,7 +257,7 @@ public class Safecharge {
                 paymentOption, transactionType, currency, amount, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, urlDetails, userTokenId, clientUniqueId, userPaymentOption, paymentMethod,
                 amountDetails, addendums, customData, autoPayment3D, isMoto, authenticationOnlyType, subMerchant, isRebilling, rebillingType,
-                preventOverride, userId, isPartialApproval, externalSchemeDetails, currencyConversion, openAmount, aftOverride, companyDetails, shippingTrackingDetails);
+                preventOverride, userId, isPartialApproval, externalSchemeDetails, currencyConversion, openAmount, aftOverride, companyDetails);
 
         return (OpenOrderResponse) requestExecutor.execute(request);
     }
@@ -359,13 +358,13 @@ public class Safecharge {
                                                        String descriptorMerchantName, String descriptorMerchantPhone,
                                                        UrlDetails urlDetails, String amount, String authCode, String customData,
                                                        String comment, String currency, String customSiteName, String productId,
-                                                       String relatedTransactionId, SubMerchant subMerchant, ShippingTrackingDetails shippingTrackingDetails) throws SafechargeException {
+                                                       String relatedTransactionId, SubMerchant subMerchant) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getSettleTransactionRequest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, addendums,
                 descriptorMerchantName, descriptorMerchantPhone, urlDetails, amount, authCode, customData, comment, currency,
-                customSiteName, productId, relatedTransactionId, subMerchant, shippingTrackingDetails);
+                customSiteName, productId, relatedTransactionId, subMerchant);
 
         return (SettleTransactionResponse) requestExecutor.execute(request);
     }
