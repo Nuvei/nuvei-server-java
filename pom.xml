@@ -8,10 +8,6 @@
     <artifactId>safecharge-sdk-java</artifactId>
     <version>1.7.8</version>
 
-    <properties>
-        <safecharge_artifactory>https://srv-bsf-jfedge.gw-4u.com/artifactory/nvi-maven-vrt</safecharge_artifactory>
-    </properties>
-
     <name>Safecharge SDK for Java</name>
     <description>SafeCharge’s REST API SDK for Java provides developer tools for accessing Safecharge's REST API. SafeCharge’s REST API is a simple,
         easy to use, secure and stateless API, which enables online merchants and service providers to process consumer payments through SafeCharge’s
@@ -32,23 +28,6 @@
         </license>
     </licenses>
 
-    <scm>
-        <connection>scm:git:git://github.com/SafeChargeInternational/safecharge-java.git</connection>
-        <developerConnection>scm:git:ssh://github.com:SafeChargeInternational/safecharge-java.git</developerConnection>
-        <url>http://github.com/SafeChargeInternational/safecharge-java/tree/master</url>
-    </scm>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
-
     <profiles>
         <profile>
             <id>java8-doclint-disabled</id>
@@ -61,27 +40,6 @@
         </profile>
     </profiles>
 
-    <repositories>
-        <repository>
-            <id>safecharge-libs</id>
-            <name>Safecharge libraries</name>
-            <url>${safecharge_artifactory}</url>
-        </repository>
-        <repository>
-            <id>safecharge-snapshot</id>
-            <name>Safecharge snapshot</name>
-            <url>${safecharge_artifactory}</url>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>safecharge-maven-plugins</id>
-            <name>Safecharge maven plugins</name>
-            <url>${safecharge_artifactory}</url>
-        </pluginRepository>
-    </pluginRepositories>
-
     <build>
         <resources>
             <resource>
@@ -92,28 +50,6 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                        <configuration>
-                            <keyname>${gpg.keyname}</keyname>
-                            <passphraseServerId>${gpg.keyname}</passphraseServerId>
-                            <gpgArguments>
-                                <argument>--pinentry-mode</argument>
-                                <argument>loopback</argument>
-                            </gpgArguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -151,24 +87,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <version>1.6.7</version>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>default-deploy</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
