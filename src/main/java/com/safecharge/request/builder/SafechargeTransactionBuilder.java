@@ -5,6 +5,7 @@
 package com.safecharge.request.builder;
 
 import com.safecharge.model.CompanyDetails;
+import com.safecharge.model.ShippingTrackingDetails;
 import com.safecharge.model.SubMerchant;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.request.SafechargeTransactionRequest;
