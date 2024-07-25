@@ -217,7 +217,7 @@ public class RequestBuilder {
                                                              String clientRequestId, UrlDetails urlDetails, String amount, String authCode,
                                                              String comment, String currency, String customData, String customSiteName,
                                                              String productId, String relatedTransactionId, SubMerchant subMerchant,
-                                                             CompanyDetails companyDetails) {
+                                                             CompanyDetails companyDetails, RefundPaymentOption refundPaymentOption) {
         return RefundTransactionRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -234,6 +234,7 @@ public class RequestBuilder {
                 .addRelatedTransactionId(relatedTransactionId)
                 .addSubMerchant(subMerchant)
                 .addCompanyDetails(companyDetails)
+                .addRefundPaymentOption(refundPaymentOption)
                 .build();
     }
 

@@ -399,16 +399,18 @@ public class Safecharge {
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
      * @throws SafechargeException              if there are request related problems.
      */
-    public RefundTransactionResponse refundTransaction(String clientUniqueId, String clientRequestId, UrlDetails urlDetails,
-                                                       String amount, String authCode, String comment, String currency, String customData,
-                                                       String customSiteName, String productId, String relatedTransactionId, SubMerchant subMerchant,
-                                                       CompanyDetails companyDetails) throws SafechargeException {
+    public RefundTransactionResponse refundTransaction(String clientUniqueId, String clientRequestId,
+            UrlDetails urlDetails,
+            String amount, String authCode, String comment, String currency, String customData,
+            String customSiteName, String productId, String relatedTransactionId, SubMerchant subMerchant,
+            CompanyDetails companyDetails, RefundPaymentOption refundPaymentOption) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
-        SafechargeBaseRequest request = requestBuilder.getRefundTransactionRequest(sessionToken, merchantInfo, clientUniqueId,
+        SafechargeBaseRequest request = requestBuilder.getRefundTransactionRequest(sessionToken, merchantInfo,
+                clientUniqueId,
                 clientRequestId, urlDetails, amount, authCode, comment, currency, customData, customSiteName, productId,
-                relatedTransactionId, subMerchant, companyDetails);
+                relatedTransactionId, subMerchant, companyDetails, refundPaymentOption);
 
         return (RefundTransactionResponse) requestExecutor.execute(request);
     }
