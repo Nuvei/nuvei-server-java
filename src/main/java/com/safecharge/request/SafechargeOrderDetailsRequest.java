@@ -18,6 +18,7 @@ import com.safecharge.model.DeviceDetails;
 import com.safecharge.model.DynamicDescriptor;
 import com.safecharge.model.Item;
 import com.safecharge.model.MerchantDetails;
+import com.safecharge.model.ShippingTrackingDetails;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
 
@@ -107,7 +108,9 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
     private String clientUniqueId;
 
     private AmountDetails amountDetails;
-    
+
+    private ShippingTrackingDetails shippingTrackingDetails;
+
     @NotNull(message = "sessionToken parameter is mandatory!")
     public String getSessionToken() {
         return super.getSessionToken();
@@ -232,6 +235,14 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
         this.amountDetails = amountDetails;
     }
 
+    public ShippingTrackingDetails getShippingTrackingDetails() {
+        return shippingTrackingDetails;
+    }
+
+    public void setShippingTrackingDetails(ShippingTrackingDetails shippingTrackingDetails) {
+        this.shippingTrackingDetails = shippingTrackingDetails;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -266,6 +277,8 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
                 .append(clientUniqueId);
         sb.append(", amountDetails='")
                 .append(amountDetails);
+        sb.append(", shippingTrackingDetails='")
+                .append(shippingTrackingDetails);
         sb.append(", ");
         sb.append(super.toString());
         return sb.toString();

@@ -5,6 +5,7 @@
 package com.safecharge.response;
 
 import com.safecharge.model.PaymentOptionResponse;
+import com.safecharge.util.Constants.CardAuthMethod;
 
 public class InitPaymentResponse extends SafechargeResponse {
 
@@ -35,6 +36,8 @@ public class InitPaymentResponse extends SafechargeResponse {
     private String resultDescription;
 
     private String mcc;
+
+    private CardAuthMethod cardAuthMethod;
 
     public String getOrderId() {
         return orderId;
@@ -148,6 +151,14 @@ public class InitPaymentResponse extends SafechargeResponse {
         this.mcc = mcc;
     }
 
+    public CardAuthMethod getCardAuthMethod() {
+        return cardAuthMethod;
+    }
+
+    public void setCardAuthMethod(CardAuthMethod cardAuthMethod) {
+        this.cardAuthMethod = cardAuthMethod;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("InitPaymentResponse{");
@@ -163,8 +174,9 @@ public class InitPaymentResponse extends SafechargeResponse {
                 .append(", gwErrorCode=").append(gwErrorCode).append('\'')
                 .append(", resultStatus=").append(resultStatus).append('\'')
                 .append(", resultCode=").append(resultCode).append('\'')
-                .append(", resultDescription=").append(resultDescription)
-                .append(", mcc=").append(mcc);
+                .append(", resultDescription=").append(resultDescription).append('\'')
+                .append(", mcc=").append(mcc).append('\'')
+                .append(", cardAuthMethod=").append(cardAuthMethod);
         return sb.toString();
     }
 }

@@ -30,6 +30,14 @@ public class PaymentOptionResponse {
         this.userPaymentOptionId = userPaymentOptionId;
     }
 
+    public String getPaymentAccountReference() {
+        return paymentAccountReference;
+    }
+
+    public void setPaymentAccountReference(String paymentAccountReference) {
+        this.paymentAccountReference = paymentAccountReference;
+    }
+
     public CardResponse getCard() {
         return card;
     }

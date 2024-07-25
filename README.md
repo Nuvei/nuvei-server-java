@@ -18,7 +18,7 @@ If your application is going to be deployed on a Java EE server add the followin
 <dependency>    
     <groupId>com.safecharge</groupId>
     <artifactId>safecharge-sdk-java</artifactId>
-    <version>1.7.6</version>
+    <version>1.7.9</version>
 </dependency>
 ```
 
@@ -32,7 +32,7 @@ For example:
     <dependency>    
         <groupId>com.safecharge</groupId>
         <artifactId>safecharge-sdk-java</artifactId>
-        <version>1.7.6</version>
+        <version>1.7.9</version>
     </dependency>
     <dependency>
         <groupId>org.apache.bval</groupId>
@@ -65,7 +65,7 @@ public class Sample {
         MerchantInfo merchantInfo = new MerchantInfo("MERCHANT_KEY_PROVIDED_BY_SAFECHARGE", "MERCHANT_ID_PROVIDED_BY_SAFECHARGE",
                 "MERCHANT_SITE_ID_PROVIDED_BY_SAFECHARGE", APIConstants.INTEGRATION_HOST, Constants.HashAlgorithm.SHA256);
 
-        SafechargeRequest safechargeRequest = GetSessionTokenRequest.builder()
+        SafechargeBaseRequest safechargeRequest = GetSessionTokenRequest.builder()
                                                                     .addMerchantInfo(merchantInfo)
                                                                     .build();
 
