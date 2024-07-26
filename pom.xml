@@ -38,6 +38,12 @@
         <url>http://github.com/SafeChargeInternational/safecharge-java/tree/master</url>
     </scm>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>9</version>
+    </parent>
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
