@@ -113,6 +113,7 @@ public class SettleTransactionRequest
         private Addendums addendums;
 
         private ShippingTrackingDetails shippingTrackingDetails;
+
         private String relatedTransactionId;
 
         /**
@@ -169,11 +170,13 @@ public class SettleTransactionRequest
             return this;
         }
 
+
         @Override
         public Builder addRelatedTransactionId(String relatedTransactionId) {
             this.relatedTransactionId = relatedTransactionId;
             return this;
         }
+
         /**
          * Builds the request.
          *
@@ -188,6 +191,7 @@ public class SettleTransactionRequest
             settleTransactionRequest.setAddendums(addendums);
             settleTransactionRequest.setShippingTrackingDetails(shippingTrackingDetails);
             settleTransactionRequest.setRelatedTransactionId(relatedTransactionId);
+
 
             return ValidationUtils.validate(super.build(settleTransactionRequest));
         }
