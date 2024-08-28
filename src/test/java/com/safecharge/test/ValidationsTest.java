@@ -1238,6 +1238,7 @@ public class ValidationsTest {
 
     @Test
     public void testFailedValidation_AccountCapture() {
+
         try {
             AccountCaptureRequest.builder()
                     .addMerchantInfo(validMerchantInfo)
