@@ -5,6 +5,7 @@
 package com.safecharge.request.builder;
 
 import com.safecharge.model.CompanyDetails;
+import com.safecharge.model.ShippingTrackingDetails;
 import com.safecharge.model.SubMerchant;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.request.SafechargeTransactionRequest;
@@ -29,7 +30,6 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
     private String authCode;
     private String comment;
     private String clientUniqueId;
-    private String relatedTransactionId;
     private UrlDetails urlDetails;
     private String customSiteName;
     private String productId;
@@ -98,10 +98,7 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
      * @param relatedTransactionId the related transaction id to add to the request
      * @return this object
      */
-    public T addRelatedTransactionId(String relatedTransactionId) {
-        this.relatedTransactionId = relatedTransactionId;
-        return (T) this;
-    }
+    public abstract T addRelatedTransactionId(String relatedTransactionId);
 
     /**
      * Adds URLs to redirect to in case of success/failure and URL to send notification(DMN) to.
@@ -194,7 +191,6 @@ public abstract class SafechargeTransactionBuilder<T extends SafechargeTransacti
         safechargeTransactionRequest.setAuthCode(authCode);
         safechargeTransactionRequest.setComment(comment);
         safechargeTransactionRequest.setClientUniqueId(clientUniqueId);
-        safechargeTransactionRequest.setRelatedTransactionId(relatedTransactionId);
         safechargeTransactionRequest.setUrlDetails(urlDetails);
         safechargeTransactionRequest.setCustomSiteName(customSiteName);
         safechargeTransactionRequest.setProductId(productId);

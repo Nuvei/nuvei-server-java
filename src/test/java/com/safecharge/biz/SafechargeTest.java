@@ -18,6 +18,8 @@ import org.mockito.MockitoAnnotations;
 
 import com.safecharge.exception.SafechargeConfigurationException;
 import com.safecharge.exception.SafechargeException;
+import com.safecharge.model.CardData;
+import com.safecharge.model.RefundPaymentOption;
 import com.safecharge.request.AccountCaptureRequest;
 import com.safecharge.request.Authorize3dRequest;
 import com.safecharge.request.CardDetailsRequest;
@@ -113,7 +115,7 @@ public class SafechargeTest {
         PaymentResponse response = sut.payment("userTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11", null, null,
                 null, null, null, null, null, null, null, null, null, null,
                 null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(PaymentRequest.class));
@@ -131,7 +133,7 @@ public class SafechargeTest {
         sut.payment("userTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11", null, null,
                 null, null, null, null, null, null, null, null, null, null,
                 null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null);
     }
 
     @Test
@@ -178,7 +180,8 @@ public class SafechargeTest {
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
         OpenOrderResponse response = sut.openOrder("userTokenId", "clientRequestId", "clientUniqueId", null, null, null, null, "BGN", "11", null,
                 null, null, null, null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null,
+                null, null, null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(OpenOrderRequest.class));
@@ -195,7 +198,8 @@ public class SafechargeTest {
 
         sut.openOrder("userTokenId", "clientRequestId", "clientUniqueId", null, null, null, null, "BGN", "11", null,
                 null, null, null, null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null,
+                null, null, null, null, null, null, null);
     }
 
     @Test
@@ -238,7 +242,7 @@ public class SafechargeTest {
         when(executor.execute(any(VoidTransactionRequest.class))).thenReturn(voidTransactionResponse);
 
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
-        VoidTransactionResponse response = sut.voidTransaction("clientRequestId", "relatedTransactionId", "11", "BGN", "authCode",
+        VoidTransactionResponse response = sut.voidTransaction("clientRequestId", "relatedTransactioId", "11", "BGN", "authCode",
                 null, null, null, null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
@@ -270,7 +274,7 @@ public class SafechargeTest {
 
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
         SettleTransactionResponse response = sut.settleTransaction("clientUniqueId", "clientRequestId", null, null, null, null, "11",
-                "authCode", null, null, "BGN", null, null, "relatedTransactionId", null);
+                "authCode", null, null, "BGN", null, null, "relatedTransactioId", null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(SettleTransactionRequest.class));
@@ -286,7 +290,7 @@ public class SafechargeTest {
         exception.expectMessage("Missing mandatory info for execution of payments! Please run initialization method before creating payments.");
 
         sut.settleTransaction("clientUniqueId", "clientRequestId", null, null, null, null, "11",
-                "authCode", null, null, "BGN", null, null, "relatedTransactionId", null);
+                "authCode", null, null, "BGN", null, null, "relatedTransactionId", null, null);
     }
 
     @Test
@@ -301,7 +305,32 @@ public class SafechargeTest {
 
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
         RefundTransactionResponse response = sut.refundTransaction("clientUniqueId", "clientRequestId", null, "11", "authCode", null, "BGN",
-                null, null, null, "relatedTransactionId", null, null);
+                null, null, null, "relatedTransactioId", null, null, null, null);
+
+        verify(executor).execute(any(GetSessionTokenRequest.class));
+        verify(executor).execute(any(RefundTransactionRequest.class));
+        verifyNoMoreInteractions(executor);
+        verify(sessionResponse).getStatus();
+        verify(sessionResponse).getSessionToken();
+        assertNotNull(response);
+    }
+
+    @Test
+    public void shouldExecuteUnreferencedRefundTransactionRequestAndReturnResponse() throws SafechargeException {
+        SafechargeResponse sessionResponse = mock(SafechargeResponse.class);
+        when(sessionResponse.getSessionToken()).thenReturn("sessionToken");
+
+        SafechargeResponse refundTransactionResponse = new RefundTransactionResponse();
+
+        when(executor.execute(any(GetSessionTokenRequest.class))).thenReturn(sessionResponse);
+        when(executor.execute(any(RefundTransactionRequest.class))).thenReturn(refundTransactionResponse);
+
+        sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
+        RefundPaymentOption refundPaymentOption = new RefundPaymentOption();
+        refundPaymentOption.setCard(new CardData());
+        RefundTransactionResponse response = sut.refundTransaction("clientUniqueId", "clientRequestId", null, "11",
+                "authCode", null, "BGN",
+                null, null, null, null, null, null, refundPaymentOption, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(RefundTransactionRequest.class));
@@ -317,7 +346,7 @@ public class SafechargeTest {
         exception.expectMessage("Missing mandatory info for execution of payments! Please run initialization method before creating payments.");
 
         sut.refundTransaction("clientUniqueId", "clientRequestId", null, "11", "authCode", null, "BGN",
-                null, null, null, "relatedTransactionId", null, null);
+                null, null, null, "relatedTransactionId", null, null, null, null);
     }
 
     @Test

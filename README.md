@@ -1,7 +1,6 @@
 # SafeCharge REST API SDK for Java.
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.safecharge/safecharge-sdk-java/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.safecharge/safecharge-sdk-java)
-[![Build Status](https://travis-ci.org/SafeChargeInternational/safecharge-java.svg?branch=master)](https://travis-ci.org/SafeChargeInternational/safecharge-java)
 [![codecov](https://codecov.io/gh/SafeChargeInternational/safecharge-java/branch/development/graph/badge.svg)](https://codecov.io/gh/SafeChargeInternational/safecharge-java)
 
 SafeCharge’s REST API SDK for Java provides developer tools for accessing Safecharge's REST API. SafeCharge’s REST API is a simple, easy to use, secure and stateless API, which enables online merchants and service providers to process consumer payments through SafeCharge’s payment gateway. The API supports merchants of all levels of PCI certification, from their online and mobile merchant applications, and is compatible with a large variety of payment options, i.e. payment cards, alternative payment methods, etc. For SafeCharge REST API documentation, please see: https://www.safecharge.com/docs/api/
@@ -18,7 +17,7 @@ If your application is going to be deployed on a Java EE server add the followin
 <dependency>    
     <groupId>com.safecharge</groupId>
     <artifactId>safecharge-sdk-java</artifactId>
-    <version>1.7.7</version>
+    <version>1.7.10</version>
 </dependency>
 ```
 
@@ -32,7 +31,7 @@ For example:
     <dependency>    
         <groupId>com.safecharge</groupId>
         <artifactId>safecharge-sdk-java</artifactId>
-        <version>1.7.7</version>
+        <version>1.7.10</version>
     </dependency>
     <dependency>
         <groupId>org.apache.bval</groupId>
@@ -65,7 +64,7 @@ public class Sample {
         MerchantInfo merchantInfo = new MerchantInfo("MERCHANT_KEY_PROVIDED_BY_SAFECHARGE", "MERCHANT_ID_PROVIDED_BY_SAFECHARGE",
                 "MERCHANT_SITE_ID_PROVIDED_BY_SAFECHARGE", APIConstants.INTEGRATION_HOST, Constants.HashAlgorithm.SHA256);
 
-        SafechargeRequest safechargeRequest = GetSessionTokenRequest.builder()
+        SafechargeBaseRequest safechargeRequest = GetSessionTokenRequest.builder()
                                                                     .addMerchantInfo(merchantInfo)
                                                                     .build();
 

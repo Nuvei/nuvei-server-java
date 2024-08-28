@@ -5,6 +5,8 @@
 package com.safecharge.request;
 
 import javax.validation.ConstraintViolationException;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.safecharge.request.builder.SafechargeTransactionBuilder;
 import com.safecharge.util.Constants;
@@ -27,6 +29,21 @@ import com.safecharge.util.ValidationUtils;
 public class VoidTransactionRequest
         extends SafechargeTransactionRequest {
 
+    /**
+     * The ID of the original auth transaction.
+     */
+    @NotNull(message = "relatedTransactionId parameter is mandatory!")
+    @Size(max = 19)
+    private String relatedTransactionId;
+
+    public String getRelatedTransactionId() {
+        return relatedTransactionId;
+    }
+
+    public void setRelatedTransactionId(String relatedTransactionId) {
+        this.relatedTransactionId = relatedTransactionId;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -41,6 +58,19 @@ public class VoidTransactionRequest
 
     public static class Builder extends SafechargeTransactionBuilder<Builder> {
 
+        private String relatedTransactionId;
+
+        /**
+         * Adds related transaction id to the request.
+         *
+         * @param relatedTransactionId the related transaction id to add to the request
+         * @return this object
+         */
+        public Builder addRelatedTransactionId(String relatedTransactionId) {
+            this.relatedTransactionId = relatedTransactionId;
+            return this;
+        }
+
         /**
          * Builds the request.
          *
@@ -50,6 +80,8 @@ public class VoidTransactionRequest
         @Override
         public VoidTransactionRequest build() throws ConstraintViolationException {
             VoidTransactionRequest voidTransactionRequest = new VoidTransactionRequest();
+            voidTransactionRequest.setRelatedTransactionId(relatedTransactionId);
+
             return ValidationUtils.validate(super.build(voidTransactionRequest));
         }
     }

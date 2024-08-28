@@ -6,10 +6,12 @@ package com.safecharge.request;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.safecharge.model.Addendums;
 import com.safecharge.model.DynamicDescriptor;
+import com.safecharge.model.ShippingTrackingDetails;
 import com.safecharge.request.builder.SafechargeTransactionBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
@@ -41,6 +43,13 @@ public class SettleTransactionRequest
     @Valid
     private Addendums addendums;
 
+    /**
+     * The ID of the original auth transaction.
+     */
+    @NotNull(message = "relatedTransactionId parameter is mandatory!")
+    @Size(max = 19)
+    private String relatedTransactionId;
+
     public static Builder builder() {
         return new Builder();
     }
@@ -69,14 +78,27 @@ public class SettleTransactionRequest
         this.addendums = addendums;
     }
 
+    public String getRelatedTransactionId() {
+        return relatedTransactionId;
+    }
+
+    public void setRelatedTransactionId(String relatedTransactionId) {
+        this.relatedTransactionId = relatedTransactionId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SettleTransactionRequest{");
         sb.append("descriptorMerchantName='")
                 .append(descriptorMerchantName)
+                .append('\'')
+                .append(", descriptorMerchantPhone='")
+                .append(descriptorMerchantPhone)
+                .append('\'')
+                .append(", relatedTransactionId='")
+                .append(relatedTransactionId)
                 .append('\'');
-        sb.append(", descriptorMerchantPhone='")
-                .append(descriptorMerchantPhone);
+
         sb.append(", ")
                 .append(super.toString());
         sb.append('}');
@@ -89,6 +111,9 @@ public class SettleTransactionRequest
         private String descriptorMerchantPhone;
 
         private Addendums addendums;
+
+        private ShippingTrackingDetails shippingTrackingDetails;
+        private String relatedTransactionId;
 
         /**
          * Sets the Descriptor merchant name in the request.
@@ -134,6 +159,22 @@ public class SettleTransactionRequest
         }
 
         /**
+         * Adds shippingTrackingDetails info to the request.
+         *
+         * @param shippingTrackingDetails {@link ShippingTrackingDetails} object to add to the request as shipping details
+         * @return this object
+         */
+        public Builder addShippingTrackingDetails(ShippingTrackingDetails shippingTrackingDetails) {
+            this.shippingTrackingDetails = shippingTrackingDetails;
+            return this;
+        }
+
+        @Override
+        public Builder addRelatedTransactionId(String relatedTransactionId) {
+            this.relatedTransactionId = relatedTransactionId;
+            return this;
+        }
+        /**
          * Builds the request.
          *
          * @return {@link SafechargeRequest} object build from the params set by this builder
@@ -145,6 +186,9 @@ public class SettleTransactionRequest
             settleTransactionRequest.setDescriptorMerchantName(descriptorMerchantName);
             settleTransactionRequest.setDescriptorMerchantPhone(descriptorMerchantPhone);
             settleTransactionRequest.setAddendums(addendums);
+            settleTransactionRequest.setShippingTrackingDetails(shippingTrackingDetails);
+            settleTransactionRequest.setRelatedTransactionId(relatedTransactionId);
+
             return ValidationUtils.validate(super.build(settleTransactionRequest));
         }
     }
