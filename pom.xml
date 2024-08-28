@@ -6,7 +6,11 @@
 
     <groupId>com.safecharge</groupId>
     <artifactId>safecharge-sdk-java</artifactId>
-    <version>1.7.9</version>
+    <version>1.7.10</version>
+
+    <properties>
+        <safecharge_artifactory>https://srv-bsf-jfedge.gw-4u.com/artifactory/nvi-maven-vrt</safecharge_artifactory>
+    </properties>
 
     <name>Safecharge SDK for Java</name>
     <description>SafeCharge’s REST API SDK for Java provides developer tools for accessing Safecharge's REST API. SafeCharge’s REST API is a simple,
@@ -27,6 +31,29 @@
             <url>http://www.opensource.org/licenses/mit-license.php</url>
         </license>
     </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/SafeChargeInternational/safecharge-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com:SafeChargeInternational/safecharge-java.git</developerConnection>
+        <url>http://github.com/SafeChargeInternational/safecharge-java/tree/master</url>
+    </scm>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>9</version>
+    </parent>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <profiles>
         <profile>
