@@ -45,10 +45,17 @@ public class RefundTransactionRequest
     private RefundPaymentOption paymentOption;
 
     /**
+     * Used for unreferenced refunds (for connecting and validating the UPO).
+     */
+    @Size(max = 255, message = "userTokenId size must be up to 255 characters long!")
+    private String userTokenId;
+
+    /**
      * The ID of the original auth transaction.
      */
     @Size(max = 19)
     private String relatedTransactionId;
+
 
     public RefundPaymentOption getPaymentOption() {
         return paymentOption;
@@ -56,6 +63,14 @@ public class RefundTransactionRequest
 
     public void setPaymentOption(RefundPaymentOption paymentOption) {
         this.paymentOption = paymentOption;
+    }
+
+    public String getUserTokenId() {
+        return userTokenId;
+    }
+
+    public void setUserTokenId(String userTokenId) {
+        this.userTokenId = userTokenId;
     }
 
     @Override
@@ -79,6 +94,7 @@ public class RefundTransactionRequest
     public static class Builder extends SafechargeTransactionBuilder<Builder> {
 
         private RefundPaymentOption refundPaymentOption;
+        private String userTokenId;
         private String relatedTransactionId;
 
         /**
@@ -89,6 +105,17 @@ public class RefundTransactionRequest
          */
         public Builder addRefundPaymentOption(RefundPaymentOption refundPaymentOption) {
             this.refundPaymentOption = refundPaymentOption;
+            return this;
+        }
+
+        /**
+         * Adds userTokenId to request builder for unreferenced refunds.
+         *
+         * @param userTokenId used for connecting and validating the UPO.
+         * @return this object
+         */
+        public Builder addUserTokenId(String userTokenId) {
+            this.userTokenId = userTokenId;
             return this;
         }
 
@@ -108,6 +135,7 @@ public class RefundTransactionRequest
         public SafechargeBaseRequest build() throws ConstraintViolationException {
             RefundTransactionRequest refundTransactionRequest = new RefundTransactionRequest();
             refundTransactionRequest.setPaymentOption(refundPaymentOption);
+            refundTransactionRequest.setUserTokenId(userTokenId);
             refundTransactionRequest.setRelatedTransactionId(relatedTransactionId);
             return ValidationUtils.validate(super.build(refundTransactionRequest));
         }
