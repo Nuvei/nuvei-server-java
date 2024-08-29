@@ -305,7 +305,7 @@ public class SafechargeTest {
 
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
         RefundTransactionResponse response = sut.refundTransaction("clientUniqueId", "clientRequestId", null, "11", "authCode", null, "BGN",
-                null, null, null, "relatedTransactioId", null, null, null);
+                null, null, null, "relatedTransactioId", null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(RefundTransactionRequest.class));
@@ -330,7 +330,7 @@ public class SafechargeTest {
         refundPaymentOption.setCard(new CardData());
         RefundTransactionResponse response = sut.refundTransaction("clientUniqueId", "clientRequestId", null, "11",
                 "authCode", null, "BGN",
-                null, null, null, null, null, null, refundPaymentOption);
+                null, null, null, null, null, null, refundPaymentOption, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(RefundTransactionRequest.class));
@@ -346,7 +346,7 @@ public class SafechargeTest {
         exception.expectMessage("Missing mandatory info for execution of payments! Please run initialization method before creating payments.");
 
         sut.refundTransaction("clientUniqueId", "clientRequestId", null, "11", "authCode", null, "BGN",
-                null, null, null, "relatedTransactionId", null, null, null);
+                null, null, null, "relatedTransactionId", null, null, null, null);
     }
 
     @Test

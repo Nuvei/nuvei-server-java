@@ -403,14 +403,14 @@ public class Safecharge {
             UrlDetails urlDetails,
             String amount, String authCode, String comment, String currency, String customData,
             String customSiteName, String productId, String relatedTransactionId, SubMerchant subMerchant,
-            CompanyDetails companyDetails, RefundPaymentOption refundPaymentOption) throws SafechargeException {
+            CompanyDetails companyDetails, RefundPaymentOption refundPaymentOption, String userTokenId) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getRefundTransactionRequest(sessionToken, merchantInfo,
                 clientUniqueId,
                 clientRequestId, urlDetails, amount, authCode, comment, currency, customData, customSiteName, productId,
-                relatedTransactionId, subMerchant, companyDetails, refundPaymentOption);
+                relatedTransactionId, subMerchant, companyDetails, refundPaymentOption, userTokenId);
 
         return (RefundTransactionResponse) requestExecutor.execute(request);
     }
