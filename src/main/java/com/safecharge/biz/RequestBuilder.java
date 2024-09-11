@@ -29,7 +29,8 @@ public class RequestBuilder {
                                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType,
                                                    String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
                                                    String isPartialApproval, String paymentFlow, String redirectFlowUITheme, String aftOverride,
-                                                   RecipientDetails recipientDetails, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails) {
+                                                   RecipientDetails recipientDetails, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails,
+                                                   String cvvNotUsed) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -70,6 +71,7 @@ public class RequestBuilder {
                 .addRecipientDetails(recipientDetails)
                 .addCompanyDetails(companyDetails)
                 .addShippingTrackingDetails(shippingTrackingDetails)
+                .addCvvNotUsed(cvvNotUsed)
                 .build();
     }
 
