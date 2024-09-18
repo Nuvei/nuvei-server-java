@@ -30,7 +30,7 @@ public class RequestBuilder {
                                                    String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
                                                    String isPartialApproval, String paymentFlow, String redirectFlowUITheme, String aftOverride,
                                                    RecipientDetails recipientDetails, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails,
-                                                   String cvvNotUsed) {
+                                                   String cvvNotUsed, String serviceDueDate) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -72,6 +72,7 @@ public class RequestBuilder {
                 .addCompanyDetails(companyDetails)
                 .addShippingTrackingDetails(shippingTrackingDetails)
                 .addCvvNotUsed(cvvNotUsed)
+                .addServiceDueDate(serviceDueDate)
                 .build();
     }
 
