@@ -59,6 +59,9 @@ public class InitPaymentRequest extends SafechargeRequest {
     @Size(max = 255)
     private String userId;
 
+    @Size(max = 19)
+    private String relatedTransactionId;
+
     public String getUserTokenId() {
         return userTokenId;
     }
@@ -155,6 +158,14 @@ public class InitPaymentRequest extends SafechargeRequest {
         this.recipientDetails = recipientDetails;
     }
 
+    public String getRelatedTransactionId() {
+        return relatedTransactionId;
+    }
+
+    public void setRelatedTransactionId(String relatedTransactionId) {
+        this.relatedTransactionId = relatedTransactionId;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -170,7 +181,8 @@ public class InitPaymentRequest extends SafechargeRequest {
                 .append(", billingAddress=").append(billingAddress)
                 .append(", aftOverride=").append(aftOverride)
                 .append(", recipientDetails=").append(recipientDetails)
-                .append(", userId=").append(userId);
+                .append(", userId=").append(userId)
+                .append(", relatedTransactionId=").append(relatedTransactionId);
 
         return sb.toString();
     }
@@ -193,6 +205,7 @@ public class InitPaymentRequest extends SafechargeRequest {
         private String userId;
         private String aftOverride;
         private RecipientDetails recipientDetails;
+        private String relatedTransactionId;
 
         public Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
@@ -254,6 +267,11 @@ public class InitPaymentRequest extends SafechargeRequest {
             return this;
         }
 
+        public Builder addRelatedTransactionId(String relatedTransactionId) {
+            this.relatedTransactionId = relatedTransactionId;
+            return this;
+        }
+
         @Override
         public InitPaymentRequest build() throws ConstraintViolationException {
             InitPaymentRequest request = new InitPaymentRequest();
@@ -269,6 +287,7 @@ public class InitPaymentRequest extends SafechargeRequest {
             request.setUserId(userId);
             request.setAftOverride(aftOverride);
             request.setRecipientDetails(recipientDetails);
+            request.setRelatedTransactionId(relatedTransactionId);
 
             return ValidationUtils.validate(super.build(request));
         }
