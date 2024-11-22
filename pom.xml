@@ -6,7 +6,7 @@
 
     <groupId>com.safecharge</groupId>
     <artifactId>safecharge-sdk-java</artifactId>
-    <version>1.7.11-SNAPSHOT</version>
+    <version>1.7.11</version>
 
     <properties>
         <safecharge_artifactory>https://srv-bsf-jfedge.gw-4u.com/artifactory/nvi-maven-vrt</safecharge_artifactory>
