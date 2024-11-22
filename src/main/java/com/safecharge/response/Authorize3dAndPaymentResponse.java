@@ -59,10 +59,6 @@ public abstract class Authorize3dAndPaymentResponse extends SafechargeResponse {
 
     private String isAFT;
 
-    private String merchantAdviceCode;
-
-    private String isAFT;
-
     private String mcc;
 
     public String getOrderId() {

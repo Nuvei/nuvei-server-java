@@ -29,7 +29,8 @@ public class RequestBuilder {
                                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType,
                                                    String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
                                                    String isPartialApproval, String paymentFlow, String redirectFlowUITheme, String aftOverride,
-                                                   RecipientDetails recipientDetails, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails) {
+                                                   RecipientDetails recipientDetails, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails,
+                                                   String cvvNotUsed, String serviceDueDate) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -70,13 +71,15 @@ public class RequestBuilder {
                 .addRecipientDetails(recipientDetails)
                 .addCompanyDetails(companyDetails)
                 .addShippingTrackingDetails(shippingTrackingDetails)
+                .addCvvNotUsed(cvvNotUsed)
+                .addServiceDueDate(serviceDueDate)
                 .build();
     }
 
     public SafechargeBaseRequest getInitPaymentRequest(String sessionToken, String userTokenId, String clientUniqueId, String clientRequestId, String currency,
                                                        String amount, DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails,
                                                        String customData, UserAddress billingAddress, MerchantInfo merchantInfo, String userId, String aftOverride,
-                                                       RecipientDetails recipientDetails) {
+                                                       RecipientDetails recipientDetails, String relatedTransactionId) {
         return InitPaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addUserTokenId(userTokenId)
@@ -93,6 +96,7 @@ public class RequestBuilder {
                 .addUserId(userId)
                 .addAftOverride(aftOverride)
                 .addRecipientDetails(recipientDetails)
+                .addRelatedTransactionId(relatedTransactionId)
                 .build();
     }
 

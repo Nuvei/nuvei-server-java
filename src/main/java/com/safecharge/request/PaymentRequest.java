@@ -20,6 +20,10 @@ public class PaymentRequest extends Authorize3dAndPaymentRequest {
 
     private String isMoto;
 
+    private String cvvNotUsed;
+
+    private String serviceDueDate;
+
     public String getIsMoto() {
         return isMoto;
     }
@@ -27,6 +31,18 @@ public class PaymentRequest extends Authorize3dAndPaymentRequest {
     public void setIsMoto(String isMoto) {
         this.isMoto = isMoto;
     }
+
+    public String getCvvNotUsed() {
+        return cvvNotUsed;
+    }
+
+    public void setCvvNotUsed(String cvvNotUsed) {
+        this.cvvNotUsed = cvvNotUsed;
+    }
+
+    public String getServiceDueDate() { return serviceDueDate; }
+
+    public void setServiceDueDate(String serviceDueDate) { this.serviceDueDate = serviceDueDate; }
 
     public static Builder builder() {
         return new Builder();
@@ -38,7 +54,9 @@ public class PaymentRequest extends Authorize3dAndPaymentRequest {
         sb.append("paymentOption=").append(getPaymentOption())
                 .append(", isRebilling=").append(getIsRebilling())
                 .append(", isMoto=").append(getIsMoto())
-                .append(", autoPayment3D=").append(isAutoPayment3D());
+                .append(", autoPayment3D=").append(isAutoPayment3D())
+                .append(", cvvNotUsed=").append(cvvNotUsed)
+                .append(", serviceDueDate=").append(getServiceDueDate());
         sb.append(super.toString());
         sb.append('}');
 
@@ -48,9 +66,21 @@ public class PaymentRequest extends Authorize3dAndPaymentRequest {
     public static class Builder extends Authorize3dAndPaymentRequest.Builder<Builder> {
 
         private String isMoto;
+        private String cvvNotUsed;
+        private String serviceDueDate;
 
         public Builder addIsMoto(String isMoto) {
             this.isMoto = isMoto;
+            return this;
+        }
+
+        public Builder addCvvNotUsed(String cvvNotUsed) {
+            this.cvvNotUsed = cvvNotUsed;
+            return this;
+        }
+
+        public Builder addServiceDueDate(String serviceDueDate) {
+            this.serviceDueDate = serviceDueDate;
             return this;
         }
 
@@ -61,6 +91,8 @@ public class PaymentRequest extends Authorize3dAndPaymentRequest {
         public PaymentRequest build() {
             PaymentRequest request = new PaymentRequest();
             request.setIsMoto(isMoto);
+            request.setCvvNotUsed(cvvNotUsed);
+            request.setServiceDueDate(serviceDueDate);
 
             return ValidationUtils.validate(super.build(request));
         }

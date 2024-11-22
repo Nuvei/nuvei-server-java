@@ -119,6 +119,8 @@ public class Safecharge {
      * @param recipientDetails       This class is relevant for Visa’s AFTs, and contains the details of the recipient receiving the funding.
      * @param companyDetails         Holds information about company taxId.
      * @param shippingTrackingDetails Holds information about shippingTrackingDetails.
+     * @param cvvNotUsed             Flag if CVV is not used
+     * @param serviceDueDate         Subscription end date
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -131,7 +133,8 @@ public class Safecharge {
                                    String customData, String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType, String userId,
                                    ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion, String isPartialApproval, String paymentFlow,
-                                   String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails) throws SafechargeException {
+                                   String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails,
+                                   String cvvNotUsed, String serviceDueDate) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
@@ -139,7 +142,7 @@ public class Safecharge {
                 isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
                 transactionType, autoPayment3D, isMoto, subMerchant, rebillingType, authenticationOnlyType, userId, externalSchemeDetails, currencyConversion, isPartialApproval, paymentFlow,
-                redirectFlowUITheme, aftOverride, recipientDetails, companyDetails, shippingTrackingDetails);
+                redirectFlowUITheme, aftOverride, recipientDetails, companyDetails, shippingTrackingDetails, cvvNotUsed, serviceDueDate);
 
         return (PaymentResponse) requestExecutor.execute(request);
     }
@@ -179,13 +182,13 @@ public class Safecharge {
     public InitPaymentResponse initPayment(String userTokenId, String clientUniqueId, String clientRequestId, String currency, String amount,
                                            DeviceDetails deviceDetails, InitPaymentPaymentOption paymentOption, UrlDetails urlDetails, String customData,
                                            UserAddress billingAddress, String userId, String aftOverride,
-                                           RecipientDetails recipientDetails) throws SafechargeException {
+                                           RecipientDetails recipientDetails, String relatedTransactionId) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getInitPaymentRequest(sessionToken, userTokenId, clientUniqueId, clientRequestId, currency,
                 amount, deviceDetails, paymentOption, urlDetails, customData, billingAddress, merchantInfo, userId, aftOverride,
-                 recipientDetails);
+                 recipientDetails, relatedTransactionId);
 
         return (InitPaymentResponse) requestExecutor.execute(request);
     }
