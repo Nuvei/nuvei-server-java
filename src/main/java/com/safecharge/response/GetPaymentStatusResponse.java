@@ -43,6 +43,8 @@ public class GetPaymentStatusResponse extends SafechargeResponse {
 
     private String issuerDeclineReason;
 
+    private String externalSchemeTransactionId;
+
     public String getCustomData() {
         return customData;
     }
@@ -177,5 +179,13 @@ public class GetPaymentStatusResponse extends SafechargeResponse {
 
     public void setIssuerDeclineReason(String issuerDeclineReason) {
         this.issuerDeclineReason = issuerDeclineReason;
+    }
+
+    public String getExternalSchemeTransactionId() {
+        return externalSchemeTransactionId;
+    }
+
+    public void setExternalSchemeTransactionId(String externalSchemeTransactionId) {
+        this.externalSchemeTransactionId = externalSchemeTransactionId;
     }
 }
