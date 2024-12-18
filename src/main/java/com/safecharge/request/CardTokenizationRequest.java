@@ -64,7 +64,6 @@ public class CardTokenizationRequest extends SafechargeBaseRequest {
     /**
      * TODO: Check if this is required param ?!?
      */
-    @Pattern(regexp = APIConstants.IP_ADDRESS_REGEX, message = "the entered value is not a valid ipAddress")
     private String ipAddress;
 
     @Valid

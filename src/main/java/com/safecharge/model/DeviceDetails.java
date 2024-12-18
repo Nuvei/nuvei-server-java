@@ -30,7 +30,6 @@ public class DeviceDetails {
     @Size(max = 255, message = "browser size must be up to 45 characters long!")
     private String browser;
 
-    @Pattern(regexp = APIConstants.IP_ADDRESS_REGEX, message = "the entered value is not a valid ipAddress")
     private String ipAddress;
 
     private String deviceManufacturerIdentifier;
