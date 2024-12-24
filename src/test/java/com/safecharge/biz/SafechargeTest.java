@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -50,9 +51,11 @@ import com.safecharge.response.Verify3dResponse;
 import com.safecharge.response.VoidTransactionResponse;
 import com.safecharge.util.Constants;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
@@ -115,7 +118,7 @@ public class SafechargeTest {
         PaymentResponse response = sut.payment("userTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11", null, null,
                 null, null, null, null, null, null, null, null, null, null,
                 null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(PaymentRequest.class));
@@ -133,7 +136,7 @@ public class SafechargeTest {
         sut.payment("userTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11", null, null,
                 null, null, null, null, null, null, null, null, null, null,
                 null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null, null);
     }
 
     @Test
@@ -148,7 +151,7 @@ public class SafechargeTest {
 
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
         InitPaymentResponse response = sut.initPayment("userTokenId", "clientUniqueId", "clientRequestId", "BGN", "11",
-                null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(InitPaymentRequest.class));
@@ -164,7 +167,7 @@ public class SafechargeTest {
         exception.expectMessage("Missing mandatory info for execution of payments! Please run initialization method before creating payments.");
 
         sut.initPayment("userTokenId", "clientUniqueId", "clientRequestId", "BGN", "11",
-                null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null);
     }
 
     @Test
