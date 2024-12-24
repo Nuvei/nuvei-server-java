@@ -7,7 +7,7 @@ SafeCharge’s REST API SDK for Java provides developer tools for accessing Safe
  
 ## Requirements
 
-Java 1.7 or later.
+Java 1.7 or later
 
 ### Maven
 
@@ -17,7 +17,7 @@ If your application is going to be deployed on a Java EE server add the followin
 <dependency>    
     <groupId>com.safecharge</groupId>
     <artifactId>safecharge-sdk-java</artifactId>
-    <version>1.7.11</version>
+    <version>1.7.12</version>
 </dependency>
 ```
 
@@ -31,7 +31,7 @@ For example:
     <dependency>    
         <groupId>com.safecharge</groupId>
         <artifactId>safecharge-sdk-java</artifactId>
-        <version>1.7.11</version>
+        <version>1.7.12</version>
     </dependency>
     <dependency>
         <groupId>org.apache.bval</groupId>
