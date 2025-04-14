@@ -115,10 +115,12 @@ public class SafechargeTest {
         when(executor.execute(any(PaymentRequest.class))).thenReturn(paymentResponse);
 
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
-        PaymentResponse response = sut.payment("userTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11", null, null,
-                null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null, null, null);
+        PaymentResponse response = sut.payment("userTokenId", "clientUniqueId", "clientRequestId", null,
+                null, "BGN", "11", null, null, null, null, null, null,
+                null, null, null, null, null, null,null, null,
+                null, null, null, null, null, null, null,null,
+                null, null, null, null, null, null, null,
+                null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(PaymentRequest.class));
@@ -133,10 +135,13 @@ public class SafechargeTest {
         exception.expect(SafechargeConfigurationException.class);
         exception.expectMessage("Missing mandatory info for execution of payments! Please run initialization method before creating payments.");
 
-        sut.payment("userTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11", null, null,
-                null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null, null);
+        sut.payment("userTokenId", "clientUniqueId", "clientRequestId", null,
+                null, "BGN", "11", null, null, null, null,
+                null, null, null, null, null, null,
+                null, null, null, null, null, null,
+                null, null, null, null, null, null,
+                null, null, null, null, null, null,
+                null, null, null, null, null);
     }
 
     @Test
@@ -184,7 +189,7 @@ public class SafechargeTest {
         OpenOrderResponse response = sut.openOrder("userTokenId", "clientRequestId", "clientUniqueId", null, null, null, null, "BGN", "11", null,
                 null, null, null, null, null, null, null, null, null, null, null, null, null,
                 null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null);
+                null, null, null, null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(OpenOrderRequest.class));
@@ -202,7 +207,7 @@ public class SafechargeTest {
         sut.openOrder("userTokenId", "clientRequestId", "clientUniqueId", null, null, null, null, "BGN", "11", null,
                 null, null, null, null, null, null, null, null, null, null, null, null, null,
                 null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null);
     }
 
     @Test
@@ -364,7 +369,7 @@ public class SafechargeTest {
 
         sut.initialize("merchantKey", "id", "siteId", "localhost", Constants.HashAlgorithm.SHA256);
         Verify3dResponse response = sut.verify3d("clientUniqueId", "clienRequestId", "11", "BGN", null, null, null, null,
-                "relatedTransaction", null, null, null, null);
+                "relatedTransaction", null, null, null, null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(Verify3dRequest.class));
@@ -380,7 +385,7 @@ public class SafechargeTest {
         exception.expectMessage("Missing mandatory info for execution of payments! Please run initialization method before creating payments.");
 
         sut.verify3d("clientUniqueId", "clienRequestId", "11", "BGN", null, null, null, null,
-                "relatedTransaction", null, null, null, null);
+                "relatedTransaction", null, null, null, null, null);
     }
 
     @Test
@@ -397,7 +402,7 @@ public class SafechargeTest {
         Authorize3dResponse response = sut.authorize3d("usertTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11",
                 null, null, null, null, null, null, null, null, null, null,
                 null, null, null, "relatedTransaction", null, null, null, null, null, null,
-                null);
+                null, null);
 
         verify(executor).execute(any(GetSessionTokenRequest.class));
         verify(executor).execute(any(Authorize3dRequest.class));
@@ -415,7 +420,7 @@ public class SafechargeTest {
         sut.authorize3d("usertTokenId", "clientUniqueId", "clientRequestId", null, null, "BGN", "11",
                 null, null, null, null, null, null, null, null, null, null,
                 null, null, null, "relatedTransaction", null, null, null, null, null,
-                null, null);
+                null, null, null);
     }
 
     @Test

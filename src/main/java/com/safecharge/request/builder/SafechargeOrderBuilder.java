@@ -52,6 +52,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
     private String clientUniqueId;
     private AmountDetails amountDetails;
     private ShippingTrackingDetails shippingTrackingDetails;
+    private String digitalAssetType;
 
     /**
      * Adds amount to the request.
@@ -484,6 +485,18 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         return (T) this;
     }
 
+
+    /**
+     * Adds digitalAssetType to the request.
+     *
+     * @param digitalAssetType       Digital currency transaction identifier.
+     * @return this object
+    */
+    public T addDigitalAssetType(String digitalAssetType) {
+        this.digitalAssetType = digitalAssetType;
+        return (T) this;
+    }
+
     /**
      * Adds the order details data, collected by this builder.
      *
@@ -512,6 +525,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
         safechargeOrderDetailsRequest.setClientUniqueId(clientUniqueId);
         safechargeOrderDetailsRequest.setAmountDetails(amountDetails);
         safechargeOrderDetailsRequest.setShippingTrackingDetails(shippingTrackingDetails);
+        safechargeOrderDetailsRequest.setDigitalAssetType(digitalAssetType);
 
         safechargeOrderDetailsRequest.setChecksum(
                 ChecksumUtils.calculateChecksum(safechargeOrderDetailsRequest, merchantInfo != null ? merchantInfo.getMerchantKey() : "",

@@ -111,6 +111,8 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
 
     private ShippingTrackingDetails shippingTrackingDetails;
 
+    private String digitalAssetType;
+
     @NotNull(message = "sessionToken parameter is mandatory!")
     public String getSessionToken() {
         return super.getSessionToken();
@@ -243,42 +245,33 @@ public abstract class SafechargeOrderDetailsRequest extends SafechargeRequest {
         this.shippingTrackingDetails = shippingTrackingDetails;
     }
 
+    public String getDigitalAssetType() {
+        return digitalAssetType;
+    }
+
+    public void setDigitalAssetType(String digitalAssetType) {
+        this.digitalAssetType = digitalAssetType;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("currency='")
-                .append(currency)
-                .append('\'');
-        sb.append(", amount='")
-                .append(amount)
-                .append('\'');
-        sb.append(", items=")
-                .append(items);
-        sb.append(", deviceDetails=")
-                .append(deviceDetails);
-        sb.append(", userDetails=")
-                .append(userDetails);
-        sb.append(", shippingAddress=")
-                .append(shippingAddress);
-        sb.append(", billingAddress=")
-                .append(billingAddress);
-        sb.append(", dynamicDescriptor=")
-                .append(dynamicDescriptor);
-        sb.append(", merchantDetails=")
-                .append(merchantDetails);
-        sb.append(", urlDetails=")
-                .append(urlDetails);
-        sb.append(", addendums=")
-                .append(addendums);
-        sb.append(", userTokenId='")
-                .append(userTokenId)
-                .append('\'');
-        sb.append(", clientUniqueId='")
-                .append(clientUniqueId);
-        sb.append(", amountDetails='")
-                .append(amountDetails);
-        sb.append(", shippingTrackingDetails='")
-                .append(shippingTrackingDetails);
+        sb.append("currency='").append(currency).append('\'');
+        sb.append(", amount='").append(amount).append('\'');
+        sb.append(", items=").append(items);
+        sb.append(", deviceDetails=").append(deviceDetails);
+        sb.append(", userDetails=").append(userDetails);
+        sb.append(", shippingAddress=").append(shippingAddress);
+        sb.append(", billingAddress=").append(billingAddress);
+        sb.append(", dynamicDescriptor=").append(dynamicDescriptor);
+        sb.append(", merchantDetails=").append(merchantDetails);
+        sb.append(", urlDetails=").append(urlDetails);
+        sb.append(", addendums=").append(addendums);
+        sb.append(", userTokenId='").append(userTokenId).append('\'');
+        sb.append(", clientUniqueId='").append(clientUniqueId).append('\'');
+        sb.append(", amountDetails=").append(amountDetails);
+        sb.append(", shippingTrackingDetails=").append(shippingTrackingDetails);
+        sb.append(", digitalAssetType=").append(digitalAssetType);
         sb.append(", ");
         sb.append(super.toString());
         return sb.toString();

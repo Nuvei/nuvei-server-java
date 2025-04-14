@@ -121,6 +121,7 @@ public class Safecharge {
      * @param shippingTrackingDetails Holds information about shippingTrackingDetails.
      * @param cvvNotUsed             Flag if CVV is not used
      * @param serviceDueDate         Subscription end date
+     * @param digitalAssetType       Digital currency transaction identifier.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -134,7 +135,7 @@ public class Safecharge {
                                    String isMoto, SubMerchant subMerchant, String rebillingType, String authenticationOnlyType, String userId,
                                    ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion, String isPartialApproval, String paymentFlow,
                                    String redirectFlowUITheme, String aftOverride, RecipientDetails recipientDetails, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails,
-                                   String cvvNotUsed, String serviceDueDate) throws SafechargeException {
+                                   String cvvNotUsed, String serviceDueDate, String digitalAssetType) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
@@ -142,7 +143,7 @@ public class Safecharge {
                 isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName, productId, customData, relatedTransactionId,
                 transactionType, autoPayment3D, isMoto, subMerchant, rebillingType, authenticationOnlyType, userId, externalSchemeDetails, currencyConversion, isPartialApproval, paymentFlow,
-                redirectFlowUITheme, aftOverride, recipientDetails, companyDetails, shippingTrackingDetails, cvvNotUsed, serviceDueDate);
+                redirectFlowUITheme, aftOverride, recipientDetails, companyDetails, shippingTrackingDetails, cvvNotUsed, serviceDueDate, digitalAssetType);
 
         return (PaymentResponse) requestExecutor.execute(request);
     }
@@ -240,6 +241,7 @@ public class Safecharge {
      * @param currencyConversion     Used to specify currency conversion details
      * @param openAmount             Defines minimum and maximum allowed amount for the order
      * @param aftOverride            Used to instruct the gateway that this transaction should not be marked as AFT. Accepted values: "0" / "1".
+     * @param digitalAssetType       Digital currency transaction identifier.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -253,7 +255,8 @@ public class Safecharge {
                                        Addendums addendums, String customData, Boolean autoPayment3D, String isMoto, String authenticationOnlyType,
                                        SubMerchant subMerchant, Integer isRebilling, String rebillingType, String preventOverride, String userId,
                                        String isPartialApproval, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                       OpenAmount openAmount, String aftOverride, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails) throws SafechargeException {
+                                       OpenAmount openAmount, String aftOverride, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails,
+                                       String digitalAssetType) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
@@ -261,7 +264,8 @@ public class Safecharge {
                 paymentOption, transactionType, currency, amount, items, deviceDetails, userDetails, shippingAddress, billingAddress,
                 dynamicDescriptor, merchantDetails, urlDetails, userTokenId, clientUniqueId, userPaymentOption, paymentMethod,
                 amountDetails, addendums, customData, autoPayment3D, isMoto, authenticationOnlyType, subMerchant, isRebilling, rebillingType,
-                preventOverride, userId, isPartialApproval, externalSchemeDetails, currencyConversion, openAmount, aftOverride, companyDetails, shippingTrackingDetails);
+                preventOverride, userId, isPartialApproval, externalSchemeDetails, currencyConversion, openAmount, aftOverride, companyDetails,
+                shippingTrackingDetails, digitalAssetType);
 
         return (OpenOrderResponse) requestExecutor.execute(request);
     }
@@ -442,6 +446,7 @@ public class Safecharge {
      *                             Required if you wish to use the paymentOptionId field for future charging of this user without re-collecting the payment details
      * @param paymentOption        This class represents the details about the payment method.
      *                             Can have either card, alternativePaymentMethod, or userPaymentOptionId.
+     * @param digitalAssetType     Digital currency transaction identifier.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -449,13 +454,14 @@ public class Safecharge {
      */
     public Verify3dResponse verify3d(String clientUniqueId, String clientRequestId, String amount, String currency, UserAddress billingAddress,
                                      String customData, String customSiteName, MerchantDetails merchantDetails, String relatedTransactionId,
-                                     SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption) throws SafechargeException {
+                                     SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption,
+                                     String digitalAssetType) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
         SafechargeBaseRequest request = requestBuilder.getVerify3dRequest(sessionToken, merchantInfo, clientUniqueId, clientRequestId, amount,
                 currency, billingAddress, customData, customSiteName, merchantDetails, relatedTransactionId, subMerchant, userId,
-                userTokenId, paymentOption);
+                userTokenId, paymentOption, digitalAssetType);
 
         return (Verify3dResponse) requestExecutor.execute(request);
     }
@@ -507,6 +513,7 @@ public class Safecharge {
      *                               due to a consumer’s lack of funds within the desired payment method.
      * @param externalSchemeDetails  Used to provide original transactionId for the initial payment as originated in external system and card brand.
      * @param currencyConversion     Used to specify currency conversion details
+     * @param digitalAssetType       Digital currency transaction identifier.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeConfigurationException If the {@link Safecharge#initialize(String, String, String, String, Constants.HashAlgorithm)}
      *                                          method is not invoked beforehand SafechargeConfigurationException exception will be thrown.
@@ -520,7 +527,7 @@ public class Safecharge {
                                            String customSiteName, String productId, String customData, String relatedTransactionId,
                                            Constants.TransactionType transactionType, Boolean autoPayment3D, SubMerchant subMerchant,
                                            String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                           String isPartialApproval) throws SafechargeException {
+                                           String isPartialApproval, String digitalAssetType) throws SafechargeException {
         ensureMerchantInfoAndSessionTokenNotNull();
 
         RequestBuilder requestBuilder = serviceFactory.getRequestBuilder();
@@ -528,7 +535,7 @@ public class Safecharge {
                 clientRequestId, paymentOption, isRebilling, currency, amount, amountDetails, items, deviceDetails, userDetails,
                 shippingAddress, billingAddress, dynamicDescriptor, merchantDetails, addendums, urlDetails, customSiteName,
                 productId, customData, relatedTransactionId, transactionType, autoPayment3D, subMerchant, userId, externalSchemeDetails,
-                currencyConversion, isPartialApproval);
+                currencyConversion, isPartialApproval, digitalAssetType);
 
         return (Authorize3dResponse) requestExecutor.execute(request);
     }
@@ -661,7 +668,8 @@ public class Safecharge {
      * @param subMethodDetails      Details about submethod
      * @param cardData              An alternative to sending the userPaymentOptionId for card payouts.
      * @param deviceDetails         Information about client device
-     * @param currencyConversion     Holds information about currency conversion type (DCC / MCP) and amount.
+     * @param currencyConversion    Holds information about currency conversion type (DCC / MCP) and amount.
+     * @param digitalAssetType      Digital currency transaction identifier.
      * @return Passes through the response from Safecharge's REST API.
      * @throws SafechargeException
      */
@@ -669,7 +677,7 @@ public class Safecharge {
                                  UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
                                  MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
                                  CardData cardData, DeviceDetails deviceDetails, UserDetails userDetails, CompanyDetails companyDetails,
-                                 CurrencyConversion currencyConversion)
+                                 CurrencyConversion currencyConversion, String digitalAssetType)
             throws SafechargeException {
 
         ensureMerchantInfoAndSessionTokenNotNull();
@@ -678,7 +686,7 @@ public class Safecharge {
         PayoutRequest request = requestBuilder.getPayoutRequest(sessionToken, merchantInfo,
                 userTokenId, clientUniqueId, clientRequestId, amount, currency,userPaymentOption, comment, dynamicDescriptor,
                 merchantDetails, urlDetails, subMethodDetails, cardData, deviceDetails, userDetails, companyDetails,
-                currencyConversion);
+                currencyConversion, digitalAssetType);
 
         return (PayoutResponse) requestExecutor.execute(request);
     }

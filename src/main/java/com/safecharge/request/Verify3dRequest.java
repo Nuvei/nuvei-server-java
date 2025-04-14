@@ -74,6 +74,8 @@ public class Verify3dRequest extends SafechargeRequest {
     @Valid
     private SubMerchant subMerchant;
 
+    private String digitalAssetType;
+
     public String getUserTokenId() {
         return userTokenId;
     }
@@ -170,6 +172,14 @@ public class Verify3dRequest extends SafechargeRequest {
         this.subMerchant = subMerchant;
     }
 
+    public String getDigitalAssetType() {
+        return digitalAssetType;
+    }
+
+    public void setDigitalAssetType(String digitalAssetType) {
+        this.digitalAssetType = digitalAssetType;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -196,6 +206,7 @@ public class Verify3dRequest extends SafechargeRequest {
         private Verify3dPaymentOption paymentOption;
         private String userId;
         private SubMerchant subMerchant;
+        private String digitalAssetType;
 
         public Builder addUserTokenId(String userTokenId) {
             this.userTokenId = userTokenId;
@@ -257,6 +268,11 @@ public class Verify3dRequest extends SafechargeRequest {
             return this;
         }
 
+        public Builder addDigitalAssetType(String digitalAssetType) {
+            this.digitalAssetType = digitalAssetType;
+            return this;
+        }
+
         @Override
         public SafechargeBaseRequest build() throws ConstraintViolationException {
             Verify3dRequest verify3dRequest = new Verify3dRequest();
@@ -272,6 +288,7 @@ public class Verify3dRequest extends SafechargeRequest {
             verify3dRequest.setSubMerchant(subMerchant);
             verify3dRequest.setUserId(userId);
             verify3dRequest.setUserTokenId(userTokenId);
+            verify3dRequest.setDigitalAssetType(digitalAssetType);
 
             return ValidationUtils.validate(super.build(verify3dRequest));
         }

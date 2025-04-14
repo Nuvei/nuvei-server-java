@@ -114,7 +114,7 @@ public abstract class SafechargeBaseRequest {
         sb.append("serverHost='")
                 .append(serverHost)
                 .append('\'');
-        sb.append("internalRequestId='")
+        sb.append(", internalRequestId='")
                 .append(internalRequestId)
                 .append('\'');
         sb.append(", clientRequestId='")

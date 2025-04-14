@@ -30,7 +30,7 @@ public class RequestBuilder {
                                                    String userId, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
                                                    String isPartialApproval, String paymentFlow, String redirectFlowUITheme, String aftOverride,
                                                    RecipientDetails recipientDetails, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails,
-                                                   String cvvNotUsed, String serviceDueDate) {
+                                                   String cvvNotUsed, String serviceDueDate, String digitalAssetType) {
         return PaymentRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -73,6 +73,7 @@ public class RequestBuilder {
                 .addShippingTrackingDetails(shippingTrackingDetails)
                 .addCvvNotUsed(cvvNotUsed)
                 .addServiceDueDate(serviceDueDate)
+                .addDigitalAssetType(digitalAssetType)
                 .build();
     }
 
@@ -108,7 +109,7 @@ public class RequestBuilder {
                                                      String paymentMethod, AmountDetails amountDetails, Addendums addendums, String customData, Boolean autoPayment3D,
                                                      String isMoto, String authenticationOnlyType, SubMerchant subMerchant, Integer isRebilling, String rebillingType,
                                                      String preventOverride, String userId, String isPartialApproval, ExternalSchemeDetails externalSchemeDetails, CurrencyConversion currencyConversion,
-                                                     OpenAmount openAmount, String aftOverride, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails) {
+                                                     OpenAmount openAmount, String aftOverride, CompanyDetails companyDetails, ShippingTrackingDetails shippingTrackingDetails, String digitalAssetType) {
         return OpenOrderRequest.builder()
                 .addMerchantInfo(merchantInfo)
                 .addSessionToken(sessionToken)
@@ -149,6 +150,7 @@ public class RequestBuilder {
                 .addAftOverride(aftOverride)
                 .addCompanyDetails(companyDetails)
                 .addShippingTrackingDetails(shippingTrackingDetails)
+                .addDigitalAssetType(digitalAssetType)
                 .build();
     }
 
@@ -246,7 +248,8 @@ public class RequestBuilder {
     public SafechargeBaseRequest getVerify3dRequest(String sessionToken, MerchantInfo merchantInfo, String clientUniqueId, String clientRequestId,
                                                     String amount, String currency, UserAddress billingAddress, String customData,
                                                     String customSiteName, MerchantDetails merchantDetails, String relatedTransactionId,
-                                                    SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption) {
+                                                    SubMerchant subMerchant, String userId, String userTokenId, Verify3dPaymentOption paymentOption,
+                                                    String digitalAssetType) {
         return Verify3dRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -263,6 +266,7 @@ public class RequestBuilder {
                 .addUserId(userId)
                 .addUserTokenId(userTokenId)
                 .addPaymentOption(paymentOption)
+                .addDigitalAssetType(digitalAssetType)
                 .build();
     }
 
@@ -274,7 +278,7 @@ public class RequestBuilder {
                                                        UrlDetails urlDetails, String customSiteName, String productId, String customData,
                                                        String relatedTransactionId, Constants.TransactionType transactionType, Boolean autoPayment3D,
                                                        SubMerchant subMerchant, String userId, ExternalSchemeDetails externalSchemeDetails,
-                                                       CurrencyConversion currencyConversion, String isPartialApproval) {
+                                                       CurrencyConversion currencyConversion, String isPartialApproval, String digitalAssetType) {
         return Authorize3dRequest.builder()
                 .addSessionToken(sessionToken)
                 .addIsRebilling(isRebilling)
@@ -306,6 +310,7 @@ public class RequestBuilder {
                 .addExternalSchemeDetails(externalSchemeDetails)
                 .addCurrencyConversion(currencyConversion)
                 .addIsPartialApproval(isPartialApproval)
+                .addDigitalAssetType(digitalAssetType)
                 .build();
     }
 
@@ -374,7 +379,7 @@ public class RequestBuilder {
                                 UserPaymentOption userPaymentOption, String comment, DynamicDescriptor dynamicDescriptor,
                                 MerchantDetails merchantDetails, UrlDetails urlDetails, SubMethodDetails subMethodDetails,
                                 CardData cardData, DeviceDetails deviceDetails, UserDetails userDetails, CompanyDetails companyDetails,
-                                CurrencyConversion currencyConversion) {
+                                CurrencyConversion currencyConversion, String digitalAssetType) {
         return PayoutRequest.builder()
                 .addSessionToken(sessionToken)
                 .addMerchantInfo(merchantInfo)
@@ -393,6 +398,7 @@ public class RequestBuilder {
                 .addUserDetails(userDetails)
                 .addCompanyDetails(companyDetails)
                 .addCurrencyConversion(currencyConversion)
+                .addDigitalAssetType(digitalAssetType)
                 .build();
     }
 

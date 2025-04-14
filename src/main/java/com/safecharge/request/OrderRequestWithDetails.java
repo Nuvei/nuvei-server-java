@@ -142,16 +142,16 @@ public abstract class OrderRequestWithDetails extends SafechargeOrderDetailsRequ
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OrderRequestWithDetails{");
-        sb.append("paymentMethod='").append(paymentMethod)
+        sb.append("paymentMethod=").append(paymentMethod)
                 .append(", userPaymentOption=").append(userPaymentOption)
-                .append(", customData='").append(customData)
+                .append(", customData=").append(customData)
                 .append(", autoPayment3D=").append(autoPayment3D)
-                .append(", isMoto='").append(isMoto)
-                .append(", userId='").append(userId)
-                .append(", externalSchemeDetails='").append(externalSchemeDetails)
-                .append(", currencyConversion='").append(currencyConversion)
-                .append(", openAmount='").append(openAmount)
-                .append(", aftOverride='").append(aftOverride);
+                .append(", isMoto=").append(isMoto)
+                .append(", userId=").append(userId)
+                .append(", externalSchemeDetails=").append(externalSchemeDetails)
+                .append(", currencyConversion=").append(currencyConversion)
+                .append(", openAmount=").append(openAmount)
+                .append(", aftOverride=").append(aftOverride);
         sb.append(super.toString());
 
         return sb.toString();

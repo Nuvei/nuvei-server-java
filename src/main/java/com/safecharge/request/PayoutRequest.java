@@ -88,6 +88,8 @@ public class PayoutRequest extends SafechargeRequest {
     @Valid
     private CurrencyConversion currencyConversion;
 
+    private String digitalAssetType;
+
     public static PayoutRequest.Builder builder() {
         return new PayoutRequest.Builder();
     }
@@ -212,6 +214,14 @@ public class PayoutRequest extends SafechargeRequest {
         this.currencyConversion = currencyConversion;
     }
 
+    public String getDigitalAssetType() {
+        return digitalAssetType;
+    }
+
+    public void setDigitalAssetType(String digitalAssetType) {
+        this.digitalAssetType = digitalAssetType;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PayoutRequest{");
@@ -225,11 +235,12 @@ public class PayoutRequest extends SafechargeRequest {
         sb.append(", merchantDetails=").append(merchantDetails);
         sb.append(", urlDetails=").append(urlDetails);
         sb.append(", subMethodDetails=").append(subMethodDetails);
-        sb.append(", cardData='").append(cardData);
-        sb.append(", deviceDetails='").append(deviceDetails);
-        sb.append(", userDetails='").append(userDetails);
-        sb.append(", companyDetails='").append(companyDetails);
-        sb.append(", currencyConversion='").append(currencyConversion);
+        sb.append(", cardData=").append(cardData);
+        sb.append(", deviceDetails=").append(deviceDetails);
+        sb.append(", userDetails=").append(userDetails);
+        sb.append(", companyDetails=").append(companyDetails);
+        sb.append(", currencyConversion=").append(currencyConversion)
+        .append(", digitalAssetType=").append(digitalAssetType);
         sb.append('}');
         return sb.toString();
     }
@@ -251,6 +262,7 @@ public class PayoutRequest extends SafechargeRequest {
         private UserDetails userDetails;
         private CompanyDetails companyDetails;
         private CurrencyConversion currencyConversion;
+        private String digitalAssetType;
 
         /**
          * @param userTokenId
@@ -372,6 +384,11 @@ public class PayoutRequest extends SafechargeRequest {
             return this;
         }
 
+        public Builder addDigitalAssetType(String digitalAssetType) {
+            this.digitalAssetType = digitalAssetType;
+            return this;
+        }
+
         /**
          * Builds the request.
          *
@@ -395,6 +412,7 @@ public class PayoutRequest extends SafechargeRequest {
             request.setUserDetails(userDetails);
             request.setCompanyDetails(companyDetails);
             request.setCurrencyConversion(currencyConversion);
+            request.setDigitalAssetType(digitalAssetType);
             return ValidationUtils.validate(super.build(request));
         }
     }
