@@ -1,0 +1,17 @@
+trigger: none
+resources:
+  repositories:
+    - repository: DevOpsTemplates
+      name: DigitalPayments/DevOps-Templates
+      type: git
+      ref: master
+schedules:
+- cron: "20 00 * * *"
+  displayName: "Daily Security analysis"
+  branches:
+    include:
+    - develop
+  always: false
+
+extends:
+  template: pipelines/restapi1.0-java-sdk2.0.yaml@DevOpsTemplates

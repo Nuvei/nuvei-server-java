@@ -1,0 +1,124 @@
+/*
+ * Copyright (C) 2007 - 2024 Nuvei Corporation.
+ */
+
+package com.nuvei.model;
+
+import java.util.List;
+
+/**
+ * <p>
+ * Holder for a Checkout Page's Payment method(PM) data.
+ * Along with PM's specific info it contains a list of allowed countries and currencies ISO codes for use with the PM.
+ * </p>
+ * @author <a mailto:nikolad@nuvei.com>Nikola Dichev</a>
+ * @since 4/7/2017
+ */
+public class PaymentMethod {
+
+    private String paymentMethod;
+
+    private String isDirect;
+
+    private List<String> countries;
+
+    private List<String> currencies;
+
+    private String logoURL;
+
+    private List<LocalizationMessage> paymentMethodDisplayName;
+
+    private List<Field> fields;
+
+    private String openInExternalBrowser;
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getIsDirect() {
+        return isDirect;
+    }
+
+    public void setIsDirect(String isDirect) {
+        this.isDirect = isDirect;
+    }
+
+    public List<String> getCountries() {
+        return countries;
+    }
+
+    public void setCountries(List<String> countries) {
+        this.countries = countries;
+    }
+
+    public List<String> getCurrencies() {
+        return currencies;
+    }
+
+    public void setCurrencies(List<String> currencies) {
+        this.currencies = currencies;
+    }
+
+    public String getLogoURL() {
+        return logoURL;
+    }
+
+    public void setLogoURL(String logoURL) {
+        this.logoURL = logoURL;
+    }
+
+    public List<LocalizationMessage> getPaymentMethodDisplayName() {
+        return paymentMethodDisplayName;
+    }
+
+    public void setPaymentMethodDisplayName(List<LocalizationMessage> paymentMethodDisplayName) {
+        this.paymentMethodDisplayName = paymentMethodDisplayName;
+    }
+
+    public List<Field> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<Field> fields) {
+        this.fields = fields;
+    }
+
+    public String getOpenInExternalBrowser() {
+        return openInExternalBrowser;
+    }
+
+    public void setOpenInExternalBrowser(String openInExternalBrowser) {
+        this.openInExternalBrowser = openInExternalBrowser;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("PaymentMethod{");
+        sb.append("paymentMethod='")
+                .append(paymentMethod)
+                .append('\'');
+        sb.append(", isDirect='")
+                .append(isDirect)
+                .append('\'');
+        sb.append(", countries=")
+                .append(countries);
+        sb.append(", currencies=")
+                .append(currencies);
+        sb.append(", logoURL='")
+                .append(logoURL)
+                .append('\'');
+        sb.append(", paymentMethodDisplayName=")
+                .append(paymentMethodDisplayName);
+        sb.append(", openInExternalBrowser=")
+                .append(openInExternalBrowser);
+        sb.append(", fields=")
+                .append(fields);
+        sb.append('}');
+        return sb.toString();
+    }
+}
